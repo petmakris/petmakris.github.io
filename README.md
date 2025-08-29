@@ -90,7 +90,8 @@ Planned:
 
 - Intake: `1880 kcal`
 - ΤDEE: `2850 kcal`
-- Έλλειμμα: `970 kcal`
+
+- Έλλειμμα: <span class="green">970 kcal</span>
 
 # Τετάρτη 27 Αυγούστου 2025
 
@@ -123,7 +124,8 @@ Planned:
 
 - Intake: `2418 kcal`
 - ΤDEE: `2862 kcal`
-- Έλλειμμα: `444 kcal`
+
+- Έλλειμμα: <span class="green">444 kcal</span>
 
 
 # Τρίτη 26 Αυγούστου 2025
@@ -155,7 +157,8 @@ Planned:
 
 - Intake: `1980 kcal`
 - ΤDEE: `2363 kcal`
-- Έλλειμμα: `383 kcal`
+
+- Έλλειμμα: <span class="green">383 kcal</span>
 
 
 # Δευτέρα 25 Αυγούστου 2025
@@ -191,7 +194,8 @@ Planned:
 
 - Intake: `2760 kcal`
 - ΤDEE: `3200 kcal`
-- Έλλειμμα: `440 kcal`
+
+- Έλλειμμα: <span class="green">440 kcal</span>
 
 # Κυριακή 24 Αυγούστου 2025
 
@@ -222,7 +226,8 @@ Planned:
 
 - Intake: `2290 kcal`
 - ΤDEE: `2616 kcal`
-- Έλλειμμα: `326 kcal`
+
+- Έλλειμμα: <span class="green">326 kcal</span>
 
 # Σάββατο 23 Αυγούστου 2025
 
@@ -257,7 +262,8 @@ Planned:
 
 - Intake: `2725 kcal`
 - ΤDEE: `2345 kcal`
-- Έλλειμμα: `-380 kcal`
+
+- Έλλειμμα: <span class="red">-380 kcal</span>
 
 
 # Παρασκευή 22 Αυγούστου 2025
@@ -294,7 +300,8 @@ Planned:
 
 - Intake: `3280 kcal`
 - ΤDEE: `2627 kcal`
-- Έλλειμμα: `-653 kcal`
+
+- Έλλειμμα: <span class="red">-653 kcal</span>
 
 # Πέμπτη 21 Αυγούστου 2025
 
@@ -324,7 +331,8 @@ Planned:
 
 - Intake: `2363 kcal`
 - ΤDEE: `2689 kcal`
-- Έλλειμμα: `326 kcal`
+
+- Έλλειμμα: <span class="green">326 kcal</span>
 
 
 
@@ -356,7 +364,8 @@ Planned:
 
 - Intake: `2380 kcal`
 - ΤDEE: `2900 kcal`
-- Έλλειμμα: `520 kcal`
+
+- Έλλειμμα: <span class="green">520 kcal</span>
 
 
 # Τρίτη 19 Αυγούστου 2025
@@ -384,7 +393,8 @@ Planned:
 
 - Intake: `1890 kcal`
 - ΤDEE: `2205 kcal`
-- Έλλειμμα: `315 kcal`
+
+- Έλλειμμα: <span class="green">315 kcal</span>
 
 # Δευτέρα 18 Αυγούστου 2025
 
@@ -413,7 +423,8 @@ Planned:
 
 - Intake: `2530 kcal`
 - ΤDEE: `2516 kcal`
-- Έλλειμμα: `-14 kcal`
+
+- Έλλειμμα: <span class="red">-14 kcal</span>
 
 # Πίνακας συντομέυσεων:
 
