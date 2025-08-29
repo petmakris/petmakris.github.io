@@ -1,3 +1,21 @@
+<style>
+.green {
+  color: white;
+  background-color: green;
+  padding: 2px 2px;
+  border-radius: 4px;
+}
+.red {
+  color: white;
+  background-color: red;
+  padding: 2px 2px;
+  border-radius: 4px;
+}
+
+
+</style>
+
+
 # Σάββατο 30 Αυγούστου 2025
 
 Planned:
@@ -43,7 +61,8 @@ Planned:
 
 - Intake: `2250 kcal`  
 - ΤDEE: `3292 kcal`  
-- Έλλειμμα: <span style="color:white; background-color:green; padding:2px 6px; border-radius:4px;">1042 kcal</span>
+
+- Έλλειμμα: <span class="green">1042 kcal</span>
 
 # Πέμπτη 28 Αυγούστου 2025
 
