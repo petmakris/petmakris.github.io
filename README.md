@@ -43,7 +43,7 @@ Planned:
 
 - Intake: `2250 kcal`  
 - ΤDEE: `3292 kcal`  
-- Έλλειμμα: `1042 kcal`
+- Έλλειμμα: <span style="color:green">1042 kcal</span>
 
 # Πέμπτη 28 Αυγούστου 2025
 
