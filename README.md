@@ -234,6 +234,7 @@ Active calories 962
 - Γιαούρτι 140 kcal + 1 κ.σ. μέλι 60 kcal + 1 κγ ταχίνι 80 kcal
 
 > Late night:
-
+- Γιαούρτι 140 kcal + 1 κ.σ. μέλι 60 kcal + 1 κγ ταχίνι 80 kcal
+- Δύο παξιμάδια 180 kcal
 
 Active Calories = 950
