@@ -1,21 +1,3 @@
-<style>
-.green {
-  color: white;
-  background-color: green;
-  padding: 2px 2px;
-  border-radius: 4px;
-}
-.red {
-  color: white;
-  background-color: red;
-  padding: 2px 2px;
-  border-radius: 4px;
-}
-
-
-</style>
-
-
 # Σάββατο 30 Αυγούστου 2025
 
 Planned:
@@ -28,15 +10,21 @@ Planned:
 - κοτόπουλο
 - cottage
 - σαλάτα
-
+- γιαούρτι + μέλι
 
 - γιαούρτι + μέλι + ταχίνι
 
 > Στοιχεία
 
-- Ενεργες θερμίδες: 
+- Ενεργες θερμίδες: 80
 - Βάρος: 98.2
 
+> Σύνοψη 
+
+- Intake: `1510 kcal`  
+- ΤDEE: `1980 kcal`  
+- Έλλειμμα: `470 kcal`
+- 
 # Παρασκευή 29 Αυγούστου 2025
 
 - γιαούρτι + μέλι + ταχίνι
@@ -467,3 +455,20 @@ Planned:
 
 RMR 1900 θερμίδες, Βάρος 100kg, 18 Αυγούστου 2025.
 
+
+<style>
+.green {
+  color: white;
+  background-color: green;
+  padding: 2px 2px;
+  border-radius: 4px;
+}
+.red {
+  color: white;
+  background-color: red;
+  padding: 2px 2px;
+  border-radius: 4px;
+}
+
+
+</style>
