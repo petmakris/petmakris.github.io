@@ -119,7 +119,7 @@ Planning!
 
 - Έλλειμμα: <span class="green">65 kcal</span>   
 
-![τυλιχτό emergency](./pics/2025-09-31.jpg)
+![τυλιχτό emergency](./pics/2025-08-31/01.jpg)
 
 # Σάββατο 30 Αυγούστου 2025
 
