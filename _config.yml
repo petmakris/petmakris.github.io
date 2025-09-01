@@ -1,5 +1,5 @@
 title: "Eating habbits"
-theme: jekyll-theme-cayman
+theme: jekyll-theme-dinky
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
