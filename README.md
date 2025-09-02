@@ -54,17 +54,19 @@
 - σαλάτα
 - 50γρ παρμεζάνα
 
+- 20γρ φυστίκια (120 kcal)
+
 > Στοιχεία
 
 - Ενεργες θερμίδες: 272 kcal
 - Βάρος: 98,1 kgr
 
-> Σύνοψη 
+## Τελικό Έλλειμμα
 
-- Intake: `1990 kcal`  
-- TDEE: `2172 kcal`  
+- Intake: **2110 kcal**  
+- TDEE: **2172 kcal**  
 
-💪🏻 Έλλειμμα: <span class="green">182 kcal</span>
+🤞🏻 Έλλειμμα: <span class="neutral">62 kcal</span>
 
 
 ![pic](./pics/2025-09-02/01.jpg)<br>
