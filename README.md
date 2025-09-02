@@ -657,6 +657,14 @@ RMR 1900 θερμίδες, Βάρος 100kg, 18 Αυγούστου 2025.
   padding: 2px 2px;
   border-radius: 4px;
 }
+
+.neutral {
+  color: white;
+  background-color: darkgray;
+  padding: 2px 2px;
+  border-radius: 4px;
+}
+
 h1 {
   margin-top: 30px;
   margin-bottom: 30px;
