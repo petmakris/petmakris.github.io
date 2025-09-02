@@ -1,6 +1,7 @@
 * TOC
 {:toc}
 
+
 # Τετάρτη 3 Σεπτέμβρη 2025
 ---
 
@@ -127,6 +128,7 @@
 
 ![pic](./pics/2025-09-01/greens.gif)
 
+<br><br><br>
 
 # Κυριακή 31 Αυγούστου 2025
 ---
@@ -653,6 +655,14 @@ RMR 1900 θερμίδες, Βάρος 100kg, 18 Αυγούστου 2025.
   padding: 2px 2px;
   border-radius: 4px;
 }
+h1 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
 
+h2 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
 
 </style>
