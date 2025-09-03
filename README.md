@@ -11,27 +11,25 @@
 - ομελέτα
 - γιαούρτι + μέλι
 
-- χόρτα
-
 - σαλάτα
 
 - κοτόπουλο
 - cottage
-- σαλάτα
-
+- χόρτα
 - γιαούρτι + μέλι
+- σοκολάτα (200 kcal)
 
 > Στοιχεία
 
 - Ενεργες θερμίδες: 330 kcal
 - Βάρος: 99,1 kgr
 
-> Σύνοψη 
+## Τελικό Έλλειμμα
 
-- Intake: `1750 kcal`  
-- ΤDEE: `2230 kcal`  
+- Intake: `1850 kcal`  
+- TDEE: `2230 kcal`
 
-💪🏻 Έλλειμμα: <span class="green">480 kcal</span>
+💪🏻 Έλλειμμα: <span class="green">380 kcal</span>
 
 
 ![pic](./pics/2025-09-03/out.gif)<br>
