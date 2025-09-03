@@ -54,6 +54,11 @@
 - σαλάτα
 - 50γρ παρμεζάνα
 
+- 20γρ φυστίκια (120 kcal)
+- γιαούρτι + μέλι
+- 1 σοκολατάκι (50 kcal)
+
+
 > Στοιχεία
 
 - Ενεργες θερμίδες: 272 kcal
@@ -61,10 +66,10 @@
 
 > Σύνοψη 
 
-- Intake: `1990 kcal`  
-- TDEE: `2172 kcal`  
+- Intake: `2340 kcal`  
+- ΤDEE: `2172 kcal`  
 
-💪🏻 Έλλειμμα: <span class="green">182 kcal</span>
+👎🏻 Έλλειμμα: <span class="red">-168 kcal</span>
 
 
 ![pic](./pics/2025-09-02/01.jpg)<br>
@@ -74,6 +79,8 @@
 ![pic](./pics/2025-09-02/03.jpg)<br>
 
 ![pic](./pics/2025-09-02/04.jpg)<br>
+
+![pic](./pics/2025-09-02/05.jpg)<br>
 
 ![pic](./pics/2025-09-02/kol.gif)<br>
 
@@ -655,6 +662,14 @@ RMR 1900 θερμίδες, Βάρος 100kg, 18 Αυγούστου 2025.
   padding: 2px 2px;
   border-radius: 4px;
 }
+
+.neutral {
+  color: white;
+  background-color: darkgray;
+  padding: 2px 2px;
+  border-radius: 4px;
+}
+
 h1 {
   margin-top: 30px;
   margin-bottom: 30px;
