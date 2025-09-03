@@ -51,7 +51,8 @@ Planning
 - cottage
 - χόρτα
 - γιαούρτι + μέλι
-- σοκολάτα (200 kcal)
+- σοκολάτα (320 kcal)
+- πατάτα
 - πατάτα
 
 > Στοιχεία
@@ -61,10 +62,10 @@ Planning
 
 > Σύνοψη 
 
-- Intake: `1990 kcal`  
-- ΤDEE: `2230 kcal`  
+- Intake: `2250 kcal`  
+- TDEE: `2230 kcal`  
 
-💪🏻 Έλλειμμα: <span class="green">240 kcal</span>
+👎🏻 Έλλειμμα: <span class="red">-20 kcal</span>
 
 
 ![pic](./pics/2025-09-03/out.gif)<br>
