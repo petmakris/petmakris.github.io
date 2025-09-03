@@ -6,20 +6,18 @@
 
 Planning
 
-- γιαούρτι + μέλι
+- preworkout
 - ομελέτα
 
-- χόρτα
-- 2 παξιμάδια
+- σαλάτα
 
 - κοτόπουλο
 - cottage
-- χόρτα
-
+- χόρτα (60 kcal)
 
 - κοτόπουλο
 - cottage
-- χόρτα
+- φασολάκια (200 kcal)
 
 
 > Στοιχεία
@@ -29,10 +27,10 @@ Planning
 
 > Σύνοψη 
 
-- Intake: `1850 kcal`  
-- TDEE: `2230 kcal`
+- Intake: `1790 kcal`  
+- TDEE: `2300 kcal`  
 
-💪🏻 Έλλειμμα: <span class="green">380 kcal</span>
+💪🏻 Έλλειμμα: <span class="green">510 kcal</span>
 
 
 
