@@ -55,6 +55,9 @@
 - 50γρ παρμεζάνα
 
 - 20γρ φυστίκια (120 kcal)
+- γιαούρτι + μέλι
+- 1 σοκολατάκι (50 kcal)
+
 
 > Στοιχεία
 
@@ -63,10 +66,10 @@
 
 > Σύνοψη 
 
-- Intake: **2110 kcal**  
-- TDEE: **2172 kcal**  
+- Intake: `2340 kcal`  
+- ΤDEE: `2172 kcal`  
 
-🤞🏻 Έλλειμμα: <span class="neutral">62 kcal</span>
+👎🏻 Έλλειμμα: <span class="red">-168 kcal</span>
 
 
 ![pic](./pics/2025-09-02/01.jpg)<br>
@@ -76,6 +79,8 @@
 ![pic](./pics/2025-09-02/03.jpg)<br>
 
 ![pic](./pics/2025-09-02/04.jpg)<br>
+
+![pic](./pics/2025-09-02/05.jpg)<br>
 
 ![pic](./pics/2025-09-02/kol.gif)<br>
 
