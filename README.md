@@ -7,6 +7,8 @@
 Planning
 
 - preworkout
+- παξιμάδι
+
 - ομελέτα
 - 20gr σοκολάτα (100 kcal)
 
@@ -42,9 +44,10 @@ Planning
 - cottage
 - χόρτα
 - γιαούρτι + μέλι
-- σοκολάτα (320 kcal)
+- σοκολάτα (550 kcal)
 - πατάτα
 - πατάτα
+
 
 > Στοιχεία
 
@@ -53,10 +56,10 @@ Planning
 
 > Σύνοψη 
 
-- Intake: `2250 kcal`  
-- TDEE: `2230 kcal`  
+- Intake: `2480 kcal`  
+- ΤDEE: `2230 kcal`
 
-👎🏻 Έλλειμμα: <span class="red">-20 kcal</span>
+👎🏻 Έλλειμμα: <span class="red">-250 kcal</span>
 
 
 ![pic](./pics/2025-09-03/out.gif)<br>
