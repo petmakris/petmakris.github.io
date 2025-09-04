@@ -27,7 +27,12 @@ Planning
 - Ενεργες θερμίδες: 822 kcal 
 - Βάρος: 99 kgr
 
+> Σύνοψη 
 
+- Intake: `1725 kcal`  
+- ΤDEE: `2722 kcal`  
+
+💪🏻 Έλλειμμα: <span class="green">997 kcal</span>
 
 
 # Τετάρτη 3 Σεπτέμβρη 2025
