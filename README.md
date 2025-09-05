@@ -21,6 +21,7 @@ Planning
 - 20gr σοκολάτα (100 kcal)
 - 50gr cottage (45 kcal)
 - παξιμάδι 
+- λίγες κοτομπουκιές (200 kcal)
 
 > Στοιχεία
 
@@ -29,11 +30,10 @@ Planning
 
 > Σύνοψη 
 
-- Intake: `1725 kcal`  
-- ΤDEE: `2722 kcal`  
+- Intake: 1945 kcal  
+- TDEE: 2722 kcal  
 
-💪🏻 Έλλειμμα: <span class="green">997 kcal</span>
-
+💪🏻 Έλλειμμα: <span class="green">777 kcal</span>
 
 # Τετάρτη 3 Σεπτέμβρη 2025
 ---
