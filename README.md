@@ -50,18 +50,21 @@
 - σαλάτα
 - κοτόπουλο
 - cottage
+- γιαούρτι
+- 2x μέλι
+- πατατάκια (450 kcal)
 
 > Στοιχεία
 
 - Ενεργες θερμίδες: 447 kcal
 - Βάρος: 98.2 kgr
 
-> Σύνοψη
+> Σύνοψη 
 
-- Intake: `2130 kcal`
-- ΤDEE: `2347 kcal`
+- Intake: `2785 kcal`  
+- TDEE: `2347 kcal`
 
-💪🏻 Έλλειμμα: <span class="green">217 kcal</span>
+👎🏻 Έλλειμμα: <span class="red">-438 kcal</span>
 
 
 ![pic](./pics/2025-09-05/preworkout.gif)<br>
