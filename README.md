@@ -22,6 +22,9 @@ Planning
 - 50gr cottage (45 kcal)
 - παξιμάδι 
 - λίγες κοτομπουκιές (200 kcal)
+- γιαούρτι
+- μέλι
+- ταχίνι
 
 > Στοιχεία
 
@@ -30,10 +33,10 @@ Planning
 
 > Σύνοψη 
 
-- Intake: 1945 kcal  
-- TDEE: 2722 kcal  
+- Intake: `2185 kcal`  
+- TDEE: `2722 kcal`  
 
-💪🏻 Έλλειμμα: <span class="green">777 kcal</span>
+💪🏻 Έλλειμμα: <span class="green">537 kcal</span>
 
 # Τετάρτη 3 Σεπτέμβρη 2025
 ---
