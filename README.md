@@ -67,6 +67,7 @@
 - γιαούρτι
 - 2x μέλι
 - πατατάκια (450 kcal)
+- σοκολάτα (120 kcal) 
 
 > Στοιχεία
 
@@ -75,12 +76,11 @@
 
 > Σύνοψη 
 
-- Intake: `2785 kcal`  
-- TDEE: `2347 kcal`
+- Intake: `3320 kcal`  
+- ΤDEE: `2347 kcal`  
 
-👎🏻 Έλλειμμα: <span class="red">-438 kcal</span>
+👎🏻 Έλλειμμα: <span class="red">-973 kcal</span>
 
-<br>
 
 ![pic](./pics/2025-09-05/preworkout.gif)<br>
 
