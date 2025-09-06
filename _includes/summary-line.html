@@ -1,13 +1,18 @@
-{% assign c = include.cal %}
-{% if c %}
+{% assign metrics = include.cal %}
+{% if metrics %}
   <span class="meta">
-    Δ:
-    <span class="{% if c.deficit < 0 %}red{% else %}green{% endif %}">
-      {{ c.deficit }} kcal
-    </span>
-    • Intake {{ c.intake }} kcal
-    • TDEE {{ c.tdee }} kcal
-    • Active {{ c.active }} kcal
-    • {{ c.weight_kg }} kg
+
+    {% if metrics.deficit < 0 %}
+      <span style="color: white; background-color: red; padding: 0px 15px 0px 15px; border-radius: 4px;">
+        {{ metrics.deficit }} kcal
+      </span>
+    {% else %}
+      
+      <span style="color: white; background-color: green; padding: 0px 15px 0px 15px; border-radius: 4px;">
+        {{ metrics.deficit }} kcal
+      </span>
+    {% endif %}
+
+    &nbsp; &nbsp; {{ metrics.weight_kg }} kgr
   </span>
 {% endif %}

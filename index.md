@@ -3,10 +3,19 @@ layout: default
 title: Home
 ---
 
-<br>
+<hr>
 
-{% include summary-line.html cal=post.cal %}
+<ul>
+  {% for post in site.posts %}
+  <li>
+    <div>
+    {% include summary-line.html cal=post.cal %} &nbsp;{{ post.date | date: "%Y-%m-%d" }} 
+    </div>
+  </li>
+  {% endfor %}
+</ul>
 
+<hr>
 
 <ul>
 {% for post in site.posts %}
