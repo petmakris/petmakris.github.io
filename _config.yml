@@ -1,5 +1,5 @@
 title: "Eating habits"
-description: "Diet to 15% fat"
+# description: "Diet to 15% fat"
 url: "https://petmakris.github.io"
 baseurl: ""
 theme: jekyll-theme-cayman
@@ -8,7 +8,7 @@ theme: jekyll-theme-cayman
 # remote_theme: "mmistakes/minimal-mistakes@4.27.3"
 
 permalink: /:year/:month/:day/:title/
-giscus_enabled: true
+giscus_enabled: false
 plugins: 
   - jekyll-feed
   - jekyll-seo-tag

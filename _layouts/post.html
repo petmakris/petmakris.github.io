@@ -2,12 +2,72 @@
 layout: default
 ---
 
+
+<style>
+.green {
+  color: white;
+  background-color: green;
+  padding: 2px 2px;
+  border-radius: 4px;
+}
+.red {
+  color: white;
+  background-color: red;
+  padding: 2px 2px;
+  border-radius: 4px;
+}
+
+.neutral {
+  color: white;
+  background-color: darkgray;
+  padding: 2px 2px;
+  border-radius: 4px;
+}
+
+h1 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+</style>
+
+<!-- Prev/Next pager -->
+<nav class="post-pager" style="display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; padding-top:1rem; border-top:1px solid #e5e5e5;">
+  <div>
+    {% if page.previous %}
+      <a rel="prev" href="{{ page.previous.url | relative_url }}" title="{{ page.previous.title }}">
+        ⬅️ {{ page.previous.date | date: "%Y-%m-%d" }}
+      </a>
+    {% endif %}
+  </div>
+
+  <div style="margin-left:auto; text-align:right;">
+    {% if page.next %}
+      <a rel="next" href="{{ page.next.url | relative_url }}" title="{{ page.next.title }}">
+        {{ page.next.date | date: "%Y-%m-%d" }} ➡️
+      </a>
+    {% endif %}
+  </div>
+</nav>
+
+
 <main class="page-content" aria-label="Content" style="max-width: 860px; margin: 0 auto; padding: 2rem 1rem;">
   <article class="post">
     <header>
       <h1>{{ page.title }}</h1>
+
+      <!--
       <p><small>{{ page.date | date: "%Y-%m-%d" }}</small></p>
-      {% if page.tags %}<p><small>Tags: {{ page.tags | join: ", " }}</small></p>{% endif %}
+      
+      {% if page.tags %}
+        <p><small>Tags: {{ page.tags | join: ", " }}</small></p>
+      {% endif %}
+      -->
+
     </header>
 
     <div class="post-content">
@@ -15,7 +75,7 @@ layout: default
     </div>
 
     {% if site.giscus_enabled %}
-          {% include giscus.html %}
+      {% include giscus.html %}
     {% endif %}
   </article>
 </main>

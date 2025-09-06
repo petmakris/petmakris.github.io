@@ -3,16 +3,17 @@ layout: default
 title: Home
 ---
 
+<br>
+
 
 <ul>
 {% for post in site.posts %}
   <li>
     <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    <small>— {{ post.date | date: "%Y-%m-%d" }}</small>
+    <!-- <small>— {{ post.date | date: "%Y-%m-%d" }}</small> -->
   </li>
 {% endfor %}
 </ul>
-
 
 
 # Κανόνες
@@ -57,39 +58,3 @@ RMR 1900 θερμίδες, Βάρος 100kg, 18 Αυγούστου 2025.
 - χόρτα: 100 kcal
 - πίτα: 190 kcal (ολικής)
 
-
-
-
-
-<style>
-.green {
-  color: white;
-  background-color: green;
-  padding: 2px 2px;
-  border-radius: 4px;
-}
-.red {
-  color: white;
-  background-color: red;
-  padding: 2px 2px;
-  border-radius: 4px;
-}
-
-.neutral {
-  color: white;
-  background-color: darkgray;
-  padding: 2px 2px;
-  border-radius: 4px;
-}
-
-h1 {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-h2 {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-</style>
