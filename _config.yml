@@ -1,5 +1,12 @@
-title: "Eating habbits"
-theme: jekyll-theme-cayman
-plugins:
+title: "Eating habits"
+description: "Diet to 15% fat"
+url: "https://petmakris.github.io"
+baseurl: ""
+# theme: jekyll-theme-cayman
+remote_theme: pages-themes/cayman@v0.2.0
+permalink: /:year/:month/:day/:title/
+giscus_enabled: true
+plugins: 
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-remote-theme
