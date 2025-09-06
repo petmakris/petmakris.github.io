@@ -6,7 +6,7 @@ theme: jekyll-theme-cayman
 # theme: minimal-mistakes-jekyll
 # remote_theme: pages-themes/cayman@v0.2.0
 # remote_theme: "mmistakes/minimal-mistakes@4.27.3"
-
+timezone: Europe/Athens
 permalink: /:year/:month/:day/:title/
 giscus_enabled: false
 plugins: 
@@ -16,4 +16,3 @@ plugins:
   - jekyll-include-cache
 sass:
   style: compressed
-    

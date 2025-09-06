@@ -3,29 +3,34 @@ layout: default
 title: Home
 ---
 
-<hr>
 
 <ul>
   {% for post in site.posts %}
-  <li>
-    <div>
-    {% include summary-line.html cal=post.cal %} &nbsp;{{ post.date | date: "%Y-%m-%d" }} 
-    </div>
+    {% assign post_ymd  = post.date | date: "%Y-%m-%d" %}
+    {% assign today_ymd = site.time | date: "%Y-%m-%d" %}
+    <li>
+    <a href="{{ post.url | relative_url }}">
+        {% if post_ymd == today_ymd %}
+          Σήμερα
+        {% else %}
+          {{ post.title }}
+        {% endif %}
+    </a>
   </li>
   {% endfor %}
 </ul>
 
-<hr>
-
 <ul>
-{% for post in site.posts %}
-  <li>
-    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    <!-- <small>— {{ post.date | date: "%Y-%m-%d" }}</small> -->
-  </li>
-{% endfor %}
+  {% for post in site.posts %}
+    <li>
+      <div>
+      {% include summary-line.html cal=post.cal %} &nbsp;{{ post.date | date: "%Y-%m-%d" }} 
+      </div>
+    </li>
+  {% endfor %}
 </ul>
 
+<hr>
 
 # Κανόνες
 
