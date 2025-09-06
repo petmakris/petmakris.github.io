@@ -6,3 +6,8 @@
 .site-footer-credits,
 .site-footer-owner { display: none !important; }
 
+.post-list { list-style: none; padding-left: 0; }
+.post-list li { margin: .4rem 0; }
+.post-list .meta { margin-left: .5rem; opacity: .8; font-size: .92em; white-space: nowrap; }
+.green { color: #2ecc71; }
+.red   { color: #e74c3c; }

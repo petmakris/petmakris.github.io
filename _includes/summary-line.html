@@ -1,0 +1,13 @@
+{% assign c = include.cal %}
+{% if c %}
+  <span class="meta">
+    Δ:
+    <span class="{% if c.deficit < 0 %}red{% else %}green{% endif %}">
+      {{ c.deficit }} kcal
+    </span>
+    • Intake {{ c.intake }} kcal
+    • TDEE {{ c.tdee }} kcal
+    • Active {{ c.active }} kcal
+    • {{ c.weight_kg }} kg
+  </span>
+{% endif %}

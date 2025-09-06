@@ -5,6 +5,8 @@ title: Home
 
 <br>
 
+{% include summary-line.html cal=post.cal %}
+
 
 <ul>
 {% for post in site.posts %}
