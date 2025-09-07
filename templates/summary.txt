@@ -1,0 +1,6 @@
+cal:
+  deficit: <calculated>
+  intake: <calculated>
+  tdee: <calculated = RMR + active>
+  active: <same as input>
+  weight: <same as input>

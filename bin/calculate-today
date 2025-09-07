@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -uexo pipefail
+
+POSTS_DIR="$DIET_BLOG_HOME/_posts"
+cd "$POSTS_DIR"
+
+FILEPATH="$POSTS_DIR/$(date +%Y-%m-%d)-notes.md"
+
+# if [[ -e "$FILEPATH" ]]; then
+#   echo "Refusing to overwrite existing file: $FILEPATH" >&2
+#   ${EDITOR:-vim} "$FILEPATH"
+#   exit 1
+# fi
+
+calculate-summary "$FILEPATH" | tee >(xclip -selection clipboard)

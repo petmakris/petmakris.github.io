@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+
+import sys
+import argparse
+import os
+from os.path import join
+
+from openai import OpenAI
+
+
+def get_env_var(name: str) -> str:
+    """Fetch environment variable or exit with error if missing."""
+    value = os.getenv(name)
+    if value is None or value.strip() == "":
+        sys.exit(f"❌ Error: Required environment variable '{name}' is not set.")
+    return value
+
+
+app_home   = get_env_var("DIET_BLOG_HOME")
+openai_key = get_env_var("OPENAI_API_KEY")
+
+
+def read_template(filename):
+    return read_file(join(app_home, "templates", filename))
+
+
+def read_file(filepath):
+    try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            return f.read()
+    except FileNotFoundError:
+        sys.exit(f"❌ Error: File not found -> {filepath}")
+    except PermissionError:
+        sys.exit(f"❌ Error: Permission denied -> {filepath}")
+    except Exception as e:
+        sys.exit(f"❌ Error reading file {filepath}: {e}")
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Render an OpenAI prompt with user input and supporting files."
+    )
+    parser.add_argument(
+        "user_input_file",
+        help="Path to the text file containing the user input.",
+    )
+    return parser.parse_args()
+
+
+
+def main():
+    args = parse_args()
+    
+    user_input      = read_file(args.user_input_file)
+    
+    food_index      = read_template("food_index.txt")
+    summary         = read_template("summary.txt")
+    prompt_template = read_template("prompt.txt")
+    rmr = 1900
+
+    rendered_prompt = prompt_template.format(
+        rmr=rmr,
+        food_index=food_index,
+        user_input=user_input,
+        summary=summary,
+    )
+
+    client = OpenAI()
+    response = client.responses.create(
+       model = "gpt-5-mini",
+       input = rendered_prompt
+    )
+    
+    print(response.output_text)
+
+
+if __name__ == "__main__":
+    main()
