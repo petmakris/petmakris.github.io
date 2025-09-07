@@ -1,0 +1,34 @@
+{% assign c = include.cal | default: page.cal %}
+{% if c %}
+<div class="cal-gauge"
+     data-intake="{{ c.intake | default: 0 }}"
+     data-tdee="{{ c.tdee | default: 1 }}"
+     data-deficit="{{ c.deficit | default: 0 }}"
+     data-active="{{ c.active | default: 0 }}"
+     data-weight="{{ c.weight | default: '' }}">
+  <svg viewBox="0 0 160 160" class="cal-gauge-svg" aria-hidden="true" role="img">
+    <!-- Background track -->
+    <circle class="track" cx="80" cy="80" r="56" />
+    <!-- Intake progress vs TDEE -->
+    <circle class="intake" cx="80" cy="80" r="56" />
+    <!-- Active calories ring -->
+    <circle class="active-track" cx="80" cy="80" r="68" />
+    <circle class="active" cx="80" cy="80" r="68" />
+
+    <!-- Center labels -->
+    <g class="labels" text-anchor="middle">
+      <text x="80" y="76" class="deficit"></text>
+      <text x="80" y="96" class="caption">ισοζύγιο</text>
+    </g>
+  </svg>
+
+  <div class="meta-row">
+    <div class="pill pill-intake"><strong>Intake</strong> <span class="v-intake"></span> kcal</div>
+    <div class="pill pill-tdee"><strong>TDEE</strong> <span class="v-tdee"></span> kcal</div>
+    <div class="pill pill-active"><strong>Active</strong> <span class="v-active"></span> kcal</div>
+    {% if c.weight %}
+    <div class="pill pill-weight"><strong>Βάρος</strong> <span class="v-weight">{{ c.weight }}</span> kg</div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}

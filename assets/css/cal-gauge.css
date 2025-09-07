@@ -1,0 +1,98 @@
+.cal-gauge {
+  max-width: 280px;   /* keep the donut compact */
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.cal-gauge-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== Circles ===== */
+.cal-gauge-svg .track {
+  fill: none;
+  stroke: #e6e8eb;
+  stroke-width: 10; /* thinner since gauge is smaller */
+}
+
+.cal-gauge-svg .intake {
+  fill: none;
+  stroke: #16a34a; /* default green */
+  stroke-width: 10;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 80px 80px;
+}
+
+.cal-gauge-svg .active-track {
+  fill: none;
+  stroke: #eef2f6;
+  stroke-width: 6;
+}
+
+.cal-gauge-svg .active {
+  fill: none;
+  stroke: #0ea5e9;
+  stroke-width: 6;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 80px 80px;
+}
+
+/* ===== Labels inside donut ===== */
+.cal-gauge-svg .labels .deficit {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.cal-gauge-svg .labels .caption {
+  font-size: 11px;
+  fill: #6b7280;
+}
+
+/* ===== Pills below donut ===== */
+.cal-gauge .meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: center;
+  margin-top: .5rem;
+}
+
+.cal-gauge .pill {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  padding: .25rem .55rem;
+  font-size: .85rem;
+  line-height: 1.1;
+  display: inline-flex;
+  gap: .35rem;
+  align-items: baseline;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.cal-gauge .pill strong {
+  font-weight: 600;
+  color: #334155;
+}
+
+/* Color-coded borders */
+.pill-intake { border-color: #bbf7d0; }
+.pill-tdee   { border-color: #fde68a; }
+.pill-active { border-color: #bae6fd; }
+.pill-weight { border-color: #e9d5ff; }
+
+/* ===== Colors for surplus vs deficit ===== */
+.cal-gauge.surplus .labels .deficit { fill: #dc2626; } /* red */
+.cal-gauge.deficit .labels .deficit { fill: #16a34a; } /* green */
+
+/* ===== Optional compact mode ===== */
+.cal-gauge.compact { max-width: 220px; }
+.cal-gauge.compact .pill {
+  font-size: .8rem;
+  padding: .2rem .5rem;
+}
