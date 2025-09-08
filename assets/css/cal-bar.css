@@ -1,0 +1,82 @@
+/* container */
+.cal-bar{
+  max-width: 720px;
+  margin: 1rem auto 1.25rem;
+}
+
+/* the track */
+.cal-bar .bar{
+  position: relative;
+  height: 18px;
+  border-radius: 999px;
+  background: #eef2f6;            /* track */
+  overflow: visible;               /* allow red overflow to extend */
+  box-shadow: inset 0 0 0 1px #e5e7eb;
+}
+
+/* segments inside the track */
+.cal-bar .seg{
+  position: absolute;
+  top: 0; bottom: 0;
+}
+
+/* RMR (left) */
+.cal-bar .seg.rmr{
+  left: 0;
+  background: #cbd5e1;            /* slate-300 */
+  border-top-left-radius: 999px;
+  border-bottom-left-radius: 999px;
+}
+
+/* Active (after RMR) */
+.cal-bar .seg.active{
+  background: #0ea5e9;            /* blue-500 */
+}
+
+/* Deficit gap (right end inside the bar) */
+.cal-bar .seg.gap{
+  right: 0;
+  background: #22c55e;            /* green-500 */
+  border-top-right-radius: 999px;
+  border-bottom-right-radius: 999px;
+  opacity: .85;
+}
+
+/* labels */
+.cal-bar .legend{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: center;
+  margin-top: .6rem;
+}
+
+.cal-bar .chip{
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  padding: .25rem .55rem;
+  font-size: .9rem;
+  white-space: nowrap;
+}
+
+.cal-bar .chip b{ font-weight: 600; color:#334155; }
+
+.chip-intake { border-color:#bbf7d0; }
+.chip-tdee   { border-color:#fde68a; }
+.chip-rmr    { border-color:#cbd5e1; }
+.chip-active { border-color:#bae6fd; }
+.chip-weight { border-color:#e9d5ff; }
+.chip-balance{ border-color:#fecaca; }   /* turns green in deficit via class */
+
+.cal-bar.is-deficit .chip-balance{ border-color:#bbf7d0; }
+
+.cal-bar .surplus-cap{
+  position: absolute;
+  top: 0; bottom: 0;
+  right: 0;                 /* stick to the right edge */
+  background: #ef4444;      /* red-500 */
+  border-top-right-radius: 999px;
+  border-bottom-right-radius: 999px;
+  opacity: .9;
+}

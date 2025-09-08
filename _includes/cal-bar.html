@@ -1,0 +1,22 @@
+{% assign c = include.cal | default: page.cal %}
+{% if c %}
+<div class="cal-bar"
+     data-intake="{{ c.intake | default: 0 }}"
+     data-tdee="{{ c.tdee | default: 1 }}"
+     data-active="{{ c.active | default: 0 }}"
+     data-weight="{{ c.weight | default: '' }}">
+
+  <div class="bar" role="img" aria-label="Energy gauge"></div>
+
+  <div class="legend">
+    <span class="chip chip-intake"><b>Intake</b> <span class="v-intake"></span> kcal</span>
+    <span class="chip chip-tdee"><b>TDEE</b> <span class="v-tdee"></span> kcal</span>
+    <span class="chip chip-rmr"><b>RMR</b> <span class="v-rmr"></span> kcal</span>
+    <span class="chip chip-active"><b>Active</b> <span class="v-active"></span> kcal</span>
+    <span class="chip chip-balance"><b class="v-btype"></b> <span class="v-bval"></span> kcal</span>
+    {% if c.weight %}
+    <span class="chip chip-weight"><b>Βάρος</b> {{ c.weight }} kg</span>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
