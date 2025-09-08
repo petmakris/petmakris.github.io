@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ page.title | default: site.title }}</title>
     {%- seo -%}
-    
+    {% include google-analytics.html %}
+
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
     
@@ -22,7 +23,6 @@
 
     {% include head-custom.html %}
 
-    {% include google-analytics.html %}
   </head>
   <body>
     <section class="page-header">
@@ -39,13 +39,11 @@
       {% endif %}
       -->
 
-      {% comment %} Βγάλε το κουμπί GitHub αν δε το θες {% endcomment %}
 
     </section>
 
     <section class="main-content">
       {{ content }}
-      {% comment %} Καμία ενότητα footer εδώ {% endcomment %}
     </section>
   </body>
 </html>
