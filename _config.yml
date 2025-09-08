@@ -16,3 +16,4 @@ plugins:
   - jekyll-include-cache
 sass:
   style: compressed
+google_analytics: G-DJPJZJM9N4
