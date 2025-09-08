@@ -2,9 +2,9 @@ title: "Eating habits"
 # description: "Diet to 15% fat"
 url: "https://petmakris.github.io"
 baseurl: ""
-theme: jekyll-theme-cayman
+# theme: jekyll-theme-cayman
 # theme: minimal-mistakes-jekyll
-# remote_theme: pages-themes/cayman@v0.2.0
+remote_theme: pages-themes/cayman@v0.2.0
 # remote_theme: "mmistakes/minimal-mistakes@4.27.3"
 timezone: Europe/Athens
 permalink: /:year/:month/:day/:title/
