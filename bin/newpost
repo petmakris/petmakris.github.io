@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euox pipefail
+# set -euox pipefail
 
 POSTS_DIR="$DIET_BLOG_HOME/_posts"
 mkdir -p "$POSTS_DIR"
