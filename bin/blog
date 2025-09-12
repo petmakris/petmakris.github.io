@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+# Resolve POSTS_DIR (priority: CLI arg > $DIET_BLOG_HOME/_posts > fallback)
+POSTS_DIR="${1:-${DIET_BLOG_HOME:-$HOME/projects/petmakris.github.io}/_posts}"
+EDITOR_CMD="${EDITOR:-vim}"
+
+# Ensure today's post exists (no-op if it already does)
+if command -v blog-new-post >/dev/null 2>&1; then
+  blog-new-post "$POSTS_DIR"
+else
+  # Fallback: try relative to this script
+  script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+  if [[ -x "$script_dir/blog-new-post" ]]; then
+    "$script_dir/blog-new-post" "$POSTS_DIR"
+  fi
+fi
+
+# Collect matching files via glob
+shopt -s nullglob
+matches=( "$POSTS_DIR"/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-notes.md )
+shopt -u nullglob
+
+# Basenames, newest first, take 5
+mapfile -t FILES < <(printf '%s\n' "${matches[@]##*/}" | sort -r | head -n 5)
+
+if (( ${#FILES[@]} == 0 )); then
+  echo "No posts found matching YYYY-MM-DD-notes.md in: $POSTS_DIR" >&2
+  exit 1
+fi
+
+# Build dialog menu (numeric tag + filename description)
+menu_items=()
+for i in "${!FILES[@]}"; do
+  idx=$(( i + 1 ))
+  menu_items+=( "$idx" "${FILES[$i]}" )
+done
+
+choice_idx=$(
+  dialog --clear --no-tags \
+         --menu "Select a post to edit" 15 70 5 \
+         "${menu_items[@]}" \
+         2>&1 >/dev/tty
+) || exit 1
+
+choice="${FILES[$(( choice_idx - 1 ))]}"
+
+exec $EDITOR_CMD "$POSTS_DIR/$choice"
+clear
+
