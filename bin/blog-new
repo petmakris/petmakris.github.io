@@ -2,7 +2,7 @@
 
 # set -euox pipefail
 
-POSTS_DIR="$DIET_BLOG_HOME/_posts"
+POSTS_DIR="$BLOG_HOME/_posts"
 mkdir -p "$POSTS_DIR"
 
 LC_TIME_DEFAULT="el_GR.UTF-8"

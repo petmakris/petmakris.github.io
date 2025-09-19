@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-# Resolve POSTS_DIR (priority: CLI arg > $DIET_BLOG_HOME/_posts > fallback)
-POSTS_DIR="${1:-${DIET_BLOG_HOME:-$HOME/projects/petmakris.github.io}/_posts}"
+# Resolve POSTS_DIR (priority: CLI arg > $BLOG_HOME/_posts > fallback)
+POSTS_DIR="${1:-${BLOG_HOME:-$HOME/projects/petmakris.github.io}/_posts}"
 EDITOR_CMD="${EDITOR:-vim}"
 
 # Ensure today's post exists (no-op if it already does)
