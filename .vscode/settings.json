@@ -1,0 +1,12 @@
+{
+    "window.title": "🥙 Blog",
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#772000",
+        "titleBar.activeForeground": "#ffffff",
+        "titleBar.inactiveBackground": "#772000",
+        "titleBar.inactiveForeground": "#ffffff",
+        "activityBar.activeBackground": "#772000",
+        "activityBar.background": "#772000",
+        "activityBar.foreground": "#ffffff",
+    }
+}
