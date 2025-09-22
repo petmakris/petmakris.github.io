@@ -2,7 +2,7 @@
 
 set -uexo pipefail
 
-POSTS_DIR="$DIET_BLOG_HOME/_posts"
+POSTS_DIR="$BLOG_HOME/_posts"
 cd "$POSTS_DIR"
 
 FILEPATH="$POSTS_DIR/$(date +%Y-%m-%d)-notes.md"
