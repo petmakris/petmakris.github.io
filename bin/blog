@@ -22,7 +22,7 @@ matches=( "$POSTS_DIR"/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-notes.md )
 shopt -u nullglob
 
 # Basenames, newest first, take 5
-mapfile -t FILES < <(printf '%s\n' "${matches[@]##*/}" | sort -r | head -n 5)
+mapfile -t FILES < <(printf '%s\n' "${matches[@]##*/}" | sort -r | head -n 10)
 
 if (( ${#FILES[@]} == 0 )); then
   echo "No posts found matching YYYY-MM-DD-notes.md in: $POSTS_DIR" >&2
