@@ -14,7 +14,6 @@ TITLE="$(LC_TIME=$LC_TIME_DEFAULT date +"%A %e %B %Y" | sed 's/  */ /g')"
 
 FILEPATH="$POSTS_DIR/$TODAY_FILENAME-notes.md"
 if [[ -e "$FILEPATH" ]]; then
-  echo "Refusing to overwrite existing file: $FILEPATH" >&2
   ${EDITOR:-vim} "$FILEPATH"
   exit 1
 fi
