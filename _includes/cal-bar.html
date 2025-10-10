@@ -1,22 +1,156 @@
 {% assign c = include.cal | default: page.cal %}
 {% if c %}
-<div class="cal-bar"
-     data-intake="{{ c.intake | default: 0 }}"
-     data-tdee="{{ c.tdee | default: 1 }}"
-     data-active="{{ c.active | default: 0 }}"
-     data-weight="{{ c.weight | default: '' }}">
+  {% assign intake_raw = c.intake %}
+  {% assign tdee_raw = c.tdee %}
+  {% assign rmr_raw = c.rmr %}
+  {% assign active_raw = c.active %}
+  {% assign weight_raw = c.weight %}
 
-  <div class="bar" role="img" aria-label="Energy gauge"></div>
+  {% assign intake = intake_raw | default: 0 | plus: 0 %}
+  {% assign tdee = tdee_raw | default: 0 | plus: 0 %}
+  {% assign active = active_raw | default: 0 | plus: 0 %}
 
-  <div class="legend">
-    <span class="chip chip-intake"><b>Intake</b> <span class="v-intake"></span> kcal</span>
-    <span class="chip chip-tdee"><b>TDEE</b> <span class="v-tdee"></span> kcal</span>
-    <span class="chip chip-rmr"><b>RMR</b> <span class="v-rmr"></span> kcal</span>
-    <span class="chip chip-active"><b>Active</b> <span class="v-active"></span> kcal</span>
-    <span class="chip chip-balance"><b class="v-btype"></b> <span class="v-bval"></span> kcal</span>
-    {% if c.weight %}
-    <span class="chip chip-weight"><b>Βάρος</b> {{ c.weight }} kg</span>
+  {% assign rmr = 0 %}
+  {% if rmr_raw %}
+    {% assign rmr = rmr_raw | plus: 0 %}
+  {% elsif tdee > 0 and active_raw %}
+    {% assign rmr = tdee | minus: active %}
+  {% elsif tdee > 0 %}
+    {% assign rmr = tdee %}
+  {% elsif site.rmr %}
+    {% assign rmr = site.rmr | plus: 0 %}
+  {% endif %}
+  {% if rmr < 0 %}
+    {% assign rmr = 0 %}
+  {% endif %}
+  {% assign computed_tdee = rmr | plus: active %}
+  {% if tdee <= 0 and computed_tdee > 0 %}
+    {% assign tdee = computed_tdee %}
+  {% endif %}
+
+  {% assign has_data = false %}
+  {% if intake > 0 or tdee > 0 or computed_tdee > 0 %}
+    {% assign has_data = true %}
+  {% endif %}
+
+  {% assign scale = intake %}
+  {% if tdee > scale %}{% assign scale = tdee %}{% endif %}
+  {% if computed_tdee > scale %}{% assign scale = computed_tdee %}{% endif %}
+  {% if scale <= 0 %}
+    {% assign scale = 1 %}
+  {% endif %}
+
+  {% assign intake_pct = intake | times: 100.0 | divided_by: scale %}
+  {% assign tdee_pct = tdee | times: 100.0 | divided_by: scale %}
+  {% assign rmr_pct_abs = rmr | times: 100.0 | divided_by: scale %}
+  {% assign active_pct_abs = active | times: 100.0 | divided_by: scale %}
+
+  {% assign balance = tdee | minus: intake %}
+  {% assign balance_abs = balance | abs %}
+
+  {% if balance > 0 %}
+    {% assign deficit_pct = balance | times: 100.0 | divided_by: scale %}
+    {% assign surplus_pct = 0 %}
+  {% elsif balance < 0 %}
+    {% assign deficit_pct = 0 %}
+    {% assign surplus_pct = balance_abs | times: 100.0 | divided_by: scale %}
+  {% else %}
+    {% assign deficit_pct = 0 %}
+    {% assign surplus_pct = 0 %}
+  {% endif %}
+
+  {% comment %}
+    Clamp helper
+  {% endcomment %}
+  {% if intake_pct > 100 %}{% assign intake_pct = 100 %}{% endif %}
+  {% if intake_pct < 0 %}{% assign intake_pct = 0 %}{% endif %}
+  {% if tdee_pct > 100 %}{% assign tdee_pct = 100 %}{% endif %}
+  {% if tdee_pct < 0 %}{% assign tdee_pct = 0 %}{% endif %}
+  {% if rmr_pct_abs > 100 %}{% assign rmr_pct_abs = 100 %}{% endif %}
+  {% if rmr_pct_abs < 0 %}{% assign rmr_pct_abs = 0 %}{% endif %}
+  {% if active_pct_abs > 100 %}{% assign active_pct_abs = 100 %}{% endif %}
+  {% if active_pct_abs < 0 %}{% assign active_pct_abs = 0 %}{% endif %}
+  {% if deficit_pct > 100 %}{% assign deficit_pct = 100 %}{% endif %}
+  {% if deficit_pct < 0 %}{% assign deficit_pct = 0 %}{% endif %}
+  {% if surplus_pct > 100 %}{% assign surplus_pct = 100 %}{% endif %}
+  {% if surplus_pct < 0 %}{% assign surplus_pct = 0 %}{% endif %}
+
+  {% assign style_values = "" %}
+  {% assign style_values = style_values | append: "--rmr-fill:" | append: rmr_pct_abs | append: ";" %}
+  {% assign style_values = style_values | append: "--active-fill:" | append: active_pct_abs | append: ";" %}
+  {% assign style_values = style_values | append: "--tdee-fill:" | append: tdee_pct | append: ";" %}
+  {% assign style_values = style_values | append: "--intake-fill:" | append: intake_pct | append: ";" %}
+  {% assign style_values = style_values | append: "--deficit-fill:" | append: deficit_pct | append: ";" %}
+  {% assign style_values = style_values | append: "--surplus-fill:" | append: surplus_pct | append: ";" %}
+
+  <div class="cal-bar
+              {% if has_data %}{% else %} is-empty{% endif %}
+              {% if balance > 0 %} is-deficit{% elsif balance < 0 %} is-surplus{% endif %}"
+       style="{{ style_values }}">
+    {% if has_data %}
+      <div class="bars" role="img" aria-label="Ημερήσιο ενεργειακό ισοζύγιο">
+        <div class="bar bar-tdee"></div>
+        <div class="bar bar-intake"></div>
+      </div>
     {% endif %}
+
+    <div class="legend">
+      <span class="chip chip-intake">
+        <b>Intake</b>
+        {% if intake_raw or intake > 0 %}
+          {{ intake | round }}
+        {% else %}
+          —
+        {% endif %}
+        kcal
+      </span>
+      <span class="chip chip-tdee">
+        <b>TDEE</b>
+        {% if tdee_raw or tdee > 0 %}
+          {{ tdee | round }}
+        {% else %}
+          —
+        {% endif %}
+        kcal
+      </span>
+      <span class="chip chip-rmr">
+        <b>RMR</b>
+        {% if rmr > 0 %}
+          {{ rmr | round }}
+        {% else %}
+          —
+        {% endif %}
+        kcal
+      </span>
+      <span class="chip chip-active">
+        <b>Active</b>
+        {% if active_raw or active > 0 %}
+          {{ active | round }}
+        {% else %}
+          —
+        {% endif %}
+        kcal
+      </span>
+      <span class="chip chip-balance{% if balance > 0 %} is-positive{% elsif balance < 0 %} is-negative{% endif %}">
+        <b>
+          {% if balance > 0 %}
+            Deficit
+          {% elsif balance < 0 %}
+            Surplus
+          {% else %}
+            Balance
+          {% endif %}
+        </b>
+        {% if balance != 0 %}
+          {{ balance_abs | round }}
+        {% else %}
+          0
+        {% endif %}
+        kcal
+      </span>
+      {% if weight_raw %}
+        <span class="chip chip-weight"><b>Βάρος</b> {{ weight_raw }} kg</span>
+      {% endif %}
+    </div>
   </div>
-</div>
 {% endif %}
