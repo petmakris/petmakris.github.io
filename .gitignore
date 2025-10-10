@@ -1,4 +1,8 @@
 # Jekyll
+
+_posts/today.md
+_posts/yesterday.md
+
 _site/
 .sass-cache/
 .jekyll-cache/
