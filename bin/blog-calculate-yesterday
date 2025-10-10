@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -uexo pipefail
+
+POSTS_DIR="$BLOG_HOME/_posts"
+cd "$POSTS_DIR"
+
+blog-calculate "$POSTS_DIR/yesterday"
+

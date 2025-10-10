@@ -1,20 +1,11 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-# Resolve POSTS_DIR (priority: CLI arg > $BLOG_HOME/_posts > fallback)
-POSTS_DIR="${1:-${BLOG_HOME:-$HOME/projects/petmakris.github.io}/_posts}"
+POSTS_DIR="${1:-${BLOG_HOME:-$HOME/projects/blog}/_posts}"
 EDITOR_CMD="${EDITOR:-vim}"
 
 # Ensure today's post exists (no-op if it already does)
-if command -v blog-new-post >/dev/null 2>&1; then
-  blog-new-post "$POSTS_DIR"
-else
-  # Fallback: try relative to this script
-  script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-  if [[ -x "$script_dir/blog-new-post" ]]; then
-    "$script_dir/blog-new-post" "$POSTS_DIR"
-  fi
-fi
+blog-rotate-links
 
 # Collect matching files via glob
 shopt -s nullglob

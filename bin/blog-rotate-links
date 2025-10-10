@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export TZ="Europe/Athens"
+
+pics="$HOME/projects/blog/pics"
+posts="$HOME/projects/blog/posts"
+
+today="$(date +%F)"
+yday="$(date -d 'yesterday' +%F)"
+
+# pics
+mkdir -p "$pics/$today"
+ln -sfn "$pics/$today" "$pics/today"
+[[ -d "$pics/$yday" ]] && ln -sfn "$pics/$yday" "$pics/yesterday"
+
+# posts
+mkdir -p "$posts"
+today_file="$posts/${today}-notes.md"
+yday_file="$posts/${yday}-notes.md"
+
+if [[ ! -f "$today_file" ]]; then
+  TITLE="Notes $today"
+  DATE_DIR="$today"
+  TODAY_FILENAME="$today"
+  FILEPATH="$today_file"
+  cat > "$FILEPATH" <<EOF
+---
+layout: post
+title: $TITLE
+date: $DATE_DIR
+cal:
+  deficit:
+  intake:
+  tdee:
+  active: 0
+  weight:
+---
+
+## Διατροφή
+
+- γιαούρτι
+
+<!---  ![pic](/pics/$TODAY_FILENAME/yogurt.jpg)<br> -->
+EOF
+fi
+
+ln -sfn "$today_file" "$posts/today"
+[[ -f "$yday_file" ]] && ln -sfn "$yday_file" "$posts/yesterday"
+
