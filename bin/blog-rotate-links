@@ -3,15 +3,13 @@ set -euo pipefail
 export TZ="Europe/Athens"
 
 pics="$HOME/projects/blog/pics"
-posts="$HOME/projects/blog/posts"
+posts="$HOME/projects/blog/_posts"
 
 today="$(date +%F)"
 yday="$(date -d 'yesterday' +%F)"
 
 # pics
 mkdir -p "$pics/$today"
-ln -sfn "$pics/$today" "$pics/today"
-[[ -d "$pics/$yday" ]] && ln -sfn "$pics/$yday" "$pics/yesterday"
 
 # posts
 mkdir -p "$posts"
@@ -47,3 +45,5 @@ fi
 ln -sfn "$today_file" "$posts/today.md"
 [[ -f "$yday_file" ]] && ln -sfn "$yday_file" "$posts/yesterday.md"
 
+ln -sfn "$today_file" "$posts/today"
+[[ -f "$yday_file" ]] && ln -sfn "$yday_file" "$posts/yesterday"
