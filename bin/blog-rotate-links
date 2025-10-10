@@ -44,6 +44,6 @@ cal:
 EOF
 fi
 
-ln -sfn "$today_file" "$posts/today"
-[[ -f "$yday_file" ]] && ln -sfn "$yday_file" "$posts/yesterday"
+ln -sfn "$today_file" "$posts/today.md"
+[[ -f "$yday_file" ]] && ln -sfn "$yday_file" "$posts/yesterday.md"
 

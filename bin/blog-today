@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-"$HOME/projects/blog/bin/rotate-blog-links"
-
-vim "$HOME/projects/blog/posts/today"
-
