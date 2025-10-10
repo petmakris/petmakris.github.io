@@ -8,17 +8,17 @@
 .cal-bar .bars{
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 8px;
   margin-bottom: 1rem;
 }
 
 .cal-bar .bar{
   position: relative;
-  height: 18px;
+  height: 22px;
   border-radius: 999px;
-  background: #e2e8f0;
-  overflow: hidden;
-  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.35);
+  background: #f1f5f9;
+  overflow: visible;
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.25);
 }
 
 .cal-bar .bar::before,
@@ -35,51 +35,85 @@
   display: none;
 }
 
+/* 
+  TDEE Bar (top bar)
+  - Width scaled relative to max(intake, tdee)
+  - Gray portion for RMR
+  - Blue portion for Active calories
+*/
+.cal-bar .bar-tdee{
+  width: calc(var(--tdee-pct) * 1%);
+  background: transparent;
+}
+
 .cal-bar .bar-tdee::before{
   left: 0;
-  right: 0;
+  width: 100%;
   background:
     linear-gradient(
       to right,
-      #cbd5e1 0%,
-      #cbd5e1 calc(var(--rmr-fill) * 1%),
-      #3b82f6 calc(var(--rmr-fill) * 1%),
-      #3b82f6 calc((var(--rmr-fill) + var(--active-fill)) * 1%),
-      transparent calc((var(--rmr-fill) + var(--active-fill)) * 1%),
-      transparent calc(var(--tdee-fill) * 1%),
-      transparent 100%
+      #94a3b8 0%,
+      #94a3b8 calc(var(--rmr-pct) / var(--tdee-pct) * 100%),
+      #3b82f6 calc(var(--rmr-pct) / var(--tdee-pct) * 100%),
+      #3b82f6 100%
     );
 }
 
-.cal-bar .bar-intake::before{
+/* 
+  Intake Bar (bottom bar)
+  - Width scaled relative to max(intake, tdee)
+  - Deficit case (intake < tdee): gray fill + green deficit portion
+  - Surplus case (intake > tdee): gray fill + red surplus portion
+  - Balanced case: all gray
+*/
+.cal-bar .bar-intake{
+  width: calc(var(--intake-pct) * 1%);
+}
+
+/* Deficit case: intake < tdee */
+.cal-bar.is-deficit .bar-intake::before{
   left: 0;
-  right: 0;
-  background:
-    linear-gradient(
-      to right,
-      #dbeafe 0%,
-      #dbeafe calc(var(--intake-fill) * 1%),
-      transparent calc(var(--intake-fill) * 1%),
-      transparent 100%
-    );
+  width: 100%;
+  background: #cbd5e1;
 }
 
+/* Green deficit bar extends from end of intake to TDEE length */
 .cal-bar.is-deficit .bar-intake::after{
   display: block;
-  left: calc(var(--intake-fill) * 1%);
-  width: calc(var(--deficit-fill) * 1%);
-  background: rgba(34, 197, 94, 0.88);
+  left: 100%;
+  /* Width should be: (TDEE - intake) as percentage of intake */
+  /* deficit_pct is already (tdee - intake) / scale */
+  /* We need it relative to intake bar, so: deficit_pct / intake_pct * 100% */
+  width: calc((var(--tdee-pct) - var(--intake-pct)) / var(--intake-pct) * 100%);
+  background: #22c55e;
   box-shadow: inset 0 0 0 1px rgba(22, 163, 74, 0.4);
   border-radius: 0 999px 999px 0;
 }
 
+/* Surplus case: intake > tdee */
+.cal-bar.is-surplus .bar-intake::before{
+  left: 0;
+  /* Gray portion fills up to where TDEE would be */
+  width: calc(var(--tdee-pct) / var(--intake-pct) * 100%);
+  background: #cbd5e1;
+}
+
+/* Red surplus bar fills from TDEE point to end of intake */
 .cal-bar.is-surplus .bar-intake::after{
   display: block;
-  left: calc(var(--tdee-fill) * 1%);
-  width: calc(var(--surplus-fill) * 1%);
-  background: rgba(239, 68, 68, 0.92);
+  left: calc(var(--tdee-pct) / var(--intake-pct) * 100%);
+  /* Width is from TDEE to intake, relative to intake bar */
+  width: calc((var(--intake-pct) - var(--tdee-pct)) / var(--intake-pct) * 100%);
+  background: #ef4444;
   box-shadow: inset 0 0 0 1px rgba(220, 38, 38, 0.4);
   border-radius: 0 999px 999px 0;
+}
+
+/* Balanced case: intake = tdee */
+.cal-bar:not(.is-deficit):not(.is-surplus) .bar-intake::before{
+  left: 0;
+  width: 100%;
+  background: #cbd5e1;
 }
 
 .cal-bar.is-empty .bars{
