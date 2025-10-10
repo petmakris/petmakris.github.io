@@ -1,1 +1,0 @@
-/home/petros/projects/blog/_posts/2025-10-10-notes.md
