@@ -9,7 +9,7 @@ title: Home
   .summary-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 2rem 0;
+    margin: 2rem auto;
     font-size: 0.95rem;
   }
 
@@ -135,7 +135,6 @@ title: Home
   }
 </style>
 
-## Καθημερινά Στατιστικά
 
 <table class="summary-table">
   <thead>
@@ -199,9 +198,9 @@ title: Home
         <td class="numeric">
           {% if deficit_raw != nil %}
             {% if deficit_value > 0 %}
-              <span class="badge badge-positive">+{{ deficit_value }} kcal</span>
+              <span class="badge badge-positive">{{ deficit_value }} kcal</span>
             {% elsif deficit_value < 0 %}
-              <span class="badge badge-negative">{{ deficit_value }} kcal</span>
+              <span class="badge badge-negative">{{ deficit_value | abs }} kcal</span>
             {% else %}
               <span class="badge badge-neutral">0 kcal</span>
             {% endif %}
