@@ -138,8 +138,6 @@ title: Home
 <!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
-## Καθημερινά Στατιστικά
-
 <!-- Charts Section -->
 <div style="margin: 2rem auto; max-width: 1200px;">
   <div style="margin-bottom: 3rem;">
