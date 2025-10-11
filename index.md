@@ -11,7 +11,7 @@ title: Home
   <div class="col-12">
     <div class="card shadow-sm">
       <div class="card-body">
-        <h5 class="card-title text-center mb-3">Πρόοδος Βάρους</h5>
+        <h5 class="card-title text-center mb-3">Weight</h5>
         <canvas id="weightChart" style="max-height: 300px;"></canvas>
       </div>
     </div>
@@ -20,7 +20,7 @@ title: Home
   <div class="col-12">
     <div class="card shadow-sm">
       <div class="card-body">
-        <h5 class="card-title text-center mb-3">Θερμιδικό Ισοζύγιο</h5>
+        <h5 class="card-title text-center mb-3">Calories</h5>
         <canvas id="deficitChart" style="max-height: 300px;"></canvas>
       </div>
     </div>
@@ -162,7 +162,7 @@ title: Home
   <table class="table table-hover align-middle">
     <thead class="table-primary">
       <tr>
-        <th>Ημέρα</th>
+        <th></th>
         <th class="text-end d-none d-sm-table-cell">Kg</th>
         <th class="text-end">Intake</th>
         <th class="text-end d-none d-md-table-cell">TDEE</th>
