@@ -60,13 +60,6 @@ layout: default
     {% endif %}
 
     <div class="calorie-viz" style="margin: 2rem 0; padding: 1.5rem; background: #f8f9fa; border-radius: 8px;">
-      <h3 style="margin-top: 0; margin-bottom: 1.5rem; font-size: 1.2rem; text-align: center;">
-        {% if is_deficit %}DEFICIT CASE{% elsif is_surplus %}SURPLUS CASE{% else %}MAINTENANCE{% endif %}
-      </h3>
-      
-      <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: #666;">
-        <strong>TDEE = RMR + ACTIVE</strong> ({{ tdee }} kcal)
-      </div>
       
       <!-- TDEE Bar -->
       <div style="position: relative; margin-bottom: 1.5rem;">
@@ -78,22 +71,19 @@ layout: default
           {% endif %}
           {% if active > 0 %}
           <div style="width: {{ active | times: 100.0 | divided_by: tdee }}%; background: #4a90e2; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85rem; font-weight: bold;">
-            {% if active > 100 %}Active{% endif %}
+            {% if active > 100 %}active{% endif %}
           </div>
           {% endif %}
-        </div>
-        <div style="position: absolute; top: -20px; left: 0; right: 0; text-align: center; font-size: 0.75rem; color: #666;">
-          TDEE: {{ tdee }} kcal
         </div>
       </div>
 
       <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: #666;">
         {% if is_deficit %}
-          <strong>Intake on a deficit!</strong>
+          <strong></strong>
         {% elsif is_surplus %}
-          <strong>Intake on a surplus!</strong>
+          <strong></strong>
         {% else %}
-          <strong>Intake</strong>
+          <strong>intake</strong>
         {% endif %}
       </div>
 
@@ -103,10 +93,10 @@ layout: default
           <!-- Deficit case: show intake bar + green deficit space -->
           <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
             <div style="width: {{ intake | times: 100.0 | divided_by: tdee }}%; background: #808080; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85rem; font-weight: bold;">
-              {% if intake > 150 %}Intake{% endif %}
+              {% if intake > 150 %}intake{% endif %}
             </div>
             <div style="width: {{ deficit_amount | times: 100.0 | divided_by: tdee }}%; background: #5cb85c; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85rem; font-weight: bold; border-left: 2px solid #fff;">
-              deficit!
+              deficit
             </div>
           </div>
         {% elsif is_surplus %}
@@ -114,10 +104,10 @@ layout: default
           <div style="position: relative; width: {{ intake | times: 100.0 | divided_by: tdee }}%; max-width: 150%;">
             <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
               <div style="width: {{ tdee | times: 100.0 | divided_by: intake }}%; background: #808080; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85rem; font-weight: bold;">
-                {% if tdee > 150 %}Intake{% endif %}
+                {% if tdee > 150 %}intake{% endif %}
               </div>
               <div style="width: {{ surplus_amount | times: 100.0 | divided_by: intake }}%; background: #d9534f; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85rem; font-weight: bold; border-left: 2px solid #fff;">
-                surplus!
+                surplus
               </div>
             </div>
           </div>
@@ -129,14 +119,6 @@ layout: default
             </div>
           </div>
         {% endif %}
-        <div style="position: absolute; bottom: -20px; left: 0; right: 0; text-align: center; font-size: 0.75rem; color: #666;">
-          Intake: {{ intake }} kcal
-          {% if is_deficit %}
-            | Deficit: {{ deficit_amount }} kcal
-          {% elsif is_surplus %}
-            | Surplus: {{ surplus_amount }} kcal
-          {% endif %}
-        </div>
       </div>
 
       <!-- Additional metrics -->

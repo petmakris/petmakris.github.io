@@ -92,6 +92,46 @@ title: Home
     .summary-table td.hide-mobile {
       display: none;
     }
+    
+    .summary-table {
+      font-size: 0.8rem;
+    }
+    
+    .summary-table thead th,
+    .summary-table td {
+      padding: 0.4rem 0.3rem;
+    }
+    
+    .summary-table td .date-link {
+      font-size: 0.85rem;
+    }
+    
+    .summary-table td .date-meta {
+      font-size: 0.75rem;
+    }
+    
+    .badge {
+      min-width: 3.5rem;
+      padding: 0.2rem 0.4rem;
+      font-size: 0.75rem;
+    }
+  }
+  
+  /* Extra small screens - hide weight column too */
+  @media (max-width: 480px) {
+    .summary-table th.hide-small,
+    .summary-table td.hide-small {
+      display: none;
+    }
+    
+    .summary-table {
+      font-size: 0.75rem;
+    }
+    
+    .summary-table thead th,
+    .summary-table td {
+      padding: 0.35rem 0.25rem;
+    }
   }
 </style>
 
@@ -101,7 +141,7 @@ title: Home
   <thead>
     <tr>
       <th>Ημέρα</th>
-      <th class="numeric">Kgr</th>
+      <th class="numeric hide-small">Kgr</th>
       <th class="numeric">Intake</th>
       <th class="numeric hide-mobile">TDEE</th>
       <th class="numeric hide-mobile">Active</th>
@@ -128,7 +168,7 @@ title: Home
             <div class="date-meta">{{ post.date | date: "%Y-%m-%d" }}</div>
           </a>
         </td>
-        <td class="numeric">
+        <td class="numeric hide-small">
           {% if weight != nil %}
             {{ weight }}
           {% else %}
