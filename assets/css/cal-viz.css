@@ -89,10 +89,8 @@
 }
 
 .cal-label-container {
-    margin-top: 2rem;
+    margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid #ddd;
-    color: #666;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;

@@ -188,13 +188,24 @@ layout: default
       </div>
 
       <div class="cal-label-container">
-        <div><strong>TDEE:</strong> {{ tdee }} kcal</div>
-        <div><strong>RMR:</strong> {{ rmr }} kcal</div>
+        <div><strong>TDEE</strong> {{ tdee }} kcal</div>
+        <div><strong>RMR</strong> {{ rmr }} kcal </div>
+        <div><strong>active:</strong> {{ active }} kcal</span></div>
+      </div>
+
+      <div class="cal-label-container">
         <div><strong>Intake:</strong> {{ intake }} kcal</div>
-        <div><strong>Active:</strong> {{ active }} kcal</div>
+        
+        {% if is_deficit %}
+          <div><strong>Deficit:</strong> {{ deficit | abs }} kcal</div>
+        {% else %}
+          <div><strong>Surplus:</strong> {{ deficit | abs }} kcal</div>
+        {% endif %}
+
         {% if page.cal.weight %}
         <div><strong>Weight:</strong> {{ page.cal.weight }} kg</div>
         {% endif %}
+
       </div>
 
     </div>
