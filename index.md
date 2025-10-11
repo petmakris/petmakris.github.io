@@ -3,151 +3,29 @@ layout: default
 title: Home
 ---
 
-
-
-<style>
-  .summary-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 2rem auto;
-    font-size: 0.95rem;
-  }
-
-  .summary-table thead th {
-    background: linear-gradient(90deg, #e3f2fd 0%, #f0f7ff 100%);
-    color: #094067;
-    text-align: left;
-    padding: 0.75rem;
-    border-bottom: 2px solid #cfe0f5;
-  }
-
-  .summary-table tbody tr:nth-child(even) td {
-    background-color: #f8fafc;
-  }
-
-  .summary-table tbody tr:hover td {
-    background-color: #eef6ff;
-  }
-
-  .summary-table tbody tr.is-today td {
-    background: linear-gradient(90deg, #fff4cc 0%, #ffeab0 100%);
-    font-weight: 600;
-  }
-
-  .summary-table td {
-    padding: 0.75rem;
-    border-bottom: 1px solid #e5e7eb;
-    vertical-align: middle;
-  }
-
-  .summary-table td.numeric {
-    text-align: right;
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  }
-
-  .summary-table td .date-link {
-    display: inline-block;
-    color: #0f4c81;
-    font-weight: 700;
-    text-decoration: none;
-  }
-
-  .summary-table td .date-link:hover,
-  .summary-table td .date-link:focus {
-    text-decoration: underline;
-  }
-
-  .summary-table td .date-meta {
-    margin-top: 0.15rem;
-    font-size: 0.85rem;
-  }
-
-  .badge {
-    display: inline-block;
-    min-width: 4.2rem;
-    padding: 0.25rem 0.65rem;
-    border-radius: 999px;
-    font-weight: 700;
-    text-align: center;
-    color: #fff;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .badge-positive {
-    background-color: #2da44e;
-  }
-
-  .badge-negative {
-    background-color: #d73a49;
-  }
-
-  .badge-neutral {
-    background-color: #6b7280;
-  }
-
-  /* Hide TDEE and Active columns on mobile */
-  @media (max-width: 768px) {
-    .summary-table th.hide-mobile,
-    .summary-table td.hide-mobile {
-      display: none;
-    }
-    
-    .summary-table {
-      font-size: 0.8rem;
-    }
-    
-    .summary-table thead th,
-    .summary-table td {
-      padding: 0.4rem 0.3rem;
-    }
-    
-    .summary-table td .date-link {
-      font-size: 0.85rem;
-    }
-    
-    .summary-table td .date-meta {
-      font-size: 0.75rem;
-    }
-    
-    .badge {
-      min-width: 3.5rem;
-      padding: 0.2rem 0.4rem;
-      font-size: 0.75rem;
-    }
-  }
-  
-  /* Extra small screens - hide weight column too */
-  @media (max-width: 480px) {
-    .summary-table th.hide-small,
-    .summary-table td.hide-small {
-      display: none;
-    }
-    
-    .summary-table {
-      font-size: 0.75rem;
-    }
-    
-    .summary-table thead th,
-    .summary-table td {
-      padding: 0.35rem 0.25rem;
-    }
-  }
-</style>
-
 <!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
+<h2 class="text-center mb-4">Καθημερινά Στατιστικά</h2>
+
 <!-- Charts Section -->
-<div style="margin: 2rem auto; max-width: 1200px;">
-  <div style="margin-bottom: 3rem;">
-    <h3 style="text-align: center; color: #094067; margin-bottom: 1rem;">Πρόοδος Βάρους</h3>
-    <canvas id="weightChart" style="max-height: 300px;"></canvas>
+<div class="row g-4 mb-5">
+  <div class="col-12">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title text-center mb-3">Πρόοδος Βάρους</h5>
+        <canvas id="weightChart" style="max-height: 300px;"></canvas>
+      </div>
+    </div>
   </div>
   
-  <div style="margin-bottom: 3rem;">
-    <h3 style="text-align: center; color: #094067; margin-bottom: 1rem;">Θερμιδικό Ισοζύγιο</h3>
-    <canvas id="deficitChart" style="max-height: 300px;"></canvas>
+  <div class="col-12">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title text-center mb-3">Θερμιδικό Ισοζύγιο</h5>
+        <canvas id="deficitChart" style="max-height: 300px;"></canvas>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -281,18 +159,20 @@ title: Home
   });
 </script>
 
-<table class="summary-table">
-  <thead>
-    <tr>
-      <th>Ημέρα</th>
-      <th class="numeric hide-small">Kg</th>
-      <th class="numeric">Intake</th>
-      <th class="numeric hide-mobile">TDEE</th>
-      <th class="numeric hide-mobile">Active</th>
-      <th class="numeric">Deficit</th>
-    </tr>
-  </thead>
-  <tbody>
+<!-- Data Table -->
+<div class="table-responsive">
+  <table class="table table-hover align-middle">
+    <thead class="table-primary">
+      <tr>
+        <th>Ημέρα</th>
+        <th class="text-end d-none d-sm-table-cell">Kg</th>
+        <th class="text-end">Intake</th>
+        <th class="text-end d-none d-md-table-cell">TDEE</th>
+        <th class="text-end d-none d-md-table-cell">Active</th>
+        <th class="text-end">Deficit</th>
+      </tr>
+    </thead>
+    <tbody>
     {% assign today_ymd = site.time | date: "%Y-%m-%d" %}
 
     {% for post in site.posts %}
@@ -306,59 +186,58 @@ title: Home
       {% if deficit_raw != nil %}
         {% assign deficit_value = deficit_raw | plus: 0 %}
       {% endif %}
-      <tr class="{% if post_ymd == today_ymd %}is-today{% endif %}">
+      <tr {% if post_ymd == today_ymd %}class="table-warning fw-bold"{% endif %}>
         <td>
-          <a class="date-link" href="{{ post.url | relative_url }}">
-            <div class="date-meta">{{ post.date | date: "%Y-%m-%d" }}</div>
+          <a href="{{ post.url | relative_url }}" class="text-decoration-none">
+            {{ post.date | date: "%Y-%m-%d" }}
           </a>
         </td>
-        <td class="numeric hide-small">
+        <td class="text-end d-none d-sm-table-cell">
           {% if weight != nil %}
             {{ weight }}
           {% else %}
             —
           {% endif %}
         </td>
-        <td class="numeric">
+        <td class="text-end">
           {% if intake != nil %}
             {{ intake }} kcal
           {% else %}
             —
           {% endif %}
         </td>
-        <td class="numeric hide-mobile">
+        <td class="text-end d-none d-md-table-cell">
           {% if tdee != nil %}
             {{ tdee }} kcal
           {% else %}
             —
           {% endif %}
         </td>
-        <td class="numeric hide-mobile">
+        <td class="text-end d-none d-md-table-cell">
           {% if active != nil %}
             {{ active }} kcal
           {% else %}
             —
           {% endif %}
         </td>
-        <td class="numeric">
+        <td class="text-end">
           {% if deficit_raw != nil %}
             {% if deficit_value > 0 %}
-              <span class="badge badge-positive">{{ deficit_value }} kcal</span>
+              <span class="badge bg-success">{{ deficit_value }} kcal</span>
             {% elsif deficit_value < 0 %}
-              <span class="badge badge-negative">{{ deficit_value | abs }} kcal</span>
+              <span class="badge bg-danger">{{ deficit_value | abs }} kcal</span>
             {% else %}
-              <span class="badge badge-neutral">0 kcal</span>
+              <span class="badge bg-secondary">0 kcal</span>
             {% endif %}
           {% else %}
-            <span class="badge badge-neutral">—</span>
+            <span class="badge bg-secondary">—</span>
           {% endif %}
         </td>
       </tr>
     {% endfor %}
-  </tbody>
-</table>
-
-# Κανόνες
+    </tbody>
+  </table>
+</div># Κανόνες
 
 - Χαμηλός γλυκαιμικός δείκτης, περιορισμένοι υδατάνθρακες (κυρίως σύνθετοι, εκτός από το μέλι)
 - Υψηλή πρόσληψη πρωτεΐνης

@@ -7,10 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ page.title | default: site.title }}</title>
     {%- seo -%}
-  
-    {% comment %}
-      <!-- {| include google-analytics.html |} -->
-    {% endcomment %}
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DJPJZJM9N4"></script>
@@ -18,37 +14,36 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-DJPJZJM9N4');
     </script>
 
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
-
     <link rel="stylesheet" href="{{ '/assets/css/cal-bar.css' | relative_url }}">
 
     {% include head-custom.html %}
-
   </head>
   <body>
-    <section>
-
-      <h1 class="project-name">
-        <a href="{{ '/' | relative_url }}" class="project-name__link" aria-label="Home">
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="{{ '/' | relative_url }}">
           {{ site.title | default: site.github.repository_name }}
         </a>
-      </h1>
+      </div>
+    </nav>
 
-      <!--
-      {% if site.description %}
-      <h2 class="project-tagline">{{ site.description }}</h2>
-      {% endif %}
-      -->
-    </section>
-
-    <section>
+    <!-- Main Content -->
+    <div class="container my-5">
       {{ content }}
-    </section>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
 </html>
-
