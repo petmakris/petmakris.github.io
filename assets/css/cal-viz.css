@@ -1,0 +1,49 @@
+/* Calorie Visualization Styles */
+
+/* Container backgrounds */
+.cal-container-deficit {
+  background: linear-gradient(135deg, #ffffff 0%, #d1d1d1 100%);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.cal-container-surplus {
+  background: linear-gradient(135deg, #ffffff 0%, #d1d1d1 100%);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.cal-container-maintenance {
+  background: linear-gradient(135deg, #ffffff 0%, #d1d1d1 100%);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid #bdbdbd;
+}
+
+.cal-container-tdee {
+  background: linear-gradient(135deg, #ffffff 0%, #d1d1d1 100%);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+/* Bar backgrounds */
+.cal-bar-rmr {
+  background: #999;
+}
+
+.cal-bar-active {
+  background: #4a90e2;
+}
+
+.cal-bar-intake {
+  background: #808080;
+}
+
+.cal-bar-surplus {
+  background: #d9534f;
+}
+
+/* Text colors */
+.cal-text-deficit {
+  color: #2e7d32;
+}
