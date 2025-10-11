@@ -2,10 +2,35 @@
 layout: default
 ---
 
+<style>
+  /* Post image styling */
+  .post-content img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 2rem auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Consistent image size - you can adjust these values */
+  .post-content img {
+    max-height: 500px;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .post-content img {
+      max-height: 300px;
+    }
+  }
+</style>
+
 <nav class="post-pager" style="display:flex; justify-content:space-between; gap:1rem; padding: 1rem">
   <div>
     {% if page.previous %}
-      <a rel="prev" href="{{ page.previous.url | relative_url }}" title="{{ page.previous.title }}">
+      <a rel="prev" href="{{ page.previous.url | relative_url }}" title="{{ page.previous.title }}" class="btn btn-sm btn-outline-primary">
         ⬅️ {{ page.previous.date | date: "%Y-%m-%d" }}
       </a>
     {% endif %}
@@ -13,7 +38,7 @@ layout: default
 
   <div style="margin-left:auto; text-align:right;">
     {% if page.next %}
-      <a rel="next" href="{{ page.next.url | relative_url }}" title="{{ page.next.title }}">
+      <a rel="next" href="{{ page.next.url | relative_url }}" title="{{ page.next.title }}" class="btn btn-sm btn-outline-primary">
         {{ page.next.date | date: "%Y-%m-%d" }} ➡️
       </a>
     {% endif %}
