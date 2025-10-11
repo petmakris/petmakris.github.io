@@ -141,7 +141,7 @@ title: Home
   <thead>
     <tr>
       <th>Ημέρα</th>
-      <th class="numeric hide-small">Kgr</th>
+      <th class="numeric hide-small">Kg</th>
       <th class="numeric">Intake</th>
       <th class="numeric hide-mobile">TDEE</th>
       <th class="numeric hide-mobile">Active</th>

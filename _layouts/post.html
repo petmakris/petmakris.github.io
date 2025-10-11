@@ -72,6 +72,7 @@ layout: default
       </div>
 
       <!-- Intake Bar (positioned relative to TDEE) -->
+
       <div style="position: relative; margin-bottom: 1rem;">
         {% if is_deficit %}
           <!-- Deficit case: show intake bar + green deficit space -->
@@ -83,6 +84,7 @@ layout: default
               deficit
             </div>
           </div>
+
         {% elsif is_surplus %}
           <!-- Surplus case: intake bar is full width, showing TDEE portion + surplus portion -->
           <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
@@ -103,8 +105,13 @@ layout: default
       </div>
 
       <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ddd;  color: #666; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem;">
+
+        <div><strong>TDEE:</strong> {{ tdee }} kcal</div>
+
         <div><strong>RMR:</strong> {{ rmr }} kcal</div>
 
+        <div><strong>Intake:</strong> {{ intake }} kcal</div>
+        
         <div><strong>Active:</strong> {{ active }} kcal</div>
 
         {% if page.cal.weight %}
