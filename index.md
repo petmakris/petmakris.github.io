@@ -172,6 +172,7 @@ title: Home
   
   // Weight Chart
   const weightCtx = document.getElementById('weightChart').getContext('2d');
+  
   new Chart(weightCtx, {
     type: 'line',
     data: {
@@ -181,11 +182,11 @@ title: Home
         data: weights,
         borderColor: '#4a90e2',
         backgroundColor: 'rgba(74, 144, 226, 0.1)',
-        borderWidth: 3,
+        borderWidth: 1,
         tension: 0.4,
         fill: true,
-        pointRadius: 4,
-        pointHoverRadius: 6
+        pointRadius: 1,
+        pointHoverRadius: 1
       }]
     },
     options: {

@@ -23,13 +23,7 @@
     </script>
 
 
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
-    
-    <!--
-    <link rel="stylesheet" href="{{ '/assets/css/cal-gauge.css' | relative_url }}">
-    <script defer src="{{ '/assets/js/cal-gauge.js' | relative_url }}"></script>
-    -->
 
     <link rel="stylesheet" href="{{ '/assets/css/cal-bar.css' | relative_url }}">
 
@@ -37,7 +31,7 @@
 
   </head>
   <body>
-    <section class="page-header">
+    <section>
 
       <h1 class="project-name">
         <a href="{{ '/' | relative_url }}" class="project-name__link" aria-label="Home">
@@ -52,7 +46,7 @@
       -->
     </section>
 
-    <section class="main-content">
+    <section>
       {{ content }}
     </section>
   </body>
