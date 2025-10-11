@@ -90,61 +90,69 @@ layout: default
 
     <div class="calorie-viz" style="margin: 1rem; padding: 1rem; border-radius: 8px;">
       
+      <!-- TDEE Bar with container -->
       <div style="position: relative; margin-bottom: 1.5rem;">
-        <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden; {% if is_surplus %}width: {{ tdee | times: 100.0 | divided_by: intake }}%;{% endif %}">
-          {% if rmr > 0 %}
-          <div style="width: {{ rmr | times: 100.0 | divided_by: tdee }}%; background: #999; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold;">
-            {% if rmr > 100 %}RMR{% endif %}
+        <div style="text-align: center; font-weight: bold; font-size: 0.875rem; margin-bottom: 0.5rem; color: #555;">
+          TDEE = RMR + active
+        </div>
+        <div style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); padding: 1rem; border-radius: 8px; border: 2px solid #81c784;">
+          <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
+            {% if rmr > 0 %}
+            <div style="width: {{ rmr | times: 100.0 | divided_by: tdee }}%; background: #999; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold;">
+              {% if rmr > 100 %}RMR{% endif %}
+            </div>
+            {% endif %}
+            {% if active > 0 %}
+            <div style="width: {{ active | times: 100.0 | divided_by: tdee }}%; background: #4a90e2; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold;">
+              {% if active > 100 %}active{% endif %}
+            </div>
+            {% endif %}
           </div>
-          {% endif %}
-          {% if active > 0 %}
-          <div style="width: {{ active | times: 100.0 | divided_by: tdee }}%; background: #4a90e2; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold;">
-            {% if active > 100 %}active{% endif %}
-          </div>
-          {% endif %}
         </div>
       </div>
 
-      <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: #666; text-align: center;">
-        {% if is_deficit %}
-          <strong></strong>
-        {% elsif is_surplus %}
-          <strong>intake</strong>
-        {% else %}
-          <strong>intake</strong>
-        {% endif %}
+      <!-- Intake Bar with container -->
+      <div style="margin-bottom: 0.5rem; font-size: 0.875rem; color: #555; text-align: center; font-weight: bold;">
+        intake
       </div>
 
       <!-- Intake Bar (positioned relative to TDEE) -->
 
       <div style="position: relative; margin-bottom: 1rem;">
         {% if is_deficit %}
-          <!-- Deficit case: show intake bar + green deficit space -->
+          <!-- Deficit case: intake bar is SHORTER, deficit is empty space in the green container -->
+          {% assign intake_percent = intake | times: 100.0 | divided_by: tdee %}
           {% assign deficit_percent = deficit_amount | times: 100.0 | divided_by: tdee %}
-          <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
-            <div style="width: {{ intake | times: 100.0 | divided_by: tdee }}%; background: #808080; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; font-size: 0.875rem;">
-              {% if intake > 150 %}intake{% endif %}
-            </div>
-            <div style="width: {{ deficit_percent }}%; background: #5cb85c; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; border-left: 2px solid #fff; font-size: 0.875rem;">
-              {% if deficit_percent > 8 %}deficit{% endif %}
+          <div style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); padding: 1rem; border-radius: 8px; border: 2px solid #81c784;">
+            <div style="display: flex; height: 40px; border-radius: 4px; overflow: hidden;">
+              <div style="width: {{ intake_percent }}%; background: #808080; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.875rem; border: 2px solid #333;">
+                intake
+              </div>
+              <div style="width: {{ deficit_percent }}%; display: flex; align-items: center; justify-content: center; color: #2e7d32; font-weight: bold; font-size: 0.875rem; padding-left: 0.5rem;">
+                {% if deficit_percent > 8 %}deficit{% endif %}
+              </div>
             </div>
           </div>
 
         {% elsif is_surplus %}
-          <!-- Surplus case: intake bar is full width, showing TDEE portion + surplus portion -->
+          <!-- Surplus case: intake bar is full width in orange container -->
           {% assign surplus_percent = surplus_amount | times: 100.0 | divided_by: intake %}
-          <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
-            <div style="width: {{ tdee | times: 100.0 | divided_by: intake }}%; background: #808080; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; font-size: 0.875rem;">
-            </div>
-            <div style="width: {{ surplus_percent }}%; background: #d9534f; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; border-left: 2px solid #fff; font-size: 0.875rem;">
-              {% if surplus_percent > 8 %}surplus{% endif %}
+          <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); padding: 1rem; border-radius: 8px; border: 2px solid #ffb74d;">
+            <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
+              <div style="width: {{ tdee | times: 100.0 | divided_by: intake }}%; background: #808080; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; font-size: 0.875rem;">
+              </div>
+              <div style="width: {{ surplus_percent }}%; background: #d9534f; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; border-left: 2px solid #fff; font-size: 0.875rem;">
+                {% if surplus_percent > 8 %}surplus{% endif %}
+              </div>
             </div>
           </div>
         {% else %}
-          <!-- Maintenance: intake equals TDEE -->
-          <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
-            <div style="width: 100%; background: #808080; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; font-size: 0.875rem;">
-              Intake
+          <!-- Maintenance: intake equals TDEE in neutral container -->
+          <div style="background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); padding: 1rem; border-radius: 8px; border: 2px solid #bdbdbd;">
+            <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
+              <div style="width: 100%; background: #808080; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; font-size: 0.875rem;">
+                Intake
+              </div>
             </div>
           </div>
         {% endif %}
