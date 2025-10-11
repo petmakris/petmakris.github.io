@@ -47,7 +47,7 @@ layout: default
     <div class="calorie-viz" style="margin: 1rem; padding: 1rem; border-radius: 8px;">
       
       <div style="position: relative; margin-bottom: 1.5rem;">
-        <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
+        <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden; {% if is_surplus %}width: {{ tdee | times: 100.0 | divided_by: intake }}%;{% endif %}">
           {% if rmr > 0 %}
           <div style="width: {{ rmr | times: 100.0 | divided_by: tdee }}%; background: #999; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold;">
             {% if rmr > 100 %}RMR{% endif %}
@@ -61,11 +61,11 @@ layout: default
         </div>
       </div>
 
-      <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: #666;">
+      <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: #666; text-align: center;">
         {% if is_deficit %}
           <strong></strong>
         {% elsif is_surplus %}
-          <strong></strong>
+          <strong>intake</strong>
         {% else %}
           <strong>intake</strong>
         {% endif %}
@@ -84,15 +84,12 @@ layout: default
             </div>
           </div>
         {% elsif is_surplus %}
-          <!-- Surplus case: intake bar extends beyond 100% (TDEE) -->
-          <div style="position: relative; width: {{ intake | times: 100.0 | divided_by: tdee }}%; max-width: 150%;">
-            <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
-              <div style="width: {{ tdee | times: 100.0 | divided_by: intake }}%; background: #808080; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold;">
-                {% if tdee > 150 %}intake{% endif %}
-              </div>
-              <div style="width: {{ surplus_amount | times: 100.0 | divided_by: intake }}%; background: #d9534f; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; border-left: 2px solid #fff;">
-                surplus
-              </div>
+          <!-- Surplus case: intake bar is full width, showing TDEE portion + surplus portion -->
+          <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
+            <div style="width: {{ tdee | times: 100.0 | divided_by: intake }}%; background: #808080; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold;">
+            </div>
+            <div style="width: {{ surplus_amount | times: 100.0 | divided_by: intake }}%; background: #d9534f; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; border-left: 2px solid #fff;">
+              surplus
             </div>
           </div>
         {% else %}
