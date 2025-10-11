@@ -85,6 +85,14 @@ title: Home
   .badge-neutral {
     background-color: #6b7280;
   }
+
+  /* Hide TDEE and Active columns on mobile */
+  @media (max-width: 768px) {
+    .summary-table th.hide-mobile,
+    .summary-table td.hide-mobile {
+      display: none;
+    }
+  }
 </style>
 
 ## Καθημερινά Στατιστικά
@@ -95,8 +103,8 @@ title: Home
       <th>Ημέρα</th>
       <th class="numeric">Kgr</th>
       <th class="numeric">Intake</th>
-      <th class="numeric">TDEE</th>
-      <th class="numeric">Ενεργές</th>
+      <th class="numeric hide-mobile">TDEE</th>
+      <th class="numeric hide-mobile">Active</th>
       <th class="numeric">Deficit</th>
     </tr>
   </thead>
@@ -134,14 +142,14 @@ title: Home
             —
           {% endif %}
         </td>
-        <td class="numeric">
+        <td class="numeric hide-mobile">
           {% if tdee != nil %}
             {{ tdee }} kcal
           {% else %}
             —
           {% endif %}
         </td>
-        <td class="numeric">
+        <td class="numeric hide-mobile">
           {% if active != nil %}
             {{ active }} kcal
           {% else %}
