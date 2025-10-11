@@ -6,8 +6,6 @@ title: Home
 <!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
-<h2 class="text-center mb-4">Καθημερινά Στατιστικά</h2>
-
 <!-- Charts Section -->
 <div class="row g-4 mb-5">
   <div class="col-12">
