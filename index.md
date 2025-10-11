@@ -60,7 +60,6 @@ title: Home
 
   .summary-table td .date-meta {
     margin-top: 0.15rem;
-    color: #6b7280;
     font-size: 0.85rem;
   }
 
@@ -94,16 +93,16 @@ title: Home
   <thead>
     <tr>
       <th>Ημέρα</th>
-      <th class="numeric">Βάρος</th>
-      <th class="numeric">Πρόσληψη</th>
+      <th class="numeric">Kgr</th>
+      <th class="numeric">Intake</th>
       <th class="numeric">TDEE</th>
-      <th class="numeric">RMR</th>
-      <th class="numeric">Ενεργητικές</th>
-      <th class="numeric">Έλλειμμα</th>
+      <th class="numeric">Ενεργές</th>
+      <th class="numeric">Deficit</th>
     </tr>
   </thead>
   <tbody>
     {% assign today_ymd = site.time | date: "%Y-%m-%d" %}
+
     {% for post in site.posts %}
       {% assign post_ymd = post.date | date: "%Y-%m-%d" %}
       {% assign metrics = post.cal %}
@@ -111,7 +110,6 @@ title: Home
       {% assign intake = metrics.intake %}
       {% assign tdee = metrics.tdee %}
       {% assign active = metrics.active %}
-      {% assign rmr = metrics.rmr | default: site.rmr %}
       {% assign deficit_raw = metrics.deficit %}
       {% if deficit_raw != nil %}
         {% assign deficit_value = deficit_raw | plus: 0 %}
@@ -119,17 +117,12 @@ title: Home
       <tr class="{% if post_ymd == today_ymd %}is-today{% endif %}">
         <td>
           <a class="date-link" href="{{ post.url | relative_url }}">
-            {% if post_ymd == today_ymd %}
-              Σήμερα
-            {% else %}
-              {{ post.title }}
-            {% endif %}
+            <div class="date-meta">{{ post.date | date: "%Y-%m-%d" }}</div>
           </a>
-          <div class="date-meta">{{ post.date | date: "%Y-%m-%d" }}</div>
         </td>
         <td class="numeric">
           {% if weight != nil %}
-            {{ weight }} kgr
+            {{ weight }}
           {% else %}
             —
           {% endif %}
@@ -144,13 +137,6 @@ title: Home
         <td class="numeric">
           {% if tdee != nil %}
             {{ tdee }} kcal
-          {% else %}
-            —
-          {% endif %}
-        </td>
-        <td class="numeric">
-          {% if rmr != nil %}
-            {{ rmr }} kcal
           {% else %}
             —
           {% endif %}
