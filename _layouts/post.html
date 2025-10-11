@@ -3,6 +3,12 @@ layout: default
 ---
 
 <style>
+  /* Post headings */
+  .post h3 {
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+  }
+
   /* Post image styling */
   .post-content img {
     display: block;
@@ -18,6 +24,19 @@ layout: default
     max-height: 500px;
     object-fit: cover;
     width: 100%;
+  }
+
+  /* Hide text in small bars - only show if width is sufficient */
+  .bar-text {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  /* Show text only when container is wide enough */
+  @container (min-width: 80px) {
+    .bar-text {
+      display: inline;
+    }
   }
 
   @media (max-width: 768px) {
@@ -101,28 +120,30 @@ layout: default
       <div style="position: relative; margin-bottom: 1rem;">
         {% if is_deficit %}
           <!-- Deficit case: show intake bar + green deficit space -->
+          {% assign deficit_percent = deficit_amount | times: 100.0 | divided_by: tdee %}
           <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
-            <div style="width: {{ intake | times: 100.0 | divided_by: tdee }}%; background: #808080; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold;">
+            <div style="width: {{ intake | times: 100.0 | divided_by: tdee }}%; background: #808080; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; font-size: 0.875rem;">
               {% if intake > 150 %}intake{% endif %}
             </div>
-            <div style="width: {{ deficit_amount | times: 100.0 | divided_by: tdee }}%; background: #5cb85c; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; border-left: 2px solid #fff;">
-              deficit
+            <div style="width: {{ deficit_percent }}%; background: #5cb85c; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; border-left: 2px solid #fff; font-size: 0.875rem;">
+              {% if deficit_percent > 8 %}deficit{% endif %}
             </div>
           </div>
 
         {% elsif is_surplus %}
           <!-- Surplus case: intake bar is full width, showing TDEE portion + surplus portion -->
+          {% assign surplus_percent = surplus_amount | times: 100.0 | divided_by: intake %}
           <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
-            <div style="width: {{ tdee | times: 100.0 | divided_by: intake }}%; background: #808080; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold;">
+            <div style="width: {{ tdee | times: 100.0 | divided_by: intake }}%; background: #808080; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; font-size: 0.875rem;">
             </div>
-            <div style="width: {{ surplus_amount | times: 100.0 | divided_by: intake }}%; background: #d9534f; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; border-left: 2px solid #fff;">
-              surplus
+            <div style="width: {{ surplus_percent }}%; background: #d9534f; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; border-left: 2px solid #fff; font-size: 0.875rem;">
+              {% if surplus_percent > 8 %}surplus{% endif %}
             </div>
           </div>
         {% else %}
           <!-- Maintenance: intake equals TDEE -->
           <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
-            <div style="width: 100%; background: #808080; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold;">
+            <div style="width: 100%; background: #808080; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; font-size: 0.875rem;">
               Intake
             </div>
           </div>
