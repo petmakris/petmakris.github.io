@@ -135,6 +135,152 @@ title: Home
   }
 </style>
 
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+## Καθημερινά Στατιστικά
+
+<!-- Charts Section -->
+<div style="margin: 2rem auto; max-width: 1200px;">
+  <div style="margin-bottom: 3rem;">
+    <h3 style="text-align: center; color: #094067; margin-bottom: 1rem;">Πρόοδος Βάρους</h3>
+    <canvas id="weightChart" style="max-height: 300px;"></canvas>
+  </div>
+  
+  <div style="margin-bottom: 3rem;">
+    <h3 style="text-align: center; color: #094067; margin-bottom: 1rem;">Θερμιδικό Ισοζύγιο</h3>
+    <canvas id="deficitChart" style="max-height: 300px;"></canvas>
+  </div>
+</div>
+
+<script>
+  // Collect data from Jekyll posts
+  const dates = [];
+  const weights = [];
+  const deficits = [];
+  const intakes = [];
+  const tdees = [];
+  
+  {% for post in site.posts reversed %}
+    {% assign metrics = post.cal %}
+    {% if metrics.weight or metrics.deficit %}
+      dates.push('{{ post.date | date: "%m/%d" }}');
+      weights.push({{ metrics.weight | default: 'null' }});
+      deficits.push({{ metrics.deficit | default: 'null' }});
+      intakes.push({{ metrics.intake | default: 'null' }});
+      tdees.push({{ metrics.tdee | default: 'null' }});
+    {% endif %}
+  {% endfor %}
+  
+  // Weight Chart
+  const weightCtx = document.getElementById('weightChart').getContext('2d');
+  new Chart(weightCtx, {
+    type: 'line',
+    data: {
+      labels: dates,
+      datasets: [{
+        label: 'Βάρος (kg)',
+        data: weights,
+        borderColor: '#4a90e2',
+        backgroundColor: 'rgba(74, 144, 226, 0.1)',
+        borderWidth: 3,
+        tension: 0.4,
+        fill: true,
+        pointRadius: 4,
+        pointHoverRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'top'
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false,
+          callbacks: {
+            label: function(context) {
+              return context.dataset.label + ': ' + context.parsed.y.toFixed(1) + ' kg';
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: false,
+          ticks: {
+            callback: function(value) {
+              return value.toFixed(1) + ' kg';
+            }
+          }
+        }
+      }
+    }
+  });
+  
+  // Deficit Chart
+  const deficitCtx = document.getElementById('deficitChart').getContext('2d');
+  new Chart(deficitCtx, {
+    type: 'bar',
+    data: {
+      labels: dates,
+      datasets: [{
+        label: 'Έλλειμμα/Πλεόνασμα (kcal)',
+        data: deficits,
+        backgroundColor: deficits.map(d => d >= 0 ? 'rgba(45, 164, 78, 0.8)' : 'rgba(215, 58, 73, 0.8)'),
+        borderColor: deficits.map(d => d >= 0 ? '#2da44e' : '#d73a49'),
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'top'
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const value = context.parsed.y;
+              return value >= 0 ? 
+                'Έλλειμμα: +' + value + ' kcal' : 
+                'Πλεόνασμα: ' + value + ' kcal';
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function(value) {
+              return value + ' kcal';
+            }
+          },
+          grid: {
+            color: function(context) {
+              if (context.tick.value === 0) {
+                return '#000';
+              }
+              return 'rgba(0, 0, 0, 0.1)';
+            },
+            lineWidth: function(context) {
+              if (context.tick.value === 0) {
+                return 2;
+              }
+              return 1;
+            }
+          }
+        }
+      }
+    }
+  });
+</script>
 
 <table class="summary-table">
   <thead>
