@@ -88,110 +88,113 @@ layout: default
       {% assign surplus_amount = intake | minus: tdee %}
     {% endif %}
 
-    <div class="calorie-viz" style="margin: 1rem; padding: 1rem; border-radius: 8px;">
+    <div class="calorie-viz">
       
       <!-- TDEE Bar with container -->
       <div style="position: relative; margin-bottom: 1.5rem;">
-        <div style="text-align: center; font-weight: bold; font-size: 0.875rem; margin-bottom: 0.5rem; color: #555;">
+        <div class="cal-label">
           TDEE = RMR + active
         </div>
+
         {% if is_surplus %}
           <!-- On surplus days, TDEE bar is shorter (scaled to intake) -->
-          <div class="cal-container-tdee" style="width: {{ tdee | times: 100.0 | divided_by: intake }}%;">
-            <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
+          <div class="cal-container" style="width: {{ tdee | times: 100.0 | divided_by: intake }}%;">
+            <div class="cal-bar-wrapper">
               {% if rmr > 0 %}
-              <div class="cal-bar-rmr" style="width: {{ rmr | times: 100.0 | divided_by: tdee }}%; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold;">
+              <div class="cal-bar-bg-rmr cal-bar-segment" style="width: {{ rmr | times: 100.0 | divided_by: tdee }}%;">
                 {% if rmr > 100 %}RMR{% endif %}
               </div>
               {% endif %}
               {% if active > 0 %}
-              <div class="cal-bar-active" style="width: {{ active | times: 100.0 | divided_by: tdee }}%; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold;">
+              <div class="cal-bar-bg-active cal-bar-segment" style="width: {{ active | times: 100.0 | divided_by: tdee }}%;">
                 {% if active > 100 %}active{% endif %}
               </div>
               {% endif %}
             </div>
           </div>
+
         {% else %}
+        
           <!-- On deficit/maintenance days, TDEE bar is full width -->
-          <div class="cal-container-tdee">
-            <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
+          <div class="cal-container">
+            <div class="cal-bar-wrapper">
               {% if rmr > 0 %}
-              <div class="cal-bar-rmr" style="width: {{ rmr | times: 100.0 | divided_by: tdee }}%; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold;">
+              <div class="cal-bar-bg-rmr cal-bar-segment" style="width: {{ rmr | times: 100.0 | divided_by: tdee }}%;">
                 {% if rmr > 100 %}RMR{% endif %}
               </div>
               {% endif %}
               {% if active > 0 %}
-              <div class="cal-bar-active" style="width: {{ active | times: 100.0 | divided_by: tdee }}%; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold;">
+              <div class="cal-bar-bg-active cal-bar-segment" style="width: {{ active | times: 100.0 | divided_by: tdee }}%;">
                 {% if active > 100 %}active{% endif %}
               </div>
               {% endif %}
             </div>
           </div>
         {% endif %}
+
       </div>
 
       <!-- Intake Bar with container -->
-      <div style="margin-bottom: 0.5rem; font-size: 0.875rem; color: #555; text-align: center; font-weight: bold;">
-        intake
+      <div class="cal-label">
+        Intake
       </div>
 
       <!-- Intake Bar (positioned relative to TDEE) -->
-
       <div style="position: relative; margin-bottom: 1rem;">
+
         {% if is_deficit %}
-          <!-- Deficit case: intake bar is SHORTER, deficit is empty space in the green container -->
+
           {% assign intake_percent = intake | times: 100.0 | divided_by: tdee %}
           {% assign deficit_percent = deficit_amount | times: 100.0 | divided_by: tdee %}
-          <div class="cal-container-deficit">
-            <div style="display: flex; height: 40px; border-radius: 4px; overflow: hidden;">
-              <div class="cal-bar-intake" style="width: {{ intake_percent }}%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.875rem; border: 2px solid #333;">
+
+          <div class="cal-container">
+            <div class="cal-bar-wrapper-no-overflow">
+              <div class="cal-bar-bg-intake cal-bar-segment" style="width: {{ intake_percent }}%;">
                 intake
               </div>
-              <div class="cal-text-deficit" style="width: {{ deficit_percent }}%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.875rem; padding-left: 0.5rem;">
+              <div class="cal-bar-bg-deficit cal-bar-segment" style="width: {{ deficit_percent }}%;">
                 {% if deficit_percent > 8 %}deficit{% endif %}
               </div>
             </div>
           </div>
 
         {% elsif is_surplus %}
+
           <!-- Surplus case: intake bar extends BEYOND TDEE to show surplus -->
           {% assign surplus_percent = surplus_amount | times: 100.0 | divided_by: tdee %}
-          <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); padding: 1rem; border-radius: 8px; display: inline-block; min-width: 100%;">
-            <div style="display: flex; height: 40px; border-radius: 4px;">
-              <div class="cal-bar-intake" style="width: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.875rem; border: 2px solid #333; border-right: none;">
+          <div class="cal-container">
+            <div class="cal-bar-wrapper-surplus">
+              <div class="cal-bar-bg-intake cal-bar-segment" style="width: 100%;">
                 intake
               </div>
-              <div class="cal-bar-surplus" style="width: {{ surplus_percent }}%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; border: 2px solid #333; font-size: 0.875rem; flex-shrink: 0;">
+              <div class="cal-bar-bg-surplus cal-bar-segment" style="width: {{ surplus_percent }}%;">
                 {% if surplus_percent > 8 %}surplus{% endif %}
               </div>
             </div>
           </div>
+
         {% else %}
+
           <!-- Maintenance: intake equals TDEE in neutral container -->
-          <div class="cal-container-maintenance">
-            <div style="display: flex; height: 40px; border: 2px solid #333; border-radius: 4px; overflow: hidden;">
-              <div class="cal-bar-intake" style="width: 100%; display: flex; align-items: center; justify-content: center; color: white;  font-weight: bold; font-size: 0.875rem;">
+          <div class="cal-container">
+            <div class="cal-bar-wrapper">
+              <div class="cal-bar-intake cal-bar-segment" style="width: 100%;">
                 Intake
               </div>
             </div>
           </div>
+
         {% endif %}
       </div>
 
-      <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ddd;  color: #666; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem;">
-
+      <div class="cal-label-container">
         <div><strong>TDEE:</strong> {{ tdee }} kcal</div>
-
         <div><strong>RMR:</strong> {{ rmr }} kcal</div>
-
         <div><strong>Intake:</strong> {{ intake }} kcal</div>
-        
         <div><strong>Active:</strong> {{ active }} kcal</div>
-
         {% if page.cal.weight %}
         <div><strong>Weight:</strong> {{ page.cal.weight }} kg</div>
         {% endif %}
-
       </div>
 
     </div>

@@ -1,49 +1,100 @@
-/* Calorie Visualization Styles */
-
-/* Container backgrounds */
-.cal-container-deficit {
-  background: linear-gradient(135deg, #ffffff 0%, #d1d1d1 100%);
-  padding: 1rem;
-  border-radius: 8px;
+.calorie-viz {
+    margin: 1rem;
+    padding: 1rem;
 }
 
-.cal-container-surplus {
-  background: linear-gradient(135deg, #ffffff 0%, #d1d1d1 100%);
-  padding: 1rem;
-  border-radius: 8px;
+.cal-label {
+    text-align: center;
+    font-weight: bold;
+    color: #555;
 }
 
-.cal-container-maintenance {
-  background: linear-gradient(135deg, #ffffff 0%, #d1d1d1 100%);
-  padding: 1rem;
-  border-radius: 8px;
-  border: 2px solid #bdbdbd;
+.cal-container {
+    background: linear-gradient(135deg, #ffffff 0%, #efefef 100%);
+    padding: 1rem;
+    border-radius: 8px;
 }
 
-.cal-container-tdee {
-  background: linear-gradient(135deg, #ffffff 0%, #d1d1d1 100%);
-  padding: 1rem;
-  border-radius: 8px;
+.cal-bar-wrapper {
+    display: flex;
+    height: 40px;
+    overflow: hidden;
 }
 
-/* Bar backgrounds */
-.cal-bar-rmr {
-  background: #999;
+.cal-bar-wrapper-no-overflow {
+    display: flex;
+    height: 40px;
+    overflow: hidden;
 }
 
-.cal-bar-active {
-  background: #4a90e2;
+.cal-bar-wrapper-surplus {
+    display: flex;
+    height: 40px;
+    background: #d9534f;
 }
 
-.cal-bar-intake {
-  background: #808080;
+.cal-bar-segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
 }
 
-.cal-bar-surplus {
-  background: #d9534f;
+.cal-bar-segment-no-right-border {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.875rem;
 }
 
-/* Text colors */
+.cal-bar-segment-surplus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+}
+
+.cal-bar-bg-rmr {
+    background: #a5b8cf;
+}
+
+.cal-bar-bg-active {
+    background: #4a90e2;
+}
+
+.cal-bar-bg-intake {
+    background: #b1b1b1;
+}
+
+.cal-bar-bg-surplus {
+    background: #d9534f;
+}
+
+.cal-bar-bg-deficit {
+    background: #52a256;
+}
+
 .cal-text-deficit {
-  color: #2e7d32;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+
+.cal-label-container {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+    color: #666;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
