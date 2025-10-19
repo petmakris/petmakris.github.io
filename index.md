@@ -34,6 +34,7 @@ title: Home
   const deficits = [];
   const intakes = [];
   const tdees = [];
+  const actives = [];
   
   {% for post in site.posts reversed %}
     {% assign metrics = post.cal %}
@@ -43,6 +44,7 @@ title: Home
       deficits.push({{ metrics.deficit | default: 'null' }});
       intakes.push({{ metrics.intake | default: 'null' }});
       tdees.push({{ metrics.tdee | default: 'null' }});
+      actives.push({{ metrics.active | default: 'null' }});
     {% endif %}
   {% endfor %}
   
@@ -102,13 +104,27 @@ title: Home
     type: 'bar',
     data: {
       labels: dates,
-      datasets: [{
-        label: 'Έλλειμμα/Πλεόνασμα (kcal)',
-        data: deficits,
-        backgroundColor: deficits.map(d => d >= 0 ? 'rgba(45, 164, 78, 0.8)' : 'rgba(215, 58, 73, 0.8)'),
-        borderColor: deficits.map(d => d >= 0 ? '#2da44e' : '#d73a49'),
-        borderWidth: 2
-      }]
+      datasets: [
+        {
+          label: 'Έλλειμμα/Πλεόνασμα (kcal)',
+          data: deficits,
+          backgroundColor: deficits.map(d => d >= 0 ? 'rgba(45, 164, 78, 0.8)' : 'rgba(215, 58, 73, 0.8)'),
+          borderColor: deficits.map(d => d >= 0 ? '#2da44e' : '#d73a49'),
+          borderWidth: 2,
+          order: 2
+        },
+        {
+          type: 'bar',
+          label: 'Ενεργές θερμίδες (kcal)',
+          data: actives,
+          backgroundColor: 'rgba(59, 130, 246, 0.6)',
+          borderColor: '#3b82f6',
+          borderWidth: 1,
+          categoryPercentage: 0.8,
+          barPercentage: 0.45,
+          order: 1
+        }
+      ]
     },
     options: {
       responsive: true,
@@ -122,9 +138,10 @@ title: Home
           callbacks: {
             label: function(context) {
               const value = context.parsed.y;
-              return value >= 0 ? 
-                'Έλλειμμα: +' + value + ' kcal' : 
-                'Πλεόνασμα: ' + value + ' kcal';
+              if (context.dataset.label.includes('Ενεργές')) {
+                return context.dataset.label + ': ' + Math.round(value) + ' kcal';
+              }
+              return value >= 0 ? 'Έλλειμμα: +' + Math.round(value) + ' kcal' : 'Πλεόνασμα: ' + Math.round(value) + ' kcal';
             }
           }
         }
