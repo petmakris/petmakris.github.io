@@ -225,6 +225,7 @@ title: Home
     </thead>
     <tbody>
     {% assign today_ymd = site.time | date: "%Y-%m-%d" %}
+    {% assign previous_timestamp = nil %}
 
     {% for post in site.posts %}
       {% assign post_ymd = post.date | date: "%Y-%m-%d" %}
@@ -236,6 +237,20 @@ title: Home
       {% assign deficit_raw = metrics.deficit %}
       {% if deficit_raw != nil %}
         {% assign deficit_value = deficit_raw | plus: 0 %}
+      {% endif %}
+      {% assign post_timestamp = post.date | date: "%s" %}
+
+      {% if previous_timestamp %}
+        {% assign seconds_diff = previous_timestamp | minus: post_timestamp %}
+        {% assign days_between = seconds_diff | divided_by: 86400 %}
+        {% assign missed_days = days_between | minus: 1 %}
+        {% if missed_days > 0 %}
+          <tr class="table-light text-center">
+            <td colspan="6" class="text-muted small" style="color: #9ca3af;">
+              Missed {{ missed_days }} {% if missed_days == 1 %}day{% else %}days{% endif %}
+            </td>
+          </tr>
+        {% endif %}
       {% endif %}
       <tr {% if post_ymd == today_ymd %}class="table-warning fw-bold"{% endif %}>
         <td>
@@ -285,6 +300,7 @@ title: Home
           {% endif %}
         </td>
       </tr>
+      {% assign previous_timestamp = post_timestamp %}
     {% endfor %}
     </tbody>
   </table>
