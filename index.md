@@ -11,8 +11,9 @@ title: Home
   <div class="col-12">
     <div class="card shadow-sm">
       <div class="card-body">
-        <h5 class="card-title text-center mb-3">Weight</h5>
-        <canvas id="weightChart" style="max-height: 300px;"></canvas>
+        <h5 class="card-title text-center mb-1">7-day Rolling Average</h5>
+        <p class="text-center text-muted small mb-3">Raw samples stay as faint dots so you can see the measurements behind the smoother trend.</p>
+        <canvas id="rollingAvgChart" style="max-height: 320px;"></canvas>
       </div>
     </div>
   </div>
@@ -48,40 +49,90 @@ title: Home
     {% endif %}
   {% endfor %}
   
-  // Weight Chart
-  const weightCtx = document.getElementById('weightChart').getContext('2d');
+  const weightSeries = weights.map(value => {
+    const numeric = Number(value);
+    return Number.isFinite(numeric) ? numeric : null;
+  });
+
+  const formatKg = value => {
+    return Number.isFinite(value) ? value.toFixed(1) + ' kg' : '-';
+  };
+
+  const weightTooltipLabel = context => {
+    const yValue = context.parsed.y;
+    return context.dataset.label + ': ' + formatKg(yValue);
+  };
+
+  function computeRollingAverage(data, windowSize) {
+    const result = new Array(data.length).fill(null);
+    const queue = [];
+    let sum = 0;
+    for (let i = 0; i < data.length; i++) {
+      const value = data[i];
+      if (Number.isFinite(value)) {
+        queue.push({ index: i, value });
+        sum += value;
+      }
+      while (queue.length && i - queue[0].index >= windowSize) {
+        sum -= queue[0].value;
+        queue.shift();
+      }
+      if (queue.length) {
+        result[i] = sum / queue.length;
+      }
+    }
+    return result;
+  }
   
-  new Chart(weightCtx, {
+  const rollingAverageData = computeRollingAverage(weightSeries, 7);
+
+  const rollingCtx = document.getElementById('rollingAvgChart').getContext('2d');
+  new Chart(rollingCtx, {
     type: 'line',
     data: {
       labels: dates,
-      datasets: [{
-        label: 'Βάρος (kg)',
-        data: weights,
-        borderColor: '#4a90e2',
-        backgroundColor: 'rgba(74, 144, 226, 0.1)',
-        borderWidth: 1,
-        tension: 0.4,
-        fill: true,
-        pointRadius: 1,
-        pointHoverRadius: 1
-      }]
+      datasets: [
+        {
+          label: 'Μετρήσεις',
+          data: weightSeries,
+          borderColor: 'rgba(148, 163, 184, 0.9)',
+          borderWidth: 0,
+          pointRadius: 2,
+          pointHoverRadius: 4,
+          showLine: false,
+          spanGaps: true
+        },
+        {
+          label: '7-day rolling avg',
+          data: rollingAverageData,
+          borderColor: '#2563eb',
+          backgroundColor: 'rgba(37, 99, 235, 0.12)',
+          borderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          fill: true,
+          tension: 0.35
+        }
+      ]
     },
     options: {
       responsive: true,
       maintainAspectRatio: true,
+      interaction: {
+        intersect: false,
+        mode: 'index'
+      },
       plugins: {
         legend: {
           display: true,
-          position: 'top'
+          position: 'top',
+          labels: {
+            usePointStyle: true
+          }
         },
         tooltip: {
-          mode: 'index',
-          intersect: false,
           callbacks: {
-            label: function(context) {
-              return context.dataset.label + ': ' + context.parsed.y.toFixed(1) + ' kg';
-            }
+            label: weightTooltipLabel
           }
         }
       },
@@ -90,7 +141,7 @@ title: Home
           beginAtZero: false,
           ticks: {
             callback: function(value) {
-              return value.toFixed(1) + ' kg';
+              return formatKg(value);
             }
           }
         }
@@ -253,6 +304,3 @@ title: Home
     </tbody>
   </table>
 </div>
-
-
-
