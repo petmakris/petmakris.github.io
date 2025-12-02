@@ -12,7 +12,6 @@ title: Home
     <div class="card shadow-sm">
       <div class="card-body">
         <h5 class="card-title text-center mb-1">7-day Rolling Average</h5>
-        <p class="text-center text-muted small mb-3">Raw samples stay as faint dots so you can see the measurements behind the smoother trend.</p>
         <canvas id="rollingAvgChart" style="max-height: 320px;"></canvas>
       </div>
     </div>
@@ -87,7 +86,7 @@ title: Home
       labels: dates,
       datasets: [
         {
-          label: 'Μετρήσεις',
+          label: 'Measurements',
           data: weightSeries,
           borderColor: '#4f46e5',
           borderWidth: 1,
@@ -154,7 +153,7 @@ title: Home
       labels: dates,
       datasets: [
         {
-          label: 'Έλλειμμα/Πλεόνασμα (kcal)',
+          label: 'Deficit/Surplus (kcal)',
           data: deficits,
           backgroundColor: deficits.map(d => d >= 0 ? 'rgba(45, 164, 78, 0.8)' : 'rgba(215, 58, 73, 0.8)'),
           borderColor: deficits.map(d => d >= 0 ? '#2da44e' : '#d73a49'),
@@ -177,7 +176,7 @@ title: Home
           callbacks: {
             label: function(context) {
               const value = context.parsed.y;
-              return value >= 0 ? 'Έλλειμμα: +' + Math.round(value) + ' kcal' : 'Πλεόνασμα: ' + Math.round(value) + ' kcal';
+              return value >= 0 ? 'Deficit: +' + Math.round(value) + ' kcal' : 'Surplus: ' + Math.round(value) + ' kcal';
             }
           }
         }
