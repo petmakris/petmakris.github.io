@@ -33,9 +33,6 @@ title: Home
   const dates = [];
   const weights = [];
   const deficits = [];
-  const intakes = [];
-  const tdees = [];
-  const actives = [];
   
   {% for post in site.posts reversed %}
     {% assign metrics = post.cal %}
@@ -43,9 +40,6 @@ title: Home
       dates.push('{{ post.date | date: "%m/%d" }}');
       weights.push({{ metrics.weight | default: 'null' }});
       deficits.push({{ metrics.deficit | default: 'null' }});
-      intakes.push({{ metrics.intake | default: 'null' }});
-      tdees.push({{ metrics.tdee | default: 'null' }});
-      actives.push({{ metrics.active | default: 'null' }});
     {% endif %}
   {% endfor %}
   
@@ -95,10 +89,13 @@ title: Home
         {
           label: 'Μετρήσεις',
           data: weightSeries,
-          borderColor: 'rgba(148, 163, 184, 0.9)',
-          borderWidth: 0,
-          pointRadius: 2,
-          pointHoverRadius: 4,
+          borderColor: '#4f46e5',
+          borderWidth: 1,
+          pointRadius: 3,
+          pointHoverRadius: 5,
+          pointBackgroundColor: 'rgba(79, 70, 229, 0.2)',
+          pointBorderColor: '#4f46e5',
+          pointStyle: 'rectRounded',
           showLine: false,
           spanGaps: true
         },
@@ -162,18 +159,9 @@ title: Home
           backgroundColor: deficits.map(d => d >= 0 ? 'rgba(45, 164, 78, 0.8)' : 'rgba(215, 58, 73, 0.8)'),
           borderColor: deficits.map(d => d >= 0 ? '#2da44e' : '#d73a49'),
           borderWidth: 2,
-          order: 2
-        },
-        {
-          type: 'bar',
-          label: 'Ενεργές θερμίδες (kcal)',
-          data: actives,
-          backgroundColor: 'rgba(59, 130, 246, 0.6)',
-          borderColor: '#3b82f6',
-          borderWidth: 1,
-          categoryPercentage: 0.8,
-          barPercentage: 0.45,
-          order: 1
+          order: 1,
+          categoryPercentage: 0.7,
+          barPercentage: 0.65
         }
       ]
     },
@@ -189,9 +177,6 @@ title: Home
           callbacks: {
             label: function(context) {
               const value = context.parsed.y;
-              if (context.dataset.label.includes('Ενεργές')) {
-                return context.dataset.label + ': ' + Math.round(value) + ' kcal';
-              }
               return value >= 0 ? 'Έλλειμμα: +' + Math.round(value) + ' kcal' : 'Πλεόνασμα: ' + Math.round(value) + ' kcal';
             }
           }
