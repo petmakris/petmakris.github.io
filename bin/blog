@@ -189,8 +189,11 @@ def cmd_edit(target=None):
     cmd_calc_file(post_file)
 
 
+# ── foods ───────────────────────────────────────────────────
+
+
 def cmd_foods():
-    print("Not implemented yet")
+    subprocess.run([EDITOR, str(TEMPLATES_DIR / "food_index.txt")])
 
 
 def main():
