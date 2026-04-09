@@ -71,10 +71,6 @@ def cmd_new():
         yday_link.symlink_to(yday_file)
 
 
-def cmd_edit(target):
-    print("Not implemented yet")
-
-
 # ── calc ────────────────────────────────────────────────────
 
 
@@ -142,6 +138,54 @@ def cmd_calc_file(post_file):
 
 def cmd_calc(target="today"):
     post_file = resolve_post(target)
+    cmd_calc_file(post_file)
+
+
+# ── edit ────────────────────────────────────────────────────
+
+
+def pick_post_with_dialog():
+    """Show a dialog menu to pick from the last 10 posts, sorted date descending."""
+    posts = sorted(POSTS_DIR.glob("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-notes.md"), reverse=True)[:10]
+
+    if not posts:
+        print("No posts found", file=sys.stderr)
+        sys.exit(1)
+
+    menu_args = []
+    for i, p in enumerate(posts, 1):
+        menu_args += [str(i), p.name]
+
+    result = subprocess.run(
+        [
+            "dialog", "--clear", "--no-tags",
+            "--menu", "Select a post to edit", "15", "70", "10",
+            *menu_args,
+        ],
+        capture_output=True, text=True,
+    )
+
+    if result.returncode != 0:
+        sys.exit(0)  # user cancelled
+
+    choice_idx = int(result.stderr.strip()) - 1
+    return posts[choice_idx]
+
+
+def cmd_edit(target=None):
+    cmd_new()  # ensure today's post exists
+
+    if target in ("today", "yesterday"):
+        post_file = resolve_post(target)
+    elif target is None:
+        post_file = pick_post_with_dialog()
+    else:
+        print(f"Error: Unknown target '{target}'. Use 'today', 'yesterday', or omit.", file=sys.stderr)
+        sys.exit(1)
+
+    subprocess.run([EDITOR, str(post_file)])
+
+    print("Calculating calories...")
     cmd_calc_file(post_file)
 
 
