@@ -19,7 +19,7 @@
 
 .cal-gauge-svg .intake {
   fill: none;
-  stroke: #16a34a; /* default green */
+  stroke: #10b981; /* emerald */
   stroke-width: 10;
   stroke-linecap: round;
   transform: rotate(-90deg);
@@ -34,7 +34,7 @@
 
 .cal-gauge-svg .active {
   fill: none;
-  stroke: #0ea5e9;
+  stroke: #3b82f6;
   stroke-width: 6;
   stroke-linecap: round;
   transform: rotate(-90deg);
@@ -77,18 +77,18 @@
 
 .cal-gauge .pill strong {
   font-weight: 600;
-  color: #334155;
+  color: #0f172a;
 }
 
 /* Color-coded borders */
-.pill-intake { border-color: #bbf7d0; }
+.pill-intake { border-color: #a7f3d0; }
 .pill-tdee   { border-color: #fde68a; }
-.pill-active { border-color: #bae6fd; }
+.pill-active { border-color: #bfdbfe; }
 .pill-weight { border-color: #e9d5ff; }
 
 /* ===== Colors for surplus vs deficit ===== */
-.cal-gauge.surplus .labels .deficit { fill: #dc2626; } /* red */
-.cal-gauge.deficit .labels .deficit { fill: #16a34a; } /* green */
+.cal-gauge.surplus .labels .deficit { fill: #ef4444; } /* red */
+.cal-gauge.deficit .labels .deficit { fill: #10b981; } /* emerald */
 
 /* ===== Optional compact mode ===== */
 .cal-gauge.compact { max-width: 220px; }

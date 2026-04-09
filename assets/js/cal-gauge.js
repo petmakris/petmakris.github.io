@@ -30,10 +30,10 @@
     // Color logic: positive deficit = good (green), negative = surplus (red)
     if (deficit > 0) {
       el.classList.add('deficit');
-      intakeEl.style.stroke = '#16a34a';
+      intakeEl.style.stroke = '#10b981';
     } else if (deficit < 0) {
       el.classList.add('surplus');
-      intakeEl.style.stroke = '#dc2626';
+      intakeEl.style.stroke = '#ef4444';
     } else {
       el.classList.add('deficit');
       intakeEl.style.stroke = '#94a3b8';

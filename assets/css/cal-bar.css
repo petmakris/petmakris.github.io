@@ -85,8 +85,8 @@
   /* deficit_pct is already (tdee - intake) / scale */
   /* We need it relative to intake bar, so: deficit_pct / intake_pct * 100% */
   width: calc((var(--tdee-pct) - var(--intake-pct)) / var(--intake-pct) * 100%);
-  background: #22c55e;
-  box-shadow: inset 0 0 0 1px rgba(22, 163, 74, 0.4);
+  background: #10b981;
+  box-shadow: inset 0 0 0 1px rgba(16, 185, 129, 0.4);
   border-radius: 0 999px 999px 0;
 }
 
@@ -105,7 +105,7 @@
   /* Width is from TDEE to intake, relative to intake bar */
   width: calc((var(--intake-pct) - var(--tdee-pct)) / var(--intake-pct) * 100%);
   background: #ef4444;
-  box-shadow: inset 0 0 0 1px rgba(220, 38, 38, 0.4);
+  box-shadow: inset 0 0 0 1px rgba(239, 68, 68, 0.4);
   border-radius: 0 999px 999px 0;
 }
 
@@ -138,19 +138,19 @@
   white-space: nowrap;
 }
 
-.cal-bar .chip b{ font-weight: 600; color:#334155; }
+.cal-bar .chip b{ font-weight: 600; color:#0f172a; }
 
-.chip-intake { border-color:#bbf7d0; }
+.chip-intake { border-color:#a7f3d0; }
 .chip-tdee   { border-color:#fde68a; }
 .chip-rmr    { border-color:#cbd5e1; }
-.chip-active { border-color:#bae6fd; }
+.chip-active { border-color:#bfdbfe; }
 .chip-weight { border-color:#e9d5ff; }
 .chip-balance{ border-color:#fecaca; }
-.chip-balance.is-positive{ color:#15803d; }
+.chip-balance.is-positive{ color:#059669; }
 .chip-balance.is-negative{ color:#dc2626; }
 
 .cal-bar.is-deficit .chip-balance{
-  border-color:#bbf7d0;
+  border-color:#a7f3d0;
 }
 
 .cal-bar.is-surplus .chip-balance{
