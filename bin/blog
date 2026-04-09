@@ -1,41 +1,84 @@
-#!/usr/bin/env bash
-set -Eeuo pipefail
+#!/usr/bin/env python3
+"""blog — daily nutrition journal tool."""
 
-POSTS_DIR="${1:-${BLOG_HOME:-$HOME/projects/blog}/_posts}"
-EDITOR_CMD="${EDITOR:-vim}"
+import argparse
+import os
+import subprocess
+import sys
+from datetime import datetime, timedelta
+from pathlib import Path
 
-# Ensure today's post exists (no-op if it already does)
-blog-rotate-links
+import frontmatter
+import yaml
+from zoneinfo import ZoneInfo
 
-# Collect matching files via glob
-shopt -s nullglob
-matches=( "$POSTS_DIR"/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-notes.md )
-shopt -u nullglob
+# ── config ──────────────────────────────────────────────────
 
-# Basenames, newest first, take 5
-mapfile -t FILES < <(printf '%s\n' "${matches[@]##*/}" | sort -r | head -n 10)
+BLOG_HOME = Path(__file__).resolve().parent.parent
+POSTS_DIR = BLOG_HOME / "_posts"
+PICS_DIR = BLOG_HOME / "pics"
+TEMPLATES_DIR = BLOG_HOME / "templates"
+CONFIG_PATH = BLOG_HOME / "_config.yml"
+EDITOR = os.environ.get("EDITOR", "vim")
 
-if (( ${#FILES[@]} == 0 )); then
-  echo "No posts found matching YYYY-MM-DD-notes.md in: $POSTS_DIR" >&2
-  exit 1
-fi
 
-# Build dialog menu (numeric tag + filename description)
-menu_items=()
-for i in "${!FILES[@]}"; do
-  idx=$(( i + 1 ))
-  menu_items+=( "$idx" "${FILES[$i]}" )
-done
+def load_config():
+    with open(CONFIG_PATH) as f:
+        cfg = yaml.safe_load(f)
+    return {
+        "rmr": cfg["rmr"],
+        "tz": ZoneInfo(cfg.get("timezone", "Europe/Athens")),
+    }
 
-choice_idx=$(
-  dialog --clear --no-tags \
-         --menu "Select a post to edit" 15 70 5 \
-         "${menu_items[@]}" \
-         2>&1 >/dev/tty
-) || exit 1
 
-choice="${FILES[$(( choice_idx - 1 ))]}"
+# ── commands (implemented in subsequent tasks) ──────────────
 
-exec $EDITOR_CMD "$POSTS_DIR/$choice"
-clear
 
+def cmd_new():
+    print("Not implemented yet")
+
+
+def cmd_edit(target):
+    print("Not implemented yet")
+
+
+def cmd_calc(target):
+    print("Not implemented yet")
+
+
+def cmd_foods():
+    print("Not implemented yet")
+
+
+def main():
+    parser = argparse.ArgumentParser(prog="blog", description="Daily nutrition journal tool")
+    sub = parser.add_subparsers(dest="command")
+
+    sub.add_parser("new", help="Create today's post and update symlinks")
+
+    edit_p = sub.add_parser("edit", help="Pick a recent post to edit")
+    edit_p.add_argument("target", nargs="?", help="today, yesterday, or omit for picker")
+
+    calc_p = sub.add_parser("calc", help="Calculate calories for a post")
+    calc_p.add_argument("target", nargs="?", default="today", help="today or yesterday")
+
+    sub.add_parser("foods", help="Edit the food catalog")
+
+    args = parser.parse_args()
+
+    if args.command is None:
+        parser.print_help()
+        sys.exit(1)
+
+    if args.command == "new":
+        cmd_new()
+    elif args.command == "edit":
+        cmd_edit(args.target)
+    elif args.command == "calc":
+        cmd_calc(args.target)
+    elif args.command == "foods":
+        cmd_foods()
+
+
+if __name__ == "__main__":
+    main()
