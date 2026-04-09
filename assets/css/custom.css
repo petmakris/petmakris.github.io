@@ -55,6 +55,9 @@ body {
   z-index: 100;
   backdrop-filter: blur(12px);
   background: rgba(255,255,255,0.92);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .site-navbar .brand {
@@ -66,6 +69,18 @@ body {
 }
 
 .site-navbar .brand:hover {
+  color: var(--color-blue);
+}
+
+.site-navbar .nav-link-archive {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  margin-left: auto;
+}
+
+.site-navbar .nav-link-archive:hover {
   color: var(--color-blue);
 }
 
