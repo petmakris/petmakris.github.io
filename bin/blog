@@ -3,6 +3,7 @@
 
 import argparse
 import os
+import re
 import subprocess
 import sys
 from datetime import datetime, timedelta
@@ -117,8 +118,21 @@ def cmd_calc_file(post_file):
     output = result.stdout.strip()
     print(output)
 
+    # Extract YAML from mixed output — Claude may include text before the YAML block
+    yaml_text = output
+    if "```" in output:
+        # Extract from fenced code block
+        match = re.search(r"```(?:yaml)?\s*\n(.*?)```", output, re.DOTALL)
+        if match:
+            yaml_text = match.group(1).strip()
+    elif re.search(r"^cal:", output, re.MULTILINE):
+        # Extract from "cal:" line onwards
+        match = re.search(r"^(cal:.*)", output, re.MULTILINE | re.DOTALL)
+        if match:
+            yaml_text = match.group(1).strip()
+
     try:
-        parsed = yaml.safe_load(output)
+        parsed = yaml.safe_load(yaml_text)
     except yaml.YAMLError:
         print("Error: Could not parse Claude's output as YAML", file=sys.stderr)
         sys.exit(1)
