@@ -1,6 +1,6 @@
 .playwright-mcp/
 .superpowers/
-blog-*.png
+*.png
 
 # Jekyll
 
