@@ -31,11 +31,44 @@ def load_config():
     }
 
 
-# ── commands (implemented in subsequent tasks) ──────────────
+# ── new ─────────────────────────────────────────────────────
 
 
 def cmd_new():
-    print("Not implemented yet")
+    cfg = load_config()
+    tz = cfg["tz"]
+    today = datetime.now(tz).date()
+    yesterday = today - timedelta(days=1)
+
+    today_str = today.isoformat()
+    yday_str = yesterday.isoformat()
+
+    POSTS_DIR.mkdir(parents=True, exist_ok=True)
+    (PICS_DIR / today_str).mkdir(parents=True, exist_ok=True)
+
+    today_file = POSTS_DIR / f"{today_str}-notes.md"
+    yday_file = POSTS_DIR / f"{yday_str}-notes.md"
+
+    if not today_file.exists():
+        post = frontmatter.Post(
+            f"\n### Διατροφή\n\n- γιαούρτι\n\n<!---  ![pic](/pics/{today_str}/yogurt.jpg)<br> -->\n",
+            layout="post",
+            title=f"Notes {today_str}",
+            date=today_str,
+            cal={"deficit": None, "intake": None, "tdee": None, "active": 0, "weight": None},
+        )
+        today_file.write_text(frontmatter.dumps(post) + "\n")
+        print(f"Created {today_file}")
+
+    # Update symlinks
+    today_link = POSTS_DIR / "today.md"
+    today_link.unlink(missing_ok=True)
+    today_link.symlink_to(today_file)
+
+    yday_link = POSTS_DIR / "yesterday.md"
+    if yday_file.exists():
+        yday_link.unlink(missing_ok=True)
+        yday_link.symlink_to(yday_file)
 
 
 def cmd_edit(target):
