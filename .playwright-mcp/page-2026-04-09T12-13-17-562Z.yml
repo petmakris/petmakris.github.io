@@ -1,0 +1,17 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - link "Eating habits" [ref=e4] [cursor=pointer]:
+      - /url: /
+  - generic [ref=e5]:
+    - navigation [ref=e6]:
+      - link "⬅️ 2025-12-17" [ref=e8] [cursor=pointer]:
+        - /url: /2025/12/17/notes/
+      - link "2026-04-09 ➡️" [ref=e10] [cursor=pointer]:
+        - /url: /2026/04/09/notes/
+    - main [ref=e11]:
+      - article [ref=e12]:
+        - heading "Notes 2025-12-18" [level=3] [ref=e14]
+        - generic [ref=e15]:
+          - heading "Διατροφή" [level=3] [ref=e16]
+          - list [ref=e17]:
+            - listitem [ref=e18]: γιαούρτι

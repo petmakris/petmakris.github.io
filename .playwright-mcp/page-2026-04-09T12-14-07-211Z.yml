@@ -1,0 +1,70 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - link "Eating habits" [ref=e4] [cursor=pointer]:
+      - /url: /
+  - generic [ref=e5]:
+    - navigation [ref=e6]:
+      - link "⬅️ 2025-10-14" [ref=e8] [cursor=pointer]:
+        - /url: /2025/10/14/notes/
+      - link "2025-10-16 ➡️" [ref=e10] [cursor=pointer]:
+        - /url: /2025/10/16/notes/
+    - main [ref=e11]:
+      - article [ref=e12]:
+        - heading "Notes 2025-10-15" [level=3] [ref=e14]
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - generic [ref=e17]: TDEE = RMR + active
+            - generic [ref=e19]:
+              - generic [ref=e20]: RMR
+              - generic [ref=e21]: active
+          - generic [ref=e22]: Intake
+          - generic [ref=e25]:
+            - generic [ref=e26]: intake
+            - generic [ref=e27]: surplus
+          - generic [ref=e28]:
+            - generic [ref=e29]:
+              - strong [ref=e30]: TDEE
+              - text: 2600 kcal
+            - generic [ref=e31]:
+              - strong [ref=e32]: RMR
+              - text: 1900 kcal
+            - generic [ref=e33]:
+              - strong [ref=e34]: "active:"
+              - text: 700 kcal
+          - generic [ref=e35]:
+            - generic [ref=e36]:
+              - strong [ref=e37]: "Intake:"
+              - text: 2840 kcal
+            - generic [ref=e38]:
+              - strong [ref=e39]: "Surplus:"
+              - text: 240 kcal
+            - generic [ref=e40]:
+              - strong [ref=e41]: "Weight:"
+              - text: 97.0 kg
+        - generic [ref=e42]:
+          - heading "Διατροφή" [level=3] [ref=e43]
+          - paragraph [ref=e44]: (Μέρα αιμοδοσιας)
+          - list [ref=e45]:
+            - listitem [ref=e46]: γιαούρτι 300γρ (200 kcal)
+            - listitem [ref=e47]: μέλι (100 kcal)
+            - listitem [ref=e48]: ταχίνι (150 kcal)
+            - listitem [ref=e49]: κουλούρι θεσσαλονίκης (220 kcal)
+            - listitem [ref=e50]:
+              - paragraph [ref=e51]: 2 πακέτα κρακεράκια (400)
+            - listitem [ref=e52]: ομελέτα (300 kcal)
+            - listitem [ref=e53]: κουνουπίδι, ψητό με σως (380 kcal)
+            - listitem [ref=e54]:
+              - paragraph [ref=e55]: μπανανα (100 kcal)
+            - listitem [ref=e56]: γιαούρτι (200 kcal)
+            - listitem [ref=e57]:
+              - paragraph [ref=e58]: μέλι (60 kcal)
+            - listitem [ref=e59]: πατάτες ψητές (300 kcal)
+            - listitem [ref=e60]:
+              - paragraph [ref=e61]: ρυζόγαλο (260 kcal)
+            - listitem [ref=e62]: μισή μπανάνα (70 kcal)
+            - listitem [ref=e63]: 3 τσάνος (100 kcal)
+          - paragraph [ref=e64]
+          - paragraph [ref=e65]:
+            - img "pic" [ref=e66]
+          - paragraph [ref=e67]:
+            - img "pic" [ref=e68]
