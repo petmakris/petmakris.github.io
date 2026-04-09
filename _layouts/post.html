@@ -2,222 +2,177 @@
 layout: default
 ---
 
-<style>
-  /* Post headings */
-  .post h3 {
-    margin-bottom: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  /* Post image styling */
-  .post-content img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    margin: 2rem auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Consistent image size - you can adjust these values */
-  .post-content img {
-    max-height: 500px;
-    object-fit: cover;
-    width: 100%;
-  }
-
-  /* Hide text in small bars - only show if width is sufficient */
-  .bar-text {
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-  /* Show text only when container is wide enough */
-  @container (min-width: 80px) {
-    .bar-text {
-      display: inline;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .post-content img {
-      max-height: 300px;
-    }
-  }
-</style>
-
-<nav class="post-pager" style="display:flex; justify-content:space-between; gap:1rem; padding: 1rem">
+<nav class="post-pager">
   <div>
     {% if page.previous %}
-      <a rel="prev" href="{{ page.previous.url | relative_url }}" title="{{ page.previous.title }}" class="btn btn-sm btn-outline-primary">
-        ⬅️ {{ page.previous.date | date: "%Y-%m-%d" }}
+      <a rel="prev" href="{{ page.previous.url | relative_url }}" title="{{ page.previous.title }}">
+        <i class="bi bi-arrow-left"></i> {{ page.previous.date | date: "%Y-%m-%d" }}
       </a>
     {% endif %}
   </div>
-
-  <div style="margin-left:auto; text-align:right;">
+  <div style="margin-left:auto;">
     {% if page.next %}
-      <a rel="next" href="{{ page.next.url | relative_url }}" title="{{ page.next.title }}" class="btn btn-sm btn-outline-primary">
-        {{ page.next.date | date: "%Y-%m-%d" }} ➡️
+      <a rel="next" href="{{ page.next.url | relative_url }}" title="{{ page.next.title }}">
+        {{ page.next.date | date: "%Y-%m-%d" }} <i class="bi bi-arrow-right"></i>
       </a>
     {% endif %}
   </div>
 </nav>
 
+<article style="max-width: 860px; margin: 0 auto;">
+  <h1 class="post-title">{{ page.title }}</h1>
 
-<main class="page-content" style="max-width: 860px; margin: 0 auto; ">
-  <article class="post">
-    <header>
-      <h3>{{ page.title }}</h3>
-    </header>
-
-    {% if page.cal.intake and page.cal.tdee %}
+  {% if page.cal.intake and page.cal.tdee %}
     {% assign intake = page.cal.intake | plus: 0 %}
     {% assign tdee = page.cal.tdee | plus: 0 %}
     {% assign active = page.cal.active | default: 0 | plus: 0 %}
     {% assign rmr = tdee | minus: active %}
     {% assign deficit = page.cal.deficit | default: 0 | plus: 0 %}
-    {% assign is_deficit = false %}
-    {% assign is_surplus = false %}
-    
-    {% if intake < tdee %}
+
+    {% if deficit > 0 %}
       {% assign is_deficit = true %}
-      {% assign deficit_amount = tdee | minus: intake %}
-    {% elsif intake > tdee %}
-      {% assign is_surplus = true %}
-      {% assign surplus_amount = intake | minus: tdee %}
+      {% assign deficit_abs = deficit %}
+    {% elsif deficit < 0 %}
+      {% assign is_deficit = false %}
+      {% assign deficit_abs = deficit | abs %}
+    {% else %}
+      {% assign is_deficit = false %}
+      {% assign deficit_abs = 0 %}
     {% endif %}
 
-    <div class="calorie-viz">
-      
-      <!-- TDEE Bar with container -->
-      <div style="position: relative; margin-bottom: 1.5rem;">
-        <div class="cal-label">
-          TDEE = RMR + active
+    <!-- Traffic-Light Verdict Banner -->
+    {% if deficit > 0 %}
+      <div class="verdict-banner is-deficit">
+        <div class="verdict-icon">&#9989;</div>
+        <div>
+          <div class="verdict-text">{{ deficit_abs }} kcal under target</div>
+          <div class="verdict-sub">Intake {{ intake }} &middot; TDEE {{ tdee }} kcal</div>
+        </div>
+      </div>
+    {% elsif deficit < 0 %}
+      <div class="verdict-banner is-surplus">
+        <div class="verdict-icon">&#9888;&#65039;</div>
+        <div>
+          <div class="verdict-text">{{ deficit_abs }} kcal over target</div>
+          <div class="verdict-sub">Intake {{ intake }} &middot; TDEE {{ tdee }} kcal</div>
+        </div>
+      </div>
+    {% else %}
+      <div class="verdict-banner is-neutral">
+        <div class="verdict-icon">&#9898;</div>
+        <div>
+          <div class="verdict-text">Right on target</div>
+          <div class="verdict-sub">Intake {{ intake }} &middot; TDEE {{ tdee }} kcal</div>
+        </div>
+      </div>
+    {% endif %}
+
+    <!-- Donut Gauge -->
+    <div class="gauge-wrap">
+      <div class="cal-gauge" data-intake="{{ intake }}" data-tdee="{{ tdee }}" data-deficit="{{ deficit }}" data-active="{{ active }}" data-weight="{{ page.cal.weight | default: '' }}">
+        <svg class="cal-gauge-svg" viewBox="0 0 160 160" width="180" height="180">
+          <circle class="track" cx="80" cy="80" r="56"/>
+          <circle class="active-track" cx="80" cy="80" r="68"/>
+          <circle class="active" cx="80" cy="80" r="68"/>
+          <circle class="intake" cx="80" cy="80" r="56"/>
+          <g class="labels" text-anchor="middle">
+            <text class="deficit" x="80" y="76">—</text>
+            <text class="caption" x="80" y="93">vs TDEE</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Compact Summary Cards -->
+    <div class="cal-summary">
+      <div class="cal-summary-card">
+        <div class="card-val">{{ intake }}</div>
+        <div class="card-lbl">Intake</div>
+      </div>
+      <div class="cal-summary-card">
+        <div class="card-val">{{ tdee }}</div>
+        <div class="card-lbl">TDEE</div>
+      </div>
+      <div class="cal-summary-card">
+        <div class="card-val">{{ active }}</div>
+        <div class="card-lbl">Active</div>
+      </div>
+      {% if page.cal.weight %}
+      <div class="cal-summary-card">
+        <div class="card-val">{{ page.cal.weight }}</div>
+        <div class="card-lbl">Weight (kg)</div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Refreshed TDEE / Intake Bars (collapsible) -->
+    <details class="cal-bars-refreshed">
+      <summary style="cursor:pointer; font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--color-text-muted); list-style:none; display:flex; align-items:center; gap:0.5rem;">
+        <i class="bi bi-bar-chart"></i> Calorie breakdown
+        <i class="bi bi-chevron-down" style="margin-left:auto; font-size:0.7rem;"></i>
+      </summary>
+
+      <div style="margin-top:1rem;">
+        <!-- TDEE Bar -->
+        <div class="bar-row">
+          <div class="bar-label">TDEE ({{ tdee }} kcal)</div>
+          <div class="bar-track">
+            {% assign rmr_pct = rmr | times: 100.0 | divided_by: tdee %}
+            {% assign active_pct = active | times: 100.0 | divided_by: tdee %}
+            <div class="bar-fill rmr" style="width: {{ rmr_pct }}%;">
+              {% if rmr_pct > 15 %}RMR{% endif %}
+            </div>
+            <div class="bar-fill active" style="width: {{ active_pct }}%;">
+              {% if active_pct > 10 %}Active{% endif %}
+            </div>
+          </div>
         </div>
 
-        {% if is_surplus %}
-          <!-- On surplus days, TDEE bar is shorter (scaled to intake) -->
-          <div class="cal-container" style="width: {{ tdee | times: 100.0 | divided_by: intake }}%;">
-            <div class="cal-bar-wrapper">
-              {% if rmr > 0 %}
-              <div class="cal-bar-bg-rmr cal-bar-segment" style="width: {{ rmr | times: 100.0 | divided_by: tdee }}%;">
-                {% if rmr > 100 %}RMR{% endif %}
-              </div>
-              {% endif %}
-              {% if active > 0 %}
-              <div class="cal-bar-bg-active cal-bar-segment" style="width: {{ active | times: 100.0 | divided_by: tdee }}%;">
-                {% if active > 100 %}active{% endif %}
-              </div>
-              {% endif %}
-            </div>
-          </div>
-
-        {% else %}
-        
-          <!-- On deficit/maintenance days, TDEE bar is full width -->
-          <div class="cal-container">
-            <div class="cal-bar-wrapper">
-              {% if rmr > 0 %}
-              <div class="cal-bar-bg-rmr cal-bar-segment" style="width: {{ rmr | times: 100.0 | divided_by: tdee }}%;">
-                {% if rmr > 100 %}RMR{% endif %}
-              </div>
-              {% endif %}
-              {% if active > 0 %}
-              <div class="cal-bar-bg-active cal-bar-segment" style="width: {{ active | times: 100.0 | divided_by: tdee }}%;">
-                {% if active > 100 %}active{% endif %}
-              </div>
-              {% endif %}
-            </div>
-          </div>
-        {% endif %}
-
-      </div>
-
-      <!-- Intake Bar with container -->
-      <div class="cal-label">
-        Intake
-      </div>
-
-      <!-- Intake Bar (positioned relative to TDEE) -->
-      <div style="position: relative; margin-bottom: 1rem;">
-
-        {% if is_deficit %}
-
-          {% assign intake_percent = intake | times: 100.0 | divided_by: tdee %}
-          {% assign deficit_percent = deficit_amount | times: 100.0 | divided_by: tdee %}
-
-          <div class="cal-container">
-            <div class="cal-bar-wrapper-no-overflow">
-              <div class="cal-bar-bg-intake cal-bar-segment" style="width: {{ intake_percent }}%;">
-                intake
-              </div>
-              <div class="cal-bar-bg-deficit cal-bar-segment" style="width: {{ deficit_percent }}%;">
-                {% if deficit_percent > 8 %}deficit{% endif %}
-              </div>
-            </div>
-          </div>
-
-        {% elsif is_surplus %}
-
-          <!-- Surplus case: intake bar extends BEYOND TDEE to show surplus -->
-          {% assign surplus_percent = surplus_amount | times: 100.0 | divided_by: tdee %}
-          <div class="cal-container">
-            <div class="cal-bar-wrapper-surplus">
-              <div class="cal-bar-bg-intake cal-bar-segment" style="width: 100%;">
-                intake
-              </div>
-              <div class="cal-bar-bg-surplus cal-bar-segment" style="width: {{ surplus_percent }}%;">
-                {% if surplus_percent > 8 %}surplus{% endif %}
-              </div>
-            </div>
-          </div>
-
-        {% else %}
-
-          <!-- Maintenance: intake equals TDEE in neutral container -->
-          <div class="cal-container">
-            <div class="cal-bar-wrapper">
-              <div class="cal-bar-intake cal-bar-segment" style="width: 100%;">
+        <!-- Intake Bar -->
+        <div class="bar-row" style="margin-top:0.75rem;">
+          <div class="bar-label">Intake ({{ intake }} kcal)</div>
+          {% if deficit > 0 %}
+            {% assign intake_pct = intake | times: 100.0 | divided_by: tdee %}
+            {% assign deficit_pct = deficit | times: 100.0 | divided_by: tdee %}
+            <div class="bar-track">
+              <div class="bar-fill intake-ok" style="width: {{ intake_pct }}%; border-radius: 999px 0 0 999px;">
                 Intake
               </div>
+              <div class="bar-fill deficit-fill" style="width: {{ deficit_pct }}%;">
+                {% if deficit_pct > 8 %}-{{ deficit_abs }}{% endif %}
+              </div>
             </div>
-          </div>
-
-        {% endif %}
+          {% elsif deficit < 0 %}
+            {% assign max_val = intake %}
+            {% assign intake_pct_of_max = tdee | times: 100.0 | divided_by: max_val %}
+            {% assign surplus_pct = deficit_abs | times: 100.0 | divided_by: max_val %}
+            <div class="bar-track">
+              <div class="bar-fill intake-ok" style="width: {{ intake_pct_of_max }}%; border-radius: 999px 0 0 999px;">
+                Intake
+              </div>
+              <div class="bar-fill surplus-fill" style="width: {{ surplus_pct }}%;">
+                {% if surplus_pct > 8 %}+{{ deficit_abs }}{% endif %}
+              </div>
+            </div>
+          {% else %}
+            <div class="bar-track">
+              <div class="bar-fill intake-ok" style="width: 100%;">Intake</div>
+            </div>
+          {% endif %}
+        </div>
       </div>
+    </details>
 
-      <div class="cal-label-container">
-        <div><strong>TDEE</strong> {{ tdee }} kcal</div>
-        <div><strong>RMR</strong> {{ rmr }} kcal </div>
-        <div><strong>active:</strong> {{ active }} kcal</span></div>
-      </div>
+  {% endif %}
 
-      <div class="cal-label-container">
-        <div><strong>Intake:</strong> {{ intake }} kcal</div>
-        
-        {% if is_deficit %}
-          <div><strong>Deficit:</strong> {{ deficit | abs }} kcal</div>
-        {% else %}
-          <div><strong>Surplus:</strong> {{ deficit | abs }} kcal</div>
-        {% endif %}
+  <!-- Food log / post content -->
+  <div class="food-card">
+    {{ content }}
+  </div>
 
-        {% if page.cal.weight %}
-        <div><strong>Weight:</strong> {{ page.cal.weight }} kg</div>
-        {% endif %}
+  {% if site.giscus_enabled %}
+    {% include giscus.html %}
+  {% endif %}
+</article>
 
-      </div>
-
-    </div>
-    {% endif %}
-
-    <div class="post-content">
-      {{ content }}
-    </div>
-
-    {% if site.giscus_enabled %}
-      {% include giscus.html %}
-    {% endif %}
-  </article>
-</main>
-
+<script src="{{ '/assets/js/cal-gauge.js' | relative_url }}"></script>

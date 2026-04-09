@@ -1,39 +1,641 @@
-.project-name__link {
-    color: inherit;
-    text-decoration: none;
+/* ============================================
+   DESIGN SYSTEM — Eating Habits Blog
+   ============================================ */
+
+/* --- Variables --- */
+:root {
+  --color-bg: #fafaf9;
+  --color-surface: #ffffff;
+  --color-text: #1c1917;
+  --color-text-muted: #78716c;
+  --color-text-light: #a8a29e;
+  --color-border: #e7e5e4;
+  --color-border-light: #f5f5f4;
+
+  --color-green: #16a34a;
+  --color-green-bg: #f0fdf4;
+  --color-green-border: #bbf7d0;
+  --color-red: #dc2626;
+  --color-red-bg: #fef2f2;
+  --color-red-border: #fecaca;
+  --color-blue: #2563eb;
+  --color-blue-light: #dbeafe;
+  --color-amber: #d97706;
+  --color-amber-bg: #fffbeb;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-lg: 0 4px 16px rgba(0,0,0,0.08);
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
 }
 
-.project-name__link:hover {
-    text-decoration: underline;
+/* --- Base Reset --- */
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
+/* --- Navbar --- */
+.site-navbar {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.92);
+}
 
+.site-navbar .brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.site-navbar .brand:hover {
+  color: var(--color-blue);
+}
+
+/* --- Main Container --- */
+.site-main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+/* --- Cards --- */
+.card-surface {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* --- Hero Section (Homepage) --- */
+.hero-progress {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.hero-progress .hero-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.hero-progress .hero-value {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.hero-progress .hero-value.positive {
+  color: var(--color-green);
+}
+
+.hero-progress .hero-value.negative {
+  color: var(--color-red);
+}
+
+.hero-progress .hero-sub {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat .stat-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.hero-stat .stat-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-light);
+}
+
+/* --- Day Pills Strip --- */
+.day-strip {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+}
+
+.day-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+  transition: transform 0.15s;
+}
+
+.day-pill:hover {
+  transform: translateY(-2px);
+}
+
+.day-pill .dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: white;
+}
+
+.day-pill .dot.deficit {
+  background: var(--color-green);
+}
+
+.day-pill .dot.surplus {
+  background: var(--color-red);
+}
+
+.day-pill .dot.neutral {
+  background: var(--color-text-light);
+}
+
+.day-pill .day-label {
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+/* --- Heatmap Calendar --- */
+.heatmap {
+  margin: 1.5rem 0;
+}
+
+.heatmap-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  justify-content: center;
+}
+
+.heatmap-cell {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  background: var(--color-border-light);
+  position: relative;
+}
+
+.heatmap-cell.deficit-light { background: #dcfce7; }
+.heatmap-cell.deficit-medium { background: #86efac; }
+.heatmap-cell.deficit-strong { background: #22c55e; }
+.heatmap-cell.surplus-light { background: #fee2e2; }
+.heatmap-cell.surplus-medium { background: #fca5a5; }
+.heatmap-cell.surplus-strong { background: #ef4444; }
+.heatmap-cell.missed { background: var(--color-border-light); }
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+}
+
+.heatmap-legend .swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+/* --- Section Headers --- */
+.section-header {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+/* --- Expandable Table Toggle --- */
+.expand-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  margin: 1rem 0;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  width: 100%;
+}
+
+.expand-toggle:hover {
+  border-color: var(--color-blue);
+  color: var(--color-blue);
+  background: var(--color-blue-light);
+}
+
+.expand-toggle .arrow {
+  transition: transform 0.2s;
+}
+
+.expand-toggle.open .arrow {
+  transform: rotate(180deg);
+}
+
+/* --- Data Table Refresh --- */
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.85rem;
+}
+
+.data-table thead th {
+  background: var(--color-bg);
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.data-table tbody td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--color-border-light);
+  vertical-align: middle;
+}
+
+.data-table tbody tr:hover {
+  background: var(--color-border-light);
+}
+
+.data-table tbody tr.is-today {
+  background: var(--color-amber-bg);
+}
+
+.data-table .date-link {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.data-table .date-link:hover {
+  color: var(--color-blue);
+}
+
+.data-table .badge-deficit {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.data-table .badge-deficit.positive {
+  background: var(--color-green-bg);
+  color: var(--color-green);
+}
+
+.data-table .badge-deficit.negative {
+  background: var(--color-red-bg);
+  color: var(--color-red);
+}
+
+.data-table .badge-deficit.zero {
+  background: var(--color-border-light);
+  color: var(--color-text-muted);
+}
+
+.data-table .missed-row td {
+  text-align: center;
+  color: var(--color-text-light);
+  font-size: 0.75rem;
+  padding: 0.35rem;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+/* --- Post Page: Traffic Light Banner --- */
+.verdict-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.5rem;
+}
+
+.verdict-banner.is-deficit {
+  background: var(--color-green-bg);
+  border: 1px solid var(--color-green-border);
+}
+
+.verdict-banner.is-surplus {
+  background: var(--color-red-bg);
+  border: 1px solid var(--color-red-border);
+}
+
+.verdict-banner.is-neutral {
+  background: var(--color-border-light);
+  border: 1px solid var(--color-border);
+}
+
+.verdict-banner .verdict-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.verdict-banner .verdict-text {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.verdict-banner.is-deficit .verdict-text { color: var(--color-green); }
+.verdict-banner.is-surplus .verdict-text { color: var(--color-red); }
+.verdict-banner.is-neutral .verdict-text { color: var(--color-text-muted); }
+
+.verdict-banner .verdict-sub {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+/* --- Post Page: Pager --- */
+.post-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.post-pager a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all 0.15s;
+}
+
+.post-pager a:hover {
+  border-color: var(--color-blue);
+  color: var(--color-blue);
+  background: var(--color-blue-light);
+}
+
+/* --- Post Page: Title --- */
+.post-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
+}
+
+/* --- Post Page: Calorie Summary Cards --- */
+.cal-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.cal-summary-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.cal-summary-card .card-val {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.cal-summary-card .card-lbl {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  margin-top: 0.15rem;
+}
+
+/* --- Post Page: Refreshed Bars --- */
+.cal-bars-refreshed {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background: var(--color-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-light);
+}
+
+.cal-bars-refreshed .bar-row {
+  margin-bottom: 1rem;
+}
+
+.cal-bars-refreshed .bar-row:last-child {
+  margin-bottom: 0;
+}
+
+.cal-bars-refreshed .bar-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.cal-bars-refreshed .bar-track {
+  height: 28px;
+  background: var(--color-border-light);
+  border-radius: 999px;
+  overflow: visible;
+  position: relative;
+  display: flex;
+}
+
+.cal-bars-refreshed .bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  padding: 0 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: white;
+  transition: width 0.4s ease;
+  white-space: nowrap;
+}
+
+.bar-fill.rmr { background: #94a3b8; border-radius: 999px 0 0 999px; }
+.bar-fill.active { background: var(--color-blue); border-radius: 0 999px 999px 0; }
+.bar-fill.intake-ok { background: #94a3b8; }
+.bar-fill.deficit-fill { background: var(--color-green); border-radius: 0 999px 999px 0; }
+.bar-fill.surplus-fill { background: var(--color-red); border-radius: 0 999px 999px 0; }
+
+/* --- Post Page: Food Card --- */
+.food-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.food-card h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+.food-card ul {
+  padding-left: 1rem;
+}
+
+.food-card li {
+  margin-bottom: 0.3rem;
+  line-height: 1.5;
+}
+
+.food-card img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  max-height: 400px;
+  object-fit: cover;
+}
+
+/* --- Donut Gauge Refresh --- */
+.gauge-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 1.5rem;
+}
+
+/* --- Chart Cards --- */
+.chart-card {
+  margin-bottom: 1.5rem;
+}
+
+.chart-card .chart-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+/* --- Utility --- */
+.text-muted { color: var(--color-text-muted) !important; }
+.green { color: var(--color-green); }
+.red { color: var(--color-red); }
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  .site-main {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .hero-progress .hero-value {
+    font-size: 2.25rem;
+  }
+
+  .hero-stats {
+    gap: 1.25rem;
+  }
+
+  .day-pill .dot {
+    width: 30px;
+    height: 30px;
+    font-size: 0.6rem;
+  }
+
+  .cal-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .heatmap-cell {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+/* Hide cayman theme elements */
+.page-header,
 .site-footer,
 .site-footer-credits,
 .site-footer-owner {
-    display: none !important;
+  display: none !important;
 }
 
-.post-list {
-    list-style: none;
-    padding-left: 0;
-}
-
-.post-list li {
-    margin: .4rem 0;
-}
-
-.post-list .meta {
-    margin-left: .5rem;
-    opacity: .8;
-    font-size: .92em;
-    white-space: nowrap;
-}
-
-.green {
-    color: #2ecc71;
-}
-
-.red {
-    color: #e74c3c;
-}
+/* Override bootstrap where needed */
+.navbar { display: none !important; }
