@@ -75,8 +75,74 @@ def cmd_edit(target):
     print("Not implemented yet")
 
 
-def cmd_calc(target):
-    print("Not implemented yet")
+# ── calc ────────────────────────────────────────────────────
+
+
+def resolve_post(target):
+    """Resolve a target ('today', 'yesterday') to a real post file path."""
+    post_file = POSTS_DIR / f"{target}.md"
+    if post_file.is_symlink():
+        post_file = post_file.resolve()
+    if not post_file.exists():
+        print(f"Error: File not found -> {post_file}", file=sys.stderr)
+        sys.exit(1)
+    return post_file
+
+
+def cmd_calc_file(post_file):
+    """Run calorie calculation on a specific post file."""
+    cfg = load_config()
+
+    prompt_template = (TEMPLATES_DIR / "prompt.txt").read_text()
+    food_index = (TEMPLATES_DIR / "food_index.txt").read_text()
+    summary = (TEMPLATES_DIR / "summary.txt").read_text()
+    user_input = post_file.read_text()
+
+    prompt = (
+        prompt_template
+        .replace("{rmr}", str(cfg["rmr"]))
+        .replace("{food_index}", food_index)
+        .replace("{user_input}", user_input)
+        .replace("{summary}", summary)
+    )
+
+    result = subprocess.run(
+        ["claude", "-p", prompt],
+        capture_output=True, text=True,
+    )
+    if result.returncode != 0:
+        print(f"Error: claude failed:\n{result.stderr}", file=sys.stderr)
+        sys.exit(1)
+
+    output = result.stdout.strip()
+    print(output)
+
+    try:
+        parsed = yaml.safe_load(output)
+    except yaml.YAMLError:
+        print("Error: Could not parse Claude's output as YAML", file=sys.stderr)
+        sys.exit(1)
+
+    cal = parsed.get("cal") if isinstance(parsed, dict) else None
+    if not isinstance(cal, dict) or not isinstance(cal.get("intake"), (int, float)):
+        print("Error: Claude output missing valid 'intake' value", file=sys.stderr)
+        sys.exit(1)
+
+    post = frontmatter.load(str(post_file))
+    post["cal"] = {
+        "deficit": cal.get("deficit"),
+        "intake": cal.get("intake"),
+        "tdee": cal.get("tdee"),
+        "active": cal.get("active"),
+        "weight": cal.get("weight"),
+    }
+    post_file.write_text(frontmatter.dumps(post) + "\n")
+    print(f"Updated {post_file.name}")
+
+
+def cmd_calc(target="today"):
+    post_file = resolve_post(target)
+    cmd_calc_file(post_file)
 
 
 def cmd_foods():
