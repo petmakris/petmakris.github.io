@@ -1,3 +1,7 @@
+.playwright-mcp/
+
+blog-*.png
+
 # Jekyll
 
 _posts/today.md
