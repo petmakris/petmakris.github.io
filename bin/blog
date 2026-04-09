@@ -59,6 +59,8 @@ def cmd_new():
         )
         today_file.write_text(frontmatter.dumps(post) + "\n")
         print(f"Created {today_file}")
+    else:
+        print(f"Already exists: {today_file.name}")
 
     # Update symlinks
     today_link = POSTS_DIR / "today.md"
@@ -69,6 +71,8 @@ def cmd_new():
     if yday_file.exists():
         yday_link.unlink(missing_ok=True)
         yday_link.symlink_to(yday_file)
+
+    print("Symlinks updated ✓")
 
 
 # ── calc ────────────────────────────────────────────────────
@@ -162,7 +166,7 @@ def pick_post_with_dialog():
             "--menu", "Select a post to edit", "15", "70", "10",
             *menu_args,
         ],
-        capture_output=True, text=True,
+        stderr=subprocess.PIPE, text=True,
     )
 
     if result.returncode != 0:
@@ -183,10 +187,15 @@ def cmd_edit(target=None):
         print(f"Error: Unknown target '{target}'. Use 'today', 'yesterday', or omit.", file=sys.stderr)
         sys.exit(1)
 
+    before = post_file.read_text()
     subprocess.run([EDITOR, str(post_file)])
+    after = post_file.read_text()
 
-    print("Calculating calories...")
-    cmd_calc_file(post_file)
+    if before == after:
+        print("No changes detected, skipping calculation.")
+    else:
+        print("Calculating calories...")
+        cmd_calc_file(post_file)
 
 
 # ── foods ───────────────────────────────────────────────────
@@ -210,11 +219,13 @@ def main():
 
     sub.add_parser("foods", help="Edit the food catalog")
 
+    parser.add_argument("target", nargs="?", help="today, yesterday, or omit for picker (default action: edit)")
+
     args = parser.parse_args()
 
     if args.command is None:
-        parser.print_help()
-        sys.exit(1)
+        cmd_edit(args.target)
+        return
 
     if args.command == "new":
         cmd_new()
