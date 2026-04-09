@@ -13,12 +13,11 @@
     var rAct  = 68, cAct  = 2 * Math.PI * rAct;
 
     // Progress vs TDEE
-    var ratio = intake / tdee;               // e.g. 0.85 (85%)
-    // show up to 150% of TDEE for visibility, cap the arc
+    var ratio = intake / tdee;
     var arc   = clamp(ratio, 0, 1.5);
     var dashMain = (cMain * arc), gapMain = cMain - dashMain;
 
-    // Active calories ring: scale relative to TDEE (cap at 100%)
+    // Active calories ring
     var actRatio = clamp(active / tdee, 0, 1);
     var dashAct = (cAct * actRatio), gapAct = cAct - dashAct;
 
@@ -28,25 +27,30 @@
     intakeEl.setAttribute('stroke-dasharray', dashMain + ' ' + gapMain);
     activeEl.setAttribute('stroke-dasharray', dashAct + ' ' + gapAct);
 
-    // Color logic: surplus (deficit > 0) → red
+    // Color logic: positive deficit = good (green), negative = surplus (red)
     if (deficit > 0) {
+      el.classList.add('deficit');
+      intakeEl.style.stroke = '#16a34a';
+    } else if (deficit < 0) {
       el.classList.add('surplus');
       intakeEl.style.stroke = '#dc2626';
     } else {
       el.classList.add('deficit');
-      intakeEl.style.stroke = '#16a34a';
+      intakeEl.style.stroke = '#94a3b8';
     }
 
     // Center label
-    var sign = deficit > 0 ? '+' : '';
-    el.querySelector('.labels .deficit').textContent = sign + deficit.toFixed(0) + ' kcal';
+    var sign = deficit > 0 ? '-' : (deficit < 0 ? '+' : '');
+    el.querySelector('.labels .deficit').textContent = sign + Math.abs(deficit).toFixed(0) + ' kcal';
 
-    // Pills
-    el.querySelector('.v-intake').textContent = isFinite(intake) ? Math.round(intake) : '—';
-    el.querySelector('.v-tdee').textContent   = isFinite(tdee)   ? Math.round(tdee)   : '—';
-    el.querySelector('.v-active').textContent = isFinite(active) ? Math.round(active) : '—';
-    if (weight && el.querySelector('.v-weight')) {
-      el.querySelector('.v-weight').textContent = weight;
-    }
+    // Pills (if they exist)
+    var vIntake = el.querySelector('.v-intake');
+    var vTdee = el.querySelector('.v-tdee');
+    var vActive = el.querySelector('.v-active');
+    var vWeight = el.querySelector('.v-weight');
+    if (vIntake) vIntake.textContent = isFinite(intake) ? Math.round(intake) : '—';
+    if (vTdee) vTdee.textContent = isFinite(tdee) ? Math.round(tdee) : '—';
+    if (vActive) vActive.textContent = isFinite(active) ? Math.round(active) : '—';
+    if (vWeight && weight) vWeight.textContent = weight;
   });
 })();

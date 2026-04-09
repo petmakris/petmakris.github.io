@@ -637,5 +637,5 @@ body {
   display: none !important;
 }
 
-/* Override bootstrap where needed */
+/* Override bootstrap navbar with our own */
 .navbar { display: none !important; }
