@@ -1,0 +1,39 @@
+.playwright-mcp/
+.superpowers/
+*.png
+
+# Jekyll
+
+_posts/today.md
+_posts/yesterday.md
+
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Ruby / Bundler
+Gemfile.lock
+.bundle/
+vendor/
+
+# OS / Editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Local backup files
+*.backup
+tmp/
+
+
+# Python
+__pycache__/
+*.py[cod]
+
+# The old Jekyll blog: personal daily notes, weights and photos.
+# Kept out of the public repo deliberately.
+ARCHIVE/

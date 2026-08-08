@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fréquence — words by frequency</title>
+<!-- favicon: amber "é" on a dark rounded tile (inline SVG, keeps the page self-contained) -->
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMxYjFmMmIiLz48dGV4dCB4PSIzMiIgeT0iMzMiIGZvbnQtZmFtaWx5PSItYXBwbGUtc3lzdGVtLFNlZ29lIFVJLFJvYm90byxIZWx2ZXRpY2EsQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSI0NiIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0iI2ZmZDlhMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiPsOpPC90ZXh0Pjwvc3ZnPg==">
+<style>
+  :root {
+    --bg: #11131a;
+    --card: #232734;
+    --card-hover: #2c3142;
+    --ink: #f4f1ea;
+    --fr: #ffd9a0;
+    --en: #9aa3b8;
+    --accent: #6fa8ff;
+    --line: #2e3344;
+    --gap: 10px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: radial-gradient(1200px 700px at 50% -10%, #1d2230 0%, var(--bg) 60%);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding: 16px 18px 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;            /* fit-to-viewport by default */
+  }
+  body.scroll { overflow-y: auto; }
+
+  header {
+    flex: none;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .title h1 { margin: 0; font-size: 24px; letter-spacing: .5px; font-weight: 700; }
+  .title p {
+    margin: 3px 0 0;
+    color: var(--en);
+    font-size: 13px;
+    max-width: 600px;
+    line-height: 1.4;
+  }
+  .controls { display: flex; align-items: center; gap: 16px; }
+  .stats { display: flex; gap: 16px; font-size: 12px; color: var(--en); text-align: right; }
+  .stats b { display: block; font-size: 20px; color: var(--ink); font-weight: 700; }
+  button.reset {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--en);
+    padding: 8px 14px;
+    border-radius: 9px;
+    font-size: 12.5px;
+    cursor: pointer;
+    transition: all .15s ease;
+  }
+  button.reset:hover { color: var(--ink); border-color: var(--accent); }
+
+  .grid {
+    flex: 1;
+    min-height: 0;              /* let it shrink so cells fill exactly */
+    display: grid;
+    gap: var(--gap);
+    /* columns / rows assigned by layout() */
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: clamp(8px, calc(var(--cell-h) * 0.10), 14px);
+    padding: 4px 8px;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--cell-h) * 0.04);
+    transition: transform .12s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
+    animation: pop .22s ease both;
+  }
+  .card:hover {
+    background: var(--card-hover);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0,0,0,.35);
+  }
+  .card:focus-visible {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+  .card .fr {
+    font-size: clamp(13px, calc(var(--cell-h) * 0.30), 27px);
+    font-weight: 700;
+    color: var(--fr);
+    line-height: 1.1;
+    word-break: break-word;
+  }
+  .card .en {
+    font-size: clamp(9px, calc(var(--cell-h) * 0.16), 14px);
+    color: var(--en);
+    line-height: 1.2;
+    word-break: break-word;
+  }
+  .card .rank {
+    font-size: clamp(8px, calc(var(--cell-h) * 0.085), 10px);
+    letter-spacing: .5px;
+    color: #5b6478;
+    text-transform: uppercase;
+  }
+  /* hide the small bits when cells get cramped */
+  body.tight .card .rank { display: none; }
+  .card.leaving { transform: scale(.82); opacity: 0; }
+  @keyframes pop {
+    from { transform: scale(.85); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+  .done[hidden] { display: none; }
+  .done {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--en);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* dismiss (×) button on each card; tapping the pill body explains the word */
+  .card { position: relative; }
+  .dismiss {
+    position: absolute;
+    top: 3px; right: 5px;
+    width: 18px; height: 18px;
+    padding: 0; margin: 0;
+    border: none; border-radius: 50%;
+    background: rgba(255, 255, 255, .07);
+    color: var(--en);
+    font: 400 16px/16px inherit;
+    cursor: pointer;
+    opacity: .4;
+    transition: opacity .15s ease, background .15s ease, color .15s ease;
+  }
+  .dismiss:hover { opacity: 1; background: #b6604f; color: #fff; }
+  body.tight .dismiss { width: 16px; height: 16px; font-size: 14px; line-height: 16px; }
+
+  /* explanation modal */
+  .modal[hidden] { display: none; }
+  .modal {
+    position: fixed; inset: 0;
+    z-index: 50;
+    background: rgba(8, 10, 15, .66);
+    backdrop-filter: blur(3px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .sheet {
+    position: relative;
+    width: min(560px, 100%);
+    max-height: 84vh; overflow-y: auto;
+    background: #1b1f2b;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px 26px 26px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, .5);
+  }
+  .sheet .x {
+    position: absolute; top: 10px; right: 14px;
+    background: transparent; border: none;
+    color: var(--en); font-size: 24px; line-height: 1;
+    cursor: pointer;
+  }
+  .sheet .x:hover { color: var(--ink); }
+  .ex-head { display: flex; align-items: center; gap: 10px; margin: 0 28px 14px 0; flex-wrap: wrap; }
+  .ex-head .w { font-size: 30px; font-weight: 800; color: var(--fr); }
+  .ex-head .t { font-size: 15px; color: var(--en); }
+  .speak {
+    flex: none; border: none; cursor: pointer; padding: 0;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(255, 255, 255, .08); color: var(--en);
+    font-size: 15px; line-height: 30px;
+    transition: background .15s ease, transform .1s ease;
+  }
+  .speak:hover { background: var(--accent); }
+  .speak:active { transform: scale(.88); }
+  .speak.loading { pointer-events: none; animation: pulse 1s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: .3; } }
+  .ex-usage { color: var(--ink); line-height: 1.5; font-size: 15px; margin-bottom: 16px; }
+  .ex-usage .ex-link { color: var(--accent); }
+  .ex-list { display: flex; flex-direction: column; gap: 10px; }
+  .ex-item {
+    display: flex; align-items: center; gap: 10px;
+    background: #232734; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px;
+  }
+  .ex-item .ex-text { flex: 1; min-width: 0; }
+  .ex-item .efr { color: var(--ink); font-weight: 500; font-size: 15px; }
+  .ex-item .efr .hl { color: var(--fr); font-weight: 800; }
+  .ex-item .een { color: var(--en); font-size: 13.5px; margin-top: 3px; }
+  .ex-err {
+    color: #ff9b9b; font-size: 13.5px; white-space: pre-wrap; word-break: break-word;
+    background: #2a1d22; border: 1px solid #4a2b30; border-radius: 9px; padding: 10px 12px; margin: 8px 0;
+  }
+  .key-form { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .key-form input {
+    flex: 1 1 220px; padding: 10px 12px; font-size: 14px;
+    background: #11141c; color: var(--ink);
+    border: 1px solid var(--line); border-radius: 9px;
+  }
+  .ex-btn {
+    background: var(--accent); color: #0c1018; border: none;
+    border-radius: 9px; padding: 9px 16px; font-weight: 700; font-size: 14px; cursor: pointer;
+  }
+  .ex-btn.ghost { background: transparent; border: 1px solid var(--line); color: var(--en); }
+  .spinner {
+    width: 26px; height: 26px; margin: 22px auto;
+    border: 3px solid var(--line); border-top-color: var(--accent);
+    border-radius: 50%; animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* phones: reclaim vertical space and widen the cards */
+  @media (max-width: 560px) {
+    body { padding: 12px 12px 10px; }
+    header { margin-bottom: 10px; gap: 8px; }
+    .title h1 { font-size: 20px; }
+    .title p { display: none; }              /* the long intro eats a phone screen */
+    .stats b { font-size: 18px; }
+    .sheet { padding: 20px 18px 22px; border-radius: 14px; }
+    .ex-head .w { font-size: 26px; }
+  }
+  /* touch screens: larger tap target for the dismiss button */
+  @media (pointer: coarse) {
+    .dismiss { width: 24px; height: 24px; font-size: 18px; line-height: 24px; opacity: .6; top: 2px; right: 3px; }
+    body.tight .dismiss { width: 22px; height: 22px; font-size: 17px; line-height: 22px; }
+  }
+
+  /* mobile list mode: one word per full-width row */
+  .list .card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    gap: 8px;
+    padding: 0 46px 0 16px;            /* leave room for the dismiss button on the right */
+  }
+  .list .card .fr { font-size: 19px; line-height: 1.2; }
+  .list .card .en { font-size: 14px; line-height: 1.2; }
+  .list .card .en::before { content: "—"; margin-right: 6px; color: #5b6478; }
+  .list .card .rank { display: none; }
+  .list .dismiss {
+    top: 50%; right: 12px; transform: translateY(-50%);
+    width: 30px; height: 30px; font-size: 22px; line-height: 30px; opacity: .55;
+  }
+
+  /* language picker / settings modal */
+  .modal-title { font-size: 22px; font-weight: 800; margin: 0 28px 4px 0; }
+  .modal-sub { color: var(--en); font-size: 14px; line-height: 1.5; margin-bottom: 16px; }
+  .warn {
+    color: #ffcaa0; font-size: 13.5px; line-height: 1.5;
+    background: #2a2118; border: 1px solid #4a3a24; border-radius: 9px;
+    padding: 10px 12px; margin: 16px 0 0;
+  }
+  .lang-list { display: flex; flex-direction: column; gap: 10px; }
+  .lang-choice {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    width: 100%; padding: 14px 16px; border-radius: 12px; cursor: pointer;
+    background: #232734; border: 1px solid var(--line); color: var(--ink);
+    font-size: 17px; font-weight: 600; text-align: left;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .lang-choice:hover { border-color: var(--accent); background: #2c3142; }
+  .lang-choice.current { border-color: var(--accent); }
+  .lang-choice .tag { font-size: 12px; color: var(--en); font-weight: 400; }
+  .modal-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .voice-row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; margin-top: 16px;
+  }
+  .voice-label { font-size: 14px; color: var(--ink); font-weight: 600; }
+  .voice-seg { display: flex; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; }
+  .voice-opt {
+    background: transparent; color: var(--en); border: none; cursor: pointer;
+    padding: 7px 12px; font-size: 13px; font-weight: 600;
+  }
+  .voice-opt + .voice-opt { border-left: 1px solid var(--line); }
+  .voice-opt.on { background: var(--accent); color: #0c1018; }
+  .voice-note { font-size: 12px; color: var(--en); margin-top: 6px; }
+  .ex-btn.danger { background: #b6604f; color: #fff; }
+
+  /* word search */
+  #search {
+    flex: none;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 10px 14px;
+    font-size: 15px;
+    background: #1a1d27;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    outline: none;
+  }
+  #search:focus { border-color: var(--accent); }
+  #search::placeholder { color: #5b6478; }
+  .grid[hidden] { display: none; }
+  #results[hidden] { display: none; }
+  #results {
+    flex: 1; min-height: 0; overflow-y: auto;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .result {
+    display: flex; align-items: baseline; gap: 10px; width: 100%;
+    padding: 11px 14px; border-radius: 10px; cursor: pointer; text-align: left;
+    background: var(--card); border: 1px solid var(--line); color: var(--ink);
+    transition: border-color .12s ease, background .12s ease;
+  }
+  .result:hover { border-color: var(--accent); background: var(--card-hover); }
+  .result .r-fr { font-size: 17px; font-weight: 700; color: var(--fr); }
+  .result .r-en { font-size: 14px; color: var(--en); flex: 1; }
+  .result .r-rank { font-size: 12px; color: #5b6478; }
+  .results-note, .results-empty { color: var(--en); font-size: 13.5px; text-align: center; padding: 12px; }
+
+  /* changelog / what's new */
+  .cl-rel + .cl-rel { margin-top: 22px; border-top: 1px solid var(--line); padding-top: 18px; }
+  .cl-date { font-size: 13px; color: var(--en); font-weight: 600; margin-bottom: 12px; }
+  .cl-sec { margin-bottom: 14px; }
+  .cl-sec:last-child { margin-bottom: 0; }
+  .cl-sec-head { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .cl-list { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+  .cl-list li { color: var(--ink); font-size: 14px; line-height: 1.45; }
+  .cl-list li b { color: var(--fr); font-weight: 700; }
+  .cl-link {
+    background: transparent; border: none; color: var(--accent); cursor: pointer;
+    font-size: 13px; padding: 0; font-family: inherit;
+  }
+  .cl-link:hover { text-decoration: underline; }
+  .cl-build { margin-top: 20px; color: #5b6478; font-size: 12px; letter-spacing: .3px; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="title">
+      <h1>Fréquence</h1>
+      <p id="intro">The most frequent words you haven't retired yet. Tap one you already
+         know — it drops away and the next most frequent word takes its place. Progress saves automatically.</p>
+    </div>
+    <div class="controls">
+      <div class="stats">
+        <div><b id="stat-retired">0</b>retired</div>
+        <div><b id="stat-pool">0</b>in pool</div>
+      </div>
+      <button class="reset" id="lang-btn" title="Language &amp; reset">🌐 <span id="lang-label">—</span></button>
+    </div>
+  </header>
+
+  <input id="search" type="search" autocomplete="off" spellcheck="false" placeholder="Search words…">
+  <main class="grid" id="grid"></main>
+  <div id="results" hidden></div>
+  <div class="done" id="done" hidden></div>
+
+  <div class="modal" id="modal" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Details" tabindex="-1">
+      <button class="x" id="modal-close" aria-label="Close">×</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+<script>
+  const BUILD = "__BUILD__";         // stamped per release by build_game.py (see auto-update below)
+  const BUILD_NO = "__BUILDNO__";    // incremental build number (display only)
+  const WORDS_BY_LANG = __DATA__;    // { fr: [[word, english], ...], es: [...] } by frequency
+  const LANGS = {
+    fr: { name: "Français", english: "French", bcp47: "fr-FR" },
+    es: { name: "Español", english: "Spanish", bcp47: "es-ES" },
+    el: { name: "Ελληνικά", english: "Greek", bcp47: "el-GR" },
+    it: { name: "Italiano", english: "Italian", bcp47: "it-IT" },
+  };
+  const LANG_KEY = "freq-lang";
+  const stateKey = (lang) => "freq-state-" + lang;
+  const GAP = 10;                    // px, must match --gap
+  const TARGET_AR = 1.6;             // ideal card w/h for the ragged endgame fallback
+  const MIN_CELL_H = 52;             // below this we scroll instead of shrinking further
+  const MAX_AR = 3.6;                // don't let cards get absurdly wide/short
+  const MIN_AR = 0.5;                // …nor absurdly tall/narrow (rejects n×1 sliver strips)
+
+  let LANG = null, WORDS = [], NORM = [], TOTAL = 0, GRID = 0;   // set by setLanguage()
+  function setLanguage(lang) {
+    LANG = lang;
+    WORDS = WORDS_BY_LANG[lang];
+    NORM = normTable(lang);          // precomputed [normWord, normGloss] pairs for fast search
+    TOTAL = WORDS.length;
+    GRID = Math.min(48, TOTAL);      // 48 → a full even rectangle (6×8, 8×6, 12×4)
+  }
+
+  function defaultState() {
+    return {
+      grid: Array.from({ length: GRID }, (_, i) => i), // positions -> word index (or null)
+      next: GRID,                                      // next unseen word index
+      retired: 0,
+    };
+  }
+
+  function loadState() {
+    try {
+      const s = JSON.parse(localStorage.getItem(stateKey(LANG)));
+      // Reject corrupt/out-of-range saved state so a bad index can't blank the
+      // grid (WORDS[idx] would be undefined). Fall back to a fresh board.
+      const validIdx = (i) => i == null || (Number.isInteger(i) && i >= 0 && i < TOTAL);
+      if (s && Array.isArray(s.grid) && s.grid.every(validIdx)
+          && Number.isInteger(s.next) && s.next >= 0 && s.next <= TOTAL) return s;
+    } catch (e) {}
+    return defaultState();
+  }
+
+  let state;
+  const gridEl = document.getElementById("grid");
+  const doneEl = document.getElementById("done");
+  let COLS = 1;                       // current grid column count, kept in sync by layout()
+
+  // localStorage can fill up (mostly from the explain cache). Never let that
+  // silently kill progress saving: on a quota error, drop the cache and retry.
+  function safeSet(key, value) {
+    try { localStorage.setItem(key, value); return true; }
+    catch (e) {
+      try {
+        explainCache = {};
+        localStorage.removeItem(AI_CACHE_LS);
+        localStorage.setItem(key, value);     // retry once with space freed
+        return true;
+      } catch (e2) { return false; }
+    }
+  }
+
+  function save() { safeSet(stateKey(LANG), JSON.stringify(state)); }
+
+  function updateStats() {
+    document.getElementById("stat-retired").textContent = state.retired;
+    document.getElementById("stat-pool").textContent = TOTAL - state.retired;
+  }
+
+  function makeCard(pos, idx) {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.dataset.pos = pos;
+    card.tabIndex = -1;                // roving focus: render() makes the first card the tab stop
+    card.setAttribute("role", "button");
+    card.innerHTML =
+      '<button class="dismiss" title="I know this — dismiss" tabindex="-1">×</button>' +
+      '<div class="fr"></div><div class="en"></div><div class="rank"></div>';
+    fillCard(card, idx);
+    card.addEventListener("click", () => openExplain(+card.dataset.idx));
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openExplain(+card.dataset.idx); }
+      else if (e.key === "Delete" || e.key === "Backspace") { e.preventDefault(); onClick(card); }
+    });
+    card.querySelector(".dismiss").addEventListener("click", (e) => {
+      e.stopPropagation();             // dismiss (retire) instead of explaining
+      onClick(card);
+    });
+    return card;
+  }
+
+  function fillCard(card, idx) {
+    card.dataset.idx = idx;
+    card.querySelector(".fr").textContent = WORDS[idx][0];
+    card.querySelector(".en").textContent = WORDS[idx][1];
+    card.querySelector(".rank").textContent = "#" + (idx + 1);
+    card.setAttribute("aria-label",
+      WORDS[idx][0] + " — " + WORDS[idx][1] + ". Enter to explain, Delete to retire.");
+  }
+
+  // Choose the grid shape. Prefer a *full even rectangle* (a column count that
+  // divides the card count, so the last row is never ragged), and among those
+  // the fewest columns that still fit — i.e. the widest cards, leaving room for
+  // the longer words further down the frequency list.
+  function chooseShape(n, availW, availH) {
+    const cell = (c) => {
+      const r = Math.ceil(n / c);
+      const w = (availW - GAP * (c - 1)) / c;
+      const h = (availH - GAP * (r - 1)) / r;
+      return { c, r, w, h };
+    };
+
+    // Even (count divides evenly) column counts.
+    const even = [];
+    for (let c = 2; c <= n; c++) if (n % c === 0) even.push(cell(c));
+
+    // Fewest columns whose cards fit one screen and aren't absurdly wide or
+    // tall/narrow. (An n×1 strip technically "divides evenly" but is a row of
+    // slivers, so the aspect bounds exclude it.)
+    const fitting = even
+      .filter((o) => o.h >= MIN_CELL_H && o.w / o.h <= MAX_AR && o.w / o.h >= MIN_AR)
+      .sort((a, b) => a.c - b.c);
+    if (fitting.length) return { ...fitting[0], fits: true };
+
+    // No clean rectangle fits — best-fit with a ragged last row allowed. This
+    // also rescues prime counts (47, 43, …), whose only even shape is a strip.
+    let best = null;
+    for (let c = 1; c <= n; c++) {
+      const o = cell(c);
+      if (o.w <= 0 || o.h <= 0) continue;
+      o.score = Math.min(o.w / TARGET_AR, o.h);
+      if (!best || o.score > best.score) best = o;
+    }
+    if (best && best.h >= MIN_CELL_H) return { ...best, fits: true };
+
+    // Too short to stay readable in one screen — tallest even layout, scrolled.
+    if (even.length) {
+      const o = even.slice().sort((a, b) => b.h - a.h)[0];
+      return { ...o, fits: o.h >= MIN_CELL_H };
+    }
+    return best ? { ...best, fits: false } : { c: 1, r: n, w: availW, h: MIN_CELL_H, fits: false };
+  }
+
+  const isMobile = () => window.matchMedia("(max-width: 560px)").matches;
+
+  // Lay 48 cards out to fill the viewport, then size fonts to the cell height.
+  function layout() {
+    const n = gridEl.children.length;
+    if (!n) return;
+
+    // Phones: one word per row, full-width list that scrolls vertically.
+    if (isMobile()) {
+      const ROW_H = 56;
+      document.body.classList.add("list");
+      document.body.classList.add("scroll");
+      document.body.classList.remove("tight");
+      COLS = 1;
+      gridEl.style.gridTemplateColumns = "1fr";
+      gridEl.style.gridTemplateRows = `repeat(${n}, ${ROW_H}px)`;
+      gridEl.style.setProperty("--cell-h", ROW_H + "px");
+      return;
+    }
+    document.body.classList.remove("list");
+
+    document.body.classList.remove("scroll");
+    const availW = gridEl.clientWidth;
+    const availH = gridEl.clientHeight;
+    if (availW < 1 || availH < 1) return;
+
+    const s = chooseShape(n, availW, availH);
+    COLS = s.c;
+    gridEl.style.gridTemplateColumns = `repeat(${s.c}, 1fr)`;
+    if (s.fits) {
+      gridEl.style.gridTemplateRows = `repeat(${s.r}, 1fr)`;
+      document.body.classList.remove("scroll");
+      gridEl.style.setProperty("--cell-h", s.h + "px");
+      document.body.classList.toggle("tight", s.h < 68);
+    } else {
+      // Too short to stay readable in one screen — scroll instead of shrinking.
+      gridEl.style.gridTemplateRows = `repeat(${s.r}, ${MIN_CELL_H}px)`;
+      document.body.classList.add("scroll");
+      gridEl.style.setProperty("--cell-h", MIN_CELL_H + "px");
+      document.body.classList.add("tight");
+    }
+  }
+
+  // Roving focus: only one card is in the tab order; arrows move between them.
+  function focusCard(card) {
+    gridEl.querySelectorAll(".card").forEach((c) => { c.tabIndex = -1; });
+    card.tabIndex = 0;
+    card.focus();
+  }
+  gridEl.addEventListener("keydown", (e) => {
+    const step = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -COLS, ArrowDown: COLS }[e.key];
+    if (step === undefined) return;
+    const cards = Array.prototype.slice.call(gridEl.querySelectorAll(".card"));
+    const i = cards.indexOf(e.target.closest(".card"));
+    if (i < 0) return;
+    const j = i + step;
+    if (j >= 0 && j < cards.length) { e.preventDefault(); focusCard(cards[j]); }
+  });
+
+  function render() {
+    gridEl.innerHTML = "";
+    state.grid.forEach((idx, pos) => {
+      if (idx == null) return;
+      gridEl.appendChild(makeCard(pos, idx));
+    });
+    const firstCard = gridEl.querySelector(".card");
+    if (firstCard) firstCard.tabIndex = 0;     // the grid's single tab stop
+    updateStats();
+    checkDone();
+    layout();
+  }
+
+  function onClick(card) {
+    const pos = +card.dataset.pos;
+    if (state.grid[pos] == null) return;
+    const lang = LANG;                 // remember which language this retire belongs to
+    card.classList.add("leaving");
+    setTimeout(() => {
+      if (LANG !== lang) return;       // language switched mid-animation — don't touch the new state
+      state.retired++;
+      if (state.next < TOTAL) {
+        const idx = state.next++;
+        state.grid[pos] = idx;
+        fillCard(card, idx);
+        card.classList.remove("leaving");
+        // restart the pop animation for the fresh word
+        card.style.animation = "none";
+        void card.offsetWidth;
+        card.style.animation = "";
+      } else {
+        state.grid[pos] = null;
+        card.remove();
+        layout();              // grid shrank — re-fit
+      }
+      save();
+      updateStats();
+      checkDone();
+    }, 150);
+  }
+
+  function checkDone() {
+    const onGrid = state.grid.filter((i) => i != null).length;
+    if (onGrid === 0) {
+      doneEl.hidden = false;
+      doneEl.innerHTML =
+        "🎉 You've retired all <b>" + TOTAL + "</b> words!<br>" +
+        "Switch languages from the menu (top right), or<br>" +
+        '<button id="done-reset" class="ex-btn" style="margin-top:14px">Start over</button>';
+      document.getElementById("done-reset").addEventListener("click", () => {
+        openModal(true);
+        confirmDestructive(
+          `Reset ${LANGS[LANG].name} progress?`,
+          "This erases all your progress and learned words. You'll start over from the most frequent word.",
+          "Erase everything",
+          () => { wipeProgress(); state = defaultState(); save(); clearSearch(); render(); closeModal(true); });
+      });
+    } else {
+      doneEl.hidden = true;
+    }
+  }
+
+  // ---- Word explanations via Gemini ---------------------------------------
+  const AI_MODEL = "gemini-2.5-flash-lite";   // cheapest stable tier; "gemini-2.5-flash" for higher quality
+  const AI_KEY_LS = "freq-apikey";
+  const AI_CACHE_LS = "freq-explain-cache";
+  // carry over the API key from the old single-language storage (one-time)
+  if (!localStorage.getItem(AI_KEY_LS) && localStorage.getItem("fr-freq-apikey")) {
+    localStorage.setItem(AI_KEY_LS, localStorage.getItem("fr-freq-apikey"));
+  }
+
+  const modal = document.getElementById("modal");
+  const modalBody = document.getElementById("modal-body");
+
+  let explainCache = {};
+  try { explainCache = JSON.parse(localStorage.getItem(AI_CACHE_LS)) || {}; } catch (e) {}
+  let explainSeq = 0;                // bumped whenever the open word changes or the modal closes
+
+  // Bound the cache so it can't grow without limit and crowd out progress.
+  const EXPLAIN_CACHE_CAP = 600;
+  function cacheExplain(ck, data) {
+    explainCache[ck] = data;
+    const keys = Object.keys(explainCache);    // insertion order → keys[0] is oldest
+    if (keys.length > EXPLAIN_CACHE_CAP) delete explainCache[keys[0]];
+    safeSet(AI_CACHE_LS, JSON.stringify(explainCache));
+  }
+
+  const getKey = () => localStorage.getItem(AI_KEY_LS) || "";
+  const setKey = (k) => localStorage.setItem(AI_KEY_LS, k.trim());
+  const esc = (s) => String(s).replace(/[&<>"]/g,
+    (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  // ---- Pronunciation: native voice when available, else Gemini TTS --------
+  const TTS = typeof window !== "undefined" && "speechSynthesis" in window;
+  const TTS_MODEL = "gemini-2.5-flash-preview-tts";
+  let VOICES = [];
+  function loadVoices() { VOICES = (TTS && speechSynthesis.getVoices()) || []; }
+  if (TTS) { loadVoices(); try { speechSynthesis.addEventListener("voiceschanged", loadVoices); } catch (e) {} }
+
+  // Score language-matching voices and keep the best. On macOS Chrome the list
+  // is led by robotic network "Google <lang>" voices; prefer on-device ones.
+  function voiceFor(bcp) {
+    const base = bcp.split("-")[0];
+    let best = null, bestScore = -Infinity;
+    VOICES.forEach((v) => {
+      const lang = v.lang && v.lang.replace("_", "-");
+      if (!lang) return;
+      const exact = lang === bcp, baseMatch = lang.toLowerCase().startsWith(base);
+      if (!exact && !baseMatch) return;
+      const name = (v.name || "").toLowerCase();
+      let score = 0;
+      if (v.localService) score += 4; else score -= 2;       // on-device beats network
+      if (/enhanced|premium/.test(name)) score += 3;          // downloadable HQ macOS voices
+      if (name.startsWith("google")) score -= 3;              // Chrome network voices
+      if (exact) score += 1;                                  // fr-FR beats bare fr
+      if (score > bestScore) { bestScore = score; best = v; }
+    });
+    return best || undefined;
+  }
+
+  const TTS_MODE_KEY = "freq-tts-mode";
+  const ttsMode = () => localStorage.getItem(TTS_MODE_KEY) || "auto";
+  function speakNative(text) {
+    try {
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = LANGS[LANG].bcp47;
+      const v = voiceFor(u.lang);
+      if (v) u.voice = v;
+      u.rate = 0.95;
+      speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+
+  // Gemini fallback: synthesize audio (raw PCM), wrap as WAV, play. Cached per session.
+  const ttsCache = new Map();
+  let ttsAudio = null;
+  function pcmToWavUrl(b64, mime) {
+    const rate = parseInt((/rate=(\d+)/.exec(mime || "") || [])[1], 10) || 24000;
+    const bin = atob(b64), pcm = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) pcm[i] = bin.charCodeAt(i);
+    const buf = new ArrayBuffer(44 + pcm.length), dv = new DataView(buf);
+    let o = 0; const ws = (s) => { for (let i = 0; i < s.length; i++) dv.setUint8(o++, s.charCodeAt(i)); };
+    ws("RIFF"); dv.setUint32(o, 36 + pcm.length, true); o += 4; ws("WAVE"); ws("fmt ");
+    dv.setUint32(o, 16, true); o += 4; dv.setUint16(o, 1, true); o += 2; dv.setUint16(o, 1, true); o += 2;
+    dv.setUint32(o, rate, true); o += 4; dv.setUint32(o, rate * 2, true); o += 4;
+    dv.setUint16(o, 2, true); o += 2; dv.setUint16(o, 16, true); o += 2;
+    ws("data"); dv.setUint32(o, pcm.length, true); o += 4;
+    new Uint8Array(buf, 44).set(pcm);
+    return URL.createObjectURL(new Blob([buf], { type: "audio/wav" }));
+  }
+  function playUrl(url) {
+    try { if (ttsAudio) ttsAudio.pause(); } catch (e) {}
+    ttsAudio = new Audio(url);
+    ttsAudio.play().catch(() => {});
+  }
+  async function geminiTTS(text) {
+    const cacheKey = LANG + "|" + text;
+    if (ttsCache.has(cacheKey)) { playUrl(ttsCache.get(cacheKey)); return; }
+    const key = getKey();
+    if (!key) { speakNative(text); return; }   // no key: best-effort native
+    const body = {
+      contents: [{ parts: [{ text: "Say in " + LANGS[LANG].english + ": " + text }] }],
+      generationConfig: {
+        responseModalities: ["AUDIO"],
+        speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Kore" } } },
+      },
+    };
+    const url = "https://generativelanguage.googleapis.com/v1beta/models/" + TTS_MODEL +
+      ":generateContent?key=" + encodeURIComponent(key);
+    for (let attempt = 0; attempt < 3; attempt++) {     // preview model is flaky -> retry
+      try {
+        const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+        if (res.ok) {
+          const j = await res.json();
+          const part = j && j.candidates && j.candidates[0] && j.candidates[0].content &&
+            j.candidates[0].content.parts && j.candidates[0].content.parts[0];
+          const inl = part && (part.inlineData || part.inline_data);
+          if (inl && inl.data) {
+            const u = pcmToWavUrl(inl.data, inl.mimeType || inl.mime_type);
+            if (ttsCache.size >= 60) {                   // cap: revoke the oldest blob URL
+              const oldest = ttsCache.keys().next().value;
+              try { URL.revokeObjectURL(ttsCache.get(oldest)); } catch (e) {}
+              ttsCache.delete(oldest);
+            }
+            ttsCache.set(cacheKey, u);
+            playUrl(u);
+            return;
+          }
+        }
+      } catch (e) {}
+    }
+    speakNative(text);                                  // last resort if the API keeps failing
+  }
+
+  // Hybrid entry point. High-quality mode forces Gemini (key required);
+  // otherwise prefer an instant native voice, falling back to Gemini.
+  async function speak(text, btn) {
+    if (!text) return;
+    const hq = ttsMode() === "hq" && getKey();
+    if (!hq && TTS && voiceFor(LANGS[LANG].bcp47)) { speakNative(text); return; }
+    if (btn) btn.classList.add("loading");
+    try { await geminiTTS(text); } finally { if (btn) btn.classList.remove("loading"); }
+  }
+  const speakBtn = (text, cls) =>
+    `<button class="speak ${cls || ""}" data-text="${esc(text)}" aria-label="Listen" title="Listen">🔊</button>`;
+
+  const closeBtn = document.getElementById("modal-close");
+  const sheetEl = modal.querySelector(".sheet");
+  let modalDismissable = true;
+  let lastFocused = null;                         // element to restore focus to on close
+  function openModal(dismissable = true) {
+    modalDismissable = dismissable;
+    closeBtn.style.display = dismissable ? "" : "none";
+    lastFocused = document.activeElement;
+    modal.hidden = false;
+    // Move focus into the dialog (close button when present, else the sheet).
+    try { (dismissable ? closeBtn : sheetEl).focus(); } catch (e) {}
+  }
+  function closeModal(force) {
+    if (!modalDismissable && !force) return;     // first-load language pick is forced
+    explainSeq++;                                // invalidate any in-flight explanation
+    if (TTS) speechSynthesis.cancel();
+    try { if (ttsAudio) ttsAudio.pause(); } catch (e) {}
+    modal.hidden = true;
+    modalBody.innerHTML = "";
+    modalDismissable = true;
+    // Return focus to whatever opened the dialog (e.g. the grid card).
+    try { if (lastFocused && lastFocused.focus) lastFocused.focus(); } catch (e) {}
+    lastFocused = null;
+  }
+  // Keep Tab focus inside the dialog while it's open.
+  modal.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab" || modal.hidden) return;
+    const items = Array.prototype.slice
+      .call(sheetEl.querySelectorAll('button, a[href], input, [tabindex]:not([tabindex="-1"])'))
+      .filter((el) => el.offsetParent !== null);
+    if (!items.length) return;
+    const first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+  // one delegated handler for every 🔊 button in the modal
+  modalBody.addEventListener("click", (e) => {
+    const b = e.target.closest(".speak");
+    if (b) { e.stopPropagation(); speak(b.dataset.text, b); }
+  });
+
+  function openExplain(idx) {
+    const [w, t] = WORDS[idx];
+    openModal();
+    const ck = LANG + "|" + w;
+    const seq = ++explainSeq;        // any earlier in-flight request is now stale
+    if (explainCache[ck]) { renderExplain(w, t, explainCache[ck]); return; }
+    if (!getKey()) { renderKeyForm(idx, w, t); return; }
+    renderLoading(w, t);
+    fetchExplain(w, t)
+      .then((data) => {
+        cacheExplain(ck, data);
+        if (seq === explainSeq) renderExplain(w, t, data);   // skip if the user moved on
+      })
+      .catch((err) => { if (seq === explainSeq) renderError(idx, w, t, err); });
+  }
+
+  const head = (w, t) =>
+    `<div class="ex-head"><span class="w">${esc(w)}</span>${speakBtn(w)}<span class="t">${esc(t)}</span></div>`;
+
+  function renderLoading(w, t) {
+    modalBody.innerHTML = head(w, t) + '<div class="spinner"></div>';
+  }
+
+  // Bold the headword wherever it appears in an example (token-wise, case-insensitive).
+  function highlightWord(sentence, word) {
+    const target = String(word).toLocaleLowerCase();
+    return String(sentence).split(/(\s+)/).map((tok) => {
+      const m = tok.match(/^([^\p{L}]*)(\p{L}+)([^\p{L}]*)$/u);
+      if (m && m[2].toLocaleLowerCase() === target)
+        return esc(m[1]) + '<span class="hl">' + esc(m[2]) + "</span>" + esc(m[3]);
+      return esc(tok);
+    }).join("");
+  }
+
+  function renderExplain(w, t, data) {
+    const items = (data.examples || []).map((e) =>
+      `<div class="ex-item"><div class="ex-text"><div class="efr">${highlightWord(e.fr || "", w)}</div>` +
+      `<div class="een">${esc(e.en || "")}</div></div>${speakBtn(e.fr || "", "ex-speak")}</div>`).join("");
+    modalBody.innerHTML =
+      head(w, t) +
+      (data.usage ? `<div class="ex-usage">${esc(data.usage)}</div>` : "") +
+      `<div class="ex-list">${items}</div>`;
+  }
+
+  function renderKeyForm(idx, w, t) {
+    modalBody.innerHTML =
+      head(w, t) +
+      '<div class="ex-usage">To explain words, add a free Google Gemini API key. This page has no ' +
+      'server, so your key is stored only in this browser and sent straight to Google. ' +
+      '<a class="ex-link" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Get a key →</a></div>' +
+      '<div class="key-form"><input id="key-input" type="password" placeholder="Paste your API key" autocomplete="off">' +
+      '<button id="key-save" class="ex-btn">Save &amp; continue</button></div>';
+    const save = () => {
+      const v = document.getElementById("key-input").value;
+      if (v.trim()) { setKey(v); openExplain(idx); }
+    };
+    document.getElementById("key-save").addEventListener("click", save);
+    document.getElementById("key-input").addEventListener("keydown", (e) => { if (e.key === "Enter") save(); });
+    document.getElementById("key-input").focus();
+  }
+
+  function renderError(idx, w, t, err) {
+    modalBody.innerHTML =
+      head(w, t) +
+      `<div class="ex-err">${esc(err && err.message ? err.message : err)}</div>` +
+      '<div class="key-form"><button id="ex-retry" class="ex-btn">Retry</button>' +
+      '<button id="ex-chkey" class="ex-btn ghost">Change API key</button></div>';
+    document.getElementById("ex-retry").addEventListener("click", () => openExplain(idx));
+    document.getElementById("ex-chkey").addEventListener("click", () => renderKeyForm(idx, w, t));
+  }
+
+  async function fetchExplain(w, t) {
+    const lang = LANGS[LANG].english;
+    const prompt =
+      `You are a concise ${lang} tutor helping an English speaker. For the ${lang} word "${w}" ` +
+      `(English: ${t}), write a short usage note (1-2 sentences covering meaning, register, and any ` +
+      `gotchas) and 6 short, natural example sentences. Return JSON.`;
+    const body = {
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: {
+        temperature: 0.4,
+        maxOutputTokens: 1200,
+        responseMimeType: "application/json",
+        responseSchema: {
+          type: "object",
+          properties: {
+            usage: { type: "string" },
+            examples: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: { fr: { type: "string" }, en: { type: "string" } },
+                required: ["fr", "en"],
+              },
+            },
+          },
+          required: ["usage", "examples"],
+        },
+      },
+    };
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${AI_MODEL}:generateContent?key=` +
+      encodeURIComponent(getKey());
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) {
+      let msg = res.status + " " + res.statusText;
+      try { const j = await res.json(); if (j.error && j.error.message) msg = j.error.message; } catch (e) {}
+      throw new Error(msg);
+    }
+    const json = await res.json();
+    const text = json && json.candidates && json.candidates[0] && json.candidates[0].content &&
+      json.candidates[0].content.parts && json.candidates[0].content.parts[0] &&
+      json.candidates[0].content.parts[0].text;
+    if (!text) throw new Error("Empty response from the model.");
+    return JSON.parse(text);
+  }
+
+  closeBtn.addEventListener("click", () => closeModal());
+  modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+  window.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) closeModal(); });
+
+  // ---- Language selection & guarded reset ---------------------------------
+  function updateLangControl() {
+    document.getElementById("lang-label").textContent = LANGS[LANG].name;
+    document.getElementById("intro").textContent =
+      "The most frequent " + LANGS[LANG].english + " words you haven't retired yet. Tap one you " +
+      "already know — it drops away and the next most frequent word takes its place. Progress saves automatically.";
+  }
+
+  function startLanguage(lang) {
+    setLanguage(lang);
+    localStorage.setItem(LANG_KEY, lang);
+    state = loadState();
+    updateLangControl();
+    // Drop any search left over from the previous language — otherwise its
+    // results (and their now-wrong word indices) stay on screen, so the page
+    // shows one language while another is selected.
+    clearSearch();
+    render();
+  }
+
+  function wipeProgress() {
+    localStorage.removeItem(stateKey(LANG));
+    // Only drop this language's cached explanations — the cache is shared
+    // across languages (keyed "lang|word"), so don't nuke the others.
+    const prefix = LANG + "|";
+    for (const k of Object.keys(explainCache)) if (k.startsWith(prefix)) delete explainCache[k];
+    localStorage.setItem(AI_CACHE_LS, JSON.stringify(explainCache));
+  }
+
+  function langChoiceHTML(activeLang) {
+    return '<div class="lang-list">' + Object.keys(LANGS).map((code) =>
+      `<button class="lang-choice${code === activeLang ? " current" : ""}" data-lang="${code}">` +
+      `<span>${LANGS[code].name}</span>` +
+      `<span class="tag">${code === activeLang ? "current"
+        : LANGS[code].english + " · " + WORDS_BY_LANG[code].length.toLocaleString() + " words"}</span>` +
+      `</button>`).join("") + "</div>";
+  }
+
+  // First load: forced choice, nothing to lose so no warning.
+  function showLanguagePicker() {
+    openModal(false);
+    modalBody.innerHTML =
+      '<div class="modal-title">Choose your language</div>' +
+      '<div class="modal-sub">Learn the most frequent words by frequency. You can change this later.</div>' +
+      langChoiceHTML(null);
+    modalBody.querySelectorAll(".lang-choice").forEach((b) =>
+      b.addEventListener("click", () => { startLanguage(b.dataset.lang); closeModal(true); }));
+  }
+
+  // Switching languages is non-destructive; only resetting wipes (guarded by a confirm).
+  function openLanguageMenu() {
+    openModal(true);
+    const mode = ttsMode();
+    modalBody.innerHTML =
+      '<div class="modal-title">Language</div>' +
+      langChoiceHTML(LANG) +
+      '<div class="voice-row"><span class="voice-label">🔊 Voice</span>' +
+      '<div class="voice-seg">' +
+      `<button class="voice-opt${mode === "auto" ? " on" : ""}" data-mode="auto">Auto</button>` +
+      `<button class="voice-opt${mode === "hq" ? " on" : ""}" data-mode="hq">High quality</button>` +
+      '</div></div>' +
+      '<div class="voice-note">High quality uses your Gemini key for a clearer voice.</div>' +
+      '<div class="warn">⚠ Resetting <b>erases all your progress</b> for the current language. This can’t be undone.</div>' +
+      '<div class="modal-actions"><button id="reset-prog" class="ex-btn ghost">Reset progress</button></div>' +
+      '<div style="margin-top:16px"><button class="cl-link" id="whats-new">✨ What’s new</button>' +
+      `<span class="cl-build" style="margin-top:0"> · Build ${esc(BUILD_NO)}</span></div>`;
+    document.getElementById("whats-new").addEventListener("click", showChangelog);
+    modalBody.querySelectorAll(".lang-choice").forEach((b) =>
+      b.addEventListener("click", () => {
+        const lang = b.dataset.lang;
+        if (lang === LANG) { closeModal(); return; }
+        startLanguage(lang); closeModal(true);
+      }));
+    modalBody.querySelectorAll(".voice-opt").forEach((b) =>
+      b.addEventListener("click", () => {
+        localStorage.setItem(TTS_MODE_KEY, b.dataset.mode);
+        modalBody.querySelectorAll(".voice-opt").forEach((o) =>
+          o.classList.toggle("on", o.dataset.mode === b.dataset.mode));
+      }));
+    document.getElementById("reset-prog").addEventListener("click", () =>
+      confirmDestructive(
+        `Reset ${LANGS[LANG].name} progress?`,
+        "This erases all your progress and learned words. You'll start over from the most frequent word.",
+        "Erase everything",
+        () => { wipeProgress(); state = defaultState(); save(); clearSearch(); render(); closeModal(true); }));
+  }
+
+  function confirmDestructive(title, body, confirmLabel, onConfirm) {
+    modalBody.innerHTML =
+      `<div class="modal-title">${esc(title)}</div>` +
+      `<div class="warn">${esc(body)}</div>` +
+      '<div class="modal-actions">' +
+      '<button id="cd-cancel" class="ex-btn ghost">Cancel</button>' +
+      `<button id="cd-ok" class="ex-btn danger">${esc(confirmLabel)}</button></div>`;
+    document.getElementById("cd-cancel").addEventListener("click", openLanguageMenu);
+    document.getElementById("cd-ok").addEventListener("click", onConfirm);
+  }
+
+  // ---- Changelog / "What's new" (shareable at #changelog) ------------------
+  const CHANGELOG = [
+    {
+      date: "26 June 2026",
+      title: "Italian, accessibility & reliability",
+      sections: [
+        { label: "✨ New & improved", items: [
+          "<b>Italian is fully playable</b> — every one of the 10,000 Italian words now has an English meaning (previously most showed “?”).",
+          "<b>Keyboard navigation</b> — move around the grid with the arrow keys, press Enter to explain a word, Delete to retire it.",
+          "<b>Tidier endgame</b> — the last few boards lay out as neat grids instead of one stretched-out row.",
+          "<b>“Start over” button</b> right on the finished screen.",
+          "Snappier word search, and clearer pop-ups that work with screen readers and the keyboard.",
+        ] },
+        { label: "🐛 Fixes", items: [
+          "<b>Languages no longer mix</b> — switching language now fully resets the screen, so words from your previous language can’t linger or open the wrong entry.",
+          "Switching language mid-tap can no longer corrupt your saved progress.",
+          "Your progress keeps saving even when the browser’s storage is full.",
+          "Resetting one language no longer clears the saved explanations for the others.",
+          "A slow word explanation can’t pop up over a different word anymore.",
+          "Greek search now matches words whether they’re typed with ς or σ.",
+        ] },
+      ],
+    },
+  ];
+
+  function changelogHTML() {
+    return CHANGELOG.map((rel) =>
+      '<div class="cl-rel">' +
+      `<div class="cl-date">${esc(rel.date)}${rel.title ? " · " + esc(rel.title) : ""}</div>` +
+      rel.sections.map((s) =>
+        `<div class="cl-sec"><div class="cl-sec-head">${esc(s.label)}</div>` +
+        '<ul class="cl-list">' + s.items.map((it) => `<li>${it}</li>`).join("") + "</ul></div>"
+      ).join("") +
+      "</div>").join("");
+  }
+
+  function showChangelog() {
+    if (!modal.hidden && !modalDismissable) return;   // don't clobber the forced language picker
+    openModal(true);
+    modalBody.innerHTML =
+      '<div class="modal-title">What’s new</div>' +
+      '<div class="modal-sub">Recent updates to Fréquence.</div>' +
+      changelogHTML() +
+      `<div class="cl-build">Build ${esc(BUILD_NO)} · ${esc(BUILD)}</div>`;
+  }
+
+  // Open the changelog when arriving at …/#changelog (the shareable link).
+  function maybeOpenChangelogFromHash() {
+    const h = (location.hash || "").toLowerCase();
+    if (h === "#changelog" || h === "#whatsnew" || h === "#whats-new") showChangelog();
+  }
+  window.addEventListener("hashchange", maybeOpenChangelogFromHash);
+
+  document.getElementById("lang-btn").addEventListener("click", openLanguageMenu);
+
+  // ---- Word search (prefix on the word, substring on the gloss) -----------
+  const searchEl = document.getElementById("search");
+  const resultsEl = document.getElementById("results");
+  const SEARCH_CAP = 80;
+
+  // Drop any active search and return to the game grid.
+  function clearSearch() {
+    searchEl.value = "";
+    resultsEl.hidden = true;
+    resultsEl.innerHTML = "";
+    gridEl.hidden = false;
+  }
+  const norm = (s) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\u03c2/g, "\u03c3");  // unify Greek final sigma \u03c2\u2192\u03c3
+
+  // Normalize each language's word + gloss once (lazily, cached), instead of
+  // re-normalizing all 10k entries on every keystroke.
+  const NORM_CACHE = {};
+  function normTable(lang) {
+    if (!NORM_CACHE[lang])
+      NORM_CACHE[lang] = WORDS_BY_LANG[lang].map(([w, g]) => [norm(w), norm(g)]);
+    return NORM_CACHE[lang];
+  }
+
+  function runSearch(raw) {
+    const q = norm(raw.trim());
+    if (!q) {                          // empty -> back to the game grid
+      resultsEl.hidden = true;
+      resultsEl.innerHTML = "";
+      gridEl.hidden = false;
+      layout();
+      checkDone();
+      return;
+    }
+    gridEl.hidden = true;
+    doneEl.hidden = true;
+    document.body.classList.remove("scroll");
+    let more = 0;
+    const matches = [];
+    for (let i = 0; i < WORDS.length; i++) {
+      if (NORM[i][0].startsWith(q) || NORM[i][1].includes(q)) {
+        if (matches.length < SEARCH_CAP) matches.push(i); else more++;
+      }
+    }
+    if (!matches.length) {
+      resultsEl.innerHTML = '<div class="results-empty">No words match “' + esc(raw.trim()) + '”.</div>';
+    } else {
+      const rows = matches.map((i) =>
+        `<button class="result" data-idx="${i}"><span class="r-fr">${esc(WORDS[i][0])}</span>` +
+        `<span class="r-en">${esc(WORDS[i][1])}</span><span class="r-rank">#${i + 1}</span></button>`).join("");
+      const note = more
+        ? `<div class="results-note">Showing ${matches.length} of ${matches.length + more} — keep typing to narrow.</div>`
+        : `<div class="results-note">${matches.length} match${matches.length === 1 ? "" : "es"}</div>`;
+      resultsEl.innerHTML = rows + note;
+      resultsEl.querySelectorAll(".result").forEach((b) =>
+        b.addEventListener("click", () => openExplain(+b.dataset.idx)));
+    }
+    resultsEl.scrollTop = 0;
+    resultsEl.hidden = false;
+  }
+
+  searchEl.addEventListener("input", (e) => runSearch(e.target.value));
+
+  let rt;
+  window.addEventListener("resize", () => {
+    clearTimeout(rt);
+    rt = setTimeout(layout, 120);
+  });
+
+  // Ask the browser not to silently evict our progress under storage pressure.
+  try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) {}
+
+  // ---- Auto-update: reload when a newer build is deployed -----------------
+  // GitHub Pages can't set cache headers, so the page checks itself: it
+  // re-fetches its own HTML uncached, reads the stamped BUILD id, and if the
+  // live build differs it reloads via a cache-busting URL (guaranteed fresh).
+  // Progress lives in localStorage, so a reload loses nothing. We hold off
+  // while a dialog is open or you're typing, and retry on the next refocus.
+  let lastUpdateCheck = 0;
+  function safeToReload() {
+    if (!modal.hidden) return false;                        // a dialog is open
+    const a = document.activeElement;
+    if (a && (a.tagName === "INPUT" || a.tagName === "TEXTAREA")) return false;  // mid-typing
+    return true;
+  }
+  async function checkForUpdate() {
+    if (location.protocol === "file:") return;
+    const now = Date.now();
+    if (now - lastUpdateCheck < 30000) return;              // throttle
+    lastUpdateCheck = now;
+    try {
+      const res = await fetch(location.pathname + "?_=" + now, { cache: "no-store" });
+      if (!res.ok) return;
+      const m = (await res.text()).match(/BUILD\s*=\s*"([^"]+)"/);
+      if (m && m[1] && m[1] !== BUILD && safeToReload())
+        location.replace(location.pathname + "?v=" + m[1] + location.hash);
+    } catch (e) {}
+  }
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) checkForUpdate(); });
+  setTimeout(checkForUpdate, 3000);
+
+  // Tidy the cache-busting ?v= param out of the address bar after a reload.
+  if (/[?&]v=/.test(location.search)) {
+    try { history.replaceState(null, "", location.pathname + location.hash); } catch (e) {}
+  }
+
+  // Boot: jump straight into the saved language, otherwise ask.
+  (function start() {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (saved && WORDS_BY_LANG[saved]) startLanguage(saved);
+    else showLanguagePicker();
+    maybeOpenChangelogFromHash();     // …/#changelog opens "What's new" for returning users
+  })();
+</script>
+</body>
+</html>

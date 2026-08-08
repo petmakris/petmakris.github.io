@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Un guide pratique du régime alimentaire</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Un guide court et honnête sur le régime alimentaire — un calculateur de calories de maintien et un petit ensemble de règles qui comptent vraiment.">
+<link rel="alternate" hreflang="en" href="https://petmakris.github.io/">
+<link rel="alternate" hreflang="el" href="https://petmakris.github.io/dieting/el/">
+<link rel="alternate" hreflang="fr" href="https://petmakris.github.io/dieting/fr/">
+<link rel="alternate" hreflang="x-default" href="https://petmakris.github.io/">
+<style>
+  :root {
+    --bg: #fafaf7;
+    --surface: #ffffff;
+    --text: #1f1f1f;
+    --muted: #6b6b6b;
+    --line: #e6e3dd;
+    --accent: #2d6a4f;
+    --accent-soft: #e8f1ec;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.55;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 56px 0 16px;
+    letter-spacing: -0.005em;
+  }
+  p { margin: 0 0 16px; }
+  p.lede { color: var(--muted); font-size: 17px; margin-bottom: 0; }
+
+  .calc {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-top: 24px;
+  }
+  .calc .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .calc .row.single { grid-template-columns: 1fr; }
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+  input[type="number"], select {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 16px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  input[type="number"]:focus, select:focus {
+    border-color: var(--accent);
+  }
+  .seg {
+    display: flex;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 3px;
+  }
+  .seg input { display: none; }
+  .seg label {
+    flex: 1;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--muted);
+    margin-bottom: 0;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 15px;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+  }
+  .seg input:checked + label {
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  }
+
+  .result {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+  .result.hidden { display: none; }
+  .result .big {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .result .big .unit {
+    font-size: 16px;
+    color: var(--muted);
+    font-weight: 400;
+    margin-left: 6px;
+  }
+  .result .sub-line {
+    color: var(--muted);
+    margin-top: 4px;
+    font-size: 15px;
+  }
+  .result .target {
+    margin-top: 12px;
+    color: var(--text);
+  }
+  .result .target strong { font-weight: 600; }
+  .callout {
+    margin-top: 20px;
+    padding: 14px 16px;
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    font-size: 15px;
+    color: #234;
+  }
+
+  details {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+    transition: box-shadow 0.15s;
+  }
+  details[open] {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 16px 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+";
+    margin-left: auto;
+    color: var(--muted);
+    font-size: 20px;
+    line-height: 1;
+    transition: transform 0.15s;
+  }
+  details[open] summary::after { content: "−"; }
+  .rule-num {
+    color: var(--accent);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    min-width: 1.5em;
+  }
+  .rule-title {
+    font-weight: 600;
+    font-size: 17px;
+  }
+  .rule-body {
+    padding: 0 20px 20px 20px;
+    color: #333;
+  }
+  .rule-body p:first-child { margin-top: 0; }
+  .rule-body ul {
+    padding-left: 22px;
+    margin: 8px 0 16px;
+  }
+  .rule-body li { margin-bottom: 6px; }
+  .rule-body em { color: var(--muted); font-style: normal; }
+  .rule-body .tag {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 2px 8px;
+    background: var(--bg);
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+
+  .privacy {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .lang-switch {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+  .lang-switch a { color: var(--muted); text-decoration: none; }
+  .lang-switch a.active { color: var(--text); font-weight: 600; }
+  .lang-switch a:hover { color: var(--text); }
+  .lang-switch span { color: var(--line); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 13px;
+  }
+  footer a { color: var(--muted); }
+
+  @media (max-width: 520px) {
+    main { padding: 32px 18px 64px; }
+    h1 { font-size: 24px; }
+    .calc .row { grid-template-columns: 1fr; }
+    .result .big { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <nav class="lang-switch" aria-label="Langue">
+    <a href="/" hreflang="en">English</a>
+    <span>·</span>
+    <a href="/dieting/el/" hreflang="el">Ελληνικά</a>
+    <span>·</span>
+    <a href="/dieting/fr/" class="active" hreflang="fr">Français</a>
+  </nav>
+
+  <h1>Un guide pratique du régime alimentaire</h1>
+  <p class="lede">Un guide court et honnête. Un calculateur en haut, un petit ensemble de règles en dessous. Rien de magique, juste ce qui fait vraiment la différence.</p>
+
+  <section class="calc" aria-label="Calculateur de calories de maintien">
+    <div class="row">
+      <div>
+        <label for="sex-fieldset">Sexe</label>
+        <div class="seg" id="sex-fieldset" role="radiogroup" aria-label="Sexe">
+          <input type="radio" id="sex-m" name="sex" value="male" checked>
+          <label for="sex-m">Homme</label>
+          <input type="radio" id="sex-f" name="sex" value="female">
+          <label for="sex-f">Femme</label>
+        </div>
+      </div>
+      <div>
+        <label for="age">Âge (ans)</label>
+        <input type="number" id="age" min="15" max="100" step="1" inputmode="numeric" placeholder="ex. 35">
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label for="height">Taille (cm)</label>
+        <input type="number" id="height" min="120" max="220" step="1" inputmode="numeric" placeholder="ex. 178">
+      </div>
+      <div>
+        <label for="weight">Poids actuel (kg)</label>
+        <input type="number" id="weight" min="30" max="250" step="0.1" inputmode="decimal" placeholder="ex. 78">
+      </div>
+    </div>
+    <div class="row single">
+      <div>
+        <label for="target">Poids cible (kg) <em style="text-transform:none;letter-spacing:0;color:var(--muted);font-weight:400">— optionnel</em></label>
+        <input type="number" id="target" min="30" max="250" step="0.1" inputmode="decimal" placeholder="laissez vide si inchangé">
+      </div>
+    </div>
+
+    <p class="privacy">Vos données restent dans votre navigateur. Rien n'est envoyé, rien n'est stocké.</p>
+
+    <div class="result hidden" id="result">
+      <div>
+        <div class="big"><span id="kcal-current">—</span><span class="unit">kcal / jour</span></div>
+        <div class="sub-line">pour maintenir votre poids actuel</div>
+      </div>
+      <div class="target hidden" id="target-line">
+        <strong><span id="kcal-target">—</span> kcal / jour</strong> <span style="color:var(--muted)">pour maintenir votre poids cible</span>
+      </div>
+      <div class="callout">
+        Mangez vos calories de maintien. Le déficit vient des calories que vous brûlez par le mouvement et l'exercice — pas en mangeant moins que ce dont votre corps a besoin. Faites votre phase de sèche par blocs de 2 à 3 semaines, plutôt qu'en continu.
+      </div>
+    </div>
+  </section>
+
+  <h2>Règles d'or</h2>
+
+  <details>
+    <summary>
+      <span class="rule-num">1</span>
+      <span class="rule-title">Gardez votre insuline basse</span>
+    </summary>
+    <div class="rule-body">
+      <div class="tag">Le levier qui agit sur l'appétit et pilote discrètement tout le reste</div>
+      <p>L'insuline est l'hormone qui gère l'énergie entrante. Les grands pics d'insuline — ceux que provoquent les glucides raffinés et les boissons sucrées — sont généralement suivis d'une chute et d'un rebond de faim une à deux heures plus tard. Cette fringale de 11 h ou de 16 h est presque toujours une variation de glycémie, pas une vraie faim.</p>
+      <p>Le consensus scientifique en nutrition est plus prudent que certains ouvrages grand public quand il s'agit de qualifier l'insuline d'« interrupteur principal » du stockage des graisses. La perte de graisse vient d'un déficit énergétique global, pas d'une seule hormone. Mais contrôler les pics d'insuline reste l'un des leviers pratiques les plus utiles — parce qu'il régule l'appétit, qui détermine la quantité que vous finissez par manger.</p>
+      <p><strong>Ce qui fait monter l'insuline :</strong> les glucides raffinés (pain blanc, pâtes, riz, sucreries, sodas), les grosses portions de n'importe quel glucide, les boissons sucrées y compris les jus de fruits.</p>
+      <p><strong>Ce qui garde les pics bas :</strong></p>
+      <ul>
+        <li>Des repas centrés sur les protéines.</li>
+        <li>Associez les glucides à des fibres — les fibres ralentissent l'absorption du glucose.</li>
+        <li>Laissez de plus longs intervalles entre les repas (voir règle 4).</li>
+        <li>Ne grignotez pas de sucre entre les repas.</li>
+      </ul>
+      <p>Si vous faites bien cette seule chose, les autres règles s'occupent largement d'elles-mêmes — non par un tour de passe-passe métabolique, mais parce que votre appétit cesse de vous combattre.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>
+      <span class="rule-num">2</span>
+      <span class="rule-title">Réduisez les glucides</span>
+    </summary>
+    <div class="rule-body">
+      <div class="tag">Peu de glucides → faible insuline → combustion des graisses</div>
+      <p>Conséquence directe de la règle 1, assez importante pour la traiter à part. Quand les glucides sont bas, l'insuline reste basse, et votre corps passe dans un mode où il puise vraiment de l'énergie dans les cellules adipeuses plutôt que dans votre dernier repas.</p>
+      <p>Les premiers jours en glucides réduits, vous perdrez un ou deux kilos d'eau. Ce n'est pas encore une perte de graisse — mais c'est la porte d'entrée. Après cette baisse initiale, vous commencez à vraiment brûler de la graisse.</p>
+      <p>« Peu de glucides » ne veut pas dire zéro — cela veut dire des portions modestes, à partir de sources entières. Légumes, légumineuses, une petite portion d'avoine : oui. Une assiette de pâtes ou une pâtisserie : non pendant la phase de sèche.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>
+      <span class="rule-num">3</span>
+      <span class="rule-title">Augmentez les protéines</span>
+    </summary>
+    <div class="rule-body">
+      <div class="tag">Beaucoup de protéines, lipides modérés, peu de glucides, beaucoup de fibres</div>
+      <p>Les protéines vous rassasient, protègent votre masse musculaire pendant un déficit, et ne font presque pas bouger l'insuline. Ancrez chaque repas avec une source de protéines : œufs, yaourt grec, poulet, poisson, fromage blanc, tofu.</p>
+      <p>La répartition complète des macronutriments pour une phase de sèche :</p>
+      <ul>
+        <li><strong>Protéines :</strong> beaucoup.</li>
+        <li><strong>Lipides :</strong> modérés, et issus de bonnes sources — huile d'olive, avocat, fruits à coque, poissons gras.</li>
+        <li><strong>Glucides :</strong> peu, et issus de sources entières.</li>
+        <li><strong>Fibres :</strong> beaucoup — elles remplissent l'estomac, ralentissent l'absorption, et réduisent discrètement l'appétit.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>
+      <span class="rule-num">4</span>
+      <span class="rule-title">Gérez la faim en prolongeant le jeûne du matin</span>
+    </summary>
+    <div class="rule-body">
+      <div class="tag">Le jeûne le plus facile à prolonger est celui que vous faites déjà</div>
+      <p>La faim est un signal hormonal — et elle s'adapte à votre rythme alimentaire. Si vous mangez dès le réveil, votre corps apprend à s'y attendre. Si vous décalez le petit-déjeuner plus tard, votre corps s'adapte en quelques jours.</p>
+      <p>Le mot anglais <em>breakfast</em> signifie littéralement « rompre le jeûne ». Sauter ou repousser le petit-déjeuner de quelques heures est la forme la plus simple de jeûne intermittent, et c'est généralement bien plus facile qu'on ne le pense.</p>
+      <p>Ce qui aide à tenir face à la faim :</p>
+      <ul>
+        <li>Beaucoup de fibres au repas précédent.</li>
+        <li>De bonnes graisses (avocat, huile d'olive, fruits à coque) — rassasiantes et sans effet sur l'insuline.</li>
+        <li>De l'eau, du café ou du thé le matin.</li>
+        <li>Savoir que le pic de faim passe en 15 à 20 minutes si vous n'y répondez pas.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>
+      <span class="rule-num">5</span>
+      <span class="rule-title">Ne forcez pas sur le cardio pendant la sèche</span>
+    </summary>
+    <div class="rule-body">
+      <div class="tag">Le mouvement réparti sur la journée bat une séance de cardio intense</div>
+      <p>Le cardio intense en plein déficit peut être un piège. Les 300 à 400 kcal que vous brûlez en jogging pendant une demi-heure reviennent souvent — partiellement ou complètement — sous forme d'appétit supplémentaire plus tard dans la journée. La compensation n'est pas toujours totale (certaines personnes ne compensent pas du tout), mais elle est réelle, et suffisante pour annuler beaucoup d'efforts pourtant bien menés.</p>
+      <p>Mieux, pour la plupart des gens en phase de sèche : restez globalement actifs toute la journée. Marche. Escaliers. Plus de temps debout. Trajets à pied. Un mode de vie globalement actif brûle plus de calories au total qu'une seule séance de cardio intense, avec beaucoup moins de retour de faim.</p>
+      <p>Ce n'est pas un argument contre l'exercice. C'est un argument pour que l'essentiel des calories brûlées par l'activité vienne d'un mouvement de faible intensité tout au long de la journée, plutôt que de séances intenses qui font monter l'appétit.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>
+      <span class="rule-num">6</span>
+      <span class="rule-title">Faites des sèches courtes et bornées dans le temps</span>
+    </summary>
+    <div class="rule-body">
+      <div class="tag">Blocs de 2 à 3 semaines. Puis retour au maintien.</div>
+      <p>La patience s'épuise. Si vous vous dites « je suis maintenant dans un état permanent où je mange moins », vous abandonnerez en quelques semaines et compenserez à l'excès ensuite. Si vous vous dites « je suis en phase de sèche pour les 3 prochaines semaines, ensuite je reviens au maintien », l'inconfort devient fini et tolérable.</p>
+      <p>Une comparaison utile : arrêter de fumer. Le sevrage est rude pendant 2 à 3 semaines, puis s'estompe. Ceux qui le savent à l'avance tiennent bon. Ceux qui croient que l'inconfort va durer toute leur vie abandonnent.</p>
+      <p>Donc :</p>
+      <ul>
+        <li>Planifiez un bloc de sèche de 2 à 3 semaines (4 au maximum).</li>
+        <li>Visez environ 1 à 1,5 kg de perte sur le bloc.</li>
+        <li>À la fin, revenez aux calories de maintien.</li>
+        <li>Répétez après quelques semaines si nécessaire.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>
+      <span class="rule-num">7</span>
+      <span class="rule-title">Pour les femmes : calez la sèche sur votre cycle</span>
+    </summary>
+    <div class="rule-body">
+      <div class="tag">Commencez juste après les règles — terminez avant les suivantes</div>
+      <p>Les changements hormonaux pendant le cycle menstruel affectent la faim, la rétention d'eau et les fringales. Tenter de tenir un déficit strict pendant cette fenêtre revient à se battre contre son corps sans récompense.</p>
+      <p>Un rythme naturel :</p>
+      <ul>
+        <li><strong>Le lendemain de la fin des règles → environ 3 semaines plus tard :</strong> phase de sèche.</li>
+        <li><strong>Semaine des règles :</strong> mangez au maintien (ou légèrement au-dessus). Ne suivez pas strictement. Considérez-la comme un rechargement planifié.</li>
+      </ul>
+      <p>Ce n'est pas une question de volonté. Il s'agit de placer le déficit au moment où votre corps oppose le moins de résistance.</p>
+    </div>
+  </details>
+
+  <h2>Stratégie &amp; suivi des calories</h2>
+
+  <details>
+    <summary>
+      <span class="rule-num">A</span>
+      <span class="rule-title">Préparez votre nourriture à l'avance</span>
+    </summary>
+    <div class="rule-body">
+      <p>Ce qui a le plus d'impact, c'est d'avoir les bons aliments à portée de main quand la faim arrive. Si vous devez <em>décider</em> quoi manger pendant que vous avez faim, vous perdrez la partie — les supermarchés, les boulangeries et les supérettes l'ont déjà gagnée. Donc décidez et préparez quand vous <em>n'avez pas</em> faim.</p>
+      <p>À quoi cela ressemble :</p>
+      <ul>
+        <li>La veille au soir, portionnez le poulet, la salade et le yaourt du lendemain.</li>
+        <li>Tenez un petit répertoire de recettes rapides et peu caloriques que vous pouvez faire en 10 minutes à partir d'ingrédients de base — œufs aux légumes, bols à base de yaourt.</li>
+        <li>Gardez un « en-cas autorisé » au frigo pour les moments de faiblesse. Souvent à base de yaourt.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>
+      <span class="rule-num">B</span>
+      <span class="rule-title">Quelques astuces faciles</span>
+    </summary>
+    <div class="rule-body">
+      <ul>
+        <li><strong>Yaourt + cacao + édulcorant (+ fruit).</strong> Beaucoup de protéines, peu de sucre. Coupe l'envie de dessert sans casser le régime.</li>
+        <li><strong>« Gâteaux » à base de banane.</strong> Banane + un peu d'édulcorant + extrait de vanille, au four. Peu calorique, fait l'effet d'une gourmandise.</li>
+        <li>Gardez-les en rotation pour que la phase de sèche ne soit pas vécue comme une privation.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>
+      <span class="rule-num">C</span>
+      <span class="rule-title">Suivez les calories — par catégorie d'aliments, pas par produit</span>
+    </summary>
+    <div class="rule-body">
+      <p>Pendant les 1 à 3 premières semaines, pesez votre nourriture et notez les calories. Pas pour toujours — juste assez longtemps pour intérioriser les chiffres.</p>
+      <p>L'astuce qui rend le suivi tenable : arrêtez de compter les aliments individuels. Comptez les <em>catégories d'aliments</em>.</p>
+      <p>Un modèle mental approximatif :</p>
+      <ul>
+        <li><strong>Glucides</strong> (avoine, pain, riz, pâtes) : ~400 kcal pour 100 g, poids sec.</li>
+        <li><strong>Un fruit de la taille de la paume :</strong> ~100 kcal. Banane ~120, pomme ~80.</li>
+        <li><strong>Blanc de poulet :</strong> ~165 kcal pour 100 g cuit.</li>
+        <li><strong>Yaourt grec (entier) :</strong> ~100 kcal pour 100 g.</li>
+      </ul>
+      <p>Une fois ces chiffres dans votre tête, vous pouvez estimer la plupart des repas à vue, sans peser.</p>
+      <p>C'est aussi pourquoi les aliments transformés rendent un régime plus difficile à tenir : les calories des plats préparés ne rentrent pas dans des catégories mentales propres, donc vous ne pouvez pas estimer à vue. Cuisiner à partir d'ingrédients bruts rend le suivi quasi gratuit.</p>
+    </div>
+  </details>
+
+  <footer>
+    Notes personnelles, pas un avis médical. Écrites pour moi ; je les partage au cas où ça puisse aider.
+  </footer>
+
+</main>
+
+<script>
+  function maintenance(sex, age, weight, height) {
+    const bmr = 10 * weight + 6.25 * height - 5 * age + (sex === 'male' ? 5 : -161);
+    return bmr * 1.2;
+  }
+
+  const $ = (id) => document.getElementById(id);
+  const fields = {
+    age:    $('age'),
+    height: $('height'),
+    weight: $('weight'),
+    target: $('target'),
+    sexM:   $('sex-m'),
+    sexF:   $('sex-f'),
+  };
+  const result = $('result');
+  const kcalCurrent = $('kcal-current');
+  const kcalTarget  = $('kcal-target');
+  const targetLine  = $('target-line');
+
+  function fmt(n) {
+    return Math.round(n).toLocaleString('fr-FR');
+  }
+
+  function recompute() {
+    const sex = fields.sexM.checked ? 'male' : 'female';
+    const age = parseFloat(fields.age.value);
+    const height = parseFloat(fields.height.value);
+    const weight = parseFloat(fields.weight.value);
+    const target = parseFloat(fields.target.value);
+
+    const valid = Number.isFinite(age) && age >= 15 && age <= 100
+               && Number.isFinite(height) && height >= 120 && height <= 220
+               && Number.isFinite(weight) && weight >= 30 && weight <= 250;
+
+    if (!valid) {
+      result.classList.add('hidden');
+      return;
+    }
+
+    kcalCurrent.textContent = fmt(maintenance(sex, age, weight, height));
+
+    const targetValid = Number.isFinite(target) && target >= 30 && target <= 250 && target !== weight;
+    if (targetValid) {
+      kcalTarget.textContent = fmt(maintenance(sex, age, target, height));
+      targetLine.classList.remove('hidden');
+    } else {
+      targetLine.classList.add('hidden');
+    }
+
+    result.classList.remove('hidden');
+  }
+
+  ['age','height','weight','target'].forEach(id => fields[id].addEventListener('input', recompute));
+  fields.sexM.addEventListener('change', recompute);
+  fields.sexF.addEventListener('change', recompute);
+</script>
+
+</body>
+</html>
