@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>The English Play Pack — Lila, sessions 1–4</title><style>
+:root{
+  --ink:#1d1a17; --soft:#5d564e; --line:#c9bfb2; --faint:#efe9e0;
+  --accent:#a8341f; --accent2:#1f5c6e; --paper:#fffdf9;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#efeae2;color:var(--ink);
+     font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;}
+.sheet{
+  width:210mm;min-height:297mm;padding:14mm 15mm;margin:0 auto 8mm;background:var(--paper);
+  page-break-after:always;break-after:page;position:relative;display:block;
+  box-shadow:0 2px 14px rgba(0,0,0,.18);
+}
+.sheet:last-child{page-break-after:auto}
+.runhead{display:flex;justify-content:space-between;font-size:8.5pt;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--soft);border-bottom:1px solid var(--line);
+  padding-bottom:3mm;margin-bottom:7mm}
+h1{font-size:30pt;line-height:1.05;margin:0 0 2mm;font-weight:800;letter-spacing:-.02em}
+h2{font-size:17pt;margin:0 0 4mm;font-weight:800;letter-spacing:-.01em}
+h3{font-size:11pt;margin:6mm 0 2.5mm;text-transform:uppercase;letter-spacing:.14em;color:var(--accent)}
+p{margin:0 0 3.5mm;line-height:1.5;font-size:10.5pt}
+.lede{font-size:12pt;line-height:1.55;color:var(--soft)}
+.rule{height:2px;background:var(--ink);margin:5mm 0}
+.small{font-size:9pt;color:var(--soft)}
+.gr{font-size:9.5pt;color:var(--accent2)}
+
+/* cover */
+.cover{display:flex;flex-direction:column;justify-content:space-between;min-height:245mm}
+.cover .big{font-size:64pt;line-height:.95;font-weight:800;letter-spacing:-.03em}
+.cover .sub{font-size:15pt;color:var(--soft);margin-top:6mm;max-width:130mm;line-height:1.5}
+.emojirow{font-size:40pt;letter-spacing:6mm;margin:10mm 0}
+
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:10pt}
+th{text-align:left;font-size:8.5pt;text-transform:uppercase;letter-spacing:.12em;
+   color:var(--soft);border-bottom:1.5px solid var(--ink);padding:0 0 2mm}
+td{padding:2.2mm 3mm 2.2mm 0;border-bottom:1px solid var(--faint);vertical-align:top}
+td.t{white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--accent);font-weight:700}
+
+/* rules list */
+.rules li{margin-bottom:4.5mm;line-height:1.5;font-size:10.5pt}
+.rules b{display:block;font-size:11.5pt;margin-bottom:1mm}
+ol.rules{padding-left:6mm}
+
+/* word cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.card{border:1px dashed var(--line);height:56mm;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;padding:3mm}
+.card .pic{font-size:34pt;line-height:1}
+.card .w{font-size:17pt;font-weight:800;margin-top:4mm}
+.card .g{font-size:9pt;color:var(--soft);margin-top:1.5mm}
+
+/* script */
+.scriptbox{border:2px solid var(--ink);padding:5mm 6mm;margin-top:4mm}
+.line{display:flex;gap:5mm;padding:1.3mm 0;border-bottom:1px dotted var(--faint);align-items:baseline}
+.line .who{flex:0 0 11mm;font-weight:800;font-size:12pt;color:var(--accent)}
+.line .who.b{color:var(--accent2)}
+.line .txt{font-size:13pt;line-height:1.28}
+.rolebar{display:flex;gap:6mm;margin:4mm 0 0}
+.role{flex:1;border:1.5px solid var(--line);padding:3mm 4mm;font-size:10.5pt}
+.role b{font-size:12pt;display:block}
+
+/* generic boxes */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+.box{border:1.5px solid var(--line);padding:4mm 5mm}
+.box h4{margin:0 0 2mm;font-size:11.5pt}
+.box p{font-size:9.5pt;margin:0;line-height:1.45}
+.tag{display:inline-block;background:var(--ink);color:#fff;font-size:8pt;letter-spacing:.1em;
+  text-transform:uppercase;padding:1mm 2.5mm;margin-bottom:2mm}
+
+/* money */
+.money{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.note{border:1px dashed var(--line);height:44mm;padding:4mm 5mm;display:flex;
+  justify-content:space-between;align-items:center}
+.note .v{font-size:36pt;font-weight:800;line-height:1}
+.note .cur{font-size:11pt;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+.note .seal{font-size:26pt}
+
+/* price tags */
+.tags{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.ptag{border:1px dashed var(--line);height:44mm;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center}
+.ptag .p{font-size:30pt;font-weight:800;line-height:1}
+.ptag .n{font-size:12pt;margin-top:2mm}
+.ptag .e{font-size:22pt}
+
+/* menu */
+.menu{border:3px double var(--ink);padding:7mm 10mm;min-height:190mm}
+.menu h2{text-align:center;font-size:24pt;letter-spacing:.02em}
+.menu .sec{margin-top:5mm}
+.menu .sec h3{text-align:center;border-bottom:1px solid var(--line);padding-bottom:2mm}
+.mrow{display:flex;align-items:baseline;gap:3mm;font-size:11.5pt;padding:1.4mm 0}
+.mrow .dots{flex:1;border-bottom:1.5px dotted var(--line);transform:translateY(-3px)}
+.mrow .pr{font-weight:800}
+
+/* slips */
+.slips{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.slip{border:1px dashed var(--line);height:66mm;padding:5mm}
+.slip h4{margin:0 0 3mm;font-size:11pt;letter-spacing:.1em;text-transform:uppercase}
+.slip .ln{border-bottom:1px solid var(--faint);height:8mm}
+.slip .foot{font-size:8.5pt;color:var(--soft);margin-top:2mm}
+
+/* big numbers */
+.bignums{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.bignum{border:1px dashed var(--line);height:66mm;display:flex;align-items:center;
+  justify-content:center;font-size:70pt;font-weight:800}
+
+/* chart */
+.chart td{height:16mm;border:1px solid var(--line);padding:2mm}
+.chart .star{width:22mm;text-align:center;color:var(--faint);font-size:20pt}
+
+/* bingo */
+.bingo{border:2px solid var(--ink);padding:5mm;margin-bottom:8mm}
+.bingo .g{display:grid;grid-template-columns:repeat(3,1fr)}
+.bingo .c{border:1px solid var(--line);height:38mm;display:flex;flex-direction:column;
+  align-items:center;justify-content:center}
+.bingo .c .e{font-size:26pt}
+.bingo .c .n{font-size:11pt;font-weight:700;margin-top:2mm}
+
+/* tickets */
+.ticket{border:2px dashed var(--ink);padding:5mm 7mm;height:55mm;display:flex;
+  justify-content:space-between;align-items:center;margin-bottom:4mm}
+.ticket .l{max-width:110mm}
+.ticket .r{text-align:right;border-left:1px dashed var(--line);padding-left:6mm}
+
+/* diploma */
+.diploma{border:6px double var(--accent);padding:12mm;text-align:center;min-height:225mm;
+  display:flex;flex-direction:column;justify-content:center;gap:5mm}
+.diploma .t{font-size:34pt;font-weight:800;letter-spacing:-.02em}
+.diploma .name{font-size:44pt;font-weight:800;color:var(--accent);
+  border-bottom:2px solid var(--ink);padding-bottom:4mm;margin:4mm auto;display:inline-block}
+.sigrow{display:flex;justify-content:space-around;margin-top:14mm;font-size:10pt}
+.sigrow div{border-top:1px solid var(--ink);padding-top:2mm;width:60mm}
+
+.cutnote{font-size:8pt;color:var(--soft);letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:3mm}
+
+/* denser variant for the games sheets, which carry the most text */
+.gamespage h1{font-size:26pt}
+.gamespage h3{margin:5mm 0 2mm}
+.gamespage .box{padding:3mm 4mm}
+.gamespage .box h4{font-size:11pt;margin-bottom:1.5mm}
+.gamespage .box p{font-size:9pt;line-height:1.4}
+.gamespage .grid2{gap:5mm}
+
+@media print{
+  body{background:#fff}
+  /* width must be stated explicitly: with width:auto Chromium resolves it against the
+     full 210mm paper rather than the 186mm printable area, and clips the right edge. */
+  .sheet{margin:0;box-shadow:none;width:186mm;min-height:0;padding:0;overflow:hidden}
+  @page{size:A4;margin:12mm}
+}
+</style></head><body>
+<div class="sheet"><div class="runhead"><span>English Play Pack</span><span>Cover</span></div>
+<div class="cover">
+  <div>
+    <div class="small" style="letter-spacing:.2em">A four-session role-play course · Lausanne, August 2026</div>
+    <div class="big" style="margin-top:8mm">The<br>English<br>Play Pack</div>
+    <div class="emojirow">👋 🛒 ☕ 🐕</div>
+    <div class="sub">Four theatrical sessions of ninety minutes for Lila, seven years old,
+    starting from no English at all. Every session ends with a scene the two of you perform —
+    both of you playing both roles.</div>
+  </div>
+  <div>
+    <div class="rule"></div>
+    <div class="grid2">
+      <div>
+        <div class="tag">What is inside</div>
+        <p class="small">Teacher sheets with the Greek meanings for you, word cards, full scripts
+        in large type, three games per session, cut-out props — play money, a menu, an order pad,
+        prescriptions, show tickets — and a diploma.</p>
+      </div>
+      <div>
+        <div class="tag">How to print</div>
+        <p class="small">A4, single-sided, colour if you can, "background graphics" switched on.
+        Print the whole pack once. Card pages and prop pages are meant to be cut along the dashed
+        lines; keep everything in one box that only comes out at English time.</p>
+      </div>
+    </div>
+  </div>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Before you start</span><span>Rules</span></div>
+<h1>Eight rules<br>for the grown-up</h1>
+<p class="lede">You are not a teacher and she is not a student. You are two actors with a hat.
+Read this page once before session one; it matters more than any of the word lists.</p>
+<div class="rule"></div>
+<ol class="rules"><li><b>The hat is the switch.</b>When you put the hat on, English begins. When it comes off, English stops. A 90-minute lesson feels like homework; a hat that turns you into someone else feels like a game. Same 90 minutes.</li><li><b>The Greek Button rescues, it does not replace.</b>Cut out the red button on the props page. She may slap it any time and get ten seconds of Greek — then the hat is back on. Knowing the escape exists is what stops the panic that makes children refuse to speak.</li><li><b>Never correct inside a scene.</b>If she says "I are happy", you answer in character: "You are happy! I am happy too!" She hears the right form without being stopped. Correcting mid-scene teaches her that speaking is dangerous.</li><li><b>Play every scene three times.</b>Run 1 — you play both roles with a toy while she only watches and listens. Run 2 — she takes role A, reading or repeating after you. Run 3 — you swap. The third run is where the language actually sticks.</li><li><b>Three to five words per line. Always the same words.</b>Repetition is not boring for a beginner, it is the entire lesson. She needs to hear "How much is it?" thirty times, not thirty different questions.</li><li><b>Silly beats perfect.</b>A monster voice, a wrong price of one hundred francs, a customer who pays with a sock. If she laughs, she remembers. If she is bored, nothing sticks however correct it was.</li><li><b>Stop a block early, never late.</b>The moment her eyes drift, end that block and move to a movement game, even if five minutes are left. Ending on a high note is what makes her want the next session.</li><li><b>Your accent does not matter.</b>You are not the model of perfect English, you are her playmate in English. A parent playing enthusiastically in imperfect English beats a perfect recording she ignores.</li></ol></div>
+<div class="sheet"><div class="runhead"><span>Before you start</span><span>Session shape</span></div>
+<h1>The shape of<br>every session</h1>
+<p class="lede">The same nine blocks every time, in the same order. A seven-year-old will not sit
+through ninety unbroken minutes of anything — but she will happily sit through nine short things
+she recognises. Predictability is what buys you the ninety minutes.</p>
+<table>
+<tr><th style="width:16mm">Clock</th><th style="width:16mm">Length</th>
+<th style="width:38mm">Block</th><th>What happens</th></tr>
+<tr><td class="t">0:00</td><td class="t">5 min</td><td><b>Opening ritual</b></td><td>Hat on. Ring the bell. The same hello chant every single session.</td></tr><tr><td class="t">0:05</td><td class="t">10 min</td><td><b>Warm-up</b></td><td>Review game from last session. Session 1: the numbers chant.</td></tr><tr><td class="t">0:15</td><td class="t">15 min</td><td><b>New words</b></td><td>Word cards. Show, say, she repeats, she finds, she hides one.</td></tr><tr><td class="t">0:30</td><td class="t">10 min</td><td><b>Word game</b></td><td>Standing up, moving. Game 1 on the games sheet.</td></tr><tr><td class="t">0:40</td><td class="t">10 min</td><td><b>BREAK</b></td><td>Water, snack, no English at all. Protect this break.</td></tr><tr><td class="t">0:50</td><td class="t">15 min</td><td><b>The Play — run 1 &amp; 2</b></td><td>You demo both roles, then she takes role A with the script in hand.</td></tr><tr><td class="t">1:05</td><td class="t">10 min</td><td><b>The Play — run 3</b></td><td>Swap roles. No script if she can manage.</td></tr><tr><td class="t">1:15</td><td class="t">10 min</td><td><b>Silly version</b></td><td>Same scene, wrong world. Let her invent the silliness.</td></tr><tr><td class="t">1:25</td><td class="t">5 min</td><td><b>Closing ritual</b></td><td>Star on the chart, hand her the home mission card, goodbye chant.</td></tr>
+</table>
+<div class="box" style="margin-top:7mm">
+  <h4>Why nine blocks and not three</h4>
+  <p>A seven-year-old cannot sit through ninety unbroken minutes of anything, but she will happily
+  sit through nine short things she recognises. Never reorder them and never skip the break —
+  predictability is what buys you the ninety minutes.</p>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Before you start</span><span>Rituals</span></div>
+<h1>The two chants<br>and the card games</h1>
+<p class="lede">These four things never change from session one to session four. Everything else in
+the pack is new each time; these are the walls she leans on.</p>
+<h3>The opening chant</h3>
+<div class="box" style="font-size:13pt;line-height:1.7"><div>Hello, hello, what's your name?</div><div>My name is ________ , what's your name?</div><div>Nice to meet you! Nice to meet you!</div><div>Let's play, let's play, let's play in English!</div></div>
+<h3>The closing chant</h3>
+<div class="box" style="font-size:13pt;line-height:1.7"><div>Goodbye, goodbye, see you soon!</div><div>Goodbye, goodbye, that was fun!</div><div>One more star, one more day —</div><div>Bye-bye, bye-bye, hip hooray!</div></div>
+<p class="small" style="margin-top:3mm">Clap on every stressed syllable and march on the spot. By
+session three she will start the chant herself before you do — that is the moment you know the
+ritual has taken.</p>
+<h3>Four ways to use any set of word cards</h3>
+<div class="grid2">
+  <div class="box"><h4>1 · Show and say</h4><p>Hold one up, say it, she repeats. All twelve, twice.
+  Fast, no explanations, no writing.</p></div>
+  <div class="box"><h4>2 · Grab it</h4><p>Cards face up on the floor. You say a word, she slaps the
+  card. Then she says a word and you slap — losing on purpose is the point.</p></div>
+  <div class="box"><h4>3 · What is missing?</h4><p>She shuts her eyes, you steal a card. She names
+  the missing one in English. Start with six cards, not twelve.</p></div>
+  <div class="box"><h4>4 · Hide and seek</h4><p>Hide the cards round the room. Each one she finds,
+  she shouts its name before she may keep it.</p></div>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Before you start</span><span>Star chart</span></div>
+<h1>Lila's star chart</h1>
+<p class="lede">Six stars per session, one for each block she finishes. Colour a star in front of
+her, out loud, and say why. Stars are given for trying, never for being correct — the day you
+withhold a star for a mistake is the day the pack stops working.</p>
+<table class="chart" style="margin-top:6mm"><tr><td style="width:52mm"><b>Session 1</b><br><span class="small">Who Are You?</span></td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td></tr><tr><td style="width:52mm"><b>Session 2</b><br><span class="small">The Little Shop</span></td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td></tr><tr><td style="width:52mm"><b>Session 3</b><br><span class="small">The Little Café</span></td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td></tr><tr><td style="width:52mm"><b>Session 4</b><br><span class="small">The Animal Doctor</span></td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td></tr></table>
+<h3>The Greek Button — cut this out</h3>
+<div style="border:2px dashed var(--line);padding:6mm;text-align:center;margin-top:3mm">
+  <div style="width:52mm;height:52mm;border-radius:50%;border:4px solid var(--accent);
+    display:inline-flex;align-items:center;justify-content:center;flex-direction:column">
+    <div style="font-size:22pt;font-weight:800;color:var(--accent)">GREEK</div>
+    <div style="font-size:10pt;letter-spacing:.15em">10 SECONDS</div>
+  </div>
+  <p class="small" style="margin-top:4mm">She slaps it, you both speak Greek for ten seconds,
+  then it is English again. Let her use it as often as she likes in session one. She will use it
+  less each week without being told to.</p>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 1 · Who Are You?</span><span>Teacher sheet</span></div>
+<div style="display:flex;align-items:flex-end;justify-content:space-between">
+  <div><div class="small" style="letter-spacing:.2em">Session 1</div>
+  <h1>Who Are You?</h1></div>
+  <div style="font-size:46pt">👋</div>
+</div>
+<p class="lede">Meeting somebody for the first time</p>
+<div class="rule"></div>
+<p>By the end she can walk up to a stranger, say hello, give her name and her age, ask for theirs, and say goodbye. Nothing else. That is a full 90 minutes for a beginner and it is the foundation everything else sits on.</p>
+<h3>Twelve words</h3>
+<div class="grid2"><table><tr><td style="width:12mm;font-size:15pt">👋</td><td><b style="font-size:11.5pt">hello</b><br><span class="gr">γεια σου</span></td></tr><tr><td style="width:12mm;font-size:15pt">🤚</td><td><b style="font-size:11.5pt">goodbye</b><br><span class="gr">αντίο</span></td></tr><tr><td style="width:12mm;font-size:15pt">✅</td><td><b style="font-size:11.5pt">yes</b><br><span class="gr">ναι</span></td></tr><tr><td style="width:12mm;font-size:15pt">❌</td><td><b style="font-size:11.5pt">no</b><br><span class="gr">όχι</span></td></tr><tr><td style="width:12mm;font-size:15pt">🙏</td><td><b style="font-size:11.5pt">please</b><br><span class="gr">σε παρακαλώ</span></td></tr><tr><td style="width:12mm;font-size:15pt">💛</td><td><b style="font-size:11.5pt">thank you</b><br><span class="gr">ευχαριστώ</span></td></tr></table><table><tr><td style="width:12mm;font-size:15pt">😄</td><td><b style="font-size:11.5pt">happy</b><br><span class="gr">χαρούμενη</span></td></tr><tr><td style="width:12mm;font-size:15pt">😢</td><td><b style="font-size:11.5pt">sad</b><br><span class="gr">λυπημένη</span></td></tr><tr><td style="width:12mm;font-size:15pt">😴</td><td><b style="font-size:11.5pt">tired</b><br><span class="gr">κουρασμένη</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍞</td><td><b style="font-size:11.5pt">hungry</b><br><span class="gr">πεινασμένη</span></td></tr><tr><td style="width:12mm;font-size:15pt">🤝</td><td><b style="font-size:11.5pt">friend</b><br><span class="gr">φίλη</span></td></tr><tr><td style="width:12mm;font-size:15pt">🏠</td><td><b style="font-size:11.5pt">neighbour</b><br><span class="gr">γείτονας</span></td></tr></table></div>
+<h3>Three things worth knowing before you start</h3>
+<ul class="rules" style="font-size:10pt"><li>Do not teach "I am" versus "I'm". Teach only "I'm". Rules come years later.</li><li>The numbers chant (opposite page) is the warm-up of every session from now on. Two minutes, clapping, marching. She will need one to ten for the shop next week.</li><li>If she answers in Greek during the play, do not stop. Repeat her sentence in English as if agreeing, and carry on.</li></ul>
+<p class="small" style="border-top:1px solid var(--line);padding-top:2mm;margin-top:6mm">
+Greek is printed on your sheets only. Her cards and her script are English-only on purpose — the
+moment a Greek word sits next to an English one, she reads the Greek and the English becomes decoration.</p></div>
+<div class="sheet"><div class="runhead"><span>Session 1 · Who Are You?</span><span>Sentences</span></div>
+<div class="small" style="letter-spacing:.2em">Session 1 · Who Are You?</div>
+<h2>The ten sentences she will actually use</h2>
+<p class="small">Say each one, she repeats, twice round. Then hide the sheet — from that point on
+they only ever appear inside a scene. A sentence drilled at a table is forgotten by Thursday; the
+same sentence said to a shopkeeper is not.</p>
+<table style="margin-top:4mm"><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Hello! / Hi!</b></td><td class="gr">Γεια σου!</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>What's your name?</b></td><td class="gr">Πώς σε λένε;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>My name is Lila.</b></td><td class="gr">Με λένε Λίλα.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>How old are you?</b></td><td class="gr">Πόσο χρονών είσαι;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>I'm seven.</b></td><td class="gr">Είμαι εφτά.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>How are you?</b></td><td class="gr">Τι κάνεις;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>I'm fine, thank you.</b></td><td class="gr">Καλά, ευχαριστώ.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Nice to meet you!</b></td><td class="gr">Χάρηκα!</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Come in!</b></td><td class="gr">Πέρασε μέσα!</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Goodbye! See you tomorrow!</b></td><td class="gr">Αντίο! Τα λέμε αύριο!</td></tr></table>
+<div class="box" style="margin-top:7mm">
+  <h4>If she freezes</h4>
+  <p>Say the first two words of her line and stop. Nine times out of ten she finishes it. If she
+  still cannot, say the whole line cheerfully as your own and move on — never leave her standing
+  in silence, and never let the scene stop because of a missing word.</p>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 1 · Who Are You?</span><span>Word cards</span></div>
+<div class="cutnote">Cut along the dashed lines · Session 1 word cards ·
+four ways to use them are on the "session shape" sheet</div>
+<div class="cards"><div class="card"><div class="pic">👋</div><div class="w">hello</div></div><div class="card"><div class="pic">🤚</div><div class="w">goodbye</div></div><div class="card"><div class="pic">✅</div><div class="w">yes</div></div><div class="card"><div class="pic">❌</div><div class="w">no</div></div><div class="card"><div class="pic">🙏</div><div class="w">please</div></div><div class="card"><div class="pic">💛</div><div class="w">thank you</div></div><div class="card"><div class="pic">😄</div><div class="w">happy</div></div><div class="card"><div class="pic">😢</div><div class="w">sad</div></div><div class="card"><div class="pic">😴</div><div class="w">tired</div></div><div class="card"><div class="pic">🍞</div><div class="w">hungry</div></div><div class="card"><div class="pic">🤝</div><div class="w">friend</div></div><div class="card"><div class="pic">🏠</div><div class="w">neighbour</div></div></div></div>
+<div class="sheet"><div class="runhead"><span>Session 1 · Who Are You?</span><span>Script</span></div>
+<div class="small" style="letter-spacing:.2em">Session 1 · The Play</div>
+<h1>The New Neighbour</h1>
+<div class="rolebar">
+  <div class="role"><b style="color:var(--accent)">A — the visitor</b></div>
+  <div class="role"><b style="color:var(--accent2)">B — the neighbour at home</b></div>
+</div>
+<div class="scriptbox"><div class="line"><div class="who">A</div><div class="txt">Knock, knock!</div></div><div class="line"><div class="who b">B</div><div class="txt">Who is it?</div></div><div class="line"><div class="who">A</div><div class="txt">Hello! I'm your new neighbour.</div></div><div class="line"><div class="who b">B</div><div class="txt">Hello! Come in, come in!</div></div><div class="line"><div class="who">A</div><div class="txt">Thank you.</div></div><div class="line"><div class="who b">B</div><div class="txt">What's your name?</div></div><div class="line"><div class="who">A</div><div class="txt">My name is Lila. What's your name?</div></div><div class="line"><div class="who b">B</div><div class="txt">My name is Papa. Nice to meet you!</div></div><div class="line"><div class="who">A</div><div class="txt">Nice to meet you too.</div></div><div class="line"><div class="who b">B</div><div class="txt">How old are you?</div></div><div class="line"><div class="who">A</div><div class="txt">I'm seven. How are you today?</div></div><div class="line"><div class="who b">B</div><div class="txt">I'm fine, thank you. And you?</div></div><div class="line"><div class="who">A</div><div class="txt">I'm happy! And I'm hungry!</div></div><div class="line"><div class="who b">B</div><div class="txt">Would you like a biscuit?</div></div><div class="line"><div class="who">A</div><div class="txt">Yes, please!</div></div><div class="line"><div class="who b">B</div><div class="txt">Here you are.</div></div><div class="line"><div class="who">A</div><div class="txt">Thank you! Goodbye!</div></div><div class="line"><div class="who b">B</div><div class="txt">Goodbye! See you tomorrow!</div></div></div>
+<div class="grid2" style="margin-top:6mm">
+  <div class="box"><h4>The set</h4><p>A chair is the door. One of you stands outside and knocks. Have a plate of biscuits ready — a real biscuit at the right line is worth ten repetitions.</p></div>
+  <div class="box"><h4>Props</h4><p>A chair (the door) · a plate of biscuits · the hat</p>
+  <p style="margin-top:2mm"><b>Run it three times.</b> You alone with a toy · she takes the first
+  role · swap. Never fewer than three.</p></div>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 1 · Who Are You?</span><span>Games</span></div>
+<div class="gamespage">
+<div class="small" style="letter-spacing:.2em">Session 1</div>
+<h1>Games &amp; the silly versions</h1>
+<h3>Three games</h3>
+<div class="box" style="margin-bottom:5mm"><div class="tag">10 min</div><h4>The Hello Hat</h4><p>Pass the hat back and forth. Whoever wears it must introduce themselves with a brand-new invented name and age: "My name is Banana. I'm forty-two." Invented names are the trick — it removes the fear of getting her own answer wrong.</p></div><div class="box" style="margin-bottom:5mm"><div class="tag">10 min</div><h4>Freeze and Greet</h4><p>Clap a rhythm and both walk around the room. When you stop clapping, both freeze, turn to each other and do the full greeting. Each round, hold up a different feeling card so the "How are you?" answer changes.</p></div><div class="box" style="margin-bottom:5mm"><div class="tag">5 min</div><h4>The Toy Parade</h4><p>Line up five toys on the sofa. She introduces each one to you: "This is Bunny. She is three." Toys are easier to speak for than herself.</p></div>
+<h3>Four silly versions of the same scene</h3>
+<p class="small">Play these after the straight version has worked twice. The words stay identical;
+only the world changes. This is where the repetition she needs stops feeling like repetition.</p>
+<div class="grid2"><div class="box"><h4>The monster next door</h4><p>Play B as a monster. Same lines, but "My name is Grrrmp. I'm one hundred years old."</p></div><div class="box"><h4>The cat neighbour</h4><p>Every line starts with "Meow". "Meow — my name is Cleo." She will insist on being the cat.</p></div><div class="box"><h4>The robot</h4><p>Flat voice, one word per second, arms stiff. Great for a child who rushes and swallows words.</p></div><div class="box"><h4>The tiny voice / the giant voice</h4><p>Whole scene whispered, then whole scene shouted. Pure repetition disguised as chaos.</p></div></div>
+<p class="small" style="margin-top:5mm;border-top:1px solid var(--line);padding-top:2mm">
+<b>Home mission after this session:</b> Every morning this week, the first words of the day are English. She knocks on your bedroom door: "Good morning! How are you?" You answer, then ask her back.</p>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 1 · Who Are You?</span><span>Numbers</span></div>
+<div class="cutnote">Session 1 prop · the numbers chant · cut into cards or keep as one sheet</div>
+<h2>One to twelve</h2>
+<div class="cards"><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">1</div><div class="w" style="margin-top:2mm">one</div><div class="g">ένα</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">2</div><div class="w" style="margin-top:2mm">two</div><div class="g">δύο</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">3</div><div class="w" style="margin-top:2mm">three</div><div class="g">τρία</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">4</div><div class="w" style="margin-top:2mm">four</div><div class="g">τέσσερα</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">5</div><div class="w" style="margin-top:2mm">five</div><div class="g">πέντε</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">6</div><div class="w" style="margin-top:2mm">six</div><div class="g">έξι</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">7</div><div class="w" style="margin-top:2mm">seven</div><div class="g">εφτά</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">8</div><div class="w" style="margin-top:2mm">eight</div><div class="g">οκτώ</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">9</div><div class="w" style="margin-top:2mm">nine</div><div class="g">εννιά</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">10</div><div class="w" style="margin-top:2mm">ten</div><div class="g">δέκα</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">11</div><div class="w" style="margin-top:2mm">eleven</div><div class="g">έντεκα</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">12</div><div class="w" style="margin-top:2mm">twelve</div><div class="g">δώδεκα</div></div></div>
+<p class="small" style="margin-top:5mm">March on the spot and chant one to ten every session as
+the warm-up, two minutes, no more. Then count real things: fingers, stairs, spoons, the toys on
+the sofa. She needs one to ten fluently before session two, because the shop runs on it.</p></div>
+<div class="sheet"><div class="runhead"><span>Session 1 · Who Are You?</span><span>Feelings</span></div>
+<div class="cutnote">Session 1 prop · feeling cards for "How are you?"</div>
+<div class="cards" style="grid-template-columns:repeat(2,1fr)"><div class="card" style="height:72mm"><div class="pic" style="font-size:44pt">😄</div><div class="w" style="font-size:20pt">happy</div></div><div class="card" style="height:72mm"><div class="pic" style="font-size:44pt">😢</div><div class="w" style="font-size:20pt">sad</div></div><div class="card" style="height:72mm"><div class="pic" style="font-size:44pt">😴</div><div class="w" style="font-size:20pt">tired</div></div><div class="card" style="height:72mm"><div class="pic" style="font-size:44pt">🍞</div><div class="w" style="font-size:20pt">hungry</div></div><div class="card" style="height:72mm"><div class="pic" style="font-size:44pt">😠</div><div class="w" style="font-size:20pt">angry</div></div><div class="card" style="height:72mm"><div class="pic" style="font-size:44pt">🤩</div><div class="w" style="font-size:20pt">excited</div></div></div>
+<p class="small" style="margin-top:5mm">Hold one up in the middle of a scene and the answer to
+"How are you?" must change. Later, let her hold the cards and choose — being the one who decides
+is worth twenty minutes of attention.</p></div>
+<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Teacher sheet</span></div>
+<div style="display:flex;align-items:flex-end;justify-content:space-between">
+  <div><div class="small" style="letter-spacing:.2em">Session 2</div>
+  <h1>The Little Shop</h1></div>
+  <div style="font-size:46pt">🍎</div>
+</div>
+<p class="lede">Buying and selling, with real prices and real change</p>
+<div class="rule"></div>
+<p>By the end she can run a shop counter in English: greet a customer, name ten products, ask and answer a price, take money and give change. This is the session she has been asking for since she started playing cashier.</p>
+<h3>Twelve words</h3>
+<div class="grid2"><table><tr><td style="width:12mm;font-size:15pt">🍎</td><td><b style="font-size:11.5pt">apple</b><br><span class="gr">μήλο</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍌</td><td><b style="font-size:11.5pt">banana</b><br><span class="gr">μπανάνα</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍞</td><td><b style="font-size:11.5pt">bread</b><br><span class="gr">ψωμί</span></td></tr><tr><td style="width:12mm;font-size:15pt">🥛</td><td><b style="font-size:11.5pt">milk</b><br><span class="gr">γάλα</span></td></tr><tr><td style="width:12mm;font-size:15pt">🧀</td><td><b style="font-size:11.5pt">cheese</b><br><span class="gr">τυρί</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍫</td><td><b style="font-size:11.5pt">chocolate</b><br><span class="gr">σοκολάτα</span></td></tr></table><table><tr><td style="width:12mm;font-size:15pt">🥚</td><td><b style="font-size:11.5pt">eggs</b><br><span class="gr">αυγά</span></td></tr><tr><td style="width:12mm;font-size:15pt">💧</td><td><b style="font-size:11.5pt">water</b><br><span class="gr">νερό</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍅</td><td><b style="font-size:11.5pt">tomato</b><br><span class="gr">ντομάτα</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍦</td><td><b style="font-size:11.5pt">ice cream</b><br><span class="gr">παγωτό</span></td></tr><tr><td style="width:12mm;font-size:15pt">💰</td><td><b style="font-size:11.5pt">money</b><br><span class="gr">λεφτά</span></td></tr><tr><td style="width:12mm;font-size:15pt">🛍</td><td><b style="font-size:11.5pt">bag</b><br><span class="gr">σακούλα</span></td></tr></table></div>
+<h3>Three things worth knowing before you start</h3>
+<ul class="rules" style="font-size:10pt"><li>Keep prices between one and ten francs so the sums stay inside the numbers she knows.</li><li>Let her be the shopkeeper first. The shopkeeper has the harder lines but the power, and she will fight for that role — use it.</li><li>"Can I have" is the single most useful phrase in this pack. Drill it more than any other.</li></ul>
+<p class="small" style="border-top:1px solid var(--line);padding-top:2mm;margin-top:6mm">
+Greek is printed on your sheets only. Her cards and her script are English-only on purpose — the
+moment a Greek word sits next to an English one, she reads the Greek and the English becomes decoration.</p></div>
+<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Sentences</span></div>
+<div class="small" style="letter-spacing:.2em">Session 2 · The Little Shop</div>
+<h2>The ten sentences she will actually use</h2>
+<p class="small">Say each one, she repeats, twice round. Then hide the sheet — from that point on
+they only ever appear inside a scene. A sentence drilled at a table is forgotten by Thursday; the
+same sentence said to a shopkeeper is not.</p>
+<table style="margin-top:4mm"><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Good morning! Welcome to my shop!</b></td><td class="gr">Καλημέρα! Καλώς ήρθατε!</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Can I help you?</b></td><td class="gr">Μπορώ να βοηθήσω;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Can I have some bread, please?</b></td><td class="gr">Μπορώ να έχω λίγο ψωμί, παρακαλώ;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>How much is it?</b></td><td class="gr">Πόσο κάνει;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>It is eight francs.</b></td><td class="gr">Κάνει οκτώ φράγκα.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Here you are.</b></td><td class="gr">Ορίστε.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Anything else?</b></td><td class="gr">Κάτι άλλο;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>No, thank you. That's all.</b></td><td class="gr">Όχι, ευχαριστώ. Αυτά.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Here is your change.</b></td><td class="gr">Ορίστε τα ρέστα σας.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Have a nice day!</b></td><td class="gr">Καλή σας μέρα!</td></tr></table>
+<div class="box" style="margin-top:7mm">
+  <h4>If she freezes</h4>
+  <p>Say the first two words of her line and stop. Nine times out of ten she finishes it. If she
+  still cannot, say the whole line cheerfully as your own and move on — never leave her standing
+  in silence, and never let the scene stop because of a missing word.</p>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Word cards</span></div>
+<div class="cutnote">Cut along the dashed lines · Session 2 word cards ·
+four ways to use them are on the "session shape" sheet</div>
+<div class="cards"><div class="card"><div class="pic">🍎</div><div class="w">apple</div></div><div class="card"><div class="pic">🍌</div><div class="w">banana</div></div><div class="card"><div class="pic">🍞</div><div class="w">bread</div></div><div class="card"><div class="pic">🥛</div><div class="w">milk</div></div><div class="card"><div class="pic">🧀</div><div class="w">cheese</div></div><div class="card"><div class="pic">🍫</div><div class="w">chocolate</div></div><div class="card"><div class="pic">🥚</div><div class="w">eggs</div></div><div class="card"><div class="pic">💧</div><div class="w">water</div></div><div class="card"><div class="pic">🍅</div><div class="w">tomato</div></div><div class="card"><div class="pic">🍦</div><div class="w">ice cream</div></div><div class="card"><div class="pic">💰</div><div class="w">money</div></div><div class="card"><div class="pic">🛍</div><div class="w">bag</div></div></div></div>
+<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Script</span></div>
+<div class="small" style="letter-spacing:.2em">Session 2 · The Play</div>
+<h1>The Little Shop</h1>
+<div class="rolebar">
+  <div class="role"><b style="color:var(--accent)">S — the shopkeeper</b></div>
+  <div class="role"><b style="color:var(--accent2)">C — the customer</b></div>
+</div>
+<div class="scriptbox"><div class="line"><div class="who">S</div><div class="txt">Good morning! Welcome to my shop!</div></div><div class="line"><div class="who b">C</div><div class="txt">Good morning!</div></div><div class="line"><div class="who">S</div><div class="txt">Can I help you?</div></div><div class="line"><div class="who b">C</div><div class="txt">Yes, please. Can I have some bread?</div></div><div class="line"><div class="who">S</div><div class="txt">Of course. Here you are.</div></div><div class="line"><div class="who b">C</div><div class="txt">Thank you.</div></div><div class="line"><div class="who">S</div><div class="txt">Anything else?</div></div><div class="line"><div class="who b">C</div><div class="txt">Yes. Two apples, please.</div></div><div class="line"><div class="who">S</div><div class="txt">Two apples. Here you are.</div></div><div class="line"><div class="who b">C</div><div class="txt">How much is it?</div></div><div class="line"><div class="who">S</div><div class="txt">The bread is four francs. The apples are four francs.</div></div><div class="line"><div class="who">S</div><div class="txt">That is eight francs, please.</div></div><div class="line"><div class="who b">C</div><div class="txt">Here you are. Ten francs.</div></div><div class="line"><div class="who">S</div><div class="txt">Thank you. Here is your change: two francs.</div></div><div class="line"><div class="who b">C</div><div class="txt">Thank you! Goodbye!</div></div><div class="line"><div class="who">S</div><div class="txt">Goodbye! Have a nice day!</div></div></div>
+<div class="grid2" style="margin-top:6mm">
+  <div class="box"><h4>The set</h4><p>The kitchen table is the counter. Put out the real food from the word cards if you have it, with a printed price tag standing next to each. The play money must be counted out note by note, out loud.</p></div>
+  <div class="box"><h4>Props</h4><p>Price tags · play money · a shopping bag · real fruit if possible</p>
+  <p style="margin-top:2mm"><b>Run it three times.</b> You alone with a toy · she takes the first
+  role · swap. Never fewer than three.</p></div>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Games</span></div>
+<div class="gamespage">
+<div class="small" style="letter-spacing:.2em">Session 2</div>
+<h1>Games &amp; the silly versions</h1>
+<h3>Three games</h3>
+<div class="box" style="margin-bottom:5mm"><div class="tag">10 min</div><h4>Price Hunt</h4><p>Spread the price tags on the items. You call out "Four francs!" and she must run and grab the right item and shout its name in English. Then swap — she calls, you run. Her calling out is the half that teaches her to produce numbers, not just recognise them.</p></div><div class="box" style="margin-bottom:5mm"><div class="tag">10 min</div><h4>The Shopping List</h4><p>Hand her one of the printed picture lists. She must buy all three items from your shop, in English, and count the money. Four lists are provided so it can run four rounds.</p></div><div class="box" style="margin-bottom:5mm"><div class="tag">5 min</div><h4>Cash Register Race</h4><p>You shout a price, she has three seconds to lay out the exact notes. "Seven francs!" — five plus two. Counting money out loud is the fastest way to fix numbers one to ten.</p></div>
+<h3>Four silly versions of the same scene</h3>
+<p class="small">Play these after the straight version has worked twice. The words stay identical;
+only the world changes. This is where the repetition she needs stops feeling like repetition.</p>
+<div class="grid2"><div class="box"><h4>The Crazy Shop</h4><p>The shop only sells impossible things: a cloud, a dragon, Monday. Prices are absurd: "One dragon? One hundred francs!"</p></div><div class="box"><h4>Sorry, no bananas!</h4><p>The shopkeeper is out of everything. Whatever the customer asks: "Sorry! No bananas!" The customer must keep asking for something new — that is ten repetitions of the question.</p></div><div class="box"><h4>The customer with no money</h4><p>She tries to pay with a sock, a shoe, a hug. "Can I pay with a sock?" "No! Five francs!"</p></div><div class="box"><h4>The shop for giants</h4><p>Everything is enormous and everything costs one franc. Say every price in a booming voice.</p></div></div>
+<p class="small" style="margin-top:5mm;border-top:1px solid var(--line);padding-top:2mm">
+<b>Home mission after this session:</b> She is the cashier at dinner this week. Nobody gets bread until they ask her in English and pay with a play note. She gives the change and says the price.</p>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Money 1</span></div>
+<div class="cutnote">Session 2 prop · play money · cut along the dashed lines</div>
+<div class="money"><div class="note">
+  <div><div class="cur">Play francs</div><div class="v">1</div>
+  <div class="small">The English Play Pack · Lausanne</div></div>
+  <div class="seal">⭐</div></div><div class="note">
+  <div><div class="cur">Play francs</div><div class="v">1</div>
+  <div class="small">The English Play Pack · Lausanne</div></div>
+  <div class="seal">⭐</div></div><div class="note">
+  <div><div class="cur">Play francs</div><div class="v">2</div>
+  <div class="small">The English Play Pack · Lausanne</div></div>
+  <div class="seal">⭐</div></div><div class="note">
+  <div><div class="cur">Play francs</div><div class="v">2</div>
+  <div class="small">The English Play Pack · Lausanne</div></div>
+  <div class="seal">⭐</div></div><div class="note">
+  <div><div class="cur">Play francs</div><div class="v">5</div>
+  <div class="small">The English Play Pack · Lausanne</div></div>
+  <div class="seal">⭐</div></div><div class="note">
+  <div><div class="cur">Play francs</div><div class="v">5</div>
+  <div class="small">The English Play Pack · Lausanne</div></div>
+  <div class="seal">⭐</div></div><div class="note">
+  <div><div class="cur">Play francs</div><div class="v">10</div>
+  <div class="small">The English Play Pack · Lausanne</div></div>
+  <div class="seal">⭐</div></div><div class="note">
+  <div><div class="cur">Play francs</div><div class="v">10</div>
+  <div class="small">The English Play Pack · Lausanne</div></div>
+  <div class="seal">⭐</div></div></div></div>
+<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Money 2</span></div>
+<div class="cutnote">Session 2 prop · play money · cut along the dashed lines</div>
+<div class="money"><div class="note">
+  <div><div class="cur">Play francs</div><div class="v">1</div>
+  <div class="small">The English Play Pack · Lausanne</div></div>
+  <div class="seal">⭐</div></div><div class="note">
+  <div><div class="cur">Play francs</div><div class="v">2</div>
+  <div class="small">The English Play Pack · Lausanne</div></div>
+  <div class="seal">⭐</div></div><div class="note">
+  <div><div class="cur">Play francs</div><div class="v">2</div>
+  <div class="small">The English Play Pack · Lausanne</div></div>
+  <div class="seal">⭐</div></div><div class="note">
+  <div><div class="cur">Play francs</div><div class="v">5</div>
+  <div class="small">The English Play Pack · Lausanne</div></div>
+  <div class="seal">⭐</div></div><div class="note">
+  <div><div class="cur">Play francs</div><div class="v">5</div>
+  <div class="small">The English Play Pack · Lausanne</div></div>
+  <div class="seal">⭐</div></div><div class="note">
+  <div><div class="cur">Play francs</div><div class="v">10</div>
+  <div class="small">The English Play Pack · Lausanne</div></div>
+  <div class="seal">⭐</div></div><div class="note">
+  <div><div class="cur">Play francs</div><div class="v">10</div>
+  <div class="small">The English Play Pack · Lausanne</div></div>
+  <div class="seal">⭐</div></div><div class="note">
+  <div><div class="cur">Play francs</div><div class="v">10</div>
+  <div class="small">The English Play Pack · Lausanne</div></div>
+  <div class="seal">⭐</div></div></div></div>
+<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Price tags</span></div>
+<div class="cutnote">Session 2 prop · price tags · fold and stand next to each item</div>
+<div class="tags"><div class="ptag"><div class="e">🍎</div><div class="p">2</div><div class="n">francs</div><div class="small">apple</div></div><div class="ptag"><div class="e">🍌</div><div class="p">3</div><div class="n">francs</div><div class="small">banana</div></div><div class="ptag"><div class="e">🍞</div><div class="p">4</div><div class="n">francs</div><div class="small">bread</div></div><div class="ptag"><div class="e">🥛</div><div class="p">5</div><div class="n">francs</div><div class="small">milk</div></div><div class="ptag"><div class="e">🧀</div><div class="p">6</div><div class="n">francs</div><div class="small">cheese</div></div><div class="ptag"><div class="e">🍫</div><div class="p">7</div><div class="n">francs</div><div class="small">chocolate</div></div><div class="ptag"><div class="e">🥚</div><div class="p">8</div><div class="n">francs</div><div class="small">eggs</div></div><div class="ptag"><div class="e">💧</div><div class="p">1</div><div class="n">francs</div><div class="small">water</div></div><div class="ptag"><div class="e">🍅</div><div class="p">3</div><div class="n">francs</div><div class="small">tomato</div></div><div class="ptag"><div class="e">🍦</div><div class="p">9</div><div class="n">francs</div><div class="small">ice cream</div></div><div class="ptag"><div class="p">?</div><div class="n">francs</div><div class="small">write your own</div></div><div class="ptag"><div class="p">?</div><div class="n">francs</div><div class="small">write your own</div></div></div>
+<p class="small" style="margin-top:4mm">Keep every price between one and ten so the sums stay
+inside the numbers she knows. Two blank tags are there for the day she wants to invent a shop of
+her own — let her.</p></div>
+<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Shopping lists</span></div>
+<div class="cutnote">Session 2 prop · shopping lists · one per round</div>
+<div class="slips"><div class="slip" style="height:80mm"><h4>Shopping list 1</h4><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🍞</span><span style="font-size:15pt;font-weight:700">bread</span><span style="margin-left:auto;font-size:16pt">□</span></div><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🥛</span><span style="font-size:15pt;font-weight:700">milk</span><span style="margin-left:auto;font-size:16pt">□</span></div><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🍎</span><span style="font-size:15pt;font-weight:700">apple</span><span style="margin-left:auto;font-size:16pt">□</span></div><div class="foot">Say: "Can I have ..., please?"</div></div><div class="slip" style="height:80mm"><h4>Shopping list 2</h4><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🧀</span><span style="font-size:15pt;font-weight:700">cheese</span><span style="margin-left:auto;font-size:16pt">□</span></div><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">💧</span><span style="font-size:15pt;font-weight:700">water</span><span style="margin-left:auto;font-size:16pt">□</span></div><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🍌</span><span style="font-size:15pt;font-weight:700">banana</span><span style="margin-left:auto;font-size:16pt">□</span></div><div class="foot">Say: "Can I have ..., please?"</div></div><div class="slip" style="height:80mm"><h4>Shopping list 3</h4><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🥚</span><span style="font-size:15pt;font-weight:700">eggs</span><span style="margin-left:auto;font-size:16pt">□</span></div><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🍅</span><span style="font-size:15pt;font-weight:700">tomato</span><span style="margin-left:auto;font-size:16pt">□</span></div><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🍫</span><span style="font-size:15pt;font-weight:700">chocolate</span><span style="margin-left:auto;font-size:16pt">□</span></div><div class="foot">Say: "Can I have ..., please?"</div></div><div class="slip" style="height:80mm"><h4>Shopping list 4</h4><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🍦</span><span style="font-size:15pt;font-weight:700">ice cream</span><span style="margin-left:auto;font-size:16pt">□</span></div><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🍞</span><span style="font-size:15pt;font-weight:700">bread</span><span style="margin-left:auto;font-size:16pt">□</span></div><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">💧</span><span style="font-size:15pt;font-weight:700">water</span><span style="margin-left:auto;font-size:16pt">□</span></div><div class="foot">Say: "Can I have ..., please?"</div></div></div>
+<div class="box" style="margin-top:6mm">
+  <h4>How to run it</h4>
+  <p>Hand her a list face down. She turns it over, walks to your shop and must buy all three
+  items in English, ticking each box. She pays at the end and you give change. Time her with a
+  phone stopwatch from round two onwards — the clock turns a language drill into a sport.</p>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Shop sign</span></div>
+<div class="cutnote">Session 2 prop · the shop sign · cut out, fold in the middle, stand it up</div>
+<div style="border:3px solid var(--ink);height:110mm;display:flex;align-items:center;
+  justify-content:center;flex-direction:column">
+  <div style="font-size:56pt;font-weight:800;letter-spacing:.05em">OPEN</div>
+  <div style="font-size:13pt;letter-spacing:.3em;text-transform:uppercase;color:var(--soft)">
+  Welcome to my shop</div>
+</div>
+<div style="border:3px solid var(--ink);border-top:none;height:110mm;display:flex;
+  align-items:center;justify-content:center;flex-direction:column;transform:rotate(180deg)">
+  <div style="font-size:56pt;font-weight:800;letter-spacing:.05em">CLOSED</div>
+  <div style="font-size:13pt;letter-spacing:.3em;text-transform:uppercase;color:var(--soft)">
+  See you tomorrow</div>
+</div>
+<p class="small" style="margin-top:5mm">She turns the sign at the start and end of every scene and
+says the line printed under it. Small ceremonies like this are what make her treat the game as real.</p></div>
+<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Teacher sheet</span></div>
+<div style="display:flex;align-items:flex-end;justify-content:space-between">
+  <div><div class="small" style="letter-spacing:.2em">Session 3</div>
+  <h1>The Little Café</h1></div>
+  <div style="font-size:46pt">🍕</div>
+</div>
+<p class="lede">Ordering food, serving it, and paying the bill</p>
+<div class="rule"></div>
+<p>By the end she can be a waiter and a guest: seat someone, hand a menu, take an order of two things, serve them, and ask for the bill. New grammar smuggled in: "I would like" and "Would you like...?"</p>
+<h3>Twelve words</h3>
+<div class="grid2"><table><tr><td style="width:12mm;font-size:15pt">🍕</td><td><b style="font-size:11.5pt">pizza</b><br><span class="gr">πίτσα</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍝</td><td><b style="font-size:11.5pt">pasta</b><br><span class="gr">μακαρόνια</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍲</td><td><b style="font-size:11.5pt">soup</b><br><span class="gr">σούπα</span></td></tr><tr><td style="width:12mm;font-size:15pt">🥗</td><td><b style="font-size:11.5pt">salad</b><br><span class="gr">σαλάτα</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍗</td><td><b style="font-size:11.5pt">chicken</b><br><span class="gr">κοτόπουλο</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍚</td><td><b style="font-size:11.5pt">rice</b><br><span class="gr">ρύζι</span></td></tr></table><table><tr><td style="width:12mm;font-size:15pt">🍰</td><td><b style="font-size:11.5pt">cake</b><br><span class="gr">κέικ</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍨</td><td><b style="font-size:11.5pt">ice cream</b><br><span class="gr">παγωτό</span></td></tr><tr><td style="width:12mm;font-size:15pt">🧃</td><td><b style="font-size:11.5pt">juice</b><br><span class="gr">χυμός</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍵</td><td><b style="font-size:11.5pt">tea</b><br><span class="gr">τσάι</span></td></tr><tr><td style="width:12mm;font-size:15pt">🔥</td><td><b style="font-size:11.5pt">hot</b><br><span class="gr">ζεστό</span></td></tr><tr><td style="width:12mm;font-size:15pt">🧊</td><td><b style="font-size:11.5pt">cold</b><br><span class="gr">κρύο</span></td></tr></table></div>
+<h3>Three things worth knowing before you start</h3>
+<ul class="rules" style="font-size:10pt"><li>"I would like" is one lump of sound to her — teach it as a single word, iwouldlike. Do not explain "would".</li><li>Real food beats plastic food. Even one real slice of bread on a plate changes the game.</li><li>This is the session to invite Mum in as a second guest for the last ten minutes. An audience raises the effort enormously.</li></ul>
+<p class="small" style="border-top:1px solid var(--line);padding-top:2mm;margin-top:6mm">
+Greek is printed on your sheets only. Her cards and her script are English-only on purpose — the
+moment a Greek word sits next to an English one, she reads the Greek and the English becomes decoration.</p></div>
+<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Sentences</span></div>
+<div class="small" style="letter-spacing:.2em">Session 3 · The Little Café</div>
+<h2>The ten sentences she will actually use</h2>
+<p class="small">Say each one, she repeats, twice round. Then hide the sheet — from that point on
+they only ever appear inside a scene. A sentence drilled at a table is forgotten by Thursday; the
+same sentence said to a shopkeeper is not.</p>
+<table style="margin-top:4mm"><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Good afternoon! A table for two?</b></td><td class="gr">Καλησπέρα! Τραπέζι για δύο;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>This way, please.</b></td><td class="gr">Από εδώ, παρακαλώ.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Here is the menu.</b></td><td class="gr">Ορίστε ο κατάλογος.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>What would you like?</b></td><td class="gr">Τι θα θέλατε;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>I would like a pizza, please.</b></td><td class="gr">Θα ήθελα μια πίτσα, παρακαλώ.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Would you like a drink?</b></td><td class="gr">Θα θέλατε κάτι να πιείτε;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Yes, please. / No, thank you.</b></td><td class="gr">Ναι, παρακαλώ. / Όχι, ευχαριστώ.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Enjoy your meal!</b></td><td class="gr">Καλή όρεξη!</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>It is delicious!</b></td><td class="gr">Είναι νόστιμο!</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>The bill, please.</b></td><td class="gr">Τον λογαριασμό, παρακαλώ.</td></tr></table>
+<div class="box" style="margin-top:7mm">
+  <h4>If she freezes</h4>
+  <p>Say the first two words of her line and stop. Nine times out of ten she finishes it. If she
+  still cannot, say the whole line cheerfully as your own and move on — never leave her standing
+  in silence, and never let the scene stop because of a missing word.</p>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Word cards</span></div>
+<div class="cutnote">Cut along the dashed lines · Session 3 word cards ·
+four ways to use them are on the "session shape" sheet</div>
+<div class="cards"><div class="card"><div class="pic">🍕</div><div class="w">pizza</div></div><div class="card"><div class="pic">🍝</div><div class="w">pasta</div></div><div class="card"><div class="pic">🍲</div><div class="w">soup</div></div><div class="card"><div class="pic">🥗</div><div class="w">salad</div></div><div class="card"><div class="pic">🍗</div><div class="w">chicken</div></div><div class="card"><div class="pic">🍚</div><div class="w">rice</div></div><div class="card"><div class="pic">🍰</div><div class="w">cake</div></div><div class="card"><div class="pic">🍨</div><div class="w">ice cream</div></div><div class="card"><div class="pic">🧃</div><div class="w">juice</div></div><div class="card"><div class="pic">🍵</div><div class="w">tea</div></div><div class="card"><div class="pic">🔥</div><div class="w">hot</div></div><div class="card"><div class="pic">🧊</div><div class="w">cold</div></div></div></div>
+<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Script</span></div>
+<div class="small" style="letter-spacing:.2em">Session 3 · The Play</div>
+<h1>The Little Café</h1>
+<div class="rolebar">
+  <div class="role"><b style="color:var(--accent)">W — the waiter</b></div>
+  <div class="role"><b style="color:var(--accent2)">G — the guest</b></div>
+</div>
+<div class="scriptbox"><div class="line"><div class="who">W</div><div class="txt">Good afternoon! Welcome to our café!</div></div><div class="line"><div class="who b">G</div><div class="txt">Good afternoon. A table for one, please.</div></div><div class="line"><div class="who">W</div><div class="txt">This way, please. Here is the menu.</div></div><div class="line"><div class="who b">G</div><div class="txt">Thank you.</div></div><div class="line"><div class="who">W</div><div class="txt">What would you like?</div></div><div class="line"><div class="who b">G</div><div class="txt">I would like a pizza, please.</div></div><div class="line"><div class="who">W</div><div class="txt">One pizza. Would you like a drink?</div></div><div class="line"><div class="who b">G</div><div class="txt">Yes, please. An apple juice.</div></div><div class="line"><div class="who">W</div><div class="txt">Very good. One moment, please.</div></div><div class="line"><div class="who">W</div><div class="txt">Here you are. One pizza and one apple juice. Enjoy your meal!</div></div><div class="line"><div class="who b">G</div><div class="txt">Thank you. Mmm! It is delicious!</div></div><div class="line"><div class="who">W</div><div class="txt">Would you like a cake?</div></div><div class="line"><div class="who b">G</div><div class="txt">No, thank you. The bill, please.</div></div><div class="line"><div class="who">W</div><div class="txt">Of course. That is twelve francs.</div></div><div class="line"><div class="who b">G</div><div class="txt">Here you are. Thank you! Goodbye!</div></div><div class="line"><div class="who">W</div><div class="txt">Thank you! Goodbye! See you soon!</div></div></div>
+<div class="grid2" style="margin-top:6mm">
+  <div class="box"><h4>The set</h4><p>Lay one place at the table properly — cloth, glass, folded napkin. Print the menu and stand it up. A tea towel over the waiter's arm is worth more than any flashcard.</p></div>
+  <div class="box"><h4>Props</h4><p>The printed menu · order pad · bill slips · a tea towel · a real glass of juice</p>
+  <p style="margin-top:2mm"><b>Run it three times.</b> You alone with a toy · she takes the first
+  role · swap. Never fewer than three.</p></div>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Games</span></div>
+<div class="gamespage">
+<div class="small" style="letter-spacing:.2em">Session 3</div>
+<h1>Games &amp; the silly versions</h1>
+<h3>Three games</h3>
+<div class="box" style="margin-bottom:5mm"><div class="tag">10 min</div><h4>Waiter's Memory</h4><p>You order three things with the pad taken away. She has to repeat the order back correctly before she is allowed to "bring" it. Start with two things, go to four when she is winning.</p></div><div class="box" style="margin-bottom:5mm"><div class="tag">5 min</div><h4>Hot or Cold</h4><p>Hold up a food card. She shouts "The soup is hot!" and blows on her hands, or "The ice cream is cold!" and shivers. The mime is what fixes the adjective.</p></div><div class="box" style="margin-bottom:5mm"><div class="tag">10 min</div><h4>Menu Bingo</h4><p>Both take a bingo card. Take turns being the waiter calling out dishes. First to cross a full row shouts "Bingo! Enjoy your meal!"</p></div>
+<h3>Four silly versions of the same scene</h3>
+<p class="small">Play these after the straight version has worked twice. The words stay identical;
+only the world changes. This is where the repetition she needs stops feeling like repetition.</p>
+<div class="grid2"><div class="box"><h4>The Yuck Café</h4><p>Use the second menu: soup with a shoe, spaghetti with socks, cold tea with sand. The guest tastes it and says "It is terrible!" This teaches the opposite of delicious.</p></div><div class="box"><h4>The waiter who drops everything</h4><p>Every dish falls. "Oh no! Sorry! One moment, please!" and the order starts again. Free repetition, and she will cry with laughter.</p></div><div class="box"><h4>The very hungry guest</h4><p>She orders ten things in a row. The waiter must repeat the whole list back. Brutal memory work that does not feel like work.</p></div><div class="box"><h4>The café for animals</h4><p>Guest is a dog and can only order things a dog would want. The waiter must stay polite.</p></div></div>
+<p class="small" style="margin-top:5mm;border-top:1px solid var(--line);padding-top:2mm">
+<b>Home mission after this session:</b> Saturday breakfast, she is the waiter. She takes the whole family's order on the printed pad, in English, and brings the bill at the end. Pay her in play francs.</p>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Menu</span></div>
+<div class="menu">
+  <div style="text-align:center;font-size:30pt">☕</div>
+  <h2>Café Lila</h2>
+  <div style="text-align:center;letter-spacing:.25em;text-transform:uppercase;font-size:9pt;
+    color:var(--soft)">Lausanne · all prices in francs</div>
+  <div class="sec"><h3>Food</h3><div class="mrow"><span style="font-size:17pt">🍕</span><span>Pizza</span><span class="dots"></span><span class="pr">8</span></div><div class="mrow"><span style="font-size:17pt">🍝</span><span>Pasta</span><span class="dots"></span><span class="pr">7</span></div><div class="mrow"><span style="font-size:17pt">🍲</span><span>Soup</span><span class="dots"></span><span class="pr">5</span></div><div class="mrow"><span style="font-size:17pt">🥗</span><span>Salad</span><span class="dots"></span><span class="pr">4</span></div><div class="mrow"><span style="font-size:17pt">🍗</span><span>Chicken and rice</span><span class="dots"></span><span class="pr">9</span></div></div><div class="sec"><h3>Drinks</h3><div class="mrow"><span style="font-size:17pt">💧</span><span>Water</span><span class="dots"></span><span class="pr">1</span></div><div class="mrow"><span style="font-size:17pt">🧃</span><span>Apple juice</span><span class="dots"></span><span class="pr">4</span></div><div class="mrow"><span style="font-size:17pt">🥛</span><span>Milk</span><span class="dots"></span><span class="pr">3</span></div><div class="mrow"><span style="font-size:17pt">🍵</span><span>Tea</span><span class="dots"></span><span class="pr">2</span></div></div><div class="sec"><h3>Sweet things</h3><div class="mrow"><span style="font-size:17pt">🍰</span><span>Cake</span><span class="dots"></span><span class="pr">5</span></div><div class="mrow"><span style="font-size:17pt">🍨</span><span>Ice cream</span><span class="dots"></span><span class="pr">4</span></div><div class="mrow"><span style="font-size:17pt">🍫</span><span>Chocolate cake</span><span class="dots"></span><span class="pr">6</span></div></div>
+  <p class="small" style="text-align:center;margin-top:10mm">Ask the waiter: "The bill, please."</p>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Yuck menu</span></div>
+<div class="menu">
+  <div style="text-align:center;font-size:30pt">☕</div>
+  <h2>The Yuck Café</h2>
+  <div style="text-align:center;letter-spacing:.25em;text-transform:uppercase;font-size:9pt;
+    color:var(--soft)">Lausanne · all prices in francs</div>
+  <div class="sec"><h3>Food</h3><div class="mrow"><span style="font-size:17pt">👞</span><span>Soup with a shoe</span><span class="dots"></span><span class="pr">100</span></div><div class="mrow"><span style="font-size:17pt">🧦</span><span>Spaghetti with socks</span><span class="dots"></span><span class="pr">99</span></div><div class="mrow"><span style="font-size:17pt">🏖</span><span>Cold pizza with sand</span><span class="dots"></span><span class="pr">88</span></div><div class="mrow"><span style="font-size:17pt">🕷</span><span>Salad with a spider</span><span class="dots"></span><span class="pr">77</span></div></div><div class="sec"><h3>Drinks</h3><div class="mrow"><span style="font-size:17pt">🧼</span><span>Hot milk with soap</span><span class="dots"></span><span class="pr">66</span></div><div class="mrow"><span style="font-size:17pt">🪱</span><span>Tea with mud</span><span class="dots"></span><span class="pr">55</span></div></div><div class="sec"><h3>Sweet things</h3><div class="mrow"><span style="font-size:17pt">🧅</span><span>Cake with onions</span><span class="dots"></span><span class="pr">44</span></div><div class="mrow"><span style="font-size:17pt">🍅</span><span>Ice cream with ketchup</span><span class="dots"></span><span class="pr">33</span></div></div>
+  <p class="small" style="text-align:center;margin-top:10mm">Everything here is terrible. Order it anyway.</p>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Order pad</span></div>
+<div class="cutnote">Session 3 prop · order slips and bills · cut and clip to a small board</div>
+<div class="slips"><div class="slip"><h4>Order</h4>
+        <div class="small">Table no. ______ &nbsp; Waiter ____________</div>
+        <div style="margin-top:3mm"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+        <div class="foot">Say: "What would you like?"</div></div><div class="slip"><h4>Order</h4>
+        <div class="small">Table no. ______ &nbsp; Waiter ____________</div>
+        <div style="margin-top:3mm"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+        <div class="foot">Say: "What would you like?"</div></div><div class="slip"><h4>Order</h4>
+        <div class="small">Table no. ______ &nbsp; Waiter ____________</div>
+        <div style="margin-top:3mm"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+        <div class="foot">Say: "What would you like?"</div></div><div class="slip"><h4>Order</h4>
+        <div class="small">Table no. ______ &nbsp; Waiter ____________</div>
+        <div style="margin-top:3mm"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+        <div class="foot">Say: "What would you like?"</div></div><div class="slip"><h4>The bill</h4>
+        <div class="ln"></div><div class="ln"></div><div class="ln"></div>
+        <div style="display:flex;justify-content:space-between;border-top:2px solid var(--ink);
+          margin-top:3mm;padding-top:2mm;font-size:13pt;font-weight:800">
+          <span>Total</span><span>________ francs</span></div>
+        <div class="foot">Say: "That is ______ francs, please."</div></div><div class="slip"><h4>The bill</h4>
+        <div class="ln"></div><div class="ln"></div><div class="ln"></div>
+        <div style="display:flex;justify-content:space-between;border-top:2px solid var(--ink);
+          margin-top:3mm;padding-top:2mm;font-size:13pt;font-weight:800">
+          <span>Total</span><span>________ francs</span></div>
+        <div class="foot">Say: "That is ______ francs, please."</div></div></div></div>
+<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Bingo</span></div>
+<div class="cutnote">Session 3 prop · menu bingo · one card each</div>
+<div class="bingo"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3mm"><b style="font-size:13pt">Menu Bingo — card 1</b><span class="small">Cross a row and shout "Bingo! Enjoy your meal!"</span></div><div class="g"><div class="c"><div class="e">🍕</div><div class="n">Pizza</div></div><div class="c"><div class="e">🍲</div><div class="n">Soup</div></div><div class="c"><div class="e">🍰</div><div class="n">Cake</div></div><div class="c"><div class="e">💧</div><div class="n">Water</div></div><div class="c"><div class="e">🍗</div><div class="n">Chicken</div></div><div class="c"><div class="e">🍵</div><div class="n">Tea</div></div></div></div><div class="bingo"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3mm"><b style="font-size:13pt">Menu Bingo — card 2</b><span class="small">Cross a row and shout "Bingo! Enjoy your meal!"</span></div><div class="g"><div class="c"><div class="e">🍝</div><div class="n">Pasta</div></div><div class="c"><div class="e">🥗</div><div class="n">Salad</div></div><div class="c"><div class="e">🍨</div><div class="n">Ice cream</div></div><div class="c"><div class="e">🧃</div><div class="n">Juice</div></div><div class="c"><div class="e">🍚</div><div class="n">Rice</div></div><div class="c"><div class="e">🥛</div><div class="n">Milk</div></div></div></div>
+<p class="small">Take turns being the waiter who calls the dishes. The caller has to say a full
+sentence — "Would you like a pizza?" — not just the word. The caller is learning more than the
+player, so make sure she calls at least half the rounds.</p></div>
+<div class="sheet"><div class="runhead"><span>Session 4 · The Animal Doctor</span><span>Teacher sheet</span></div>
+<div style="display:flex;align-items:flex-end;justify-content:space-between">
+  <div><div class="small" style="letter-spacing:.2em">Session 4</div>
+  <h1>The Animal Doctor</h1></div>
+  <div style="font-size:46pt">🧠</div>
+</div>
+<p class="lede">Body parts, what hurts — and the Grand Show</p>
+<div class="rule"></div>
+<p>By the end she can name her body parts, say what hurts, examine a patient and prescribe a cure. Then the last 25 minutes are the Grand Show: all four scenes performed for Mum with printed tickets and a real diploma at the end.</p>
+<h3>Twelve words</h3>
+<div class="grid2"><table><tr><td style="width:12mm;font-size:15pt">🧠</td><td><b style="font-size:11.5pt">head</b><br><span class="gr">κεφάλι</span></td></tr><tr><td style="width:12mm;font-size:15pt">👀</td><td><b style="font-size:11.5pt">eyes</b><br><span class="gr">μάτια</span></td></tr><tr><td style="width:12mm;font-size:15pt">👂</td><td><b style="font-size:11.5pt">ear</b><br><span class="gr">αυτί</span></td></tr><tr><td style="width:12mm;font-size:15pt">👃</td><td><b style="font-size:11.5pt">nose</b><br><span class="gr">μύτη</span></td></tr><tr><td style="width:12mm;font-size:15pt">👄</td><td><b style="font-size:11.5pt">mouth</b><br><span class="gr">στόμα</span></td></tr><tr><td style="width:12mm;font-size:15pt">🦷</td><td><b style="font-size:11.5pt">tooth</b><br><span class="gr">δόντι</span></td></tr></table><table><tr><td style="width:12mm;font-size:15pt">💪</td><td><b style="font-size:11.5pt">arm</b><br><span class="gr">μπράτσο</span></td></tr><tr><td style="width:12mm;font-size:15pt">✋</td><td><b style="font-size:11.5pt">hand</b><br><span class="gr">χέρι</span></td></tr><tr><td style="width:12mm;font-size:15pt">🦵</td><td><b style="font-size:11.5pt">leg</b><br><span class="gr">πόδι</span></td></tr><tr><td style="width:12mm;font-size:15pt">🦶</td><td><b style="font-size:11.5pt">foot</b><br><span class="gr">πατούσα</span></td></tr><tr><td style="width:12mm;font-size:15pt">🙃</td><td><b style="font-size:11.5pt">tummy</b><br><span class="gr">κοιλιά</span></td></tr><tr><td style="width:12mm;font-size:15pt">💊</td><td><b style="font-size:11.5pt">medicine</b><br><span class="gr">φάρμακο</span></td></tr></table></div>
+<h3>Three things worth knowing before you start</h3>
+<ul class="rules" style="font-size:10pt"><li>Reserve the last 25 minutes for the Grand Show — do not let the doctor scenes eat it.</li><li>Show running order: the doorbell scene, the shop, the café, the clinic. Two minutes each. She plays her favourite role in each, you take the other.</li><li>Hand her the diploma at the end with a straight face and a handshake. Ceremony is what makes a seven-year-old want session five.</li></ul>
+<p class="small" style="border-top:1px solid var(--line);padding-top:2mm;margin-top:6mm">
+Greek is printed on your sheets only. Her cards and her script are English-only on purpose — the
+moment a Greek word sits next to an English one, she reads the Greek and the English becomes decoration.</p></div>
+<div class="sheet"><div class="runhead"><span>Session 4 · The Animal Doctor</span><span>Sentences</span></div>
+<div class="small" style="letter-spacing:.2em">Session 4 · The Animal Doctor</div>
+<h2>The ten sentences she will actually use</h2>
+<p class="small">Say each one, she repeats, twice round. Then hide the sheet — from that point on
+they only ever appear inside a scene. A sentence drilled at a table is forgotten by Thursday; the
+same sentence said to a shopkeeper is not.</p>
+<table style="margin-top:4mm"><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Good morning, doctor!</b></td><td class="gr">Καλημέρα, γιατρέ!</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Please sit down.</b></td><td class="gr">Καθίστε, παρακαλώ.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>What's wrong?</b></td><td class="gr">Τι έχεις;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>My tummy hurts.</b></td><td class="gr">Με πονάει η κοιλιά μου.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Where does it hurt?</b></td><td class="gr">Πού πονάει;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Here.</b></td><td class="gr">Εδώ.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Open your mouth. Say "aaah".</b></td><td class="gr">Άνοιξε το στόμα σου.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Don't worry!</b></td><td class="gr">Μην ανησυχείς!</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Take this medicine, two times a day.</b></td><td class="gr">Πάρε αυτό το φάρμακο, δύο φορές την ημέρα.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>You are better now!</b></td><td class="gr">Είσαι καλά τώρα!</td></tr></table>
+<div class="box" style="margin-top:7mm">
+  <h4>If she freezes</h4>
+  <p>Say the first two words of her line and stop. Nine times out of ten she finishes it. If she
+  still cannot, say the whole line cheerfully as your own and move on — never leave her standing
+  in silence, and never let the scene stop because of a missing word.</p>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 4 · The Animal Doctor</span><span>Word cards</span></div>
+<div class="cutnote">Cut along the dashed lines · Session 4 word cards ·
+four ways to use them are on the "session shape" sheet</div>
+<div class="cards"><div class="card"><div class="pic">🧠</div><div class="w">head</div></div><div class="card"><div class="pic">👀</div><div class="w">eyes</div></div><div class="card"><div class="pic">👂</div><div class="w">ear</div></div><div class="card"><div class="pic">👃</div><div class="w">nose</div></div><div class="card"><div class="pic">👄</div><div class="w">mouth</div></div><div class="card"><div class="pic">🦷</div><div class="w">tooth</div></div><div class="card"><div class="pic">💪</div><div class="w">arm</div></div><div class="card"><div class="pic">✋</div><div class="w">hand</div></div><div class="card"><div class="pic">🦵</div><div class="w">leg</div></div><div class="card"><div class="pic">🦶</div><div class="w">foot</div></div><div class="card"><div class="pic">🙃</div><div class="w">tummy</div></div><div class="card"><div class="pic">💊</div><div class="w">medicine</div></div></div></div>
+<div class="sheet"><div class="runhead"><span>Session 4 · The Animal Doctor</span><span>Script</span></div>
+<div class="small" style="letter-spacing:.2em">Session 4 · The Play</div>
+<h1>The Animal Doctor</h1>
+<div class="rolebar">
+  <div class="role"><b style="color:var(--accent)">D — the doctor</b></div>
+  <div class="role"><b style="color:var(--accent2)">P — the owner of the patient</b></div>
+</div>
+<div class="scriptbox"><div class="line"><div class="who b">P</div><div class="txt">Knock, knock. Good morning, doctor!</div></div><div class="line"><div class="who">D</div><div class="txt">Good morning! Please sit down. What's wrong?</div></div><div class="line"><div class="who b">P</div><div class="txt">My dog is sick.</div></div><div class="line"><div class="who">D</div><div class="txt">Oh no! Poor dog. What's wrong with him?</div></div><div class="line"><div class="who b">P</div><div class="txt">His leg hurts.</div></div><div class="line"><div class="who">D</div><div class="txt">Where does it hurt?</div></div><div class="line"><div class="who b">P</div><div class="txt">Here.</div></div><div class="line"><div class="who">D</div><div class="txt">Let me see. Open your mouth, please. Say "aaah".</div></div><div class="line"><div class="who b">P</div><div class="txt">Aaaaah!</div></div><div class="line"><div class="who">D</div><div class="txt">Hmm. Is he hungry?</div></div><div class="line"><div class="who b">P</div><div class="txt">Yes! He is very hungry!</div></div><div class="line"><div class="who">D</div><div class="txt">Don't worry. Take this medicine, two times a day.</div></div><div class="line"><div class="who">D</div><div class="txt">And a big dinner tonight!</div></div><div class="line"><div class="who b">P</div><div class="txt">Thank you, doctor! How much is it?</div></div><div class="line"><div class="who">D</div><div class="txt">Ten francs, please.</div></div><div class="line"><div class="who b">P</div><div class="txt">Here you are. Goodbye!</div></div><div class="line"><div class="who">D</div><div class="txt">Goodbye! See you next week!</div></div></div>
+<div class="grid2" style="margin-top:6mm">
+  <div class="box"><h4>The set</h4><p>A towel on the table is the examination bed. The patient is always a stuffed animal — she speaks for it, which is far easier than speaking for herself. A scarf is the doctor's coat.</p></div>
+  <div class="box"><h4>Props</h4><p>Stuffed animals · a towel · prescription pad · appointment cards · waiting numbers</p>
+  <p style="margin-top:2mm"><b>Run it three times.</b> You alone with a toy · she takes the first
+  role · swap. Never fewer than three.</p></div>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 4 · The Animal Doctor</span><span>Games</span></div>
+<div class="gamespage">
+<div class="small" style="letter-spacing:.2em">Session 4</div>
+<h1>Games &amp; the silly versions</h1>
+<h3>Three games</h3>
+<div class="box" style="margin-bottom:5mm"><div class="tag">10 min</div><h4>Simon Says</h4><p>"Simon says touch your nose!" — she does it. "Touch your ear!" without Simon says — she must not move. Fast, physical, and it teaches listening rather than speaking, which is the half that gets neglected.</p></div><div class="box" style="margin-bottom:5mm"><div class="tag">10 min</div><h4>The Toy Hospital</h4><p>Four stuffed animals, each with a printed illness card face down. She draws a card, reads what hurts, examines the patient and fills in a prescription slip.</p></div><div class="box" style="margin-bottom:5mm"><div class="tag">5 min</div><h4>Number Three, Please!</h4><p>Give the toys the printed waiting-room numbers. The doctor calls "Number three, please!" and only that patient may come. Sneaks the numbers back in one last time.</p></div>
+<h3>Four silly versions of the same scene</h3>
+<p class="small">Play these after the straight version has worked twice. The words stay identical;
+only the world changes. This is where the repetition she needs stops feeling like repetition.</p>
+<div class="grid2"><div class="box"><h4>The dragon patient</h4><p>His nose is too hot. The cure is ten ice creams. "Take ten ice creams, two times a day!"</p></div><div class="box"><h4>The doctor who prescribes chocolate</h4><p>Whatever is wrong, the medicine is chocolate. She will try to make this the real rule of the house.</p></div><div class="box"><h4>The patient with one hundred problems</h4><p>"My head hurts. And my nose hurts. And my foot hurts..." Run through every body word.</p></div><div class="box"><h4>The animal that answers back</h4><p>The stuffed animal speaks for itself and refuses to open its mouth. The doctor must beg politely.</p></div></div>
+<p class="small" style="margin-top:5mm;border-top:1px solid var(--line);padding-top:2mm">
+<b>Home mission after this session:</b> Every evening this week, one toy gets sick and she is the doctor. Two minutes, in English, before the bedtime story. Keep the prescription pad by her bed.</p>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 4 · The Animal Doctor</span><span>Patient cards</span></div>
+<div class="cutnote">Session 4 prop · patient cards · deal them face down</div>
+<div class="cards" style="grid-template-columns:repeat(2,1fr)"><div class="card" style="height:70mm"><div class="pic" style="font-size:38pt">🐕</div><div class="w" style="font-size:14pt">The dog</div><div style="font-size:11pt;margin-top:2mm">His leg hurts.</div></div><div class="card" style="height:70mm"><div class="pic" style="font-size:38pt">🐈</div><div class="w" style="font-size:14pt">The cat</div><div style="font-size:11pt;margin-top:2mm">Her tooth hurts.</div></div><div class="card" style="height:70mm"><div class="pic" style="font-size:38pt">🐻</div><div class="w" style="font-size:14pt">The bear</div><div style="font-size:11pt;margin-top:2mm">His tummy hurts. He ate ten cakes!</div></div><div class="card" style="height:70mm"><div class="pic" style="font-size:38pt">🐰</div><div class="w" style="font-size:14pt">The rabbit</div><div style="font-size:11pt;margin-top:2mm">Her ear hurts.</div></div><div class="card" style="height:70mm"><div class="pic" style="font-size:38pt">🐘</div><div class="w" style="font-size:14pt">The elephant</div><div style="font-size:11pt;margin-top:2mm">His nose is too long today.</div></div><div class="card" style="height:70mm"><div class="pic" style="font-size:38pt">🐉</div><div class="w" style="font-size:14pt">The dragon</div><div style="font-size:11pt;margin-top:2mm">His nose is very, very hot.</div></div></div>
+<p class="small" style="margin-top:5mm">She draws a card, finds the matching stuffed animal,
+and the scene starts. If she cannot read the sentence yet, whisper it once and let her say it
+to the doctor herself — never say it for her in front of the patient.</p></div>
+<div class="sheet"><div class="runhead"><span>Session 4 · The Animal Doctor</span><span>Prescriptions</span></div>
+<div class="cutnote">Session 4 prop · prescriptions and appointment cards</div>
+<div class="slips"><div class="slip"><h4>Doctor's note</h4>
+        <div class="small">Patient ____________________ &nbsp; Date __________</div>
+        <div style="margin-top:3mm;font-size:10pt">What is wrong?</div>
+        <div class="ln"></div>
+        <div style="margin-top:2mm;font-size:10pt">Take this medicine:</div>
+        <div class="ln"></div>
+        <div style="margin-top:2mm;font-size:10pt">How many times a day?</div>
+        <div class="ln"></div>
+        <div class="foot">Say: "Don't worry! You are better now!"</div></div><div class="slip"><h4>Doctor's note</h4>
+        <div class="small">Patient ____________________ &nbsp; Date __________</div>
+        <div style="margin-top:3mm;font-size:10pt">What is wrong?</div>
+        <div class="ln"></div>
+        <div style="margin-top:2mm;font-size:10pt">Take this medicine:</div>
+        <div class="ln"></div>
+        <div style="margin-top:2mm;font-size:10pt">How many times a day?</div>
+        <div class="ln"></div>
+        <div class="foot">Say: "Don't worry! You are better now!"</div></div><div class="slip"><h4>Doctor's note</h4>
+        <div class="small">Patient ____________________ &nbsp; Date __________</div>
+        <div style="margin-top:3mm;font-size:10pt">What is wrong?</div>
+        <div class="ln"></div>
+        <div style="margin-top:2mm;font-size:10pt">Take this medicine:</div>
+        <div class="ln"></div>
+        <div style="margin-top:2mm;font-size:10pt">How many times a day?</div>
+        <div class="ln"></div>
+        <div class="foot">Say: "Don't worry! You are better now!"</div></div><div class="slip"><h4>Doctor's note</h4>
+        <div class="small">Patient ____________________ &nbsp; Date __________</div>
+        <div style="margin-top:3mm;font-size:10pt">What is wrong?</div>
+        <div class="ln"></div>
+        <div style="margin-top:2mm;font-size:10pt">Take this medicine:</div>
+        <div class="ln"></div>
+        <div style="margin-top:2mm;font-size:10pt">How many times a day?</div>
+        <div class="ln"></div>
+        <div class="foot">Say: "Don't worry! You are better now!"</div></div><div class="slip"><h4>Appointment card</h4>
+        <div style="font-size:12pt;margin-top:4mm">Patient ____________________</div>
+        <div style="font-size:12pt;margin-top:4mm">Day ____________________</div>
+        <div style="font-size:12pt;margin-top:4mm">Time ____________________</div>
+        <div class="foot">Say: "See you next week!"</div></div><div class="slip"><h4>Appointment card</h4>
+        <div style="font-size:12pt;margin-top:4mm">Patient ____________________</div>
+        <div style="font-size:12pt;margin-top:4mm">Day ____________________</div>
+        <div style="font-size:12pt;margin-top:4mm">Time ____________________</div>
+        <div class="foot">Say: "See you next week!"</div></div></div></div>
+<div class="sheet"><div class="runhead"><span>Session 4 · The Animal Doctor</span><span>Waiting room</span></div>
+<div class="cutnote">Session 4 prop · waiting-room numbers · one per patient</div>
+<div class="bignums"><div class="bignum">1</div><div class="bignum">2</div><div class="bignum">3</div><div class="bignum">4</div><div class="bignum">5</div><div class="bignum">6</div></div>
+<p class="small" style="margin-top:4mm">Give each toy a number and sit them in a row. The doctor
+calls "Number four, please!" and only that patient may come. Anyone who comes out of turn is sent
+back with "Sorry! Number two first!"</p></div>
+<div class="sheet"><div class="runhead"><span>Session 4 · The Grand Show</span><span>Programme</span></div>
+<div style="text-align:center">
+  <div class="small" style="letter-spacing:.3em">Lausanne</div>
+  <h1 style="font-size:38pt;margin-top:4mm">The Grand Show</h1>
+  <p class="lede">Four scenes in English, performed by Lila and Papa.<br>
+  Doors open at the end of session four. Admission: one ticket.</p>
+</div>
+<div class="rule"></div>
+<div style="display:flex;gap:6mm;padding:5mm 0;border-bottom:1px solid var(--faint)"><div style="font-size:26pt;font-weight:800;color:var(--accent);width:14mm">1</div><div><div style="font-size:16pt;font-weight:800">The New Neighbour</div><div class="small">A stranger knocks on the door. Who is she?</div></div></div><div style="display:flex;gap:6mm;padding:5mm 0;border-bottom:1px solid var(--faint)"><div style="font-size:26pt;font-weight:800;color:var(--accent);width:14mm">2</div><div><div style="font-size:16pt;font-weight:800">The Little Shop</div><div class="small">Two apples, some bread, and the correct change.</div></div></div><div style="display:flex;gap:6mm;padding:5mm 0;border-bottom:1px solid var(--faint)"><div style="font-size:26pt;font-weight:800;color:var(--accent);width:14mm">3</div><div><div style="font-size:16pt;font-weight:800">The Little Café</div><div class="small">One pizza, one apple juice, and the bill.</div></div></div><div style="display:flex;gap:6mm;padding:5mm 0;border-bottom:1px solid var(--faint)"><div style="font-size:26pt;font-weight:800;color:var(--accent);width:14mm">4</div><div><div style="font-size:16pt;font-weight:800">The Animal Doctor</div><div class="small">A dog with a bad leg is cured in under two minutes.</div></div></div>
+<div class="grid2" style="margin-top:8mm">
+  <div class="box"><h4>Running order</h4><p>Two minutes per scene, no more. She picks her
+  favourite role in each one and you take the other. Keep the scripts within reach but out of
+  sight — she will want them and will mostly not need them.</p></div>
+  <div class="box"><h4>The audience's job</h4><p>Mum claps loudly after every scene and asks one
+  question in English at the end: "What is your name?" Being asked by somebody other than you is
+  the real test of the four sessions.</p></div>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 4 · The Grand Show</span><span>Tickets</span></div>
+<div class="cutnote">Session 4 prop · show tickets · she hands them out before the performance</div>
+<div class="ticket">
+  <div class="l">
+    <div class="small" style="letter-spacing:.25em">The English Play Pack presents</div>
+    <div style="font-size:24pt;font-weight:800;margin:2mm 0">The Grand Show</div>
+    <div class="small">Four scenes in English · Lausanne</div>
+    <div style="margin-top:3mm;font-size:11pt">Guest: ____________________</div>
+  </div>
+  <div class="r">
+    <div class="small">Seat</div>
+    <div style="font-size:34pt;font-weight:800">1</div>
+    <div class="small">Admit one</div>
+  </div>
+</div><div class="ticket">
+  <div class="l">
+    <div class="small" style="letter-spacing:.25em">The English Play Pack presents</div>
+    <div style="font-size:24pt;font-weight:800;margin:2mm 0">The Grand Show</div>
+    <div class="small">Four scenes in English · Lausanne</div>
+    <div style="margin-top:3mm;font-size:11pt">Guest: ____________________</div>
+  </div>
+  <div class="r">
+    <div class="small">Seat</div>
+    <div style="font-size:34pt;font-weight:800">2</div>
+    <div class="small">Admit one</div>
+  </div>
+</div><div class="ticket">
+  <div class="l">
+    <div class="small" style="letter-spacing:.25em">The English Play Pack presents</div>
+    <div style="font-size:24pt;font-weight:800;margin:2mm 0">The Grand Show</div>
+    <div class="small">Four scenes in English · Lausanne</div>
+    <div style="margin-top:3mm;font-size:11pt">Guest: ____________________</div>
+  </div>
+  <div class="r">
+    <div class="small">Seat</div>
+    <div style="font-size:34pt;font-weight:800">3</div>
+    <div class="small">Admit one</div>
+  </div>
+</div><div class="ticket">
+  <div class="l">
+    <div class="small" style="letter-spacing:.25em">The English Play Pack presents</div>
+    <div style="font-size:24pt;font-weight:800;margin:2mm 0">The Grand Show</div>
+    <div class="small">Four scenes in English · Lausanne</div>
+    <div style="margin-top:3mm;font-size:11pt">Guest: ____________________</div>
+  </div>
+  <div class="r">
+    <div class="small">Seat</div>
+    <div style="font-size:34pt;font-weight:800">4</div>
+    <div class="small">Admit one</div>
+  </div>
+</div></div>
+<div class="sheet"><div class="runhead"><span>Session 4 · The Grand Show</span><span>Diploma</span></div>
+<div class="diploma">
+  <div style="font-size:40pt">🏆</div>
+  <div class="t">Diploma of English</div>
+  <div class="small" style="letter-spacing:.3em;text-transform:uppercase">Awarded to</div>
+  <div><span class="name">Lila</span></div>
+  <p style="font-size:12.5pt;max-width:120mm;margin:0 auto;line-height:1.6">
+  who in four sessions learned to say hello to a stranger, run a shop, serve a whole café
+  and cure a dog — entirely in English, and mostly in a funny voice.</p>
+  <div style="font-size:26pt;letter-spacing:6mm;margin-top:6mm">👋 🛒 ☕ 🐕</div>
+  <div class="sigrow">
+    <div>Papa · the teacher</div>
+    <div>Date</div>
+  </div>
+</div></div>
+<div class="sheet"><div class="runhead"><span>After the four sessions</span><span>Missions</span></div>
+<h1>The home missions</h1>
+<p class="lede">Two minutes a day, every day, with a prop in her hand. This page matters more than
+any single session — a language grows on daily contact, not on long Sundays. Tick a box each day.</p>
+<table style="margin-top:5mm">
+<tr><th>After</th><th>What she does</th><th>Mon–Sun</th></tr>
+<tr><td class="t" style="width:24mm">Session 1</td><td>Every morning this week, the first words of the day are English. She knocks on your bedroom door: "Good morning! How are you?" You answer, then ask her back.</td><td style="width:34mm;letter-spacing:2mm">□□□□□□□</td></tr><tr><td class="t" style="width:24mm">Session 2</td><td>She is the cashier at dinner this week. Nobody gets bread until they ask her in English and pay with a play note. She gives the change and says the price.</td><td style="width:34mm;letter-spacing:2mm">□□□□□□□</td></tr><tr><td class="t" style="width:24mm">Session 3</td><td>Saturday breakfast, she is the waiter. She takes the whole family's order on the printed pad, in English, and brings the bill at the end. Pay her in play francs.</td><td style="width:34mm;letter-spacing:2mm">□□□□□□□</td></tr><tr><td class="t" style="width:24mm">Session 4</td><td>Every evening this week, one toy gets sick and she is the doctor. Two minutes, in English, before the bedtime story. Keep the prescription pad by her bed.</td><td style="width:34mm;letter-spacing:2mm">□□□□□□□</td></tr>
+</table>
+<div class="box" style="margin-top:8mm">
+  <h4>The rule that makes missions work</h4>
+  <p>The mission is a job with real consequences inside the family, not homework. Nobody gets
+  bread at dinner until they have asked the cashier in English. If the family plays along, she
+  practises without being asked; if the family forgets, the mission dies in three days.</p>
+</div>
+<div class="box" style="margin-top:5mm">
+  <h4>Keep the box</h4>
+  <p>Everything cut out of this pack — cards, money, menu, prescriptions, the hat — lives in one
+  box that only comes out for English. Never leave the props lying about. Something that appears
+  only for the game keeps the value of the game.</p>
+</div></div>
+<div class="sheet"><div class="runhead"><span>After the four sessions</span><span>What next</span></div>
+<h1>What comes<br>after session four</h1>
+<p class="lede">Four sessions gets a beginner to about sixty words and eight sentence patterns she
+can actually use. That is a real result, and it is also fragile. The engine of this pack is not
+the vocabulary, it is the format — so keep the format and change the world.</p>
+<div class="rule"></div>
+<h3>Four more worlds, same ninety minutes</h3>
+<div class="grid2">
+  <div class="box"><h4>5 · The train station</h4><p>Tickets, "Where are you going?", "To Geneva,
+  please", platform numbers. Numbers get a second life and you can rehearse a real journey.</p></div>
+  <div class="box"><h4>6 · The birthday party</h4><p>"Happy birthday!", presents, "Can I have a
+  piece of cake?", "How old are you?" Recycles almost everything from sessions one to three.</p></div>
+  <div class="box"><h4>7 · The lost dog</h4><p>Descriptions: big, small, black, white, "Have you
+  seen my dog?" This is where adjectives and colours belong.</p></div>
+  <div class="box"><h4>8 · The hotel</h4><p>"A room for two nights, please", floors, keys,
+  breakfast at eight. Combines the shop, the café and the numbers in one scene.</p></div>
+</div>
+<h3>Three things not to do</h3>
+<ul class="rules" style="font-size:10.5pt">
+  <li><b>Do not start writing yet.</b>She is learning to read in Greek and in French at the same
+  time. A third spelling system now is one too many. Everything here is spoken; the words on her
+  cards are pictures with a label, not a spelling lesson.</li>
+  <li><b>Do not test her.</b>No "what is the English for...?" out of the blue. Ask inside a scene
+  or not at all — a question with the hat on is a game, the same question without it is an exam.</li>
+  <li><b>Do not compete with school French.</b>If she mixes French into English, let it pass.
+  Mixing is a normal stage for a trilingual child, and correcting it is how you teach her to stop
+  volunteering to speak.</li>
+</ul></div>
+</body></html>
