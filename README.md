@@ -8,7 +8,7 @@ root `index.html` is a hand-written hub and every project is a folder under it.
 |---|---|---|
 | `/` | The hub. Edit `index.html` directly. | here |
 | `/french/` | Παραμύθια στα γαλλικά — French bedtime picture books with Greek pronunciation and audio. | `~/projects/personal/French` |
-| `/english/` | The English Play Pack — four printable role-play sessions. | `~/projects/personal/English` |
+| `/english/` | The English Play Deck — 28 scripted scenes for a TV, with audio. The older printable pack is alongside as a PDF. | `~/projects/personal/English` |
 | `/frequence/` | Fréquence — the 10 000 most frequent words in four languages, as a game. | `frequence/` |
 | `/dieting/el/`, `/dieting/fr/` | A practical guide to dieting, in Greek and French. | here |
 

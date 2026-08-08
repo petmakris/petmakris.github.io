@@ -1,817 +1,382 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><title>The English Play Pack — Lila, sessions 1–4</title><style>
-:root{
-  --ink:#1d1a17; --soft:#5d564e; --line:#c9bfb2; --faint:#efe9e0;
-  --accent:#a8341f; --accent2:#1f5c6e; --paper:#fffdf9;
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#e9ecee">
+<title>The English Play Deck</title>
+<style>/* The English Play Deck — inlined by tools/build_deck.py. Edit here, never the
+   built HTML.
+
+   The whole thing is a fixed 1920×1080 stage scaled to fit whatever screen it is
+   on, so a scene looks identical on the television, on the tablet and on a
+   laptop. No reflow, no surprises mid-session.
+
+   Papa's lines sit left, hers right, like a chat. Twenty lines fit one screen
+   with a gutter down the middle carrying a printer's rule. */
+
+:root {
+  --slide:  #fffdf9;
+  --room:   #e9ecee;
+  --ink:    #16262c;
+  --soft:   #5f7278;
+  --faint:  #aab7bb;
+  --line:   #eae2d8;
+  --A:      #1f6f7a;   /* Papa */
+  --Abg:    #e4f1f2;
+  --B:      #d2624a;   /* her */
+  --Bbg:    #fbe7e1;
+
+  --ui:   'Avenir Next', Avenir, 'Helvetica Neue', system-ui, sans-serif;
+  --read: Charter, 'Iowan Old Style', Georgia, serif;
 }
-*{box-sizing:border-box}
-body{margin:0;background:#efeae2;color:var(--ink);
-     font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;}
-.sheet{
-  width:210mm;min-height:297mm;padding:14mm 15mm;margin:0 auto 8mm;background:var(--paper);
-  page-break-after:always;break-after:page;position:relative;display:block;
-  box-shadow:0 2px 14px rgba(0,0,0,.18);
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--room); color: var(--ink); font-family: var(--ui);
+  overflow: hidden; -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
 }
-.sheet:last-child{page-break-after:auto}
-.runhead{display:flex;justify-content:space-between;font-size:8.5pt;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--soft);border-bottom:1px solid var(--line);
-  padding-bottom:3mm;margin-bottom:7mm}
-h1{font-size:30pt;line-height:1.05;margin:0 0 2mm;font-weight:800;letter-spacing:-.02em}
-h2{font-size:17pt;margin:0 0 4mm;font-weight:800;letter-spacing:-.01em}
-h3{font-size:11pt;margin:6mm 0 2.5mm;text-transform:uppercase;letter-spacing:.14em;color:var(--accent)}
-p{margin:0 0 3.5mm;line-height:1.5;font-size:10.5pt}
-.lede{font-size:12pt;line-height:1.55;color:var(--soft)}
-.rule{height:2px;background:var(--ink);margin:5mm 0}
-.small{font-size:9pt;color:var(--soft)}
-.gr{font-size:9.5pt;color:var(--accent2)}
+:focus-visible { outline: 3px solid var(--B); outline-offset: 3px; }
 
-/* cover */
-.cover{display:flex;flex-direction:column;justify-content:space-between;min-height:245mm}
-.cover .big{font-size:64pt;line-height:.95;font-weight:800;letter-spacing:-.03em}
-.cover .sub{font-size:15pt;color:var(--soft);margin-top:6mm;max-width:130mm;line-height:1.5}
-.emojirow{font-size:40pt;letter-spacing:6mm;margin:10mm 0}
+.screen { display: none; height: 100%; }
+.screen.on { display: block; }
 
-/* tables */
-table{width:100%;border-collapse:collapse;font-size:10pt}
-th{text-align:left;font-size:8.5pt;text-transform:uppercase;letter-spacing:.12em;
-   color:var(--soft);border-bottom:1.5px solid var(--ink);padding:0 0 2mm}
-td{padding:2.2mm 3mm 2.2mm 0;border-bottom:1px solid var(--faint);vertical-align:top}
-td.t{white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--accent);font-weight:700}
+/* ===========================================================  the stage  === */
 
-/* rules list */
-.rules li{margin-bottom:4.5mm;line-height:1.5;font-size:10.5pt}
-.rules b{display:block;font-size:11.5pt;margin-bottom:1mm}
-ol.rules{padding-left:6mm}
-
-/* word cards */
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
-.card{border:1px dashed var(--line);height:56mm;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;text-align:center;padding:3mm}
-.card .pic{font-size:34pt;line-height:1}
-.card .w{font-size:17pt;font-weight:800;margin-top:4mm}
-.card .g{font-size:9pt;color:var(--soft);margin-top:1.5mm}
-
-/* script */
-.scriptbox{border:2px solid var(--ink);padding:5mm 6mm;margin-top:4mm}
-.line{display:flex;gap:5mm;padding:1.3mm 0;border-bottom:1px dotted var(--faint);align-items:baseline}
-.line .who{flex:0 0 11mm;font-weight:800;font-size:12pt;color:var(--accent)}
-.line .who.b{color:var(--accent2)}
-.line .txt{font-size:13pt;line-height:1.28}
-.rolebar{display:flex;gap:6mm;margin:4mm 0 0}
-.role{flex:1;border:1.5px solid var(--line);padding:3mm 4mm;font-size:10.5pt}
-.role b{font-size:12pt;display:block}
-
-/* generic boxes */
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
-.box{border:1.5px solid var(--line);padding:4mm 5mm}
-.box h4{margin:0 0 2mm;font-size:11.5pt}
-.box p{font-size:9.5pt;margin:0;line-height:1.45}
-.tag{display:inline-block;background:var(--ink);color:#fff;font-size:8pt;letter-spacing:.1em;
-  text-transform:uppercase;padding:1mm 2.5mm;margin-bottom:2mm}
-
-/* money */
-.money{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.note{border:1px dashed var(--line);height:44mm;padding:4mm 5mm;display:flex;
-  justify-content:space-between;align-items:center}
-.note .v{font-size:36pt;font-weight:800;line-height:1}
-.note .cur{font-size:11pt;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
-.note .seal{font-size:26pt}
-
-/* price tags */
-.tags{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
-.ptag{border:1px dashed var(--line);height:44mm;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;text-align:center}
-.ptag .p{font-size:30pt;font-weight:800;line-height:1}
-.ptag .n{font-size:12pt;margin-top:2mm}
-.ptag .e{font-size:22pt}
-
-/* menu */
-.menu{border:3px double var(--ink);padding:7mm 10mm;min-height:190mm}
-.menu h2{text-align:center;font-size:24pt;letter-spacing:.02em}
-.menu .sec{margin-top:5mm}
-.menu .sec h3{text-align:center;border-bottom:1px solid var(--line);padding-bottom:2mm}
-.mrow{display:flex;align-items:baseline;gap:3mm;font-size:11.5pt;padding:1.4mm 0}
-.mrow .dots{flex:1;border-bottom:1.5px dotted var(--line);transform:translateY(-3px)}
-.mrow .pr{font-weight:800}
-
-/* slips */
-.slips{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.slip{border:1px dashed var(--line);height:66mm;padding:5mm}
-.slip h4{margin:0 0 3mm;font-size:11pt;letter-spacing:.1em;text-transform:uppercase}
-.slip .ln{border-bottom:1px solid var(--faint);height:8mm}
-.slip .foot{font-size:8.5pt;color:var(--soft);margin-top:2mm}
-
-/* big numbers */
-.bignums{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.bignum{border:1px dashed var(--line);height:66mm;display:flex;align-items:center;
-  justify-content:center;font-size:70pt;font-weight:800}
-
-/* chart */
-.chart td{height:16mm;border:1px solid var(--line);padding:2mm}
-.chart .star{width:22mm;text-align:center;color:var(--faint);font-size:20pt}
-
-/* bingo */
-.bingo{border:2px solid var(--ink);padding:5mm;margin-bottom:8mm}
-.bingo .g{display:grid;grid-template-columns:repeat(3,1fr)}
-.bingo .c{border:1px solid var(--line);height:38mm;display:flex;flex-direction:column;
-  align-items:center;justify-content:center}
-.bingo .c .e{font-size:26pt}
-.bingo .c .n{font-size:11pt;font-weight:700;margin-top:2mm}
-
-/* tickets */
-.ticket{border:2px dashed var(--ink);padding:5mm 7mm;height:55mm;display:flex;
-  justify-content:space-between;align-items:center;margin-bottom:4mm}
-.ticket .l{max-width:110mm}
-.ticket .r{text-align:right;border-left:1px dashed var(--line);padding-left:6mm}
-
-/* diploma */
-.diploma{border:6px double var(--accent);padding:12mm;text-align:center;min-height:225mm;
-  display:flex;flex-direction:column;justify-content:center;gap:5mm}
-.diploma .t{font-size:34pt;font-weight:800;letter-spacing:-.02em}
-.diploma .name{font-size:44pt;font-weight:800;color:var(--accent);
-  border-bottom:2px solid var(--ink);padding-bottom:4mm;margin:4mm auto;display:inline-block}
-.sigrow{display:flex;justify-content:space-around;margin-top:14mm;font-size:10pt}
-.sigrow div{border-top:1px solid var(--ink);padding-top:2mm;width:60mm}
-
-.cutnote{font-size:8pt;color:var(--soft);letter-spacing:.1em;text-transform:uppercase;
-  margin-bottom:3mm}
-
-/* denser variant for the games sheets, which carry the most text */
-.gamespage h1{font-size:26pt}
-.gamespage h3{margin:5mm 0 2mm}
-.gamespage .box{padding:3mm 4mm}
-.gamespage .box h4{font-size:11pt;margin-bottom:1.5mm}
-.gamespage .box p{font-size:9pt;line-height:1.4}
-.gamespage .grid2{gap:5mm}
-
-@media print{
-  body{background:#fff}
-  /* width must be stated explicitly: with width:auto Chromium resolves it against the
-     full 210mm paper rather than the 186mm printable area, and clips the right edge. */
-  .sheet{margin:0;box-shadow:none;width:186mm;min-height:0;padding:0;overflow:hidden}
-  @page{size:A4;margin:12mm}
+#stage-wrap { position: fixed; inset: 0; display: grid; place-items: center; }
+#stage {
+  width: 1920px; height: 1080px; transform-origin: center center;
+  background: var(--slide); position: relative; overflow: hidden;
+  box-shadow: 0 30px 60px -40px rgba(20, 40, 50, .6);
 }
-</style></head><body>
-<div class="sheet"><div class="runhead"><span>English Play Pack</span><span>Cover</span></div>
-<div class="cover">
-  <div>
-    <div class="small" style="letter-spacing:.2em">A four-session role-play course · Lausanne, August 2026</div>
-    <div class="big" style="margin-top:8mm">The<br>English<br>Play Pack</div>
-    <div class="emojirow">👋 🛒 ☕ 🐕</div>
-    <div class="sub">Four theatrical sessions of ninety minutes for Lila, seven years old,
-    starting from no English at all. Every session ends with a scene the two of you perform —
-    both of you playing both roles.</div>
-  </div>
-  <div>
-    <div class="rule"></div>
-    <div class="grid2">
-      <div>
-        <div class="tag">What is inside</div>
-        <p class="small">Teacher sheets with the Greek meanings for you, word cards, full scripts
-        in large type, three games per session, cut-out props — play money, a menu, an order pad,
-        prescriptions, show tickets — and a diploma.</p>
+
+.slide { width: 100%; height: 100%; padding: 34px 46px 30px; display: flex; flex-direction: column; }
+
+.head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  flex: none; margin-bottom: 20px;
+}
+.head .scene { font-family: var(--read); font-size: 36px; }
+.head .meta { font-size: 22px; color: var(--faint); }
+.head .meta b { font-weight: 700; }
+.head .meta b.A { color: var(--A); }
+.head .meta b.B { color: var(--B); }
+
+/* the gutter is a real column, wide enough to breathe */
+.two { flex: 1; display: grid; grid-template-columns: 1fr 90px 1fr; gap: 0 26px; min-height: 0; }
+.col { display: flex; flex-direction: column; justify-content: space-evenly; }
+.gut { display: flex; align-items: center; justify-content: center; }
+
+.row { display: flex; }
+.row.A { justify-content: flex-start; }
+.row.B { justify-content: flex-end; }
+
+.bub {
+  font-size: 36px; line-height: 1.2; padding: 12px 22px; border-radius: 20px;
+  max-width: 92%; cursor: pointer; border: 0; font-family: inherit; text-align: left;
+  transition: transform .1s, box-shadow .15s;
+}
+.row.A .bub { background: var(--Abg); color: var(--ink); border-bottom-left-radius: 6px; }
+.row.B .bub { background: var(--Bbg); color: var(--ink); border-bottom-right-radius: 6px; }
+.bub:active { transform: scale(.985); }
+.bub.playing { box-shadow: 0 0 0 4px currentColor; }
+.row.A .bub.playing { color: var(--A); }
+.row.B .bub.playing { color: var(--B); }
+
+/* --- the swap card, shown between the two passes --------------------------- */
+
+.swap { width: 100%; height: 100%; display: grid; place-items: center; text-align: center; }
+.swap h2 { font-family: var(--read); font-size: 92px; margin: 0 0 26px; font-weight: 400; }
+.swap p { font-size: 40px; color: var(--soft); margin: 0 0 46px; }
+.swap .pair { display: flex; gap: 60px; justify-content: center; font-size: 34px; }
+.swap .pair div { display: flex; align-items: center; gap: 16px; }
+.swap .dot { width: 26px; height: 26px; border-radius: 50%; display: inline-block; }
+.swap .dot.A { background: var(--A); } .swap .dot.B { background: var(--B); }
+
+/* ============================================================  the index === */
+
+.index { height: 100%; overflow-y: auto; padding: 4vh 5vw 8vh; background: var(--room); }
+.index h1 { font-family: var(--read); font-weight: 400; font-size: clamp(1.7rem, 4vw, 2.4rem); margin: 0 0 .3rem; }
+.index .lede { color: var(--soft); font-size: clamp(.9rem, 1.6vw, 1.05rem); margin: 0 0 2.4rem; max-width: 42rem; }
+
+.place { margin: 0 0 2.2rem; }
+.place h2 {
+  font-family: var(--read); font-weight: 400; font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  margin: 0 0 .1rem;
+}
+.place .count { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin-bottom: .8rem; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: .7rem; }
+.card {
+  background: var(--slide); border: 1px solid var(--line); border-radius: 12px;
+  padding: .85rem 1rem; cursor: pointer; text-align: left; font: inherit; color: inherit;
+  transition: border-color .16s, transform .16s;
+}
+.card:hover { border-color: var(--B); transform: translateY(-2px); }
+.card .n { font-size: .7rem; letter-spacing: .12em; color: var(--faint); }
+.card .t { font-size: 1.02rem; margin: .12rem 0 .4rem; }
+.card .new { font-size: .76rem; color: var(--A); }
+
+/* ==========================================================  the chrome  === */
+
+.bar {
+  position: fixed; left: 0; right: 0; bottom: 0; display: flex; gap: .6rem;
+  align-items: center; justify-content: center; padding: .55rem;
+  background: rgba(233, 236, 238, .92); backdrop-filter: blur(10px);
+  transition: opacity .35s; z-index: 5;
+}
+.bar.hidden { opacity: 0; pointer-events: none; }
+.btn {
+  border: 1px solid var(--line); background: var(--slide); color: var(--ink);
+  border-radius: 999px; padding: .42rem 1rem; font: inherit; font-size: .84rem;
+  cursor: pointer; transition: border-color .15s, color .15s;
+}
+.btn:hover { border-color: var(--B); color: var(--B); }
+.btn:disabled { opacity: .35; cursor: default; }
+.btn.round { width: 2.4rem; height: 2.4rem; padding: 0; display: inline-flex;
+  align-items: center; justify-content: center; font-size: 1rem; }
+.bar .where { font-size: .8rem; color: var(--soft); margin: 0 .5rem; }
+</style>
+</head>
+<body>
+
+<section id="index" class="screen on"></section>
+
+<section id="deck" class="screen">
+  <div id="stage-wrap"><div id="stage"></div></div>
+</section>
+
+<div class="bar" id="bar">
+  <button class="btn" id="home">contents</button>
+  <button class="btn round" id="prev" aria-label="back">‹</button>
+  <span class="where" id="where"></span>
+  <button class="btn round" id="next" aria-label="next">›</button>
+  <button class="btn" id="full">full screen</button>
+</div>
+
+<script>const PLACES = [{"place": "home", "title": "Morning at Home", "scenes": [{"id": "home-01", "title": "Wake up!", "new": ["wake up", "I am tired"], "lines": [{"who": "A", "text": "Good morning!", "a": "703627cc2517ee5d"}, {"who": "B", "text": "Good morning, Papa.", "a": "23cc02b30af7b01f"}, {"who": "A", "text": "Wake up! It is seven o'clock.", "a": "81fd73a45bbcbc00"}, {"who": "B", "text": "I am tired.", "a": "b95341a4d6656865"}, {"who": "A", "text": "I am tired too.", "a": "efcd553fff2a437d"}, {"who": "B", "text": "Five more minutes, please.", "a": "7e2de18c6c71c9ce"}, {"who": "A", "text": "No. Wake up now!", "a": "ab6acd5be4a96589"}, {"who": "B", "text": "OK, Papa. I am up.", "a": "1014cb241854cc28"}, {"who": "A", "text": "Good! Open your eyes.", "a": "ffcc09da3cea9440"}, {"who": "B", "text": "My eyes are open.", "a": "8110a10a4a7663b4"}, {"who": "A", "text": "Stand up, please.", "a": "e68326cb3e1a0b97"}, {"who": "B", "text": "I am standing up.", "a": "b971fdae3afda314"}, {"who": "A", "text": "Good morning, sleepy head.", "a": "c7cfded2c6797a87"}, {"who": "B", "text": "Good morning, Papa.", "a": "23cc02b30af7b01f"}, {"who": "A", "text": "Are you ready?", "a": "16667019f8cc216a"}, {"who": "B", "text": "I am ready!", "a": "9af9aba140cde7ba"}, {"who": "A", "text": "Very good!", "a": "aca48f4e86b9fa23"}, {"who": "B", "text": "Now you, Papa. Wake up!", "a": "90fd268eeff50af9"}, {"who": "A", "text": "Me? I am tired!", "a": "f0990bfca731e161"}, {"who": "B", "text": "Come on! Let's go!", "a": "f2a28bfc490a7d26"}]}, {"id": "home-02", "title": "What is for breakfast?", "new": ["breakfast", "I am hungry"], "lines": [{"who": "A", "text": "Good morning!", "a": "703627cc2517ee5d"}, {"who": "B", "text": "Good morning, Papa.", "a": "23cc02b30af7b01f"}, {"who": "A", "text": "Are you hungry?", "a": "745c284e0a51a638"}, {"who": "B", "text": "Yes, I am hungry.", "a": "a6128bbf9aa5930b"}, {"who": "A", "text": "What is for breakfast?", "a": "7b32ca5ae6a9ea94"}, {"who": "B", "text": "Bread and honey, please.", "a": "0dcfad64666d4298"}, {"who": "A", "text": "Here you are.", "a": "2e3cb2af68c1640a"}, {"who": "B", "text": "Thank you, Papa!", "a": "59af27685f028890"}, {"who": "A", "text": "Do you want milk?", "a": "761f9e61ad8a2af2"}, {"who": "B", "text": "Yes, please.", "a": "cd287c1305d4a445"}, {"who": "A", "text": "Hot milk or cold milk?", "a": "2c4590e0be459216"}, {"who": "B", "text": "Hot milk, please.", "a": "056a100b9e95ae51"}, {"who": "A", "text": "Here you are.", "a": "2e3cb2af68c1640a"}, {"who": "B", "text": "Thank you, Papa!", "a": "59af27685f028890"}, {"who": "A", "text": "Is it good?", "a": "a0b250e07df512c5"}, {"who": "B", "text": "It is very good!", "a": "2c7d2b5d11afd3bf"}, {"who": "A", "text": "Eat, please. We are late.", "a": "375953e24dac92a2"}, {"who": "B", "text": "I am eating!", "a": "8d0a6b0fc78da191"}, {"who": "A", "text": "Are you ready?", "a": "16667019f8cc216a"}, {"who": "B", "text": "I am ready!", "a": "9af9aba140cde7ba"}]}, {"id": "home-03", "title": "Where are my shoes?", "new": ["in", "on", "under"], "lines": [{"who": "A", "text": "Good morning!", "a": "703627cc2517ee5d"}, {"who": "B", "text": "Good morning, Papa.", "a": "23cc02b30af7b01f"}, {"who": "A", "text": "Where are my shoes?", "a": "27d74f5d758e9e24"}, {"who": "B", "text": "They are under the bed.", "a": "e6f8fe9d6bdd8776"}, {"who": "A", "text": "No, they are not here.", "a": "f25433e2277c0ab2"}, {"who": "B", "text": "Look on the chair.", "a": "b4a3901305275778"}, {"who": "A", "text": "They are not on the chair.", "a": "c8c553b4c236ec63"}, {"who": "B", "text": "Look in the box.", "a": "91def9ca7c36a9bd"}, {"who": "A", "text": "Here they are! In the box.", "a": "c2d634c49f41130c"}, {"who": "B", "text": "Where is my bag?", "a": "e099803e936fd791"}, {"who": "A", "text": "It is under the table.", "a": "e00216eb8f611269"}, {"who": "B", "text": "Thank you, Papa!", "a": "59af27685f028890"}, {"who": "A", "text": "Where is my coat?", "a": "67e574eb5433cc41"}, {"who": "B", "text": "It is on the door.", "a": "bb65ce74b79c0190"}, {"who": "A", "text": "Here it is. Thank you.", "a": "508fa94134f25bf8"}, {"who": "B", "text": "Now we have everything.", "a": "19267a94e009f51d"}, {"who": "A", "text": "Are you ready?", "a": "16667019f8cc216a"}, {"who": "B", "text": "I am ready!", "a": "9af9aba140cde7ba"}, {"who": "A", "text": "Good! Come on.", "a": "dc3bdf5af256a01d"}, {"who": "B", "text": "Let's go!", "a": "6fef5e2c403aa583"}]}, {"id": "home-04", "title": "I am cold", "new": ["I am cold", "put on your coat"], "lines": [{"who": "A", "text": "Good morning!", "a": "703627cc2517ee5d"}, {"who": "B", "text": "Good morning, Papa.", "a": "23cc02b30af7b01f"}, {"who": "A", "text": "Brrr. I am cold.", "a": "dd93e692af50d51e"}, {"who": "B", "text": "I am cold too.", "a": "db92cc100942ed2c"}, {"who": "A", "text": "Close the window, please.", "a": "5eacbd27cb74890d"}, {"who": "B", "text": "The window is closed.", "a": "259a21ba45916b65"}, {"who": "A", "text": "Thank you! Put on your coat.", "a": "21deb0a9c69c986d"}, {"who": "B", "text": "Where is my coat?", "a": "67e574eb5433cc41"}, {"who": "A", "text": "It is on the door.", "a": "bb65ce74b79c0190"}, {"who": "B", "text": "Here it is. Thank you.", "a": "508fa94134f25bf8"}, {"who": "A", "text": "Is it warm?", "a": "d7c152b0c039b7b9"}, {"who": "B", "text": "Yes, it is warm now.", "a": "94a0175e85a69c6f"}, {"who": "A", "text": "Put on your hat too.", "a": "4c867e5ba76875c6"}, {"who": "B", "text": "My hat is in the box.", "a": "a79f0010171d5814"}, {"who": "A", "text": "Here you are.", "a": "2e3cb2af68c1640a"}, {"who": "B", "text": "Thank you, Papa!", "a": "59af27685f028890"}, {"who": "A", "text": "Are you cold now?", "a": "d404b147395e1181"}, {"who": "B", "text": "No, I am hot!", "a": "8f34cdfaa22c2b26"}, {"who": "A", "text": "Now you. Tell me!", "a": "a455788789968350"}, {"who": "B", "text": "Papa, put on your coat!", "a": "446a61fe9e6584d8"}]}, {"id": "home-05", "title": "Brush your teeth", "new": ["wash your face", "brush your teeth"], "lines": [{"who": "A", "text": "Good morning!", "a": "703627cc2517ee5d"}, {"who": "B", "text": "Good morning, Papa.", "a": "23cc02b30af7b01f"}, {"who": "A", "text": "Now wash your face.", "a": "b72290636063c9c7"}, {"who": "B", "text": "OK, Papa. I am washing.", "a": "de8de4dc3947596e"}, {"who": "A", "text": "Brush your teeth, please.", "a": "147ca27d9ebe6d73"}, {"who": "B", "text": "Where is my toothbrush?", "a": "f695b83ca4ecbc44"}, {"who": "A", "text": "It is on the shelf.", "a": "9e68bfbec5f6a5c0"}, {"who": "B", "text": "Here it is. Thank you.", "a": "508fa94134f25bf8"}, {"who": "A", "text": "Brush, brush, brush!", "a": "313cd90db9ba9ee2"}, {"who": "B", "text": "My teeth are clean!", "a": "c6b4497c4e22688f"}, {"who": "A", "text": "Very good!", "a": "aca48f4e86b9fa23"}, {"who": "B", "text": "Look! My hair is funny.", "a": "419deda96c7dd217"}, {"who": "A", "text": "Comb your hair, please.", "a": "6e3afed1badf6043"}, {"who": "B", "text": "Now you, Papa!", "a": "00df3365d026ea37"}, {"who": "A", "text": "Me?", "a": "a12c4a63225b4461"}, {"who": "B", "text": "Wash your face, please.", "a": "ca25e9aedfc084a6"}, {"who": "A", "text": "OK. I am washing.", "a": "0ba15aedd9e7dd9e"}, {"who": "B", "text": "Brush your teeth, Papa!", "a": "674d4d2615b66a59"}, {"who": "A", "text": "Brush, brush, brush!", "a": "313cd90db9ba9ee2"}, {"who": "B", "text": "Very good!", "a": "aca48f4e86b9fa23"}, {"who": "A", "text": "Are you ready?", "a": "16667019f8cc216a"}, {"who": "B", "text": "I am ready!", "a": "9af9aba140cde7ba"}]}, {"id": "home-06", "title": "We are late!", "new": ["quickly", "we are late"], "lines": [{"who": "A", "text": "Come on! We are late.", "a": "c17b97e3658f763f"}, {"who": "B", "text": "I am coming, Papa.", "a": "890d032670b3365e"}, {"who": "A", "text": "Quickly, please!", "a": "6b2279fca6013d43"}, {"who": "B", "text": "Where is my bag?", "a": "e099803e936fd791"}, {"who": "A", "text": "It is under the chair.", "a": "f8309704823f42dc"}, {"who": "B", "text": "Here it is. Thank you.", "a": "508fa94134f25bf8"}, {"who": "A", "text": "Put on your shoes. Quickly!", "a": "69a9baf35d1cadc3"}, {"who": "B", "text": "My shoes are on.", "a": "5e990eeb03ac0397"}, {"who": "A", "text": "Where is my key?", "a": "1d369c763f49d43f"}, {"who": "B", "text": "It is on the table.", "a": "475e81977eb8bdeb"}, {"who": "A", "text": "Thank you! Come on.", "a": "61d8d78797b62e2c"}, {"who": "B", "text": "Wait! I am eating my bread.", "a": "865e2e8b8a6b78e0"}, {"who": "A", "text": "Eat quickly, please.", "a": "6db8c839e1f9f3fe"}, {"who": "B", "text": "I am eating quickly!", "a": "1686bcacf8bd4553"}, {"who": "A", "text": "Are you ready?", "a": "16667019f8cc216a"}, {"who": "B", "text": "I am ready!", "a": "9af9aba140cde7ba"}, {"who": "A", "text": "Open the door, quickly!", "a": "b32e2e6b99ae9a78"}, {"who": "B", "text": "The door is open.", "a": "b2c22c1340da3021"}, {"who": "A", "text": "Goodbye, Mama!", "a": "2004353b0ee3250f"}, {"who": "B", "text": "Goodbye, Mama! Let's go!", "a": "4da72faea1e8d6a6"}]}]}, {"place": "cafe", "title": "The Little Café", "scenes": [{"id": "cafe-01", "title": "A hot chocolate", "new": ["hot chocolate", "no, thank you"], "lines": [{"who": "A", "text": "Hello!", "a": "83a8cc9622e0f5b6"}, {"who": "B", "text": "Hello! Welcome.", "a": "eb41d22fd1f360a3"}, {"who": "A", "text": "A table for two, please.", "a": "780816cc5b1677dc"}, {"who": "B", "text": "Inside or outside?", "a": "b66b25bf057a93f5"}, {"who": "A", "text": "Outside, please.", "a": "639400604ce48489"}, {"who": "B", "text": "This way. Here you are.", "a": "ea698a3ae8cb3000"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "What would you like?", "a": "047cd2e15a71a6be"}, {"who": "A", "text": "A hot chocolate, please.", "a": "f1bae68e5a110338"}, {"who": "B", "text": "Very good. Anything to eat?", "a": "8828d86a7e957814"}, {"who": "A", "text": "No, thank you.", "a": "ebb729270b63b907"}, {"who": "B", "text": "One moment, please.", "a": "a36f38cae75e79cb"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "Here you are. Be careful.", "a": "6920b1c5de40491d"}, {"who": "A", "text": "Is it hot?", "a": "38adfa4f2b1ae5d2"}, {"who": "B", "text": "Yes, it's very hot.", "a": "8fa500660a59c4ea"}, {"who": "A", "text": "Mmm! It's very good.", "a": "4033b940bd7d4a68"}, {"who": "B", "text": "I'm happy you like it.", "a": "8d83cd7bff3463cc"}, {"who": "A", "text": "Thank you very much!", "a": "4193c4bd1133c3f8"}, {"who": "B", "text": "You're welcome. Goodbye!", "a": "afb7b2098023749b"}]}, {"id": "cafe-02", "title": "Two teas", "new": ["two teas", "and for Mama?"], "lines": [{"who": "A", "text": "Hello!", "a": "83a8cc9622e0f5b6"}, {"who": "B", "text": "Hello! Welcome.", "a": "eb41d22fd1f360a3"}, {"who": "A", "text": "A table for two, please.", "a": "780816cc5b1677dc"}, {"who": "B", "text": "Inside or outside?", "a": "b66b25bf057a93f5"}, {"who": "A", "text": "Outside, please.", "a": "639400604ce48489"}, {"who": "B", "text": "This way. Here you are.", "a": "ea698a3ae8cb3000"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "What would you like?", "a": "047cd2e15a71a6be"}, {"who": "A", "text": "A tea, please.", "a": "ba16624c625c502b"}, {"who": "B", "text": "And for Mama?", "a": "e95d7add18c7ffee"}, {"who": "A", "text": "A tea for Mama too.", "a": "dfce5cfa5f16459f"}, {"who": "B", "text": "So, two teas?", "a": "b4248f6902de292c"}, {"who": "A", "text": "Yes, two teas, please.", "a": "24fbfd359931cd46"}, {"who": "B", "text": "Very good. Anything to eat?", "a": "8828d86a7e957814"}, {"who": "A", "text": "No, thank you.", "a": "ebb729270b63b907"}, {"who": "B", "text": "One moment, please.", "a": "a36f38cae75e79cb"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "Here you are. Two teas.", "a": "d0fa0c073c92b428"}, {"who": "A", "text": "Thank you very much!", "a": "4193c4bd1133c3f8"}, {"who": "B", "text": "You're welcome. Goodbye!", "a": "afb7b2098023749b"}]}, {"id": "cafe-03", "title": "Big or small?", "new": ["big or small?", "small, please"], "lines": [{"who": "A", "text": "Hello!", "a": "83a8cc9622e0f5b6"}, {"who": "B", "text": "Hello! Welcome.", "a": "eb41d22fd1f360a3"}, {"who": "A", "text": "A table for two, please.", "a": "780816cc5b1677dc"}, {"who": "B", "text": "Inside or outside?", "a": "b66b25bf057a93f5"}, {"who": "A", "text": "Outside, please.", "a": "639400604ce48489"}, {"who": "B", "text": "This way. Here you are.", "a": "ea698a3ae8cb3000"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "What would you like?", "a": "047cd2e15a71a6be"}, {"who": "A", "text": "A hot chocolate, please.", "a": "f1bae68e5a110338"}, {"who": "B", "text": "Big or small?", "a": "957853b9c156025d"}, {"who": "A", "text": "Small, please.", "a": "da0297082c7efef6"}, {"who": "B", "text": "And for Mama?", "a": "e95d7add18c7ffee"}, {"who": "A", "text": "A tea, please. A big one.", "a": "c777a821d4a405ac"}, {"who": "B", "text": "One small, one big. Very good.", "a": "84f3ec52a7607282"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "One moment, please.", "a": "a36f38cae75e79cb"}, {"who": "A", "text": "Is that my small one?", "a": "ff39dd1a493f772f"}, {"who": "B", "text": "Yes. Here you are. Be careful.", "a": "5b749f82c7aab286"}, {"who": "A", "text": "Thank you very much!", "a": "4193c4bd1133c3f8"}, {"who": "B", "text": "You're welcome. Goodbye!", "a": "afb7b2098023749b"}]}, {"id": "cafe-04", "title": "How much is it?", "new": ["how much is it?", "francs"], "lines": [{"who": "A", "text": "Hello!", "a": "83a8cc9622e0f5b6"}, {"who": "B", "text": "Hello! Welcome.", "a": "eb41d22fd1f360a3"}, {"who": "A", "text": "A table for two, please.", "a": "780816cc5b1677dc"}, {"who": "B", "text": "Inside or outside?", "a": "b66b25bf057a93f5"}, {"who": "A", "text": "Outside, please.", "a": "639400604ce48489"}, {"who": "B", "text": "This way. Here you are.", "a": "ea698a3ae8cb3000"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "What would you like?", "a": "047cd2e15a71a6be"}, {"who": "A", "text": "A hot chocolate, please.", "a": "f1bae68e5a110338"}, {"who": "B", "text": "Big or small?", "a": "957853b9c156025d"}, {"who": "A", "text": "Small, please.", "a": "da0297082c7efef6"}, {"who": "B", "text": "One moment, please.", "a": "a36f38cae75e79cb"}, {"who": "A", "text": "Thank you. How much is it?", "a": "d63f218e6cb59ab7"}, {"who": "B", "text": "Four francs, please.", "a": "4520d9e648e05709"}, {"who": "A", "text": "Here you are. Five francs.", "a": "8d8318d90922106a"}, {"who": "B", "text": "Thank you. Here is one franc.", "a": "229721bfbacf5962"}, {"who": "A", "text": "Is that one for me?", "a": "f6bfd7f0d0f65bc8"}, {"who": "B", "text": "Yes, that one is for you.", "a": "5c93f46b93b56e01"}, {"who": "A", "text": "Thank you very much!", "a": "4193c4bd1133c3f8"}, {"who": "B", "text": "You're welcome. Goodbye!", "a": "afb7b2098023749b"}]}, {"id": "cafe-05", "title": "The cake is finished", "new": ["I'm sorry, it's finished", "asking for something else"], "lines": [{"who": "A", "text": "Hello!", "a": "83a8cc9622e0f5b6"}, {"who": "B", "text": "Hello! Welcome.", "a": "eb41d22fd1f360a3"}, {"who": "A", "text": "A table for two, please.", "a": "780816cc5b1677dc"}, {"who": "B", "text": "Inside or outside?", "a": "b66b25bf057a93f5"}, {"who": "A", "text": "Inside, please.", "a": "21d3ef13a49b0384"}, {"who": "B", "text": "This way. Here you are.", "a": "ea698a3ae8cb3000"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "What would you like?", "a": "047cd2e15a71a6be"}, {"who": "A", "text": "A piece of cake, please.", "a": "3e1edcce67771633"}, {"who": "B", "text": "I'm sorry. The cake is finished.", "a": "843b3466a41c7ae3"}, {"who": "A", "text": "Oh! No cake?", "a": "f7abd75174a828cb"}, {"who": "B", "text": "No cake today. I'm sorry.", "a": "22525515b09603ed"}, {"who": "A", "text": "That's sad.", "a": "88b2d33c6c8c9757"}, {"who": "B", "text": "We have cookies. Do you like them?", "a": "96b96526d79c26e7"}, {"who": "A", "text": "Yes! A cookie, please.", "a": "264ccbe29b556995"}, {"who": "B", "text": "Here you are. A big cookie.", "a": "c59db60b6ee40df2"}, {"who": "A", "text": "Thank you. It's very good.", "a": "3ee5ec01e6cd79ab"}, {"who": "B", "text": "I'm happy you like it.", "a": "8d83cd7bff3463cc"}, {"who": "A", "text": "Thank you very much!", "a": "4193c4bd1133c3f8"}, {"who": "B", "text": "You're welcome. Goodbye!", "a": "afb7b2098023749b"}]}, {"id": "cafe-06", "title": "It is too hot", "new": ["it's too hot", "wait two minutes"], "lines": [{"who": "A", "text": "Hello!", "a": "83a8cc9622e0f5b6"}, {"who": "B", "text": "Hello! Welcome.", "a": "eb41d22fd1f360a3"}, {"who": "A", "text": "A table for two, please.", "a": "780816cc5b1677dc"}, {"who": "B", "text": "Inside or outside?", "a": "b66b25bf057a93f5"}, {"who": "A", "text": "Outside, please.", "a": "639400604ce48489"}, {"who": "B", "text": "This way. Here you are.", "a": "ea698a3ae8cb3000"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "What would you like?", "a": "047cd2e15a71a6be"}, {"who": "A", "text": "A hot chocolate, please.", "a": "f1bae68e5a110338"}, {"who": "B", "text": "One moment, please.", "a": "a36f38cae75e79cb"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "Here you are. Be careful.", "a": "6920b1c5de40491d"}, {"who": "A", "text": "Oh! It's too hot.", "a": "0d7ab8847b57bce3"}, {"who": "B", "text": "I'm sorry. Wait two minutes.", "a": "cf4d9f2feea3b721"}, {"who": "A", "text": "It's still too hot.", "a": "d25408a491a12bf6"}, {"who": "B", "text": "Here is some cold milk.", "a": "11b65790dabbfe47"}, {"who": "A", "text": "Thank you. Now it's very good.", "a": "1e0e82d0def76267"}, {"who": "B", "text": "I'm happy you like it.", "a": "8d83cd7bff3463cc"}, {"who": "A", "text": "Thank you very much!", "a": "4193c4bd1133c3f8"}, {"who": "B", "text": "You're welcome. Goodbye!", "a": "afb7b2098023749b"}]}, {"id": "cafe-07", "title": "Where is the toilet?", "new": ["where is the toilet?", "over there, on the left"], "lines": [{"who": "A", "text": "Hello!", "a": "83a8cc9622e0f5b6"}, {"who": "B", "text": "Hello! Welcome.", "a": "eb41d22fd1f360a3"}, {"who": "A", "text": "A table for two, please.", "a": "780816cc5b1677dc"}, {"who": "B", "text": "Inside or outside?", "a": "b66b25bf057a93f5"}, {"who": "A", "text": "Inside, please.", "a": "21d3ef13a49b0384"}, {"who": "B", "text": "This way. Here you are.", "a": "ea698a3ae8cb3000"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "What would you like?", "a": "047cd2e15a71a6be"}, {"who": "A", "text": "A hot chocolate, please.", "a": "f1bae68e5a110338"}, {"who": "B", "text": "One moment, please.", "a": "a36f38cae75e79cb"}, {"who": "A", "text": "Where is the toilet, please?", "a": "7308e6ea41cf0814"}, {"who": "B", "text": "Over there, on the left.", "a": "f3b0461da52bdf98"}, {"who": "A", "text": "On the left? Thank you.", "a": "80d2e2fd539096d6"}, {"who": "B", "text": "The door is blue.", "a": "f6c4c5e8f4158895"}, {"who": "A", "text": "I can see it. Thank you.", "a": "c663960bf2552105"}, {"who": "B", "text": "Here you are. Be careful.", "a": "6920b1c5de40491d"}, {"who": "A", "text": "Thank you. It's very good.", "a": "3ee5ec01e6cd79ab"}, {"who": "B", "text": "I'm happy you like it.", "a": "8d83cd7bff3463cc"}, {"who": "A", "text": "Thank you very much!", "a": "4193c4bd1133c3f8"}, {"who": "B", "text": "You're welcome. Goodbye!", "a": "afb7b2098023749b"}]}, {"id": "cafe-08", "title": "My friend is late", "new": ["my friend is late", "we can wait"], "lines": [{"who": "A", "text": "Hello!", "a": "83a8cc9622e0f5b6"}, {"who": "B", "text": "Hello! Welcome.", "a": "eb41d22fd1f360a3"}, {"who": "A", "text": "A table for two, please.", "a": "780816cc5b1677dc"}, {"who": "B", "text": "Inside or outside?", "a": "b66b25bf057a93f5"}, {"who": "A", "text": "Outside, please.", "a": "639400604ce48489"}, {"who": "B", "text": "This way. Here you are.", "a": "ea698a3ae8cb3000"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "What would you like?", "a": "047cd2e15a71a6be"}, {"who": "A", "text": "One moment. My friend is late.", "a": "f1ea2b02cb5588e3"}, {"who": "B", "text": "Oh! Do you want to wait?", "a": "ce0305e28bde69d8"}, {"who": "A", "text": "Yes, please. We can wait.", "a": "86ae37f59add8ad6"}, {"who": "B", "text": "Would you like a drink now?", "a": "4c68256e4474125a"}, {"who": "A", "text": "A hot chocolate, please.", "a": "f1bae68e5a110338"}, {"who": "B", "text": "One moment, please.", "a": "a36f38cae75e79cb"}, {"who": "A", "text": "Thank you. What time is it?", "a": "1318dce6c55e0ced"}, {"who": "B", "text": "It's three o'clock.", "a": "5e882d009bfcb469"}, {"who": "A", "text": "Look! My friend is here.", "a": "46154256c06aceb8"}, {"who": "B", "text": "Very good! Here you are.", "a": "b56b0306ca17c074"}, {"who": "A", "text": "Thank you very much!", "a": "4193c4bd1133c3f8"}, {"who": "B", "text": "You're welcome. Goodbye!", "a": "afb7b2098023749b"}]}, {"id": "cafe-09", "title": "One more, please", "new": ["one more, please", "the same again"], "lines": [{"who": "A", "text": "Hello!", "a": "83a8cc9622e0f5b6"}, {"who": "B", "text": "Hello! Welcome.", "a": "eb41d22fd1f360a3"}, {"who": "A", "text": "A table for two, please.", "a": "780816cc5b1677dc"}, {"who": "B", "text": "Inside or outside?", "a": "b66b25bf057a93f5"}, {"who": "A", "text": "Inside, please.", "a": "21d3ef13a49b0384"}, {"who": "B", "text": "This way. Here you are.", "a": "ea698a3ae8cb3000"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "What would you like?", "a": "047cd2e15a71a6be"}, {"who": "A", "text": "A hot chocolate, please.", "a": "f1bae68e5a110338"}, {"who": "B", "text": "Big or small?", "a": "957853b9c156025d"}, {"who": "A", "text": "Small, please.", "a": "da0297082c7efef6"}, {"who": "B", "text": "One moment, please.", "a": "a36f38cae75e79cb"}, {"who": "A", "text": "Thank you. Mmm, it's very good.", "a": "742faff7bddedbe2"}, {"who": "B", "text": "Would you like one more?", "a": "28902366c9502555"}, {"who": "A", "text": "Yes! One more, please.", "a": "e515e2f1add93be1"}, {"who": "B", "text": "The same again? A small one?", "a": "85c842fa4f8c46d3"}, {"who": "A", "text": "Yes, the same again, please.", "a": "30109940695c939f"}, {"who": "B", "text": "Here you are. Your second one.", "a": "8ead84bfbdf9d44f"}, {"who": "A", "text": "Thank you very much!", "a": "4193c4bd1133c3f8"}, {"who": "B", "text": "You're welcome. Goodbye!", "a": "afb7b2098023749b"}]}, {"id": "cafe-10", "title": "Goodbye, see you tomorrow", "new": ["we are going now", "see you tomorrow"], "lines": [{"who": "A", "text": "Hello!", "a": "83a8cc9622e0f5b6"}, {"who": "B", "text": "Hello! Welcome.", "a": "eb41d22fd1f360a3"}, {"who": "A", "text": "A table for two, please.", "a": "780816cc5b1677dc"}, {"who": "B", "text": "Inside or outside?", "a": "b66b25bf057a93f5"}, {"who": "A", "text": "Outside, please.", "a": "639400604ce48489"}, {"who": "B", "text": "This way. Here you are.", "a": "ea698a3ae8cb3000"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "What would you like?", "a": "047cd2e15a71a6be"}, {"who": "A", "text": "A hot chocolate, please.", "a": "f1bae68e5a110338"}, {"who": "B", "text": "One moment, please.", "a": "a36f38cae75e79cb"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "Here you are. Be careful.", "a": "6920b1c5de40491d"}, {"who": "A", "text": "Mmm! It's very good.", "a": "4033b940bd7d4a68"}, {"who": "B", "text": "I'm happy you like it.", "a": "8d83cd7bff3463cc"}, {"who": "A", "text": "How much is it, please?", "a": "25e6ef7c631a0082"}, {"who": "B", "text": "Four francs, please.", "a": "4520d9e648e05709"}, {"who": "A", "text": "Here you are. We are going now.", "a": "c1ed8997bebe9728"}, {"who": "B", "text": "Thank you. See you tomorrow!", "a": "67463e03f78e3275"}, {"who": "A", "text": "Thank you very much!", "a": "4193c4bd1133c3f8"}, {"who": "B", "text": "You're welcome. Goodbye!", "a": "afb7b2098023749b"}]}]}, {"place": "shop", "title": "The Little Shop", "scenes": [{"id": "shop-01", "title": "An apple, please", "new": ["an apple, please", "anything else"], "lines": [{"who": "B", "text": "Good morning!", "a": "703627cc2517ee5d"}, {"who": "A", "text": "Good morning!", "a": "703627cc2517ee5d"}, {"who": "B", "text": "Can I help you?", "a": "033f7111786537dc"}, {"who": "A", "text": "Yes, please.", "a": "cd287c1305d4a445"}, {"who": "B", "text": "What would you like?", "a": "047cd2e15a71a6be"}, {"who": "A", "text": "An apple, please.", "a": "0dd713cb9bc494e4"}, {"who": "B", "text": "An apple. Here you are.", "a": "bd29803e75e8ec36"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "Anything else?", "a": "833fea17f9613c4b"}, {"who": "A", "text": "Yes. A banana, please.", "a": "93c5f55a2ba06c36"}, {"who": "B", "text": "A banana. Here you are.", "a": "8764706c795c8d1d"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "Anything else?", "a": "833fea17f9613c4b"}, {"who": "A", "text": "No, thank you. That's all.", "a": "f0e89565f45f02da"}, {"who": "B", "text": "Here is your bag.", "a": "18be3d8a083adcfa"}, {"who": "A", "text": "Thank you very much.", "a": "d002b7a7a9bfc29a"}, {"who": "B", "text": "You are welcome.", "a": "de6ce5b3118ba669"}, {"who": "A", "text": "Goodbye!", "a": "0bcecf1c25634a15"}, {"who": "B", "text": "Goodbye! Have a nice day!", "a": "1d6b6758ce191f23"}, {"who": "A", "text": "Goodbye! Have a nice day!", "a": "1d6b6758ce191f23"}]}, {"id": "shop-02", "title": "How much is it?", "new": ["how much is it", "it is two francs"], "lines": [{"who": "B", "text": "Good morning!", "a": "703627cc2517ee5d"}, {"who": "A", "text": "Good morning!", "a": "703627cc2517ee5d"}, {"who": "B", "text": "Can I help you?", "a": "033f7111786537dc"}, {"who": "A", "text": "Yes, please. An apple, please.", "a": "32a3e1c883f54fc4"}, {"who": "B", "text": "Here you are.", "a": "2e3cb2af68c1640a"}, {"who": "A", "text": "How much is it?", "a": "c4b2f1bdfb8a9df7"}, {"who": "B", "text": "It is two francs.", "a": "98b91a017a6c612f"}, {"who": "A", "text": "Here you are. Two francs.", "a": "85cdbc8fb8f678b4"}, {"who": "B", "text": "Thank you. Anything else?", "a": "47a8c14412d6c113"}, {"who": "A", "text": "Yes. Some bread, please.", "a": "6e1c1469302512c5"}, {"who": "B", "text": "Here you are.", "a": "2e3cb2af68c1640a"}, {"who": "A", "text": "How much is it?", "a": "c4b2f1bdfb8a9df7"}, {"who": "B", "text": "It is four francs.", "a": "ca63e3e88b5691f8"}, {"who": "A", "text": "Here you are. Four francs.", "a": "7ed983ab9b940261"}, {"who": "B", "text": "Thank you. Anything else?", "a": "47a8c14412d6c113"}, {"who": "A", "text": "No, thank you. That's all.", "a": "f0e89565f45f02da"}, {"who": "B", "text": "Here is your bag.", "a": "18be3d8a083adcfa"}, {"who": "A", "text": "Thank you very much.", "a": "d002b7a7a9bfc29a"}, {"who": "B", "text": "Goodbye! Have a nice day!", "a": "1d6b6758ce191f23"}, {"who": "A", "text": "Goodbye! Have a nice day!", "a": "1d6b6758ce191f23"}]}, {"id": "shop-03", "title": "Three bananas", "new": ["how many", "three bananas"], "lines": [{"who": "B", "text": "Good morning!", "a": "703627cc2517ee5d"}, {"who": "A", "text": "Good morning!", "a": "703627cc2517ee5d"}, {"who": "B", "text": "Can I help you?", "a": "033f7111786537dc"}, {"who": "A", "text": "Yes, please. Bananas, please.", "a": "8bdcb32097263bcd"}, {"who": "B", "text": "How many?", "a": "e521a60a8753c12e"}, {"who": "A", "text": "Three bananas, please.", "a": "39eff91b2ff0788c"}, {"who": "B", "text": "One, two, three. Here you are.", "a": "2718bd51314726ec"}, {"who": "A", "text": "How much is it?", "a": "c4b2f1bdfb8a9df7"}, {"who": "B", "text": "It is six francs.", "a": "38fbc6e6d4395e57"}, {"who": "A", "text": "Here you are.", "a": "2e3cb2af68c1640a"}, {"who": "B", "text": "Thank you. Anything else?", "a": "47a8c14412d6c113"}, {"who": "A", "text": "Yes. Apples, please.", "a": "234183418a26715a"}, {"who": "B", "text": "How many?", "a": "e521a60a8753c12e"}, {"who": "A", "text": "Two apples, please.", "a": "620280f5976abe5f"}, {"who": "B", "text": "One, two. Here you are.", "a": "f315d8667b5757c2"}, {"who": "A", "text": "How much is it?", "a": "c4b2f1bdfb8a9df7"}, {"who": "B", "text": "It is four francs.", "a": "ca63e3e88b5691f8"}, {"who": "A", "text": "Here you are. Thank you.", "a": "e8b8ab7fe087153e"}, {"who": "B", "text": "Anything else?", "a": "833fea17f9613c4b"}, {"who": "A", "text": "No, thank you. That's all.", "a": "f0e89565f45f02da"}, {"who": "B", "text": "Here is your bag. Goodbye!", "a": "4ea1b014e0f39445"}, {"who": "A", "text": "Goodbye! Have a nice day!", "a": "1d6b6758ce191f23"}]}, {"id": "shop-04", "title": "Do you have bread?", "new": ["do you have", "sorry, no cheese today"], "lines": [{"who": "B", "text": "Good morning!", "a": "703627cc2517ee5d"}, {"who": "A", "text": "Good morning!", "a": "703627cc2517ee5d"}, {"who": "B", "text": "Can I help you?", "a": "033f7111786537dc"}, {"who": "A", "text": "Yes, please. Do you have bread?", "a": "5b0af2b8d95b5004"}, {"who": "B", "text": "Yes, I have bread. Here you are.", "a": "02e074c85db53109"}, {"who": "A", "text": "Thank you. Do you have milk?", "a": "3c41f5f5d0dbfee6"}, {"who": "B", "text": "Yes, I have milk. Here you are.", "a": "920d992bae5170ee"}, {"who": "A", "text": "Thank you. Do you have cheese?", "a": "6287d1589f68336a"}, {"who": "B", "text": "Sorry, no cheese today.", "a": "862b82012c9c2efd"}, {"who": "A", "text": "Oh! No cheese?", "a": "c2e6a7a0bccdab5d"}, {"who": "B", "text": "No. Sorry!", "a": "f358a271e18dae89"}, {"who": "A", "text": "That's OK. Do you have eggs?", "a": "652b90ff017bb77e"}, {"who": "B", "text": "Yes, I have eggs. Here you are.", "a": "8031019149cf2ff0"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "Anything else?", "a": "833fea17f9613c4b"}, {"who": "A", "text": "No, thank you. That's all.", "a": "f0e89565f45f02da"}, {"who": "B", "text": "It is nine francs, please.", "a": "1ecd1d4ceb1b65c9"}, {"who": "A", "text": "How much is it?", "a": "c4b2f1bdfb8a9df7"}, {"who": "B", "text": "Nine francs, please.", "a": "cb391c59d8074180"}, {"who": "A", "text": "Here you are. Nine francs.", "a": "1be75cb68eccd651"}, {"who": "B", "text": "Thank you. Here is your bag.", "a": "34ce281af820a15d"}, {"who": "A", "text": "Goodbye! Have a nice day!", "a": "1d6b6758ce191f23"}]}, {"id": "shop-05", "title": "That one, please", "new": ["which one", "that one, please"], "lines": [{"who": "B", "text": "Good morning!", "a": "703627cc2517ee5d"}, {"who": "A", "text": "Good morning!", "a": "703627cc2517ee5d"}, {"who": "B", "text": "Can I help you?", "a": "033f7111786537dc"}, {"who": "A", "text": "Yes, please. An apple, please.", "a": "32a3e1c883f54fc4"}, {"who": "B", "text": "Which one? This one or that one?", "a": "60afd569fdfede95"}, {"who": "A", "text": "That one, please.", "a": "79b0490a48be960b"}, {"who": "B", "text": "Here you are.", "a": "2e3cb2af68c1640a"}, {"who": "A", "text": "Thank you.", "a": "d8bd28fe623f153b"}, {"who": "B", "text": "Anything else?", "a": "833fea17f9613c4b"}, {"who": "A", "text": "Yes. Some chocolate, please.", "a": "80d3c3c10f5db63c"}, {"who": "B", "text": "Which one? Big or small?", "a": "e084874bfdd965f7"}, {"who": "A", "text": "The small one, please.", "a": "b6b3a3c05ed4b621"}, {"who": "B", "text": "Here you are.", "a": "2e3cb2af68c1640a"}, {"who": "A", "text": "Thank you. And that one, please.", "a": "1a85fc018c1b8cb3"}, {"who": "B", "text": "This one? The ice cream?", "a": "1efa154fc4d0a5dd"}, {"who": "A", "text": "Yes, that one, please.", "a": "c834bc70504f6477"}, {"who": "B", "text": "Here you are. Anything else?", "a": "e55d12d5c1a34327"}, {"who": "A", "text": "No, thank you. That's all.", "a": "f0e89565f45f02da"}, {"who": "B", "text": "It is eight francs, please.", "a": "38542c917a465889"}, {"who": "A", "text": "Here you are. Eight francs.", "a": "fadedb1f9af65ae9"}, {"who": "B", "text": "Thank you. Here is your bag.", "a": "34ce281af820a15d"}, {"who": "A", "text": "Goodbye! Have a nice day!", "a": "1d6b6758ce191f23"}]}, {"id": "shop-06", "title": "It is too expensive", "new": ["it is too expensive", "no, thank you"], "lines": [{"who": "B", "text": "Good morning!", "a": "703627cc2517ee5d"}, {"who": "A", "text": "Good morning!", "a": "703627cc2517ee5d"}, {"who": "B", "text": "Can I help you?", "a": "033f7111786537dc"}, {"who": "A", "text": "Yes, please. I like that cake.", "a": "e179736b376680a2"}, {"who": "B", "text": "This big cake? It is twenty francs.", "a": "a91963d345238f15"}, {"who": "A", "text": "Twenty francs? Oh!", "a": "ffb06ff604b4fd9e"}, {"who": "B", "text": "Yes. It is a very big cake.", "a": "bdb26d1e671e0d2a"}, {"who": "A", "text": "No, thank you. It is too expensive.", "a": "5b12a0c3242c3877"}, {"who": "B", "text": "That's OK. No problem.", "a": "714b31ec995a72df"}, {"who": "A", "text": "Do you have a small cake?", "a": "eb64786235d59562"}, {"who": "B", "text": "Yes. This small cake is ten francs.", "a": "70b4129d433979d1"}, {"who": "A", "text": "Ten francs. Yes, please!", "a": "f8257e326ddb0e75"}, {"who": "B", "text": "Here you are.", "a": "2e3cb2af68c1640a"}, {"who": "A", "text": "Here you are. Ten francs.", "a": "385d542b0bf1ab0f"}, {"who": "B", "text": "Thank you. Anything else?", "a": "47a8c14412d6c113"}, {"who": "A", "text": "No, thank you. That's all.", "a": "f0e89565f45f02da"}, {"who": "B", "text": "Here is your bag.", "a": "18be3d8a083adcfa"}, {"who": "A", "text": "Thank you very much.", "a": "d002b7a7a9bfc29a"}, {"who": "B", "text": "You are welcome.", "a": "de6ce5b3118ba669"}, {"who": "A", "text": "Goodbye! Have a nice day!", "a": "1d6b6758ce191f23"}, {"who": "B", "text": "Goodbye! Have a nice day!", "a": "1d6b6758ce191f23"}]}]}, {"place": "park", "title": "At the Park", "scenes": [{"id": "park-01", "title": "Can I play with you?", "new": ["Can I play with you?", "How old are you?"], "lines": [{"who": "A", "text": "Hi!", "a": "3635642bf9280201"}, {"who": "B", "text": "Hi!", "a": "3635642bf9280201"}, {"who": "A", "text": "Can I play with you?", "a": "4c6c84cd114a85ef"}, {"who": "B", "text": "Yes! Come on!", "a": "f2e1846b5d8a3895"}, {"who": "A", "text": "How old are you?", "a": "35867d8e7be3ea87"}, {"who": "B", "text": "I'm seven. And you?", "a": "dfc014865c802e3b"}, {"who": "A", "text": "I'm seven too!", "a": "fb34588ff9ca034d"}, {"who": "B", "text": "Look! A ball!", "a": "444f5d954497131d"}, {"who": "A", "text": "Can you catch?", "a": "a0e2e19001f16b00"}, {"who": "B", "text": "Yes, I can!", "a": "e15ec28520d4f595"}, {"who": "A", "text": "Ready? One, two, three!", "a": "786f56ec434d4455"}, {"who": "B", "text": "I've got it!", "a": "e2d85764233e7b5e"}, {"who": "A", "text": "Throw it to me!", "a": "2014824055e9b793"}, {"who": "B", "text": "Here you are.", "a": "2e3cb2af68c1640a"}, {"who": "A", "text": "Thank you!", "a": "535afb3d9aaaae8c"}, {"who": "B", "text": "This is fun!", "a": "eead3f7045e222d3"}, {"who": "A", "text": "I like it here.", "a": "4283bb49b2f52285"}, {"who": "B", "text": "I have to go now.", "a": "65c59e3106553b7e"}, {"who": "A", "text": "Come again tomorrow?", "a": "f72fb48d95f37fa6"}, {"who": "B", "text": "Yes! Tomorrow!", "a": "7ff93bab827ea0d7"}, {"who": "A", "text": "Bye! See you tomorrow!", "a": "9c12bc730961e0d1"}, {"who": "B", "text": "Bye bye!", "a": "21230ba5b460b31f"}]}, {"id": "park-02", "title": "It's my turn!", "new": ["It's my turn!", "Now it's your turn."], "lines": [{"who": "A", "text": "Hello!", "a": "83a8cc9622e0f5b6"}, {"who": "B", "text": "Hello!", "a": "83a8cc9622e0f5b6"}, {"who": "A", "text": "I want the swing.", "a": "927feceee62ecd0c"}, {"who": "B", "text": "Me too!", "a": "41f0083c392536c1"}, {"who": "A", "text": "It's my turn!", "a": "c3b1d07eb73e5838"}, {"who": "B", "text": "No, it's my turn!", "a": "43dc3d5288724f34"}, {"who": "A", "text": "Wait. Let's count.", "a": "36401bd0076c6118"}, {"who": "B", "text": "OK. Ten and stop.", "a": "363fac3147f3d6c7"}, {"who": "A", "text": "One, two, three...", "a": "ef2cdbf354e346a3"}, {"who": "B", "text": "Nine, ten! Stop!", "a": "e6ddf982d9fa1e43"}, {"who": "A", "text": "Now it's your turn.", "a": "d159f18e69afaef9"}, {"who": "B", "text": "Thank you!", "a": "535afb3d9aaaae8c"}, {"who": "A", "text": "Do you want a push?", "a": "9c4a0676536d9fdb"}, {"who": "B", "text": "Yes, please! Higher!", "a": "93c36bd593a682ce"}, {"who": "A", "text": "Wow! You are high!", "a": "5c4bb08003915fb7"}, {"who": "B", "text": "My turn is finished.", "a": "783965bb347f3602"}, {"who": "A", "text": "Ten and stop?", "a": "1ef76936e5c7d989"}, {"who": "B", "text": "Yes! Ten and stop.", "a": "e3bc1d1e45509e52"}, {"who": "A", "text": "Now we both play!", "a": "2cbc139305742f74"}, {"who": "B", "text": "This is fun!", "a": "eead3f7045e222d3"}, {"who": "A", "text": "Bye! See you tomorrow!", "a": "9c12bc730961e0d1"}, {"who": "B", "text": "Bye bye!", "a": "21230ba5b460b31f"}]}, {"id": "park-03", "title": "I can run fast!", "new": ["I can run fast!", "No, I can't."], "lines": [{"who": "A", "text": "Hi!", "a": "3635642bf9280201"}, {"who": "B", "text": "Hi!", "a": "3635642bf9280201"}, {"who": "A", "text": "I can run fast!", "a": "fab8cfd18a7ca12d"}, {"who": "B", "text": "Me too! Let's race.", "a": "ea3c1810f9894671"}, {"who": "A", "text": "To the big tree?", "a": "2402a3bbbc99ee6e"}, {"who": "B", "text": "Yes! One, two, three, go!", "a": "5c2d4c43a9923fbe"}, {"who": "A", "text": "You are fast!", "a": "7a0e78e1d56b35f9"}, {"who": "B", "text": "You are fast too!", "a": "399c70a7ce518d32"}, {"who": "A", "text": "Can you jump?", "a": "af34c8dc25c89521"}, {"who": "B", "text": "Yes, I can!", "a": "e15ec28520d4f595"}, {"who": "A", "text": "Look at me! I can hop.", "a": "be54a4554381a4a7"}, {"who": "B", "text": "I can hop too!", "a": "7c075ea027de3a84"}, {"who": "A", "text": "Can you climb the tree?", "a": "db4fe016a56bb39f"}, {"who": "B", "text": "No, I can't. It is high.", "a": "b163b4382b716070"}, {"who": "A", "text": "We can't climb. We can run!", "a": "a1a0f069e750b0bb"}, {"who": "B", "text": "Let's run again!", "a": "e2c871d0db703314"}, {"who": "A", "text": "One, two, three, go!", "a": "19ea9d2770e5af60"}, {"who": "B", "text": "I'm first!", "a": "f1b728d411433d09"}, {"who": "A", "text": "I'm tired now.", "a": "292d3772e2d11e37"}, {"who": "B", "text": "Me too!", "a": "41f0083c392536c1"}, {"who": "A", "text": "Bye! See you tomorrow!", "a": "9c12bc730961e0d1"}, {"who": "B", "text": "Bye bye!", "a": "21230ba5b460b31f"}]}, {"id": "park-04", "title": "Look at the dog!", "new": ["Look at the dog!", "a dog, a cat, a bird"], "lines": [{"who": "A", "text": "Hello!", "a": "83a8cc9622e0f5b6"}, {"who": "B", "text": "Hello!", "a": "83a8cc9622e0f5b6"}, {"who": "A", "text": "Look! A big dog!", "a": "6fb6d08c0edea703"}, {"who": "B", "text": "It is black and white.", "a": "fd2134519a7a5b32"}, {"who": "A", "text": "Look at the little dog!", "a": "2502fb854b29802e"}, {"who": "B", "text": "Two dogs!", "a": "915d8a234833efa4"}, {"who": "A", "text": "The big dog can run fast.", "a": "e6128b34e446d018"}, {"who": "B", "text": "Look! It has a ball.", "a": "2d1a4ff7dd30ce66"}, {"who": "A", "text": "It can catch the ball!", "a": "86bc4087c6616c63"}, {"who": "B", "text": "Good dog!", "a": "e029dc0a45d32ee7"}, {"who": "A", "text": "Look at the birds!", "a": "0cd109d0f7d084f0"}, {"who": "B", "text": "One, two, three birds.", "a": "b723a719ac8c386d"}, {"who": "A", "text": "They can fly.", "a": "b0e60012abf77c57"}, {"who": "B", "text": "I can't fly!", "a": "de1ab1add4155482"}, {"who": "A", "text": "We can't fly. We can run!", "a": "547c4fb286865e92"}, {"who": "B", "text": "Look! A cat in the tree.", "a": "35906b741bc7c283"}, {"who": "A", "text": "The dog can see the cat.", "a": "57e9686be807b141"}, {"who": "B", "text": "Run, cat, run!", "a": "826798727450a981"}, {"who": "A", "text": "The cat is fast!", "a": "830b09bda194d93a"}, {"who": "B", "text": "This is fun!", "a": "eead3f7045e222d3"}, {"who": "A", "text": "Bye! See you tomorrow!", "a": "9c12bc730961e0d1"}, {"who": "B", "text": "Bye bye!", "a": "21230ba5b460b31f"}]}, {"id": "park-05", "title": "I'm thirsty", "new": ["I'm thirsty.", "Can I have one, please?"], "lines": [{"who": "A", "text": "Hi!", "a": "3635642bf9280201"}, {"who": "B", "text": "Hi! I'm thirsty.", "a": "84a1658aa6f2355d"}, {"who": "A", "text": "Me too!", "a": "41f0083c392536c1"}, {"who": "B", "text": "Have you got water?", "a": "e0b87688ce3d2b1b"}, {"who": "A", "text": "No, I haven't.", "a": "e1f4e998856f1c59"}, {"who": "B", "text": "My Papa has water.", "a": "305d63bb1fe886a0"}, {"who": "A", "text": "Where is your Papa?", "a": "63c2a488bd3ad7b7"}, {"who": "B", "text": "Look! On the bench.", "a": "ec22992772e3e4d9"}, {"who": "A", "text": "Let's go and ask him.", "a": "3be60d72272c5b89"}, {"who": "B", "text": "Papa! Water, please!", "a": "18413ff99839c6ce"}, {"who": "A", "text": "Look! Two bottles!", "a": "c77ac18a52c59fb6"}, {"who": "B", "text": "Here you are.", "a": "2e3cb2af68c1640a"}, {"who": "A", "text": "Thank you! It is cold.", "a": "2ccb2bdaddaa84f2"}, {"who": "B", "text": "I'm hungry too.", "a": "e86596fc2bfc4ae2"}, {"who": "A", "text": "Me too!", "a": "41f0083c392536c1"}, {"who": "B", "text": "Papa has apples.", "a": "ab18b64287058cec"}, {"who": "A", "text": "Can I have one, please?", "a": "aff0de054580a70c"}, {"who": "B", "text": "Yes! Here you are.", "a": "06fe56d158b8c4d4"}, {"who": "A", "text": "I like apples!", "a": "4613304ee09cd006"}, {"who": "B", "text": "Now let's play again!", "a": "8f5ea74f0d3306f1"}, {"who": "A", "text": "Bye! See you tomorrow!", "a": "9c12bc730961e0d1"}, {"who": "B", "text": "Bye bye!", "a": "21230ba5b460b31f"}]}, {"id": "park-06", "title": "It's raining", "new": ["It's raining!", "sun, rain, wet"], "lines": [{"who": "A", "text": "Hello!", "a": "83a8cc9622e0f5b6"}, {"who": "B", "text": "Hello!", "a": "83a8cc9622e0f5b6"}, {"who": "A", "text": "Look at the sky.", "a": "42e3e27d7832a244"}, {"who": "B", "text": "It is grey.", "a": "a4e63620a9319471"}, {"who": "A", "text": "I'm cold.", "a": "50fcedf78160890e"}, {"who": "B", "text": "Me too!", "a": "41f0083c392536c1"}, {"who": "A", "text": "Oh! Rain!", "a": "1a2efc57a068da77"}, {"who": "B", "text": "It's raining!", "a": "e7a4a73f1cb2aa86"}, {"who": "A", "text": "Run! Under the tree!", "a": "ac71e98125d78021"}, {"who": "B", "text": "Come on! Quick!", "a": "8df2d50427e6025f"}, {"who": "A", "text": "My hair is wet!", "a": "15bd8aafc6c2c859"}, {"who": "B", "text": "My shoes are wet too!", "a": "dc0c2f42ddebe0b5"}, {"who": "A", "text": "Have you got an umbrella?", "a": "ecf0a1d2e345ec20"}, {"who": "B", "text": "Yes! Come under it.", "a": "2d941672c6fb952f"}, {"who": "A", "text": "Thank you!", "a": "535afb3d9aaaae8c"}, {"who": "B", "text": "Look! The rain is finished.", "a": "a1756cef9e1a7805"}, {"who": "A", "text": "The sun! Look at the sun!", "a": "788652110c8ad90c"}, {"who": "B", "text": "I have to go home now.", "a": "8ec6b2f05f0dc007"}, {"who": "A", "text": "Me too!", "a": "41f0083c392536c1"}, {"who": "B", "text": "Come again tomorrow?", "a": "f72fb48d95f37fa6"}, {"who": "A", "text": "Bye! See you tomorrow!", "a": "9c12bc730961e0d1"}, {"who": "B", "text": "Bye bye!", "a": "21230ba5b460b31f"}]}]}];
+const AUDIO = {"703627cc2517ee5d": "assets/audio/703627cc2517ee5d.m4a", "23cc02b30af7b01f": "assets/audio/23cc02b30af7b01f.m4a", "81fd73a45bbcbc00": "assets/audio/81fd73a45bbcbc00.m4a", "b95341a4d6656865": "assets/audio/b95341a4d6656865.m4a", "efcd553fff2a437d": "assets/audio/efcd553fff2a437d.m4a", "7e2de18c6c71c9ce": "assets/audio/7e2de18c6c71c9ce.m4a", "ab6acd5be4a96589": "assets/audio/ab6acd5be4a96589.m4a", "1014cb241854cc28": "assets/audio/1014cb241854cc28.m4a", "ffcc09da3cea9440": "assets/audio/ffcc09da3cea9440.m4a", "8110a10a4a7663b4": "assets/audio/8110a10a4a7663b4.m4a", "e68326cb3e1a0b97": "assets/audio/e68326cb3e1a0b97.m4a", "b971fdae3afda314": "assets/audio/b971fdae3afda314.m4a", "c7cfded2c6797a87": "assets/audio/c7cfded2c6797a87.m4a", "16667019f8cc216a": "assets/audio/16667019f8cc216a.m4a", "9af9aba140cde7ba": "assets/audio/9af9aba140cde7ba.m4a", "aca48f4e86b9fa23": "assets/audio/aca48f4e86b9fa23.m4a", "90fd268eeff50af9": "assets/audio/90fd268eeff50af9.m4a", "f0990bfca731e161": "assets/audio/f0990bfca731e161.m4a", "f2a28bfc490a7d26": "assets/audio/f2a28bfc490a7d26.m4a", "745c284e0a51a638": "assets/audio/745c284e0a51a638.m4a", "a6128bbf9aa5930b": "assets/audio/a6128bbf9aa5930b.m4a", "7b32ca5ae6a9ea94": "assets/audio/7b32ca5ae6a9ea94.m4a", "0dcfad64666d4298": "assets/audio/0dcfad64666d4298.m4a", "2e3cb2af68c1640a": "assets/audio/2e3cb2af68c1640a.m4a", "59af27685f028890": "assets/audio/59af27685f028890.m4a", "761f9e61ad8a2af2": "assets/audio/761f9e61ad8a2af2.m4a", "cd287c1305d4a445": "assets/audio/cd287c1305d4a445.m4a", "2c4590e0be459216": "assets/audio/2c4590e0be459216.m4a", "056a100b9e95ae51": "assets/audio/056a100b9e95ae51.m4a", "a0b250e07df512c5": "assets/audio/a0b250e07df512c5.m4a", "2c7d2b5d11afd3bf": "assets/audio/2c7d2b5d11afd3bf.m4a", "375953e24dac92a2": "assets/audio/375953e24dac92a2.m4a", "8d0a6b0fc78da191": "assets/audio/8d0a6b0fc78da191.m4a", "27d74f5d758e9e24": "assets/audio/27d74f5d758e9e24.m4a", "e6f8fe9d6bdd8776": "assets/audio/e6f8fe9d6bdd8776.m4a", "f25433e2277c0ab2": "assets/audio/f25433e2277c0ab2.m4a", "b4a3901305275778": "assets/audio/b4a3901305275778.m4a", "c8c553b4c236ec63": "assets/audio/c8c553b4c236ec63.m4a", "91def9ca7c36a9bd": "assets/audio/91def9ca7c36a9bd.m4a", "c2d634c49f41130c": "assets/audio/c2d634c49f41130c.m4a", "e099803e936fd791": "assets/audio/e099803e936fd791.m4a", "e00216eb8f611269": "assets/audio/e00216eb8f611269.m4a", "67e574eb5433cc41": "assets/audio/67e574eb5433cc41.m4a", "bb65ce74b79c0190": "assets/audio/bb65ce74b79c0190.m4a", "508fa94134f25bf8": "assets/audio/508fa94134f25bf8.m4a", "19267a94e009f51d": "assets/audio/19267a94e009f51d.m4a", "dc3bdf5af256a01d": "assets/audio/dc3bdf5af256a01d.m4a", "6fef5e2c403aa583": "assets/audio/6fef5e2c403aa583.m4a", "dd93e692af50d51e": "assets/audio/dd93e692af50d51e.m4a", "db92cc100942ed2c": "assets/audio/db92cc100942ed2c.m4a", "5eacbd27cb74890d": "assets/audio/5eacbd27cb74890d.m4a", "259a21ba45916b65": "assets/audio/259a21ba45916b65.m4a", "21deb0a9c69c986d": "assets/audio/21deb0a9c69c986d.m4a", "d7c152b0c039b7b9": "assets/audio/d7c152b0c039b7b9.m4a", "94a0175e85a69c6f": "assets/audio/94a0175e85a69c6f.m4a", "4c867e5ba76875c6": "assets/audio/4c867e5ba76875c6.m4a", "a79f0010171d5814": "assets/audio/a79f0010171d5814.m4a", "d404b147395e1181": "assets/audio/d404b147395e1181.m4a", "8f34cdfaa22c2b26": "assets/audio/8f34cdfaa22c2b26.m4a", "a455788789968350": "assets/audio/a455788789968350.m4a", "446a61fe9e6584d8": "assets/audio/446a61fe9e6584d8.m4a", "b72290636063c9c7": "assets/audio/b72290636063c9c7.m4a", "de8de4dc3947596e": "assets/audio/de8de4dc3947596e.m4a", "147ca27d9ebe6d73": "assets/audio/147ca27d9ebe6d73.m4a", "f695b83ca4ecbc44": "assets/audio/f695b83ca4ecbc44.m4a", "9e68bfbec5f6a5c0": "assets/audio/9e68bfbec5f6a5c0.m4a", "313cd90db9ba9ee2": "assets/audio/313cd90db9ba9ee2.m4a", "c6b4497c4e22688f": "assets/audio/c6b4497c4e22688f.m4a", "419deda96c7dd217": "assets/audio/419deda96c7dd217.m4a", "6e3afed1badf6043": "assets/audio/6e3afed1badf6043.m4a", "00df3365d026ea37": "assets/audio/00df3365d026ea37.m4a", "a12c4a63225b4461": "assets/audio/a12c4a63225b4461.m4a", "ca25e9aedfc084a6": "assets/audio/ca25e9aedfc084a6.m4a", "0ba15aedd9e7dd9e": "assets/audio/0ba15aedd9e7dd9e.m4a", "674d4d2615b66a59": "assets/audio/674d4d2615b66a59.m4a", "c17b97e3658f763f": "assets/audio/c17b97e3658f763f.m4a", "890d032670b3365e": "assets/audio/890d032670b3365e.m4a", "6b2279fca6013d43": "assets/audio/6b2279fca6013d43.m4a", "f8309704823f42dc": "assets/audio/f8309704823f42dc.m4a", "69a9baf35d1cadc3": "assets/audio/69a9baf35d1cadc3.m4a", "5e990eeb03ac0397": "assets/audio/5e990eeb03ac0397.m4a", "1d369c763f49d43f": "assets/audio/1d369c763f49d43f.m4a", "475e81977eb8bdeb": "assets/audio/475e81977eb8bdeb.m4a", "61d8d78797b62e2c": "assets/audio/61d8d78797b62e2c.m4a", "865e2e8b8a6b78e0": "assets/audio/865e2e8b8a6b78e0.m4a", "6db8c839e1f9f3fe": "assets/audio/6db8c839e1f9f3fe.m4a", "1686bcacf8bd4553": "assets/audio/1686bcacf8bd4553.m4a", "b32e2e6b99ae9a78": "assets/audio/b32e2e6b99ae9a78.m4a", "b2c22c1340da3021": "assets/audio/b2c22c1340da3021.m4a", "2004353b0ee3250f": "assets/audio/2004353b0ee3250f.m4a", "4da72faea1e8d6a6": "assets/audio/4da72faea1e8d6a6.m4a", "83a8cc9622e0f5b6": "assets/audio/83a8cc9622e0f5b6.m4a", "eb41d22fd1f360a3": "assets/audio/eb41d22fd1f360a3.m4a", "780816cc5b1677dc": "assets/audio/780816cc5b1677dc.m4a", "b66b25bf057a93f5": "assets/audio/b66b25bf057a93f5.m4a", "639400604ce48489": "assets/audio/639400604ce48489.m4a", "ea698a3ae8cb3000": "assets/audio/ea698a3ae8cb3000.m4a", "d8bd28fe623f153b": "assets/audio/d8bd28fe623f153b.m4a", "047cd2e15a71a6be": "assets/audio/047cd2e15a71a6be.m4a", "f1bae68e5a110338": "assets/audio/f1bae68e5a110338.m4a", "8828d86a7e957814": "assets/audio/8828d86a7e957814.m4a", "ebb729270b63b907": "assets/audio/ebb729270b63b907.m4a", "a36f38cae75e79cb": "assets/audio/a36f38cae75e79cb.m4a", "6920b1c5de40491d": "assets/audio/6920b1c5de40491d.m4a", "38adfa4f2b1ae5d2": "assets/audio/38adfa4f2b1ae5d2.m4a", "8fa500660a59c4ea": "assets/audio/8fa500660a59c4ea.m4a", "4033b940bd7d4a68": "assets/audio/4033b940bd7d4a68.m4a", "8d83cd7bff3463cc": "assets/audio/8d83cd7bff3463cc.m4a", "4193c4bd1133c3f8": "assets/audio/4193c4bd1133c3f8.m4a", "afb7b2098023749b": "assets/audio/afb7b2098023749b.m4a", "ba16624c625c502b": "assets/audio/ba16624c625c502b.m4a", "e95d7add18c7ffee": "assets/audio/e95d7add18c7ffee.m4a", "dfce5cfa5f16459f": "assets/audio/dfce5cfa5f16459f.m4a", "b4248f6902de292c": "assets/audio/b4248f6902de292c.m4a", "24fbfd359931cd46": "assets/audio/24fbfd359931cd46.m4a", "d0fa0c073c92b428": "assets/audio/d0fa0c073c92b428.m4a", "957853b9c156025d": "assets/audio/957853b9c156025d.m4a", "da0297082c7efef6": "assets/audio/da0297082c7efef6.m4a", "c777a821d4a405ac": "assets/audio/c777a821d4a405ac.m4a", "84f3ec52a7607282": "assets/audio/84f3ec52a7607282.m4a", "ff39dd1a493f772f": "assets/audio/ff39dd1a493f772f.m4a", "5b749f82c7aab286": "assets/audio/5b749f82c7aab286.m4a", "d63f218e6cb59ab7": "assets/audio/d63f218e6cb59ab7.m4a", "4520d9e648e05709": "assets/audio/4520d9e648e05709.m4a", "8d8318d90922106a": "assets/audio/8d8318d90922106a.m4a", "229721bfbacf5962": "assets/audio/229721bfbacf5962.m4a", "f6bfd7f0d0f65bc8": "assets/audio/f6bfd7f0d0f65bc8.m4a", "5c93f46b93b56e01": "assets/audio/5c93f46b93b56e01.m4a", "21d3ef13a49b0384": "assets/audio/21d3ef13a49b0384.m4a", "3e1edcce67771633": "assets/audio/3e1edcce67771633.m4a", "843b3466a41c7ae3": "assets/audio/843b3466a41c7ae3.m4a", "f7abd75174a828cb": "assets/audio/f7abd75174a828cb.m4a", "22525515b09603ed": "assets/audio/22525515b09603ed.m4a", "88b2d33c6c8c9757": "assets/audio/88b2d33c6c8c9757.m4a", "96b96526d79c26e7": "assets/audio/96b96526d79c26e7.m4a", "264ccbe29b556995": "assets/audio/264ccbe29b556995.m4a", "c59db60b6ee40df2": "assets/audio/c59db60b6ee40df2.m4a", "3ee5ec01e6cd79ab": "assets/audio/3ee5ec01e6cd79ab.m4a", "0d7ab8847b57bce3": "assets/audio/0d7ab8847b57bce3.m4a", "cf4d9f2feea3b721": "assets/audio/cf4d9f2feea3b721.m4a", "d25408a491a12bf6": "assets/audio/d25408a491a12bf6.m4a", "11b65790dabbfe47": "assets/audio/11b65790dabbfe47.m4a", "1e0e82d0def76267": "assets/audio/1e0e82d0def76267.m4a", "7308e6ea41cf0814": "assets/audio/7308e6ea41cf0814.m4a", "f3b0461da52bdf98": "assets/audio/f3b0461da52bdf98.m4a", "80d2e2fd539096d6": "assets/audio/80d2e2fd539096d6.m4a", "f6c4c5e8f4158895": "assets/audio/f6c4c5e8f4158895.m4a", "c663960bf2552105": "assets/audio/c663960bf2552105.m4a", "f1ea2b02cb5588e3": "assets/audio/f1ea2b02cb5588e3.m4a", "ce0305e28bde69d8": "assets/audio/ce0305e28bde69d8.m4a", "86ae37f59add8ad6": "assets/audio/86ae37f59add8ad6.m4a", "4c68256e4474125a": "assets/audio/4c68256e4474125a.m4a", "1318dce6c55e0ced": "assets/audio/1318dce6c55e0ced.m4a", "5e882d009bfcb469": "assets/audio/5e882d009bfcb469.m4a", "46154256c06aceb8": "assets/audio/46154256c06aceb8.m4a", "b56b0306ca17c074": "assets/audio/b56b0306ca17c074.m4a", "742faff7bddedbe2": "assets/audio/742faff7bddedbe2.m4a", "28902366c9502555": "assets/audio/28902366c9502555.m4a", "e515e2f1add93be1": "assets/audio/e515e2f1add93be1.m4a", "85c842fa4f8c46d3": "assets/audio/85c842fa4f8c46d3.m4a", "30109940695c939f": "assets/audio/30109940695c939f.m4a", "8ead84bfbdf9d44f": "assets/audio/8ead84bfbdf9d44f.m4a", "25e6ef7c631a0082": "assets/audio/25e6ef7c631a0082.m4a", "c1ed8997bebe9728": "assets/audio/c1ed8997bebe9728.m4a", "67463e03f78e3275": "assets/audio/67463e03f78e3275.m4a", "033f7111786537dc": "assets/audio/033f7111786537dc.m4a", "0dd713cb9bc494e4": "assets/audio/0dd713cb9bc494e4.m4a", "bd29803e75e8ec36": "assets/audio/bd29803e75e8ec36.m4a", "833fea17f9613c4b": "assets/audio/833fea17f9613c4b.m4a", "93c5f55a2ba06c36": "assets/audio/93c5f55a2ba06c36.m4a", "8764706c795c8d1d": "assets/audio/8764706c795c8d1d.m4a", "f0e89565f45f02da": "assets/audio/f0e89565f45f02da.m4a", "18be3d8a083adcfa": "assets/audio/18be3d8a083adcfa.m4a", "d002b7a7a9bfc29a": "assets/audio/d002b7a7a9bfc29a.m4a", "de6ce5b3118ba669": "assets/audio/de6ce5b3118ba669.m4a", "0bcecf1c25634a15": "assets/audio/0bcecf1c25634a15.m4a", "1d6b6758ce191f23": "assets/audio/1d6b6758ce191f23.m4a", "32a3e1c883f54fc4": "assets/audio/32a3e1c883f54fc4.m4a", "c4b2f1bdfb8a9df7": "assets/audio/c4b2f1bdfb8a9df7.m4a", "98b91a017a6c612f": "assets/audio/98b91a017a6c612f.m4a", "85cdbc8fb8f678b4": "assets/audio/85cdbc8fb8f678b4.m4a", "47a8c14412d6c113": "assets/audio/47a8c14412d6c113.m4a", "6e1c1469302512c5": "assets/audio/6e1c1469302512c5.m4a", "ca63e3e88b5691f8": "assets/audio/ca63e3e88b5691f8.m4a", "7ed983ab9b940261": "assets/audio/7ed983ab9b940261.m4a", "8bdcb32097263bcd": "assets/audio/8bdcb32097263bcd.m4a", "e521a60a8753c12e": "assets/audio/e521a60a8753c12e.m4a", "39eff91b2ff0788c": "assets/audio/39eff91b2ff0788c.m4a", "2718bd51314726ec": "assets/audio/2718bd51314726ec.m4a", "38fbc6e6d4395e57": "assets/audio/38fbc6e6d4395e57.m4a", "234183418a26715a": "assets/audio/234183418a26715a.m4a", "620280f5976abe5f": "assets/audio/620280f5976abe5f.m4a", "f315d8667b5757c2": "assets/audio/f315d8667b5757c2.m4a", "e8b8ab7fe087153e": "assets/audio/e8b8ab7fe087153e.m4a", "4ea1b014e0f39445": "assets/audio/4ea1b014e0f39445.m4a", "5b0af2b8d95b5004": "assets/audio/5b0af2b8d95b5004.m4a", "02e074c85db53109": "assets/audio/02e074c85db53109.m4a", "3c41f5f5d0dbfee6": "assets/audio/3c41f5f5d0dbfee6.m4a", "920d992bae5170ee": "assets/audio/920d992bae5170ee.m4a", "6287d1589f68336a": "assets/audio/6287d1589f68336a.m4a", "862b82012c9c2efd": "assets/audio/862b82012c9c2efd.m4a", "c2e6a7a0bccdab5d": "assets/audio/c2e6a7a0bccdab5d.m4a", "f358a271e18dae89": "assets/audio/f358a271e18dae89.m4a", "652b90ff017bb77e": "assets/audio/652b90ff017bb77e.m4a", "8031019149cf2ff0": "assets/audio/8031019149cf2ff0.m4a", "1ecd1d4ceb1b65c9": "assets/audio/1ecd1d4ceb1b65c9.m4a", "cb391c59d8074180": "assets/audio/cb391c59d8074180.m4a", "1be75cb68eccd651": "assets/audio/1be75cb68eccd651.m4a", "34ce281af820a15d": "assets/audio/34ce281af820a15d.m4a", "60afd569fdfede95": "assets/audio/60afd569fdfede95.m4a", "79b0490a48be960b": "assets/audio/79b0490a48be960b.m4a", "80d3c3c10f5db63c": "assets/audio/80d3c3c10f5db63c.m4a", "e084874bfdd965f7": "assets/audio/e084874bfdd965f7.m4a", "b6b3a3c05ed4b621": "assets/audio/b6b3a3c05ed4b621.m4a", "1a85fc018c1b8cb3": "assets/audio/1a85fc018c1b8cb3.m4a", "1efa154fc4d0a5dd": "assets/audio/1efa154fc4d0a5dd.m4a", "c834bc70504f6477": "assets/audio/c834bc70504f6477.m4a", "e55d12d5c1a34327": "assets/audio/e55d12d5c1a34327.m4a", "38542c917a465889": "assets/audio/38542c917a465889.m4a", "fadedb1f9af65ae9": "assets/audio/fadedb1f9af65ae9.m4a", "e179736b376680a2": "assets/audio/e179736b376680a2.m4a", "a91963d345238f15": "assets/audio/a91963d345238f15.m4a", "ffb06ff604b4fd9e": "assets/audio/ffb06ff604b4fd9e.m4a", "bdb26d1e671e0d2a": "assets/audio/bdb26d1e671e0d2a.m4a", "5b12a0c3242c3877": "assets/audio/5b12a0c3242c3877.m4a", "714b31ec995a72df": "assets/audio/714b31ec995a72df.m4a", "eb64786235d59562": "assets/audio/eb64786235d59562.m4a", "70b4129d433979d1": "assets/audio/70b4129d433979d1.m4a", "f8257e326ddb0e75": "assets/audio/f8257e326ddb0e75.m4a", "385d542b0bf1ab0f": "assets/audio/385d542b0bf1ab0f.m4a", "3635642bf9280201": "assets/audio/3635642bf9280201.m4a", "4c6c84cd114a85ef": "assets/audio/4c6c84cd114a85ef.m4a", "f2e1846b5d8a3895": "assets/audio/f2e1846b5d8a3895.m4a", "35867d8e7be3ea87": "assets/audio/35867d8e7be3ea87.m4a", "dfc014865c802e3b": "assets/audio/dfc014865c802e3b.m4a", "fb34588ff9ca034d": "assets/audio/fb34588ff9ca034d.m4a", "444f5d954497131d": "assets/audio/444f5d954497131d.m4a", "a0e2e19001f16b00": "assets/audio/a0e2e19001f16b00.m4a", "e15ec28520d4f595": "assets/audio/e15ec28520d4f595.m4a", "786f56ec434d4455": "assets/audio/786f56ec434d4455.m4a", "e2d85764233e7b5e": "assets/audio/e2d85764233e7b5e.m4a", "2014824055e9b793": "assets/audio/2014824055e9b793.m4a", "535afb3d9aaaae8c": "assets/audio/535afb3d9aaaae8c.m4a", "eead3f7045e222d3": "assets/audio/eead3f7045e222d3.m4a", "4283bb49b2f52285": "assets/audio/4283bb49b2f52285.m4a", "65c59e3106553b7e": "assets/audio/65c59e3106553b7e.m4a", "f72fb48d95f37fa6": "assets/audio/f72fb48d95f37fa6.m4a", "7ff93bab827ea0d7": "assets/audio/7ff93bab827ea0d7.m4a", "9c12bc730961e0d1": "assets/audio/9c12bc730961e0d1.m4a", "21230ba5b460b31f": "assets/audio/21230ba5b460b31f.m4a", "927feceee62ecd0c": "assets/audio/927feceee62ecd0c.m4a", "41f0083c392536c1": "assets/audio/41f0083c392536c1.m4a", "c3b1d07eb73e5838": "assets/audio/c3b1d07eb73e5838.m4a", "43dc3d5288724f34": "assets/audio/43dc3d5288724f34.m4a", "36401bd0076c6118": "assets/audio/36401bd0076c6118.m4a", "363fac3147f3d6c7": "assets/audio/363fac3147f3d6c7.m4a", "ef2cdbf354e346a3": "assets/audio/ef2cdbf354e346a3.m4a", "e6ddf982d9fa1e43": "assets/audio/e6ddf982d9fa1e43.m4a", "d159f18e69afaef9": "assets/audio/d159f18e69afaef9.m4a", "9c4a0676536d9fdb": "assets/audio/9c4a0676536d9fdb.m4a", "93c36bd593a682ce": "assets/audio/93c36bd593a682ce.m4a", "5c4bb08003915fb7": "assets/audio/5c4bb08003915fb7.m4a", "783965bb347f3602": "assets/audio/783965bb347f3602.m4a", "1ef76936e5c7d989": "assets/audio/1ef76936e5c7d989.m4a", "e3bc1d1e45509e52": "assets/audio/e3bc1d1e45509e52.m4a", "2cbc139305742f74": "assets/audio/2cbc139305742f74.m4a", "fab8cfd18a7ca12d": "assets/audio/fab8cfd18a7ca12d.m4a", "ea3c1810f9894671": "assets/audio/ea3c1810f9894671.m4a", "2402a3bbbc99ee6e": "assets/audio/2402a3bbbc99ee6e.m4a", "5c2d4c43a9923fbe": "assets/audio/5c2d4c43a9923fbe.m4a", "7a0e78e1d56b35f9": "assets/audio/7a0e78e1d56b35f9.m4a", "399c70a7ce518d32": "assets/audio/399c70a7ce518d32.m4a", "af34c8dc25c89521": "assets/audio/af34c8dc25c89521.m4a", "be54a4554381a4a7": "assets/audio/be54a4554381a4a7.m4a", "7c075ea027de3a84": "assets/audio/7c075ea027de3a84.m4a", "db4fe016a56bb39f": "assets/audio/db4fe016a56bb39f.m4a", "b163b4382b716070": "assets/audio/b163b4382b716070.m4a", "a1a0f069e750b0bb": "assets/audio/a1a0f069e750b0bb.m4a", "e2c871d0db703314": "assets/audio/e2c871d0db703314.m4a", "19ea9d2770e5af60": "assets/audio/19ea9d2770e5af60.m4a", "f1b728d411433d09": "assets/audio/f1b728d411433d09.m4a", "292d3772e2d11e37": "assets/audio/292d3772e2d11e37.m4a", "6fb6d08c0edea703": "assets/audio/6fb6d08c0edea703.m4a", "fd2134519a7a5b32": "assets/audio/fd2134519a7a5b32.m4a", "2502fb854b29802e": "assets/audio/2502fb854b29802e.m4a", "915d8a234833efa4": "assets/audio/915d8a234833efa4.m4a", "e6128b34e446d018": "assets/audio/e6128b34e446d018.m4a", "2d1a4ff7dd30ce66": "assets/audio/2d1a4ff7dd30ce66.m4a", "86bc4087c6616c63": "assets/audio/86bc4087c6616c63.m4a", "e029dc0a45d32ee7": "assets/audio/e029dc0a45d32ee7.m4a", "0cd109d0f7d084f0": "assets/audio/0cd109d0f7d084f0.m4a", "b723a719ac8c386d": "assets/audio/b723a719ac8c386d.m4a", "b0e60012abf77c57": "assets/audio/b0e60012abf77c57.m4a", "de1ab1add4155482": "assets/audio/de1ab1add4155482.m4a", "547c4fb286865e92": "assets/audio/547c4fb286865e92.m4a", "35906b741bc7c283": "assets/audio/35906b741bc7c283.m4a", "57e9686be807b141": "assets/audio/57e9686be807b141.m4a", "826798727450a981": "assets/audio/826798727450a981.m4a", "830b09bda194d93a": "assets/audio/830b09bda194d93a.m4a", "84a1658aa6f2355d": "assets/audio/84a1658aa6f2355d.m4a", "e0b87688ce3d2b1b": "assets/audio/e0b87688ce3d2b1b.m4a", "e1f4e998856f1c59": "assets/audio/e1f4e998856f1c59.m4a", "305d63bb1fe886a0": "assets/audio/305d63bb1fe886a0.m4a", "63c2a488bd3ad7b7": "assets/audio/63c2a488bd3ad7b7.m4a", "ec22992772e3e4d9": "assets/audio/ec22992772e3e4d9.m4a", "3be60d72272c5b89": "assets/audio/3be60d72272c5b89.m4a", "18413ff99839c6ce": "assets/audio/18413ff99839c6ce.m4a", "c77ac18a52c59fb6": "assets/audio/c77ac18a52c59fb6.m4a", "2ccb2bdaddaa84f2": "assets/audio/2ccb2bdaddaa84f2.m4a", "e86596fc2bfc4ae2": "assets/audio/e86596fc2bfc4ae2.m4a", "ab18b64287058cec": "assets/audio/ab18b64287058cec.m4a", "aff0de054580a70c": "assets/audio/aff0de054580a70c.m4a", "06fe56d158b8c4d4": "assets/audio/06fe56d158b8c4d4.m4a", "4613304ee09cd006": "assets/audio/4613304ee09cd006.m4a", "8f5ea74f0d3306f1": "assets/audio/8f5ea74f0d3306f1.m4a", "42e3e27d7832a244": "assets/audio/42e3e27d7832a244.m4a", "a4e63620a9319471": "assets/audio/a4e63620a9319471.m4a", "50fcedf78160890e": "assets/audio/50fcedf78160890e.m4a", "1a2efc57a068da77": "assets/audio/1a2efc57a068da77.m4a", "e7a4a73f1cb2aa86": "assets/audio/e7a4a73f1cb2aa86.m4a", "ac71e98125d78021": "assets/audio/ac71e98125d78021.m4a", "8df2d50427e6025f": "assets/audio/8df2d50427e6025f.m4a", "15bd8aafc6c2c859": "assets/audio/15bd8aafc6c2c859.m4a", "dc0c2f42ddebe0b5": "assets/audio/dc0c2f42ddebe0b5.m4a", "ecf0a1d2e345ec20": "assets/audio/ecf0a1d2e345ec20.m4a", "2d941672c6fb952f": "assets/audio/2d941672c6fb952f.m4a", "a1756cef9e1a7805": "assets/audio/a1756cef9e1a7805.m4a", "788652110c8ad90c": "assets/audio/788652110c8ad90c.m4a", "8ec6b2f05f0dc007": "assets/audio/8ec6b2f05f0dc007.m4a"};
+</script>
+<script>/* The English Play Deck — inlined by tools/build_deck.py. Edit here, never the
+   built HTML.
+
+   The build injects:
+     PLACES — [{place, title, scenes:[{id, title, new:[], lines:[{who, text, a}]}]}]
+     AUDIO  — {clipKey: url or data: URI}
+
+   A scene is played twice: once as printed, then a swap card, then again with the
+   roles exchanged. The deck never asks anyone to choose anything — you press
+   right, and it goes. */
+
+const $ = s => document.querySelector(s);
+const SCENES = PLACES.flatMap(p => p.scenes.map(s => ({ ...s, place: p.title })));
+
+let idx = -1;        // index into SCENES; -1 means the contents screen
+let swapped = false; // second pass, roles exchanged
+let sound = null, playingEl = null;
+
+/* -------------------------------------------------------------- the stage */
+
+/* One fixed 1920×1080 stage, scaled to fit. Everything lays out once, at one
+   size, so the television and the tablet show exactly the same thing. */
+function fitStage() {
+  const st = $('#stage');
+  if (!st) return;
+  const pad = 16;
+  const s = Math.min((innerWidth - pad) / 1920, (innerHeight - pad) / 1080);
+  st.style.transform = `scale(${s})`;
+}
+addEventListener('resize', fitStage);
+
+/* --------------------------------------------------------------- audio */
+
+function stopAudio() {
+  if (sound) { sound.pause(); sound = null; }
+  if (playingEl) { playingEl.classList.remove('playing'); playingEl = null; }
+}
+
+function say(key, el) {
+  stopAudio();
+  const src = AUDIO[key];
+  if (!src) return;
+  sound = new Audio(src);
+  playingEl = el || null;
+  if (playingEl) playingEl.classList.add('playing');
+  sound.onended = () => { if (playingEl) playingEl.classList.remove('playing'); };
+  sound.play().catch(() => {});
+}
+
+/* --------------------------------------------------------------- contents */
+
+function renderIndex() {
+  const places = PLACES.map(p => `
+    <section class="place">
+      <h2>${p.title}</h2>
+      <div class="count">${p.scenes.length} scenes</div>
+      <div class="cards">
+        ${p.scenes.map(s => `
+          <button class="card" data-id="${s.id}">
+            <div class="n">${s.id.toUpperCase()}</div>
+            <div class="t">${s.title}</div>
+            <div class="new">${(s.new || []).join(' · ')}</div>
+          </button>`).join('')}
       </div>
-      <div>
-        <div class="tag">How to print</div>
-        <p class="small">A4, single-sided, colour if you can, "background graphics" switched on.
-        Print the whole pack once. Card pages and prop pages are meant to be cut along the dashed
-        lines; keep everything in one box that only comes out at English time.</p>
+    </section>`).join('');
+
+  $('#index').innerHTML = `
+    <div class="index">
+      <h1>The English Play Deck</h1>
+      <p class="lede">Pick a scene. You read the left part, she reads the right one —
+         then it swaps and you play it again. Tap any line to hear it.</p>
+      ${places}
+    </div>`;
+
+  $('#index').querySelectorAll('.card').forEach(c => {
+    c.onclick = () => open(SCENES.findIndex(s => s.id === c.dataset.id));
+  });
+}
+
+/* ----------------------------------------------------------------- a scene */
+
+const RULE = `<svg viewBox="0 0 60 890" width="60" height="890" fill="none">
+  <line x1="30" y1="0" x2="30" y2="407" stroke="#eae2d8" stroke-width="2"/>
+  <line x1="30" y1="483" x2="30" y2="890" stroke="#eae2d8" stroke-width="2"/>
+  <rect x="19" y="434" width="22" height="22" transform="rotate(45 30 445)"
+        fill="none" stroke="#d2624a" stroke-width="2.5"/>
+  <circle cx="30" cy="445" r="4" fill="#1f6f7a"/>
+  <circle cx="30" cy="387" r="3" fill="#eae2d8"/>
+  <circle cx="30" cy="503" r="3" fill="#eae2d8"/>
+</svg>`;
+
+function bubbles(lines) {
+  return lines.map(l => {
+    // on the second pass the sides trade places, so the reader's eye follows
+    // whichever part they are now playing
+    const who = swapped ? (l.who === 'A' ? 'B' : 'A') : l.who;
+    return `<div class="row ${who}">
+        <button class="bub" data-k="${l.a}">${l.text}</button>
+      </div>`;
+  }).join('');
+}
+
+function renderScene() {
+  const sc = SCENES[idx];
+  const half = Math.ceil(sc.lines.length / 2);
+  const left = sc.lines.slice(0, half), right = sc.lines.slice(half);
+
+  $('#stage').innerHTML = `
+    <div class="slide">
+      <div class="head">
+        <span class="scene">${sc.place} — ${sc.title}</span>
+        <span class="meta">
+          <b class="A">${swapped ? 'you' : 'Papa'}</b> ·
+          <b class="B">${swapped ? 'Papa' : 'you'}</b>
+          &nbsp;&nbsp;${idx + 1} / ${SCENES.length}
+        </span>
       </div>
-    </div>
-  </div>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Before you start</span><span>Rules</span></div>
-<h1>Eight rules<br>for the grown-up</h1>
-<p class="lede">You are not a teacher and she is not a student. You are two actors with a hat.
-Read this page once before session one; it matters more than any of the word lists.</p>
-<div class="rule"></div>
-<ol class="rules"><li><b>The hat is the switch.</b>When you put the hat on, English begins. When it comes off, English stops. A 90-minute lesson feels like homework; a hat that turns you into someone else feels like a game. Same 90 minutes.</li><li><b>The Greek Button rescues, it does not replace.</b>Cut out the red button on the props page. She may slap it any time and get ten seconds of Greek — then the hat is back on. Knowing the escape exists is what stops the panic that makes children refuse to speak.</li><li><b>Never correct inside a scene.</b>If she says "I are happy", you answer in character: "You are happy! I am happy too!" She hears the right form without being stopped. Correcting mid-scene teaches her that speaking is dangerous.</li><li><b>Play every scene three times.</b>Run 1 — you play both roles with a toy while she only watches and listens. Run 2 — she takes role A, reading or repeating after you. Run 3 — you swap. The third run is where the language actually sticks.</li><li><b>Three to five words per line. Always the same words.</b>Repetition is not boring for a beginner, it is the entire lesson. She needs to hear "How much is it?" thirty times, not thirty different questions.</li><li><b>Silly beats perfect.</b>A monster voice, a wrong price of one hundred francs, a customer who pays with a sock. If she laughs, she remembers. If she is bored, nothing sticks however correct it was.</li><li><b>Stop a block early, never late.</b>The moment her eyes drift, end that block and move to a movement game, even if five minutes are left. Ending on a high note is what makes her want the next session.</li><li><b>Your accent does not matter.</b>You are not the model of perfect English, you are her playmate in English. A parent playing enthusiastically in imperfect English beats a perfect recording she ignores.</li></ol></div>
-<div class="sheet"><div class="runhead"><span>Before you start</span><span>Session shape</span></div>
-<h1>The shape of<br>every session</h1>
-<p class="lede">The same nine blocks every time, in the same order. A seven-year-old will not sit
-through ninety unbroken minutes of anything — but she will happily sit through nine short things
-she recognises. Predictability is what buys you the ninety minutes.</p>
-<table>
-<tr><th style="width:16mm">Clock</th><th style="width:16mm">Length</th>
-<th style="width:38mm">Block</th><th>What happens</th></tr>
-<tr><td class="t">0:00</td><td class="t">5 min</td><td><b>Opening ritual</b></td><td>Hat on. Ring the bell. The same hello chant every single session.</td></tr><tr><td class="t">0:05</td><td class="t">10 min</td><td><b>Warm-up</b></td><td>Review game from last session. Session 1: the numbers chant.</td></tr><tr><td class="t">0:15</td><td class="t">15 min</td><td><b>New words</b></td><td>Word cards. Show, say, she repeats, she finds, she hides one.</td></tr><tr><td class="t">0:30</td><td class="t">10 min</td><td><b>Word game</b></td><td>Standing up, moving. Game 1 on the games sheet.</td></tr><tr><td class="t">0:40</td><td class="t">10 min</td><td><b>BREAK</b></td><td>Water, snack, no English at all. Protect this break.</td></tr><tr><td class="t">0:50</td><td class="t">15 min</td><td><b>The Play — run 1 &amp; 2</b></td><td>You demo both roles, then she takes role A with the script in hand.</td></tr><tr><td class="t">1:05</td><td class="t">10 min</td><td><b>The Play — run 3</b></td><td>Swap roles. No script if she can manage.</td></tr><tr><td class="t">1:15</td><td class="t">10 min</td><td><b>Silly version</b></td><td>Same scene, wrong world. Let her invent the silliness.</td></tr><tr><td class="t">1:25</td><td class="t">5 min</td><td><b>Closing ritual</b></td><td>Star on the chart, hand her the home mission card, goodbye chant.</td></tr>
-</table>
-<div class="box" style="margin-top:7mm">
-  <h4>Why nine blocks and not three</h4>
-  <p>A seven-year-old cannot sit through ninety unbroken minutes of anything, but she will happily
-  sit through nine short things she recognises. Never reorder them and never skip the break —
-  predictability is what buys you the ninety minutes.</p>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Before you start</span><span>Rituals</span></div>
-<h1>The two chants<br>and the card games</h1>
-<p class="lede">These four things never change from session one to session four. Everything else in
-the pack is new each time; these are the walls she leans on.</p>
-<h3>The opening chant</h3>
-<div class="box" style="font-size:13pt;line-height:1.7"><div>Hello, hello, what's your name?</div><div>My name is ________ , what's your name?</div><div>Nice to meet you! Nice to meet you!</div><div>Let's play, let's play, let's play in English!</div></div>
-<h3>The closing chant</h3>
-<div class="box" style="font-size:13pt;line-height:1.7"><div>Goodbye, goodbye, see you soon!</div><div>Goodbye, goodbye, that was fun!</div><div>One more star, one more day —</div><div>Bye-bye, bye-bye, hip hooray!</div></div>
-<p class="small" style="margin-top:3mm">Clap on every stressed syllable and march on the spot. By
-session three she will start the chant herself before you do — that is the moment you know the
-ritual has taken.</p>
-<h3>Four ways to use any set of word cards</h3>
-<div class="grid2">
-  <div class="box"><h4>1 · Show and say</h4><p>Hold one up, say it, she repeats. All twelve, twice.
-  Fast, no explanations, no writing.</p></div>
-  <div class="box"><h4>2 · Grab it</h4><p>Cards face up on the floor. You say a word, she slaps the
-  card. Then she says a word and you slap — losing on purpose is the point.</p></div>
-  <div class="box"><h4>3 · What is missing?</h4><p>She shuts her eyes, you steal a card. She names
-  the missing one in English. Start with six cards, not twelve.</p></div>
-  <div class="box"><h4>4 · Hide and seek</h4><p>Hide the cards round the room. Each one she finds,
-  she shouts its name before she may keep it.</p></div>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Before you start</span><span>Star chart</span></div>
-<h1>Lila's star chart</h1>
-<p class="lede">Six stars per session, one for each block she finishes. Colour a star in front of
-her, out loud, and say why. Stars are given for trying, never for being correct — the day you
-withhold a star for a mistake is the day the pack stops working.</p>
-<table class="chart" style="margin-top:6mm"><tr><td style="width:52mm"><b>Session 1</b><br><span class="small">Who Are You?</span></td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td></tr><tr><td style="width:52mm"><b>Session 2</b><br><span class="small">The Little Shop</span></td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td></tr><tr><td style="width:52mm"><b>Session 3</b><br><span class="small">The Little Café</span></td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td></tr><tr><td style="width:52mm"><b>Session 4</b><br><span class="small">The Animal Doctor</span></td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td><td class="star">☆</td></tr></table>
-<h3>The Greek Button — cut this out</h3>
-<div style="border:2px dashed var(--line);padding:6mm;text-align:center;margin-top:3mm">
-  <div style="width:52mm;height:52mm;border-radius:50%;border:4px solid var(--accent);
-    display:inline-flex;align-items:center;justify-content:center;flex-direction:column">
-    <div style="font-size:22pt;font-weight:800;color:var(--accent)">GREEK</div>
-    <div style="font-size:10pt;letter-spacing:.15em">10 SECONDS</div>
-  </div>
-  <p class="small" style="margin-top:4mm">She slaps it, you both speak Greek for ten seconds,
-  then it is English again. Let her use it as often as she likes in session one. She will use it
-  less each week without being told to.</p>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 1 · Who Are You?</span><span>Teacher sheet</span></div>
-<div style="display:flex;align-items:flex-end;justify-content:space-between">
-  <div><div class="small" style="letter-spacing:.2em">Session 1</div>
-  <h1>Who Are You?</h1></div>
-  <div style="font-size:46pt">👋</div>
-</div>
-<p class="lede">Meeting somebody for the first time</p>
-<div class="rule"></div>
-<p>By the end she can walk up to a stranger, say hello, give her name and her age, ask for theirs, and say goodbye. Nothing else. That is a full 90 minutes for a beginner and it is the foundation everything else sits on.</p>
-<h3>Twelve words</h3>
-<div class="grid2"><table><tr><td style="width:12mm;font-size:15pt">👋</td><td><b style="font-size:11.5pt">hello</b><br><span class="gr">γεια σου</span></td></tr><tr><td style="width:12mm;font-size:15pt">🤚</td><td><b style="font-size:11.5pt">goodbye</b><br><span class="gr">αντίο</span></td></tr><tr><td style="width:12mm;font-size:15pt">✅</td><td><b style="font-size:11.5pt">yes</b><br><span class="gr">ναι</span></td></tr><tr><td style="width:12mm;font-size:15pt">❌</td><td><b style="font-size:11.5pt">no</b><br><span class="gr">όχι</span></td></tr><tr><td style="width:12mm;font-size:15pt">🙏</td><td><b style="font-size:11.5pt">please</b><br><span class="gr">σε παρακαλώ</span></td></tr><tr><td style="width:12mm;font-size:15pt">💛</td><td><b style="font-size:11.5pt">thank you</b><br><span class="gr">ευχαριστώ</span></td></tr></table><table><tr><td style="width:12mm;font-size:15pt">😄</td><td><b style="font-size:11.5pt">happy</b><br><span class="gr">χαρούμενη</span></td></tr><tr><td style="width:12mm;font-size:15pt">😢</td><td><b style="font-size:11.5pt">sad</b><br><span class="gr">λυπημένη</span></td></tr><tr><td style="width:12mm;font-size:15pt">😴</td><td><b style="font-size:11.5pt">tired</b><br><span class="gr">κουρασμένη</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍞</td><td><b style="font-size:11.5pt">hungry</b><br><span class="gr">πεινασμένη</span></td></tr><tr><td style="width:12mm;font-size:15pt">🤝</td><td><b style="font-size:11.5pt">friend</b><br><span class="gr">φίλη</span></td></tr><tr><td style="width:12mm;font-size:15pt">🏠</td><td><b style="font-size:11.5pt">neighbour</b><br><span class="gr">γείτονας</span></td></tr></table></div>
-<h3>Three things worth knowing before you start</h3>
-<ul class="rules" style="font-size:10pt"><li>Do not teach "I am" versus "I'm". Teach only "I'm". Rules come years later.</li><li>The numbers chant (opposite page) is the warm-up of every session from now on. Two minutes, clapping, marching. She will need one to ten for the shop next week.</li><li>If she answers in Greek during the play, do not stop. Repeat her sentence in English as if agreeing, and carry on.</li></ul>
-<p class="small" style="border-top:1px solid var(--line);padding-top:2mm;margin-top:6mm">
-Greek is printed on your sheets only. Her cards and her script are English-only on purpose — the
-moment a Greek word sits next to an English one, she reads the Greek and the English becomes decoration.</p></div>
-<div class="sheet"><div class="runhead"><span>Session 1 · Who Are You?</span><span>Sentences</span></div>
-<div class="small" style="letter-spacing:.2em">Session 1 · Who Are You?</div>
-<h2>The ten sentences she will actually use</h2>
-<p class="small">Say each one, she repeats, twice round. Then hide the sheet — from that point on
-they only ever appear inside a scene. A sentence drilled at a table is forgotten by Thursday; the
-same sentence said to a shopkeeper is not.</p>
-<table style="margin-top:4mm"><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Hello! / Hi!</b></td><td class="gr">Γεια σου!</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>What's your name?</b></td><td class="gr">Πώς σε λένε;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>My name is Lila.</b></td><td class="gr">Με λένε Λίλα.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>How old are you?</b></td><td class="gr">Πόσο χρονών είσαι;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>I'm seven.</b></td><td class="gr">Είμαι εφτά.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>How are you?</b></td><td class="gr">Τι κάνεις;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>I'm fine, thank you.</b></td><td class="gr">Καλά, ευχαριστώ.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Nice to meet you!</b></td><td class="gr">Χάρηκα!</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Come in!</b></td><td class="gr">Πέρασε μέσα!</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Goodbye! See you tomorrow!</b></td><td class="gr">Αντίο! Τα λέμε αύριο!</td></tr></table>
-<div class="box" style="margin-top:7mm">
-  <h4>If she freezes</h4>
-  <p>Say the first two words of her line and stop. Nine times out of ten she finishes it. If she
-  still cannot, say the whole line cheerfully as your own and move on — never leave her standing
-  in silence, and never let the scene stop because of a missing word.</p>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 1 · Who Are You?</span><span>Word cards</span></div>
-<div class="cutnote">Cut along the dashed lines · Session 1 word cards ·
-four ways to use them are on the "session shape" sheet</div>
-<div class="cards"><div class="card"><div class="pic">👋</div><div class="w">hello</div></div><div class="card"><div class="pic">🤚</div><div class="w">goodbye</div></div><div class="card"><div class="pic">✅</div><div class="w">yes</div></div><div class="card"><div class="pic">❌</div><div class="w">no</div></div><div class="card"><div class="pic">🙏</div><div class="w">please</div></div><div class="card"><div class="pic">💛</div><div class="w">thank you</div></div><div class="card"><div class="pic">😄</div><div class="w">happy</div></div><div class="card"><div class="pic">😢</div><div class="w">sad</div></div><div class="card"><div class="pic">😴</div><div class="w">tired</div></div><div class="card"><div class="pic">🍞</div><div class="w">hungry</div></div><div class="card"><div class="pic">🤝</div><div class="w">friend</div></div><div class="card"><div class="pic">🏠</div><div class="w">neighbour</div></div></div></div>
-<div class="sheet"><div class="runhead"><span>Session 1 · Who Are You?</span><span>Script</span></div>
-<div class="small" style="letter-spacing:.2em">Session 1 · The Play</div>
-<h1>The New Neighbour</h1>
-<div class="rolebar">
-  <div class="role"><b style="color:var(--accent)">A — the visitor</b></div>
-  <div class="role"><b style="color:var(--accent2)">B — the neighbour at home</b></div>
-</div>
-<div class="scriptbox"><div class="line"><div class="who">A</div><div class="txt">Knock, knock!</div></div><div class="line"><div class="who b">B</div><div class="txt">Who is it?</div></div><div class="line"><div class="who">A</div><div class="txt">Hello! I'm your new neighbour.</div></div><div class="line"><div class="who b">B</div><div class="txt">Hello! Come in, come in!</div></div><div class="line"><div class="who">A</div><div class="txt">Thank you.</div></div><div class="line"><div class="who b">B</div><div class="txt">What's your name?</div></div><div class="line"><div class="who">A</div><div class="txt">My name is Lila. What's your name?</div></div><div class="line"><div class="who b">B</div><div class="txt">My name is Papa. Nice to meet you!</div></div><div class="line"><div class="who">A</div><div class="txt">Nice to meet you too.</div></div><div class="line"><div class="who b">B</div><div class="txt">How old are you?</div></div><div class="line"><div class="who">A</div><div class="txt">I'm seven. How are you today?</div></div><div class="line"><div class="who b">B</div><div class="txt">I'm fine, thank you. And you?</div></div><div class="line"><div class="who">A</div><div class="txt">I'm happy! And I'm hungry!</div></div><div class="line"><div class="who b">B</div><div class="txt">Would you like a biscuit?</div></div><div class="line"><div class="who">A</div><div class="txt">Yes, please!</div></div><div class="line"><div class="who b">B</div><div class="txt">Here you are.</div></div><div class="line"><div class="who">A</div><div class="txt">Thank you! Goodbye!</div></div><div class="line"><div class="who b">B</div><div class="txt">Goodbye! See you tomorrow!</div></div></div>
-<div class="grid2" style="margin-top:6mm">
-  <div class="box"><h4>The set</h4><p>A chair is the door. One of you stands outside and knocks. Have a plate of biscuits ready — a real biscuit at the right line is worth ten repetitions.</p></div>
-  <div class="box"><h4>Props</h4><p>A chair (the door) · a plate of biscuits · the hat</p>
-  <p style="margin-top:2mm"><b>Run it three times.</b> You alone with a toy · she takes the first
-  role · swap. Never fewer than three.</p></div>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 1 · Who Are You?</span><span>Games</span></div>
-<div class="gamespage">
-<div class="small" style="letter-spacing:.2em">Session 1</div>
-<h1>Games &amp; the silly versions</h1>
-<h3>Three games</h3>
-<div class="box" style="margin-bottom:5mm"><div class="tag">10 min</div><h4>The Hello Hat</h4><p>Pass the hat back and forth. Whoever wears it must introduce themselves with a brand-new invented name and age: "My name is Banana. I'm forty-two." Invented names are the trick — it removes the fear of getting her own answer wrong.</p></div><div class="box" style="margin-bottom:5mm"><div class="tag">10 min</div><h4>Freeze and Greet</h4><p>Clap a rhythm and both walk around the room. When you stop clapping, both freeze, turn to each other and do the full greeting. Each round, hold up a different feeling card so the "How are you?" answer changes.</p></div><div class="box" style="margin-bottom:5mm"><div class="tag">5 min</div><h4>The Toy Parade</h4><p>Line up five toys on the sofa. She introduces each one to you: "This is Bunny. She is three." Toys are easier to speak for than herself.</p></div>
-<h3>Four silly versions of the same scene</h3>
-<p class="small">Play these after the straight version has worked twice. The words stay identical;
-only the world changes. This is where the repetition she needs stops feeling like repetition.</p>
-<div class="grid2"><div class="box"><h4>The monster next door</h4><p>Play B as a monster. Same lines, but "My name is Grrrmp. I'm one hundred years old."</p></div><div class="box"><h4>The cat neighbour</h4><p>Every line starts with "Meow". "Meow — my name is Cleo." She will insist on being the cat.</p></div><div class="box"><h4>The robot</h4><p>Flat voice, one word per second, arms stiff. Great for a child who rushes and swallows words.</p></div><div class="box"><h4>The tiny voice / the giant voice</h4><p>Whole scene whispered, then whole scene shouted. Pure repetition disguised as chaos.</p></div></div>
-<p class="small" style="margin-top:5mm;border-top:1px solid var(--line);padding-top:2mm">
-<b>Home mission after this session:</b> Every morning this week, the first words of the day are English. She knocks on your bedroom door: "Good morning! How are you?" You answer, then ask her back.</p>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 1 · Who Are You?</span><span>Numbers</span></div>
-<div class="cutnote">Session 1 prop · the numbers chant · cut into cards or keep as one sheet</div>
-<h2>One to twelve</h2>
-<div class="cards"><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">1</div><div class="w" style="margin-top:2mm">one</div><div class="g">ένα</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">2</div><div class="w" style="margin-top:2mm">two</div><div class="g">δύο</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">3</div><div class="w" style="margin-top:2mm">three</div><div class="g">τρία</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">4</div><div class="w" style="margin-top:2mm">four</div><div class="g">τέσσερα</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">5</div><div class="w" style="margin-top:2mm">five</div><div class="g">πέντε</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">6</div><div class="w" style="margin-top:2mm">six</div><div class="g">έξι</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">7</div><div class="w" style="margin-top:2mm">seven</div><div class="g">εφτά</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">8</div><div class="w" style="margin-top:2mm">eight</div><div class="g">οκτώ</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">9</div><div class="w" style="margin-top:2mm">nine</div><div class="g">εννιά</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">10</div><div class="w" style="margin-top:2mm">ten</div><div class="g">δέκα</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">11</div><div class="w" style="margin-top:2mm">eleven</div><div class="g">έντεκα</div></div><div class="card" style="height:52mm"><div style="font-size:32pt;font-weight:800">12</div><div class="w" style="margin-top:2mm">twelve</div><div class="g">δώδεκα</div></div></div>
-<p class="small" style="margin-top:5mm">March on the spot and chant one to ten every session as
-the warm-up, two minutes, no more. Then count real things: fingers, stairs, spoons, the toys on
-the sofa. She needs one to ten fluently before session two, because the shop runs on it.</p></div>
-<div class="sheet"><div class="runhead"><span>Session 1 · Who Are You?</span><span>Feelings</span></div>
-<div class="cutnote">Session 1 prop · feeling cards for "How are you?"</div>
-<div class="cards" style="grid-template-columns:repeat(2,1fr)"><div class="card" style="height:72mm"><div class="pic" style="font-size:44pt">😄</div><div class="w" style="font-size:20pt">happy</div></div><div class="card" style="height:72mm"><div class="pic" style="font-size:44pt">😢</div><div class="w" style="font-size:20pt">sad</div></div><div class="card" style="height:72mm"><div class="pic" style="font-size:44pt">😴</div><div class="w" style="font-size:20pt">tired</div></div><div class="card" style="height:72mm"><div class="pic" style="font-size:44pt">🍞</div><div class="w" style="font-size:20pt">hungry</div></div><div class="card" style="height:72mm"><div class="pic" style="font-size:44pt">😠</div><div class="w" style="font-size:20pt">angry</div></div><div class="card" style="height:72mm"><div class="pic" style="font-size:44pt">🤩</div><div class="w" style="font-size:20pt">excited</div></div></div>
-<p class="small" style="margin-top:5mm">Hold one up in the middle of a scene and the answer to
-"How are you?" must change. Later, let her hold the cards and choose — being the one who decides
-is worth twenty minutes of attention.</p></div>
-<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Teacher sheet</span></div>
-<div style="display:flex;align-items:flex-end;justify-content:space-between">
-  <div><div class="small" style="letter-spacing:.2em">Session 2</div>
-  <h1>The Little Shop</h1></div>
-  <div style="font-size:46pt">🍎</div>
-</div>
-<p class="lede">Buying and selling, with real prices and real change</p>
-<div class="rule"></div>
-<p>By the end she can run a shop counter in English: greet a customer, name ten products, ask and answer a price, take money and give change. This is the session she has been asking for since she started playing cashier.</p>
-<h3>Twelve words</h3>
-<div class="grid2"><table><tr><td style="width:12mm;font-size:15pt">🍎</td><td><b style="font-size:11.5pt">apple</b><br><span class="gr">μήλο</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍌</td><td><b style="font-size:11.5pt">banana</b><br><span class="gr">μπανάνα</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍞</td><td><b style="font-size:11.5pt">bread</b><br><span class="gr">ψωμί</span></td></tr><tr><td style="width:12mm;font-size:15pt">🥛</td><td><b style="font-size:11.5pt">milk</b><br><span class="gr">γάλα</span></td></tr><tr><td style="width:12mm;font-size:15pt">🧀</td><td><b style="font-size:11.5pt">cheese</b><br><span class="gr">τυρί</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍫</td><td><b style="font-size:11.5pt">chocolate</b><br><span class="gr">σοκολάτα</span></td></tr></table><table><tr><td style="width:12mm;font-size:15pt">🥚</td><td><b style="font-size:11.5pt">eggs</b><br><span class="gr">αυγά</span></td></tr><tr><td style="width:12mm;font-size:15pt">💧</td><td><b style="font-size:11.5pt">water</b><br><span class="gr">νερό</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍅</td><td><b style="font-size:11.5pt">tomato</b><br><span class="gr">ντομάτα</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍦</td><td><b style="font-size:11.5pt">ice cream</b><br><span class="gr">παγωτό</span></td></tr><tr><td style="width:12mm;font-size:15pt">💰</td><td><b style="font-size:11.5pt">money</b><br><span class="gr">λεφτά</span></td></tr><tr><td style="width:12mm;font-size:15pt">🛍</td><td><b style="font-size:11.5pt">bag</b><br><span class="gr">σακούλα</span></td></tr></table></div>
-<h3>Three things worth knowing before you start</h3>
-<ul class="rules" style="font-size:10pt"><li>Keep prices between one and ten francs so the sums stay inside the numbers she knows.</li><li>Let her be the shopkeeper first. The shopkeeper has the harder lines but the power, and she will fight for that role — use it.</li><li>"Can I have" is the single most useful phrase in this pack. Drill it more than any other.</li></ul>
-<p class="small" style="border-top:1px solid var(--line);padding-top:2mm;margin-top:6mm">
-Greek is printed on your sheets only. Her cards and her script are English-only on purpose — the
-moment a Greek word sits next to an English one, she reads the Greek and the English becomes decoration.</p></div>
-<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Sentences</span></div>
-<div class="small" style="letter-spacing:.2em">Session 2 · The Little Shop</div>
-<h2>The ten sentences she will actually use</h2>
-<p class="small">Say each one, she repeats, twice round. Then hide the sheet — from that point on
-they only ever appear inside a scene. A sentence drilled at a table is forgotten by Thursday; the
-same sentence said to a shopkeeper is not.</p>
-<table style="margin-top:4mm"><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Good morning! Welcome to my shop!</b></td><td class="gr">Καλημέρα! Καλώς ήρθατε!</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Can I help you?</b></td><td class="gr">Μπορώ να βοηθήσω;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Can I have some bread, please?</b></td><td class="gr">Μπορώ να έχω λίγο ψωμί, παρακαλώ;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>How much is it?</b></td><td class="gr">Πόσο κάνει;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>It is eight francs.</b></td><td class="gr">Κάνει οκτώ φράγκα.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Here you are.</b></td><td class="gr">Ορίστε.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Anything else?</b></td><td class="gr">Κάτι άλλο;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>No, thank you. That's all.</b></td><td class="gr">Όχι, ευχαριστώ. Αυτά.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Here is your change.</b></td><td class="gr">Ορίστε τα ρέστα σας.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Have a nice day!</b></td><td class="gr">Καλή σας μέρα!</td></tr></table>
-<div class="box" style="margin-top:7mm">
-  <h4>If she freezes</h4>
-  <p>Say the first two words of her line and stop. Nine times out of ten she finishes it. If she
-  still cannot, say the whole line cheerfully as your own and move on — never leave her standing
-  in silence, and never let the scene stop because of a missing word.</p>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Word cards</span></div>
-<div class="cutnote">Cut along the dashed lines · Session 2 word cards ·
-four ways to use them are on the "session shape" sheet</div>
-<div class="cards"><div class="card"><div class="pic">🍎</div><div class="w">apple</div></div><div class="card"><div class="pic">🍌</div><div class="w">banana</div></div><div class="card"><div class="pic">🍞</div><div class="w">bread</div></div><div class="card"><div class="pic">🥛</div><div class="w">milk</div></div><div class="card"><div class="pic">🧀</div><div class="w">cheese</div></div><div class="card"><div class="pic">🍫</div><div class="w">chocolate</div></div><div class="card"><div class="pic">🥚</div><div class="w">eggs</div></div><div class="card"><div class="pic">💧</div><div class="w">water</div></div><div class="card"><div class="pic">🍅</div><div class="w">tomato</div></div><div class="card"><div class="pic">🍦</div><div class="w">ice cream</div></div><div class="card"><div class="pic">💰</div><div class="w">money</div></div><div class="card"><div class="pic">🛍</div><div class="w">bag</div></div></div></div>
-<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Script</span></div>
-<div class="small" style="letter-spacing:.2em">Session 2 · The Play</div>
-<h1>The Little Shop</h1>
-<div class="rolebar">
-  <div class="role"><b style="color:var(--accent)">S — the shopkeeper</b></div>
-  <div class="role"><b style="color:var(--accent2)">C — the customer</b></div>
-</div>
-<div class="scriptbox"><div class="line"><div class="who">S</div><div class="txt">Good morning! Welcome to my shop!</div></div><div class="line"><div class="who b">C</div><div class="txt">Good morning!</div></div><div class="line"><div class="who">S</div><div class="txt">Can I help you?</div></div><div class="line"><div class="who b">C</div><div class="txt">Yes, please. Can I have some bread?</div></div><div class="line"><div class="who">S</div><div class="txt">Of course. Here you are.</div></div><div class="line"><div class="who b">C</div><div class="txt">Thank you.</div></div><div class="line"><div class="who">S</div><div class="txt">Anything else?</div></div><div class="line"><div class="who b">C</div><div class="txt">Yes. Two apples, please.</div></div><div class="line"><div class="who">S</div><div class="txt">Two apples. Here you are.</div></div><div class="line"><div class="who b">C</div><div class="txt">How much is it?</div></div><div class="line"><div class="who">S</div><div class="txt">The bread is four francs. The apples are four francs.</div></div><div class="line"><div class="who">S</div><div class="txt">That is eight francs, please.</div></div><div class="line"><div class="who b">C</div><div class="txt">Here you are. Ten francs.</div></div><div class="line"><div class="who">S</div><div class="txt">Thank you. Here is your change: two francs.</div></div><div class="line"><div class="who b">C</div><div class="txt">Thank you! Goodbye!</div></div><div class="line"><div class="who">S</div><div class="txt">Goodbye! Have a nice day!</div></div></div>
-<div class="grid2" style="margin-top:6mm">
-  <div class="box"><h4>The set</h4><p>The kitchen table is the counter. Put out the real food from the word cards if you have it, with a printed price tag standing next to each. The play money must be counted out note by note, out loud.</p></div>
-  <div class="box"><h4>Props</h4><p>Price tags · play money · a shopping bag · real fruit if possible</p>
-  <p style="margin-top:2mm"><b>Run it three times.</b> You alone with a toy · she takes the first
-  role · swap. Never fewer than three.</p></div>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Games</span></div>
-<div class="gamespage">
-<div class="small" style="letter-spacing:.2em">Session 2</div>
-<h1>Games &amp; the silly versions</h1>
-<h3>Three games</h3>
-<div class="box" style="margin-bottom:5mm"><div class="tag">10 min</div><h4>Price Hunt</h4><p>Spread the price tags on the items. You call out "Four francs!" and she must run and grab the right item and shout its name in English. Then swap — she calls, you run. Her calling out is the half that teaches her to produce numbers, not just recognise them.</p></div><div class="box" style="margin-bottom:5mm"><div class="tag">10 min</div><h4>The Shopping List</h4><p>Hand her one of the printed picture lists. She must buy all three items from your shop, in English, and count the money. Four lists are provided so it can run four rounds.</p></div><div class="box" style="margin-bottom:5mm"><div class="tag">5 min</div><h4>Cash Register Race</h4><p>You shout a price, she has three seconds to lay out the exact notes. "Seven francs!" — five plus two. Counting money out loud is the fastest way to fix numbers one to ten.</p></div>
-<h3>Four silly versions of the same scene</h3>
-<p class="small">Play these after the straight version has worked twice. The words stay identical;
-only the world changes. This is where the repetition she needs stops feeling like repetition.</p>
-<div class="grid2"><div class="box"><h4>The Crazy Shop</h4><p>The shop only sells impossible things: a cloud, a dragon, Monday. Prices are absurd: "One dragon? One hundred francs!"</p></div><div class="box"><h4>Sorry, no bananas!</h4><p>The shopkeeper is out of everything. Whatever the customer asks: "Sorry! No bananas!" The customer must keep asking for something new — that is ten repetitions of the question.</p></div><div class="box"><h4>The customer with no money</h4><p>She tries to pay with a sock, a shoe, a hug. "Can I pay with a sock?" "No! Five francs!"</p></div><div class="box"><h4>The shop for giants</h4><p>Everything is enormous and everything costs one franc. Say every price in a booming voice.</p></div></div>
-<p class="small" style="margin-top:5mm;border-top:1px solid var(--line);padding-top:2mm">
-<b>Home mission after this session:</b> She is the cashier at dinner this week. Nobody gets bread until they ask her in English and pay with a play note. She gives the change and says the price.</p>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Money 1</span></div>
-<div class="cutnote">Session 2 prop · play money · cut along the dashed lines</div>
-<div class="money"><div class="note">
-  <div><div class="cur">Play francs</div><div class="v">1</div>
-  <div class="small">The English Play Pack · Lausanne</div></div>
-  <div class="seal">⭐</div></div><div class="note">
-  <div><div class="cur">Play francs</div><div class="v">1</div>
-  <div class="small">The English Play Pack · Lausanne</div></div>
-  <div class="seal">⭐</div></div><div class="note">
-  <div><div class="cur">Play francs</div><div class="v">2</div>
-  <div class="small">The English Play Pack · Lausanne</div></div>
-  <div class="seal">⭐</div></div><div class="note">
-  <div><div class="cur">Play francs</div><div class="v">2</div>
-  <div class="small">The English Play Pack · Lausanne</div></div>
-  <div class="seal">⭐</div></div><div class="note">
-  <div><div class="cur">Play francs</div><div class="v">5</div>
-  <div class="small">The English Play Pack · Lausanne</div></div>
-  <div class="seal">⭐</div></div><div class="note">
-  <div><div class="cur">Play francs</div><div class="v">5</div>
-  <div class="small">The English Play Pack · Lausanne</div></div>
-  <div class="seal">⭐</div></div><div class="note">
-  <div><div class="cur">Play francs</div><div class="v">10</div>
-  <div class="small">The English Play Pack · Lausanne</div></div>
-  <div class="seal">⭐</div></div><div class="note">
-  <div><div class="cur">Play francs</div><div class="v">10</div>
-  <div class="small">The English Play Pack · Lausanne</div></div>
-  <div class="seal">⭐</div></div></div></div>
-<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Money 2</span></div>
-<div class="cutnote">Session 2 prop · play money · cut along the dashed lines</div>
-<div class="money"><div class="note">
-  <div><div class="cur">Play francs</div><div class="v">1</div>
-  <div class="small">The English Play Pack · Lausanne</div></div>
-  <div class="seal">⭐</div></div><div class="note">
-  <div><div class="cur">Play francs</div><div class="v">2</div>
-  <div class="small">The English Play Pack · Lausanne</div></div>
-  <div class="seal">⭐</div></div><div class="note">
-  <div><div class="cur">Play francs</div><div class="v">2</div>
-  <div class="small">The English Play Pack · Lausanne</div></div>
-  <div class="seal">⭐</div></div><div class="note">
-  <div><div class="cur">Play francs</div><div class="v">5</div>
-  <div class="small">The English Play Pack · Lausanne</div></div>
-  <div class="seal">⭐</div></div><div class="note">
-  <div><div class="cur">Play francs</div><div class="v">5</div>
-  <div class="small">The English Play Pack · Lausanne</div></div>
-  <div class="seal">⭐</div></div><div class="note">
-  <div><div class="cur">Play francs</div><div class="v">10</div>
-  <div class="small">The English Play Pack · Lausanne</div></div>
-  <div class="seal">⭐</div></div><div class="note">
-  <div><div class="cur">Play francs</div><div class="v">10</div>
-  <div class="small">The English Play Pack · Lausanne</div></div>
-  <div class="seal">⭐</div></div><div class="note">
-  <div><div class="cur">Play francs</div><div class="v">10</div>
-  <div class="small">The English Play Pack · Lausanne</div></div>
-  <div class="seal">⭐</div></div></div></div>
-<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Price tags</span></div>
-<div class="cutnote">Session 2 prop · price tags · fold and stand next to each item</div>
-<div class="tags"><div class="ptag"><div class="e">🍎</div><div class="p">2</div><div class="n">francs</div><div class="small">apple</div></div><div class="ptag"><div class="e">🍌</div><div class="p">3</div><div class="n">francs</div><div class="small">banana</div></div><div class="ptag"><div class="e">🍞</div><div class="p">4</div><div class="n">francs</div><div class="small">bread</div></div><div class="ptag"><div class="e">🥛</div><div class="p">5</div><div class="n">francs</div><div class="small">milk</div></div><div class="ptag"><div class="e">🧀</div><div class="p">6</div><div class="n">francs</div><div class="small">cheese</div></div><div class="ptag"><div class="e">🍫</div><div class="p">7</div><div class="n">francs</div><div class="small">chocolate</div></div><div class="ptag"><div class="e">🥚</div><div class="p">8</div><div class="n">francs</div><div class="small">eggs</div></div><div class="ptag"><div class="e">💧</div><div class="p">1</div><div class="n">francs</div><div class="small">water</div></div><div class="ptag"><div class="e">🍅</div><div class="p">3</div><div class="n">francs</div><div class="small">tomato</div></div><div class="ptag"><div class="e">🍦</div><div class="p">9</div><div class="n">francs</div><div class="small">ice cream</div></div><div class="ptag"><div class="p">?</div><div class="n">francs</div><div class="small">write your own</div></div><div class="ptag"><div class="p">?</div><div class="n">francs</div><div class="small">write your own</div></div></div>
-<p class="small" style="margin-top:4mm">Keep every price between one and ten so the sums stay
-inside the numbers she knows. Two blank tags are there for the day she wants to invent a shop of
-her own — let her.</p></div>
-<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Shopping lists</span></div>
-<div class="cutnote">Session 2 prop · shopping lists · one per round</div>
-<div class="slips"><div class="slip" style="height:80mm"><h4>Shopping list 1</h4><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🍞</span><span style="font-size:15pt;font-weight:700">bread</span><span style="margin-left:auto;font-size:16pt">□</span></div><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🥛</span><span style="font-size:15pt;font-weight:700">milk</span><span style="margin-left:auto;font-size:16pt">□</span></div><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🍎</span><span style="font-size:15pt;font-weight:700">apple</span><span style="margin-left:auto;font-size:16pt">□</span></div><div class="foot">Say: "Can I have ..., please?"</div></div><div class="slip" style="height:80mm"><h4>Shopping list 2</h4><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🧀</span><span style="font-size:15pt;font-weight:700">cheese</span><span style="margin-left:auto;font-size:16pt">□</span></div><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">💧</span><span style="font-size:15pt;font-weight:700">water</span><span style="margin-left:auto;font-size:16pt">□</span></div><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🍌</span><span style="font-size:15pt;font-weight:700">banana</span><span style="margin-left:auto;font-size:16pt">□</span></div><div class="foot">Say: "Can I have ..., please?"</div></div><div class="slip" style="height:80mm"><h4>Shopping list 3</h4><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🥚</span><span style="font-size:15pt;font-weight:700">eggs</span><span style="margin-left:auto;font-size:16pt">□</span></div><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🍅</span><span style="font-size:15pt;font-weight:700">tomato</span><span style="margin-left:auto;font-size:16pt">□</span></div><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🍫</span><span style="font-size:15pt;font-weight:700">chocolate</span><span style="margin-left:auto;font-size:16pt">□</span></div><div class="foot">Say: "Can I have ..., please?"</div></div><div class="slip" style="height:80mm"><h4>Shopping list 4</h4><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🍦</span><span style="font-size:15pt;font-weight:700">ice cream</span><span style="margin-left:auto;font-size:16pt">□</span></div><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">🍞</span><span style="font-size:15pt;font-weight:700">bread</span><span style="margin-left:auto;font-size:16pt">□</span></div><div style="display:flex;align-items:center;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--faint)"><span style="font-size:26pt">💧</span><span style="font-size:15pt;font-weight:700">water</span><span style="margin-left:auto;font-size:16pt">□</span></div><div class="foot">Say: "Can I have ..., please?"</div></div></div>
-<div class="box" style="margin-top:6mm">
-  <h4>How to run it</h4>
-  <p>Hand her a list face down. She turns it over, walks to your shop and must buy all three
-  items in English, ticking each box. She pays at the end and you give change. Time her with a
-  phone stopwatch from round two onwards — the clock turns a language drill into a sport.</p>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 2 · The Little Shop</span><span>Shop sign</span></div>
-<div class="cutnote">Session 2 prop · the shop sign · cut out, fold in the middle, stand it up</div>
-<div style="border:3px solid var(--ink);height:110mm;display:flex;align-items:center;
-  justify-content:center;flex-direction:column">
-  <div style="font-size:56pt;font-weight:800;letter-spacing:.05em">OPEN</div>
-  <div style="font-size:13pt;letter-spacing:.3em;text-transform:uppercase;color:var(--soft)">
-  Welcome to my shop</div>
-</div>
-<div style="border:3px solid var(--ink);border-top:none;height:110mm;display:flex;
-  align-items:center;justify-content:center;flex-direction:column;transform:rotate(180deg)">
-  <div style="font-size:56pt;font-weight:800;letter-spacing:.05em">CLOSED</div>
-  <div style="font-size:13pt;letter-spacing:.3em;text-transform:uppercase;color:var(--soft)">
-  See you tomorrow</div>
-</div>
-<p class="small" style="margin-top:5mm">She turns the sign at the start and end of every scene and
-says the line printed under it. Small ceremonies like this are what make her treat the game as real.</p></div>
-<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Teacher sheet</span></div>
-<div style="display:flex;align-items:flex-end;justify-content:space-between">
-  <div><div class="small" style="letter-spacing:.2em">Session 3</div>
-  <h1>The Little Café</h1></div>
-  <div style="font-size:46pt">🍕</div>
-</div>
-<p class="lede">Ordering food, serving it, and paying the bill</p>
-<div class="rule"></div>
-<p>By the end she can be a waiter and a guest: seat someone, hand a menu, take an order of two things, serve them, and ask for the bill. New grammar smuggled in: "I would like" and "Would you like...?"</p>
-<h3>Twelve words</h3>
-<div class="grid2"><table><tr><td style="width:12mm;font-size:15pt">🍕</td><td><b style="font-size:11.5pt">pizza</b><br><span class="gr">πίτσα</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍝</td><td><b style="font-size:11.5pt">pasta</b><br><span class="gr">μακαρόνια</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍲</td><td><b style="font-size:11.5pt">soup</b><br><span class="gr">σούπα</span></td></tr><tr><td style="width:12mm;font-size:15pt">🥗</td><td><b style="font-size:11.5pt">salad</b><br><span class="gr">σαλάτα</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍗</td><td><b style="font-size:11.5pt">chicken</b><br><span class="gr">κοτόπουλο</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍚</td><td><b style="font-size:11.5pt">rice</b><br><span class="gr">ρύζι</span></td></tr></table><table><tr><td style="width:12mm;font-size:15pt">🍰</td><td><b style="font-size:11.5pt">cake</b><br><span class="gr">κέικ</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍨</td><td><b style="font-size:11.5pt">ice cream</b><br><span class="gr">παγωτό</span></td></tr><tr><td style="width:12mm;font-size:15pt">🧃</td><td><b style="font-size:11.5pt">juice</b><br><span class="gr">χυμός</span></td></tr><tr><td style="width:12mm;font-size:15pt">🍵</td><td><b style="font-size:11.5pt">tea</b><br><span class="gr">τσάι</span></td></tr><tr><td style="width:12mm;font-size:15pt">🔥</td><td><b style="font-size:11.5pt">hot</b><br><span class="gr">ζεστό</span></td></tr><tr><td style="width:12mm;font-size:15pt">🧊</td><td><b style="font-size:11.5pt">cold</b><br><span class="gr">κρύο</span></td></tr></table></div>
-<h3>Three things worth knowing before you start</h3>
-<ul class="rules" style="font-size:10pt"><li>"I would like" is one lump of sound to her — teach it as a single word, iwouldlike. Do not explain "would".</li><li>Real food beats plastic food. Even one real slice of bread on a plate changes the game.</li><li>This is the session to invite Mum in as a second guest for the last ten minutes. An audience raises the effort enormously.</li></ul>
-<p class="small" style="border-top:1px solid var(--line);padding-top:2mm;margin-top:6mm">
-Greek is printed on your sheets only. Her cards and her script are English-only on purpose — the
-moment a Greek word sits next to an English one, she reads the Greek and the English becomes decoration.</p></div>
-<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Sentences</span></div>
-<div class="small" style="letter-spacing:.2em">Session 3 · The Little Café</div>
-<h2>The ten sentences she will actually use</h2>
-<p class="small">Say each one, she repeats, twice round. Then hide the sheet — from that point on
-they only ever appear inside a scene. A sentence drilled at a table is forgotten by Thursday; the
-same sentence said to a shopkeeper is not.</p>
-<table style="margin-top:4mm"><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Good afternoon! A table for two?</b></td><td class="gr">Καλησπέρα! Τραπέζι για δύο;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>This way, please.</b></td><td class="gr">Από εδώ, παρακαλώ.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Here is the menu.</b></td><td class="gr">Ορίστε ο κατάλογος.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>What would you like?</b></td><td class="gr">Τι θα θέλατε;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>I would like a pizza, please.</b></td><td class="gr">Θα ήθελα μια πίτσα, παρακαλώ.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Would you like a drink?</b></td><td class="gr">Θα θέλατε κάτι να πιείτε;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Yes, please. / No, thank you.</b></td><td class="gr">Ναι, παρακαλώ. / Όχι, ευχαριστώ.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Enjoy your meal!</b></td><td class="gr">Καλή όρεξη!</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>It is delicious!</b></td><td class="gr">Είναι νόστιμο!</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>The bill, please.</b></td><td class="gr">Τον λογαριασμό, παρακαλώ.</td></tr></table>
-<div class="box" style="margin-top:7mm">
-  <h4>If she freezes</h4>
-  <p>Say the first two words of her line and stop. Nine times out of ten she finishes it. If she
-  still cannot, say the whole line cheerfully as your own and move on — never leave her standing
-  in silence, and never let the scene stop because of a missing word.</p>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Word cards</span></div>
-<div class="cutnote">Cut along the dashed lines · Session 3 word cards ·
-four ways to use them are on the "session shape" sheet</div>
-<div class="cards"><div class="card"><div class="pic">🍕</div><div class="w">pizza</div></div><div class="card"><div class="pic">🍝</div><div class="w">pasta</div></div><div class="card"><div class="pic">🍲</div><div class="w">soup</div></div><div class="card"><div class="pic">🥗</div><div class="w">salad</div></div><div class="card"><div class="pic">🍗</div><div class="w">chicken</div></div><div class="card"><div class="pic">🍚</div><div class="w">rice</div></div><div class="card"><div class="pic">🍰</div><div class="w">cake</div></div><div class="card"><div class="pic">🍨</div><div class="w">ice cream</div></div><div class="card"><div class="pic">🧃</div><div class="w">juice</div></div><div class="card"><div class="pic">🍵</div><div class="w">tea</div></div><div class="card"><div class="pic">🔥</div><div class="w">hot</div></div><div class="card"><div class="pic">🧊</div><div class="w">cold</div></div></div></div>
-<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Script</span></div>
-<div class="small" style="letter-spacing:.2em">Session 3 · The Play</div>
-<h1>The Little Café</h1>
-<div class="rolebar">
-  <div class="role"><b style="color:var(--accent)">W — the waiter</b></div>
-  <div class="role"><b style="color:var(--accent2)">G — the guest</b></div>
-</div>
-<div class="scriptbox"><div class="line"><div class="who">W</div><div class="txt">Good afternoon! Welcome to our café!</div></div><div class="line"><div class="who b">G</div><div class="txt">Good afternoon. A table for one, please.</div></div><div class="line"><div class="who">W</div><div class="txt">This way, please. Here is the menu.</div></div><div class="line"><div class="who b">G</div><div class="txt">Thank you.</div></div><div class="line"><div class="who">W</div><div class="txt">What would you like?</div></div><div class="line"><div class="who b">G</div><div class="txt">I would like a pizza, please.</div></div><div class="line"><div class="who">W</div><div class="txt">One pizza. Would you like a drink?</div></div><div class="line"><div class="who b">G</div><div class="txt">Yes, please. An apple juice.</div></div><div class="line"><div class="who">W</div><div class="txt">Very good. One moment, please.</div></div><div class="line"><div class="who">W</div><div class="txt">Here you are. One pizza and one apple juice. Enjoy your meal!</div></div><div class="line"><div class="who b">G</div><div class="txt">Thank you. Mmm! It is delicious!</div></div><div class="line"><div class="who">W</div><div class="txt">Would you like a cake?</div></div><div class="line"><div class="who b">G</div><div class="txt">No, thank you. The bill, please.</div></div><div class="line"><div class="who">W</div><div class="txt">Of course. That is twelve francs.</div></div><div class="line"><div class="who b">G</div><div class="txt">Here you are. Thank you! Goodbye!</div></div><div class="line"><div class="who">W</div><div class="txt">Thank you! Goodbye! See you soon!</div></div></div>
-<div class="grid2" style="margin-top:6mm">
-  <div class="box"><h4>The set</h4><p>Lay one place at the table properly — cloth, glass, folded napkin. Print the menu and stand it up. A tea towel over the waiter's arm is worth more than any flashcard.</p></div>
-  <div class="box"><h4>Props</h4><p>The printed menu · order pad · bill slips · a tea towel · a real glass of juice</p>
-  <p style="margin-top:2mm"><b>Run it three times.</b> You alone with a toy · she takes the first
-  role · swap. Never fewer than three.</p></div>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Games</span></div>
-<div class="gamespage">
-<div class="small" style="letter-spacing:.2em">Session 3</div>
-<h1>Games &amp; the silly versions</h1>
-<h3>Three games</h3>
-<div class="box" style="margin-bottom:5mm"><div class="tag">10 min</div><h4>Waiter's Memory</h4><p>You order three things with the pad taken away. She has to repeat the order back correctly before she is allowed to "bring" it. Start with two things, go to four when she is winning.</p></div><div class="box" style="margin-bottom:5mm"><div class="tag">5 min</div><h4>Hot or Cold</h4><p>Hold up a food card. She shouts "The soup is hot!" and blows on her hands, or "The ice cream is cold!" and shivers. The mime is what fixes the adjective.</p></div><div class="box" style="margin-bottom:5mm"><div class="tag">10 min</div><h4>Menu Bingo</h4><p>Both take a bingo card. Take turns being the waiter calling out dishes. First to cross a full row shouts "Bingo! Enjoy your meal!"</p></div>
-<h3>Four silly versions of the same scene</h3>
-<p class="small">Play these after the straight version has worked twice. The words stay identical;
-only the world changes. This is where the repetition she needs stops feeling like repetition.</p>
-<div class="grid2"><div class="box"><h4>The Yuck Café</h4><p>Use the second menu: soup with a shoe, spaghetti with socks, cold tea with sand. The guest tastes it and says "It is terrible!" This teaches the opposite of delicious.</p></div><div class="box"><h4>The waiter who drops everything</h4><p>Every dish falls. "Oh no! Sorry! One moment, please!" and the order starts again. Free repetition, and she will cry with laughter.</p></div><div class="box"><h4>The very hungry guest</h4><p>She orders ten things in a row. The waiter must repeat the whole list back. Brutal memory work that does not feel like work.</p></div><div class="box"><h4>The café for animals</h4><p>Guest is a dog and can only order things a dog would want. The waiter must stay polite.</p></div></div>
-<p class="small" style="margin-top:5mm;border-top:1px solid var(--line);padding-top:2mm">
-<b>Home mission after this session:</b> Saturday breakfast, she is the waiter. She takes the whole family's order on the printed pad, in English, and brings the bill at the end. Pay her in play francs.</p>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Menu</span></div>
-<div class="menu">
-  <div style="text-align:center;font-size:30pt">☕</div>
-  <h2>Café Lila</h2>
-  <div style="text-align:center;letter-spacing:.25em;text-transform:uppercase;font-size:9pt;
-    color:var(--soft)">Lausanne · all prices in francs</div>
-  <div class="sec"><h3>Food</h3><div class="mrow"><span style="font-size:17pt">🍕</span><span>Pizza</span><span class="dots"></span><span class="pr">8</span></div><div class="mrow"><span style="font-size:17pt">🍝</span><span>Pasta</span><span class="dots"></span><span class="pr">7</span></div><div class="mrow"><span style="font-size:17pt">🍲</span><span>Soup</span><span class="dots"></span><span class="pr">5</span></div><div class="mrow"><span style="font-size:17pt">🥗</span><span>Salad</span><span class="dots"></span><span class="pr">4</span></div><div class="mrow"><span style="font-size:17pt">🍗</span><span>Chicken and rice</span><span class="dots"></span><span class="pr">9</span></div></div><div class="sec"><h3>Drinks</h3><div class="mrow"><span style="font-size:17pt">💧</span><span>Water</span><span class="dots"></span><span class="pr">1</span></div><div class="mrow"><span style="font-size:17pt">🧃</span><span>Apple juice</span><span class="dots"></span><span class="pr">4</span></div><div class="mrow"><span style="font-size:17pt">🥛</span><span>Milk</span><span class="dots"></span><span class="pr">3</span></div><div class="mrow"><span style="font-size:17pt">🍵</span><span>Tea</span><span class="dots"></span><span class="pr">2</span></div></div><div class="sec"><h3>Sweet things</h3><div class="mrow"><span style="font-size:17pt">🍰</span><span>Cake</span><span class="dots"></span><span class="pr">5</span></div><div class="mrow"><span style="font-size:17pt">🍨</span><span>Ice cream</span><span class="dots"></span><span class="pr">4</span></div><div class="mrow"><span style="font-size:17pt">🍫</span><span>Chocolate cake</span><span class="dots"></span><span class="pr">6</span></div></div>
-  <p class="small" style="text-align:center;margin-top:10mm">Ask the waiter: "The bill, please."</p>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Yuck menu</span></div>
-<div class="menu">
-  <div style="text-align:center;font-size:30pt">☕</div>
-  <h2>The Yuck Café</h2>
-  <div style="text-align:center;letter-spacing:.25em;text-transform:uppercase;font-size:9pt;
-    color:var(--soft)">Lausanne · all prices in francs</div>
-  <div class="sec"><h3>Food</h3><div class="mrow"><span style="font-size:17pt">👞</span><span>Soup with a shoe</span><span class="dots"></span><span class="pr">100</span></div><div class="mrow"><span style="font-size:17pt">🧦</span><span>Spaghetti with socks</span><span class="dots"></span><span class="pr">99</span></div><div class="mrow"><span style="font-size:17pt">🏖</span><span>Cold pizza with sand</span><span class="dots"></span><span class="pr">88</span></div><div class="mrow"><span style="font-size:17pt">🕷</span><span>Salad with a spider</span><span class="dots"></span><span class="pr">77</span></div></div><div class="sec"><h3>Drinks</h3><div class="mrow"><span style="font-size:17pt">🧼</span><span>Hot milk with soap</span><span class="dots"></span><span class="pr">66</span></div><div class="mrow"><span style="font-size:17pt">🪱</span><span>Tea with mud</span><span class="dots"></span><span class="pr">55</span></div></div><div class="sec"><h3>Sweet things</h3><div class="mrow"><span style="font-size:17pt">🧅</span><span>Cake with onions</span><span class="dots"></span><span class="pr">44</span></div><div class="mrow"><span style="font-size:17pt">🍅</span><span>Ice cream with ketchup</span><span class="dots"></span><span class="pr">33</span></div></div>
-  <p class="small" style="text-align:center;margin-top:10mm">Everything here is terrible. Order it anyway.</p>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Order pad</span></div>
-<div class="cutnote">Session 3 prop · order slips and bills · cut and clip to a small board</div>
-<div class="slips"><div class="slip"><h4>Order</h4>
-        <div class="small">Table no. ______ &nbsp; Waiter ____________</div>
-        <div style="margin-top:3mm"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
-        <div class="foot">Say: "What would you like?"</div></div><div class="slip"><h4>Order</h4>
-        <div class="small">Table no. ______ &nbsp; Waiter ____________</div>
-        <div style="margin-top:3mm"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
-        <div class="foot">Say: "What would you like?"</div></div><div class="slip"><h4>Order</h4>
-        <div class="small">Table no. ______ &nbsp; Waiter ____________</div>
-        <div style="margin-top:3mm"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
-        <div class="foot">Say: "What would you like?"</div></div><div class="slip"><h4>Order</h4>
-        <div class="small">Table no. ______ &nbsp; Waiter ____________</div>
-        <div style="margin-top:3mm"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
-        <div class="foot">Say: "What would you like?"</div></div><div class="slip"><h4>The bill</h4>
-        <div class="ln"></div><div class="ln"></div><div class="ln"></div>
-        <div style="display:flex;justify-content:space-between;border-top:2px solid var(--ink);
-          margin-top:3mm;padding-top:2mm;font-size:13pt;font-weight:800">
-          <span>Total</span><span>________ francs</span></div>
-        <div class="foot">Say: "That is ______ francs, please."</div></div><div class="slip"><h4>The bill</h4>
-        <div class="ln"></div><div class="ln"></div><div class="ln"></div>
-        <div style="display:flex;justify-content:space-between;border-top:2px solid var(--ink);
-          margin-top:3mm;padding-top:2mm;font-size:13pt;font-weight:800">
-          <span>Total</span><span>________ francs</span></div>
-        <div class="foot">Say: "That is ______ francs, please."</div></div></div></div>
-<div class="sheet"><div class="runhead"><span>Session 3 · The Little Café</span><span>Bingo</span></div>
-<div class="cutnote">Session 3 prop · menu bingo · one card each</div>
-<div class="bingo"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3mm"><b style="font-size:13pt">Menu Bingo — card 1</b><span class="small">Cross a row and shout "Bingo! Enjoy your meal!"</span></div><div class="g"><div class="c"><div class="e">🍕</div><div class="n">Pizza</div></div><div class="c"><div class="e">🍲</div><div class="n">Soup</div></div><div class="c"><div class="e">🍰</div><div class="n">Cake</div></div><div class="c"><div class="e">💧</div><div class="n">Water</div></div><div class="c"><div class="e">🍗</div><div class="n">Chicken</div></div><div class="c"><div class="e">🍵</div><div class="n">Tea</div></div></div></div><div class="bingo"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3mm"><b style="font-size:13pt">Menu Bingo — card 2</b><span class="small">Cross a row and shout "Bingo! Enjoy your meal!"</span></div><div class="g"><div class="c"><div class="e">🍝</div><div class="n">Pasta</div></div><div class="c"><div class="e">🥗</div><div class="n">Salad</div></div><div class="c"><div class="e">🍨</div><div class="n">Ice cream</div></div><div class="c"><div class="e">🧃</div><div class="n">Juice</div></div><div class="c"><div class="e">🍚</div><div class="n">Rice</div></div><div class="c"><div class="e">🥛</div><div class="n">Milk</div></div></div></div>
-<p class="small">Take turns being the waiter who calls the dishes. The caller has to say a full
-sentence — "Would you like a pizza?" — not just the word. The caller is learning more than the
-player, so make sure she calls at least half the rounds.</p></div>
-<div class="sheet"><div class="runhead"><span>Session 4 · The Animal Doctor</span><span>Teacher sheet</span></div>
-<div style="display:flex;align-items:flex-end;justify-content:space-between">
-  <div><div class="small" style="letter-spacing:.2em">Session 4</div>
-  <h1>The Animal Doctor</h1></div>
-  <div style="font-size:46pt">🧠</div>
-</div>
-<p class="lede">Body parts, what hurts — and the Grand Show</p>
-<div class="rule"></div>
-<p>By the end she can name her body parts, say what hurts, examine a patient and prescribe a cure. Then the last 25 minutes are the Grand Show: all four scenes performed for Mum with printed tickets and a real diploma at the end.</p>
-<h3>Twelve words</h3>
-<div class="grid2"><table><tr><td style="width:12mm;font-size:15pt">🧠</td><td><b style="font-size:11.5pt">head</b><br><span class="gr">κεφάλι</span></td></tr><tr><td style="width:12mm;font-size:15pt">👀</td><td><b style="font-size:11.5pt">eyes</b><br><span class="gr">μάτια</span></td></tr><tr><td style="width:12mm;font-size:15pt">👂</td><td><b style="font-size:11.5pt">ear</b><br><span class="gr">αυτί</span></td></tr><tr><td style="width:12mm;font-size:15pt">👃</td><td><b style="font-size:11.5pt">nose</b><br><span class="gr">μύτη</span></td></tr><tr><td style="width:12mm;font-size:15pt">👄</td><td><b style="font-size:11.5pt">mouth</b><br><span class="gr">στόμα</span></td></tr><tr><td style="width:12mm;font-size:15pt">🦷</td><td><b style="font-size:11.5pt">tooth</b><br><span class="gr">δόντι</span></td></tr></table><table><tr><td style="width:12mm;font-size:15pt">💪</td><td><b style="font-size:11.5pt">arm</b><br><span class="gr">μπράτσο</span></td></tr><tr><td style="width:12mm;font-size:15pt">✋</td><td><b style="font-size:11.5pt">hand</b><br><span class="gr">χέρι</span></td></tr><tr><td style="width:12mm;font-size:15pt">🦵</td><td><b style="font-size:11.5pt">leg</b><br><span class="gr">πόδι</span></td></tr><tr><td style="width:12mm;font-size:15pt">🦶</td><td><b style="font-size:11.5pt">foot</b><br><span class="gr">πατούσα</span></td></tr><tr><td style="width:12mm;font-size:15pt">🙃</td><td><b style="font-size:11.5pt">tummy</b><br><span class="gr">κοιλιά</span></td></tr><tr><td style="width:12mm;font-size:15pt">💊</td><td><b style="font-size:11.5pt">medicine</b><br><span class="gr">φάρμακο</span></td></tr></table></div>
-<h3>Three things worth knowing before you start</h3>
-<ul class="rules" style="font-size:10pt"><li>Reserve the last 25 minutes for the Grand Show — do not let the doctor scenes eat it.</li><li>Show running order: the doorbell scene, the shop, the café, the clinic. Two minutes each. She plays her favourite role in each, you take the other.</li><li>Hand her the diploma at the end with a straight face and a handshake. Ceremony is what makes a seven-year-old want session five.</li></ul>
-<p class="small" style="border-top:1px solid var(--line);padding-top:2mm;margin-top:6mm">
-Greek is printed on your sheets only. Her cards and her script are English-only on purpose — the
-moment a Greek word sits next to an English one, she reads the Greek and the English becomes decoration.</p></div>
-<div class="sheet"><div class="runhead"><span>Session 4 · The Animal Doctor</span><span>Sentences</span></div>
-<div class="small" style="letter-spacing:.2em">Session 4 · The Animal Doctor</div>
-<h2>The ten sentences she will actually use</h2>
-<p class="small">Say each one, she repeats, twice round. Then hide the sheet — from that point on
-they only ever appear inside a scene. A sentence drilled at a table is forgotten by Thursday; the
-same sentence said to a shopkeeper is not.</p>
-<table style="margin-top:4mm"><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Good morning, doctor!</b></td><td class="gr">Καλημέρα, γιατρέ!</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Please sit down.</b></td><td class="gr">Καθίστε, παρακαλώ.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>What's wrong?</b></td><td class="gr">Τι έχεις;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>My tummy hurts.</b></td><td class="gr">Με πονάει η κοιλιά μου.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Where does it hurt?</b></td><td class="gr">Πού πονάει;</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Here.</b></td><td class="gr">Εδώ.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Open your mouth. Say "aaah".</b></td><td class="gr">Άνοιξε το στόμα σου.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Don't worry!</b></td><td class="gr">Μην ανησυχείς!</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>Take this medicine, two times a day.</b></td><td class="gr">Πάρε αυτό το φάρμακο, δύο φορές την ημέρα.</td></tr><tr><td style="width:88mm;font-size:12.5pt;padding:3mm 3mm 3mm 0"><b>You are better now!</b></td><td class="gr">Είσαι καλά τώρα!</td></tr></table>
-<div class="box" style="margin-top:7mm">
-  <h4>If she freezes</h4>
-  <p>Say the first two words of her line and stop. Nine times out of ten she finishes it. If she
-  still cannot, say the whole line cheerfully as your own and move on — never leave her standing
-  in silence, and never let the scene stop because of a missing word.</p>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 4 · The Animal Doctor</span><span>Word cards</span></div>
-<div class="cutnote">Cut along the dashed lines · Session 4 word cards ·
-four ways to use them are on the "session shape" sheet</div>
-<div class="cards"><div class="card"><div class="pic">🧠</div><div class="w">head</div></div><div class="card"><div class="pic">👀</div><div class="w">eyes</div></div><div class="card"><div class="pic">👂</div><div class="w">ear</div></div><div class="card"><div class="pic">👃</div><div class="w">nose</div></div><div class="card"><div class="pic">👄</div><div class="w">mouth</div></div><div class="card"><div class="pic">🦷</div><div class="w">tooth</div></div><div class="card"><div class="pic">💪</div><div class="w">arm</div></div><div class="card"><div class="pic">✋</div><div class="w">hand</div></div><div class="card"><div class="pic">🦵</div><div class="w">leg</div></div><div class="card"><div class="pic">🦶</div><div class="w">foot</div></div><div class="card"><div class="pic">🙃</div><div class="w">tummy</div></div><div class="card"><div class="pic">💊</div><div class="w">medicine</div></div></div></div>
-<div class="sheet"><div class="runhead"><span>Session 4 · The Animal Doctor</span><span>Script</span></div>
-<div class="small" style="letter-spacing:.2em">Session 4 · The Play</div>
-<h1>The Animal Doctor</h1>
-<div class="rolebar">
-  <div class="role"><b style="color:var(--accent)">D — the doctor</b></div>
-  <div class="role"><b style="color:var(--accent2)">P — the owner of the patient</b></div>
-</div>
-<div class="scriptbox"><div class="line"><div class="who b">P</div><div class="txt">Knock, knock. Good morning, doctor!</div></div><div class="line"><div class="who">D</div><div class="txt">Good morning! Please sit down. What's wrong?</div></div><div class="line"><div class="who b">P</div><div class="txt">My dog is sick.</div></div><div class="line"><div class="who">D</div><div class="txt">Oh no! Poor dog. What's wrong with him?</div></div><div class="line"><div class="who b">P</div><div class="txt">His leg hurts.</div></div><div class="line"><div class="who">D</div><div class="txt">Where does it hurt?</div></div><div class="line"><div class="who b">P</div><div class="txt">Here.</div></div><div class="line"><div class="who">D</div><div class="txt">Let me see. Open your mouth, please. Say "aaah".</div></div><div class="line"><div class="who b">P</div><div class="txt">Aaaaah!</div></div><div class="line"><div class="who">D</div><div class="txt">Hmm. Is he hungry?</div></div><div class="line"><div class="who b">P</div><div class="txt">Yes! He is very hungry!</div></div><div class="line"><div class="who">D</div><div class="txt">Don't worry. Take this medicine, two times a day.</div></div><div class="line"><div class="who">D</div><div class="txt">And a big dinner tonight!</div></div><div class="line"><div class="who b">P</div><div class="txt">Thank you, doctor! How much is it?</div></div><div class="line"><div class="who">D</div><div class="txt">Ten francs, please.</div></div><div class="line"><div class="who b">P</div><div class="txt">Here you are. Goodbye!</div></div><div class="line"><div class="who">D</div><div class="txt">Goodbye! See you next week!</div></div></div>
-<div class="grid2" style="margin-top:6mm">
-  <div class="box"><h4>The set</h4><p>A towel on the table is the examination bed. The patient is always a stuffed animal — she speaks for it, which is far easier than speaking for herself. A scarf is the doctor's coat.</p></div>
-  <div class="box"><h4>Props</h4><p>Stuffed animals · a towel · prescription pad · appointment cards · waiting numbers</p>
-  <p style="margin-top:2mm"><b>Run it three times.</b> You alone with a toy · she takes the first
-  role · swap. Never fewer than three.</p></div>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 4 · The Animal Doctor</span><span>Games</span></div>
-<div class="gamespage">
-<div class="small" style="letter-spacing:.2em">Session 4</div>
-<h1>Games &amp; the silly versions</h1>
-<h3>Three games</h3>
-<div class="box" style="margin-bottom:5mm"><div class="tag">10 min</div><h4>Simon Says</h4><p>"Simon says touch your nose!" — she does it. "Touch your ear!" without Simon says — she must not move. Fast, physical, and it teaches listening rather than speaking, which is the half that gets neglected.</p></div><div class="box" style="margin-bottom:5mm"><div class="tag">10 min</div><h4>The Toy Hospital</h4><p>Four stuffed animals, each with a printed illness card face down. She draws a card, reads what hurts, examines the patient and fills in a prescription slip.</p></div><div class="box" style="margin-bottom:5mm"><div class="tag">5 min</div><h4>Number Three, Please!</h4><p>Give the toys the printed waiting-room numbers. The doctor calls "Number three, please!" and only that patient may come. Sneaks the numbers back in one last time.</p></div>
-<h3>Four silly versions of the same scene</h3>
-<p class="small">Play these after the straight version has worked twice. The words stay identical;
-only the world changes. This is where the repetition she needs stops feeling like repetition.</p>
-<div class="grid2"><div class="box"><h4>The dragon patient</h4><p>His nose is too hot. The cure is ten ice creams. "Take ten ice creams, two times a day!"</p></div><div class="box"><h4>The doctor who prescribes chocolate</h4><p>Whatever is wrong, the medicine is chocolate. She will try to make this the real rule of the house.</p></div><div class="box"><h4>The patient with one hundred problems</h4><p>"My head hurts. And my nose hurts. And my foot hurts..." Run through every body word.</p></div><div class="box"><h4>The animal that answers back</h4><p>The stuffed animal speaks for itself and refuses to open its mouth. The doctor must beg politely.</p></div></div>
-<p class="small" style="margin-top:5mm;border-top:1px solid var(--line);padding-top:2mm">
-<b>Home mission after this session:</b> Every evening this week, one toy gets sick and she is the doctor. Two minutes, in English, before the bedtime story. Keep the prescription pad by her bed.</p>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 4 · The Animal Doctor</span><span>Patient cards</span></div>
-<div class="cutnote">Session 4 prop · patient cards · deal them face down</div>
-<div class="cards" style="grid-template-columns:repeat(2,1fr)"><div class="card" style="height:70mm"><div class="pic" style="font-size:38pt">🐕</div><div class="w" style="font-size:14pt">The dog</div><div style="font-size:11pt;margin-top:2mm">His leg hurts.</div></div><div class="card" style="height:70mm"><div class="pic" style="font-size:38pt">🐈</div><div class="w" style="font-size:14pt">The cat</div><div style="font-size:11pt;margin-top:2mm">Her tooth hurts.</div></div><div class="card" style="height:70mm"><div class="pic" style="font-size:38pt">🐻</div><div class="w" style="font-size:14pt">The bear</div><div style="font-size:11pt;margin-top:2mm">His tummy hurts. He ate ten cakes!</div></div><div class="card" style="height:70mm"><div class="pic" style="font-size:38pt">🐰</div><div class="w" style="font-size:14pt">The rabbit</div><div style="font-size:11pt;margin-top:2mm">Her ear hurts.</div></div><div class="card" style="height:70mm"><div class="pic" style="font-size:38pt">🐘</div><div class="w" style="font-size:14pt">The elephant</div><div style="font-size:11pt;margin-top:2mm">His nose is too long today.</div></div><div class="card" style="height:70mm"><div class="pic" style="font-size:38pt">🐉</div><div class="w" style="font-size:14pt">The dragon</div><div style="font-size:11pt;margin-top:2mm">His nose is very, very hot.</div></div></div>
-<p class="small" style="margin-top:5mm">She draws a card, finds the matching stuffed animal,
-and the scene starts. If she cannot read the sentence yet, whisper it once and let her say it
-to the doctor herself — never say it for her in front of the patient.</p></div>
-<div class="sheet"><div class="runhead"><span>Session 4 · The Animal Doctor</span><span>Prescriptions</span></div>
-<div class="cutnote">Session 4 prop · prescriptions and appointment cards</div>
-<div class="slips"><div class="slip"><h4>Doctor's note</h4>
-        <div class="small">Patient ____________________ &nbsp; Date __________</div>
-        <div style="margin-top:3mm;font-size:10pt">What is wrong?</div>
-        <div class="ln"></div>
-        <div style="margin-top:2mm;font-size:10pt">Take this medicine:</div>
-        <div class="ln"></div>
-        <div style="margin-top:2mm;font-size:10pt">How many times a day?</div>
-        <div class="ln"></div>
-        <div class="foot">Say: "Don't worry! You are better now!"</div></div><div class="slip"><h4>Doctor's note</h4>
-        <div class="small">Patient ____________________ &nbsp; Date __________</div>
-        <div style="margin-top:3mm;font-size:10pt">What is wrong?</div>
-        <div class="ln"></div>
-        <div style="margin-top:2mm;font-size:10pt">Take this medicine:</div>
-        <div class="ln"></div>
-        <div style="margin-top:2mm;font-size:10pt">How many times a day?</div>
-        <div class="ln"></div>
-        <div class="foot">Say: "Don't worry! You are better now!"</div></div><div class="slip"><h4>Doctor's note</h4>
-        <div class="small">Patient ____________________ &nbsp; Date __________</div>
-        <div style="margin-top:3mm;font-size:10pt">What is wrong?</div>
-        <div class="ln"></div>
-        <div style="margin-top:2mm;font-size:10pt">Take this medicine:</div>
-        <div class="ln"></div>
-        <div style="margin-top:2mm;font-size:10pt">How many times a day?</div>
-        <div class="ln"></div>
-        <div class="foot">Say: "Don't worry! You are better now!"</div></div><div class="slip"><h4>Doctor's note</h4>
-        <div class="small">Patient ____________________ &nbsp; Date __________</div>
-        <div style="margin-top:3mm;font-size:10pt">What is wrong?</div>
-        <div class="ln"></div>
-        <div style="margin-top:2mm;font-size:10pt">Take this medicine:</div>
-        <div class="ln"></div>
-        <div style="margin-top:2mm;font-size:10pt">How many times a day?</div>
-        <div class="ln"></div>
-        <div class="foot">Say: "Don't worry! You are better now!"</div></div><div class="slip"><h4>Appointment card</h4>
-        <div style="font-size:12pt;margin-top:4mm">Patient ____________________</div>
-        <div style="font-size:12pt;margin-top:4mm">Day ____________________</div>
-        <div style="font-size:12pt;margin-top:4mm">Time ____________________</div>
-        <div class="foot">Say: "See you next week!"</div></div><div class="slip"><h4>Appointment card</h4>
-        <div style="font-size:12pt;margin-top:4mm">Patient ____________________</div>
-        <div style="font-size:12pt;margin-top:4mm">Day ____________________</div>
-        <div style="font-size:12pt;margin-top:4mm">Time ____________________</div>
-        <div class="foot">Say: "See you next week!"</div></div></div></div>
-<div class="sheet"><div class="runhead"><span>Session 4 · The Animal Doctor</span><span>Waiting room</span></div>
-<div class="cutnote">Session 4 prop · waiting-room numbers · one per patient</div>
-<div class="bignums"><div class="bignum">1</div><div class="bignum">2</div><div class="bignum">3</div><div class="bignum">4</div><div class="bignum">5</div><div class="bignum">6</div></div>
-<p class="small" style="margin-top:4mm">Give each toy a number and sit them in a row. The doctor
-calls "Number four, please!" and only that patient may come. Anyone who comes out of turn is sent
-back with "Sorry! Number two first!"</p></div>
-<div class="sheet"><div class="runhead"><span>Session 4 · The Grand Show</span><span>Programme</span></div>
-<div style="text-align:center">
-  <div class="small" style="letter-spacing:.3em">Lausanne</div>
-  <h1 style="font-size:38pt;margin-top:4mm">The Grand Show</h1>
-  <p class="lede">Four scenes in English, performed by Lila and Papa.<br>
-  Doors open at the end of session four. Admission: one ticket.</p>
-</div>
-<div class="rule"></div>
-<div style="display:flex;gap:6mm;padding:5mm 0;border-bottom:1px solid var(--faint)"><div style="font-size:26pt;font-weight:800;color:var(--accent);width:14mm">1</div><div><div style="font-size:16pt;font-weight:800">The New Neighbour</div><div class="small">A stranger knocks on the door. Who is she?</div></div></div><div style="display:flex;gap:6mm;padding:5mm 0;border-bottom:1px solid var(--faint)"><div style="font-size:26pt;font-weight:800;color:var(--accent);width:14mm">2</div><div><div style="font-size:16pt;font-weight:800">The Little Shop</div><div class="small">Two apples, some bread, and the correct change.</div></div></div><div style="display:flex;gap:6mm;padding:5mm 0;border-bottom:1px solid var(--faint)"><div style="font-size:26pt;font-weight:800;color:var(--accent);width:14mm">3</div><div><div style="font-size:16pt;font-weight:800">The Little Café</div><div class="small">One pizza, one apple juice, and the bill.</div></div></div><div style="display:flex;gap:6mm;padding:5mm 0;border-bottom:1px solid var(--faint)"><div style="font-size:26pt;font-weight:800;color:var(--accent);width:14mm">4</div><div><div style="font-size:16pt;font-weight:800">The Animal Doctor</div><div class="small">A dog with a bad leg is cured in under two minutes.</div></div></div>
-<div class="grid2" style="margin-top:8mm">
-  <div class="box"><h4>Running order</h4><p>Two minutes per scene, no more. She picks her
-  favourite role in each one and you take the other. Keep the scripts within reach but out of
-  sight — she will want them and will mostly not need them.</p></div>
-  <div class="box"><h4>The audience's job</h4><p>Mum claps loudly after every scene and asks one
-  question in English at the end: "What is your name?" Being asked by somebody other than you is
-  the real test of the four sessions.</p></div>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 4 · The Grand Show</span><span>Tickets</span></div>
-<div class="cutnote">Session 4 prop · show tickets · she hands them out before the performance</div>
-<div class="ticket">
-  <div class="l">
-    <div class="small" style="letter-spacing:.25em">The English Play Pack presents</div>
-    <div style="font-size:24pt;font-weight:800;margin:2mm 0">The Grand Show</div>
-    <div class="small">Four scenes in English · Lausanne</div>
-    <div style="margin-top:3mm;font-size:11pt">Guest: ____________________</div>
-  </div>
-  <div class="r">
-    <div class="small">Seat</div>
-    <div style="font-size:34pt;font-weight:800">1</div>
-    <div class="small">Admit one</div>
-  </div>
-</div><div class="ticket">
-  <div class="l">
-    <div class="small" style="letter-spacing:.25em">The English Play Pack presents</div>
-    <div style="font-size:24pt;font-weight:800;margin:2mm 0">The Grand Show</div>
-    <div class="small">Four scenes in English · Lausanne</div>
-    <div style="margin-top:3mm;font-size:11pt">Guest: ____________________</div>
-  </div>
-  <div class="r">
-    <div class="small">Seat</div>
-    <div style="font-size:34pt;font-weight:800">2</div>
-    <div class="small">Admit one</div>
-  </div>
-</div><div class="ticket">
-  <div class="l">
-    <div class="small" style="letter-spacing:.25em">The English Play Pack presents</div>
-    <div style="font-size:24pt;font-weight:800;margin:2mm 0">The Grand Show</div>
-    <div class="small">Four scenes in English · Lausanne</div>
-    <div style="margin-top:3mm;font-size:11pt">Guest: ____________________</div>
-  </div>
-  <div class="r">
-    <div class="small">Seat</div>
-    <div style="font-size:34pt;font-weight:800">3</div>
-    <div class="small">Admit one</div>
-  </div>
-</div><div class="ticket">
-  <div class="l">
-    <div class="small" style="letter-spacing:.25em">The English Play Pack presents</div>
-    <div style="font-size:24pt;font-weight:800;margin:2mm 0">The Grand Show</div>
-    <div class="small">Four scenes in English · Lausanne</div>
-    <div style="margin-top:3mm;font-size:11pt">Guest: ____________________</div>
-  </div>
-  <div class="r">
-    <div class="small">Seat</div>
-    <div style="font-size:34pt;font-weight:800">4</div>
-    <div class="small">Admit one</div>
-  </div>
-</div></div>
-<div class="sheet"><div class="runhead"><span>Session 4 · The Grand Show</span><span>Diploma</span></div>
-<div class="diploma">
-  <div style="font-size:40pt">🏆</div>
-  <div class="t">Diploma of English</div>
-  <div class="small" style="letter-spacing:.3em;text-transform:uppercase">Awarded to</div>
-  <div><span class="name">Lila</span></div>
-  <p style="font-size:12.5pt;max-width:120mm;margin:0 auto;line-height:1.6">
-  who in four sessions learned to say hello to a stranger, run a shop, serve a whole café
-  and cure a dog — entirely in English, and mostly in a funny voice.</p>
-  <div style="font-size:26pt;letter-spacing:6mm;margin-top:6mm">👋 🛒 ☕ 🐕</div>
-  <div class="sigrow">
-    <div>Papa · the teacher</div>
-    <div>Date</div>
-  </div>
-</div></div>
-<div class="sheet"><div class="runhead"><span>After the four sessions</span><span>Missions</span></div>
-<h1>The home missions</h1>
-<p class="lede">Two minutes a day, every day, with a prop in her hand. This page matters more than
-any single session — a language grows on daily contact, not on long Sundays. Tick a box each day.</p>
-<table style="margin-top:5mm">
-<tr><th>After</th><th>What she does</th><th>Mon–Sun</th></tr>
-<tr><td class="t" style="width:24mm">Session 1</td><td>Every morning this week, the first words of the day are English. She knocks on your bedroom door: "Good morning! How are you?" You answer, then ask her back.</td><td style="width:34mm;letter-spacing:2mm">□□□□□□□</td></tr><tr><td class="t" style="width:24mm">Session 2</td><td>She is the cashier at dinner this week. Nobody gets bread until they ask her in English and pay with a play note. She gives the change and says the price.</td><td style="width:34mm;letter-spacing:2mm">□□□□□□□</td></tr><tr><td class="t" style="width:24mm">Session 3</td><td>Saturday breakfast, she is the waiter. She takes the whole family's order on the printed pad, in English, and brings the bill at the end. Pay her in play francs.</td><td style="width:34mm;letter-spacing:2mm">□□□□□□□</td></tr><tr><td class="t" style="width:24mm">Session 4</td><td>Every evening this week, one toy gets sick and she is the doctor. Two minutes, in English, before the bedtime story. Keep the prescription pad by her bed.</td><td style="width:34mm;letter-spacing:2mm">□□□□□□□</td></tr>
-</table>
-<div class="box" style="margin-top:8mm">
-  <h4>The rule that makes missions work</h4>
-  <p>The mission is a job with real consequences inside the family, not homework. Nobody gets
-  bread at dinner until they have asked the cashier in English. If the family plays along, she
-  practises without being asked; if the family forgets, the mission dies in three days.</p>
-</div>
-<div class="box" style="margin-top:5mm">
-  <h4>Keep the box</h4>
-  <p>Everything cut out of this pack — cards, money, menu, prescriptions, the hat — lives in one
-  box that only comes out for English. Never leave the props lying about. Something that appears
-  only for the game keeps the value of the game.</p>
-</div></div>
-<div class="sheet"><div class="runhead"><span>After the four sessions</span><span>What next</span></div>
-<h1>What comes<br>after session four</h1>
-<p class="lede">Four sessions gets a beginner to about sixty words and eight sentence patterns she
-can actually use. That is a real result, and it is also fragile. The engine of this pack is not
-the vocabulary, it is the format — so keep the format and change the world.</p>
-<div class="rule"></div>
-<h3>Four more worlds, same ninety minutes</h3>
-<div class="grid2">
-  <div class="box"><h4>5 · The train station</h4><p>Tickets, "Where are you going?", "To Geneva,
-  please", platform numbers. Numbers get a second life and you can rehearse a real journey.</p></div>
-  <div class="box"><h4>6 · The birthday party</h4><p>"Happy birthday!", presents, "Can I have a
-  piece of cake?", "How old are you?" Recycles almost everything from sessions one to three.</p></div>
-  <div class="box"><h4>7 · The lost dog</h4><p>Descriptions: big, small, black, white, "Have you
-  seen my dog?" This is where adjectives and colours belong.</p></div>
-  <div class="box"><h4>8 · The hotel</h4><p>"A room for two nights, please", floors, keys,
-  breakfast at eight. Combines the shop, the café and the numbers in one scene.</p></div>
-</div>
-<h3>Three things not to do</h3>
-<ul class="rules" style="font-size:10.5pt">
-  <li><b>Do not start writing yet.</b>She is learning to read in Greek and in French at the same
-  time. A third spelling system now is one too many. Everything here is spoken; the words on her
-  cards are pictures with a label, not a spelling lesson.</li>
-  <li><b>Do not test her.</b>No "what is the English for...?" out of the blue. Ask inside a scene
-  or not at all — a question with the hat on is a game, the same question without it is an exam.</li>
-  <li><b>Do not compete with school French.</b>If she mixes French into English, let it pass.
-  Mixing is a normal stage for a trilingual child, and correcting it is how you teach her to stop
-  volunteering to speak.</li>
-</ul></div>
-</body></html>
+      <div class="two">
+        <div class="col">${bubbles(left)}</div>
+        <div class="gut">${RULE}</div>
+        <div class="col">${bubbles(right)}</div>
+      </div>
+    </div>`;
+
+  $('#stage').querySelectorAll('.bub').forEach(b => {
+    b.onclick = () => say(b.dataset.k, b);
+  });
+  $('#where').textContent = `${sc.place} · ${sc.title}${swapped ? ' · swapped' : ''}`;
+  $('#prev').disabled = idx === 0 && !swapped;
+  fitStage();
+}
+
+function renderSwap() {
+  $('#stage').innerHTML = `
+    <div class="swap">
+      <div>
+        <h2>Now swap!</h2>
+        <p>Play it again, the other way round.</p>
+        <div class="pair">
+          <div><span class="dot B"></span> Papa reads the right</div>
+          <div><span class="dot A"></span> you read the left</div>
+        </div>
+      </div>
+    </div>`;
+  $('#where').textContent = 'swap over';
+  fitStage();
+}
+
+/* ------------------------------------------------------------- navigation */
+
+let showingSwap = false;
+
+function open(i) {
+  idx = i; swapped = false; showingSwap = false;
+  stopAudio();
+  $('#index').classList.remove('on');
+  $('#deck').classList.add('on');
+  renderScene();
+}
+
+function toIndex() {
+  stopAudio();
+  idx = -1;
+  $('#deck').classList.remove('on');
+  $('#index').classList.add('on');
+}
+
+/* The whole sequence is linear: scene → swap card → scene swapped → next scene. */
+function next() {
+  stopAudio();
+  if (!swapped && !showingSwap) { showingSwap = true; renderSwap(); return; }
+  if (showingSwap) { showingSwap = false; swapped = true; renderScene(); return; }
+  if (idx < SCENES.length - 1) { idx++; swapped = false; renderScene(); }
+}
+
+function prev() {
+  stopAudio();
+  if (swapped) { swapped = false; showingSwap = true; renderSwap(); return; }
+  if (showingSwap) { showingSwap = false; renderScene(); return; }
+  if (idx > 0) { idx--; swapped = true; renderScene(); }
+}
+
+/* --------------------------------------------------------------- the bar */
+
+let hideTimer = null;
+function pokeBar() {
+  const bar = $('#bar');
+  bar.classList.remove('hidden');
+  clearTimeout(hideTimer);
+  hideTimer = setTimeout(() => {
+    if (idx >= 0) bar.classList.add('hidden');
+  }, 3000);
+}
+
+function init() {
+  renderIndex();
+  $('#next').onclick = next;
+  $('#prev').onclick = prev;
+  $('#home').onclick = toIndex;
+  $('#full').onclick = () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen().catch(() => {});
+  };
+
+  addEventListener('keydown', e => {
+    if (idx < 0) return;
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft') prev();
+    if (e.key === 'Escape') toIndex();
+    pokeBar();
+  });
+  addEventListener('mousemove', pokeBar);
+  addEventListener('touchstart', pokeBar, { passive: true });
+
+  fitStage();
+  pokeBar();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
