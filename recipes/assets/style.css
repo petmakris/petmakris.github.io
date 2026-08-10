@@ -1,0 +1,155 @@
+/* Shared theme for all recipe pages under /recipes/.
+   Mobile first — read on a phone in a kitchen or a supermarket.
+   Design system carried over from the PDF generators (src/CLAUDE.md):
+   Material, light, high contrast. Blue 800 primary. Teal is SEMANTIC:
+   it marks a French word the reader will physically encounter on packaging
+   or an aisle sign — never mere decoration. */
+
+:root {
+  --primary:  #1565C0;   /* Blue 800 */
+  --prim-dk:  #0D47A1;   /* Blue 900 */
+  --prim-lt:  #E3F2FD;
+  --french:   #00695C;   /* Teal 800 — semantic, not decorative */
+  --green:    #2E7D32;
+  --warn-bg:  #FFF8E1;
+  --warn-fg:  #B26500;
+  --warn-bd:  #F57C00;
+  --ink:      #111111;
+  --second:   #5F6368;
+  --divider:  #DADCE0;
+  --surface:  #FFFFFF;
+  --surf-v:   #F6F8FA;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--surf-v); color: var(--ink);
+  font-family: Roboto, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.5; -webkit-tap-highlight-color: transparent;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: .9rem .9rem 3rem; }
+
+/* App bar */
+.appbar {
+  background: var(--primary); color: #fff; border-radius: 12px;
+  padding: 1rem 1.1rem; margin-bottom: .9rem;
+}
+.appbar h1 { margin: 0 0 .25rem; font-size: 1.25rem; font-weight: 600; line-height: 1.3; }
+.appbar .fr-title { font-weight: 400; opacity: .92; font-size: 1.05rem; display: block; margin-top: .1rem; }
+.appbar p { margin: .4rem 0 0; font-size: .82rem; opacity: .88; }
+
+/* Fact chips */
+.chips { display: grid; grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
+  gap: 6px; margin-bottom: 1rem; }
+.chip { background: var(--surface); border: 1px solid var(--divider);
+  border-radius: 10px; padding: .45rem .6rem; }
+.chip .k { font-size: .62rem; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--second); }
+.chip .v { font-size: .88rem; font-weight: 600; }
+.chip .k .fr, .chip .k [lang="fr"] { text-transform: none; }
+
+/* Section heads */
+.section { margin: 1.4rem 0 .7rem; }
+.section .overline { font-size: .66rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--primary); }
+.section h2 { margin: .1rem 0 0; font-size: 1.15rem; font-weight: 600; }
+.section h2 .fr-h { font-weight: 400; color: var(--second); }
+
+/* Cards */
+.card { background: var(--surface); border: 1px solid var(--divider);
+  border-radius: 12px; padding: .9rem 1rem; margin-bottom: .8rem; }
+.card h3 { margin: 0 0 .5rem; font-size: .78rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--prim-dk); }
+.card h3 .fr-h { color: var(--second); font-weight: 500; }
+.card.accent-warn { background: var(--warn-bg); border-color: #FFE082;
+  border-left: 4px solid var(--warn-bd); }
+.card.accent-warn h3 { color: var(--warn-fg); }
+.card.accent-info { background: var(--prim-lt); border-color: #BBDEFB;
+  border-left: 4px solid var(--primary); }
+
+/* The bilingual pair: Greek and French side by side.
+   Stacked on a phone, two columns from 640px. */
+.bi { display: grid; grid-template-columns: 1fr; gap: .15rem .9rem; }
+.bi > [lang="fr"] { color: #37474F; }
+.bi > [lang="fr"]::before {
+  content: 'FR'; font-size: .58rem; font-weight: 700; color: var(--french);
+  border: 1px solid var(--french); border-radius: 4px; padding: 0 .25rem;
+  margin-right: .4rem; vertical-align: .12em; opacity: .75;
+}
+@media (min-width: 640px) {
+  .bi { grid-template-columns: 1fr 1fr; }
+  .bi > [lang="fr"]::before { content: none; }
+}
+
+/* Ingredient rows */
+.ing { border-bottom: 1px solid #ECEFF1; padding: .45rem 0; }
+.ing:last-child { border-bottom: 0; }
+.ing .qty { font-weight: 700; white-space: nowrap; }
+.ing { display: grid; grid-template-columns: 5.2rem 1fr; gap: 0 .6rem; }
+.ing .note { grid-column: 2; font-size: .78rem; color: var(--green); }
+.ing .note.plain { color: var(--second); }
+
+/* Steps */
+.step { display: grid; grid-template-columns: 2rem 1fr; gap: .7rem;
+  padding: .65rem 0; border-bottom: 1px solid #ECEFF1; }
+.step:last-child { border-bottom: 0; }
+.step .badge { width: 1.7rem; height: 1.7rem; border-radius: 50%;
+  background: var(--primary); color: #fff; font-weight: 700; font-size: .95rem;
+  display: flex; align-items: center; justify-content: center; margin-top: .1rem; }
+.step .head { display: flex; justify-content: space-between; align-items: baseline;
+  gap: .6rem; flex-wrap: wrap; }
+.step .head strong { font-size: .98rem; }
+.step .head .time { font-size: .78rem; font-weight: 600; color: var(--primary);
+  white-space: nowrap; }
+.step .head strong [lang="fr"] { font-weight: 500; color: var(--second); }
+.step .bi { margin-top: .2rem; font-size: .88rem; }
+
+/* French shop words — the teal rule */
+.fr { color: var(--french); font-weight: 500; font-style: normal; }
+
+/* Store tags */
+.tag { display: inline-block; font-size: .62rem; font-weight: 700; color: #fff;
+  border-radius: 5px; padding: .12rem .45rem; letter-spacing: .04em; }
+.tag.migros { background: var(--green); }
+.tag.coop { background: var(--primary); }
+
+/* Product rows (shopping list with links) */
+.prod { padding: .7rem 0; border-bottom: 1px solid var(--divider); }
+.prod:last-child { border-bottom: 0; }
+.prod .name { font-weight: 600; margin-right: .45rem; }
+.prod .where { font-size: .8rem; color: var(--second); margin: .15rem 0 .3rem; }
+.prod .bi { font-size: .85rem; }
+.prod .link { display: inline-block; margin-top: .45rem; font-size: .8rem;
+  font-weight: 600; color: var(--primary); text-decoration: none;
+  border: 1px solid var(--primary); border-radius: 999px; padding: .25rem .7rem; }
+.prod .link:active { background: var(--prim-lt); }
+
+/* Plain shopping table (as stacked cards on mobile) */
+.item-row { padding: .6rem 0; border-bottom: 1px solid #ECEFF1; }
+.item-row:last-child { border-bottom: 0; }
+.item-row .names { display: flex; justify-content: space-between; gap: .6rem;
+  align-items: baseline; flex-wrap: wrap; }
+.item-row .names strong { font-size: .92rem; }
+.item-row .qty-aisle { font-size: .8rem; color: var(--second); margin: .1rem 0 .25rem; }
+.item-row .bi { font-size: .83rem; }
+
+/* Footer / downloads */
+.dl { display: inline-block; background: var(--primary); color: #fff;
+  text-decoration: none; font-weight: 600; border-radius: 10px;
+  padding: .6rem 1rem; font-size: .9rem; }
+footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--divider);
+  font-size: .78rem; color: var(--second); }
+footer a { color: var(--primary); }
+
+/* Hub page cards */
+a.recipe-card { display: block; text-decoration: none; color: inherit;
+  background: var(--surface); border: 1px solid var(--divider); border-radius: 12px;
+  padding: 1rem 1.1rem; margin-bottom: .8rem; transition: border-color .15s; }
+a.recipe-card:hover { border-color: var(--primary); }
+a.recipe-card h2 { margin: 0; font-size: 1.05rem; font-weight: 600; }
+a.recipe-card .fr-title { display: block; font-weight: 400; color: var(--second);
+  font-size: .95rem; margin-top: .1rem; }
+a.recipe-card p { margin: .45rem 0 0; font-size: .85rem; color: var(--second); }
+a.recipe-card .meta { margin-top: .55rem; font-size: .72rem; color: var(--second);
+  letter-spacing: .04em; }

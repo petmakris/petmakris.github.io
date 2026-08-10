@@ -11,6 +11,7 @@ root `index.html` is a hand-written hub and every project is a folder under it.
 | `/english/` | The English Play Deck — 28 scripted scenes for a TV, with audio. The older printable pack is alongside as a PDF. | `~/projects/personal/English` |
 | `/frequence/` | Fréquence — the 10 000 most frequent words in four languages, as a game. | `frequence/` |
 | `/dieting/el/`, `/dieting/fr/` | A practical guide to dieting, in Greek and French. | here |
+| `/recipes/` | Συνταγές · Recettes — bilingual recipes (Greek + French side by side), each with a printable PDF. Hand-written HTML pages; each recipe's PDF generator is committed under `recipes/<slug>/src/`. | `recipes/` |
 
 ## Deploying
 
