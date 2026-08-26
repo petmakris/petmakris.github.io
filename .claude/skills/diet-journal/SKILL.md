@@ -1,42 +1,47 @@
-# Diet journal — operating protocol
+---
+name: diet-journal
+description: Maintain Petros's diet journal at dieting/journal/ — log food and estimate its calories, record Garmin active calories and exercise, apply corrections, then commit and push so the phone dashboard updates. Use whenever he reports what he ate, gives a calorie figure or active-calorie number, describes a workout, says something on the journal page is wrong, or asks which day of the plan he is on.
+---
 
-This file exists so that a **brand-new Claude Code session** can pick up the
-diet-tracking work with zero other context. If you are that session: read this
-file and `data.js`, and you have everything. The history is the data file; the
-rules are below; the original instructions are quoted verbatim at the end.
+# Diet journal
 
-## What this is
+Petros tracks his diet conversationally in Claude Code. He says what he ate
+(sometimes with calories, sometimes just ingredients), his Garmin **active
+calories** at the end of the day, and any exercise. You estimate the calories
+he did not give, write them into `dieting/journal/data.js`, and push, so the
+page at `https://petmakris.github.io/dieting/journal/` updates. That page is a
+widget on his phone: its top block must always show which day of the plan it
+is and how today stands.
 
-Petros (petmakris@gmail.com) tracks his diet conversationally in Claude Code
-sessions. He tells Claude what he ate (sometimes with calories, sometimes just
-ingredients), his Garmin **active calories** at the end of the day, and any
-exercise. Claude estimates calories where needed, keeps the notebook in
-`dieting/journal/data.js`, and pushes to GitHub so the page at
-`https://petmakris.github.io/dieting/journal/` updates. That page is also used
-as a phone-widget dashboard, so its top block must always show **which day of
-the plan it is** and how today stands.
-
-There is no app and no build step. The page is static HTML; the data is a
-single JS file; Claude is the input method.
+No app, no build step. Static HTML, one JS data file, and you as the input
+method.
 
 ## The plan
 
 - **Goal:** a sustained **600 kcal/day deficit** — deliberately modest,
   because anything bigger is not sustainable.
-- **Duration:** 90 days, **2026-08-26 (day 1) through 2026-11-23 (day 90)**.
-- **Model:** total burn for a day = `maintenanceRest + active` (Garmin active
-  calories); deficit = burn − eaten. `maintenanceRest` lives in
-  `data.js → plan.maintenanceRest`. If it is still `null`, ask Petros for it
-  (or estimate from sex/age/weight/height via Mifflin-St Jeor and confirm).
-- 600 kcal/day ≈ 0.55 kg of fat per week; the page shows this projection.
+- **Duration:** 90 days, **2026-08-27 (day 1) through 2026-11-24 (day 90)**.
+- **Model:** burn for a day = `maintenanceRest + active` (Garmin active
+  calories); deficit = burn − eaten.
+- **`maintenanceRest` = 1945 kcal**, from Mifflin-St Jeor for male, 104 kg,
+  176 cm, age 40. **The age is an assumption and was never confirmed** — ask
+  once and correct `plan.maintenanceRest` if it is wrong (each year off is
+  5 kcal).
+- 600 kcal/day ≈ 0.55 kg of fat per week; the page projects this.
 
-## Files (repo `petmakris/petmakris.github.io`, deployed as GitHub Pages)
+## Files
+
+Repo `petmakris/petmakris.github.io`, deployed as GitHub Pages from `main`.
 
 | File | Role |
 |---|---|
 | `dieting/journal/data.js` | **The notebook.** All config + all days. The only file that changes on a normal prompt. |
 | `dieting/journal/index.html` | The dashboard. Renders `data.js`; no server, no build. |
-| `dieting/journal/PROTOCOL.md` | This file. Update it if the rules themselves change. |
+| `.claude/skills/diet-journal/SKILL.md` | This file. Update it if the rules themselves change. |
+
+The page deliberately says nothing about how it is maintained — that is what
+this skill is for. Do not add protocol text, repo links or "edited by Claude"
+notes back onto the page.
 
 ## Data format (`data.js`)
 
@@ -55,23 +60,27 @@ window.DIET = {
 };
 ```
 
-Conventions: one entry per calendar date; kcal are integers; when Claude
-estimates, it says so in the item's `note` and states assumptions in chat so
-Petros can correct them. Never delete history — correct it.
+Conventions: one entry per calendar date, oldest first; kcal are integers;
+when you estimate, say so in the item's `note` and state the assumption in
+chat so Petros can correct it. **Never delete history — correct it.**
 
-## The loop (what Claude does on every prompt)
+## The loop (every prompt)
 
-1. Petros writes food / active calories / exercise / corrections in chat.
-2. Claude estimates any missing calories (best effort, state assumptions).
-3. Claude updates `data.js` — appending to today's entry, or creating it if
-   the date rolled over.
-4. Commit with a clear message and **push** so the page updates. Small,
-   frequent pushes are the point — Petros checks the page from his phone.
-5. If information is missing or ambiguous, ask; Petros answers; update again.
-6. If Petros says something on the page is wrong, fix it and push.
+1. Petros writes food / active calories / exercise / corrections.
+2. Estimate any missing calories, best effort, and state your assumptions.
+3. Update `data.js` — append to today's entry, or create it if the date
+   rolled over.
+4. Commit with a clear message and **push to `main`**. Small, frequent pushes
+   are the point; he checks the page from his phone.
+5. If something is missing or ambiguous, ask. He answers; update again.
+6. If he says the page is wrong, fix it and push.
 
-Branch note: work happens on whatever branch the session designates; the page
-serves from `main`, so changes reach the dashboard when they land there.
+## Bilingual rule
+
+Everything content-facing in this repo is written in **both Greek and
+French** — his standing rule, for French practice in Lausanne. The journal
+page is currently English-only; he knows and has not asked for it to change.
+Do not translate it unilaterally, and do not "fix" his own copy elsewhere.
 
 ## Original instructions, verbatim (2026-08-26)
 

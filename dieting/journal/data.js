@@ -1,6 +1,6 @@
 /* Diet journal data. This file IS the notebook: Claude edits it on every
- * prompt, the page just renders it. Newest day last. See PROTOCOL.md for
- * the full operating procedure (how to resume from a fresh Claude session).
+ * prompt, the page just renders it. Newest day last. The operating procedure
+ * lives in the repo skill .claude/skills/diet-journal/SKILL.md.
  *
  * Units: kcal everywhere. `active` is the Garmin "active calories" figure
  * for the day. `maintenanceRest` is resting maintenance (what the body burns
