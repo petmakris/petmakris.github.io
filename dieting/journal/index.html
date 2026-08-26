@@ -10,145 +10,102 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiMyNjJkMzMiLz48dGV4dCB4PSIzMiIgeT0iMzUiIGZvbnQtZmFtaWx5PSJIZWx2ZXRpY2EgTmV1ZSxBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNjAwIiBmaWxsPSIjZTZkY2NjIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0iY2VudHJhbCI+ZDwvdGV4dD48L3N2Zz4=">
 <style>
-  /* Paper palette, modern sans type (Inter). The top block is deliberately
-     compact and self-sufficient: it is what a phone widget screenshot of
-     this page needs to show — which day we are on, and how today stands. */
+  /* One card, three parts: the weight curve, the 90-day grid, today's
+     figures. The whole page is the widget — nothing else is on it. */
   :root {
     --paper:  #f3f0ea;
-    --card:   #fffdf9;
-    --ink:    #262d33;
-    --soft:   #5f6a72;
-    --faint:  #97a1a8;
-    --line:   #e2ddd2;
-    --accent: #9a5b46;
-    --good:   #3d7a4f;
-    --warn:   #a8762a;
-    --bad:    #a4432f;
+    --card:   #262d33;
+    --ink:    #e9e2d6;
+    --dim:    #a9b2ba;
+    --sub:    #cdc4b4;
+    --hair:   rgba(255,255,255,.09);
+    --cream:  #e6dccc;
+    --good:   #8fd0a1;
+    --warn:   #e5b56b;
+    --bad:    #ef9c86;
+    --none:   rgba(255,255,255,.15);
+    --future: rgba(255,255,255,.05);
   }
   * { box-sizing: border-box; }
   body {
     margin: 0; background: var(--paper); color: var(--ink);
     font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI',
       system-ui, sans-serif;
-    font-feature-settings: 'cv05' 1, 'ss03' 1;
+    font-variant-numeric: tabular-nums;
     line-height: 1.5; -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
   }
-  .wrap { max-width: 620px; margin: 0 auto; padding: 1.6rem 1.1rem 4rem; }
+  .wrap { max-width: 430px; margin: 0 auto; padding: 1rem .9rem 2rem; }
 
-  a { color: var(--accent); }
-
-  /* ---- hero / widget block ---- */
-  .hero {
-    background: var(--ink); color: #e9e2d6; border-radius: 16px;
-    padding: 1.2rem 1.3rem 1.3rem; margin-bottom: 1rem;
-  }
-  .hero .kicker { font-size: .66rem;
-    letter-spacing: .18em; text-transform: uppercase; color: #a9b2ba; }
-  .hero .day { font-size: 2.5rem; font-weight: 650; letter-spacing: -.03em;
-    line-height: 1.1; margin: .1rem 0 .1rem; }
-  .hero .day small { font-size: 1.15rem; font-weight: 500; letter-spacing: -.01em;
-    color: #a9b2ba; }
-  .hero .date { font-size: .9rem; color: #cdc4b4; }
-  /* ---- goal graphic: the bar is kilos, not days ----
-     Fill = what the deficits add up to so far. The tick = where the plan says
-     he should be today. The gap between them is the whole point. */
-  .goal { margin-top: 1.05rem; }
-  .goal .track { position: relative; height: 10px; background: #414b54;
-    border-radius: 999px; margin: 0 0 .55rem; }
-  .goal .track i { display: block; height: 100%; background: #e6dccc;
-    border-radius: 999px; }
-  .goal .track .tick { position: absolute; top: -5px; width: 2px; height: 20px;
-    background: #8fd0a1; border-radius: 1px; }
-  .goal .lead { display: flex; align-items: baseline; gap: .5rem; }
-  .goal .big { font-size: 1.85rem; font-weight: 650; letter-spacing: -.03em;
-    font-variant-numeric: tabular-nums; }
-  .goal .of { font-size: .85rem; color: #a9b2ba; }
-  .goal .verdict { font-size: .85rem; margin-top: .15rem; color: #cdc4b4; }
-  .goal .verdict.good { color: #8fd0a1; }
-  .goal .verdict.bad  { color: #ef9c86; }
-
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: .55rem;
-    margin-top: 1rem; }
-  .stat { background: rgba(255,255,255,.06); border-radius: 10px; padding: .5rem .55rem; }
-  .stat .l { font-size: .58rem; letter-spacing: .12em;
-    text-transform: uppercase; color: #a9b2ba; }
-  .stat .v { font-size: 1.15rem; font-weight: 600; letter-spacing: -.02em;
-    font-variant-numeric: tabular-nums; margin-top: .1rem; }
-  .stat .v.good { color: #8fd0a1; }
-  .stat .v.warn { color: #e5b56b; }
-  .stat .v.bad  { color: #ef9c86; }
-  .hero .hint { margin: .8rem 0 0; font-size: .8rem; color: #a9b2ba; font-style: italic; }
-  @media (max-width: 420px) {
-    .hero .day { font-size: 2.1rem; }
-    .goal .big { font-size: 1.6rem; }
+  .widget {
+    background: var(--card); border-radius: 18px;
+    padding: 1.2rem 1.25rem 1.3rem;
+    display: flex; flex-direction: column; gap: 1.1rem;
   }
 
-  /* ---- section titles ---- */
-  .group { font-size: .68rem; letter-spacing: .16em;
-    text-transform: uppercase; color: var(--faint); margin: 1.8rem 0 .7rem; }
+  /* ---- header ---- */
+  .kicker { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--dim); }
+  .day { font-size: 2.2rem; font-weight: 650; letter-spacing: -.03em;
+    line-height: 1.1; margin: .1rem 0; }
+  .day small { font-size: 1.05rem; font-weight: 500; letter-spacing: -.01em;
+    color: var(--dim); }
+  .date { font-size: .84rem; color: var(--sub); }
+
+  /* ---- one part of the widget ---- */
+  .part { border-top: 1px solid var(--hair); padding-top: 1rem;
+    display: flex; flex-direction: column; gap: .55rem; }
+  .row { display: flex; justify-content: space-between; align-items: baseline;
+    gap: .6rem; font-size: .78rem; color: var(--dim); }
+  .row b { color: var(--ink); font-weight: 600; }
+  .row .lg { font-size: 1.35rem; font-weight: 650; letter-spacing: -.025em;
+    color: var(--ink); white-space: nowrap; }
+  .row .lg em { font-size: .78rem; font-weight: 400; font-style: normal;
+    letter-spacing: 0; color: var(--dim); margin-left: .4rem; }
+
+  /* ---- the weight curve ---- */
+  .chart svg { width: 100%; height: auto; display: block; }
+
+  /* ---- the 90-day grid ---- */
+  .cells { display: grid; grid-template-columns: repeat(15, 1fr); gap: 3px; }
+  .cells i { display: block; aspect-ratio: 1; border-radius: 3px; }
+  .legend { display: flex; flex-wrap: wrap; gap: .15rem .8rem;
+    font-size: .64rem; color: var(--dim); }
+  .legend span { display: inline-flex; align-items: center; gap: .3rem; }
+  .legend i { width: 8px; height: 8px; border-radius: 2px; }
 
   /* ---- today ---- */
-  .today { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-    padding: .9rem 1.1rem; }
-  .today .cells { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6rem; }
-  .today .l { font-size: .56rem; letter-spacing: .12em; text-transform: uppercase;
-    color: var(--faint); }
-  .today .v { font-size: 1.05rem; font-weight: 600; letter-spacing: -.02em;
-    font-variant-numeric: tabular-nums; margin-top: .1rem; }
-  .today .v.good { color: var(--good); }
-  .today .v.warn { color: var(--warn); }
-  .today .v.bad  { color: var(--bad); }
+  .cells4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: .55rem; }
+  .cells4 > div { background: rgba(255,255,255,.06); border-radius: 10px;
+    padding: .5rem .55rem; }
+  .cells4 .l { font-size: .55rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--dim); }
+  .cells4 .v { font-size: 1.05rem; font-weight: 600; letter-spacing: -.02em;
+    margin-top: .1rem; }
 
-  /* ---- week summary ---- */
-  .week { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-    padding: .9rem 1.1rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; }
-  .week .l { font-size: .58rem; letter-spacing: .12em;
-    text-transform: uppercase; color: var(--faint); }
-  .week .v { font-size: 1.05rem; font-weight: 600; letter-spacing: -.02em;
-    font-variant-numeric: tabular-nums; margin-top: .1rem; }
+  .good { color: var(--good); }
+  .warn { color: var(--warn); }
+  .bad  { color: var(--bad); }
+  .empty { color: var(--dim); font-size: .84rem; font-style: italic; }
 
-  /* ---- day-by-day table ---- */
-  .logCard { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-    padding: .7rem 1.1rem .8rem; }
-  table.log { width: 100%; border-collapse: collapse; font-size: .87rem; }
-  table.log th { font-size: .56rem; letter-spacing: .12em; text-transform: uppercase;
-    color: var(--faint); font-weight: 500; text-align: right; padding: 0 0 .35rem; }
-  table.log th:first-child, table.log td:first-child { text-align: left; }
-  table.log td { padding: .36rem 0; border-top: 1px solid var(--line);
-    text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  table.log .dn { font-weight: 600; }
-  table.log .dt { color: var(--faint); font-weight: 400; font-size: .78rem; }
-  table.log tr.today .dn { color: var(--accent); }
-  table.log tr.miss .dn, table.log tr.miss td { color: var(--faint); font-weight: 400; }
-  table.log td.def { font-weight: 600; }
-  table.log td.def.good { color: var(--good); }
-  table.log td.def.warn { color: var(--warn); }
-  table.log td.def.bad  { color: var(--bad); }
-  table.log td.def.na   { color: var(--faint); font-weight: 400; }
-  table.log tfoot td { border-top: 2px solid var(--line); padding-top: .45rem;
-    font-weight: 600; }
-  table.log tfoot .dt { font-weight: 400; }
-
-  .empty { color: var(--faint); font-style: italic; font-size: .88rem; }
-
+  @media (max-width: 380px) {
+    .day { font-size: 1.9rem; }
+    .cells4 { grid-template-columns: repeat(2, 1fr); }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
-
-  <div class="hero" id="hero"></div>
-
-  <div class="group">Σήμερα</div>
-  <div class="today" id="today"></div>
-
-  <div class="group">Τελευταίες 7 ημέρες</div>
-  <div class="week" id="week"></div>
-
-  <div class="group">Ημέρα προς ημέρα</div>
-  <div class="logCard" id="log"></div>
-
-
+  <div class="widget">
+    <div>
+      <div class="kicker" id="kicker"></div>
+      <div class="day" id="day"></div>
+      <div class="date" id="date"></div>
+    </div>
+    <div class="part" id="curve"></div>
+    <div class="part" id="grid"></div>
+    <div class="part" id="today"></div>
+  </div>
 </div>
 
 <script src="data.js"></script>
@@ -157,25 +114,29 @@
   var plan = window.DIET.plan;
   var days = window.DIET.days.slice();
   var TARGET = plan.deficitTarget;
-  var REST = plan.maintenanceRest;   // may be null until provided
+  var LEN    = plan.lengthDays;
+  var REST   = plan.maintenanceRest;
+  var KG     = 7700;                  // kcal per kg of fat
 
   function parseDate(s) { var p = s.split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
-  function fmtDate(d) {
-    return d.toLocaleDateString('el-GR', { weekday: 'short', day: 'numeric', month: 'short' });
-  }
   function iso(d) {
     return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') +
       '-' + String(d.getDate()).padStart(2,'0');
   }
-  function daysBetween(a, b) {      // whole local days, DST-safe
+  function dayOf(i) {                 // i-th day of the plan, 1-based, DST-safe
+    return new Date(start.getFullYear(), start.getMonth(), start.getDate() + i - 1);
+  }
+  function fmtDate(d) {
+    return d.toLocaleDateString('el-GR', { weekday:'short', day:'numeric', month:'short' });
+  }
+  function daysBetween(a, b) {        // whole local days, DST-safe
     return Math.round((b - a) / 864e5);
   }
-  function consumed(day) {          // totals only; the breakdown is in log.md
-    return day.eaten == null ? 0 : day.eaten;
-  }
-  function deficit(day) {           // null when it cannot be computed yet
+  function n(x)  { return Math.round(x).toLocaleString('el-GR'); }
+  function d1(x) { return x.toLocaleString('el-GR', { minimumFractionDigits:1, maximumFractionDigits:1 }); }
+  function deficit(day) {             // null when it cannot be computed yet
     if (REST == null || day.active == null || day.eaten == null) return null;
-    return REST + day.active - consumed(day);
+    return REST + day.active - day.eaten;
   }
   function cls(d) {
     if (d == null) return 'na';
@@ -183,167 +144,129 @@
     if (d >= TARGET - 350) return 'warn';
     return 'bad';
   }
-  function n(x) { return Math.round(x).toLocaleString('el-GR'); }
 
   days.sort(function (a, b) { return a.date < b.date ? -1 : 1; });
   var byDate = {};
   days.forEach(function (d) { byDate[d.date] = d; });
 
-  /* ---- hero ---- */
   var start = parseDate(plan.start);
   var today = new Date(); today.setHours(0,0,0,0);
   var dayNo = daysBetween(start, today) + 1;
-  var inPlan = dayNo >= 1 && dayNo <= plan.lengthDays;
-  var end = new Date(start.getFullYear(), start.getMonth(),
-    start.getDate() + plan.lengthDays - 1);
-  var elapsed = Math.max(0, Math.min(dayNo, plan.lengthDays));
+  var end   = new Date(start.getFullYear(), start.getMonth(), start.getDate() + LEN - 1);
+  var elapsed = Math.max(0, Math.min(dayNo, LEN));
   var t = byDate[iso(today)];
 
-  /* Every elapsed plan day, plus anything logged outside the plan. A day that
-     was never logged still gets a row — as a gap, not as silence. */
-  var rowDates = {};
-  days.forEach(function (d) { rowDates[d.date] = 1; });
+  /* Weight is the axis. The plan promises this many kilos over its full
+     length, so the goal weight follows from the start weight. */
+  var goalKg = TARGET * LEN / KG;
+  var wStart = plan.startWeight;
+  var wGoal  = wStart - goalKg;
+
+  /* Cumulative deficit, day by day. A day with no data adds nothing, which
+     flattens the line for that day — that is the honest reading. */
+  var run = 0, series = [wStart], cumDays = 0;
   for (var i = 1; i <= elapsed; i++) {
-    rowDates[iso(new Date(start.getFullYear(), start.getMonth(),
-      start.getDate() + i - 1))] = 1;
+    var d0 = byDate[iso(dayOf(i))];
+    var def = d0 ? deficit(d0) : null;
+    if (def != null) { run += def; cumDays++; }
+    series.push(wStart - run / KG);
   }
-  var dates = Object.keys(rowDates).sort().reverse();
+  var cumDef = run;
+  var wNow   = wStart - cumDef / KG;
+  var adher  = cumDays ? cumDef / (TARGET * cumDays) : null;
+  var wProj  = elapsed ? wStart - (cumDef / elapsed) * LEN / KG : wStart;
 
-  var cumDef = 0, cumDays = 0;                 // only days whose deficit is known
-  dates.forEach(function (ds) {
-    var def = byDate[ds] ? deficit(byDate[ds]) : null;
-    if (def != null) { cumDef += def; cumDays++; }
-  });
+  /* ---- header ---- */
+  document.getElementById('kicker').textContent =
+    'Ημερολόγιο διατροφής · −' + TARGET + ' kcal';
+  var dayEl = document.getElementById('day');
+  if (dayNo < 1)        dayEl.innerHTML = 'Ξεκινά ' + fmtDate(start);
+  else if (dayNo > LEN) dayEl.innerHTML = 'Τέλος <small>· ' + LEN + ' ημέρες</small>';
+  else                  dayEl.innerHTML = 'Ημέρα ' + dayNo + ' <small>από ' + LEN + '</small>';
+  document.getElementById('date').textContent = fmtDate(today) + ' · έως ' + fmtDate(end);
 
-  var KG = 7700;                               // kcal per kg of fat
-  var goalKg     = TARGET * plan.lengthDays / KG;   // what the plan promises
-  var lostKg     = cumDef / KG;                     // what the deficits add up to
-  var expectedKg = TARGET * elapsed / KG;           // where the plan says he is today
-  var aheadKg    = lostKg - expectedKg;
-  var adherence  = cumDays ? cumDef / (TARGET * cumDays) : null;
-  var perWeek    = cumDays ? (cumDef / cumDays) * 7 / KG : null;
+  /* ============ 1 · the weight curve ============
+     Descending, in real kilos. Dashed = the plan, from the start weight down
+     to the goal over the full length. Solid = where the deficits put him. */
+  var W = 340, H = 104, PT = 8, PB = 8;
+  var hi = wStart + .4, lo = wGoal - .4;
+  function X(day) { return day / LEN * W; }
+  function Y(w)   { return PT + (hi - w) / (hi - lo) * (H - PT - PB); }
 
-  function kg(x, digits) {
-    var dp = digits == null ? 2 : digits;
-    return x.toLocaleString('el-GR',
-      { minimumFractionDigits: dp, maximumFractionDigits: dp }) + ' kg';
+  var pts = series.map(function (w, i) { return X(i).toFixed(1) + ',' + Y(w).toFixed(1); });
+  var lastX = X(elapsed), lastY = Y(wNow);
+
+  /* Any weigh-in he has actually given is plotted on the same axis. */
+  var scale = days.filter(function (d) { return d.weight != null; }).map(function (d) {
+    var dn = daysBetween(start, parseDate(d.date)) + 1;
+    return '<circle cx="' + X(Math.max(0, Math.min(LEN, dn))).toFixed(1) + '" cy="' +
+      Y(d.weight).toFixed(1) + '" r="3" fill="none" stroke="#e5b56b" stroke-width="1.6"/>';
+  }).join('');
+
+  var wToday = (t && t.weight != null) ? t.weight : null;
+  document.getElementById('curve').innerHTML =
+    '<div class="row"><span><b>' + d1(wStart) + ' kg</b> αρχή</span>' +
+      '<span>στόχος <b>' + d1(wGoal) + ' kg</b></span></div>' +
+    '<div class="chart"><svg viewBox="0 0 ' + W + ' ' + H + '" role="img" ' +
+      'aria-label="Πορεία βάρους από ' + d1(wStart) + ' προς ' + d1(wGoal) + ' κιλά">' +
+      '<line x1="' + X(0) + '" y1="' + Y(wStart).toFixed(1) + '" x2="' + X(LEN) +
+        '" y2="' + Y(wGoal).toFixed(1) + '" stroke="#8fd0a1" stroke-width="1.5" ' +
+        'stroke-dasharray="4 4" opacity=".75"/>' +
+      (elapsed ? '<polyline points="' + pts.join(' ') + '" fill="none" stroke="#e6dccc" ' +
+        'stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>' : '') +
+      scale +
+      '<circle cx="' + lastX.toFixed(1) + '" cy="' + lastY.toFixed(1) + '" r="3.5" fill="#e6dccc"/>' +
+    '</svg></div>' +
+    '<div class="row"><span class="lg">' + d1(wToday != null ? wToday : wNow) + ' kg' +
+      '<em>' + (wToday != null ? 'στη ζυγαριά' : 'εκτίμηση σήμερα') + '</em></span></div>' +
+    '<div class="row"><span>με αυτόν τον ρυθμό</span><span><b class="' +
+      (wProj <= wGoal ? 'good' : 'warn') + '">' + d1(wProj) + ' kg</b> στις ' + LEN + '</span></div>';
+
+  /* ============ 2 · the 90-day grid ============ */
+  var cells = '';
+  for (var g = 1; g <= LEN; g++) {
+    var gd = byDate[iso(dayOf(g))];
+    var gdef = gd ? deficit(gd) : null;
+    var color, lbl;
+    if (g > elapsed)       { color = 'var(--future)'; lbl = 'Ημέρα ' + g; }
+    else if (gdef == null) { color = 'var(--none)';   lbl = 'Ημέρα ' + g + ': χωρίς στοιχεία'; }
+    else                   { color = 'var(--' + cls(gdef) + ')'; lbl = 'Ημέρα ' + g + ': έλλειμμα ' + n(gdef); }
+    cells += '<i style="background:' + color + '" title="' + lbl + '"></i>';
   }
-
-  var h = '<div class="kicker">Ημερολόγιο διατροφής · −' + TARGET + ' kcal</div>';
-  if (dayNo < 1) {
-    h += '<div class="day">Ξεκινά ' + fmtDate(start) + '</div>';
-  } else if (dayNo > plan.lengthDays) {
-    h += '<div class="day">Τέλος <small>· ' + plan.lengthDays + ' ημέρες</small></div>';
-  } else {
-    h += '<div class="day">Ημέρα ' + dayNo + ' <small>από ' + plan.lengthDays + '</small></div>';
-  }
-  h += '<div class="date">' + fmtDate(today) + ' · έως ' + fmtDate(end) + '</div>';
-
-  var fillPct = Math.max(0, Math.min(100, (lostKg / goalKg) * 100));
-  var tickPct = Math.max(0, Math.min(100, (expectedKg / goalKg) * 100));
-  h += '<div class="goal">' +
-    '<div class="track"><i style="width:' + fillPct.toFixed(1) + '%"></i>' +
-      '<span class="tick" style="left:' + tickPct.toFixed(1) + '%"></span></div>' +
-    '<div class="lead"><span class="big">' + kg(lostKg) + '</span>' +
-      '<span class="of">από ' + kg(goalKg, 1) + ' στόχο</span></div>';
-  if (!cumDays) {
-    h += '<div class="verdict">Καμία μέρα με πλήρη στοιχεία ακόμη.</div>';
-  } else {
-    var missing = elapsed - cumDays;
-    h += '<div class="verdict ' + (aheadKg >= -0.1 ? 'good' : 'bad') + '">' +
-      (aheadKg >= 0 ? 'Μπροστά από το πρόγραμμα κατά ' : 'Πίσω από το πρόγραμμα κατά ') +
-      kg(Math.abs(aheadKg)) +
-      (missing > 0 ? ' · ' + missing + (missing === 1 ? ' ημέρα' : ' ημέρες') +
-        ' χωρίς στοιχεία' : '') + '</div>';
-  }
-  h += '</div>';
-
-  h += '<div class="stats">' +
-    stat('ΣΥΝΕΠΕΙΑ', adherence == null ? '—' : Math.round(adherence * 100) + '%',
-      adherence == null ? '' : (adherence >= .85 ? 'good' : adherence >= .6 ? 'warn' : 'bad')) +
-    stat('ΚΑΤΑΓΡΑΦΗ', elapsed ? cumDays + '/' + elapsed : '—', '') +
-    stat('ΡΥΘΜΟΣ/ΕΒΔ', perWeek == null ? '—' : kg(perWeek), '') +
+  document.getElementById('grid').innerHTML =
+    '<div class="row"><span>Συνέπεια <b class="' +
+      (adher == null ? '' : adher >= .85 ? 'good' : adher >= .6 ? 'warn' : 'bad') + '">' +
+      (adher == null ? '—' : Math.round(adher * 100) + '%') + '</b></span>' +
+      '<span><b>' + cumDays + '</b> από ' + elapsed + ' ημέρες με στοιχεία</span></div>' +
+    '<div class="cells">' + cells + '</div>' +
+    '<div class="legend">' +
+      lg('good', 'πάνω από ' + (TARGET - 100)) +
+      lg('warn', (TARGET - 350) + '–' + (TARGET - 100)) +
+      lg('bad',  'κάτω από ' + (TARGET - 350)) +
+      lg('none', 'χωρίς στοιχεία') +
     '</div>';
-  if (REST == null) h += '<p class="hint">Το έλλειμμα χρειάζεται τις θερμίδες συντήρησης σε ηρεμία.</p>';
-  document.getElementById('hero').innerHTML = h;
-
-  function stat(l, v, c) {
-    return '<div class="stat"><div class="l">' + l + '</div><div class="v ' + c + '">' + v + '</div></div>';
+  function lg(k, txt) {
+    return '<span><i style="background:var(--' + k + ')"></i>' + txt + '</span>';
   }
 
-  /* ---- today ---- */
-  var tv = '';
+  /* ============ 3 · today ============ */
+  var tv;
   if (!t || (t.eaten == null && t.active == null)) {
     tv = '<div class="empty">Δεν έχει καταγραφεί τίποτα σήμερα.</div>';
   } else {
-    var tBurn = (REST != null && t.active != null) ? REST + t.active : null;
-    var tDef = deficit(t);
-    tv = '<div class="cells">' +
-      cell('ΕΦΑΓΑ',    t.eaten == null ? '—' : n(t.eaten), '') +
+    var burn = (REST != null && t.active != null) ? REST + t.active : null;
+    var tdef = deficit(t);
+    tv = '<div class="cells4">' +
+      cell('ΕΦΑΓΑ',    t.eaten  == null ? '—' : n(t.eaten), '') +
       cell('ΕΝΕΡΓΕΣ',  t.active == null ? '—' : n(t.active), '') +
-      cell('ΔΑΠΑΝΗ',   tBurn == null ? '—' : n(tBurn), '') +
-      cell('ΕΛΛΕΙΜΜΑ', tDef == null ? '—' : n(tDef), cls(tDef)) +
+      cell('ΔΑΠΑΝΗ',   burn     == null ? '—' : n(burn), '') +
+      cell('ΕΛΛΕΙΜΜΑ', tdef     == null ? '—' : n(tdef), cls(tdef)) +
       '</div>';
   }
   document.getElementById('today').innerHTML = tv;
   function cell(l, v, c) {
     return '<div><div class="l">' + l + '</div><div class="v ' + c + '">' + v + '</div></div>';
   }
-
-  /* ---- week summary ---- */
-  var logged = days.filter(function (d) { return d.eaten != null || d.active != null; });
-  var last7 = logged.slice(-7);
-  var w = '';
-  if (last7.length) {
-    var avgC = last7.reduce(function (s, d) { return s + consumed(d); }, 0) / last7.length;
-    var defs = last7.map(deficit).filter(function (x) { return x != null; });
-    var avgD = defs.length ? defs.reduce(function (s, x) { return s + x; }, 0) / defs.length : null;
-    var kgWeek = avgD != null ? (avgD * 7) / KG : null;
-    w = wk('ΜΕΣΗ ΠΡΟΣΛΗΨΗ', n(avgC) + ' kcal') +
-        wk('ΜΕΣΟ ΕΛΛΕΙΜΜΑ', avgD == null ? '—' : n(avgD) + ' kcal') +
-        wk('≈ ΑΝΑ ΕΒΔΟΜΑΔΑ', kgWeek == null ? '—' : kg(kgWeek));
-  } else {
-    w = '<div class="empty" style="grid-column:1/-1">Καμία καταγεγραμμένη ημέρα ακόμη.</div>';
-  }
-  document.getElementById('week').innerHTML = w;
-  function wk(l, v) { return '<div><div class="l">' + l + '</div><div class="v">' + v + '</div></div>'; }
-
-  /* ---- day-by-day table ---- */
-  function fmtShort(d) {
-    return d.toLocaleDateString('el-GR', { weekday: 'short' }) + ' ' +
-      d.getDate() + '/' + (d.getMonth() + 1);
-  }
-  var todayIso = iso(today);
-
-  if (!dates.length) {
-    document.getElementById('log').innerHTML =
-      '<div class="empty">Καμία ημέρα ακόμη.</div>';
-  } else {
-    var lg = '<table class="log"><thead><tr><th>Ημέρα</th><th>Έφαγα</th>' +
-      '<th>Ενεργές</th><th>Έλλειμμα</th></tr></thead><tbody>';
-    dates.forEach(function (ds) {
-      var d = byDate[ds];
-      var dt = parseDate(ds);
-      var dn = daysBetween(start, dt) + 1;
-      var def = d ? deficit(d) : null;
-      var trc = [];
-      if (ds === todayIso) trc.push('today');
-      if (!d || d.eaten == null) trc.push('miss');
-      lg += '<tr class="' + trc.join(' ') + '">' +
-        '<td><span class="dn">' + dn + '</span> <span class="dt">' + fmtShort(dt) + '</span></td>' +
-        '<td>' + (d && d.eaten != null ? n(d.eaten) : '—') + '</td>' +
-        '<td>' + (d && d.active != null ? n(d.active) : '—') + '</td>' +
-        '<td class="def ' + cls(def) + '">' + (def == null ? '—' : n(def)) + '</td>' +
-        '</tr>';
-    });
-    lg += '</tbody><tfoot><tr>' +
-      '<td>Σύνολο <span class="dt">· ' + cumDays + (cumDays === 1 ? ' ημέρα' : ' ημέρες') + '</span></td>' +
-      '<td colspan="2" class="dt">≈ ' + kg(lostKg) + ' λίπους</td>' +
-      '<td>' + (cumDays ? n(cumDef) : '—') + '</td>' +
-      '</tr></tfoot></table>';
-    document.getElementById('log').innerHTML = lg;
-  }
-
 })();
 </script>
 </body>

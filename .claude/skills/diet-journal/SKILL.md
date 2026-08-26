@@ -56,12 +56,13 @@ this split can produce.
 
 ```js
 window.DIET = {
-  plan: { start, lengthDays, deficitTarget, maintenanceRest },
+  plan: { start, lengthDays, deficitTarget, maintenanceRest, startWeight },
   days: [
     {
       date: "YYYY-MM-DD",
       eaten: 1880 | null,                // total kcal for the day; breakdown in log.md
       active: 520 | null,                // Garmin active calories, end of day
+      weight: 103.4 | null,              // scale reading, only when he gives one
       exercise: ["45 min brisk walk"],   // free text, may be empty
       note: ""                           // anything worth remembering
     }
@@ -82,36 +83,39 @@ chat, so Petros can correct them.
 
 ## What the page shows
 
-The whole page is four blocks and fits about one phone screen. No meal ever
-appears on it.
+**The whole page is one widget.** A single dark card, one phone screen, three
+parts stacked inside it. He settled this on 2026-08-26 after looking at five
+mockups: "όλη η σελίδα θα γίνει ένα απλό widget". There is no second card, no
+weekly-averages block and no day-by-day table any more.
 
-**The hero is the goal, not the day.** It shows the day number, then a bar
-whose axis is kilos: the fill is what the deficits add up to so far, the green
-tick is where the plan says he should be today, and the line underneath says
-how far ahead or behind that puts him. Three tiles follow — ΣΥΝΕΠΕΙΑ (actual
-deficit ÷ target, over the days that have data), ΚΑΤΑΓΡΑΦΗ (days with data ÷
-days elapsed) and ΡΥΘΜΟΣ/ΕΒΔ. He asked for this on 2026-08-26: "όχι την
-σύνοψη της ημέρας αλλά τον στόχο μου". Today's own numbers are not in the
-hero any more — they are the Σήμερα block below it.
+Above the three parts: the day number, `Ημέρα N από 90`, and the date range.
 
-A day with no data counts as zero deficit in the ahead/behind figure, which is
-why the verdict names how many days are missing. Do not "fix" that by dropping
-unlogged days from the comparison: the schedule runs on calendar days.
+1. **Η καμπύλη πορείας** — a chart whose axis is his real weight, descending.
+   The dashed green line is the plan, drawn from `startWeight` on day 0 to the
+   goal weight on day 90. The solid cream line is where the deficits have
+   actually put him. Below it: today's weight, then the projection — where
+   this pace lands him at day 90, green if it reaches the goal, amber if not.
+   A day with no data adds no deficit, so the line goes flat for that day.
+   That is the honest reading; do not interpolate over gaps.
+2. **Το πλέγμα 90 ημερών** — one square per plan day, coloured by that day's
+   deficit: green above 500, amber 250–500, red below 250, grey for a day with
+   no data, near-invisible for a day that has not arrived. Above it, the
+   consistency figure and how many elapsed days actually have data. This is
+   the part that answers "πόσο καλά κρατάω το πρόγραμμα" — gaps must stay
+   visible as gaps.
+3. **Τα σημερινά νούμερα** — ΕΦΑΓΑ, ΕΝΕΡΓΕΣ, ΔΑΠΑΝΗ, ΕΛΛΕΙΜΜΑ, and nothing
+   else.
 
-**The goal in kilos is derived**, `deficitTarget × lengthDays ÷ 7700`. Change
-`lengthDays` and the goal, the bar and the pace tick all follow. There is no
-separate goal-weight field to keep in sync.
+**The goal weight is derived**, `startWeight − (deficitTarget × lengthDays ÷
+7700)` — 104 − 7,01 = 97,0 kg. Change `lengthDays` or `deficitTarget` and the
+goal, the dashed line and the projection all follow. There is no goal-weight
+field to keep in sync.
 
-Three more blocks below, all derived from `data.js` too:
-
-- **Τελευταίες 7 ημέρες** — averages over the last 7 logged days.
-- **Ημέρα προς ημέρα** — one row per elapsed plan day: eaten, active,
-  deficit, with a running total and the fat equivalent. Days he never logged
-  appear as faint rows of dashes, on purpose: a gap must be visible as a gap.
-  Today's row is marked in the accent colour.
-
-Between the hero and the weekly averages sits **Σήμερα** — today's four
-figures and nothing else: ΕΦΑΓΑ, ΕΝΕΡΓΕΣ, ΔΑΠΑΝΗ, ΕΛΛΕΙΜΜΑ.
+**Weigh-ins are optional and welcome.** If he gives a scale reading, put it in
+that day's `weight` and it appears as a small amber ring on the curve, and as
+today's headline figure instead of the estimate. Without one the page says
+"εκτίμηση σήμερα", because a weight computed from calories is an estimate and
+must not be dressed up as a measurement.
 
 **Numbers only, no prose.** Exercise and the day note are recorded in
 `data.js` and `log.md` but never rendered. He asked for this on 2026-08-26:
