@@ -9,20 +9,29 @@
  */
 window.DIET = {
   plan: {
-    start: "2026-08-26",        // day 1
-    lengthDays: 90,             // three months → ends 2026-11-23
+    start: "2026-08-27",        // day 1
+    lengthDays: 90,             // three months → ends 2026-11-24
     deficitTarget: 600,         // kcal/day — the only sustainable number
-    maintenanceRest: null       // kcal/day at rest — NOT YET PROVIDED, ask Petros
+    maintenanceRest: 1945       // Mifflin-St Jeor: male, 104 kg, 176 cm, age 40 (age ASSUMED — confirm)
   },
   days: [
     {
       date: "2026-08-26",
       items: [
-        // {name: "Greek yogurt 200g + honey", kcal: 260, note: "estimate"}
+        {name: "Greek yogurt 200g + honey",            kcal: 260, note: "sample"},
+        {name: "Coffee with milk",                     kcal:  40, note: "sample"},
+        {name: "Orange juice 250ml",                   kcal: 110, note: "sample"},
+        {name: "Grilled chicken breast 180g",          kcal: 300, note: "sample"},
+        {name: "Rice 150g cooked + salad, olive oil",  kcal: 330, note: "sample"},
+        {name: "Apple",                                kcal:  95, note: "sample"},
+        {name: "Almonds 25g",                          kcal: 145, note: "sample"},
+        {name: "2 slices wholegrain bread + feta 60g", kcal: 400, note: "sample"},
+        {name: "Banana",                               kcal:  90, note: "sample"},
+        {name: "Dark chocolate 20g",                   kcal: 110, note: "sample"}
       ],
-      active: null,             // Garmin active calories, filled end of day
-      exercise: [],             // e.g. ["45 min brisk walk"]
-      note: "Day 1 — journal opened, nothing logged yet."
+      active: 520,
+      exercise: ["50 min brisk walk", "20 min bodyweight circuit"],
+      note: "SAMPLE DAY — invented food, not eaten. Here only to show how a full day renders. The plan starts 2026-08-27; delete this entry then."
     }
   ]
 };
