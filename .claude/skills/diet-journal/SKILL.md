@@ -66,8 +66,24 @@ chat so Petros can correct it. **Never delete history — correct it.**
 
 ## What the page shows
 
-Three blocks under the hero, all derived from `data.js` — nothing extra to
-maintain:
+**The hero is the goal, not the day.** It shows the day number, then a bar
+whose axis is kilos: the fill is what the deficits add up to so far, the green
+tick is where the plan says he should be today, and the line underneath says
+how far ahead or behind that puts him. Three tiles follow — ΣΥΝΕΠΕΙΑ (actual
+deficit ÷ target, over the days that have data), ΚΑΤΑΓΡΑΦΗ (days with data ÷
+days elapsed) and ΡΥΘΜΟΣ/ΕΒΔ. He asked for this on 2026-08-26: "όχι την
+σύνοψη της ημέρας αλλά τον στόχο μου". Today's own numbers are not in the
+hero any more — they are the top row of the table.
+
+A day with no data counts as zero deficit in the ahead/behind figure, which is
+why the verdict names how many days are missing. Do not "fix" that by dropping
+unlogged days from the comparison: the schedule runs on calendar days.
+
+**The goal in kilos is derived**, `deficitTarget × lengthDays ÷ 7700`. Change
+`lengthDays` and the goal, the bar and the pace tick all follow. There is no
+separate goal-weight field to keep in sync.
+
+Three more blocks below, all derived from `data.js` too:
 
 - **Τελευταίες 7 ημέρες** — averages over the last 7 logged days.
 - **Ημέρα προς ημέρα** — one row per elapsed plan day: eaten, active,
