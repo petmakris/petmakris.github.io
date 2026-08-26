@@ -23,10 +23,10 @@ method.
 - **Duration:** 90 days, **2026-08-27 (day 1) through 2026-11-24 (day 90)**.
 - **Model:** burn for a day = `maintenanceRest + active` (Garmin active
   calories); deficit = burn − eaten.
-- **`maintenanceRest` = 1945 kcal**, from Mifflin-St Jeor for male, 104 kg,
-  176 cm, age 40. **The age is an assumption and was never confirmed** — ask
-  once and correct `plan.maintenanceRest` if it is wrong (each year off is
-  5 kcal).
+- **`maintenanceRest` = 1930 kcal**, from Mifflin-St Jeor for male, 104 kg,
+  176 cm, age 43 (confirmed 2026-08-26). Recompute it as
+  `10×kg + 6.25×cm − 5×age + 5` if his weight changes materially — a 5 kg
+  loss is 50 kcal off the resting figure.
 - 600 kcal/day ≈ 0.55 kg of fat per week; the page projects this.
 
 ## Files

@@ -12,7 +12,7 @@ window.DIET = {
     start: "2026-08-27",        // day 1
     lengthDays: 90,             // three months → ends 2026-11-24
     deficitTarget: 600,         // kcal/day — the only sustainable number
-    maintenanceRest: 1945       // Mifflin-St Jeor: male, 104 kg, 176 cm, age 40 (age ASSUMED — confirm)
+    maintenanceRest: 1930       // Mifflin-St Jeor: male, 104 kg, 176 cm, age 43
   },
   days: [
     {
