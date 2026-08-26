@@ -88,23 +88,26 @@ parts stacked inside it. He settled this on 2026-08-26 after looking at five
 mockups: "όλη η σελίδα θα γίνει ένα απλό widget". There is no second card, no
 weekly-averages block and no day-by-day table any more.
 
-Above the three parts: the day number, `Ημέρα N από 90`, and the date range.
+Above the three parts: `Day N of 90` once the plan is running, and under it
+today's date and the end date. Before day 1 the big line carries **today's
+date** instead — he asked for that on 2026-08-26, because "Starts Thu 27 Aug"
+told him nothing he did not already know.
 
-1. **Η καμπύλη πορείας** — a chart whose axis is his real weight, descending.
+1. **The weight curve** — a chart whose axis is his real weight, descending.
    The dashed green line is the plan, drawn from `startWeight` on day 0 to the
    goal weight on day 90. The solid cream line is where the deficits have
    actually put him. Below it: today's weight, then the projection — where
-   this pace lands him at day 90, green if it reaches the goal, amber if not.
+   this pace lands him at day 90, green if it reaches the goal, amber if not,
+   and a dash before day 1, when there is no pace to project.
    A day with no data adds no deficit, so the line goes flat for that day.
    That is the honest reading; do not interpolate over gaps.
-2. **Το πλέγμα 90 ημερών** — one square per plan day, coloured by that day's
+2. **The 90-day grid** — one square per plan day, coloured by that day's
    deficit: green above 500, amber 250–500, red below 250, grey for a day with
    no data, near-invisible for a day that has not arrived. Above it, the
    consistency figure and how many elapsed days actually have data. This is
-   the part that answers "πόσο καλά κρατάω το πρόγραμμα" — gaps must stay
+   the part that answers "how well am I keeping to the plan" — gaps must stay
    visible as gaps.
-3. **Τα σημερινά νούμερα** — ΕΦΑΓΑ, ΕΝΕΡΓΕΣ, ΔΑΠΑΝΗ, ΕΛΛΕΙΜΜΑ, and nothing
-   else.
+3. **Today's figures** — EATEN, ACTIVE, BURN, DEFICIT, and nothing else.
 
 **The goal weight is derived**, `startWeight − (deficitTarget × lengthDays ÷
 7700)` — 104 − 7,01 = 97,0 kg. Change `lengthDays` or `deficitTarget` and the
@@ -114,13 +117,19 @@ field to keep in sync.
 **Weigh-ins are optional and welcome.** If he gives a scale reading, put it in
 that day's `weight` and it appears as a small amber ring on the curve, and as
 today's headline figure instead of the estimate. Without one the page says
-"εκτίμηση σήμερα", because a weight computed from calories is an estimate and
+"estimated today", because a weight computed from calories is an estimate and
 must not be dressed up as a measurement.
 
 **Numbers only, no prose.** Exercise and the day note are recorded in
 `data.js` and `log.md` but never rendered. He asked for this on 2026-08-26:
 "δεν χρειάζεται να ξέρει ο καθένας τι κάνω και τι τρώω με λεπτομέριες, μόνο
-τα νούμερα." Keep recording both — just do not put them on the page.
+τα νούμερα" — the page is public and the detail of what he does and eats
+stays off it. Keep recording both; just do not put them on the page.
+
+**`data.js` is loaded with a timestamp query** so a phone never renders a
+cached day. Missing numbers render as a dash rather than throwing — a single
+`undefined` once blanked the entire widget, so keep new fields optional and
+guarded.
 
 ## The loop (every prompt)
 
@@ -133,17 +142,26 @@ must not be dressed up as a measurement.
 5. If something is missing or ambiguous, ask. He answers; update again.
 6. If he says the page is wrong, fix it and push.
 
-## Language: Greek only
+## Language: he writes in either, the page is English
 
-This page is **Greek only** — he said so on 2026-08-26, in those words:
-"ONLY GREEK. ΟΛΑ ΣΤΑ ΕΛΛΗΝΙΚΑ." That is a deliberate exception to his
-standing Greek + French rule for the rest of the repo, so do not add French
-here and do not "fix" it back to bilingual.
+**He writes to you in Greek or English**, whichever comes to hand — often
+Greek for foods he does not know the English name of. Take both. The language
+he uses does not have to be the language you record in, and it does not have
+to be consistent from one day to the next.
 
-Everything that reaches the page goes in Greek: item names, item notes, the
-day note, exercise. `lang="el"`, and dates and numbers are formatted with
-`el-GR`, so figures read 1.880 and 0,53. Only the code comments in `data.js`
-and `index.html` stay in English.
+**The page is English.** He asked for this on 2026-08-26, reversing an earlier
+Greek-only instruction he gave the same day: "θέλω να είναι αγγλικά".
+`lang="en"`, and dates and numbers format with `en-GB`, so figures read 1,880
+and 104.0. Every rendered string — labels, empty states, tooltips — is
+English.
+
+This is also an exception to his standing Greek + French rule for the rest of
+the repo. Do not add French or Greek to this page, and do not "fix" the rest
+of the repo to match it.
+
+Stored prose — a day note, an exercise line, the item names in `log.md` — can
+stay in whatever language it arrived in. None of it is rendered, so none of it
+needs translating.
 
 ## Original instructions, verbatim (2026-08-26)
 

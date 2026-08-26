@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="el">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f3f0ea">
-<title>Ημερολόγιο διατροφής</title>
+<title>Diet journal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
@@ -115,7 +115,7 @@
   s.onload = render;
   s.onerror = function () {
     document.getElementById('today').innerHTML =
-      '<div class="empty">Δεν φορτώθηκαν τα δεδομένα.</div>';
+      '<div class="empty">Data did not load.</div>';
   };
   document.head.appendChild(s);
 
@@ -136,17 +136,17 @@
     return new Date(start.getFullYear(), start.getMonth(), start.getDate() + i - 1);
   }
   function fmtDate(d) {
-    return d.toLocaleDateString('el-GR', { weekday:'short', day:'numeric', month:'short' });
+    return d.toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' });
   }
   function daysBetween(a, b) {        // whole local days, DST-safe
     return Math.round((b - a) / 864e5);
   }
   function n(x)  {
-    return (x == null || isNaN(x)) ? '—' : Math.round(x).toLocaleString('el-GR');
+    return (x == null || isNaN(x)) ? '—' : Math.round(x).toLocaleString('en-GB');
   }
   function d1(x) {
     return (x == null || isNaN(x)) ? '—' :
-      x.toLocaleString('el-GR', { minimumFractionDigits:1, maximumFractionDigits:1 });
+      x.toLocaleString('en-GB', { minimumFractionDigits:1, maximumFractionDigits:1 });
   }
   function deficit(day) {             // null when it cannot be computed yet
     if (REST == null || day.active == null || day.eaten == null) return null;
@@ -192,12 +192,18 @@
 
   /* ---- header ---- */
   document.getElementById('kicker').textContent =
-    'Ημερολόγιο διατροφής · −' + TARGET + ' kcal';
-  var dayEl = document.getElementById('day');
-  if (dayNo < 1)        dayEl.innerHTML = 'Ξεκινά ' + fmtDate(start);
-  else if (dayNo > LEN) dayEl.innerHTML = 'Τέλος <small>· ' + LEN + ' ημέρες</small>';
-  else                  dayEl.innerHTML = 'Ημέρα ' + dayNo + ' <small>από ' + LEN + '</small>';
-  document.getElementById('date').textContent = fmtDate(today) + ' · έως ' + fmtDate(end);
+    'Diet journal · −' + TARGET + ' kcal';
+  var dayEl = document.getElementById('day'), dateEl = document.getElementById('date');
+  if (dayNo < 1) {
+    dayEl.innerHTML    = fmtDate(today);
+    dateEl.textContent = 'Starts ' + fmtDate(start) + ' · ' + LEN + ' days';
+  } else if (dayNo > LEN) {
+    dayEl.innerHTML    = 'Done <small>· ' + LEN + ' days</small>';
+    dateEl.textContent = fmtDate(today) + ' · finished ' + fmtDate(end);
+  } else {
+    dayEl.innerHTML    = 'Day ' + dayNo + ' <small>of ' + LEN + '</small>';
+    dateEl.textContent = fmtDate(today) + ' · until ' + fmtDate(end);
+  }
 
   /* ============ 1 · the weight curve ============
      Descending, in real kilos. Dashed = the plan, from the start weight down
@@ -219,11 +225,11 @@
 
   var wToday = (t && t.weight != null) ? t.weight : null;
   document.getElementById('curve').innerHTML = wStart == null
-    ? '<div class="empty">Λείπει το αρχικό βάρος (plan.startWeight).</div>' :
-    '<div class="row"><span><b>' + d1(wStart) + ' kg</b> αρχή</span>' +
-      '<span>στόχος <b>' + d1(wGoal) + ' kg</b></span></div>' +
+    ? '<div class="empty">Missing start weight (plan.startWeight).</div>' :
+    '<div class="row"><span><b>' + d1(wStart) + ' kg</b> start</span>' +
+      '<span>target <b>' + d1(wGoal) + ' kg</b></span></div>' +
     '<div class="chart"><svg viewBox="0 0 ' + W + ' ' + H + '" role="img" ' +
-      'aria-label="Πορεία βάρους από ' + d1(wStart) + ' προς ' + d1(wGoal) + ' κιλά">' +
+      'aria-label="Weight from ' + d1(wStart) + ' towards ' + d1(wGoal) + ' kg">' +
       '<line x1="' + X(0) + '" y1="' + Y(wStart).toFixed(1) + '" x2="' + X(LEN) +
         '" y2="' + Y(wGoal).toFixed(1) + '" stroke="#8fd0a1" stroke-width="1.5" ' +
         'stroke-dasharray="4 4" opacity=".75"/>' +
@@ -233,10 +239,10 @@
       '<circle cx="' + lastX.toFixed(1) + '" cy="' + lastY.toFixed(1) + '" r="3.5" fill="#e6dccc"/>' +
     '</svg></div>' +
     '<div class="row"><span class="lg">' + d1(wToday != null ? wToday : wNow) + ' kg' +
-      '<em>' + (wToday != null ? 'στη ζυγαριά' : 'εκτίμηση σήμερα') + '</em></span></div>' +
-    '<div class="row"><span>με αυτόν τον ρυθμό</span><span><b class="' +
+      '<em>' + (wToday != null ? 'on the scale' : 'estimated today') + '</em></span></div>' +
+    '<div class="row"><span>at this pace</span><span><b class="' +
       (wProj == null ? '' : wProj <= wGoal ? 'good' : 'warn') + '">' + d1(wProj) +
-      (wProj == null ? '' : ' kg') + '</b> στις ' + LEN + '</span></div>';
+      (wProj == null ? '' : ' kg') + '</b> by day ' + LEN + '</span></div>';
 
   /* ============ 2 · the 90-day grid ============ */
   var cells = '';
@@ -244,22 +250,22 @@
     var gd = byDate[iso(dayOf(g))];
     var gdef = gd ? deficit(gd) : null;
     var color, lbl;
-    if (g > elapsed)       { color = 'var(--future)'; lbl = 'Ημέρα ' + g; }
-    else if (gdef == null) { color = 'var(--none)';   lbl = 'Ημέρα ' + g + ': χωρίς στοιχεία'; }
-    else                   { color = 'var(--' + cls(gdef) + ')'; lbl = 'Ημέρα ' + g + ': έλλειμμα ' + n(gdef); }
+    if (g > elapsed)       { color = 'var(--future)'; lbl = 'Day ' + g; }
+    else if (gdef == null) { color = 'var(--none)';   lbl = 'Day ' + g + ' · no data'; }
+    else                   { color = 'var(--' + cls(gdef) + ')'; lbl = 'Day ' + g + ' · deficit ' + n(gdef); }
     cells += '<i style="background:' + color + '" title="' + lbl + '"></i>';
   }
   document.getElementById('grid').innerHTML =
-    '<div class="row"><span>Συνέπεια <b class="' +
+    '<div class="row"><span>Consistency <b class="' +
       (adher == null ? '' : adher >= .85 ? 'good' : adher >= .6 ? 'warn' : 'bad') + '">' +
       (adher == null ? '—' : Math.round(adher * 100) + '%') + '</b></span>' +
-      '<span><b>' + cumDays + '</b> από ' + elapsed + ' ημέρες με στοιχεία</span></div>' +
+      '<span><b>' + cumDays + '</b> of ' + elapsed + ' days logged</span></div>' +
     '<div class="cells">' + cells + '</div>' +
     '<div class="legend">' +
-      lg('good', 'πάνω από ' + (TARGET - 100)) +
+      lg('good', 'over ' + (TARGET - 100)) +
       lg('warn', (TARGET - 350) + '–' + (TARGET - 100)) +
-      lg('bad',  'κάτω από ' + (TARGET - 350)) +
-      lg('none', 'χωρίς στοιχεία') +
+      lg('bad',  'under ' + (TARGET - 350)) +
+      lg('none', 'no data') +
     '</div>';
   function lg(k, txt) {
     return '<span><i style="background:var(--' + k + ')"></i>' + txt + '</span>';
@@ -268,15 +274,15 @@
   /* ============ 3 · today ============ */
   var tv;
   if (!t || (t.eaten == null && t.active == null)) {
-    tv = '<div class="empty">Δεν έχει καταγραφεί τίποτα σήμερα.</div>';
+    tv = '<div class="empty">Nothing logged today.</div>';
   } else {
     var burn = (REST != null && t.active != null) ? REST + t.active : null;
     var tdef = deficit(t);
     tv = '<div class="cells4">' +
-      cell('ΕΦΑΓΑ',    t.eaten  == null ? '—' : n(t.eaten), '') +
-      cell('ΕΝΕΡΓΕΣ',  t.active == null ? '—' : n(t.active), '') +
-      cell('ΔΑΠΑΝΗ',   burn     == null ? '—' : n(burn), '') +
-      cell('ΕΛΛΕΙΜΜΑ', tdef     == null ? '—' : n(tdef), cls(tdef)) +
+      cell('EATEN',   t.eaten  == null ? '—' : n(t.eaten), '') +
+      cell('ACTIVE',  t.active == null ? '—' : n(t.active), '') +
+      cell('BURN',    burn     == null ? '—' : n(burn), '') +
+      cell('DEFICIT', tdef     == null ? '—' : n(tdef), cls(tdef)) +
       '</div>';
   }
   document.getElementById('today').innerHTML = tv;

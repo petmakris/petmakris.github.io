@@ -7,8 +7,8 @@
  * Garmin "active calories" figure. `maintenanceRest` is resting maintenance;
  * burn = maintenanceRest + active, and deficit = burn - eaten. Target: 600.
  *
- * Everything that reaches the page is written in Greek. Only these comments
- * are English.
+ * The page renders in English. What language a stored note or exercise line
+ * happens to be in does not matter — none of it is rendered.
  */
 window.DIET = {
   plan: {
