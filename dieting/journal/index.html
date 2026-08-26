@@ -88,6 +88,22 @@
   .group { font-size: .68rem; letter-spacing: .16em;
     text-transform: uppercase; color: var(--faint); margin: 1.8rem 0 .7rem; }
 
+  /* ---- today ---- */
+  .today { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: .9rem 1.1rem; }
+  .today .cells { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6rem; }
+  .today .l { font-size: .56rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--faint); }
+  .today .v { font-size: 1.05rem; font-weight: 600; letter-spacing: -.02em;
+    font-variant-numeric: tabular-nums; margin-top: .1rem; }
+  .today .v.good { color: var(--good); }
+  .today .v.warn { color: var(--warn); }
+  .today .v.bad  { color: var(--bad); }
+  .today .meta { margin-top: .7rem; padding-top: .6rem; border-top: 1px solid var(--line);
+    font-size: .84rem; color: var(--soft); }
+  .today .note { margin-top: .35rem; font-size: .84rem; color: var(--faint);
+    font-style: italic; }
+
   /* ---- week summary ---- */
   .week { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
     padding: .9rem 1.1rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; }
@@ -118,32 +134,8 @@
     font-weight: 600; }
   table.log tfoot .dt { font-weight: 400; }
 
-  /* ---- day cards ---- */
-  .dayCard { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-    padding: 1rem 1.15rem; margin-bottom: .8rem; }
-  .dayCard header { display: flex; justify-content: space-between; align-items: baseline;
-    gap: .6rem; margin-bottom: .5rem; }
-  .dayCard h2 { font-size: 1.02rem; font-weight: 600; letter-spacing: -.01em; margin: 0; }
-  .dayCard h2 span { color: var(--faint); font-size: .85rem; font-weight: 400; }
-  .dayCard .deficit { font-size: .72rem; font-weight: 500;
-    letter-spacing: .01em; border-radius: 999px; padding: .16rem .6rem; white-space: nowrap; }
-  .deficit.good { background: #e4efe6; color: var(--good); }
-  .deficit.warn { background: #f4ead7; color: var(--warn); }
-  .deficit.bad  { background: #f6e2dc; color: var(--bad); }
-  .deficit.na   { background: var(--paper); color: var(--faint); }
-
-  table.items { width: 100%; border-collapse: collapse; font-size: .9rem; }
-  table.items td { padding: .22rem 0; vertical-align: top; }
-  table.items td.k { text-align: right; white-space: nowrap; color: var(--soft);
-    font-variant-numeric: tabular-nums; padding-left: .8rem; }
-  table.items td .n { color: var(--faint); font-size: .8rem; font-style: italic; }
-  table.items tr.total td { border-top: 1px solid var(--line); padding-top: .4rem;
-    font-weight: 600; }
   .empty { color: var(--faint); font-style: italic; font-size: .88rem; }
-
-  .meta { margin-top: .55rem; font-size: .84rem; color: var(--soft); }
   .meta b { font-weight: 600; }
-  .note { margin-top: .45rem; font-size: .84rem; color: var(--faint); font-style: italic; }
 
 </style>
 </head>
@@ -152,14 +144,15 @@
 
   <div class="hero" id="hero"></div>
 
+  <div class="group">Σήμερα</div>
+  <div class="today" id="today"></div>
+
   <div class="group">Τελευταίες 7 ημέρες</div>
   <div class="week" id="week"></div>
 
   <div class="group">Ημέρα προς ημέρα</div>
   <div class="logCard" id="log"></div>
 
-  <div class="group">Το ημερολόγιο — νεότερα πρώτα</div>
-  <div id="days"></div>
 
 </div>
 
@@ -182,11 +175,11 @@
   function daysBetween(a, b) {      // whole local days, DST-safe
     return Math.round((b - a) / 864e5);
   }
-  function consumed(day) {
-    return day.items.reduce(function (s, it) { return s + (it.kcal || 0); }, 0);
+  function consumed(day) {          // totals only; the breakdown is in log.md
+    return day.eaten == null ? 0 : day.eaten;
   }
   function deficit(day) {           // null when it cannot be computed yet
-    if (REST == null || day.active == null) return null;
+    if (REST == null || day.active == null || day.eaten == null) return null;
     return REST + day.active - consumed(day);
   }
   function cls(d) {
@@ -283,8 +276,31 @@
     return '<div class="stat"><div class="l">' + l + '</div><div class="v ' + c + '">' + v + '</div></div>';
   }
 
+  /* ---- today ---- */
+  var tv = '';
+  if (!t || (t.eaten == null && t.active == null)) {
+    tv = '<div class="empty">Δεν έχει καταγραφεί τίποτα σήμερα.</div>';
+  } else {
+    var tBurn = (REST != null && t.active != null) ? REST + t.active : null;
+    var tDef = deficit(t);
+    tv = '<div class="cells">' +
+      cell('ΕΦΑΓΑ',    t.eaten == null ? '—' : n(t.eaten), '') +
+      cell('ΕΝΕΡΓΕΣ',  t.active == null ? '—' : n(t.active), '') +
+      cell('ΔΑΠΑΝΗ',   tBurn == null ? '—' : n(tBurn), '') +
+      cell('ΕΛΛΕΙΜΜΑ', tDef == null ? '—' : n(tDef), cls(tDef)) +
+      '</div>';
+    if (t.exercise && t.exercise.length) {
+      tv += '<div class="meta">' + t.exercise.join(' · ') + '</div>';
+    }
+    if (t.note) tv += '<div class="note">' + t.note + '</div>';
+  }
+  document.getElementById('today').innerHTML = tv;
+  function cell(l, v, c) {
+    return '<div><div class="l">' + l + '</div><div class="v ' + c + '">' + v + '</div></div>';
+  }
+
   /* ---- week summary ---- */
-  var logged = days.filter(function (d) { return d.items.length || d.active != null; });
+  var logged = days.filter(function (d) { return d.eaten != null || d.active != null; });
   var last7 = logged.slice(-7);
   var w = '';
   if (last7.length) {
@@ -321,10 +337,10 @@
       var def = d ? deficit(d) : null;
       var trc = [];
       if (ds === todayIso) trc.push('today');
-      if (!d || !d.items.length) trc.push('miss');
+      if (!d || d.eaten == null) trc.push('miss');
       lg += '<tr class="' + trc.join(' ') + '">' +
         '<td><span class="dn">' + dn + '</span> <span class="dt">' + fmtShort(dt) + '</span></td>' +
-        '<td>' + (d && d.items.length ? n(consumed(d)) : '—') + '</td>' +
+        '<td>' + (d && d.eaten != null ? n(d.eaten) : '—') + '</td>' +
         '<td>' + (d && d.active != null ? n(d.active) : '—') + '</td>' +
         '<td class="def ' + cls(def) + '">' + (def == null ? '—' : n(def)) + '</td>' +
         '</tr>';
@@ -337,37 +353,6 @@
     document.getElementById('log').innerHTML = lg;
   }
 
-  /* ---- day cards ---- */
-  var out = '';
-  days.slice().reverse().forEach(function (d) {
-    var dn = daysBetween(start, parseDate(d.date)) + 1;
-    var def = deficit(d);
-    out += '<div class="dayCard"><header><h2>Ημέρα ' + dn + ' <span>· ' +
-      fmtDate(parseDate(d.date)) + '</span></h2>' +
-      '<span class="deficit ' + cls(def) + '">' +
-      (def == null ? 'έλλειμμα —' : 'έλλειμμα ' + n(def)) + '</span></header>';
-
-    if (d.items.length) {
-      out += '<table class="items">';
-      d.items.forEach(function (it) {
-        out += '<tr><td>' + it.name +
-          (it.note ? ' <span class="n">— ' + it.note + '</span>' : '') +
-          '</td><td class="k">' + n(it.kcal) + '</td></tr>';
-      });
-      out += '<tr class="total"><td>Σύνολο</td><td class="k">' + n(consumed(d)) +
-        '</td></tr></table>';
-    } else {
-      out += '<div class="empty">Καμία καταγραφή τροφής.</div>';
-    }
-
-    var meta = [];
-    if (d.active != null) meta.push('<b>' + n(d.active) + '</b> ενεργές θερμίδες (Garmin)');
-    if (d.exercise && d.exercise.length) meta.push(d.exercise.join(' · '));
-    if (meta.length) out += '<div class="meta">' + meta.join(' · ') + '</div>';
-    if (d.note) out += '<div class="note">' + d.note + '</div>';
-    out += '</div>';
-  });
-  document.getElementById('days').innerHTML = out;
 })();
 </script>
 </body>

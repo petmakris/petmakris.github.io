@@ -35,13 +35,22 @@ Repo `petmakris/petmakris.github.io`, deployed as GitHub Pages from `main`.
 
 | File | Role |
 |---|---|
-| `dieting/journal/data.js` | **The notebook.** All config + all days. The only file that changes on a normal prompt. |
+| `dieting/journal/data.js` | **Totals.** Config + one line per day: how much he ate, not what. This is all the page loads. |
+| `dieting/journal/log.md` | **The detail.** Every meal with its calories, day by day. Committed to the repo, never loaded and never linked. |
 | `dieting/journal/index.html` | The dashboard. Renders `data.js`; no server, no build. |
 | `.claude/skills/diet-journal/SKILL.md` | This file. Update it if the rules themselves change. |
 
 The page deliberately says nothing about how it is maintained — that is what
 this skill is for. Do not add protocol text, repo links or "edited by Claude"
-notes back onto the page.
+notes back onto the page, and **never link `log.md` from it**: he asked on
+2026-08-26 for the detail to be kept but kept off the page, which is built for
+his phone.
+
+**Both files are written in the same move.** `data.js` gets the day's total,
+`log.md` gets the items it is made of, and the two totals must agree. If he
+corrects one item, fix the item in `log.md` and the total in `data.js`
+together — a total that no longer matches its breakdown is the one failure
+this split can produce.
 
 ## Data format (`data.js`)
 
@@ -51,7 +60,7 @@ window.DIET = {
   days: [
     {
       date: "YYYY-MM-DD",
-      items: [ { name, kcal, note? } ],  // note = "estimate", portion basis, …
+      eaten: 1880 | null,                // total kcal for the day; breakdown in log.md
       active: 520 | null,                // Garmin active calories, end of day
       exercise: ["45 min brisk walk"],   // free text, may be empty
       note: ""                           // anything worth remembering
@@ -60,11 +69,21 @@ window.DIET = {
 };
 ```
 
-Conventions: one entry per calendar date, oldest first; kcal are integers;
-when you estimate, say so in the item's `note` and state the assumption in
-chat so Petros can correct it. **Never delete history — correct it.**
+Conventions: one entry per calendar date, oldest first; kcal are integers.
+**Never delete history — correct it.**
+
+## Data format (`log.md`)
+
+One section per day, oldest first, appended at the end. A table of items with
+their calories, a bold total row that must equal `eaten` in `data.js`, then
+the Garmin figure, the exercise, the note, and a line naming which numbers
+were estimates. Follow the section already there. Estimates also get stated in
+chat, so Petros can correct them.
 
 ## What the page shows
+
+The whole page is four blocks and fits about one phone screen. No meal ever
+appears on it.
 
 **The hero is the goal, not the day.** It shows the day number, then a bar
 whose axis is kilos: the fill is what the deficits add up to so far, the green
@@ -73,7 +92,7 @@ how far ahead or behind that puts him. Three tiles follow — ΣΥΝΕΠΕΙΑ (
 deficit ÷ target, over the days that have data), ΚΑΤΑΓΡΑΦΗ (days with data ÷
 days elapsed) and ΡΥΘΜΟΣ/ΕΒΔ. He asked for this on 2026-08-26: "όχι την
 σύνοψη της ημέρας αλλά τον στόχο μου". Today's own numbers are not in the
-hero any more — they are the top row of the table.
+hero any more — they are the Σήμερα block below it.
 
 A day with no data counts as zero deficit in the ahead/behind figure, which is
 why the verdict names how many days are missing. Do not "fix" that by dropping
@@ -90,14 +109,17 @@ Three more blocks below, all derived from `data.js` too:
   deficit, with a running total and the fat equivalent. Days he never logged
   appear as faint rows of dashes, on purpose: a gap must be visible as a gap.
   Today's row is marked in the accent colour.
-- **Το ημερολόγιο** — the full cards, every item with its calories.
+
+Between the hero and the weekly averages sits **Σήμερα** — today's four
+figures (ΕΦΑΓΑ, ΕΝΕΡΓΕΣ, ΔΑΠΑΝΗ, ΕΛΛΕΙΜΜΑ) plus the day's exercise and note.
+That is the only per-day detail the page carries.
 
 ## The loop (every prompt)
 
 1. Petros writes food / active calories / exercise / corrections.
 2. Estimate any missing calories, best effort, and state your assumptions.
-3. Update `data.js` — append to today's entry, or create it if the date
-   rolled over.
+3. Update **both** files — append to today's entry in `data.js` and to today's
+   section in `log.md`, or create the day in each if the date rolled over.
 4. Commit with a clear message and **push to `main`**. Small, frequent pushes
    are the point; he checks the page from his phone.
 5. If something is missing or ambiguous, ask. He answers; update again.
