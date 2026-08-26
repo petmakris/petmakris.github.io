@@ -111,8 +111,12 @@ Three more blocks below, all derived from `data.js` too:
   Today's row is marked in the accent colour.
 
 Between the hero and the weekly averages sits **Σήμερα** — today's four
-figures (ΕΦΑΓΑ, ΕΝΕΡΓΕΣ, ΔΑΠΑΝΗ, ΕΛΛΕΙΜΜΑ) plus the day's exercise and note.
-That is the only per-day detail the page carries.
+figures and nothing else: ΕΦΑΓΑ, ΕΝΕΡΓΕΣ, ΔΑΠΑΝΗ, ΕΛΛΕΙΜΜΑ.
+
+**Numbers only, no prose.** Exercise and the day note are recorded in
+`data.js` and `log.md` but never rendered. He asked for this on 2026-08-26:
+"δεν χρειάζεται να ξέρει ο καθένας τι κάνω και τι τρώω με λεπτομέριες, μόνο
+τα νούμερα." Keep recording both — just do not put them on the page.
 
 ## The loop (every prompt)
 

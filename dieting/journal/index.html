@@ -99,10 +99,6 @@
   .today .v.good { color: var(--good); }
   .today .v.warn { color: var(--warn); }
   .today .v.bad  { color: var(--bad); }
-  .today .meta { margin-top: .7rem; padding-top: .6rem; border-top: 1px solid var(--line);
-    font-size: .84rem; color: var(--soft); }
-  .today .note { margin-top: .35rem; font-size: .84rem; color: var(--faint);
-    font-style: italic; }
 
   /* ---- week summary ---- */
   .week { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
@@ -135,7 +131,6 @@
   table.log tfoot .dt { font-weight: 400; }
 
   .empty { color: var(--faint); font-style: italic; font-size: .88rem; }
-  .meta b { font-weight: 600; }
 
 </style>
 </head>
@@ -289,10 +284,6 @@
       cell('ΔΑΠΑΝΗ',   tBurn == null ? '—' : n(tBurn), '') +
       cell('ΕΛΛΕΙΜΜΑ', tDef == null ? '—' : n(tDef), cls(tDef)) +
       '</div>';
-    if (t.exercise && t.exercise.length) {
-      tv += '<div class="meta">' + t.exercise.join(' · ') + '</div>';
-    }
-    if (t.note) tv += '<div class="note">' + t.note + '</div>';
   }
   document.getElementById('today').innerHTML = tv;
   function cell(l, v, c) {
