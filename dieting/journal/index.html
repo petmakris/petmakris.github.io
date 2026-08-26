@@ -108,9 +108,18 @@
   </div>
 </div>
 
-<script src="data.js"></script>
 <script>
 (function () {
+  var s = document.createElement('script');
+  s.src = 'data.js?t=' + Date.now();   // never let the phone show a cached day
+  s.onload = render;
+  s.onerror = function () {
+    document.getElementById('today').innerHTML =
+      '<div class="empty">Δεν φορτώθηκαν τα δεδομένα.</div>';
+  };
+  document.head.appendChild(s);
+
+  function render() {
   var plan = window.DIET.plan;
   var days = window.DIET.days.slice();
   var TARGET = plan.deficitTarget;
@@ -132,8 +141,13 @@
   function daysBetween(a, b) {        // whole local days, DST-safe
     return Math.round((b - a) / 864e5);
   }
-  function n(x)  { return Math.round(x).toLocaleString('el-GR'); }
-  function d1(x) { return x.toLocaleString('el-GR', { minimumFractionDigits:1, maximumFractionDigits:1 }); }
+  function n(x)  {
+    return (x == null || isNaN(x)) ? '—' : Math.round(x).toLocaleString('el-GR');
+  }
+  function d1(x) {
+    return (x == null || isNaN(x)) ? '—' :
+      x.toLocaleString('el-GR', { minimumFractionDigits:1, maximumFractionDigits:1 });
+  }
   function deficit(day) {             // null when it cannot be computed yet
     if (REST == null || day.active == null || day.eaten == null) return null;
     return REST + day.active - day.eaten;
@@ -174,7 +188,7 @@
   var cumDef = run;
   var wNow   = wStart - cumDef / KG;
   var adher  = cumDays ? cumDef / (TARGET * cumDays) : null;
-  var wProj  = elapsed ? wStart - (cumDef / elapsed) * LEN / KG : wStart;
+  var wProj  = elapsed ? wStart - (cumDef / elapsed) * LEN / KG : null;
 
   /* ---- header ---- */
   document.getElementById('kicker').textContent =
@@ -204,7 +218,8 @@
   }).join('');
 
   var wToday = (t && t.weight != null) ? t.weight : null;
-  document.getElementById('curve').innerHTML =
+  document.getElementById('curve').innerHTML = wStart == null
+    ? '<div class="empty">Λείπει το αρχικό βάρος (plan.startWeight).</div>' :
     '<div class="row"><span><b>' + d1(wStart) + ' kg</b> αρχή</span>' +
       '<span>στόχος <b>' + d1(wGoal) + ' kg</b></span></div>' +
     '<div class="chart"><svg viewBox="0 0 ' + W + ' ' + H + '" role="img" ' +
@@ -220,7 +235,8 @@
     '<div class="row"><span class="lg">' + d1(wToday != null ? wToday : wNow) + ' kg' +
       '<em>' + (wToday != null ? 'στη ζυγαριά' : 'εκτίμηση σήμερα') + '</em></span></div>' +
     '<div class="row"><span>με αυτόν τον ρυθμό</span><span><b class="' +
-      (wProj <= wGoal ? 'good' : 'warn') + '">' + d1(wProj) + ' kg</b> στις ' + LEN + '</span></div>';
+      (wProj == null ? '' : wProj <= wGoal ? 'good' : 'warn') + '">' + d1(wProj) +
+      (wProj == null ? '' : ' kg') + '</b> στις ' + LEN + '</span></div>';
 
   /* ============ 2 · the 90-day grid ============ */
   var cells = '';
@@ -266,6 +282,7 @@
   document.getElementById('today').innerHTML = tv;
   function cell(l, v, c) {
     return '<div><div class="l">' + l + '</div><div class="v ' + c + '">' + v + '</div></div>';
+  }
   }
 })();
 </script>
