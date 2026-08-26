@@ -139,6 +139,9 @@
     return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') +
       '-' + String(d.getDate()).padStart(2,'0');
   }
+  function daysBetween(a, b) {      // whole local days, DST-safe
+    return Math.round((b - a) / 864e5);
+  }
   function consumed(day) {
     return day.items.reduce(function (s, it) { return s + (it.kcal || 0); }, 0);
   }
@@ -161,9 +164,10 @@
   /* ---- hero ---- */
   var start = parseDate(plan.start);
   var today = new Date(); today.setHours(0,0,0,0);
-  var dayNo = Math.floor((today - start) / 864e5) + 1;
+  var dayNo = daysBetween(start, today) + 1;
   var inPlan = dayNo >= 1 && dayNo <= plan.lengthDays;
-  var end = new Date(start.getTime() + (plan.lengthDays - 1) * 864e5);
+  var end = new Date(start.getFullYear(), start.getMonth(),
+    start.getDate() + plan.lengthDays - 1);
   var pct = Math.max(0, Math.min(100, (dayNo / plan.lengthDays) * 100));
   var t = byDate[iso(today)];
 
@@ -216,7 +220,7 @@
   /* ---- day cards ---- */
   var out = '';
   days.slice().reverse().forEach(function (d) {
-    var dn = Math.floor((parseDate(d.date) - start) / 864e5) + 1;
+    var dn = daysBetween(start, parseDate(d.date)) + 1;
     var def = deficit(d);
     out += '<div class="dayCard"><header><h2>Day ' + dn + ' <span>· ' +
       fmtDate(parseDate(d.date)) + '</span></h2>' +
