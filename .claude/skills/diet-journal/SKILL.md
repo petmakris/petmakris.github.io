@@ -75,12 +75,17 @@ chat so Petros can correct it. **Never delete history — correct it.**
 5. If something is missing or ambiguous, ask. He answers; update again.
 6. If he says the page is wrong, fix it and push.
 
-## Bilingual rule
+## Language: Greek only
 
-Everything content-facing in this repo is written in **both Greek and
-French** — his standing rule, for French practice in Lausanne. The journal
-page is currently English-only; he knows and has not asked for it to change.
-Do not translate it unilaterally, and do not "fix" his own copy elsewhere.
+This page is **Greek only** — he said so on 2026-08-26, in those words:
+"ONLY GREEK. ΟΛΑ ΣΤΑ ΕΛΛΗΝΙΚΑ." That is a deliberate exception to his
+standing Greek + French rule for the rest of the repo, so do not add French
+here and do not "fix" it back to bilingual.
+
+Everything that reaches the page goes in Greek: item names, item notes, the
+day note, exercise. `lang="el"`, and dates and numbers are formatted with
+`el-GR`, so figures read 1.880 and 0,53. Only the code comments in `data.js`
+and `index.html` stay in English.
 
 ## Original instructions, verbatim (2026-08-26)
 

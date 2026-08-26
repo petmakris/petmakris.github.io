@@ -2,6 +2,9 @@
  * prompt, the page just renders it. Newest day last. The operating procedure
  * lives in the repo skill .claude/skills/diet-journal/SKILL.md.
  *
+ * Everything that reaches the page is written in Greek: item names, notes,
+ * exercise. Only the code comments here are English.
+ *
  * Units: kcal everywhere. `active` is the Garmin "active calories" figure
  * for the day. `maintenanceRest` is resting maintenance (what the body burns
  * with zero recorded activity); total burn for a day = maintenanceRest +
@@ -18,20 +21,20 @@ window.DIET = {
     {
       date: "2026-08-26",
       items: [
-        {name: "Greek yogurt 200g + honey",            kcal: 260, note: "sample"},
-        {name: "Coffee with milk",                     kcal:  40, note: "sample"},
-        {name: "Orange juice 250ml",                   kcal: 110, note: "sample"},
-        {name: "Grilled chicken breast 180g",          kcal: 300, note: "sample"},
-        {name: "Rice 150g cooked + salad, olive oil",  kcal: 330, note: "sample"},
-        {name: "Apple",                                kcal:  95, note: "sample"},
-        {name: "Almonds 25g",                          kcal: 145, note: "sample"},
-        {name: "2 slices wholegrain bread + feta 60g", kcal: 400, note: "sample"},
-        {name: "Banana",                               kcal:  90, note: "sample"},
-        {name: "Dark chocolate 20g",                   kcal: 110, note: "sample"}
+        {name: "Γιαούρτι 200γρ + μέλι",                 kcal: 260, note: "δείγμα"},
+        {name: "Καφές με γάλα",                         kcal:  40, note: "δείγμα"},
+        {name: "Χυμός πορτοκάλι 250ml",                 kcal: 110, note: "δείγμα"},
+        {name: "Στήθος κοτόπουλο ψητό 180γρ",           kcal: 300, note: "δείγμα"},
+        {name: "Ρύζι 150γρ βρασμένο + σαλάτα, ελαιόλαδο", kcal: 330, note: "δείγμα"},
+        {name: "Μήλο",                                  kcal:  95, note: "δείγμα"},
+        {name: "Αμύγδαλα 25γρ",                         kcal: 145, note: "δείγμα"},
+        {name: "2 φέτες ψωμί ολικής + φέτα 60γρ",       kcal: 400, note: "δείγμα"},
+        {name: "Μπανάνα",                               kcal:  90, note: "δείγμα"},
+        {name: "Μαύρη σοκολάτα 20γρ",                   kcal: 110, note: "δείγμα"}
       ],
       active: 520,
-      exercise: ["50 min brisk walk", "20 min bodyweight circuit"],
-      note: "SAMPLE DAY — invented food, not eaten. Here only to show how a full day renders. The plan starts 2026-08-27; delete this entry then."
+      exercise: ["50΄ γρήγορο περπάτημα", "20΄ ασκήσεις με το βάρος του σώματος"],
+      note: "ΔΕΙΓΜΑ — φαγητό επινοημένο, δεν καταναλώθηκε. Υπάρχει μόνο για να φαίνεται πώς εμφανίζεται μια πλήρης ημέρα. Το πρόγραμμα ξεκινά 27/08/2026· τότε σβήνεται."
     }
   ]
 };

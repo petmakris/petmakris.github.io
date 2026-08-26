@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="el">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f3f0ea">
-<title>Diet journal</title>
+<title>Ημερολόγιο διατροφής</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
@@ -115,10 +115,10 @@
 
   <div class="hero" id="hero"></div>
 
-  <div class="group">Last 7 logged days</div>
+  <div class="group">Τελευταίες 7 ημέρες</div>
   <div class="week" id="week"></div>
 
-  <div class="group">The notebook — newest first</div>
+  <div class="group">Το ημερολόγιο — νεότερα πρώτα</div>
   <div id="days"></div>
 
 </div>
@@ -133,7 +133,7 @@
 
   function parseDate(s) { var p = s.split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
   function fmtDate(d) {
-    return d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+    return d.toLocaleDateString('el-GR', { weekday: 'short', day: 'numeric', month: 'short' });
   }
   function iso(d) {
     return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') +
@@ -155,7 +155,7 @@
     if (d >= TARGET - 350) return 'warn';
     return 'bad';
   }
-  function n(x) { return Math.round(x).toLocaleString('en-GB'); }
+  function n(x) { return Math.round(x).toLocaleString('el-GR'); }
 
   days.sort(function (a, b) { return a.date < b.date ? -1 : 1; });
   var byDate = {};
@@ -171,28 +171,28 @@
   var pct = Math.max(0, Math.min(100, (dayNo / plan.lengthDays) * 100));
   var t = byDate[iso(today)];
 
-  var h = '<div class="kicker">Diet journal · ' + TARGET + ' kcal/day deficit</div>';
+  var h = '<div class="kicker">Ημερολόγιο διατροφής · −' + TARGET + ' kcal</div>';
   if (dayNo < 1) {
-    h += '<div class="day">Starts ' + fmtDate(start) + '</div>';
+    h += '<div class="day">Ξεκινά ' + fmtDate(start) + '</div>';
   } else if (dayNo > plan.lengthDays) {
-    h += '<div class="day">Done <small>· ' + plan.lengthDays + ' days</small></div>';
+    h += '<div class="day">Τέλος <small>· ' + plan.lengthDays + ' ημέρες</small></div>';
   } else {
-    h += '<div class="day">Day ' + dayNo + ' <small>of ' + plan.lengthDays + '</small></div>';
+    h += '<div class="day">Ημέρα ' + dayNo + ' <small>από ' + plan.lengthDays + '</small></div>';
   }
-  h += '<div class="date">' + fmtDate(today) + ' · until ' + fmtDate(end) + '</div>';
+  h += '<div class="date">' + fmtDate(today) + ' · έως ' + fmtDate(end) + '</div>';
   h += '<div class="bar"><i style="width:' + pct + '%"></i></div>';
 
   var tc = t ? consumed(t) : null;
   var td = t ? deficit(t) : null;
   var burn = (t && REST != null && t.active != null) ? REST + t.active : null;
   h += '<div class="stats">' +
-    stat('Eaten',  tc == null ? '—' : n(tc), '') +
-    stat('Active', (t && t.active != null) ? n(t.active) : '—', '') +
-    stat('Burn',   burn == null ? '—' : n(burn), '') +
-    stat('Deficit', td == null ? '—' : n(td), cls(td)) +
+    stat('ΕΦΑΓΑ',    tc == null ? '—' : n(tc), '') +
+    stat('ΕΝΕΡΓΕΣ',  (t && t.active != null) ? n(t.active) : '—', '') +
+    stat('ΔΑΠΑΝΗ',   burn == null ? '—' : n(burn), '') +
+    stat('ΕΛΛΕΙΜΜΑ', td == null ? '—' : n(td), cls(td)) +
     '</div>';
-  if (!t && inPlan) h += '<p class="hint">Nothing logged yet today — tell Claude what you ate.</p>';
-  else if (REST == null) h += '<p class="hint">Deficit needs your resting maintenance calories — tell Claude the number once and it appears everywhere.</p>';
+  if (!t && inPlan) h += '<p class="hint">Δεν έχει καταγραφεί τίποτα σήμερα.</p>';
+  else if (REST == null) h += '<p class="hint">Το έλλειμμα χρειάζεται τις θερμίδες συντήρησης σε ηρεμία.</p>';
   document.getElementById('hero').innerHTML = h;
 
   function stat(l, v, c) {
@@ -207,12 +207,13 @@
     var avgC = last7.reduce(function (s, d) { return s + consumed(d); }, 0) / last7.length;
     var defs = last7.map(deficit).filter(function (x) { return x != null; });
     var avgD = defs.length ? defs.reduce(function (s, x) { return s + x; }, 0) / defs.length : null;
-    var kg = avgD != null ? (avgD * 7) / 7700 : null;  // 7 700 kcal ≈ 1 kg fat
-    w = wk('Avg eaten', n(avgC) + ' kcal') +
-        wk('Avg deficit', avgD == null ? '—' : n(avgD) + ' kcal') +
-        wk('≈ per week', kg == null ? '—' : kg.toFixed(2) + ' kg');
+    var kg = avgD != null ? (avgD * 7) / 7700 : null;  // 7 700 kcal ≈ 1 kg λίπους
+    w = wk('ΜΕΣΗ ΠΡΟΣΛΗΨΗ', n(avgC) + ' kcal') +
+        wk('ΜΕΣΟ ΕΛΛΕΙΜΜΑ', avgD == null ? '—' : n(avgD) + ' kcal') +
+        wk('≈ ΑΝΑ ΕΒΔΟΜΑΔΑ', kg == null ? '—' :
+          kg.toLocaleString('el-GR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' kg');
   } else {
-    w = '<div class="empty" style="grid-column:1/-1">No days logged yet.</div>';
+    w = '<div class="empty" style="grid-column:1/-1">Καμία καταγεγραμμένη ημέρα ακόμη.</div>';
   }
   document.getElementById('week').innerHTML = w;
   function wk(l, v) { return '<div><div class="l">' + l + '</div><div class="v">' + v + '</div></div>'; }
@@ -222,10 +223,10 @@
   days.slice().reverse().forEach(function (d) {
     var dn = daysBetween(start, parseDate(d.date)) + 1;
     var def = deficit(d);
-    out += '<div class="dayCard"><header><h2>Day ' + dn + ' <span>· ' +
+    out += '<div class="dayCard"><header><h2>Ημέρα ' + dn + ' <span>· ' +
       fmtDate(parseDate(d.date)) + '</span></h2>' +
       '<span class="deficit ' + cls(def) + '">' +
-      (def == null ? 'deficit —' : 'deficit ' + n(def)) + '</span></header>';
+      (def == null ? 'έλλειμμα —' : 'έλλειμμα ' + n(def)) + '</span></header>';
 
     if (d.items.length) {
       out += '<table class="items">';
@@ -234,14 +235,14 @@
           (it.note ? ' <span class="n">— ' + it.note + '</span>' : '') +
           '</td><td class="k">' + n(it.kcal) + '</td></tr>';
       });
-      out += '<tr class="total"><td>Total eaten</td><td class="k">' + n(consumed(d)) +
+      out += '<tr class="total"><td>Σύνολο</td><td class="k">' + n(consumed(d)) +
         '</td></tr></table>';
     } else {
-      out += '<div class="empty">No food logged.</div>';
+      out += '<div class="empty">Καμία καταγραφή τροφής.</div>';
     }
 
     var meta = [];
-    if (d.active != null) meta.push('<b>' + n(d.active) + '</b> active kcal (Garmin)');
+    if (d.active != null) meta.push('<b>' + n(d.active) + '</b> ενεργές θερμίδες (Garmin)');
     if (d.exercise && d.exercise.length) meta.push(d.exercise.join(' · '));
     if (meta.length) out += '<div class="meta">' + meta.join(' · ') + '</div>';
     if (d.note) out += '<div class="note">' + d.note + '</div>';
