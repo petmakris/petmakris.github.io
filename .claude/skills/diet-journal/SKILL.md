@@ -8,13 +8,20 @@ description: Maintain Petros's diet journal at dieting/journal/ — log food and
 Petros tracks his diet conversationally in Claude Code. He says what he ate
 (sometimes with calories, sometimes just ingredients), his Garmin **active
 calories** at the end of the day, and any exercise. You estimate the calories
-he did not give, write them into `dieting/journal/data.js`, and push, so the
-page at `https://petmakris.github.io/dieting/journal/` updates. That page is a
-widget on his phone: its top block must always show which day of the plan it
-is and how today stands.
+he did not give, write them into the two files below, and push, so the page at
+`https://petmakris.github.io/dieting/journal/` updates. That page is a widget
+on his phone: it must always show which day of the plan it is and how the plan
+as a whole is going.
 
-No app, no build step. Static HTML, one JS data file, and you as the input
-method.
+No app, no build step. Static HTML, a JS data file, a Markdown ledger, and you
+as the input method.
+
+## Pending
+
+**Delete the sample day.** `data.js` and `log.md` both still carry a fabricated
+2026-08-26 entry (marked ΔΕΙΓΜΑ) that exists only to show the page populated
+before day 1. Remove it from both files the first time you log a real day.
+This note goes with it.
 
 ## The plan
 
@@ -27,7 +34,11 @@ method.
   176 cm, age 43 (confirmed 2026-08-26). Recompute it as
   `10×kg + 6.25×cm − 5×age + 5` if his weight changes materially — a 5 kg
   loss is 50 kcal off the resting figure.
-- 600 kcal/day ≈ 0.55 kg of fat per week; the page projects this.
+- 600 kcal/day ≈ 0.55 kg of fat per week, ≈ 7.0 kg over the 90 days.
+- **Changing `maintenanceRest` rewrites history.** Every past day's deficit is
+  recomputed from it, so the curve and the grid move retroactively. Only change
+  it when his weight has genuinely shifted, and tell him the old and new
+  figures when you do.
 
 ## Files
 
@@ -106,15 +117,17 @@ that does not change from one day to the next is not earning its place.
    A day with no data adds no deficit, so the line goes flat for that day.
    That is the honest reading; do not interpolate over gaps.
 2. **The 90-day grid** — one square per plan day, coloured by that day's
-   deficit: green above 500, amber 250–500, red below 250, grey for a day with
-   no data, near-invisible for a day that has not arrived. Above it, the
+   deficit against the target: green above `target − 100`, amber down to
+   `target − 350`, red below that, grey for a day with no data, near-invisible
+   for a day that has not arrived. At a 600 target that reads 500 / 250, and
+   the legend prints whatever the current target implies. Above it, the
    consistency figure and how many elapsed days actually have data. This is
    the part that answers "how well am I keeping to the plan" — gaps must stay
    visible as gaps.
 3. **Today's figures** — EATEN, ACTIVE, BURN, DEFICIT, and nothing else.
 
 **The goal weight is derived**, `startWeight − (deficitTarget × lengthDays ÷
-7700)` — 104 − 7,01 = 97,0 kg. Change `lengthDays` or `deficitTarget` and the
+7700)` — 104 − 7.01 = 97.0 kg. Change `lengthDays` or `deficitTarget` and the
 goal, the dashed line and the projection all follow. There is no goal-weight
 field to keep in sync.
 
