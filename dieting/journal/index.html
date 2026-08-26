@@ -195,14 +195,18 @@
     'Diet journal · −' + TARGET + ' kcal';
   var dayEl = document.getElementById('day'), dateEl = document.getElementById('date');
   if (dayNo < 1) {
+    var toStart = 1 - dayNo;          // counting down to day 1
     dayEl.innerHTML    = fmtDate(today);
-    dateEl.textContent = 'Starts ' + fmtDate(start) + ' · ' + LEN + ' days';
+    dateEl.textContent = toStart === 1 ? 'Starts tomorrow'
+      : 'Starts in ' + toStart + ' days · ' + fmtDate(start);
   } else if (dayNo > LEN) {
     dayEl.innerHTML    = 'Done <small>· ' + LEN + ' days</small>';
     dateEl.textContent = fmtDate(today) + ' · finished ' + fmtDate(end);
   } else {
+    var rem = LEN - dayNo;            // days still to come after today
     dayEl.innerHTML    = 'Day ' + dayNo + ' <small>of ' + LEN + '</small>';
-    dateEl.textContent = fmtDate(today) + ' · until ' + fmtDate(end);
+    dateEl.textContent = fmtDate(today) + ' · ' +
+      (rem === 0 ? 'last day' : rem === 1 ? '1 day left' : rem + ' days left');
   }
 
   /* ============ 1 · the weight curve ============

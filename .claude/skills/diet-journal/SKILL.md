@@ -89,9 +89,13 @@ mockups: "όλη η σελίδα θα γίνει ένα απλό widget". There 
 weekly-averages block and no day-by-day table any more.
 
 Above the three parts: `Day N of 90` once the plan is running, and under it
-today's date and the end date. Before day 1 the big line carries **today's
-date** instead — he asked for that on 2026-08-26, because "Starts Thu 27 Aug"
-told him nothing he did not already know.
+today's date and **how many days are left** — `Wed 19 Sep · 66 days left`,
+then `1 day left`, then `last day`. Before day 1 the big line carries
+**today's date** and the line under it counts down to the start (`Starts
+tomorrow`, `Starts in 3 days · Thu 27 Aug`).
+
+Both of those replaced fixed dates he already knew. Anything in this header
+that does not change from one day to the next is not earning its place.
 
 1. **The weight curve** — a chart whose axis is his real weight, descending.
    The dashed green line is the plan, drawn from `startWeight` on day 0 to the
