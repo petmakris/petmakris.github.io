@@ -81,6 +81,28 @@
   .week .v { font-size: 1.05rem; font-weight: 600; letter-spacing: -.02em;
     font-variant-numeric: tabular-nums; margin-top: .1rem; }
 
+  /* ---- day-by-day table ---- */
+  .logCard { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: .7rem 1.1rem .8rem; }
+  table.log { width: 100%; border-collapse: collapse; font-size: .87rem; }
+  table.log th { font-size: .56rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--faint); font-weight: 500; text-align: right; padding: 0 0 .35rem; }
+  table.log th:first-child, table.log td:first-child { text-align: left; }
+  table.log td { padding: .36rem 0; border-top: 1px solid var(--line);
+    text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  table.log .dn { font-weight: 600; }
+  table.log .dt { color: var(--faint); font-weight: 400; font-size: .78rem; }
+  table.log tr.today .dn { color: var(--accent); }
+  table.log tr.miss .dn, table.log tr.miss td { color: var(--faint); font-weight: 400; }
+  table.log td.def { font-weight: 600; }
+  table.log td.def.good { color: var(--good); }
+  table.log td.def.warn { color: var(--warn); }
+  table.log td.def.bad  { color: var(--bad); }
+  table.log td.def.na   { color: var(--faint); font-weight: 400; }
+  table.log tfoot td { border-top: 2px solid var(--line); padding-top: .45rem;
+    font-weight: 600; }
+  table.log tfoot .dt { font-weight: 400; }
+
   /* ---- day cards ---- */
   .dayCard { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
     padding: 1rem 1.15rem; margin-bottom: .8rem; }
@@ -117,6 +139,9 @@
 
   <div class="group">Τελευταίες 7 ημέρες</div>
   <div class="week" id="week"></div>
+
+  <div class="group">Ημέρα προς ημέρα</div>
+  <div class="logCard" id="log"></div>
 
   <div class="group">Το ημερολόγιο — νεότερα πρώτα</div>
   <div id="days"></div>
@@ -217,6 +242,57 @@
   }
   document.getElementById('week').innerHTML = w;
   function wk(l, v) { return '<div><div class="l">' + l + '</div><div class="v">' + v + '</div></div>'; }
+
+  /* ---- day-by-day table ----
+     Rows are every elapsed plan day plus anything logged outside the plan, so
+     a day that was never logged still shows up — as a gap, not as silence. */
+  function fmtShort(d) {
+    return d.toLocaleDateString('el-GR', { weekday: 'short' }) + ' ' +
+      d.getDate() + '/' + (d.getMonth() + 1);
+  }
+  var elapsed = Math.min(dayNo, plan.lengthDays);
+  var rowDates = {};
+  days.forEach(function (d) { rowDates[d.date] = 1; });
+  for (var i = 1; i <= elapsed; i++) {
+    rowDates[iso(new Date(start.getFullYear(), start.getMonth(),
+      start.getDate() + i - 1))] = 1;
+  }
+  var dates = Object.keys(rowDates).sort().reverse();
+  var todayIso = iso(today);
+
+  if (!dates.length) {
+    document.getElementById('log').innerHTML =
+      '<div class="empty">Καμία ημέρα ακόμη.</div>';
+  } else {
+    var cumDef = 0, cumDays = 0;
+    var lg = '<table class="log"><thead><tr><th>Ημέρα</th><th>Έφαγα</th>' +
+      '<th>Ενεργές</th><th>Έλλειμμα</th></tr></thead><tbody>';
+    dates.forEach(function (ds) {
+      var d = byDate[ds];
+      var dt = parseDate(ds);
+      var dn = daysBetween(start, dt) + 1;
+      var def = d ? deficit(d) : null;
+      if (def != null) { cumDef += def; cumDays++; }
+      var trc = [];
+      if (ds === todayIso) trc.push('today');
+      if (!d || !d.items.length) trc.push('miss');
+      lg += '<tr class="' + trc.join(' ') + '">' +
+        '<td><span class="dn">' + dn + '</span> <span class="dt">' + fmtShort(dt) + '</span></td>' +
+        '<td>' + (d && d.items.length ? n(consumed(d)) : '—') + '</td>' +
+        '<td>' + (d && d.active != null ? n(d.active) : '—') + '</td>' +
+        '<td class="def ' + cls(def) + '">' + (def == null ? '—' : n(def)) + '</td>' +
+        '</tr>';
+    });
+    var kgLost = cumDef / 7700;
+    lg += '</tbody><tfoot><tr>' +
+      '<td>Σύνολο <span class="dt">· ' + cumDays + (cumDays === 1 ? ' ημέρα' : ' ημέρες') + '</span></td>' +
+      '<td colspan="2" class="dt">≈ ' +
+        kgLost.toLocaleString('el-GR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) +
+        ' kg λίπους</td>' +
+      '<td>' + (cumDays ? n(cumDef) : '—') + '</td>' +
+      '</tr></tfoot></table>';
+    document.getElementById('log').innerHTML = lg;
+  }
 
   /* ---- day cards ---- */
   var out = '';

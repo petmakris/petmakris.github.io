@@ -64,6 +64,18 @@ Conventions: one entry per calendar date, oldest first; kcal are integers;
 when you estimate, say so in the item's `note` and state the assumption in
 chat so Petros can correct it. **Never delete history — correct it.**
 
+## What the page shows
+
+Three blocks under the hero, all derived from `data.js` — nothing extra to
+maintain:
+
+- **Τελευταίες 7 ημέρες** — averages over the last 7 logged days.
+- **Ημέρα προς ημέρα** — one row per elapsed plan day: eaten, active,
+  deficit, with a running total and the fat equivalent. Days he never logged
+  appear as faint rows of dashes, on purpose: a gap must be visible as a gap.
+  Today's row is marked in the accent colour.
+- **Το ημερολόγιο** — the full cards, every item with its calories.
+
 ## The loop (every prompt)
 
 1. Petros writes food / active calories / exercise / corrections.
