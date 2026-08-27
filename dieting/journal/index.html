@@ -44,16 +44,20 @@
     font-variant-numeric: tabular-nums;
     line-height: 1.5; -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
-    min-height: 100svh; min-height: 100dvh;
+    height: 100svh; height: 100dvh;
     display: flex;
   }
 
+  /* Everything must fit the viewport with no scroll: the widget is exactly
+     viewport-high, the chart is the one flexible part that absorbs whatever
+     height is left, and paddings/gaps/large type scale with viewport height
+     so a short screen compresses instead of pushing the last card off. */
   .widget {
-    flex: 1; width: 100%; max-width: 560px; margin: 0 auto;
-    padding: max(1.6rem, env(safe-area-inset-top)) 1.5rem
-      max(1.6rem, env(safe-area-inset-bottom));
+    flex: 1; width: 100%; max-width: 560px; margin: 0 auto; min-height: 0;
+    padding: max(clamp(.8rem, 1.8vh, 1.6rem), env(safe-area-inset-top)) 1.25rem
+      max(clamp(.8rem, 1.8vh, 1.6rem), env(safe-area-inset-bottom));
     display: flex; flex-direction: column; justify-content: space-between;
-    gap: 1.6rem;
+    gap: clamp(.7rem, 1.6vh, 1.6rem);
   }
   /* portrait: the column wrappers are invisible, kids lay out flat in .widget */
   .col-left, .col-right { display: contents; }
@@ -64,32 +68,37 @@
     color: var(--accent-ink); font-size: .72rem; font-weight: 800;
     letter-spacing: .08em; text-transform: uppercase;
     box-shadow: 0 4px 12px var(--accent-glow); }
-  .day { font-size: clamp(2.6rem, 11vw, 3.6rem); font-weight: 700;
-    letter-spacing: -.03em; line-height: 1.08; margin: .5rem 0 .15rem;
+  .day { font-size: min(clamp(2.2rem, 11vw, 3.6rem), 5.5vh); font-weight: 700;
+    letter-spacing: -.03em; line-height: 1.08; margin: .4rem 0 .1rem;
     text-shadow: 0 0 24px var(--accent-glow); }
   .day small { font-size: .48em; font-weight: 500; letter-spacing: -.01em;
     color: var(--dim); }
-  .date { font-size: 1.05rem; color: var(--sub); }
+  .date { font-size: clamp(.85rem, 1.6vh, 1.05rem); color: var(--sub); }
 
   /* ---- one part of the widget: a boxed card, not just a hairline ---- */
   .part { background: var(--card); border: 1.5px solid var(--border);
-    border-radius: 18px; padding: 1.375rem 1.25rem;
+    border-radius: 18px; padding: clamp(.75rem, 1.7vh, 1.375rem) 1.25rem;
     box-shadow: 0 16px 36px rgba(0,0,0,.55), 0 3px 8px rgba(0,0,0,.35);
-    display: flex; flex-direction: column; gap: .9rem; flex: 1;
-    justify-content: center; }
+    display: flex; flex-direction: column; gap: clamp(.45rem, 1.1vh, .9rem);
+    flex: 0 1 auto; min-height: 0; justify-content: center; }
+  /* the curve card flexes and its chart soaks up the spare height;
+     the grid and today cards keep their natural size */
+  #curve { flex: 1 1 auto; }
+  .chart { flex: 1; min-height: 60px; }
   .row { display: flex; justify-content: space-between; align-items: baseline;
-    gap: .6rem; font-size: .98rem; color: var(--dim); }
+    gap: .6rem; font-size: clamp(.85rem, 1.5vh, .98rem); color: var(--dim); }
   .row b { color: var(--ink); font-weight: 600; }
-  .row .lg { font-size: 2rem; font-weight: 700; letter-spacing: -.025em;
-    color: var(--ink); white-space: nowrap; }
+  .row .lg { font-size: clamp(1.4rem, 3vh, 2rem); font-weight: 700;
+    letter-spacing: -.025em; color: var(--ink); white-space: nowrap; }
   .row .lg em { font-size: .9rem; font-weight: 400; font-style: normal;
     letter-spacing: 0; color: var(--dim); margin-left: .5rem; }
 
   /* ---- the weight curve ---- */
-  .chart svg { width: 100%; height: auto; display: block; }
+  .chart svg { width: 100%; height: 100%; display: block; }
 
   /* ---- the 90-day grid ---- */
-  .cells { display: grid; grid-template-columns: repeat(15, 1fr); gap: 5px; }
+  .cells { display: grid; grid-template-columns: repeat(15, 1fr);
+    gap: clamp(3px, .6vh, 5px); }
   .cells i { display: block; aspect-ratio: 1; border-radius: 4px; }
   .logged { display: inline-flex; align-items: center; padding: .25rem .7rem;
     border-radius: 999px; background: rgba(255,255,255,.1);
@@ -108,13 +117,13 @@
   /* ---- today ---- */
   .cells4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: .7rem; }
   .cells4 > div { background: var(--tile); border: 1.5px solid var(--tile-border);
-    border-radius: 12px; padding: .8rem .6rem; }
+    border-radius: 12px; padding: clamp(.5rem, 1.2vh, .8rem) .6rem; }
   .cells4 > div.has { border-color: var(--accent); }
   .cells4 .l { font-size: .68rem; font-weight: 700; letter-spacing: .1em;
     text-transform: uppercase; color: var(--dim); }
   .cells4 > div.has .l { color: var(--accent); }
-  .cells4 .v { font-size: 1.5rem; font-weight: 700; letter-spacing: -.02em;
-    margin-top: .2rem; }
+  .cells4 .v { font-size: clamp(1.1rem, 2.4vh, 1.5rem); font-weight: 700;
+    letter-spacing: -.02em; margin-top: .2rem; }
 
   .good { color: var(--good); }
   .warn { color: var(--warn); }
@@ -154,6 +163,7 @@
     .kicker { font-size: .64rem; padding: .3rem .6rem; }
     .date { font-size: .88rem; }
     .part { gap: .4rem; padding: .65rem .8rem; }
+    .col-right .part { flex: 1; }
     #curve { min-height: 0; }
     .chart { flex: 1; min-height: 0; }
     .chart svg { height: 100%; }
@@ -304,7 +314,8 @@
     ? '<div class="empty">Missing start weight (plan.startWeight).</div>' :
     '<div class="row"><span><b>' + d1(wStart) + ' kg</b> start</span>' +
       '<span>target <b>' + d1(wGoal) + ' kg</b></span></div>' +
-    '<div class="chart"><svg viewBox="0 0 ' + W + ' ' + H + '" role="img" ' +
+    '<div class="chart"><svg viewBox="0 0 ' + W + ' ' + H + '" ' +
+      'preserveAspectRatio="none" role="img" ' +
       'aria-label="Weight from ' + d1(wStart) + ' towards ' + d1(wGoal) + ' kg">' +
       '<line x1="' + X(0) + '" y1="' + Y(wStart).toFixed(1) + '" x2="' + X(LEN) +
         '" y2="' + Y(wGoal).toFixed(1) + '" stroke="#8fd0a1" stroke-width="1.5" ' +
