@@ -10,15 +10,17 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiMyNjJkMzMiLz48dGV4dCB4PSIzMiIgeT0iMzUiIGZvbnQtZmFtaWx5PSJIZWx2ZXRpY2EgTmV1ZSxBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNjAwIiBmaWxsPSIjZTZkY2NjIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0iY2VudHJhbCI+ZDwvdGV4dD48L3N2Zz4=">
 <style>
-  /* One card, three parts: the weight curve, the 90-day grid, today's
-     figures. The whole page is the widget — nothing else is on it. */
+  /* The whole screen is the widget — no card floating on a paper margin.
+     It fills the viewport edge to edge and the three parts spread out to
+     use whatever height the phone gives it, growing on a tall screen
+     instead of leaving space unused below. */
   :root {
     --paper:  #f3f0ea;
-    --card:   #262d33;
-    --ink:    #e9e2d6;
+    --card:   #1f252b;
+    --ink:    #f2ece1;
     --dim:    #a9b2ba;
     --sub:    #cdc4b4;
-    --hair:   rgba(255,255,255,.09);
+    --hair:   rgba(255,255,255,.1);
     --cream:  #e6dccc;
     --good:   #8fd0a1;
     --warn:   #e5b56b;
@@ -27,75 +29,82 @@
     --future: rgba(255,255,255,.05);
   }
   * { box-sizing: border-box; }
+  html, body { height: 100%; }
   body {
-    margin: 0; background: var(--paper); color: var(--ink);
+    margin: 0; background: var(--card); color: var(--ink);
     font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI',
       system-ui, sans-serif;
     font-variant-numeric: tabular-nums;
     line-height: 1.5; -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
+    min-height: 100svh; min-height: 100dvh;
+    display: flex;
   }
-  .wrap { max-width: 430px; margin: 0 auto; padding: 1rem .9rem 2rem; }
 
   .widget {
-    background: var(--card); border-radius: 18px;
-    padding: 1.2rem 1.25rem 1.3rem;
-    display: flex; flex-direction: column; gap: 1.1rem;
+    flex: 1; width: 100%; max-width: 560px; margin: 0 auto;
+    padding: max(1.6rem, env(safe-area-inset-top)) 1.5rem
+      max(1.6rem, env(safe-area-inset-bottom));
+    display: flex; flex-direction: column; justify-content: space-between;
+    gap: 1.6rem;
   }
 
   /* ---- header ---- */
-  .kicker { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+  .kicker { font-size: .78rem; font-weight: 600; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--dim); }
+  .day { font-size: clamp(2.6rem, 11vw, 3.6rem); font-weight: 700;
+    letter-spacing: -.03em; line-height: 1.08; margin: .3rem 0 .15rem; }
+  .day small { font-size: .48em; font-weight: 500; letter-spacing: -.01em;
     color: var(--dim); }
-  .day { font-size: 2.2rem; font-weight: 650; letter-spacing: -.03em;
-    line-height: 1.1; margin: .1rem 0; }
-  .day small { font-size: 1.05rem; font-weight: 500; letter-spacing: -.01em;
-    color: var(--dim); }
-  .date { font-size: .84rem; color: var(--sub); }
+  .date { font-size: 1.05rem; color: var(--sub); }
 
   /* ---- one part of the widget ---- */
-  .part { border-top: 1px solid var(--hair); padding-top: 1rem;
-    display: flex; flex-direction: column; gap: .55rem; }
+  .part { border-top: 1px solid var(--hair); padding-top: 1.3rem;
+    display: flex; flex-direction: column; gap: .9rem; flex: 1;
+    justify-content: center; }
   .row { display: flex; justify-content: space-between; align-items: baseline;
-    gap: .6rem; font-size: .78rem; color: var(--dim); }
+    gap: .6rem; font-size: .98rem; color: var(--dim); }
   .row b { color: var(--ink); font-weight: 600; }
-  .row .lg { font-size: 1.35rem; font-weight: 650; letter-spacing: -.025em;
+  .row .lg { font-size: 2rem; font-weight: 700; letter-spacing: -.025em;
     color: var(--ink); white-space: nowrap; }
-  .row .lg em { font-size: .78rem; font-weight: 400; font-style: normal;
-    letter-spacing: 0; color: var(--dim); margin-left: .4rem; }
+  .row .lg em { font-size: .9rem; font-weight: 400; font-style: normal;
+    letter-spacing: 0; color: var(--dim); margin-left: .5rem; }
 
   /* ---- the weight curve ---- */
   .chart svg { width: 100%; height: auto; display: block; }
 
   /* ---- the 90-day grid ---- */
-  .cells { display: grid; grid-template-columns: repeat(15, 1fr); gap: 3px; }
-  .cells i { display: block; aspect-ratio: 1; border-radius: 3px; }
-  .legend { display: flex; flex-wrap: wrap; gap: .15rem .8rem;
-    font-size: .64rem; color: var(--dim); }
-  .legend span { display: inline-flex; align-items: center; gap: .3rem; }
-  .legend i { width: 8px; height: 8px; border-radius: 2px; }
+  .cells { display: grid; grid-template-columns: repeat(15, 1fr); gap: 5px; }
+  .cells i { display: block; aspect-ratio: 1; border-radius: 4px; }
+  .legend { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem;
+    font-size: .82rem; color: var(--dim); }
+  .legend span { display: inline-flex; align-items: center; gap: .4rem; }
+  .legend i { width: 10px; height: 10px; border-radius: 3px; }
 
   /* ---- today ---- */
-  .cells4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: .55rem; }
-  .cells4 > div { background: rgba(255,255,255,.06); border-radius: 10px;
-    padding: .5rem .55rem; }
-  .cells4 .l { font-size: .55rem; letter-spacing: .12em; text-transform: uppercase;
-    color: var(--dim); }
-  .cells4 .v { font-size: 1.05rem; font-weight: 600; letter-spacing: -.02em;
-    margin-top: .1rem; }
+  .cells4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: .7rem; }
+  .cells4 > div { background: rgba(255,255,255,.06); border-radius: 12px;
+    padding: .8rem .6rem; }
+  .cells4 .l { font-size: .68rem; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--dim); }
+  .cells4 .v { font-size: 1.5rem; font-weight: 700; letter-spacing: -.02em;
+    margin-top: .2rem; }
 
   .good { color: var(--good); }
   .warn { color: var(--warn); }
   .bad  { color: var(--bad); }
-  .empty { color: var(--dim); font-size: .84rem; font-style: italic; }
+  .empty { color: var(--dim); font-size: 1rem; font-style: italic; }
 
-  @media (max-width: 380px) {
-    .day { font-size: 1.9rem; }
+  @media (max-width: 340px) {
     .cells4 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 560px) {
+    body { padding: 2.5vh 0; }
+    .widget { border-radius: 24px; min-height: 0; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
   <div class="widget">
     <div>
       <div class="kicker" id="kicker"></div>
@@ -106,7 +115,6 @@
     <div class="part" id="grid"></div>
     <div class="part" id="today"></div>
   </div>
-</div>
 
 <script>
 (function () {
@@ -212,7 +220,7 @@
   /* ============ 1 · the weight curve ============
      Descending, in real kilos. Dashed = the plan, from the start weight down
      to the goal over the full length. Solid = where the deficits put him. */
-  var W = 340, H = 104, PT = 8, PB = 8;
+  var W = 340, H = 150, PT = 10, PB = 10;
   var hi = wStart + .4, lo = wGoal - .4;
   function X(day) { return day / LEN * W; }
   function Y(w)   { return PT + (hi - w) / (hi - lo) * (H - PT - PB); }
