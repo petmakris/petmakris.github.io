@@ -48,6 +48,8 @@
     display: flex; flex-direction: column; justify-content: space-between;
     gap: 1.6rem;
   }
+  /* portrait: the column wrappers are invisible, kids lay out flat in .widget */
+  .col-left, .col-right { display: contents; }
 
   /* ---- header ---- */
   .kicker { font-size: .78rem; font-weight: 600; letter-spacing: .16em;
@@ -102,18 +104,50 @@
     body { padding: 2.5vh 0; }
     .widget { border-radius: 24px; min-height: 0; }
   }
+
+  /* ---- landscape phone: short and wide instead of tall and narrow ----
+     Two columns so nothing scrolls: header+curve on the left, the
+     90-day grid and today's numbers on the right. Each column stacks
+     and shares height on its own terms — the tall 90-day grid must
+     not steal room from the curve on the other side. */
+  @media (orientation: landscape) and (max-height: 500px) {
+    .widget {
+      max-width: 900px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+      column-gap: 1.8rem;
+    }
+    .col-left, .col-right {
+      display: flex; flex-direction: column; gap: .6rem; min-height: 0;
+    }
+    /* the day heading is decorative-large for a portrait glance; on a
+       short landscape screen it would eat the room the curve needs */
+    .day  { font-size: 1.9rem; margin: .1rem 0; }
+    .kicker { font-size: .7rem; }
+    .date { font-size: .88rem; }
+    .part { gap: .5rem; padding-top: .8rem; }
+    #curve { min-height: 0; }
+    #grid  { border-top: none; padding-top: 0; }
+    .chart { flex: 1; min-height: 0; }
+    .chart svg { height: 100%; }
+  }
 </style>
 </head>
 <body>
   <div class="widget">
-    <div>
-      <div class="kicker" id="kicker"></div>
-      <div class="day" id="day"></div>
-      <div class="date" id="date"></div>
+    <div class="col-left">
+      <div class="head">
+        <div class="kicker" id="kicker"></div>
+        <div class="day" id="day"></div>
+        <div class="date" id="date"></div>
+      </div>
+      <div class="part" id="curve"></div>
     </div>
-    <div class="part" id="curve"></div>
-    <div class="part" id="grid"></div>
-    <div class="part" id="today"></div>
+    <div class="col-right">
+      <div class="part" id="grid"></div>
+      <div class="part" id="today"></div>
+    </div>
   </div>
 
 <script>
