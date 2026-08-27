@@ -11,7 +11,7 @@ root `index.html` is a hand-written hub and every project is a folder under it.
 | `/english/` | The English Play Deck — 28 scripted scenes for a TV, with audio. The older printable pack is alongside as a PDF. | `~/projects/personal/English` |
 | `/frequence/` | Fréquence — the 10 000 most frequent words in four languages, as a game. | `frequence/` |
 | `/dieting/el/`, `/dieting/fr/` | A practical guide to dieting, in Greek and French. | here |
-| `/dieting/journal/` | The diet journal — a live notebook/dashboard updated from Claude Code sessions. Data in `data.js`; restart procedure in `dieting/journal/PROTOCOL.md`. | here |
+| `/dieting/journal/` | The diet journal — a phone-widget dashboard updated from Claude Code sessions. Totals in `data.js`, meal detail in `log.md`; operating procedure in `.claude/skills/diet-journal/SKILL.md`. | here |
 | `/recipes/` | Συνταγές · Recettes — bilingual recipes (Greek + French side by side), each with a printable PDF. Hand-written HTML pages; each recipe's PDF generator is committed under `recipes/<slug>/src/`. | `recipes/` |
 
 ## Deploying
