@@ -15,8 +15,17 @@ window.DIET = {
     start: "2026-08-27",        // day 1
     lengthDays: 90,             // three months → ends 2026-11-24
     deficitTarget: 600,         // kcal/day — the only sustainable number
-    maintenanceRest: 1930,      // Mifflin-St Jeor: male, 104 kg, 176 cm, age 43
-    startWeight: 104            // kg on day 1 — the weight curve starts here
+    maintenanceRest: 1890,      // Mifflin-St Jeor: male, 100 kg, 176 cm, age 43
+    startWeight: 100.0          // kg on day 1 — weighed in 2026-08-27
   },
-  days: []
+  days: [
+    {
+      date: "2026-08-27",
+      eaten: 1150,
+      active: null,
+      weight: 100.0,
+      exercise: [],
+      note: "Day 1 weigh-in 100.0 kg. Includes planned 17h snack; dinner not yet logged."
+    }
+  ]
 };
