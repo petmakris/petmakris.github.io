@@ -50,6 +50,7 @@ Repo `petmakris/petmakris.github.io`, deployed as GitHub Pages from `main`.
 | `dieting/journal/log.md` | **The detail.** Every meal with its calories, day by day. Committed to the repo, never loaded and never linked. |
 | `dieting/journal/index.html` | The dashboard. Renders `data.js`; no server, no build. |
 | `.claude/skills/diet-journal/SKILL.md` | This file. Update it if the rules themselves change. |
+| `CLAUDE.md` (repo root) | Pre-authorizes pushing straight to `main` from any session — no branch, no PR. Applies to the whole repo, but it exists mainly for this project: he works from his phone and expects the page to update within the same turn. |
 
 The page deliberately says nothing about how it is maintained — that is what
 this skill is for. Do not add protocol text, repo links or "edited by Claude"
@@ -94,10 +95,21 @@ chat, so Petros can correct them.
 
 ## What the page shows
 
-**The whole page is one widget.** A single dark card, one phone screen, three
-parts stacked inside it. He settled this on 2026-08-26 after looking at five
-mockups: "όλη η σελίδα θα γίνει ένα απλό widget". There is no second card, no
-weekly-averages block and no day-by-day table any more.
+**The whole page is one widget.** He settled this on 2026-08-26 after looking
+at five mockups: "όλη η σελίδα θα γίνει ένα απλό widget". There is no second
+card, no weekly-averages block and no day-by-day table any more.
+
+**It fills the phone screen — no floating card.** He asked for this on
+2026-08-27: too much of the screen was empty paper-coloured margin around a
+small centered card, and the type was too small to read at a glance. The
+widget is now the full viewport (`100dvh`, edge to edge on a phone), the three
+parts spread out with `justify-content: space-between` to use whatever height
+the screen actually gives them instead of clumping at the top, and every
+number and label is sized up from the original draft — the day number, the
+weight figures, today's four stats, the grid legend, all of it. Keep this in
+mind when adding anything new: it should read as one glance from arm's length,
+not a document to zoom into. On a wide screen (desktop, checking the page from
+a laptop) it caps at 560px and centers, so this only affects phones.
 
 Above the three parts: `Day N of 90` once the plan is running, and under it
 today's date and **how many days are left** — `Wed 19 Sep · 66 days left`,
