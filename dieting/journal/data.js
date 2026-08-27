@@ -21,7 +21,7 @@ window.DIET = {
   days: [
     {
       date: "2026-08-27",
-      eaten: 1730,
+      eaten: 1930,
       active: 850,
       weight: 100.0,
       exercise: [],
