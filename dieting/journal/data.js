@@ -26,6 +26,14 @@ window.DIET = {
       weight: 100.0,
       exercise: [],
       note: "Day 1 weigh-in 100.0 kg. Evening: apple, bread, salad, +100 unknown — he says that's it for today."
+    },
+    {
+      date: "2026-08-28",
+      eaten: 1000,
+      active: null,
+      weight: null,
+      exercise: [],
+      note: "Woke 5h00 (cat), ate a double portion of overnight oats + milk. Plans extra gym time to compensate."
     }
   ]
 };
