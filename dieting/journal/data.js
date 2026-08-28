@@ -29,7 +29,7 @@ window.DIET = {
     },
     {
       date: "2026-08-28",
-      eaten: 2160,
+      eaten: 2460,
       active: null,
       weight: null,
       exercise: [],
