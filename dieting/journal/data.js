@@ -37,11 +37,11 @@ window.DIET = {
     },
     {
       date: "2026-08-29",
-      eaten: 1000,
+      eaten: 1550,
       active: null,
       weight: null,
       exercise: [],
-      note: "Cat woke him mid-night again (2nd night in a row) and it triggered night eating: yogurt with a lot of honey ~500 + ~500 other, ~1000 kcal before the day even started. Pattern: cat wake-up → night eating."
+      note: "Cat woke him mid-night again (2nd night in a row) and it triggered night eating: yogurt with a lot of honey ~500 + ~500 other, ~1000 kcal before the day even started. Pattern: cat wake-up → night eating. Lunch: yogurt + honey and biscoff cream, 550 kcal."
     }
   ]
 };
