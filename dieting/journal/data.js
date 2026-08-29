@@ -37,11 +37,11 @@ window.DIET = {
     },
     {
       date: "2026-08-29",
-      eaten: 2700,
-      active: null,
+      eaten: 3400,
+      active: 400,
       weight: null,
-      exercise: [],
-      note: "Cat woke him early morning again (2nd morning in a row) and it triggered early-morning eating: yogurt with a lot of honey ~500 + ~500 other, ~1000 kcal before the day even started. Pattern: cat wake-up → early-morning eating. Lunch: yogurt + honey and biscoff cream, 550 kcal. Evening: 450 kcal, no items given. Extra +700 later, no items given — high-calorie day, he flagged it himself."
+      exercise: ["walking"],
+      note: "Cat woke him early morning again (2nd morning in a row) and it triggered early-morning eating: yogurt with a lot of honey ~500 + ~500 other, ~1000 kcal before the day even started. Pattern: cat wake-up → early-morning eating. Lunch: yogurt + honey and biscoff cream, 550 kcal. Evening: 450 kcal, no items given. Extra +700 later, no items given — high-calorie day, he flagged it himself. Dinner +700, no items given. Garmin active 400 kcal, mostly from walking."
     }
   ]
 };
