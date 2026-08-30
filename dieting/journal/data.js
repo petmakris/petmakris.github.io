@@ -37,11 +37,19 @@ window.DIET = {
     },
     {
       date: "2026-08-29",
-      eaten: 3400,
+      eaten: 4000,
       active: 400,
       weight: null,
       exercise: ["walking"],
-      note: "Cat woke him early morning again (2nd morning in a row) and it triggered early-morning eating: yogurt with a lot of honey ~500 + ~500 other, ~1000 kcal before the day even started. Pattern: cat wake-up → early-morning eating. Lunch: yogurt + honey and biscoff cream, 550 kcal. Evening: 450 kcal, no items given. Extra +700 later, no items given — high-calorie day, he flagged it himself. Dinner +700, no items given. Garmin active 400 kcal, mostly from walking."
+      note: "Cat woke him early morning again (2nd morning in a row) and it triggered early-morning eating: yogurt with a lot of honey ~500 + ~500 other, ~1000 kcal before the day even started. Pattern: cat wake-up → early-morning eating. Lunch: yogurt + honey and biscoff cream, 550 kcal. Evening: 450 kcal, no items given. Extra +700 later, no items given — high-calorie day, he flagged it himself. Dinner +700, no items given. Late night ~23:50 (still before midnight, counted into this day): +600, no items given — high-calorie day overall, he flagged it himself and chose to keep tracking rather than skip logging it. Garmin active 400 kcal, mostly from walking."
+    },
+    {
+      date: "2026-08-30",
+      eaten: null,
+      active: null,
+      weight: null,
+      exercise: [],
+      note: ""
     }
   ]
 };
