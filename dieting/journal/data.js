@@ -45,11 +45,11 @@ window.DIET = {
     },
     {
       date: "2026-08-30",
-      eaten: null,
+      eaten: 1900,
       active: null,
       weight: null,
       exercise: [],
-      note: ""
+      note: "Day 4: eaten 1900, no items given."
     }
   ]
 };
