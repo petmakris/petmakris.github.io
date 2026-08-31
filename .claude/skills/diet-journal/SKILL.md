@@ -23,6 +23,16 @@ as the input method.
 - **Duration:** 90 days, **2026-08-27 (day 1) through 2026-11-24 (day 90)**.
 - **Model:** burn for a day = `maintenanceRest + active` (Garmin active
   calories); deficit = burn − eaten.
+- **Missing Garmin active calories default to `plan.defaultActive` (450
+  kcal), not to a gap.** He confirmed on 2026-08-31 that his Garmin stays
+  consistent day to day (recent averages sat around 433), so a day he doesn't
+  report an active figure for still gets a burn/deficit computed with 450 —
+  it does not fall back to grey "no data" the way a day with no `eaten`
+  still does. This applies retroactively to every already-logged day with
+  `active: null`, not just future ones, because the default lives in the
+  page's math (`index.html`), not in `data.js` — keep recording `active` as
+  `null` when he genuinely didn't give a figure; do not write 450 into
+  `data.js` itself.
 - **`maintenanceRest` = 1930 kcal**, from Mifflin-St Jeor for male, 104 kg,
   176 cm, age 43 (confirmed 2026-08-26). Recompute it as
   `10×kg + 6.25×cm − 5×age + 5` if his weight changes materially — a 5 kg
@@ -133,7 +143,8 @@ that does not change from one day to the next is not earning its place.
    the legend prints whatever the current target implies. Above it, the
    consistency figure and how many elapsed days actually have data. This is
    the part that answers "how well am I keeping to the plan" — gaps must stay
-   visible as gaps.
+   visible as gaps. A missing `active` alone is no longer a gap here — see
+   `defaultActive` above — so grey now means `eaten` is missing.
 3. **Today's figures** — EATEN, ACTIVE, BURN, DEFICIT, and nothing else.
 
 **The goal weight is derived**, `startWeight − (deficitTarget × lengthDays ÷

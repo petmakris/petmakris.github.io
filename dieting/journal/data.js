@@ -4,8 +4,10 @@
  * procedure is in the repo skill .claude/skills/diet-journal/SKILL.md.
  *
  * Units: kcal everywhere. `eaten` is the day's total intake. `active` is the
- * Garmin "active calories" figure. `maintenanceRest` is resting maintenance;
- * burn = maintenanceRest + active, and deficit = burn - eaten. Target: 600.
+ * Garmin "active calories" figure — when a day has none, the page uses
+ * `plan.defaultActive` instead, so a missing Garmin reading is not treated
+ * as a data gap. `maintenanceRest` is resting maintenance; burn =
+ * maintenanceRest + active, and deficit = burn - eaten. Target: 600.
  *
  * The page renders in English. What language a stored note or exercise line
  * happens to be in does not matter — none of it is rendered.
@@ -16,7 +18,8 @@ window.DIET = {
     lengthDays: 90,             // three months → ends 2026-11-24
     deficitTarget: 600,         // kcal/day — the only sustainable number
     maintenanceRest: 1890,      // Mifflin-St Jeor: male, 100 kg, 176 cm, age 43
-    startWeight: 100.0          // kg on day 1 — weighed in 2026-08-27
+    startWeight: 100.0,         // kg on day 1 — weighed in 2026-08-27
+    defaultActive: 450          // used when a day has no Garmin active figure — his Garmin stays consistent day to day, so this stands in rather than the day counting as a gap
   },
   days: [
     {

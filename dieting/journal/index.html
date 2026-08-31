@@ -207,6 +207,7 @@
   var TARGET = plan.deficitTarget;
   var LEN    = plan.lengthDays;
   var REST   = plan.maintenanceRest;
+  var DEFAULT_ACTIVE = plan.defaultActive != null ? plan.defaultActive : null;
   var KG     = 7700;                  // kcal per kg of fat
 
   function parseDate(s) { var p = s.split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
@@ -230,9 +231,13 @@
     return (x == null || isNaN(x)) ? '—' :
       x.toLocaleString('en-GB', { minimumFractionDigits:1, maximumFractionDigits:1 });
   }
+  function effActive(day) {           // his real Garmin figure, or the standing default
+    return day.active != null ? day.active : DEFAULT_ACTIVE;
+  }
   function deficit(day) {             // null when it cannot be computed yet
-    if (REST == null || day.active == null || day.eaten == null) return null;
-    return REST + day.active - day.eaten;
+    var act = effActive(day);
+    if (REST == null || act == null || day.eaten == null) return null;
+    return REST + act - day.eaten;
   }
   function cls(d) {
     if (d == null) return 'na';
@@ -363,11 +368,12 @@
   if (!t || (t.eaten == null && t.active == null)) {
     tv = '<div class="empty">Nothing logged today.</div>';
   } else {
-    var burn = (REST != null && t.active != null) ? REST + t.active : null;
+    var tActive = effActive(t);
+    var burn = (REST != null && tActive != null) ? REST + tActive : null;
     var tdef = deficit(t);
     tv = '<div class="cells4">' +
       cell('EATEN',   t.eaten  == null ? '—' : n(t.eaten), '') +
-      cell('ACTIVE',  t.active == null ? '—' : n(t.active), '') +
+      cell('ACTIVE',  tActive  == null ? '—' : n(tActive), '') +
       cell('BURN',    burn     == null ? '—' : n(burn), '') +
       cell('DEFICIT', tdef     == null ? '—' : n(tdef), cls(tdef)) +
       '</div>';
