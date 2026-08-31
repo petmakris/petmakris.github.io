@@ -50,6 +50,14 @@ window.DIET = {
       weight: null,
       exercise: [],
       note: "Day 4: eaten 1900, no items given."
+    },
+    {
+      date: "2026-08-31",
+      eaten: 590,
+      active: null,
+      weight: null,
+      exercise: [],
+      note: "Day 5 so far: banana 120, lunch yogurt 500g+biscoff+honey 470. Running total, more may come."
     }
   ]
 };
