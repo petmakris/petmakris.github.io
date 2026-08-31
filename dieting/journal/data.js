@@ -56,11 +56,11 @@ window.DIET = {
     },
     {
       date: "2026-08-31",
-      eaten: 1940,
+      eaten: 3290,
       active: null,
       weight: null,
       exercise: [],
-      note: "Day 5: banana 120, morning yogurt 500g+biscoff+honey 470, lunch IKEA meatballs big portion with legumes and standard sauce 1050 (upper estimate), sweet treat 300. He expects this to be the whole day's food."
+      note: "Day 5: banana 120, morning yogurt 500g+biscoff+honey 470, lunch IKEA 20 meatballs+cream sauce+legumes+potato puree ~1180, plus 4x70g chocolate bars 380 kcal each = 1520. He flagged the chocolate himself as unfortunate. High-calorie day, over target."
     }
   ]
 };
