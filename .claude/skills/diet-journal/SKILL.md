@@ -136,15 +136,19 @@ that does not change from one day to the next is not earning its place.
    and a dash before day 1, when there is no pace to project.
    A day with no data adds no deficit, so the line goes flat for that day.
    That is the honest reading; do not interpolate over gaps.
-2. **The 90-day grid** — one square per plan day, coloured by that day's
-   deficit against the target: green above `target − 100`, amber down to
-   `target − 350`, red below that, grey for a day with no data, near-invisible
-   for a day that has not arrived. At a 600 target that reads 500 / 250, and
-   the legend prints whatever the current target implies. Above it, the
-   consistency figure and how many elapsed days actually have data. This is
-   the part that answers "how well am I keeping to the plan" — gaps must stay
-   visible as gaps. A missing `active` alone is no longer a gap here — see
-   `defaultActive` above — so grey now means `eaten` is missing.
+2. **The 90-day grid** — one square per plan day, coloured against
+   *maintenance* (zero deficit), not against the target, confirmed
+   2026-08-31: green for a deficit, red for a surplus, grey within `±100`
+   kcal of maintenance either way — strong green past `+target`, light green
+   from `+100` to `+target`, light red from `−100` to `−target`, strong red
+   past `−target`. At a 600 target that's strong green over +600, light
+   green +100–600, grey ±100, light red −100 to −600, strong red past −600.
+   Separately, grey also means "no data" for a day whose `eaten` is missing
+   (near-invisible for a day that has not arrived yet). A missing `active`
+   alone is no longer a gap here — see `defaultActive` above. Above the grid,
+   the consistency figure and how many elapsed days actually have data. This
+   is the part that answers "how well am I keeping to the plan" — gaps must
+   stay visible as gaps.
 3. **Today's figures** — EATEN, ACTIVE, BURN, DEFICIT, and nothing else.
 
 **The goal weight is derived**, `startWeight − (deficitTarget × lengthDays ÷

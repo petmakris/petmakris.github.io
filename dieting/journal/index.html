@@ -31,6 +31,13 @@
     --bad:    #ef9c86;
     --none:   rgba(255,255,255,.18);
     --future: rgba(255,255,255,.06);
+    /* the 90-day grid's own scale: green = deficit, red = surplus, grey =
+       within 100 kcal of maintenance either way */
+    --def-big:   #5fb37b;
+    --def-small: #a9d9b6;
+    --neutral:   #9aa3ad;
+    --sur-small: #eab3a0;
+    --sur-big:   #d9614a;
     --accent: #f5c56d;
     --accent-ink: #1a1408;
     --accent-glow: rgba(245,197,109,.35);
@@ -108,9 +115,11 @@
     padding-top: .25rem; border-top: 1.5px solid var(--hair); }
   .legend span { display: inline-flex; align-items: center; padding: .25rem .65rem;
     border-radius: 999px; font-size: .74rem; font-weight: 700; }
-  .legend .pill-good { background: var(--good); color: #12240f; }
-  .legend .pill-warn { background: var(--warn); color: #2b1c05; }
-  .legend .pill-bad  { background: var(--bad);  color: #2c0c02; }
+  .legend .pill-def-big   { background: var(--def-big);   color: #0d2113; }
+  .legend .pill-def-small { background: var(--def-small); color: #123018; }
+  .legend .pill-neutral   { background: var(--neutral);   color: #12161a; }
+  .legend .pill-sur-small { background: var(--sur-small); color: #2c1208; }
+  .legend .pill-sur-big   { background: var(--sur-big);   color: #2a0800; }
   .legend .pill-none { background: rgba(255,255,255,.1); border: 1px solid var(--border);
     color: var(--dim); }
 
@@ -128,6 +137,11 @@
   .good { color: var(--good); }
   .warn { color: var(--warn); }
   .bad  { color: var(--bad); }
+  .def-big   { color: var(--def-big); }
+  .def-small { color: var(--def-small); }
+  .neutral   { color: var(--neutral); }
+  .sur-small { color: var(--sur-small); }
+  .sur-big   { color: var(--sur-big); }
   .empty { color: var(--dim); font-size: 1rem; font-style: italic; }
 
   @media (max-width: 340px) {
@@ -239,11 +253,12 @@
     if (REST == null || act == null || day.eaten == null) return null;
     return REST + act - day.eaten;
   }
-  function cls(d) {
+  var NEUTRAL = 100;                  // within this of maintenance either way = grey
+  function cls(d) {                   // colour bucket: green = deficit, red = surplus
     if (d == null) return 'na';
-    if (d >= TARGET - 100) return 'good';
-    if (d >= TARGET - 350) return 'warn';
-    return 'bad';
+    if (d > NEUTRAL)  return d >= TARGET ? 'def-big' : 'def-small';
+    if (d < -NEUTRAL) return d <= -TARGET ? 'sur-big' : 'sur-small';
+    return 'neutral';
   }
 
   days.sort(function (a, b) { return a.date < b.date ? -1 : 1; });
@@ -344,7 +359,10 @@
     var color, lbl;
     if (g > elapsed)       { color = 'var(--future)'; lbl = 'Day ' + g; }
     else if (gdef == null) { color = 'var(--none)';   lbl = 'Day ' + g + ' · no data'; }
-    else                   { color = 'var(--' + cls(gdef) + ')'; lbl = 'Day ' + g + ' · deficit ' + n(gdef); }
+    else {
+      color = 'var(--' + cls(gdef) + ')';
+      lbl = 'Day ' + g + ' · ' + (gdef >= 0 ? 'deficit ' : 'surplus ') + n(Math.abs(gdef));
+    }
     cells += '<i style="background:' + color + '" title="' + lbl + '"></i>';
   }
   document.getElementById('grid').innerHTML =
@@ -354,9 +372,11 @@
       '<span class="logged"><b>' + cumDays + '</b>&nbsp;of&nbsp;' + elapsed + ' logged</span></div>' +
     '<div class="cells">' + cells + '</div>' +
     '<div class="legend">' +
-      lg('good', 'over ' + (TARGET - 100)) +
-      lg('warn', (TARGET - 350) + '–' + (TARGET - 100)) +
-      lg('bad',  'under ' + (TARGET - 350)) +
+      lg('def-big',   'over +' + TARGET) +
+      lg('def-small', '+' + NEUTRAL + '–' + TARGET) +
+      lg('neutral',   '±' + NEUTRAL) +
+      lg('sur-small', '−' + NEUTRAL + '–' + TARGET) +
+      lg('sur-big',   'over −' + TARGET) +
       lg('none', 'no data') +
     '</div>';
   function lg(k, txt) {
