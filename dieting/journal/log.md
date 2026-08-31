@@ -106,9 +106,11 @@ Garmin active: —
 | Μεσημεριανό: 500g γιαούρτι | 350 |
 | Μεσημεριανό: 1 κ.γ. κρέμα Biscoff | 60 |
 | Μεσημεριανό: 1 κ.σ. μέλι | 60 |
-| **Σύνολο** | **590** |
+| Lunch: IKEA meatballs, big portion, with legumes and standard sauce | 1050 |
+| Sweet treat | 300 |
+| **Σύνολο** | **1940** |
 
 Garmin active: —
 Άσκηση: —
-Σημείωση: μέρα σε εξέλιξη, ίσως προστεθούν κι άλλα.
-Εκτιμήσεις: κανένα — όλα τα νούμερα δόθηκαν απευθείας.
+Σημείωση: he expects this to be the whole day's food, no more meals planned.
+Εκτιμήσεις: IKEA meatballs 1050 kcal is an upper-bound estimate (15-16 meatballs ~650, cream sauce ~150-200, legumes side ~100-150); sweet treat 300 given directly.
