@@ -241,6 +241,11 @@
   function n(x)  {
     return (x == null || isNaN(x)) ? '—' : Math.round(x).toLocaleString('en-GB');
   }
+  function signed(x) {                // a deficit shows negative, a surplus positive
+    if (x == null || isNaN(x)) return '—';
+    var r = Math.round(x);
+    return (r > 0 ? '+' : '') + r.toLocaleString('en-GB');
+  }
   function d1(x) {
     return (x == null || isNaN(x)) ? '—' :
       x.toLocaleString('en-GB', { minimumFractionDigits:1, maximumFractionDigits:1 });
@@ -361,7 +366,7 @@
     else if (gdef == null) { color = 'var(--none)';   lbl = 'Day ' + g + ' · no data'; }
     else {
       color = 'var(--' + cls(gdef) + ')';
-      lbl = 'Day ' + g + ' · ' + (gdef >= 0 ? 'deficit ' : 'surplus ') + n(Math.abs(gdef));
+      lbl = 'Day ' + g + ' · ' + signed(-gdef) + ' kcal';
     }
     cells += '<i style="background:' + color + '" title="' + lbl + '"></i>';
   }
@@ -372,11 +377,11 @@
       '<span class="logged"><b>' + cumDays + '</b>&nbsp;of&nbsp;' + elapsed + ' logged</span></div>' +
     '<div class="cells">' + cells + '</div>' +
     '<div class="legend">' +
-      lg('def-big',   'over +' + TARGET) +
-      lg('def-small', '+' + NEUTRAL + '–' + TARGET) +
+      lg('def-big',   'over −' + TARGET) +
+      lg('def-small', '−' + NEUTRAL + ' to −' + TARGET) +
       lg('neutral',   '±' + NEUTRAL) +
-      lg('sur-small', '−' + NEUTRAL + '–' + TARGET) +
-      lg('sur-big',   'over −' + TARGET) +
+      lg('sur-small', '+' + NEUTRAL + ' to +' + TARGET) +
+      lg('sur-big',   'over +' + TARGET) +
       lg('none', 'no data') +
     '</div>';
   function lg(k, txt) {
@@ -395,7 +400,7 @@
       cell('EATEN',   t.eaten  == null ? '—' : n(t.eaten), '') +
       cell('ACTIVE',  tActive  == null ? '—' : n(tActive), '') +
       cell('BURN',    burn     == null ? '—' : n(burn), '') +
-      cell('DEFICIT', tdef     == null ? '—' : n(tdef), cls(tdef)) +
+      cell('DEFICIT', tdef     == null ? '—' : signed(-tdef), cls(tdef)) +
       '</div>';
   }
   document.getElementById('today').innerHTML = tv;

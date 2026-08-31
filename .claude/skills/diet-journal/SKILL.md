@@ -141,9 +141,14 @@ that does not change from one day to the next is not earning its place.
    2026-08-31: green for a deficit, red for a surplus, grey within `±100`
    kcal of maintenance either way — strong green past `+target`, light green
    from `+100` to `+target`, light red from `−100` to `−target`, strong red
-   past `−target`. At a 600 target that's strong green over +600, light
-   green +100–600, grey ±100, light red −100 to −600, strong red past −600.
-   Separately, grey also means "no data" for a day whose `eaten` is missing
+   past `−target`. **Displayed numbers use the opposite sign from the
+   internal `deficit()` value** — confirmed 2026-08-31, a caloric deficit
+   reads negative and a surplus reads positive, like a balance going down
+   vs up. So the grid tooltip, the legend and today's DEFICIT tile all show
+   `−deficit()`, not the raw computed value. At a 600 target the legend
+   reads: strong green "over −600", light green "−100 to −600", grey "±100",
+   light red "+100 to +600", strong red "over +600". Separately, grey also
+   means "no data" for a day whose `eaten` is missing
    (near-invisible for a day that has not arrived yet). A missing `active`
    alone is no longer a gap here — see `defaultActive` above. Above the grid,
    the consistency figure and how many elapsed days actually have data. This
