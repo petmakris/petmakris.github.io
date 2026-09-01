@@ -61,6 +61,14 @@ window.DIET = {
       weight: null,
       exercise: [],
       note: "Day 5: banana 120, morning yogurt 500g+biscoff+honey 470, lunch IKEA 20 meatballs+cream sauce+legumes+potato puree ~1180, plus 4x70g chocolate bars 380 kcal each = 1520. He flagged the chocolate himself as unfortunate. High-calorie day, over target."
+    },
+    {
+      date: "2026-09-01",
+      eaten: 360,
+      active: null,
+      weight: null,
+      exercise: ["leg day"],
+      note: "Day 6 morning: 360 kcal, mostly carbs, given directly. Leg day planned."
     }
   ]
 };

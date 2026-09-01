@@ -114,3 +114,17 @@ Garmin active: —
 Άσκηση: —
 Σημείωση: he expects this to be the whole day's food, no more meals planned. He flagged the chocolate himself ("Unfortunately!") — high-calorie day, over target.
 Εκτιμήσεις: IKEA lunch 1180 kcal is an estimate for the confirmed items (20 meatballs ~850, cream sauce ~120, legumes side ~50, potato puree portion ~160); chocolate bars given directly by him (4×380=1520), not estimated.
+
+---
+
+## 2026-09-01 — Ημέρα 6
+
+| Γεύμα | kcal |
+|---|---:|
+| Πρωί: κυρίως υδατάνθρακες (δόθηκε απευθείας) | 360 |
+| **Σύνολο** | **360** |
+
+Garmin active: —
+Άσκηση: leg day (προγραμματισμένο)
+Σημείωση: μέρα ποδιών σήμερα, γι' αυτό βαρύ σε υδατάνθρακες το πρωινό.
+Εκτιμήσεις: το 360 δόθηκε απευθείας, χωρίς επιμέρους γεύματα.
