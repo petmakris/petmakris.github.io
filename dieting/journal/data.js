@@ -75,8 +75,8 @@ window.DIET = {
       eaten: 2670,
       active: null,
       weight: null,
-      exercise: ["40 min evening walk"],
-      note: "Day 7: planned in advance — yogurt 350, honey 120, salad 150, chicken+couscous 450. Planned chocolate 200 skipped. Lunch ran over with extra yogurt+honey 500. Evening +1100 (no items given). Heavy work day, limited capacity to diet strictly; 40 min evening walk is the exercise he could fit in."
+      exercise: [],
+      note: "Day 7: planned in advance — yogurt 350, honey 120, salad 150, chicken+couscous 450. Planned chocolate 200 skipped. Lunch ran over with extra yogurt+honey 500. Evening +1100 (no items given). Heavy work day, limited capacity to diet strictly."
     }
   ]
 };
