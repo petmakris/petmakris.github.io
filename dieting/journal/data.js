@@ -69,6 +69,14 @@ window.DIET = {
       weight: null,
       exercise: ["leg day"],
       note: "Day 6: morning carbs 360, lunch chicken+couscous 600, chocolate 400, yogurt 350+honey 200+biscoff cream 400, evening +700 (no items given). He flagged it himself as a lot, feels bad about it. Leg day planned. He identified the cause: no salad available — plans more yogurt and salads from tomorrow."
+    },
+    {
+      date: "2026-09-02",
+      eaten: 1270,
+      active: null,
+      weight: null,
+      exercise: [],
+      note: "Day 7: planned in advance rather than logged after eating — yogurt 350, honey 120, salad 150, chicken+couscous 450, chocolate 200. Salad included this time, per yesterday's plan. More to log later today."
     }
   ]
 };
