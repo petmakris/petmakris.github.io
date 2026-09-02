@@ -72,11 +72,11 @@ window.DIET = {
     },
     {
       date: "2026-09-02",
-      eaten: 1270,
+      eaten: 2670,
       active: null,
       weight: null,
       exercise: [],
-      note: "Day 7: planned in advance rather than logged after eating — yogurt 350, honey 120, salad 150, chicken+couscous 450, chocolate 200. Salad included this time, per yesterday's plan. More to log later today."
+      note: "Day 7: planned in advance — yogurt 350, honey 120, salad 150, chicken+couscous 450. Planned chocolate 200 skipped. Lunch ran over with extra yogurt+honey 500. Evening +1100 (no items given)."
     }
   ]
 };
