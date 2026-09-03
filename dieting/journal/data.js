@@ -84,7 +84,7 @@ window.DIET = {
       active: null,
       weight: null,
       exercise: [],
-      note: "Day 8: breakfast+lunch 1300, evening 600, plus another 800 — no items given for any of them. Dinner still not eaten, so the day is still open and will go higher."
+      note: "Day 8: breakfast+lunch 1300, evening 600, plus another 800 — no items given for any of them. He decided to skip dinner and close the day here, so 2700 is the final total."
     }
   ]
 };
