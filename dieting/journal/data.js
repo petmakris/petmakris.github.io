@@ -84,7 +84,7 @@ window.DIET = {
       active: null,
       weight: null,
       exercise: [],
-      note: "Day 8: breakfast+lunch 1300, evening 600, plus another 800 — no items given for any of them. He decided to skip dinner and close the day here, so 2700 is the final total."
+      note: "Day 8: breakfast+lunch 1300, evening 600, plus another 800 — no items given for any of them. He decided to skip dinner and close the day here, so 2700 is the final total. Garmin active read ~447 mid-evening; he plans a 45 min uphill walk tonight worth another 200-300, and will confirm the final figure — not recorded until confirmed."
     }
   ]
 };
