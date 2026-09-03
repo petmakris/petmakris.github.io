@@ -80,11 +80,11 @@ window.DIET = {
     },
     {
       date: "2026-09-03",
-      eaten: 1300,
+      eaten: 2700,
       active: null,
       weight: null,
       exercise: [],
-      note: "Day 8: breakfast and lunch given combined as 1300 kcal, no items given. Day still open."
+      note: "Day 8: breakfast+lunch 1300, evening 600, plus another 800 — no items given for any of them. Dinner still not eaten, so the day is still open and will go higher."
     }
   ]
 };
