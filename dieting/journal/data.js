@@ -72,11 +72,19 @@ window.DIET = {
     },
     {
       date: "2026-09-02",
-      eaten: 2670,
+      eaten: 3270,
       active: null,
       weight: null,
       exercise: [],
-      note: "Day 7: planned in advance — yogurt 350, honey 120, salad 150, chicken+couscous 450. Planned chocolate 200 skipped. Lunch ran over with extra yogurt+honey 500. Evening +1100 (no items given). Heavy work day, limited capacity to diet strictly."
+      note: "Day 7: planned in advance — yogurt 350, honey 120, salad 150, chicken+couscous 450. Planned chocolate 200 skipped. Lunch ran over with extra yogurt+honey 500. Evening +1100 (no items given). Late night +600 more, no items given. Heavy work day, limited capacity to diet strictly."
+    },
+    {
+      date: "2026-09-03",
+      eaten: 1300,
+      active: null,
+      weight: null,
+      exercise: [],
+      note: "Day 8: breakfast and lunch given combined as 1300 kcal, no items given. Day still open."
     }
   ]
 };
