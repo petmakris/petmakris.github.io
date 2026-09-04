@@ -133,20 +133,17 @@
     border-radius: 999px; border: 1.5px solid var(--chrome-b);
     font-size: .78rem; font-weight: 600; color: var(--ink); }
 
-  /* ---- the legend, as t-shirt sizes ----
-     The swatch already says which side of maintenance a day fell on and how
-     far, so the legend's only job is to name the thresholds: S, M and L are
-     the distance, green and red the direction. One row, where six spelled-out
-     pills wrapped onto three. */
-  .key { display: flex; align-items: center; gap: .7rem; flex-wrap: wrap;
+  /* ---- the legend, as the scale itself ----
+     Five chips carrying the thresholds they stand for, read left to right as
+     a number line: −600, −100, 0, +100, +600. The page is denominated in kcal
+     everywhere else, so the legend is too, and a chip that states its own
+     number needs no caption under it. */
+  .key { display: flex; align-items: center; gap: .3rem; flex-wrap: wrap;
     padding-top: .4rem; border-top: 1.5px solid var(--hair); }
-  .sizes { display: flex; gap: .25rem; }
-  .sz { width: 1.7rem; height: 1.25rem; border-radius: 5px; display: flex;
+  .sz { height: 1.35rem; padding: 0 .45rem; border-radius: 5px; display: flex;
     align-items: center; justify-content: center;
     font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
-    font-size: .68rem; font-weight: 600; }
-  .keytxt { font-size: .7rem; line-height: 1.35; color: var(--dim); }
-  .keytxt b { color: var(--ink); font-weight: 600; }
+    font-size: clamp(.62rem, 2.6vw, .72rem); font-weight: 600; }
 
   /* ---- today ---- */
   .cells4 { display: grid; grid-template-columns: repeat(4, 1fr);
@@ -441,15 +438,16 @@
       (adher == null ? '—' : Math.round(adher * 100) + '%') + '</b></span>' +
       '<span class="logged"><b>' + cumDays + '</b>&nbsp;of&nbsp;' + elapsed + ' logged</span></div>' +
     '<div class="cells">' + cells + '</div>' +
-    '<div class="key"><div class="sizes">' +
-      sz('def-big',   'L', '#06210f') + sz('def-small', 'M', '#0d2a17') +
-      sz('neutral',   'S', '#101418') + sz('sur-small', 'M', '#2c1208') +
-      sz('sur-big',   'L', '#2a0800') +
-      '</div><div class="keytxt"><b>green under · red over</b><br>' +
-      'S ±' + NEUTRAL + ' · M to ' + TARGET + ' · L past ' + TARGET + '</div></div>';
-  function sz(k, letter, ink) {
+    '<div class="key">' +
+      sz('def-big',   '−' + TARGET,  '#06210f') +
+      sz('def-small', '−' + NEUTRAL, '#0d2a17') +
+      sz('neutral',   '0',           '#101418') +
+      sz('sur-small', '+' + NEUTRAL, '#2c1208') +
+      sz('sur-big',   '+' + TARGET,  '#2a0800') +
+      '</div>';
+  function sz(k, label, ink) {
     return '<span class="sz" style="background:var(--' + k + ');color:' + ink + '">' +
-      letter + '</span>';
+      label + '</span>';
   }
 
   /* ============ 3 · today ============ */
