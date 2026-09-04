@@ -57,6 +57,25 @@ Repo `petmakris/petmakris.github.io`, deployed as GitHub Pages from `main`.
 | `.claude/skills/diet-journal/references/original-instructions.md` | The verbatim voice transcript that started this project. Historical record only — never needs updating, so it lives outside the file that gets re-read every prompt. |
 | `CLAUDE.md` (repo root) | Pre-authorizes pushing straight to `main` from any session — no branch, no PR. Applies to the whole repo, but it exists mainly for this project: he works from his phone and expects the page to update within the same turn. |
 
+**A phone app reads these files too, so their shape is load-bearing.**
+`diet-lockscreen-android` (in `~/projects/diet-lockscreen-android`, pushed to
+`github.com/petmakris/diet-lockscreen-android`) shows this dashboard over the
+phone's lock screen on wake, draws a home-screen widget, and renders `log.md`
+as a "What I ate" screen. It syncs `index.html`, `data.js` and `log.md` from
+the published site and keeps local copies, so a wake needs no network.
+
+It cannot run JavaScript to read `data.js`, so it extracts figures by pattern:
+`date`, then `eaten`, then `active`, in that order within each day entry, plus
+`start`, `lengthDays`, `deficitTarget`, `maintenanceRest`, `defaultActive` and
+`startWeight` on the plan. `log.md` is read as one `## YYYY-MM-DD — …` heading
+per day followed by a single `| item | kcal |` table ending in a `Σύνολο` row.
+Keep writing both files exactly as they are written today. Reordering those
+fields or restyling the log's tables makes the widget show "No data yet" and
+empties the food log — it fails visibly rather than silently, but it fails.
+
+The meal detail stays off the public page as always; the app is where it is
+read, and it fetches `log.md` directly rather than the page linking to it.
+
 The page deliberately says nothing about how it is maintained — that is what
 this skill is for. Do not add protocol text, repo links or "edited by Claude"
 notes back onto the page, and **never link `log.md` from it**: he asked on
