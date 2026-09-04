@@ -114,13 +114,16 @@
   .row { display: flex; justify-content: space-between; align-items: baseline;
     gap: .6rem; font-size: clamp(.85rem, 1.5vh, .98rem); color: var(--dim); }
   .row b { color: var(--ink); font-weight: 600; }
-  .row .lg { font-size: clamp(1.4rem, 3vh, 2rem); font-weight: 700;
+  /* every figure that shares a row is capped by the width it has as well as
+     by viewport height: a tall narrow phone gives a generous vh and a mean
+     vw, and sizing on height alone pushed these numbers out of their boxes */
+  .row .lg { font-size: clamp(1.25rem, min(3vh, 6.4vw), 2rem); font-weight: 700;
     letter-spacing: -.025em; color: var(--ink); white-space: nowrap; }
-  .row .lg em { font-size: .9rem; font-weight: 400; font-style: normal;
-    letter-spacing: 0; color: var(--dim); margin-left: .5rem; }
-  /* the projection sits opposite today's weight; on a narrow phone it wraps,
-     so keep it flush right rather than ragged under itself */
-  .row .proj { text-align: right; }
+  .row .lg em { font-size: clamp(.72rem, 3vw, .9rem); font-weight: 400;
+    font-style: normal; letter-spacing: 0; color: var(--dim); margin-left: .4rem; }
+  /* the projection sits opposite today's weight and must stay on one line */
+  .row .proj { text-align: right; white-space: nowrap;
+    font-size: clamp(.72rem, 3vw, .98rem); }
 
   /* ---- the 90-day grid ---- */
   .cells { display: grid; grid-template-columns: repeat(15, 1fr);
@@ -146,15 +149,17 @@
   .keytxt b { color: var(--ink); font-weight: 600; }
 
   /* ---- today ---- */
-  .cells4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: .7rem; }
+  .cells4 { display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: clamp(.4rem, 1.6vw, .7rem); }
   .cells4 > div { background: var(--tile); border: 1.5px solid var(--border);
-    border-radius: 12px; padding: clamp(.5rem, 1.2vh, .8rem) .6rem; }
+    border-radius: 12px; padding: clamp(.5rem, 1.2vh, .8rem) clamp(.35rem, 1.6vw, .6rem);
+    min-width: 0; overflow: hidden; }
   .cells4 > div.has { border-color: var(--tile-border); }
-  .cells4 .l { font-size: .68rem; font-weight: 700; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--dim); }
+  .cells4 .l { font-size: clamp(.58rem, 2.4vw, .68rem); font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--dim); }
   .cells4 > div.has .l { color: var(--chrome); }
-  .cells4 .v { font-size: clamp(1.1rem, 2.4vh, 1.5rem); font-weight: 700;
-    letter-spacing: -.02em; margin-top: .2rem; }
+  .cells4 .v { font-size: clamp(.95rem, min(2.4vh, 4.4vw), 1.5rem); font-weight: 700;
+    letter-spacing: -.02em; margin-top: .2rem; white-space: nowrap; }
 
   .good { color: var(--good); }
   .warn { color: var(--warn); }
