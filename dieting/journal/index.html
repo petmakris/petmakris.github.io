@@ -138,10 +138,14 @@
      a number line: −600, −100, 0, +100, +600. The page is denominated in kcal
      everywhere else, so the legend is too, and a chip that states its own
      number needs no caption under it. */
-  .key { display: flex; align-items: center; gap: .3rem; flex-wrap: wrap;
-    padding-top: .4rem; border-top: 1.5px solid var(--hair); }
-  .sz { height: 1.35rem; padding: 0 .45rem; border-radius: 5px; display: flex;
-    align-items: center; justify-content: center;
+  .key { display: flex; align-items: center; justify-content: center;
+    gap: .35rem; flex-wrap: wrap;
+    padding-top: .5rem; border-top: 1.5px solid var(--hair); }
+  /* a ring and a full pill radius, so the legend never reads as another row
+     of day squares: the cells above are bare 4px-radius blocks */
+  .sz { height: 1.4rem; padding: 0 .5rem; border-radius: 999px;
+    border: 1.5px solid rgba(255,255,255,.32);
+    display: flex; align-items: center; justify-content: center;
     font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
     font-size: clamp(.62rem, 2.6vw, .72rem); font-weight: 600; }
 
