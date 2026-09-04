@@ -80,11 +80,11 @@ window.DIET = {
     },
     {
       date: "2026-09-03",
-      eaten: 2700,
-      active: null,
+      eaten: 3500,
+      active: 748,
       weight: null,
       exercise: [],
-      note: "Day 8: breakfast+lunch 1300, evening 600, plus another 800 — no items given for any of them. He decided to skip dinner and close the day here, so 2700 is the final total. Garmin active read ~447 mid-evening; he plans a 45 min uphill walk tonight worth another 200-300, and will confirm the final figure — not recorded until confirmed."
+      note: "Day 8: breakfast+lunch 1300, evening 600, plus another 800 — no items given for any of them. He said he would skip dinner, then reported ~800 for dinner the next morning, so the day closed at 3500. Garmin active confirmed 748 (was ~447 mid-evening), consistent with the 45 min uphill walk he had planned, though he did not confirm the walk itself."
     }
   ]
 };
