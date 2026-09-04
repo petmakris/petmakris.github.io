@@ -177,7 +177,18 @@
     .kicker { font-size: .64rem; padding: .3rem .6rem; }
     .date { font-size: .88rem; }
     .part { gap: .4rem; padding: .65rem .8rem; }
-    .col-right .part { flex: 1; }
+    /* the grid card is exactly as tall as its 90 squares need; the today
+       card takes every remaining pixel and its four tiles grow into it as
+       a 2x2 block, instead of four small tiles floating in a half-empty box */
+    .col-right #grid  { flex: 0 0 auto; }
+    .col-right #today { flex: 1 1 auto; }
+    .col-right #today .cells4 { flex: 1; grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 1fr; gap: .6rem; }
+    .col-right #today .cells4 > div { display: flex; flex-direction: column;
+      justify-content: center; padding: .6rem .9rem; }
+    .col-right #today .cells4 .l { font-size: .78rem; }
+    .col-right #today .cells4 .v { font-size: clamp(1.5rem, 4.4vh, 2.5rem);
+      margin-top: .25rem; }
     #curve { min-height: 0; }
     .chart { flex: 1; min-height: 0; }
     .chart svg { height: 100%; }
@@ -318,43 +329,78 @@
 
   /* ============ 1 · the weight curve ============
      Descending, in real kilos. Dashed = the plan, from the start weight down
-     to the goal over the full length. Solid = where the deficits put him. */
-  var W = 340, H = 150, PT = 10, PB = 10;
+     to the goal over the full length. Solid = where the deficits put him.
+     The SVG is drawn at the box's real pixel size rather than a fixed 340x150
+     viewBox stretched to fit: on a landscape tablet the box is taller than it
+     is wide, and that stretch turned every stroke and every weigh-in ring into
+     a smeared ellipse. */
+  var curveEl = document.getElementById('curve');
   var hi = wStart + .4, lo = wGoal - .4;
-  function X(day) { return day / LEN * W; }
-  function Y(w)   { return PT + (hi - w) / (hi - lo) * (H - PT - PB); }
 
-  var pts = series.map(function (w, i) { return X(i).toFixed(1) + ',' + Y(w).toFixed(1); });
-  var lastX = X(elapsed), lastY = Y(wNow);
+  function drawChart() {
+    var box = curveEl.querySelector('.chart');
+    if (!box) return;
+    var W = Math.max(140, Math.round(box.clientWidth));
+    var H = Math.max(90,  Math.round(box.clientHeight));
+    var PL = 30, PR = 8, PT = 12, PB = 12;
+    function X(day) { return PL + day / LEN * (W - PL - PR); }
+    function Y(w)   { return PT + (hi - w) / (hi - lo) * (H - PT - PB); }
 
-  /* Any weigh-in he has actually given is plotted on the same axis. */
-  var scale = days.filter(function (d) { return d.weight != null; }).map(function (d) {
-    var dn = daysBetween(start, parseDate(d.date)) + 1;
-    return '<circle cx="' + X(Math.max(0, Math.min(LEN, dn))).toFixed(1) + '" cy="' +
-      Y(d.weight).toFixed(1) + '" r="3" fill="none" stroke="#e5b56b" stroke-width="1.6"/>';
-  }).join('');
+    /* whole-kilo gridlines, so the room the plan line crosses reads as a
+       scale instead of as emptiness */
+    var step = (hi - lo) > 5 ? 2 : 1, ticks = '';
+    for (var kg = Math.ceil(lo / step) * step; kg <= hi; kg += step) {
+      ticks +=
+        '<line x1="' + PL + '" y1="' + Y(kg).toFixed(1) + '" x2="' + (W - PR) +
+          '" y2="' + Y(kg).toFixed(1) + '" stroke="#ffffff" stroke-width="1" opacity=".07"/>' +
+        '<text x="' + (PL - 7) + '" y="' + (Y(kg) + 3.5).toFixed(1) + '" text-anchor="end" ' +
+          'font-size="10" fill="#8b96a3">' + kg + '</text>';
+    }
+
+    var pts = series.map(function (w, i) { return X(i).toFixed(1) + ',' + Y(w).toFixed(1); });
+    var scale = days.filter(function (d) { return d.weight != null; }).map(function (d) {
+      var dn = daysBetween(start, parseDate(d.date)) + 1;
+      return '<circle cx="' + X(Math.max(0, Math.min(LEN, dn))).toFixed(1) + '" cy="' +
+        Y(d.weight).toFixed(1) + '" r="4" fill="none" stroke="#e5b56b" stroke-width="2"/>';
+    }).join('');
+
+    box.innerHTML =
+      '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" ' +
+        'aria-label="Weight from ' + d1(wStart) + ' towards ' + d1(wGoal) + ' kg">' +
+        ticks +
+        (elapsed ? '<line x1="' + X(elapsed).toFixed(1) + '" y1="' + PT + '" x2="' +
+          X(elapsed).toFixed(1) + '" y2="' + (H - PB) + '" stroke="#ffffff" ' +
+          'stroke-width="1" stroke-dasharray="2 4" opacity=".16"/>' : '') +
+        '<line x1="' + X(0).toFixed(1) + '" y1="' + Y(wStart).toFixed(1) + '" x2="' +
+          X(LEN).toFixed(1) + '" y2="' + Y(wGoal).toFixed(1) + '" stroke="#8fd0a1" ' +
+          'stroke-width="2" stroke-dasharray="5 5" opacity=".8"/>' +
+        (elapsed ? '<polyline points="' + pts.join(' ') + '" fill="none" stroke="#e6dccc" ' +
+          'stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>' : '') +
+        scale +
+        '<circle cx="' + X(elapsed).toFixed(1) + '" cy="' + Y(wNow).toFixed(1) +
+          '" r="4.5" fill="#e6dccc"/>' +
+      '</svg>';
+  }
 
   var wToday = (t && t.weight != null) ? t.weight : null;
-  document.getElementById('curve').innerHTML = wStart == null
-    ? '<div class="empty">Missing start weight (plan.startWeight).</div>' :
-    '<div class="row"><span><b>' + d1(wStart) + ' kg</b> start</span>' +
-      '<span>target <b>' + d1(wGoal) + ' kg</b></span></div>' +
-    '<div class="chart"><svg viewBox="0 0 ' + W + ' ' + H + '" ' +
-      'preserveAspectRatio="none" role="img" ' +
-      'aria-label="Weight from ' + d1(wStart) + ' towards ' + d1(wGoal) + ' kg">' +
-      '<line x1="' + X(0) + '" y1="' + Y(wStart).toFixed(1) + '" x2="' + X(LEN) +
-        '" y2="' + Y(wGoal).toFixed(1) + '" stroke="#8fd0a1" stroke-width="1.5" ' +
-        'stroke-dasharray="4 4" opacity=".75"/>' +
-      (elapsed ? '<polyline points="' + pts.join(' ') + '" fill="none" stroke="#e6dccc" ' +
-        'stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>' : '') +
-      scale +
-      '<circle cx="' + lastX.toFixed(1) + '" cy="' + lastY.toFixed(1) + '" r="3.5" fill="#e6dccc"/>' +
-    '</svg></div>' +
-    '<div class="row"><span class="lg">' + d1(wToday != null ? wToday : wNow) + ' kg' +
-      '<em>' + (wToday != null ? 'on the scale' : 'estimated today') + '</em></span></div>' +
-    '<div class="row"><span>at this pace</span><span><b class="' +
-      (wProj == null ? '' : wProj <= wGoal ? 'good' : 'warn') + '">' + d1(wProj) +
-      (wProj == null ? '' : ' kg') + '</b> by day ' + LEN + '</span></div>';
+  if (wStart == null) {
+    curveEl.innerHTML = '<div class="empty">Missing start weight (plan.startWeight).</div>';
+  } else {
+    curveEl.innerHTML =
+      '<div class="row"><span><b>' + d1(wStart) + ' kg</b> start</span>' +
+        '<span>target <b>' + d1(wGoal) + ' kg</b></span></div>' +
+      '<div class="chart"></div>' +
+      '<div class="row"><span class="lg">' + d1(wToday != null ? wToday : wNow) + ' kg' +
+        '<em>' + (wToday != null ? 'on the scale' : 'estimated today') + '</em></span></div>' +
+      '<div class="row"><span>at this pace</span><span><b class="' +
+        (wProj == null ? '' : wProj <= wGoal ? 'good' : 'warn') + '">' + d1(wProj) +
+        (wProj == null ? '' : ' kg') + '</b> by day ' + LEN + '</span></div>';
+    drawChart();
+    var redraw;
+    window.addEventListener('resize', function () {
+      clearTimeout(redraw); redraw = setTimeout(drawChart, 120);
+    });
+  }
 
   /* ============ 2 · the 90-day grid ============ */
   var cells = '';
