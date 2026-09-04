@@ -100,9 +100,17 @@
     flex: 0 1 auto; min-height: 0; justify-content: center; }
   /* the curve card flexes and its chart soaks up the spare height;
      the grid and today cards keep their natural size */
-  #curve { flex: 1 1 auto; }
-  .chart { flex: 1; min-height: 60px; }
-  .chart svg { width: 100%; height: 100%; display: block; }
+  #curve { flex: 1 1 auto; min-height: 0; }
+  /* the curve is the only part allowed to give up height on a short screen;
+     the grid and today keep their natural size, so neither can be squeezed
+     below its content and spill out of its own card */
+  #grid, #today { flex: 0 0 auto; }
+  /* the SVG is taken out of flow: a viewBox gives an SVG an intrinsic aspect
+     ratio, and in flow that ratio fights the flex layout for height instead
+     of obeying it */
+  .chart { flex: 1; min-height: 90px; position: relative; }
+  .chart svg { position: absolute; inset: 0; width: 100%; height: 100%;
+    display: block; }
   .row { display: flex; justify-content: space-between; align-items: baseline;
     gap: .6rem; font-size: clamp(.85rem, 1.5vh, .98rem); color: var(--dim); }
   .row b { color: var(--ink); font-weight: 600; }
@@ -406,11 +414,6 @@
         '<span class="proj"><b class="' +
         (wProj == null ? '' : wProj <= wGoal ? 'good' : 'warn') + '">' +
         d1(wProj) + (wProj == null ? '' : ' kg') + '</b> by day ' + LEN + '</span></div>';
-    drawChart();
-    var redraw;
-    window.addEventListener('resize', function () {
-      clearTimeout(redraw); redraw = setTimeout(drawChart, 120);
-    });
   }
 
   /* ============ 2 · the 90-day grid ============ */
@@ -463,6 +466,18 @@
   function cell(l, v, c) {
     return '<div class="' + (v === '—' ? '' : 'has') + '"><div class="l">' + l +
       '</div><div class="v ' + c + '">' + v + '</div></div>';
+  }
+
+  /* The chart measures its own box, so it is drawn last and a frame later:
+     until the grid and today cards are in the DOM that box is nearly the
+     whole widget, and an SVG built at that height then refused to shrink
+     back, squeezing the grid card until its content overflowed. */
+  if (wStart != null) {
+    requestAnimationFrame(drawChart);
+    var redraw;
+    window.addEventListener('resize', function () {
+      clearTimeout(redraw); redraw = setTimeout(drawChart, 120);
+    });
   }
   }
 })();
