@@ -3,44 +3,49 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f3f0ea">
+<meta name="theme-color" content="#10151b">
 <title>Diet journal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiMyNjJkMzMiLz48dGV4dCB4PSIzMiIgeT0iMzUiIGZvbnQtZmFtaWx5PSJIZWx2ZXRpY2EgTmV1ZSxBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNjAwIiBmaWxsPSIjZTZkY2NjIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0iY2VudHJhbCI+ZDwvdGV4dD48L3N2Zz4=">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiMxODIwMmEiLz48dGV4dCB4PSIzMiIgeT0iMzUiIGZvbnQtZmFtaWx5PSJIZWx2ZXRpY2EgTmV1ZSxBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNjAwIiBmaWxsPSIjZWVmM2Y3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0iY2VudHJhbCI+ZDwvdGV4dD48L3N2Zz4=">
 <style>
   /* The whole screen is the widget — no card floating on a paper margin.
      It fills the viewport edge to edge and the three parts spread out to
      use whatever height the phone gives it, growing on a tall screen
-     instead of leaving space unused below. */
+     instead of leaving space unused below.
+
+     Palette: "Steel" — chosen 2026-09-04. The chrome (labels, tile borders,
+     the weigh-in ring) is a cold blue that the deficit/surplus scale never
+     uses, so nothing that stays the same competes for attention with the
+     green and red that carry the meaning. */
   :root {
-    --paper:  #f3f0ea;
-    --page:   #12161a;
-    --card:   #1d2329;
-    --border: rgba(255,255,255,.16);
-    --tile:   #171c21;
-    --tile-border: rgba(255,255,255,.14);
-    --ink:    #fbf7ef;
-    --dim:    #c7cfd6;
-    --sub:    #d9d0be;
-    --hair:   rgba(255,255,255,.12);
-    --cream:  #e6dccc;
-    --good:   #8fd0a1;
-    --warn:   #e5b56b;
-    --bad:    #ef9c86;
-    --none:   rgba(255,255,255,.18);
-    --future: rgba(255,255,255,.06);
+    --page:   #10151b;
+    --card:   #18202a;
+    --border: rgba(255,255,255,.12);
+    --tile:   #131a22;
+    --tile-border: rgba(110,168,216,.45);
+    --ink:    #eef3f7;
+    --dim:    #9fb0bf;
+    --hair:   rgba(255,255,255,.11);
+    /* chrome: labels and framing, never a data colour */
+    --chrome:   #6ea8d8;
+    --chrome-b: rgba(110,168,216,.55);
+    /* chart */
+    --line: #dfe8ef;          /* the actual weight line */
+    --plan: #5fa87c;          /* the dashed plan */
+    --mark: #6ea8d8;          /* a real weigh-in */
+    --good: #74c48d;
+    --warn: #e3b26f;
     /* the 90-day grid's own scale: green = deficit, red = surplus, grey =
        within 100 kcal of maintenance either way */
-    --def-big:   #5fb37b;
-    --def-small: #a9d9b6;
-    --neutral:   #9aa3ad;
-    --sur-small: #eab3a0;
-    --sur-big:   #d9614a;
-    --accent: #f5c56d;
-    --accent-ink: #1a1408;
-    --accent-glow: rgba(245,197,109,.35);
+    --def-big:   #2ea043;
+    --def-small: #74c48d;
+    --neutral:   #6e7681;
+    --sur-small: #ec9a80;
+    --sur-big:   #cf4b3a;
+    --none:   rgba(255,255,255,.18);
+    --future: rgba(255,255,255,.05);
   }
   * { box-sizing: border-box; }
   html, body { height: 100%; }
@@ -66,32 +71,38 @@
     display: flex; flex-direction: column; justify-content: space-between;
     gap: clamp(.7rem, 1.6vh, 1.6rem);
   }
-  /* portrait: the column wrappers are invisible, kids lay out flat in .widget */
-  .col-left, .col-right { display: contents; }
 
-  /* ---- header ---- */
-  .kicker { display: inline-flex; align-self: flex-start; align-items: center;
-    padding: .38rem .75rem; border-radius: 999px; background: var(--accent);
-    color: var(--accent-ink); font-size: .72rem; font-weight: 800;
-    letter-spacing: .08em; text-transform: uppercase;
-    box-shadow: 0 4px 12px var(--accent-glow); }
-  .day { font-size: min(clamp(2.2rem, 11vw, 3.6rem), 5.5vh); font-weight: 700;
-    letter-spacing: -.03em; line-height: 1.08; margin: .4rem 0 .1rem;
-    text-shadow: 0 0 24px var(--accent-glow); }
-  .day small { font-size: .48em; font-weight: 500; letter-spacing: -.01em;
-    color: var(--dim); }
-  .date { font-size: clamp(.85rem, 1.6vh, 1.05rem); color: var(--sub); }
+  /* ---- header ----
+     The day on the left, the calendar on the right, on one baseline, so the
+     top row uses the whole width instead of stacking hard against the left
+     edge. The target is a quiet line under the day: it never changes, so it
+     must not be the loudest thing on the screen. */
+  .head { display: flex; align-items: flex-end; justify-content: space-between;
+    gap: .75rem; }
+  .head .lhs { display: flex; flex-direction: column; min-width: 0; }
+  .head .rhs { display: flex; flex-direction: column; align-items: flex-end;
+    text-align: right; flex: 0 0 auto; }
+  .day { font-size: min(clamp(2rem, 10vw, 3.2rem), 5.2vh); font-weight: 700;
+    letter-spacing: -.03em; line-height: 1; }
+  .day small { font-size: .45em; font-weight: 500; letter-spacing: -.01em;
+    color: var(--dim); margin-left: .18em; }
+  .goal { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    font-size: clamp(.62rem, 1.3vh, .74rem); letter-spacing: .07em;
+    text-transform: uppercase; color: var(--chrome); margin-top: .35rem; }
+  .dt { font-size: clamp(.85rem, 1.7vh, 1.05rem); font-weight: 600; }
+  .left { font-size: clamp(.75rem, 1.5vh, .9rem); color: var(--dim); }
 
   /* ---- one part of the widget: a boxed card, not just a hairline ---- */
   .part { background: var(--card); border: 1.5px solid var(--border);
     border-radius: 18px; padding: clamp(.75rem, 1.7vh, 1.375rem) 1.25rem;
-    box-shadow: 0 16px 36px rgba(0,0,0,.55), 0 3px 8px rgba(0,0,0,.35);
+    box-shadow: 0 16px 36px rgba(0,0,0,.5), 0 3px 8px rgba(0,0,0,.3);
     display: flex; flex-direction: column; gap: clamp(.45rem, 1.1vh, .9rem);
     flex: 0 1 auto; min-height: 0; justify-content: center; }
   /* the curve card flexes and its chart soaks up the spare height;
      the grid and today cards keep their natural size */
   #curve { flex: 1 1 auto; }
   .chart { flex: 1; min-height: 60px; }
+  .chart svg { width: 100%; height: 100%; display: block; }
   .row { display: flex; justify-content: space-between; align-items: baseline;
     gap: .6rem; font-size: clamp(.85rem, 1.5vh, .98rem); color: var(--dim); }
   .row b { color: var(--ink); font-weight: 600; }
@@ -99,44 +110,46 @@
     letter-spacing: -.025em; color: var(--ink); white-space: nowrap; }
   .row .lg em { font-size: .9rem; font-weight: 400; font-style: normal;
     letter-spacing: 0; color: var(--dim); margin-left: .5rem; }
-
-  /* ---- the weight curve ---- */
-  .chart svg { width: 100%; height: 100%; display: block; }
+  /* the projection sits opposite today's weight; on a narrow phone it wraps,
+     so keep it flush right rather than ragged under itself */
+  .row .proj { text-align: right; }
 
   /* ---- the 90-day grid ---- */
   .cells { display: grid; grid-template-columns: repeat(15, 1fr);
     gap: clamp(3px, .6vh, 5px); }
   .cells i { display: block; aspect-ratio: 1; border-radius: 4px; }
   .logged { display: inline-flex; align-items: center; padding: .25rem .7rem;
-    border-radius: 999px; background: rgba(255,255,255,.1);
-    border: 1.5px solid var(--border); font-size: .78rem; font-weight: 600;
-    color: var(--ink); }
-  .legend { display: flex; flex-wrap: wrap; gap: .5rem .6rem;
-    padding-top: .25rem; border-top: 1.5px solid var(--hair); }
-  .legend span { display: inline-flex; align-items: center; padding: .25rem .65rem;
-    border-radius: 999px; font-size: .74rem; font-weight: 700; }
-  .legend .pill-def-big   { background: var(--def-big);   color: #0d2113; }
-  .legend .pill-def-small { background: var(--def-small); color: #123018; }
-  .legend .pill-neutral   { background: var(--neutral);   color: #12161a; }
-  .legend .pill-sur-small { background: var(--sur-small); color: #2c1208; }
-  .legend .pill-sur-big   { background: var(--sur-big);   color: #2a0800; }
-  .legend .pill-none { background: rgba(255,255,255,.1); border: 1px solid var(--border);
-    color: var(--dim); }
+    border-radius: 999px; border: 1.5px solid var(--chrome-b);
+    font-size: .78rem; font-weight: 600; color: var(--ink); }
+
+  /* ---- the legend, as t-shirt sizes ----
+     The swatch already says which side of maintenance a day fell on and how
+     far, so the legend's only job is to name the thresholds: S, M and L are
+     the distance, green and red the direction. One row, where six spelled-out
+     pills wrapped onto three. */
+  .key { display: flex; align-items: center; gap: .7rem; flex-wrap: wrap;
+    padding-top: .4rem; border-top: 1.5px solid var(--hair); }
+  .sizes { display: flex; gap: .25rem; }
+  .sz { width: 1.7rem; height: 1.25rem; border-radius: 5px; display: flex;
+    align-items: center; justify-content: center;
+    font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    font-size: .68rem; font-weight: 600; }
+  .keytxt { font-size: .7rem; line-height: 1.35; color: var(--dim); }
+  .keytxt b { color: var(--ink); font-weight: 600; }
 
   /* ---- today ---- */
   .cells4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: .7rem; }
-  .cells4 > div { background: var(--tile); border: 1.5px solid var(--tile-border);
+  .cells4 > div { background: var(--tile); border: 1.5px solid var(--border);
     border-radius: 12px; padding: clamp(.5rem, 1.2vh, .8rem) .6rem; }
-  .cells4 > div.has { border-color: var(--accent); }
+  .cells4 > div.has { border-color: var(--tile-border); }
   .cells4 .l { font-size: .68rem; font-weight: 700; letter-spacing: .1em;
     text-transform: uppercase; color: var(--dim); }
-  .cells4 > div.has .l { color: var(--accent); }
+  .cells4 > div.has .l { color: var(--chrome); }
   .cells4 .v { font-size: clamp(1.1rem, 2.4vh, 1.5rem); font-weight: 700;
     letter-spacing: -.02em; margin-top: .2rem; }
 
   .good { color: var(--good); }
   .warn { color: var(--warn); }
-  .bad  { color: var(--bad); }
   .def-big   { color: var(--def-big); }
   .def-small { color: var(--def-small); }
   .neutral   { color: var(--neutral); }
@@ -153,66 +166,57 @@
   }
 
   /* ---- landscape on a touch device (phone or tablet) ----
-     Two columns so nothing scrolls: header+curve on the left, the
-     90-day grid and today's numbers on the right. Each column stacks
-     and shares height on its own terms — the tall 90-day grid must
-     not steal room from the curve on the other side.
-     (hover:none)+(pointer:coarse) is phones/tablets, not desktop
-     browser windows, which are usually landscape-shaped too but keep
-     the plain portrait card via the >=560px rule above. */
+     The header runs across the top, the weight curve and the 90-day grid sit
+     side by side as two equally sized cards, and today's four numbers run as
+     a single strip underneath both of them.
+     (hover:none)+(pointer:coarse) is phones/tablets, not desktop browser
+     windows, which are usually landscape-shaped too but keep the plain
+     portrait card via the >=560px rule above. */
   @media (orientation: landscape) and (hover: none) and (pointer: coarse) {
     .widget {
-      max-width: 900px;
+      max-width: 1100px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr;
-      column-gap: 1.8rem;
+      grid-template-rows: auto 1fr auto;
+      column-gap: 1rem;
+      row-gap: .7rem;
     }
-    .col-left, .col-right {
-      display: flex; flex-direction: column; gap: .5rem; min-height: 0;
-    }
+    .head  { grid-column: 1 / -1; }
+    #curve { grid-column: 1; grid-row: 2; min-height: 0; }
+    #grid  { grid-column: 2; grid-row: 2; min-height: 0; }
+    #today { grid-column: 1 / -1; grid-row: 3; }
     /* the day heading is decorative-large for a portrait glance; on a
-       short landscape screen it would eat the room the curve needs */
-    .day  { font-size: 1.9rem; margin: .3rem 0 .1rem; }
-    .kicker { font-size: .64rem; padding: .3rem .6rem; }
-    .date { font-size: .88rem; }
-    .part { gap: .4rem; padding: .65rem .8rem; }
-    /* the grid card is exactly as tall as its 90 squares need; the today
-       card takes every remaining pixel and its four tiles grow into it as
-       a 2x2 block, instead of four small tiles floating in a half-empty box */
-    .col-right #grid  { flex: 0 0 auto; }
-    .col-right #today { flex: 1 1 auto; }
-    .col-right #today .cells4 { flex: 1; grid-template-columns: repeat(2, 1fr);
-      grid-auto-rows: 1fr; gap: .6rem; }
-    .col-right #today .cells4 > div { display: flex; flex-direction: column;
-      justify-content: center; padding: .6rem .9rem; }
-    .col-right #today .cells4 .l { font-size: .78rem; }
-    .col-right #today .cells4 .v { font-size: clamp(1.5rem, 4.4vh, 2.5rem);
-      margin-top: .25rem; }
-    #curve { min-height: 0; }
+       short landscape screen it would eat the room the cards need */
+    .day  { font-size: 1.9rem; }
+    .goal { font-size: .64rem; margin-top: .25rem; }
+    .part { gap: .4rem; padding: .7rem .9rem; }
     .chart { flex: 1; min-height: 0; }
-    .chart svg { height: 100%; }
-    /* the four filled legend pills are the tightest fit in this column —
-       keep them to one line down to the smallest landscape phone width */
-    .legend { gap: .3rem .35rem; padding-top: .2rem; }
-    .legend span { padding: .2rem .5rem; font-size: .68rem; }
+    /* 10 across x 9 down fills the card, where 15 across left the squares
+       stranded in the middle of a box as tall as the chart beside it. The
+       rows take their height from what is left in the card rather than from
+       a square aspect ratio, so the block can never push the legend out. */
+    .cells { flex: 1; min-height: 0; grid-template-columns: repeat(10, 1fr);
+      grid-template-rows: repeat(9, minmax(0, 1fr)); gap: clamp(3px, .8vh, 6px); }
+    .cells i { aspect-ratio: auto; height: 100%; }
+    .key { padding-top: .3rem; gap: .5rem; }
   }
 </style>
 </head>
 <body>
   <div class="widget">
-    <div class="col-left">
-      <div class="head">
-        <div class="kicker" id="kicker"></div>
+    <div class="head">
+      <div class="lhs">
         <div class="day" id="day"></div>
-        <div class="date" id="date"></div>
+        <div class="goal" id="goal"></div>
       </div>
-      <div class="part" id="curve"></div>
+      <div class="rhs">
+        <div class="dt" id="dt"></div>
+        <div class="left" id="left"></div>
+      </div>
     </div>
-    <div class="col-right">
-      <div class="part" id="grid"></div>
-      <div class="part" id="today"></div>
-    </div>
+    <div class="part" id="curve"></div>
+    <div class="part" id="grid"></div>
+    <div class="part" id="today"></div>
   </div>
 
 <script>
@@ -309,30 +313,34 @@
   var wProj  = elapsed ? wStart - (cumDef / elapsed) * LEN / KG : null;
 
   /* ---- header ---- */
-  document.getElementById('kicker').textContent =
-    'Diet journal · −' + TARGET + ' kcal';
-  var dayEl = document.getElementById('day'), dateEl = document.getElementById('date');
+  var dayEl  = document.getElementById('day'),
+      goalEl = document.getElementById('goal'),
+      dtEl   = document.getElementById('dt'),
+      leftEl = document.getElementById('left');
+  goalEl.textContent = 'target −' + TARGET + ' kcal / day';
   if (dayNo < 1) {
     var toStart = 1 - dayNo;          // counting down to day 1
     dayEl.innerHTML    = fmtDate(today);
-    dateEl.textContent = toStart === 1 ? 'Starts tomorrow'
-      : 'Starts in ' + toStart + ' days · ' + fmtDate(start);
+    dtEl.textContent   = 'Starts ' + fmtDate(start);
+    leftEl.textContent = toStart === 1 ? 'tomorrow' : 'in ' + toStart + ' days';
   } else if (dayNo > LEN) {
-    dayEl.innerHTML    = 'Done <small>· ' + LEN + ' days</small>';
-    dateEl.textContent = fmtDate(today) + ' · finished ' + fmtDate(end);
+    dayEl.innerHTML    = 'Done <small>' + LEN + ' days</small>';
+    dtEl.textContent   = fmtDate(today);
+    leftEl.textContent = 'finished ' + fmtDate(end);
   } else {
     var rem = LEN - dayNo;            // days still to come after today
     dayEl.innerHTML    = 'Day ' + dayNo + ' <small>of ' + LEN + '</small>';
-    dateEl.textContent = fmtDate(today) + ' · ' +
-      (rem === 0 ? 'last day' : rem === 1 ? '1 day left' : rem + ' days left');
+    dtEl.textContent   = fmtDate(today);
+    leftEl.textContent = rem === 0 ? 'last day' : rem === 1 ? '1 day left'
+      : rem + ' days left';
   }
 
   /* ============ 1 · the weight curve ============
-     Descending, in real kilos. Dashed = the plan, from the start weight down
-     to the goal over the full length. Solid = where the deficits put him.
-     The SVG is drawn at the box's real pixel size rather than a fixed 340x150
-     viewBox stretched to fit: on a landscape tablet the box is taller than it
-     is wide, and that stretch turned every stroke and every weigh-in ring into
+     Descending, in real kilos, across the whole plan. Dashed = the plan, from
+     the start weight down to the goal. Solid = where the deficits put him.
+     The SVG is drawn at the box's real pixel size rather than a fixed viewBox
+     stretched to fit: on a landscape tablet the box is taller than it is
+     wide, and that stretch turned every stroke and every weigh-in ring into
      a smeared ellipse. */
   var curveEl = document.getElementById('curve');
   var hi = wStart + .4, lo = wGoal - .4;
@@ -352,33 +360,34 @@
     for (var kg = Math.ceil(lo / step) * step; kg <= hi; kg += step) {
       ticks +=
         '<line x1="' + PL + '" y1="' + Y(kg).toFixed(1) + '" x2="' + (W - PR) +
-          '" y2="' + Y(kg).toFixed(1) + '" stroke="#ffffff" stroke-width="1" opacity=".07"/>' +
+          '" y2="' + Y(kg).toFixed(1) + '" stroke="currentColor" stroke-width="1" opacity=".16"/>' +
         '<text x="' + (PL - 7) + '" y="' + (Y(kg) + 3.5).toFixed(1) + '" text-anchor="end" ' +
-          'font-size="10" fill="#8b96a3">' + kg + '</text>';
+          'font-size="10" font-family="IBM Plex Mono, ui-monospace, monospace" ' +
+          'fill="currentColor" opacity=".85">' + kg + '</text>';
     }
 
     var pts = series.map(function (w, i) { return X(i).toFixed(1) + ',' + Y(w).toFixed(1); });
     var scale = days.filter(function (d) { return d.weight != null; }).map(function (d) {
       var dn = daysBetween(start, parseDate(d.date)) + 1;
       return '<circle cx="' + X(Math.max(0, Math.min(LEN, dn))).toFixed(1) + '" cy="' +
-        Y(d.weight).toFixed(1) + '" r="4" fill="none" stroke="#e5b56b" stroke-width="2"/>';
+        Y(d.weight).toFixed(1) + '" r="4" fill="none" stroke="var(--mark)" stroke-width="2"/>';
     }).join('');
 
     box.innerHTML =
-      '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" ' +
+      '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" style="color:var(--dim)" ' +
         'aria-label="Weight from ' + d1(wStart) + ' towards ' + d1(wGoal) + ' kg">' +
         ticks +
         (elapsed ? '<line x1="' + X(elapsed).toFixed(1) + '" y1="' + PT + '" x2="' +
-          X(elapsed).toFixed(1) + '" y2="' + (H - PB) + '" stroke="#ffffff" ' +
-          'stroke-width="1" stroke-dasharray="2 4" opacity=".16"/>' : '') +
+          X(elapsed).toFixed(1) + '" y2="' + (H - PB) + '" stroke="currentColor" ' +
+          'stroke-width="1" stroke-dasharray="2 4" opacity=".3"/>' : '') +
         '<line x1="' + X(0).toFixed(1) + '" y1="' + Y(wStart).toFixed(1) + '" x2="' +
-          X(LEN).toFixed(1) + '" y2="' + Y(wGoal).toFixed(1) + '" stroke="#8fd0a1" ' +
-          'stroke-width="2" stroke-dasharray="5 5" opacity=".8"/>' +
-        (elapsed ? '<polyline points="' + pts.join(' ') + '" fill="none" stroke="#e6dccc" ' +
+          X(LEN).toFixed(1) + '" y2="' + Y(wGoal).toFixed(1) + '" stroke="var(--plan)" ' +
+          'stroke-width="2" stroke-dasharray="5 5"/>' +
+        (elapsed ? '<polyline points="' + pts.join(' ') + '" fill="none" stroke="var(--line)" ' +
           'stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>' : '') +
         scale +
         '<circle cx="' + X(elapsed).toFixed(1) + '" cy="' + Y(wNow).toFixed(1) +
-          '" r="4.5" fill="#e6dccc"/>' +
+          '" r="4.5" fill="var(--line)"/>' +
       '</svg>';
   }
 
@@ -390,11 +399,13 @@
       '<div class="row"><span><b>' + d1(wStart) + ' kg</b> start</span>' +
         '<span>target <b>' + d1(wGoal) + ' kg</b></span></div>' +
       '<div class="chart"></div>' +
+      /* today's figure and where this pace lands share one row: a solo weight
+         line left the whole right half of the card empty */
       '<div class="row"><span class="lg">' + d1(wToday != null ? wToday : wNow) + ' kg' +
-        '<em>' + (wToday != null ? 'on the scale' : 'estimated today') + '</em></span></div>' +
-      '<div class="row"><span>at this pace</span><span><b class="' +
-        (wProj == null ? '' : wProj <= wGoal ? 'good' : 'warn') + '">' + d1(wProj) +
-        (wProj == null ? '' : ' kg') + '</b> by day ' + LEN + '</span></div>';
+        '<em>' + (wToday != null ? 'on the scale' : 'estimated today') + '</em></span>' +
+        '<span class="proj"><b class="' +
+        (wProj == null ? '' : wProj <= wGoal ? 'good' : 'warn') + '">' +
+        d1(wProj) + (wProj == null ? '' : ' kg') + '</b> by day ' + LEN + '</span></div>';
     drawChart();
     var redraw;
     window.addEventListener('resize', function () {
@@ -418,20 +429,19 @@
   }
   document.getElementById('grid').innerHTML =
     '<div class="row"><span>Consistency <b class="' +
-      (adher == null ? '' : adher >= .85 ? 'good' : adher >= .6 ? 'warn' : 'bad') + '">' +
+      (adher == null ? '' : adher >= .85 ? 'good' : adher >= .6 ? 'warn' : 'sur-big') + '">' +
       (adher == null ? '—' : Math.round(adher * 100) + '%') + '</b></span>' +
       '<span class="logged"><b>' + cumDays + '</b>&nbsp;of&nbsp;' + elapsed + ' logged</span></div>' +
     '<div class="cells">' + cells + '</div>' +
-    '<div class="legend">' +
-      lg('def-big',   'over −' + TARGET) +
-      lg('def-small', '−' + NEUTRAL + ' to −' + TARGET) +
-      lg('neutral',   '±' + NEUTRAL) +
-      lg('sur-small', '+' + NEUTRAL + ' to +' + TARGET) +
-      lg('sur-big',   'over +' + TARGET) +
-      lg('none', 'no data') +
-    '</div>';
-  function lg(k, txt) {
-    return '<span class="pill-' + k + '">' + txt + '</span>';
+    '<div class="key"><div class="sizes">' +
+      sz('def-big',   'L', '#06210f') + sz('def-small', 'M', '#0d2a17') +
+      sz('neutral',   'S', '#101418') + sz('sur-small', 'M', '#2c1208') +
+      sz('sur-big',   'L', '#2a0800') +
+      '</div><div class="keytxt"><b>green under · red over</b><br>' +
+      'S ±' + NEUTRAL + ' · M to ' + TARGET + ' · L past ' + TARGET + '</div></div>';
+  function sz(k, letter, ink) {
+    return '<span class="sz" style="background:var(--' + k + ');color:' + ink + '">' +
+      letter + '</span>';
   }
 
   /* ============ 3 · today ============ */
