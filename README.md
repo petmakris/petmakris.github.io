@@ -13,6 +13,7 @@ root `index.html` is a hand-written hub and every project is a folder under it.
 | `/dieting/el/`, `/dieting/fr/` | A practical guide to dieting, in Greek and French. | here |
 | `/dieting/journal/` | The diet journal — a phone-widget dashboard updated from Claude Code sessions. Totals in `data.js`, meal detail in `log.md`; operating procedure in `.claude/skills/diet-journal/SKILL.md`. | here |
 | `/recipes/` | Συνταγές · Recettes — bilingual recipes (Greek + French side by side), each with a printable PDF. Hand-written HTML pages; each recipe's PDF generator is committed under `recipes/<slug>/src/`. | `recipes/` |
+| `/transactions/` | Transaction playground — Spring transactions, proxies and connection pools as a game with sequence diagrams. | `transactions/` |
 
 ## Deploying
 
