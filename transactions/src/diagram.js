@@ -26,19 +26,19 @@
           } else {
             const label = stack.length === 1 ? (scenario.entryLabel || 'request') : `${d.method}(…)`;
             push({ from: top, to: a, arrow: 'request', label, phase: phase(), tone: stack.length === 1 ? 'edge' : undefined,
-              sub: d.propagation ? `through the proxy: @Transactional ${d.propagation}` : 'through the proxy, no transaction attribute' });
+              sub: d.propagation ? `proxy: ${d.propagation}` : 'proxy, no attribute' });
           }
           stack.push(a);
           break;
         }
         case 'txBegin': { const last = steps[steps.length - 1]; last.sub = (last.sub ? last.sub + ', ' : '') + 'starts a transaction'; break; }
-        case 'txJoin': { const last = steps[steps.length - 1]; last.sub = (last.sub ? last.sub + ', ' : '') + 'joins the open transaction'; break; }
+        case 'txJoin': { const last = steps[steps.length - 1]; last.sub = (last.sub ? last.sub + ', ' : '') + 'joins'; break; }
         case 'connAcquired': {
           if (d.autoCommit) {
             push({ from: a, to: 'pool', arrow: 'request', label: 'read outside a transaction', sub: 'takes and returns a connection of its own', tone: 'internal',
               note: d.alsoHolding > 0 ? 'a second connection on this thread' : undefined });
           } else {
-            const i = push({ from: a, to: 'pool', arrow: 'request', label: 'BEGIN', sub: 'first database touch', tone: 'hot', phase: phase(),
+            const i = push({ from: a, to: 'pool', arrow: 'request', label: 'BEGIN', sub: 'the transaction takes a connection as it begins', tone: 'hot', phase: phase(),
               note: `connection ${d.conn.slice(1)} of ${d.size} taken` });
             open[d.conn] = { at: i, t: e.t, spansRemote: false };
           }

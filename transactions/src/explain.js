@@ -12,7 +12,7 @@
 
     if (holders.size) {
       paragraphs.push(`${holders.size} user${holders.size > 1 ? 's' : ''} hold one connection each for the whole ${takes} the remote takes. ` +
-        `The remote call runs inside the transaction started at the entry point, and a resource-local transaction keeps its connection from its first database touch until it commits or rolls back, so nothing releases it while the remote thinks.`);
+        `The remote call runs inside the transaction started at the entry point, and a resource-local transaction takes its connection when it begins and keeps it until it commits or rolls back, so nothing releases it while the remote thinks.`);
     }
     const susp = tl.find(e => e.event === 'suspend' && e.detail.keepsConnection);
     if (susp) paragraphs.push(`${susp.detail.propagation} suspends the transaction around the remote call, but suspension is not release: the suspended transaction still owns its connection, so the pool sees no difference.`);

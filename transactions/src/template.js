@@ -19,13 +19,12 @@
     }
   }
 
-  const KW = /\b(public|private|protected|class|return|new|final|void|int|throw|throws|static)\b/g;
+  const TOKEN = /(\/\/[^\n]*|#[^\n]*)|(@\w+(?:\([^)\n]*\))?)|\b(public|private|protected|class|return|new|final|void|int|throw|throws|static)\b|\b([A-Z][A-Za-z]+)\b/g;
   function highlight(text) {
-    return esc(text)
-      .replace(/(\/\/[^\n]*|#[^\n]*)/g, '<span class="cm">$1</span>')
-      .replace(/(^|\n)(\s*)(@\w+(?:\([^)]*\))?)/g, '$1$2<span class="ann">$3</span>')
-      .replace(KW, '<span class="kw">$1</span>')
-      .replace(/\b([A-Z][A-Za-z]+)\b(?![^<]*>)/g, '<span class="ty">$1</span>');
+    return esc(text).replace(TOKEN, (m, cm, ann, kw, ty) => {
+      const cls = cm ? 'cm' : ann ? 'ann' : kw ? 'kw' : 'ty';
+      return `<span class="${cls}">${m}</span>`;
+    });
   }
 
   function controlHtml(name, slot, value, changed) {

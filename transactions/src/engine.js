@@ -112,6 +112,7 @@
     const bulk = f.bulkhead ? res.bulkheads[f.bulkhead.name] : null;
 
     try {
+      if (started) yield* takeConnection(f, ctx, cfg, res, emit, started);
       if (f.dbTouch) yield* dbTouch(f, ctx, cfg, res, emit);
       if (bulk) {
         const got = yield acquire(bulk, R.seconds(f.bulkhead.wait));
@@ -152,10 +153,24 @@
     }
   }
 
+  // Hibernate acquires the JDBC connection when a resource-local transaction begins, to switch off
+  // auto-commit; measured on the real stack: a transaction with no database work still held one.
+  function* takeConnection(f, ctx, cfg, res, emit, tx) {
+    const u = ctx.user;
+    const got = yield acquire(res.pool, cfg.connectionTimeout);
+    if (got !== 'ok') {
+      emit(u, f.actor, 'poolTimeout', { waited: cfg.connectionTimeout, alsoHolding: ctx.held });
+      throw fail('SQLTransientConnectionException', 500, 'no connection within connection-timeout');
+    }
+    const conn = 'c' + (++res.connSeq);
+    tx.conn = conn; ctx.held++;
+    emit(u, f.actor, 'connAcquired', { tx: tx.id, conn, free: res.pool.free, size: res.pool.size, alsoHolding: ctx.held - 1 });
+  }
+
   function* dbTouch(f, ctx, cfg, res, emit) {
     const u = ctx.user, tx = ctx.active;
-    if (tx && tx.conn) { emit(u, f.actor, 'dbRead', { tx: tx.id, conn: tx.conn }); return; }
-    if (!tx && f.lazyRead && !cfg.osiv) {
+    if (tx) { emit(u, f.actor, 'dbRead', { tx: tx.id, conn: tx.conn }); return; }
+    if (f.lazyRead && !cfg.osiv) {
       emit(u, f.actor, 'detachedRead', { frame: f.id });
       throw fail('LazyInitializationException', 500, 'lazy association touched outside a session');
     }
@@ -165,14 +180,9 @@
       throw fail('SQLTransientConnectionException', 500, 'no connection within connection-timeout');
     }
     const conn = 'c' + (++res.connSeq);
-    if (tx) {
-      tx.conn = conn; ctx.held++;
-      emit(u, f.actor, 'connAcquired', { tx: tx.id, conn, free: res.pool.free, size: res.pool.size, alsoHolding: ctx.held - 1 });
-    } else {
-      emit(u, f.actor, 'connAcquired', { tx: null, conn, free: res.pool.free, size: res.pool.size, alsoHolding: ctx.held, autoCommit: true });
-      yield release(res.pool);
-      emit(u, f.actor, 'connReleased', { conn, tx: null, autoCommit: true });
-    }
+    emit(u, f.actor, 'connAcquired', { tx: null, conn, free: res.pool.free, size: res.pool.size, alsoHolding: ctx.held, autoCommit: true });
+    yield release(res.pool);
+    emit(u, f.actor, 'connReleased', { conn, tx: null, autoCommit: true });
   }
 
   function* remoteCall(f, ctx, cfg, emit) {

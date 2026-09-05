@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="build" content="bdb270a61ce3">
+<meta name="build" content="35cc2d2ff0e8">
 <meta name="theme-color" content="#1565c0">
 <title>Transaction playground</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231565c0'/%3E%3Ctext x='32' y='42' font-family='Roboto,sans-serif' font-size='34' font-weight='700' fill='white' text-anchor='middle'%3ETx%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -395,6 +396,7 @@ function renderSequence(spec){
     const bulk = f.bulkhead ? res.bulkheads[f.bulkhead.name] : null;
 
     try {
+      if (started) yield* takeConnection(f, ctx, cfg, res, emit, started);
       if (f.dbTouch) yield* dbTouch(f, ctx, cfg, res, emit);
       if (bulk) {
         const got = yield acquire(bulk, R.seconds(f.bulkhead.wait));
@@ -435,10 +437,24 @@ function renderSequence(spec){
     }
   }
 
+  // Hibernate acquires the JDBC connection when a resource-local transaction begins, to switch off
+  // auto-commit; measured on the real stack: a transaction with no database work still held one.
+  function* takeConnection(f, ctx, cfg, res, emit, tx) {
+    const u = ctx.user;
+    const got = yield acquire(res.pool, cfg.connectionTimeout);
+    if (got !== 'ok') {
+      emit(u, f.actor, 'poolTimeout', { waited: cfg.connectionTimeout, alsoHolding: ctx.held });
+      throw fail('SQLTransientConnectionException', 500, 'no connection within connection-timeout');
+    }
+    const conn = 'c' + (++res.connSeq);
+    tx.conn = conn; ctx.held++;
+    emit(u, f.actor, 'connAcquired', { tx: tx.id, conn, free: res.pool.free, size: res.pool.size, alsoHolding: ctx.held - 1 });
+  }
+
   function* dbTouch(f, ctx, cfg, res, emit) {
     const u = ctx.user, tx = ctx.active;
-    if (tx && tx.conn) { emit(u, f.actor, 'dbRead', { tx: tx.id, conn: tx.conn }); return; }
-    if (!tx && f.lazyRead && !cfg.osiv) {
+    if (tx) { emit(u, f.actor, 'dbRead', { tx: tx.id, conn: tx.conn }); return; }
+    if (f.lazyRead && !cfg.osiv) {
       emit(u, f.actor, 'detachedRead', { frame: f.id });
       throw fail('LazyInitializationException', 500, 'lazy association touched outside a session');
     }
@@ -448,14 +464,9 @@ function renderSequence(spec){
       throw fail('SQLTransientConnectionException', 500, 'no connection within connection-timeout');
     }
     const conn = 'c' + (++res.connSeq);
-    if (tx) {
-      tx.conn = conn; ctx.held++;
-      emit(u, f.actor, 'connAcquired', { tx: tx.id, conn, free: res.pool.free, size: res.pool.size, alsoHolding: ctx.held - 1 });
-    } else {
-      emit(u, f.actor, 'connAcquired', { tx: null, conn, free: res.pool.free, size: res.pool.size, alsoHolding: ctx.held, autoCommit: true });
-      yield release(res.pool);
-      emit(u, f.actor, 'connReleased', { conn, tx: null, autoCommit: true });
-    }
+    emit(u, f.actor, 'connAcquired', { tx: null, conn, free: res.pool.free, size: res.pool.size, alsoHolding: ctx.held, autoCommit: true });
+    yield release(res.pool);
+    emit(u, f.actor, 'connReleased', { conn, tx: null, autoCommit: true });
   }
 
   function* remoteCall(f, ctx, cfg, emit) {
@@ -583,19 +594,19 @@ function renderSequence(spec){
           } else {
             const label = stack.length === 1 ? (scenario.entryLabel || 'request') : `${d.method}(…)`;
             push({ from: top, to: a, arrow: 'request', label, phase: phase(), tone: stack.length === 1 ? 'edge' : undefined,
-              sub: d.propagation ? `through the proxy: @Transactional ${d.propagation}` : 'through the proxy, no transaction attribute' });
+              sub: d.propagation ? `proxy: ${d.propagation}` : 'proxy, no attribute' });
           }
           stack.push(a);
           break;
         }
         case 'txBegin': { const last = steps[steps.length - 1]; last.sub = (last.sub ? last.sub + ', ' : '') + 'starts a transaction'; break; }
-        case 'txJoin': { const last = steps[steps.length - 1]; last.sub = (last.sub ? last.sub + ', ' : '') + 'joins the open transaction'; break; }
+        case 'txJoin': { const last = steps[steps.length - 1]; last.sub = (last.sub ? last.sub + ', ' : '') + 'joins'; break; }
         case 'connAcquired': {
           if (d.autoCommit) {
             push({ from: a, to: 'pool', arrow: 'request', label: 'read outside a transaction', sub: 'takes and returns a connection of its own', tone: 'internal',
               note: d.alsoHolding > 0 ? 'a second connection on this thread' : undefined });
           } else {
-            const i = push({ from: a, to: 'pool', arrow: 'request', label: 'BEGIN', sub: 'first database touch', tone: 'hot', phase: phase(),
+            const i = push({ from: a, to: 'pool', arrow: 'request', label: 'BEGIN', sub: 'the transaction takes a connection as it begins', tone: 'hot', phase: phase(),
               note: `connection ${d.conn.slice(1)} of ${d.size} taken` });
             open[d.conn] = { at: i, t: e.t, spansRemote: false };
           }
@@ -678,7 +689,7 @@ function renderSequence(spec){
 
     if (holders.size) {
       paragraphs.push(`${holders.size} user${holders.size > 1 ? 's' : ''} hold one connection each for the whole ${takes} the remote takes. ` +
-        `The remote call runs inside the transaction started at the entry point, and a resource-local transaction keeps its connection from its first database touch until it commits or rolls back, so nothing releases it while the remote thinks.`);
+        `The remote call runs inside the transaction started at the entry point, and a resource-local transaction takes its connection when it begins and keeps it until it commits or rolls back, so nothing releases it while the remote thinks.`);
     }
     const susp = tl.find(e => e.event === 'suspend' && e.detail.keepsConnection);
     if (susp) paragraphs.push(`${susp.detail.propagation} suspends the transaction around the remote call, but suspension is not release: the suspended transaction still owns its connection, so the pool sees no difference.`);
@@ -730,7 +741,7 @@ function renderSequence(spec){
 (function (root) {
   const has = (run, ev, pred) => run.timeline.some(e => e.event === ev && (!pred || pred(e)));
   const DISCOVERIES = [
-    { id: 'tx-owns-connection', title: 'A transaction owns its connection until it ends', hint: 'first database touch to commit or rollback, whatever happens in between',
+    { id: 'tx-owns-connection', title: 'A transaction owns its connection until it ends', hint: 'taken at BEGIN, returned at commit or rollback, whatever happens in between',
       test: run => run.timeline.some(e => e.event === 'connAcquired' && !e.detail.autoCommit && run.timeline.some(r => r.event === 'connReleased' && r.detail.conn === e.detail.conn && r.t > e.t)) },
     { id: 'self-invocation', title: 'Self-invocation never reaches the proxy', hint: 'this.call() ignores every annotation on call',
       test: run => has(run, 'call', e => !e.detail.viaProxy && e.detail.ignoredAnnotation) },
@@ -777,13 +788,12 @@ function renderSequence(spec){
     }
   }
 
-  const KW = /\b(public|private|protected|class|return|new|final|void|int|throw|throws|static)\b/g;
+  const TOKEN = /(\/\/[^\n]*|#[^\n]*)|(@\w+(?:\([^)\n]*\))?)|\b(public|private|protected|class|return|new|final|void|int|throw|throws|static)\b|\b([A-Z][A-Za-z]+)\b/g;
   function highlight(text) {
-    return esc(text)
-      .replace(/(\/\/[^\n]*|#[^\n]*)/g, '<span class="cm">$1</span>')
-      .replace(/(^|\n)(\s*)(@\w+(?:\([^)]*\))?)/g, '$1$2<span class="ann">$3</span>')
-      .replace(KW, '<span class="kw">$1</span>')
-      .replace(/\b([A-Z][A-Za-z]+)\b(?![^<]*>)/g, '<span class="ty">$1</span>');
+    return esc(text).replace(TOKEN, (m, cm, ann, kw, ty) => {
+      const cls = cm ? 'cm' : ann ? 'ann' : kw ? 'kw' : 'ty';
+      return `<span class="${cls}">${m}</span>`;
+    });
   }
 
   function controlHtml(name, slot, value, changed) {
@@ -904,7 +914,7 @@ public class ClaimService {
 
     {{methodTx1}}
     public Claim updateClaim(int id, ClaimEdit edit) {
-        Claim claim = claims.findById(id);          // first database touch: a connection is taken here
+        Claim claim = claims.findById(id);          // the transaction began at the method call and already holds a connection
         claim.apply(edit);
         claims.save(claim);                          // written, not committed
         {{invoke2}}.runFraudCheck(claim);
@@ -995,6 +1005,501 @@ load:                                                # the simulation's inputs, 
     ],
     discoveries: ['tx-owns-connection', 'self-invocation', 'refuse-not-queue', 'rollback-on-exception',
       'suspension-not-release', 'pool-starvation', 'two-connections', 'checked-no-rollback', 'timeout-order'],
+  };
+
+  root.TxPlay = root.TxPlay || {};
+  (root.TxPlay.scenarios = root.TxPlay.scenarios || []).push(scenario);
+  if (typeof module !== 'undefined') module.exports = scenario;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+// ---- src/scenarios/02-nightly-sweep.js ----
+(function (root) {
+  const scenario = {
+    id: 'nightly-sweep',
+    short: 'Nightly sweep',
+    entryLabel: 'sweep worker starts',
+    title: 'A nightly sweep that splits its work into two transactions around the remote call',
+    intro: 'Every night a batch re-checks the claims still open. Nobody is waiting, so the sweep reads a claim in one short transaction, calls the fraud check with no transaction open, and writes the verdict in a second short transaction. Eight workers run in parallel against a pool of ten.',
+    files: [
+      { name: 'ReviewSweep.java', role: 'frame 1: one worker, one claim', code:
+`@Component
+public class ReviewSweep {
+
+    private final TransactionTemplate tx;              // programmatic, short transactions
+    private final ClaimRepository claims;
+    private final FraudCheckService fraudCheck;
+
+    public void refresh(int claimId) {
+        Prepared p = tx.execute(s -> loadAndPrepare(claimId));   // transaction 1: read, then commit
+        Verdict v = {{invoke}}.check(p.payload);                 // no transaction of our own is open here
+        tx.executeWithoutResult(s -> store(claimId, v));         // transaction 2: write, then commit
+    }
+}` },
+      { name: 'FraudCheckService.java', role: 'frame 3: the bean that owns the external call', code:
+`@Service
+{{classTx}}
+public class FraudCheckService {
+
+    private final FraudGateway gateway;
+
+    {{methodTx}}
+    public Verdict check(Payload payload) {
+        return gateway.check(payload);                 // {{remote}}
+    }
+}` },
+      { name: 'application.yml', role: 'the numbers the timeline is computed from', code:
+`datasource:
+  hikari:
+    maximum-pool-size: {{poolSize}}
+    connection-timeout: {{connectionTimeout}}
+spring:
+  jpa:
+    open-in-view: false
+  cloud.openfeign.client.config.fraud-gateway:
+    connect-timeout: {{connectTimeout}}
+    read-timeout: {{readTimeout}}
+load:
+  sweep-workers: {{users}}
+  show-worker: {{showUser}}` },
+    ],
+    slots: {
+      invoke: { kind: 'invocation', default: 'injected', choices: ['injected'], labels: { injected: 'fraudCheck' } },
+      classTx: { kind: 'annotation', target: 'class', default: null, choices: [null, '@Transactional'] },
+      methodTx: { kind: 'annotation', target: 'method', default: null, choices: [null, 'NOT_SUPPORTED', 'SUPPORTS', 'REQUIRED'] },
+      remote: { kind: 'external', default: { takes: '45s', answers: 'late' } },
+      poolSize: { kind: 'number', default: 10 },
+      connectionTimeout: { kind: 'number', default: '30s' },
+      connectTimeout: { kind: 'number', default: '10s' },
+      readTimeout: { kind: 'number', default: '60s' },
+      users: { kind: 'number', default: 8 },
+      showUser: { kind: 'number', default: 1 },
+    },
+    presets: {
+      'as designed': {},
+      'transactional check service': { classTx: '@Transactional' },
+      'NOT_SUPPORTED on the call': { classTx: '@Transactional', methodTx: 'NOT_SUPPORTED' },
+      'the insurer is slow': { remote: { takes: '90s', answers: 'late' } },
+    },
+    config: { poolSize: { slot: 'poolSize' }, connectionTimeout: { slot: 'connectionTimeout' },
+      connectTimeout: { slot: 'connectTimeout' }, readTimeout: { slot: 'readTimeout' }, osiv: false },
+    entries: [{ root: 'f1', users: { slot: 'users' }, startAt: 0 }],
+    frames: [
+      { id: 'f1', actor: 'ReviewSweep', method: 'refresh', classTx: null, methodTx: null, visibility: 'public', invoke: 'injected',
+        calls: ['f2', 'f3', 'f4'], phase: 'a worker picks up a claim' },
+      { id: 'f2', actor: 'ReviewSweep', method: 'loadAndPrepare', classTx: null, methodTx: 'REQUIRED', visibility: 'public', invoke: 'injected',
+        dbTouch: true, phase: 'transaction 1: read' },
+      { id: 'f3', actor: 'FraudCheckService', method: 'check', classTx: { slot: 'classTx' }, methodTx: { slot: 'methodTx' }, visibility: 'public',
+        invoke: { slot: 'invoke' }, phase: 'the remote is asked',
+        remote: { takes: { slot: 'remote', field: 'takes' }, answers: { slot: 'remote', field: 'answers' }, reason: { slot: 'remote', field: 'reason' },
+          label: 'POST /fraud/check', onFailure: 'FraudCheckUnavailableException', onRefusal: 'FraudCheckRefusedException' } },
+      { id: 'f4', actor: 'ReviewSweep', method: 'store', classTx: null, methodTx: 'REQUIRED', visibility: 'public', invoke: 'injected',
+        dbTouch: true, phase: 'transaction 2: write' },
+    ],
+    actors: [
+      { id: 'user', label: 'Sweep\nworker', tone: 'edge' },
+      { id: 'ReviewSweep', label: 'ReviewSweep', tone: 'plain' },
+      { id: 'FraudCheckService', label: 'FraudCheck\nService (proxy)', tone: 'internal' },
+      { id: 'remote', label: 'FraudGateway\n→ insurer', tone: 'service' },
+      { id: 'pool', label: 'Hikari pool', tone: 'hot' },
+    ],
+    discoveries: ['tx-owns-connection', 'suspension-not-release', 'timeout-order', 'two-connections'],
+  };
+
+  root.TxPlay = root.TxPlay || {};
+  (root.TxPlay.scenarios = root.TxPlay.scenarios || []).push(scenario);
+  if (typeof module !== 'undefined') module.exports = scenario;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+// ---- src/scenarios/03-create-compensation.js ----
+(function (root) {
+  const scenario = {
+    id: 'create-compensation',
+    short: 'Create with compensation',
+    entryLabel: 'POST /claims',
+    title: 'A create that commits first and compensates by deleting on failure',
+    intro: 'A new claim needs an identifier from an external registry, and the registry wants our own id in the request. Our id only exists once the row is inserted, so the create commits the row first, then calls the registry in a second transaction. If that call fails, the row is deleted by hand: a compensation, not a rollback.',
+    files: [
+      { name: 'ClaimCreator.java', role: 'frames 1 to 3: two transactions, deliberately', code:
+`@Service
+{{classTx1}}
+public class ClaimCreator {
+
+    private final ClaimRepository claims;
+    private final RegistryClient registry;
+    private final ClaimCreator self;                     // self-injected proxy, so the annotations below apply
+
+    public Claim create(ClaimDraft draft) {
+        Claim claim = self.persist(draft);               // transaction 1: the row exists, the id is known
+        try {
+            return self.startWorkflow(claim);            // transaction 2: calls out, then updates the row
+        } catch (RuntimeException e) {
+            claims.delete(claim);                        // compensation: the row from transaction 1 is removed
+            throw e;
+        }
+    }
+
+    @Transactional(propagation = REQUIRES_NEW)
+    public Claim persist(ClaimDraft draft) { return claims.save(Claim.from(draft)); }
+
+    @Transactional
+    public Claim startWorkflow(Claim claim) {
+        claim.setExternalId(registry.register(claim.getId()));   // {{remote}}
+        return claims.save(claim);
+    }
+}` },
+      { name: 'application.yml', role: 'the numbers the timeline is computed from', code:
+`datasource:
+  hikari:
+    maximum-pool-size: {{poolSize}}
+    connection-timeout: {{connectionTimeout}}
+spring:
+  cloud.openfeign.client.config.registry:
+    connect-timeout: {{connectTimeout}}
+    read-timeout: {{readTimeout}}
+load:
+  concurrent-users-creating: {{users}}
+  show-user: {{showUser}}` },
+    ],
+    slots: {
+      classTx1: { kind: 'annotation', target: 'class', default: null, choices: [null, '@Transactional'],
+        help: 'With a class-level @Transactional, create() itself starts a transaction and both inner calls join it: one transaction over both.' },
+      remote: { kind: 'external', default: { takes: '3s', answers: 'ok' } },
+      poolSize: { kind: 'number', default: 10 },
+      connectionTimeout: { kind: 'number', default: '30s' },
+      connectTimeout: { kind: 'number', default: '10s' },
+      readTimeout: { kind: 'number', default: '60s' },
+      users: { kind: 'number', default: 1 },
+      showUser: { kind: 'number', default: 1 },
+    },
+    presets: {
+      'as designed': {},
+      'the registry is down': { remote: { takes: '3s', answers: '5xx' } },
+      'one transaction over both': { classTx1: '@Transactional' },
+      'twelve at once, registry slow': { users: 12, remote: { takes: '45s', answers: 'late' }, showUser: 11 },
+    },
+    config: { poolSize: { slot: 'poolSize' }, connectionTimeout: { slot: 'connectionTimeout' },
+      connectTimeout: { slot: 'connectTimeout' }, readTimeout: { slot: 'readTimeout' }, osiv: false },
+    entries: [{ root: 'f1', users: { slot: 'users' }, startAt: 0 }],
+    frames: [
+      { id: 'f1', actor: 'ClaimCreator', method: 'create', classTx: { slot: 'classTx1' }, methodTx: null, visibility: 'public', invoke: 'injected',
+        calls: ['f2', 'f3'], phase: 'the create arrives' },
+      { id: 'f2', actor: 'ClaimCreator', method: 'persist', classTx: { slot: 'classTx1' }, methodTx: 'REQUIRES_NEW', visibility: 'public', invoke: 'self',
+        dbTouch: true, phase: 'transaction 1: the row exists' },
+      { id: 'f3', actor: 'ClaimCreator', method: 'startWorkflow', classTx: { slot: 'classTx1' }, methodTx: 'REQUIRED', visibility: 'public', invoke: 'self',
+        dbTouch: true, calls: ['f4'], compensation: 'delete the row transaction 1 wrote', phase: 'transaction 2: and it calls out' },
+      { id: 'f4', actor: 'RegistryClient', method: 'register', classTx: null, methodTx: null, visibility: 'public', invoke: 'injected',
+        remote: { takes: { slot: 'remote', field: 'takes' }, answers: { slot: 'remote', field: 'answers' }, reason: { slot: 'remote', field: 'reason' },
+          label: 'POST /registry/claims', onFailure: 'RegistryUnavailableException', onRefusal: 'RegistryRefusedException' } },
+    ],
+    actors: [
+      { id: 'user', label: 'User\n(browser)', tone: 'edge' },
+      { id: 'ClaimCreator', label: 'ClaimCreator\n(proxy)', tone: 'plain' },
+      { id: 'RegistryClient', label: 'RegistryClient', tone: 'internal' },
+      { id: 'remote', label: 'Registry\n(external)', tone: 'service' },
+      { id: 'pool', label: 'Hikari pool', tone: 'hot' },
+    ],
+    discoveries: ['tx-owns-connection', 'rollback-on-exception', 'timeout-order', 'pool-starvation'],
+  };
+
+  root.TxPlay = root.TxPlay || {};
+  (root.TxPlay.scenarios = root.TxPlay.scenarios || []).push(scenario);
+  if (typeof module !== 'undefined') module.exports = scenario;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+// ---- src/scenarios/04-pool-exhaustion.js ----
+(function (root) {
+  const scenario = {
+    id: 'pool-exhaustion',
+    short: 'Pool exhaustion',
+    entryLabel: 'PUT /claims/{id}',
+    title: 'Pool exhaustion: the pages that never called out are the ones that fail',
+    intro: 'Ten users save claims at the same moment and each save waits on the insurer with its connection held. One second later, three other users open the dashboard, a page that only reads the database. Watch who gets the connection-timeout.',
+    files: [
+      { name: 'ClaimService.java', role: 'frame 1: the save, holding a connection across the remote call', code:
+`@Service
+@Transactional
+public class ClaimService {
+
+    private final ClaimRepository claims;
+    private final FraudCheckService fraudCheck;
+
+    public Claim updateClaim(int id, ClaimEdit edit) {
+        Claim claim = claims.findById(id);          // inside the transaction that began at the call
+        claim.apply(edit);
+        claims.save(claim);
+        fraudCheck.runFraudCheck(claim);             // {{remote}}
+        return claim;
+    }
+}` },
+      { name: 'DashboardService.java', role: 'frame g1: a page that only reads', code:
+`@Service
+@Transactional(readOnly = true)
+public class DashboardService {
+
+    private final ClaimRepository claims;
+
+    public List<ClaimRow> list(int advisorId) {
+        return claims.findOpenBy(advisorId);         // needs one connection for a few milliseconds
+    }
+}` },
+      { name: 'application.yml', role: 'the numbers the timeline is computed from', code:
+`datasource:
+  hikari:
+    maximum-pool-size: {{poolSize}}
+    connection-timeout: {{connectionTimeout}}
+spring:
+  cloud.openfeign.client.config.fraud-gateway:
+    connect-timeout: {{connectTimeout}}
+    read-timeout: {{readTimeout}}
+load:
+  concurrent-users-saving: {{users}}
+  users-opening-the-dashboard-one-second-later: {{browsers}}
+  show-user: {{showUser}}` },
+    ],
+    slots: {
+      remote: { kind: 'external', default: { takes: '45s', answers: 'late' } },
+      poolSize: { kind: 'number', default: 10 },
+      connectionTimeout: { kind: 'number', default: '30s' },
+      connectTimeout: { kind: 'number', default: '10s' },
+      readTimeout: { kind: 'number', default: '60s' },
+      users: { kind: 'number', default: 10 },
+      browsers: { kind: 'number', default: 3 },
+      showUser: { kind: 'number', default: 11 },
+    },
+    presets: {
+      'as designed': {},
+      'a bigger pool': { poolSize: 20 },
+      'a shorter connection-timeout': { connectionTimeout: '5s' },
+      'a faster insurer': { remote: { takes: '2s', answers: 'ok' } },
+    },
+    config: { poolSize: { slot: 'poolSize' }, connectionTimeout: { slot: 'connectionTimeout' },
+      connectTimeout: { slot: 'connectTimeout' }, readTimeout: { slot: 'readTimeout' }, osiv: false },
+    entries: [
+      { root: 'f1', users: { slot: 'users' }, startAt: 0 },
+      { root: 'g1', users: { slot: 'browsers' }, startAt: '1s' },
+    ],
+    frames: [
+      { id: 'f1', actor: 'ClaimService', method: 'updateClaim', classTx: '@Transactional', methodTx: null, visibility: 'public', invoke: 'injected',
+        dbTouch: true, calls: ['f2'], phase: 'a save arrives' },
+      { id: 'f2', actor: 'FraudCheckService', method: 'runFraudCheck', classTx: '@Transactional', methodTx: null, visibility: 'public', invoke: 'injected',
+        remote: { takes: { slot: 'remote', field: 'takes' }, answers: { slot: 'remote', field: 'answers' }, reason: { slot: 'remote', field: 'reason' },
+          label: 'POST /fraud/check', onFailure: 'FraudCheckUnavailableException', onRefusal: 'FraudCheckRefusedException' } },
+      { id: 'g1', actor: 'DashboardService', method: 'list', classTx: '@Transactional', methodTx: null, visibility: 'public', invoke: 'injected',
+        dbTouch: true, phase: 'a dashboard opens, one second later' },
+    ],
+    actors: [
+      { id: 'user', label: 'User\n(browser)', tone: 'edge' },
+      { id: 'ClaimService', label: 'ClaimService\n(proxy)', tone: 'plain' },
+      { id: 'DashboardService', label: 'Dashboard\nService (proxy)', tone: 'plain' },
+      { id: 'FraudCheckService', label: 'FraudCheck\nService (proxy)', tone: 'internal' },
+      { id: 'remote', label: 'FraudGateway\n→ insurer', tone: 'service' },
+      { id: 'pool', label: 'Hikari pool', tone: 'hot' },
+    ],
+    discoveries: ['pool-starvation', 'tx-owns-connection', 'timeout-order'],
+  };
+
+  root.TxPlay = root.TxPlay || {};
+  (root.TxPlay.scenarios = root.TxPlay.scenarios || []).push(scenario);
+  if (typeof module !== 'undefined') module.exports = scenario;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+// ---- src/scenarios/05-proxy-bypass.js ----
+(function (root) {
+  const scenario = {
+    id: 'proxy-bypass',
+    short: 'Proxy bypass',
+    entryLabel: 'PUT /claims/{id}',
+    title: 'The proxy bypass: this.call() versus a self-injected proxy',
+    intro: 'Every Spring annotation is applied by a proxy that wraps the bean. A call that stays inside the class never meets the proxy, so the annotation on call() below is ignored unless the call goes out through the proxy and comes back in. Change how call() is reached and whether it is private, and watch the same annotation do nothing, something, or throw.',
+    files: [
+      { name: 'ClaimService.java', role: 'frame 1: the entry point', code:
+`@Service
+@Transactional
+public class ClaimService {
+
+    private final ClaimRepository claims;
+    private final FraudCheckService fraudCheck;
+
+    public Claim updateClaim(int id, ClaimEdit edit) {
+        Claim claim = claims.findById(id);          // inside the transaction that began at the call
+        claims.save(claim.apply(edit));
+        fraudCheck.runFraudCheck(claim);
+        return claim;
+    }
+}` },
+      { name: 'FraudCheckService.java', role: 'frames 2 and 3: where the bypass lives', code:
+`@Service
+@Transactional
+public class FraudCheckService {
+
+    private final FraudGateway gateway;
+    private final FraudCheckService self;            // a self-injected proxy of this very bean
+
+    public Verdict runFraudCheck(Claim claim) {
+        return {{invoke3}}.call(prepare(claim));
+    }
+
+    {{methodTx3}}
+    {{visibility3}} Verdict call(Payload payload) {
+        return gateway.check(payload);               // {{remote}}
+    }
+}` },
+      { name: 'application.yml', role: 'the numbers the timeline is computed from', code:
+`datasource:
+  hikari:
+    maximum-pool-size: {{poolSize}}
+    connection-timeout: {{connectionTimeout}}
+spring:
+  cloud.openfeign.client.config.fraud-gateway:
+    connect-timeout: {{connectTimeout}}
+    read-timeout: {{readTimeout}}
+load:
+  concurrent-users-saving: {{users}}
+  show-user: {{showUser}}` },
+    ],
+    slots: {
+      invoke3: { kind: 'invocation', default: 'this', choices: ['this', 'self'], labels: { this: 'this', self: 'self' },
+        help: 'this: a plain self-invocation, no proxy. self: the self-injected proxy, so annotations on call() apply.' },
+      methodTx3: { kind: 'annotation', target: 'method', default: 'NOT_SUPPORTED', choices: [null, 'NOT_SUPPORTED', 'REQUIRES_NEW', 'NEVER', 'MANDATORY'] },
+      visibility3: { kind: 'visibility', default: 'package', choices: ['private', 'package', 'public'],
+        help: 'A class-based proxy can advise package-private and public methods, never a private one.' },
+      remote: { kind: 'external', default: { takes: '45s', answers: 'late' } },
+      poolSize: { kind: 'number', default: 10 },
+      connectionTimeout: { kind: 'number', default: '30s' },
+      connectTimeout: { kind: 'number', default: '10s' },
+      readTimeout: { kind: 'number', default: '60s' },
+      users: { kind: 'number', default: 1 },
+      showUser: { kind: 'number', default: 1 },
+    },
+    presets: {
+      'as designed': {},
+      'self-injected': { invoke3: 'self', visibility3: 'public' },
+      'private': { invoke3: 'self', visibility3: 'private' },
+      'NEVER through the proxy': { invoke3: 'self', visibility3: 'public', methodTx3: 'NEVER' },
+    },
+    config: { poolSize: { slot: 'poolSize' }, connectionTimeout: { slot: 'connectionTimeout' },
+      connectTimeout: { slot: 'connectTimeout' }, readTimeout: { slot: 'readTimeout' }, osiv: false },
+    entries: [{ root: 'f1', users: { slot: 'users' }, startAt: 0 }],
+    frames: [
+      { id: 'f1', actor: 'ClaimService', method: 'updateClaim', classTx: '@Transactional', methodTx: null, visibility: 'public', invoke: 'injected',
+        dbTouch: true, calls: ['f2'], phase: 'the save arrives' },
+      { id: 'f2', actor: 'FraudCheckService', method: 'runFraudCheck', classTx: '@Transactional', methodTx: null, visibility: 'public', invoke: 'injected',
+        calls: ['f3'], phase: 'how is call() reached?' },
+      { id: 'f3', actor: 'FraudCheckService', method: 'call', classTx: '@Transactional', methodTx: { slot: 'methodTx3' }, visibility: { slot: 'visibility3' },
+        invoke: { slot: 'invoke3' },
+        remote: { takes: { slot: 'remote', field: 'takes' }, answers: { slot: 'remote', field: 'answers' }, reason: { slot: 'remote', field: 'reason' },
+          label: 'POST /fraud/check', onFailure: 'FraudCheckUnavailableException', onRefusal: 'FraudCheckRefusedException' } },
+    ],
+    actors: [
+      { id: 'user', label: 'User\n(browser)', tone: 'edge' },
+      { id: 'ClaimService', label: 'ClaimService\n(proxy)', tone: 'plain' },
+      { id: 'FraudCheckService', label: 'FraudCheck\nService (proxy)', tone: 'internal' },
+      { id: 'remote', label: 'FraudGateway\n→ insurer', tone: 'service' },
+      { id: 'pool', label: 'Hikari pool', tone: 'hot' },
+    ],
+    discoveries: ['self-invocation', 'suspension-not-release', 'tx-owns-connection'],
+  };
+
+  root.TxPlay = root.TxPlay || {};
+  (root.TxPlay.scenarios = root.TxPlay.scenarios || []).push(scenario);
+  if (typeof module !== 'undefined') module.exports = scenario;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+// ---- src/scenarios/06-suspension.js ----
+(function (root) {
+  const scenario = {
+    id: 'suspension',
+    short: 'Suspension is not release',
+    entryLabel: 'PUT /claims/{id}',
+    title: 'Suspension is not release: NOT_SUPPORTED keeps the connection',
+    intro: 'A tempting fix for a connection held across a remote call is to mark the calling method NOT_SUPPORTED so the transaction is suspended around it. It is suspended. It also keeps its connection, because a resource-local transaction owns its connection until it ends, and a suspended transaction has not ended. A repository read inside the suspended section then opens a second one.',
+    files: [
+      { name: 'ClaimService.java', role: 'frame 1: the entry point', code:
+`@Service
+@Transactional
+public class ClaimService {
+
+    private final ClaimRepository claims;
+    private final FraudCheckService fraudCheck;
+
+    public Claim updateClaim(int id, ClaimEdit edit) {
+        Claim claim = claims.findById(id);          // the transaction already holds connection 1
+        claims.save(claim.apply(edit));
+        fraudCheck.runFraudCheck(claim);
+        return claim;
+    }
+}` },
+      { name: 'FraudCheckService.java', role: 'frames 2 and 3: the suspended section', code:
+`@Service
+@Transactional
+public class FraudCheckService {
+
+    private final FraudGateway gateway;
+    private final ClaimHistoryRepository history;
+    private final FraudCheckService self;            // self-injected proxy: the annotation on call() applies
+
+    public Verdict runFraudCheck(Claim claim) {
+        return {{invoke3}}.call(prepare(claim));
+    }
+
+    {{methodTx3}}
+    {{visibility3}} Verdict call(Payload payload) {
+        payload.attach(history.recentFor(payload.claimId()));   // a repository read inside the suspended section
+        return gateway.check(payload);                           // {{remote}}
+    }
+}` },
+      { name: 'application.yml', role: 'the numbers the timeline is computed from', code:
+`datasource:
+  hikari:
+    maximum-pool-size: {{poolSize}}
+    connection-timeout: {{connectionTimeout}}
+spring:
+  cloud.openfeign.client.config.fraud-gateway:
+    connect-timeout: {{connectTimeout}}
+    read-timeout: {{readTimeout}}
+load:
+  concurrent-users-saving: {{users}}
+  show-user: {{showUser}}` },
+    ],
+    slots: {
+      invoke3: { kind: 'invocation', default: 'self', choices: ['this', 'self'], labels: { this: 'this', self: 'self' } },
+      methodTx3: { kind: 'annotation', target: 'method', default: 'NOT_SUPPORTED', choices: [null, 'NOT_SUPPORTED', 'REQUIRES_NEW', 'SUPPORTS'] },
+      visibility3: { kind: 'visibility', default: 'public', choices: ['private', 'package', 'public'] },
+      remote: { kind: 'external', default: { takes: '45s', answers: 'late' } },
+      poolSize: { kind: 'number', default: 10 },
+      connectionTimeout: { kind: 'number', default: '30s' },
+      connectTimeout: { kind: 'number', default: '10s' },
+      readTimeout: { kind: 'number', default: '60s' },
+      users: { kind: 'number', default: 1 },
+      showUser: { kind: 'number', default: 1 },
+    },
+    presets: {
+      'as designed': {},
+      'REQUIRES_NEW instead': { methodTx3: 'REQUIRES_NEW' },
+      'no annotation': { methodTx3: null },
+      'six users, pool of ten': { users: 6, showUser: 6 },
+    },
+    config: { poolSize: { slot: 'poolSize' }, connectionTimeout: { slot: 'connectionTimeout' },
+      connectTimeout: { slot: 'connectTimeout' }, readTimeout: { slot: 'readTimeout' }, osiv: false },
+    entries: [{ root: 'f1', users: { slot: 'users' }, startAt: 0 }],
+    frames: [
+      { id: 'f1', actor: 'ClaimService', method: 'updateClaim', classTx: '@Transactional', methodTx: null, visibility: 'public', invoke: 'injected',
+        dbTouch: true, calls: ['f2'], phase: 'the save arrives' },
+      { id: 'f2', actor: 'FraudCheckService', method: 'runFraudCheck', classTx: '@Transactional', methodTx: null, visibility: 'public', invoke: 'injected',
+        calls: ['f3'], phase: 'the suspended section' },
+      { id: 'f3', actor: 'FraudCheckService', method: 'call', classTx: '@Transactional', methodTx: { slot: 'methodTx3' }, visibility: { slot: 'visibility3' },
+        invoke: { slot: 'invoke3' }, dbTouch: true,
+        remote: { takes: { slot: 'remote', field: 'takes' }, answers: { slot: 'remote', field: 'answers' }, reason: { slot: 'remote', field: 'reason' },
+          label: 'POST /fraud/check', onFailure: 'FraudCheckUnavailableException', onRefusal: 'FraudCheckRefusedException' } },
+    ],
+    actors: [
+      { id: 'user', label: 'User\n(browser)', tone: 'edge' },
+      { id: 'ClaimService', label: 'ClaimService\n(proxy)', tone: 'plain' },
+      { id: 'FraudCheckService', label: 'FraudCheck\nService (proxy)', tone: 'internal' },
+      { id: 'remote', label: 'FraudGateway\n→ insurer', tone: 'service' },
+      { id: 'pool', label: 'Hikari pool', tone: 'hot' },
+    ],
+    discoveries: ['suspension-not-release', 'two-connections', 'tx-owns-connection'],
   };
 
   root.TxPlay = root.TxPlay || {};

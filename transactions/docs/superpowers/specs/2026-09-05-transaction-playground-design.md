@@ -101,7 +101,9 @@ named function with a golden test:
   class's. REQUIRED joins or starts. REQUIRES_NEW suspends and starts.
   NOT_SUPPORTED suspends. SUPPORTS joins or runs without. NEVER and MANDATORY
   throw.
-- A transaction takes a connection at its first database touch and holds it
+- A transaction takes a connection when it begins, because Hibernate acquires
+  the JDBC connection at BEGIN to switch off auto-commit (measured on the real
+  stack: a transaction with no database work still held one), and holds it
   until commit or rollback. Suspension keeps it. A second transaction on the
   same thread takes a second connection.
 - A thread with no free connection waits up to connection-timeout, then fails.

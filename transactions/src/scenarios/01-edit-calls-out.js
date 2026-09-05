@@ -16,7 +16,7 @@ public class ClaimService {
 
     {{methodTx1}}
     public Claim updateClaim(int id, ClaimEdit edit) {
-        Claim claim = claims.findById(id);          // first database touch: a connection is taken here
+        Claim claim = claims.findById(id);          // the transaction began at the method call and already holds a connection
         claim.apply(edit);
         claims.save(claim);                          // written, not committed
         {{invoke2}}.runFraudCheck(claim);

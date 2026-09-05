@@ -1,7 +1,7 @@
 (function (root) {
   const has = (run, ev, pred) => run.timeline.some(e => e.event === ev && (!pred || pred(e)));
   const DISCOVERIES = [
-    { id: 'tx-owns-connection', title: 'A transaction owns its connection until it ends', hint: 'first database touch to commit or rollback, whatever happens in between',
+    { id: 'tx-owns-connection', title: 'A transaction owns its connection until it ends', hint: 'taken at BEGIN, returned at commit or rollback, whatever happens in between',
       test: run => run.timeline.some(e => e.event === 'connAcquired' && !e.detail.autoCommit && run.timeline.some(r => r.event === 'connReleased' && r.detail.conn === e.detail.conn && r.t > e.t)) },
     { id: 'self-invocation', title: 'Self-invocation never reaches the proxy', hint: 'this.call() ignores every annotation on call',
       test: run => has(run, 'call', e => !e.detail.viaProxy && e.detail.ignoredAnnotation) },

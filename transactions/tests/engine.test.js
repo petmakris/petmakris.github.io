@@ -41,7 +41,7 @@ const find = (run, ev, user = 1) => run.timeline.find(e => e.user === user && e.
 
 test('the remote call runs inside the transaction and holds its connection for 45 s', () => {
   const run = simulate(scenario(), {});
-  assert.deepEqual(events(run, 1), ['call', 'txBegin', 'connAcquired', 'call', 'txJoin', 'call', 'httpStart', 'httpEnd', 'commit', 'connReleased', 'response']);
+  assert.deepEqual(events(run, 1), ['call', 'txBegin', 'connAcquired', 'dbRead', 'call', 'txJoin', 'call', 'httpStart', 'httpEnd', 'commit', 'connReleased', 'response']);
   assert.equal(find(run, 'httpStart').detail.holdingConnection, 'c1');
   assert.equal(find(run, 'connReleased').t, 45);
   assert.equal(find(run, 'response').detail.status, 200);
@@ -57,7 +57,7 @@ test('a self-invoked call ignores its own NOT_SUPPORTED annotation', () => {
 
 test('NOT_SUPPORTED through the proxy suspends but keeps the connection', () => {
   const run = simulate(scenario(), { methodTx3: 'NOT_SUPPORTED', invoke3: 'self', visibility3: 'public' });
-  assert.deepEqual(events(run, 1), ['call', 'txBegin', 'connAcquired', 'call', 'txJoin', 'call', 'suspend', 'httpStart', 'httpEnd', 'resume', 'commit', 'connReleased', 'response']);
+  assert.deepEqual(events(run, 1), ['call', 'txBegin', 'connAcquired', 'dbRead', 'call', 'txJoin', 'call', 'suspend', 'httpStart', 'httpEnd', 'resume', 'commit', 'connReleased', 'response']);
   assert.equal(find(run, 'suspend').detail.keepsConnection, true);
   assert.equal(find(run, 'httpStart').detail.holdingConnection, null);
   assert.equal(find(run, 'httpStart').detail.suspendedHolding, 1);
@@ -66,7 +66,7 @@ test('NOT_SUPPORTED through the proxy suspends but keeps the connection', () => 
 
 test('a refusal from the remote rolls the edit back and releases the connection', () => {
   const run = simulate(scenario(), { remote: { takes: '2s', answers: '4xx', reason: 'no policy' } });
-  assert.deepEqual(events(run, 1), ['call', 'txBegin', 'connAcquired', 'call', 'txJoin', 'call', 'httpStart', 'httpEnd', 'exception', 'rollbackOnly', 'exception', 'rollback', 'connReleased', 'exception', 'response']);
+  assert.deepEqual(events(run, 1), ['call', 'txBegin', 'connAcquired', 'dbRead', 'call', 'txJoin', 'call', 'httpStart', 'httpEnd', 'exception', 'rollbackOnly', 'exception', 'rollback', 'connReleased', 'exception', 'response']);
   assert.equal(find(run, 'response').detail.status, 422);
   assert.equal(find(run, 'connReleased').t, 2);
 });
