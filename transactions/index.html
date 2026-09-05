@@ -3,17 +3,1113 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="build" content="610a86418f40">
+<meta name="build" content="bdb270a61ce3">
+<meta name="theme-color" content="#1565c0">
 <title>Transaction playground</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1565c0; --primary-dark: #0d47a1;
+    --surface: #ffffff; --surface-soft: #eef1f5; --bg: #f4f6f8; --text: #1a1a1a; --text2: #4a4a4a; --line: #d9dde3;
+    --text-strong: #131a22; --text-dim: #61707f; --border: #d7dde5;
+    --ok: #1b5e20; --warn: #b26a00; --err: #b71c1c; --chip: #e8eef7;
+    --t-plain:#3c4c5b; --t-edge:#3a6d99; --t-internal:#a2560a; --t-service:#0c6d63;
+    --t-cheap:#7c8a97; --t-hot:#a3364f; --t-good:#2c6b4c; --t-dropped:#98a2ad;
+    --t-internal-bg:#f8ecdd; --t-hot-bg:#f8e6ea; --t-good-bg:#e2f0e8;
+    --t-edge-bg:#e4edf5; --t-service-bg:#dff0ed; --t-cheap-bg:#eef0f4;
+    --rail-a:.16;
+    --code-bg: #fbfcfd; --kw: #7c3aed; --ann: #b45309; --str: #0f766e; --cm: #6b7280; --ty: #1d4ed8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.6 Roboto, system-ui, sans-serif; }
+  .appbar { background: var(--primary); color: #fff; padding: 12px 28px; box-shadow: 0 2px 4px rgba(0,0,0,.2); position: sticky; top: 0; z-index: 3; display: flex; align-items: center; gap: 24px; }
+  .appbar h1 { margin: 0; font-size: 19px; font-weight: 500; }
+  .appbar .tabs { display: flex; gap: 4px; margin-left: auto; }
+  .appbar .tab { padding: 6px 12px; border-radius: 4px; font-size: 13.5px; opacity: .85; }
+  .appbar .tab.on { background: rgba(255,255,255,.18); opacity: 1; font-weight: 500; }
+  main { max-width: 1560px; margin: 0 auto; padding: 20px 28px 64px; }
+  .scenario-bar { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; flex-wrap: wrap; }
+  .scenario-bar h2 { margin: 0; font-size: 20px; font-weight: 500; }
+  .scenario-bar .sub { color: var(--text2); font-size: 14px; }
+  .pill { border: 1px solid var(--line); background: #fff; border-radius: 16px; padding: 4px 12px; font-size: 13px; color: var(--text2); }
+  .pill.on { border-color: var(--primary); color: var(--primary-dark); background: #e8f0fe; font-weight: 500; }
+  .grid { display: grid; grid-template-columns: minmax(520px, 46%) minmax(0, 1fr); gap: 20px; align-items: start; }
+  @media (max-width: 1100px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24); overflow: hidden; margin-bottom: 16px; }
+  .card-head { padding: 10px 16px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text2); }
+  .card-head .file { font-family: "Roboto Mono", monospace; color: var(--text-strong); font-weight: 500; font-size: 13px; }
+  .card-head .role { margin-left: auto; }
+  pre.code { margin: 0; padding: 14px 18px; background: var(--code-bg); font: 13px/1.75 "Roboto Mono", ui-monospace, monospace; color: var(--text); overflow-x: auto; }
+  .kw { color: var(--kw); font-weight: 500; } .ann { color: var(--ann); } .str { color: var(--str); } .cm { color: var(--cm); font-style: italic; } .ty { color: var(--ty); }
+  .tg { display: inline-block; border: 1px solid #9aa3ad; border-bottom: 2px solid var(--primary); border-radius: 4px; padding: 0 22px 0 6px; background: #fff; cursor: pointer; position: relative; line-height: 1.45; }
+  .tg::after { content: ""; position: absolute; right: 7px; top: 45%; border: 4px solid transparent; border-top-color: var(--primary); }
+  .tg.off { color: var(--text-dim); border-bottom-color: #c5cbd3; text-decoration: line-through; }
+  .tg.changed { background: #fff7e6; border-bottom-color: var(--warn); }
+  .lineno { display: inline-block; width: 2.2em; color: #a0a8b3; user-select: none; }
+  .dim { color: #8a93a0; }
+  .gutter-note { display: inline-block; margin-left: 18px; color: var(--text-dim); font-size: 12px; font-style: italic; }
+  .yaml .k { color: var(--ty); }
+  .actions { display: flex; gap: 12px; align-items: center; padding: 12px 16px; border-top: 1px solid var(--line); background: #fff; }
+  .btn { display: inline-block; background: var(--primary); color: #fff; border-radius: 4px; padding: 8px 16px; font-weight: 500; font-size: 14px; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+  .btn.outline { background: #fff; color: var(--primary); border: 1px solid var(--primary); box-shadow: none; }
+  .diffchip { margin-left: auto; font-size: 12.5px; color: var(--warn); background: #fff7e6; border-radius: 12px; padding: 3px 10px; }
+  .section { padding: 14px 16px; }
+  .label { font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text2); margin-bottom: 8px; }
+  .canvas { overflow-x: auto; overscroll-behavior-x: contain; padding: 4px 0; }
+  .explain p { margin: 0 0 10px; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; margin: 6px 0; }
+  .chip { display: inline-block; border-radius: 12px; padding: 2px 10px; font-size: 12.5px; font-weight: 500; background: var(--chip); color: var(--primary-dark); }
+  .chip.ok { background: #e8f5e9; color: var(--ok); } .chip.warn { background: #fff3e0; color: var(--warn); } .chip.err { background: #ffebee; color: var(--err); } .chip.muted { background: #eceff1; color: var(--text2); }
+  .discover { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+  .disc { border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; font-size: 13.5px; background: #fff; }
+  .disc.found { border-color: var(--ok); background: #f1f8f2; }
+  .disc .t { font-weight: 500; }
+  .disc .h { color: var(--text2); font-size: 12.5px; }
+  .disc .badge { float: right; font-size: 11px; font-weight: 700; letter-spacing: .05em; color: var(--ok); }
+  .disc.locked .badge { color: #9aa3ad; }
+  .options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+  @media (max-width: 900px) { .options { grid-template-columns: 1fr; } }
+  .option { background: var(--surface); border: 2px solid var(--line); border-radius: 8px; padding: 14px 16px; cursor: pointer; display: flex; gap: 14px; }
+  .option:hover { border-color: var(--primary); }
+  .option.selected { border-color: var(--primary); background: #e8f0fe; }
+  .option .letter { background: #eceff1; color: var(--text2); font-weight: 700; width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+  .option.selected .letter { background: var(--primary); color: #fff; }
+  .option h3 { margin: 0 0 4px; font-size: 16px; }
+  .option p { margin: 0; color: var(--text2); font-size: 14px; }
+  h2.q { font-size: 20px; font-weight: 500; margin: 28px 0 6px; }
+  .lead { color: var(--text2); margin: 0 0 12px; max-width: 900px; }
+
+  /* sequence grammar, verbatim from the page that drew the PMP-272 timelines */
+  svg.seq{display:block;height:auto}
+  .seq text{font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif}
+  .seq .actor-box{fill:var(--surface);stroke:color-mix(in srgb,var(--text-dim) 55%,transparent);stroke-width:1.2}
+  .seq .actor-box.t-edge{stroke:var(--t-edge)} .seq .actor-box.t-internal{stroke:var(--t-internal)}
+  .seq .actor-box.t-service{stroke:var(--t-service)} .seq .actor-box.t-cheap{stroke:var(--t-cheap)}
+  .seq .actor-box.t-hot{stroke:var(--t-hot)} .seq .actor-box.t-good{stroke:var(--t-good)}
+  .seq .actor-label{fill:var(--text-strong);font-weight:500;font-size:10px;font-family:'IBM Plex Mono',ui-monospace,monospace}
+  .seq .lane{stroke:color-mix(in srgb,var(--text-dim) 45%,transparent);stroke-dasharray:3 4;stroke-width:1;fill:none}
+  .seq .arr{stroke:var(--t-plain);stroke-width:1.3;fill:none}
+  .seq .arr.dashed{stroke-dasharray:5 4}
+  .seq .arr-head{fill:var(--t-plain)}
+  .seq .arrow-label{fill:var(--text-strong);font-size:11.5px;font-weight:500}
+  .seq .arrow-sub{fill:var(--text-dim);font-size:10px;font-family:'IBM Plex Mono',ui-monospace,monospace}
+  .seq .row-num,.seq .row-note{fill:var(--text-dim);font-size:10px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+  .seq .row-num{font-weight:500}
+  .seq .arr.t-edge{stroke:var(--t-edge)} .seq .arr.t-internal{stroke:var(--t-internal)}
+  .seq .arr.t-service{stroke:var(--t-service)} .seq .arr.t-cheap{stroke:var(--t-cheap)}
+  .seq .arr.t-good{stroke:var(--t-good)} .seq .arr.t-dropped{stroke:var(--t-dropped)}
+  .seq .arr.t-hot{stroke:var(--t-hot)}
+  .seq .arr.t-hot,.seq .arr.t-good{stroke-width:1.9}
+  .seq .arr-head.t-edge{fill:var(--t-edge)} .seq .arr-head.t-internal{fill:var(--t-internal)}
+  .seq .arr-head.t-service{fill:var(--t-service)} .seq .arr-head.t-cheap{fill:var(--t-cheap)}
+  .seq .arr-head.t-hot{fill:var(--t-hot)} .seq .arr-head.t-good{fill:var(--t-good)}
+  .seq .arr-head.t-dropped{fill:var(--t-dropped)}
+  .seq .arrow-label.t-edge,.seq .arrow-sub.t-edge,.seq .row-note.t-edge{fill:var(--t-edge)}
+  .seq .arrow-label.t-internal,.seq .arrow-sub.t-internal,.seq .row-note.t-internal{fill:var(--t-internal)}
+  .seq .arrow-label.t-service,.seq .arrow-sub.t-service,.seq .row-note.t-service{fill:var(--t-service)}
+  .seq .arrow-label.t-cheap,.seq .arrow-sub.t-cheap,.seq .row-note.t-cheap{fill:var(--t-cheap)}
+  .seq .arrow-label.t-hot,.seq .arrow-sub.t-hot,.seq .row-note.t-hot{fill:var(--t-hot);font-weight:600}
+  .seq .arrow-label.t-good,.seq .arrow-sub.t-good,.seq .row-note.t-good{fill:var(--t-good);font-weight:600}
+  .seq .arrow-label.t-dropped,.seq .arrow-sub.t-dropped{fill:var(--t-dropped);text-decoration:line-through}
+  .seq .band{fill:var(--surface-soft);stroke:var(--border);stroke-width:1}
+  .seq .band.t-internal{fill:var(--t-internal-bg);stroke:var(--t-internal)}
+  .seq .band.t-hot{fill:var(--t-hot-bg);stroke:var(--t-hot)}
+  .seq .band.t-good{fill:var(--t-good-bg);stroke:var(--t-good)}
+  .seq .band-text{fill:var(--text-dim);font-size:10.5px;font-family:'IBM Plex Mono',ui-monospace,monospace}
+  .seq .band-text.t-internal{fill:var(--t-internal);font-weight:500}
+  .seq .band-text.t-hot{fill:var(--t-hot);font-weight:500}
+  .seq .band-text.t-good{fill:var(--t-good);font-weight:500}
+  .seq .phase-rule{stroke:var(--border);stroke-width:1}
+  .seq .phase-label{fill:var(--text-dim);font-size:9px;letter-spacing:1.4px;font-weight:700;text-transform:uppercase;font-family:'IBM Plex Mono',ui-monospace,monospace}
+  .seq .legend-swatch{stroke:var(--t-plain);stroke-width:3;stroke-linecap:round}
+  .seq .legend-swatch.t-edge{stroke:var(--t-edge)} .seq .legend-swatch.t-internal{stroke:var(--t-internal)}
+  .seq .legend-swatch.t-service{stroke:var(--t-service)} .seq .legend-swatch.t-hot{stroke:var(--t-hot)}
+  .seq .legend-swatch.t-good{stroke:var(--t-good)} .seq .legend-swatch.t-dropped{stroke:var(--t-dropped)}
+  .seq .legend-text{fill:var(--text-dim);font-size:11.5px;font-family:'IBM Plex Mono',ui-monospace,monospace}
+  .seq .rail{stroke-width:1.1}
+  .seq .rail.t-hot{fill:color-mix(in srgb,var(--t-hot) calc(var(--rail-a)*100%),transparent);stroke:var(--t-hot)}
+  .seq .rail.t-good{fill:color-mix(in srgb,var(--t-good) calc(var(--rail-a)*100%),transparent);stroke:var(--t-good)}
+  .seq .rail-cap{font-size:9px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-weight:600}
+  .seq .rail-cap.t-hot{fill:var(--t-hot)} .seq .rail-cap.t-good{fill:var(--t-good)}
+
+  .tg select, .tg input { font: inherit; border: 0; background: transparent; color: inherit; padding: 0; }
+  .tg input[type=text] { width: 5em; }
+  .key-form { display: flex; gap: 8px; margin-top: 10px; }
+  .key-form input { flex: 1; border: 1px solid #8a8f98; border-radius: 4px; padding: 6px 10px; font: inherit; }
+  .muted { color: var(--text2); font-size: 13.5px; }
+  .err { color: var(--err); }
+  #ask-out { padding: 0 16px 14px; font-size: 15px; }
+  #ask-out p { margin: 0 0 10px; }
+  .tab { cursor: pointer; }
+  .pill { cursor: pointer; }
+</style>
 </head>
 <body>
-<main id="app"></main>
+<div class="appbar"><h1>Transaction playground</h1><div class="tabs" id="tabs"></div></div>
+<main>
+  <div class="scenario-bar"><h2 id="title"></h2></div>
+  <p class="muted" id="intro"></p>
+  <div class="scenario-bar" id="presets"></div>
+  <div class="grid">
+    <div id="left"></div>
+    <div id="right">
+      <div class="card"><div class="card-head"><span class="file">Timeline</span><span id="timeline-sub"></span></div><div class="section"><div class="canvas" id="diagram"></div></div></div>
+      <div class="card"><div class="card-head"><span class="file">What happened, and why</span><span class="muted">templated from the timeline</span></div><div class="section explain" id="explain"></div></div>
+      <div class="card"><div class="card-head"><span class="file">Discoveries</span><span id="disc-count" class="role"></span></div><div class="section discover" id="discoveries"></div></div>
+    </div>
+  </div>
+</main>
 <script>
 // ---- src/seqrender.js ----
 (function (root) {
-  const api = {};
+const ROW_H=34, ACTOR_W=124, ACTOR_GAP=12, PAD_L=54, ROWNUM_X=42, PAD_R=18,
+      GUTTER_GAP=26, ACTOR_H=46, TOP=14, INSET=6, HEAD=7, BAND_H=22, SELF_W=24,
+      LEGEND_H=30, RAIL_W=11;
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const tc=t=>t&&t!=='plain'?' t-'+t:'';
+function renderSequence(spec){
+  const A=spec.actors, S=spec.steps;
+  const cx={}; A.forEach((a,i)=>cx[a.id]=PAD_L+i*(ACTOR_W+ACTOR_GAP)+ACTOR_W/2);
+  const lastX=PAD_L+(A.length-1)*(ACTOR_W+ACTOR_GAP)+ACTOR_W;
+  const hasNote=S.some(s=>s.note);
+  const noteX=lastX+GUTTER_GAP;
+  const maxNote=Math.max(0,...S.filter(s=>s.note).map(s=>String(s.note).length*6.7));
+  const W=(hasNote?noteX+maxNote:lastX)+PAD_R;
+  const yOf=[]; let y=TOP+ACTOR_H+16, phases=[];
+  S.forEach((s,i)=>{ if(s.phase){ phases.push({y:y+8,label:s.phase}); y+=ROW_H; } yOf[i]=y+ROW_H/2; y+=ROW_H; });
+  const bodyEnd=y+6;
+  const H=bodyEnd+(spec.legend?LEGEND_H:0)+10;
+  let o=`<svg class="seq" role="img" aria-label="${esc(spec.alt||'sequence diagram')}" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`;
+  (spec.rails||[]).forEach(r=>{
+    const x=cx[r.actor]-RAIL_W/2, y0=yOf[r.from]-13, y1=yOf[r.to]+13;
+    o+=`<rect class="rail${tc(r.tone)}" x="${x}" y="${y0}" width="${RAIL_W}" height="${y1-y0}" rx="2"/>`;
+    if(r.label) o+=`<text class="rail-cap${tc(r.tone)}" x="${cx[r.actor]}" y="${y0-5}" text-anchor="middle">${esc(r.label)}</text>`;
+  });
+  A.forEach((a,i)=>{
+    const x=PAD_L+i*(ACTOR_W+ACTOR_GAP), c=x+ACTOR_W/2;
+    o+=`<path class="lane" d="M ${c} ${TOP+ACTOR_H} L ${c} ${bodyEnd}"/>`;
+    o+=`<rect class="actor-box${tc(a.tone)}" x="${x}" y="${TOP}" width="${ACTOR_W}" height="${ACTOR_H}" rx="3"/>`;
+    const lines=a.label.split('\n');
+    lines.forEach((ln,k)=>{ o+=`<text class="actor-label" x="${c}" y="${TOP+(lines.length===1?27:18+k*13)}" text-anchor="middle">${esc(ln)}</text>`; });
+  });
+  phases.forEach(p=>{ o+=`<path class="phase-rule" d="M ${PAD_L-12} ${p.y-9} L ${lastX} ${p.y-9}"/>`+`<text class="phase-label" x="${PAD_L-12}" y="${p.y+4}">${esc(p.label)}</text>`; });
+  let n=0;
+  S.forEach((s,i)=>{
+    const y=yOf[i], t=tc(s.tone);
+    if(s.arrow==='band'){
+      const xs=s.span?s.span.map(id=>cx[id]):[cx[A[0].id],cx[A[A.length-1].id]];
+      const x0=Math.min(...xs)-46, x1=Math.max(...xs)+46;
+      o+=`<rect class="band${t}" x="${x0}" y="${y-BAND_H/2}" width="${x1-x0}" height="${BAND_H}" rx="3"/>`+`<text class="band-text${t}" x="${x0+10}" y="${y+4}">${esc(s.label)}</text>`;
+      return;
+    }
+    n++;
+    o+=`<text class="row-num" x="${ROWNUM_X}" y="${y+4}" text-anchor="end">${n}</text>`;
+    if(s.note) o+=`<text class="row-note${t}" x="${noteX}" y="${y+4}">${esc(s.note)}</text>`;
+    if(s.arrow==='self'){
+      const c=cx[s.from];
+      o+=`<path class="arr${t}${s.dashed?' dashed':''}" d="M ${c} ${y-8} h ${SELF_W} v 16 h ${-SELF_W+INSET}"/>`+`<path class="arr-head${t}" d="M ${c+INSET} ${y+8} l ${HEAD} -3.6 v 7.2 z"/>`+`<text class="arrow-label${t}" x="${c+SELF_W+10}" y="${y-3}">${esc(s.label)}</text>`;
+      if(s.sub) o+=`<text class="arrow-sub${t}" x="${c+SELF_W+10}" y="${y+11}">${esc(s.sub)}</text>`;
+      return;
+    }
+    const a=cx[s.from], b=cx[s.to], dir=b>a?1:-1, x0=a+INSET*dir, x1=b-INSET*dir;
+    o+=`<path class="arr${t}${s.arrow==='event'?' dashed':''}" d="M ${x0} ${y} L ${x1} ${y}"/>`+`<path class="arr-head${t}" d="M ${x1} ${y} l ${-HEAD*dir} -3.6 v 7.2 z"/>`+`<text class="arrow-label${t}" x="${(x0+x1)/2}" y="${y-6}" text-anchor="middle">${esc(s.label)}</text>`;
+    if(s.sub) o+=`<text class="arrow-sub${t}" x="${(x0+x1)/2}" y="${y+13}" text-anchor="middle">${esc(s.sub)}</text>`;
+  });
+  if(spec.legend){
+    let x=PAD_L-2; const ly=bodyEnd+18;
+    spec.legend.forEach(l=>{ o+=`<path class="legend-swatch${tc(l.tone)}" d="M ${x} ${ly} h 22"/>`+`<text class="legend-text" x="${x+28}" y="${ly+4}">${esc(l.label)}</text>`; x+=22+8+l.label.length*6.6+24; });
+  }
+  return o+'</svg>';
+}
+
+  const api = { renderSequence };
   root.TxPlay = Object.assign(root.TxPlay || {}, api);
   if (typeof module !== 'undefined') module.exports = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+// ---- src/rules.js ----
+(function (root) {
+  const PROPAGATIONS = ['REQUIRED', 'REQUIRES_NEW', 'NOT_SUPPORTED', 'SUPPORTS', 'NEVER', 'MANDATORY'];
+
+  function seconds(v) {
+    if (v == null || v === '') return 0;
+    if (typeof v === 'number') return v;
+    const m = String(v).trim().match(/^([\d.]+)\s*(ms|s|m)?$/);
+    if (!m) throw new Error('bad duration: ' + v);
+    const n = parseFloat(m[1]);
+    return m[2] === 'ms' ? n / 1000 : m[2] === 'm' ? n * 60 : n;
+  }
+
+  function normalizeTx(v) {
+    if (!v) return null;
+    if (typeof v === 'string') {
+      const m = v.match(/(REQUIRES_NEW|NOT_SUPPORTED|REQUIRED|SUPPORTS|NEVER|MANDATORY)/);
+      return { propagation: m ? m[1] : 'REQUIRED', rollbackFor: [] };
+    }
+    return { propagation: v.propagation || 'REQUIRED', rollbackFor: v.rollbackFor || [] };
+  }
+
+  function reachesProxy(frame) {
+    return frame.invoke !== 'this' && frame.visibility !== 'private';
+  }
+
+  function effectiveTx(frame) {
+    if (!reachesProxy(frame)) return null;
+    return normalizeTx(frame.methodTx) || normalizeTx(frame.classTx);
+  }
+
+  function enter(propagation, active) {
+    switch (propagation) {
+      case 'REQUIRED': return { action: active ? 'join' : 'start' };
+      case 'REQUIRES_NEW': return { action: active ? 'suspendStart' : 'start' };
+      case 'NOT_SUPPORTED': return { action: active ? 'suspend' : 'none' };
+      case 'SUPPORTS': return { action: active ? 'join' : 'none' };
+      case 'NEVER': return active ? { action: 'throw', reason: 'NEVER but a transaction is active' } : { action: 'none' };
+      case 'MANDATORY': return active ? { action: 'join' } : { action: 'throw', reason: 'MANDATORY but no transaction is active' };
+      default: throw new Error('unknown propagation ' + propagation);
+    }
+  }
+
+  function rollsBack(error, attr) {
+    if (error.exceptionKind !== 'checked') return true;
+    return (attr.rollbackFor || []).includes(error.kind);
+  }
+
+  const api = { PROPAGATIONS, seconds, normalizeTx, reachesProxy, effectiveTx, enter, rollsBack };
+  root.TxPlay = Object.assign(root.TxPlay || {}, api);
+  if (typeof module !== 'undefined') module.exports = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+// ---- src/engine.js ----
+(function (root) {
+  const R = typeof require === 'function' ? require('./rules.js') : root.TxPlay;
+
+  // ---- slot resolution ----------------------------------------------------
+  function slotValue(scenario, values, name) {
+    const slot = scenario.slots[name];
+    if (!slot) throw new Error('unknown slot ' + name);
+    return Object.prototype.hasOwnProperty.call(values, name) ? values[name] : slot.default;
+  }
+  function resolve(node, scenario, values) {
+    if (Array.isArray(node)) return node.map(n => resolve(n, scenario, values));
+    if (node && typeof node === 'object') {
+      if (node.slot) {
+        const v = slotValue(scenario, values, node.slot);
+        return resolve(node.field ? (v == null ? null : v[node.field]) : v, scenario, values);
+      }
+      const out = {};
+      for (const k of Object.keys(node)) out[k] = resolve(node[k], scenario, values);
+      return out;
+    }
+    return node;
+  }
+  function resolveFrames(scenario, values) { return resolve(scenario.frames, scenario, values); }
+  function resolveConfig(scenario, values) {
+    const c = resolve(scenario.config, scenario, values);
+    return { poolSize: Number(c.poolSize), connectionTimeout: R.seconds(c.connectionTimeout),
+      connectTimeout: R.seconds(c.connectTimeout), readTimeout: R.seconds(c.readTimeout), osiv: !!c.osiv };
+  }
+
+  // ---- discrete-event scheduler and resources -----------------------------
+  class Scheduler {
+    constructor() { this.now = 0; this.queue = []; this.seq = 0; }
+    at(t, fn) { this.queue.push({ t, seq: this.seq++, fn }); }
+    run() {
+      while (this.queue.length) {
+        this.queue.sort((a, b) => a.t - b.t || a.seq - b.seq);
+        const e = this.queue.shift(); this.now = e.t; e.fn();
+      }
+    }
+  }
+  class Resource {
+    constructor(name, size) { this.name = name; this.size = size; this.free = size; this.waiters = []; }
+  }
+  // ops yielded by a user program: (sched, resume) => void
+  function acquire(res, timeout) {
+    return (sched, resume) => {
+      if (res.free > 0) { res.free--; resume('ok'); return; }
+      if (timeout <= 0) { resume('refused'); return; }
+      const w = { resume, done: false };
+      res.waiters.push(w);
+      sched.at(sched.now + timeout, () => {
+        if (w.done) return;
+        w.done = true; res.waiters.splice(res.waiters.indexOf(w), 1); resume('timeout');
+      });
+    };
+  }
+  function release(res) {
+    return (sched, resume) => {
+      const w = res.waiters.shift();
+      if (w) { w.done = true; sched.at(sched.now, () => w.resume('ok')); }
+      else res.free++;
+      resume();
+    };
+  }
+  function sleep(d) { return (sched, resume) => sched.at(sched.now + d, () => resume()); }
+  function drive(sched, gen, value) {
+    const r = gen.next(value);
+    if (r.done) return;
+    r.value(sched, v => drive(sched, gen, v));
+  }
+
+  function fail(name, status, reason, kind) {
+    const e = new Error(name);
+    e.kind = name; e.status = status; e.reason = reason; e.exceptionKind = kind || 'runtime';
+    return e;
+  }
+
+  // ---- one user's request ---------------------------------------------------
+  function* userProgram(u, rootFrame, frames, cfg, res, emit) {
+    const ctx = { user: u, active: null, suspended: [], txSeq: 0, held: 0 };
+    try {
+      yield* runFrame(rootFrame, ctx, cfg, res, emit, frames);
+      emit(u, rootFrame.actor, 'response', { status: 200 });
+    } catch (e) {
+      emit(u, rootFrame.actor, 'response', { status: e.status || 500, error: e.kind, reason: e.reason });
+    }
+  }
+
+  function* runFrame(f, ctx, cfg, res, emit, frames) {
+    const u = ctx.user;
+    const attr = R.effectiveTx(f);
+    const reach = R.reachesProxy(f);
+    emit(u, f.actor, 'call', { frame: f.id, method: f.method, viaProxy: reach,
+      propagation: attr ? attr.propagation : null,
+      ignoredAnnotation: !reach && !!(f.methodTx || f.classTx), phase: f.phase || null });
+    const entry = attr ? R.enter(attr.propagation, ctx.active) : { action: 'none' };
+    if (entry.action === 'throw') throw fail('IllegalTransactionStateException', 500, entry.reason);
+
+    let started = null, suspendedHere = false, permitHeld = false;
+    if (entry.action === 'suspend' || entry.action === 'suspendStart') {
+      ctx.suspended.push(ctx.active);
+      emit(u, f.actor, 'suspend', { tx: ctx.active.id, keepsConnection: !!ctx.active.conn, propagation: attr.propagation });
+      ctx.active = null; suspendedHere = true;
+    }
+    if (entry.action === 'start' || entry.action === 'suspendStart') {
+      started = { id: 't' + (++ctx.txSeq) + '.' + u, conn: null, rollbackOnly: false, attr, frame: f.id };
+      ctx.active = started;
+      emit(u, f.actor, 'txBegin', { tx: started.id, propagation: attr.propagation });
+    } else if (entry.action === 'join') {
+      emit(u, f.actor, 'txJoin', { tx: ctx.active.id, propagation: attr.propagation });
+    }
+    const bulk = f.bulkhead ? res.bulkheads[f.bulkhead.name] : null;
+
+    try {
+      if (f.dbTouch) yield* dbTouch(f, ctx, cfg, res, emit);
+      if (bulk) {
+        const got = yield acquire(bulk, R.seconds(f.bulkhead.wait));
+        if (got === 'ok') { permitHeld = true; emit(u, f.actor, 'permit', { name: bulk.name, used: bulk.size - bulk.free, size: bulk.size }); }
+        else {
+          emit(u, f.actor, 'refused', { name: bulk.name, after: got === 'timeout' ? R.seconds(f.bulkhead.wait) : 0, size: bulk.size });
+          throw fail(f.bulkhead.fallback || 'BulkheadFullException', 503, 'refused by the ceiling');
+        }
+      }
+      for (const id of f.calls || []) {
+        const child = frames.find(x => x.id === id);
+        if (!child) throw new Error('unknown frame ' + id);
+        yield* runFrame(child, ctx, cfg, res, emit, frames);
+      }
+      if (f.remote) yield* remoteCall(f, ctx, cfg, emit);
+      if (f.throws) throw fail(f.throws.name, f.throws.status || 500, 'thrown by ' + f.method, f.throws.kind);
+      if (permitHeld) { permitHeld = false; yield release(bulk); }
+      if (started) {
+        const s = started; started = null;
+        const unexpected = yield* endTx(f, ctx, s, null, res, emit);
+        if (suspendedHere) { suspendedHere = false; ctx.active = ctx.suspended.pop(); emit(u, f.actor, 'resume', { tx: ctx.active ? ctx.active.id : null }); }
+        if (unexpected) throw fail('UnexpectedRollbackException', 500, 'the transaction was marked rollback-only');
+      } else if (suspendedHere) {
+        suspendedHere = false; ctx.active = ctx.suspended.pop();
+        emit(u, f.actor, 'resume', { tx: ctx.active ? ctx.active.id : null });
+      }
+    } catch (e) {
+      if (permitHeld) { permitHeld = false; yield release(bulk); }
+      if (started) { const s = started; started = null; yield* endTx(f, ctx, s, e, res, emit); }
+      else if (ctx.active && attr && R.rollsBack(e, attr) && !ctx.active.rollbackOnly) {
+        ctx.active.rollbackOnly = true;
+        emit(u, f.actor, 'rollbackOnly', { tx: ctx.active.id, exception: e.kind });
+      }
+      if (suspendedHere) { suspendedHere = false; ctx.active = ctx.suspended.pop(); emit(u, f.actor, 'resume', { tx: ctx.active ? ctx.active.id : null }); }
+      if (f.compensation) yield* compensate(f, ctx, cfg, res, emit);
+      emit(u, f.actor, 'exception', { frame: f.id, name: e.kind, status: e.status, exceptionKind: e.exceptionKind, reason: e.reason });
+      throw e;
+    }
+  }
+
+  function* dbTouch(f, ctx, cfg, res, emit) {
+    const u = ctx.user, tx = ctx.active;
+    if (tx && tx.conn) { emit(u, f.actor, 'dbRead', { tx: tx.id, conn: tx.conn }); return; }
+    if (!tx && f.lazyRead && !cfg.osiv) {
+      emit(u, f.actor, 'detachedRead', { frame: f.id });
+      throw fail('LazyInitializationException', 500, 'lazy association touched outside a session');
+    }
+    const got = yield acquire(res.pool, cfg.connectionTimeout);
+    if (got !== 'ok') {
+      emit(u, f.actor, 'poolTimeout', { waited: cfg.connectionTimeout, alsoHolding: ctx.held });
+      throw fail('SQLTransientConnectionException', 500, 'no connection within connection-timeout');
+    }
+    const conn = 'c' + (++res.connSeq);
+    if (tx) {
+      tx.conn = conn; ctx.held++;
+      emit(u, f.actor, 'connAcquired', { tx: tx.id, conn, free: res.pool.free, size: res.pool.size, alsoHolding: ctx.held - 1 });
+    } else {
+      emit(u, f.actor, 'connAcquired', { tx: null, conn, free: res.pool.free, size: res.pool.size, alsoHolding: ctx.held, autoCommit: true });
+      yield release(res.pool);
+      emit(u, f.actor, 'connReleased', { conn, tx: null, autoCommit: true });
+    }
+  }
+
+  function* remoteCall(f, ctx, cfg, emit) {
+    const u = ctx.user, r = f.remote;
+    const takes = R.seconds(r.takes), read = cfg.readTimeout, connect = cfg.connectTimeout;
+    const holding = ctx.active && ctx.active.conn ? ctx.active.conn : null;
+    emit(u, f.actor, 'httpStart', { frame: f.id, label: r.label || null, holdingConnection: holding,
+      suspendedHolding: ctx.suspended.filter(t => t && t.conn).length, takes });
+    if (r.answers === 'unreachable') {
+      yield sleep(connect);
+      emit(u, f.actor, 'httpTimeout', { after: connect, kind: 'connect' });
+      throw fail(r.onFailure || 'RemoteUnavailableException', 503, 'the remote is unreachable');
+    }
+    const d = Math.min(takes, read);
+    yield sleep(d);
+    if (takes > read) {
+      emit(u, f.actor, 'httpTimeout', { after: read, kind: 'read' });
+      throw fail(r.onFailure || 'RemoteUnavailableException', 503, 'no answer within read-timeout');
+    }
+    if (r.answers === '4xx') {
+      emit(u, f.actor, 'httpEnd', { after: d, status: 422, reason: r.reason || 'refused' });
+      throw fail(r.onRefusal || 'RemoteRefusedException', 422, r.reason || 'refused');
+    }
+    if (r.answers === '5xx') {
+      emit(u, f.actor, 'httpEnd', { after: d, status: 503 });
+      throw fail(r.onFailure || 'RemoteUnavailableException', 503, 'the remote failed');
+    }
+    emit(u, f.actor, 'httpEnd', { after: d, status: 200 });
+  }
+
+  // returns true when a clean exit still has to roll back (rollback-only marker)
+  function* endTx(f, ctx, tx, e, res, emit) {
+    const u = ctx.user;
+    const rollback = e ? (R.rollsBack(e, tx.attr) || tx.rollbackOnly) : tx.rollbackOnly;
+    emit(u, f.actor, rollback ? 'rollback' : 'commit', { tx: tx.id, cause: e ? e.kind : (tx.rollbackOnly ? 'rollbackOnly' : null),
+      exceptionKind: e ? e.exceptionKind : null });
+    if (tx.conn) {
+      yield release(res.pool); ctx.held--;
+      emit(u, f.actor, 'connReleased', { conn: tx.conn, tx: tx.id });
+      tx.conn = null;
+    }
+    ctx.active = null;
+    return !e && tx.rollbackOnly;
+  }
+
+  function* compensate(f, ctx, cfg, res, emit) {
+    const u = ctx.user;
+    const got = yield acquire(res.pool, cfg.connectionTimeout);
+    if (got !== 'ok') { emit(u, f.actor, 'poolTimeout', { waited: cfg.connectionTimeout, alsoHolding: ctx.held, during: 'compensation' }); return; }
+    const conn = 'c' + (++res.connSeq);
+    emit(u, f.actor, 'compensation', { conn, what: f.compensation });
+    yield release(res.pool);
+    emit(u, f.actor, 'connReleased', { conn, tx: null, compensation: true });
+  }
+
+  // ---- the run ------------------------------------------------------------
+  function round(t) { return Math.round(t * 1000) / 1000; }
+
+  function summarize(timeline, cfg) {
+    const holds = {}; let peak = 0, live = 0, longest = 0;
+    for (const e of timeline) {
+      if (e.event === 'connAcquired' && !e.detail.autoCommit) { holds[e.detail.conn] = e.t; live++; peak = Math.max(peak, live); }
+      if (e.event === 'connReleased' && e.detail.tx) { longest = Math.max(longest, e.t - holds[e.detail.conn]); live--; }
+    }
+    const count = ev => timeline.filter(e => e.event === ev).length;
+    const responses = timeline.filter(e => e.event === 'response');
+    return { peakConnections: peak, poolSize: cfg.poolSize, longestHold: round(longest),
+      refused: count('refused'), poolTimeouts: count('poolTimeout'), remoteTimeouts: count('httpTimeout'),
+      saved: responses.filter(e => e.detail.status === 200).length,
+      failed: responses.filter(e => e.detail.status !== 200).length,
+      finishedAt: round(timeline.length ? timeline[timeline.length - 1].t : 0) };
+  }
+
+  function simulate(scenario, values) {
+    values = values || {};
+    const frames = resolveFrames(scenario, values);
+    const cfg = resolveConfig(scenario, values);
+    const res = { pool: new Resource('pool', cfg.poolSize), bulkheads: {}, connSeq: 0 };
+    for (const f of frames) if (f.bulkhead) res.bulkheads[f.bulkhead.name] = res.bulkheads[f.bulkhead.name] || new Resource(f.bulkhead.name, Number(f.bulkhead.permits));
+    const timeline = []; const sched = new Scheduler();
+    const emit = (user, actor, event, detail) => timeline.push({ t: round(sched.now), user, actor, event, detail: detail || {} });
+    let u = 0;
+    for (const entry of resolve(scenario.entries, scenario, values)) {
+      const rootFrame = frames.find(f => f.id === entry.root);
+      for (let i = 0; i < Number(entry.users); i++) {
+        const user = ++u;
+        sched.at(R.seconds(entry.startAt || 0), () => drive(sched, userProgram(user, rootFrame, frames, cfg, res, emit), undefined));
+      }
+    }
+    sched.run();
+    return { timeline, cfg, frames, users: u, summary: summarize(timeline, cfg) };
+  }
+
+  const api = { simulate, resolveFrames, resolveConfig, slotValue };
+  root.TxPlay = Object.assign(root.TxPlay || {}, api);
+  if (typeof module !== 'undefined') module.exports = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+// ---- src/diagram.js ----
+(function (root) {
+  const E = typeof require === 'function' ? require('./engine.js') : root.TxPlay;
+
+  function fmt(t) { return t >= 1 ? (Math.round(t * 10) / 10) + ' s' : Math.round(t * 1000) + ' ms'; }
+
+  function toDiagramSpec(scenario, run, values) {
+    values = values || {};
+    const showUser = Number(E.slotValue(scenario, values, 'showUser') || 1);
+    const events = run.timeline.filter(e => e.user === showUser);
+    const actorId = a => (scenario.actorOf && scenario.actorOf[a]) || a;
+    const steps = [], rails = [], stack = ['user'], open = {};
+    const usedTones = new Set();
+    const push = s => { if (s.tone) usedTones.add(s.tone); steps.push(s); return steps.length - 1; };
+    const remoteReached = events.some(e => e.event === 'httpStart');
+    let pendingPhase = null;
+    const phase = () => { const p = pendingPhase; pendingPhase = null; return p || undefined; };
+
+    for (const e of events) {
+      const a = actorId(e.actor), d = e.detail, top = stack[stack.length - 1];
+      switch (e.event) {
+        case 'call': {
+          pendingPhase = d.phase || pendingPhase;
+          if (!d.viaProxy) {
+            push({ from: a, to: a, arrow: 'self', label: `${d.method}()`, phase: phase(), tone: 'internal',
+              sub: d.ignoredAnnotation ? 'self-invocation: the proxy is not consulted, its annotation is ignored' : 'self-invocation: the proxy is not consulted' });
+          } else {
+            const label = stack.length === 1 ? (scenario.entryLabel || 'request') : `${d.method}(…)`;
+            push({ from: top, to: a, arrow: 'request', label, phase: phase(), tone: stack.length === 1 ? 'edge' : undefined,
+              sub: d.propagation ? `through the proxy: @Transactional ${d.propagation}` : 'through the proxy, no transaction attribute' });
+          }
+          stack.push(a);
+          break;
+        }
+        case 'txBegin': { const last = steps[steps.length - 1]; last.sub = (last.sub ? last.sub + ', ' : '') + 'starts a transaction'; break; }
+        case 'txJoin': { const last = steps[steps.length - 1]; last.sub = (last.sub ? last.sub + ', ' : '') + 'joins the open transaction'; break; }
+        case 'connAcquired': {
+          if (d.autoCommit) {
+            push({ from: a, to: 'pool', arrow: 'request', label: 'read outside a transaction', sub: 'takes and returns a connection of its own', tone: 'internal',
+              note: d.alsoHolding > 0 ? 'a second connection on this thread' : undefined });
+          } else {
+            const i = push({ from: a, to: 'pool', arrow: 'request', label: 'BEGIN', sub: 'first database touch', tone: 'hot', phase: phase(),
+              note: `connection ${d.conn.slice(1)} of ${d.size} taken` });
+            open[d.conn] = { at: i, t: e.t, spansRemote: false };
+          }
+          break;
+        }
+        case 'dbRead': break;
+        case 'permit': push({ from: a, to: 'bulkhead', arrow: 'request', label: 'acquire permit', tone: 'internal', note: `permit ${d.used} of ${d.size}` }); break;
+        case 'refused': push({ from: 'bulkhead', to: a, arrow: 'event', label: 'BulkheadFullException', tone: 'hot', phase: phase(),
+          sub: `${d.size} of ${d.size} permits held, maxWaitDuration ${d.after ? fmt(d.after) : '0'}`, note: d.after ? `refused after ${fmt(d.after)}` : 'refused at once' }); break;
+        case 'suspend': push({ from: a, to: a, arrow: 'self', label: `${d.propagation}: transaction suspended`, tone: d.keepsConnection ? 'hot' : 'internal',
+          sub: d.keepsConnection ? 'suspension is not release: the connection stays with it' : 'nothing to release' }); break;
+        case 'resume': push({ from: a, to: a, arrow: 'self', label: 'transaction resumed', tone: 'internal' }); break;
+        case 'httpStart': {
+          for (const c of Object.values(open)) c.spansRemote = true;
+          push({ from: a, to: 'remote', arrow: 'request', label: d.label || 'remote call', phase: phase(), tone: (d.holdingConnection || d.suspendedHolding) ? 'hot' : 'service',
+            note: d.holdingConnection ? `${fmt(d.takes)}, holding ${d.holdingConnection}` : d.suspendedHolding ? `${fmt(d.takes)}, suspended transaction still holds its connection` : `${fmt(d.takes)}, holding nothing` });
+          break;
+        }
+        case 'httpEnd': push({ from: 'remote', to: a, arrow: 'event', tone: d.status === 200 ? 'service' : 'hot',
+          label: d.status === 200 ? 'answer' : d.status === 422 ? `refused (4xx): ${d.reason}` : 'failed (5xx)' }); break;
+        case 'httpTimeout': push({ from: 'remote', to: a, arrow: 'event', tone: 'hot', label: d.kind === 'read' ? `no answer within read-timeout ${fmt(d.after)}` : `unreachable, connect-timeout ${fmt(d.after)}` }); break;
+        case 'poolTimeout': push({ from: 'pool', to: a, arrow: 'event', tone: 'hot', label: `no free connection after ${fmt(d.waited)}`, note: 'connection-timeout' }); break;
+        case 'rollbackOnly': push({ from: a, to: a, arrow: 'self', label: 'marked rollback-only', sub: d.exception, tone: 'hot' }); break;
+        case 'exception': {
+          stack.pop();
+          const to = stack[stack.length - 1];
+          if (to !== 'user') push({ from: a, to, arrow: 'event', label: d.name, tone: 'hot', sub: d.exceptionKind === 'checked' ? 'a checked exception' : undefined });
+          break;
+        }
+        case 'rollback': case 'commit': {
+          push({ from: a, to: 'pool', arrow: 'request', label: e.event.toUpperCase(), tone: 'good', phase: phase(),
+            sub: e.event === 'rollback' ? 'the edit is discarded' : 'the edit is written' });
+          break;
+        }
+        case 'connReleased': {
+          if (d.tx && open[d.conn]) {
+            const o = open[d.conn]; delete open[d.conn];
+            steps[steps.length - 1].note = `connection ${d.conn.slice(1)} released`;
+            rails.push({ actor: 'pool', from: o.at, to: steps.length - 1, tone: o.spansRemote ? 'hot' : 'good', label: fmt(e.t - o.t) });
+          }
+          break;
+        }
+        case 'compensation': push({ from: a, to: 'pool', arrow: 'request', label: 'compensation', sub: d.what, tone: 'internal' }); break;
+        case 'detachedRead': push({ from: a, to: a, arrow: 'self', label: 'LazyInitializationException', sub: 'entity read outside a session', tone: 'hot' }); break;
+        case 'response': {
+          if (!remoteReached && scenario.actors.some(x => x.id === 'remote')) {
+            const rf = run.frames.find(f => f.remote);
+            if (rf) push({ from: actorId(rf.actor), to: 'remote', arrow: 'request', label: 'never reached', tone: 'dropped', sub: `the remote is not called for user ${showUser}` });
+          }
+          push({ from: a, to: 'user', arrow: 'event', label: d.status === 200 ? '200, saved' : `${d.status}, ${d.reason || d.error}`, tone: d.status === 200 ? 'good' : 'hot', note: `t = ${fmt(e.t)}` });
+          break;
+        }
+      }
+    }
+    for (const r of rails) usedTones.add(r.tone);
+    const LEGEND = { hot: 'holds a connection across a remote call, or a failure', good: 'released, or nothing lost', internal: 'inside the application',
+      service: 'the remote', edge: 'the user', dropped: 'not reached' };
+    const actors = scenario.actors.filter(x => x.id !== 'bulkhead' || steps.some(s => s.from === 'bulkhead' || s.to === 'bulkhead'));
+    return { alt: `${scenario.title}: user ${showUser} of ${run.users}`, actors, steps, rails,
+      legend: ['hot', 'good', 'internal', 'service', 'edge', 'dropped'].filter(t => usedTones.has(t)).map(t => ({ tone: t, label: LEGEND[t] })) };
+  }
+
+  const api = { toDiagramSpec, fmt };
+  root.TxPlay = Object.assign(root.TxPlay || {}, api);
+  if (typeof module !== 'undefined') module.exports = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+// ---- src/explain.js ----
+(function (root) {
+  const T = typeof require === 'function' ? Object.assign({}, require('./engine.js'), require('./discoveries.js'), require('./diagram.js')) : root.TxPlay;
+
+  function explain(scenario, run, values, foundIds) {
+    values = values || {}; foundIds = foundIds || [];
+    const showUser = Number(T.slotValue(scenario, values, 'showUser') || 1);
+    const s = run.summary, tl = run.timeline, me = tl.filter(e => e.user === showUser);
+    const paragraphs = [];
+    const holders = new Set(tl.filter(e => e.event === 'httpStart' && e.detail.holdingConnection).map(e => e.user));
+    const firstHttp = tl.find(e => e.event === 'httpStart');
+    const takes = firstHttp ? T.fmt(firstHttp.detail.takes) : null;
+
+    if (holders.size) {
+      paragraphs.push(`${holders.size} user${holders.size > 1 ? 's' : ''} hold one connection each for the whole ${takes} the remote takes. ` +
+        `The remote call runs inside the transaction started at the entry point, and a resource-local transaction keeps its connection from its first database touch until it commits or rolls back, so nothing releases it while the remote thinks.`);
+    }
+    const susp = tl.find(e => e.event === 'suspend' && e.detail.keepsConnection);
+    if (susp) paragraphs.push(`${susp.detail.propagation} suspends the transaction around the remote call, but suspension is not release: the suspended transaction still owns its connection, so the pool sees no difference.`);
+    const refused = me.find(e => e.event === 'refused');
+    if (refused) paragraphs.push(`User ${showUser} arrives while all ${refused.detail.size} permits of the bulkhead are taken. ` +
+      (refused.detail.after ? `It waits ${T.fmt(refused.detail.after)} holding its connection, then is refused.` : `The bulkhead refuses at once, because its wait is zero: a caller queuing for a permit would hold its connection while it waits.`) +
+      ` The fallback throws, the transaction rolls back and the connection returns to the pool. Nothing is saved, and the remote is never called for this user.`);
+    const pt = me.find(e => e.event === 'poolTimeout');
+    if (pt) paragraphs.push(`User ${showUser} waits ${T.fmt(pt.detail.waited)} for a free connection and fails: all ${s.poolSize} connections are held by users still waiting on the remote. This request never called the remote itself.`);
+    const rb = me.find(e => e.event === 'rollback' && e.detail.cause && e.detail.cause !== 'rollbackOnly');
+    if (rb && !refused) paragraphs.push(`${rb.detail.cause} reaches the transaction that started the request, which rolls back; the edit and the verdict go together, and the connection is released after ${T.fmt(rb.t)}.`);
+    const checkedCommit = me.find(e => e.event === 'exception' && e.detail.exceptionKind === 'checked') && me.find(e => e.event === 'commit');
+    if (checkedCommit) paragraphs.push(`The failure is a checked exception and rollbackFor does not name it, so Spring commits the transaction anyway: the edit is saved despite the error the user is shown.`);
+    const two = me.find(e => e.event === 'connAcquired' && e.detail.alsoHolding > 0);
+    if (two) paragraphs.push(`A repository read inside the suspended section opens a connection of its own while the suspended transaction still holds one: two connections on one thread.`);
+    const ok = me.find(e => e.event === 'response' && e.detail.status === 200);
+    if (ok && !paragraphs.length) paragraphs.push(`User ${showUser} saves after ${T.fmt(ok.t)}: the remote answered and the transaction committed with the verdict.`);
+
+    const chips = [];
+    if (holders.size) chips.push({ text: `${holders.size} connection${holders.size > 1 ? 's' : ''} held ${T.fmt(s.longestHold)}`, tone: 'hot' });
+    chips.push({ text: `${Math.max(0, s.poolSize - s.peakConnections)} of ${s.poolSize} free at peak`, tone: s.peakConnections >= s.poolSize ? 'hot' : 'ok' });
+    if (s.refused) chips.push({ text: `${s.refused} users refused`, tone: 'warn' });
+    if (s.poolTimeouts) chips.push({ text: `${s.poolTimeouts} pool timeouts`, tone: 'hot' });
+    if (s.remoteTimeouts) chips.push({ text: `${s.remoteTimeouts} remote timeouts`, tone: 'hot' });
+    chips.push({ text: `${s.saved} saved, ${s.failed} failed`, tone: s.failed ? 'warn' : 'ok' });
+
+    const NUDGE = {
+      'suspension-not-release': 'Try next: set the preset "self-injected" and watch NOT_SUPPORTED suspend the transaction without giving the connection back.',
+      'pool-starvation': 'Try next: remove the @Bulkhead line. Users 11 and 12 then wait on the pool and fail after connection-timeout.',
+      'two-connections': 'Try next: with the self-injected preset, add a repository read inside call(). The suspended section opens a second connection.',
+      'checked-no-rollback': 'Try next: make runFraudCheck throw a checked exception and watch the transaction commit anyway.',
+      'timeout-order': 'Try next: make the insurer take 90 s. The read-timeout of 60 s fires first, and the connection was held for all of it.',
+      'refuse-not-queue': 'Try next: give the bulkhead a wait of 5s and watch refused users become waiting users that hold a connection.',
+      'rollback-on-exception': 'Try next: the preset "the insurer refuses" shows a 422 rolling the edit back.',
+      'self-invocation': 'Try next: put NOT_SUPPORTED on call() while it is still reached as this.call(), and see that nothing changes.',
+      'tx-owns-connection': 'Try next: run as designed and follow connection 1 from BEGIN to COMMIT.',
+    };
+    const locked = (scenario.discoveries || []).filter(id => !foundIds.includes(id));
+    const tryNext = locked.length ? NUDGE[locked[0]] : null;
+    return { paragraphs, chips, tryNext };
+  }
+
+  const api = { explain };
+  root.TxPlay = Object.assign(root.TxPlay || {}, api);
+  if (typeof module !== 'undefined') module.exports = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+// ---- src/discoveries.js ----
+(function (root) {
+  const has = (run, ev, pred) => run.timeline.some(e => e.event === ev && (!pred || pred(e)));
+  const DISCOVERIES = [
+    { id: 'tx-owns-connection', title: 'A transaction owns its connection until it ends', hint: 'first database touch to commit or rollback, whatever happens in between',
+      test: run => run.timeline.some(e => e.event === 'connAcquired' && !e.detail.autoCommit && run.timeline.some(r => r.event === 'connReleased' && r.detail.conn === e.detail.conn && r.t > e.t)) },
+    { id: 'self-invocation', title: 'Self-invocation never reaches the proxy', hint: 'this.call() ignores every annotation on call',
+      test: run => has(run, 'call', e => !e.detail.viaProxy && e.detail.ignoredAnnotation) },
+    { id: 'refuse-not-queue', title: 'Refuse rather than queue', hint: 'a caller waiting for a permit holds its connection while it waits',
+      test: run => has(run, 'refused', e => e.detail.after === 0) },
+    { id: 'rollback-on-exception', title: 'A failure inside the transaction rolls the edit back', hint: 'the exception reaches the outer @Transactional',
+      test: run => has(run, 'rollback', e => !!e.detail.cause) },
+    { id: 'suspension-not-release', title: 'Suspension is not release', hint: 'NOT_SUPPORTED through the proxy keeps the connection',
+      test: run => has(run, 'suspend', e => e.detail.keepsConnection) && has(run, 'httpStart', e => e.detail.suspendedHolding > 0) },
+    { id: 'pool-starvation', title: 'Pool exhaustion starves unrelated requests', hint: 'connection-timeout fires on a thread that never called out',
+      test: run => has(run, 'poolTimeout') },
+    { id: 'two-connections', title: 'Two connections on one thread', hint: 'a repository read inside a suspended section',
+      test: run => has(run, 'connAcquired', e => e.detail.alsoHolding > 0) },
+    { id: 'checked-no-rollback', title: 'Checked exceptions do not roll back', hint: 'unless rollbackFor names them',
+      test: run => run.timeline.some(e => e.event === 'exception' && e.detail.exceptionKind === 'checked' && run.timeline.some(c => c.event === 'commit' && c.user === e.user && c.t >= e.t)) },
+    { id: 'timeout-order', title: 'Which timeout fires first', hint: 'read-timeout, connection-timeout and the bulkhead wait race each other',
+      test: run => has(run, 'httpTimeout') },
+  ];
+  function detect(run) { return DISCOVERIES.filter(d => d.test(run)).map(d => d.id); }
+  const api = { DISCOVERIES, detect };
+  root.TxPlay = Object.assign(root.TxPlay || {}, api);
+  if (typeof module !== 'undefined') module.exports = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+// ---- src/template.js ----
+(function (root) {
+  const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+  function displayValue(slot, v) {
+    switch (slot.kind) {
+      case 'annotation':
+        if (!v) return '// no annotation';
+        if (typeof v === 'object') return v.rollbackFor && v.rollbackFor.length
+          ? `@Transactional(propagation = ${v.propagation}, rollbackFor = ${v.rollbackFor.join('.class, ')}.class)`
+          : `@Transactional(propagation = ${v.propagation})`;
+        return v === '@Transactional' ? v : `@Transactional(propagation = ${v})`;
+      case 'invocation': return (slot.labels && slot.labels[v]) || v;
+      case 'visibility': return v === 'package' ? '/* package-private */' : v;
+      case 'bulkhead': return v ? `@Bulkhead(name = "${v.name}", maxConcurrentCalls = ${v.permits}, maxWaitDuration = ${v.wait})` : '// no bulkhead';
+      case 'external': return v ? `takes ${v.takes}, answers ${v.answers}${v.reason ? ' (' + v.reason + ')' : ''}` : '';
+      case 'exception': return v ? `throw new ${v.name}()  // ${v.kind}` : '// throws nothing';
+      case 'flag': return String(v);
+      default: return String(v);
+    }
+  }
+
+  const KW = /\b(public|private|protected|class|return|new|final|void|int|throw|throws|static)\b/g;
+  function highlight(text) {
+    return esc(text)
+      .replace(/(\/\/[^\n]*|#[^\n]*)/g, '<span class="cm">$1</span>')
+      .replace(/(^|\n)(\s*)(@\w+(?:\([^)]*\))?)/g, '$1$2<span class="ann">$3</span>')
+      .replace(KW, '<span class="kw">$1</span>')
+      .replace(/\b([A-Z][A-Za-z]+)\b(?![^<]*>)/g, '<span class="ty">$1</span>');
+  }
+
+  function controlHtml(name, slot, value, changed) {
+    const cls = 'tg' + (changed ? ' changed' : '') + ((slot.kind === 'annotation' || slot.kind === 'bulkhead') && !value ? ' off' : '');
+    return `<span class="${cls}" data-slot="${esc(name)}" data-kind="${slot.kind}" tabindex="0" title="${esc(slot.help || 'click to change')}">${esc(displayValue(slot, value))}</span>`;
+  }
+
+  function renderCode(file, scenario, values, changed) {
+    changed = changed || new Set();
+    const parts = file.code.split(/(\{\{\w+\}\})/);
+    return parts.map(p => {
+      const m = p.match(/^\{\{(\w+)\}\}$/);
+      if (!m) return highlight(p);
+      const slot = scenario.slots[m[1]];
+      if (!slot) throw new Error('unknown slot ' + m[1]);
+      const v = Object.prototype.hasOwnProperty.call(values, m[1]) ? values[m[1]] : slot.default;
+      return controlHtml(m[1], slot, v, changed.has(m[1]));
+    }).join('');
+  }
+
+  const api = { renderCode, controlHtml, displayValue, highlight, esc };
+  root.TxPlay = Object.assign(root.TxPlay || {}, api);
+  if (typeof module !== 'undefined') module.exports = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+// ---- src/claude.js ----
+(function (root) {
+  const T = typeof require === 'function' ? Object.assign({}, require('./engine.js'), require('./template.js'), require('./explain.js')) : root.TxPlay;
+  const MODEL = 'claude-sonnet-5', KEY_LS = 'txplay-apikey', CACHE_LS = 'txplay-answers', CACHE_CAP = 60;
+  const ls = () => (typeof localStorage !== 'undefined' ? localStorage : null);
+  function getKey() { return ls() ? ls().getItem(KEY_LS) : null; }
+  function setKey(k) { if (ls()) ls().setItem(KEY_LS, k.trim()); }
+  function clearKey() { if (ls()) ls().removeItem(KEY_LS); }
+
+  function buildPrompt(scenario, run, values, explanation) {
+    const showUser = T.slotValue(scenario, values, 'showUser');
+    const code = scenario.files.map(f => `--- ${f.name} ---\n` + f.code.replace(/\{\{(\w+)\}\}/g, (m, n) => T.displayValue(scenario.slots[n], Object.prototype.hasOwnProperty.call(values, n) ? values[n] : scenario.slots[n].default))).join('\n\n');
+    const timeline = run.timeline.filter(e => e.user === showUser || ['refused', 'poolTimeout', 'httpTimeout'].includes(e.event)).slice(0, 400);
+    return [
+      'You explain how a Spring Boot application behaves under one exact configuration, for a developer who does not yet hold the mechanism.',
+      'The code below is a simulation of a real shape. The timeline is the ground truth of what happened: it was computed by a rule engine that models Spring proxies, @Transactional propagation, a resource-local JPA transaction manager holding one connection from first use to commit, a Hikari pool with a connection-timeout, Feign timeouts and a resilience4j bulkhead.',
+      'Rewrite the templated explanation as three or four short paragraphs of cause and effect. Do not assert any mechanism the timeline does not show. Do not list events; explain why they happened in this order. End with one concrete change to try and what it would change.',
+      '', '# Code', code,
+      '', '# Configuration values', JSON.stringify(values),
+      '', '# Summary', JSON.stringify(run.summary),
+      '', `# Timeline (user ${showUser} plus every refusal and timeout)`, JSON.stringify(timeline, null, 1),
+      '', '# Templated explanation', explanation.paragraphs.join('\n'),
+    ].join('\n');
+  }
+
+  async function askClaude(key, prompt) {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+      body: JSON.stringify({ model: MODEL, max_tokens: 1200, messages: [{ role: 'user', content: prompt }] }),
+    });
+    if (!res.ok) throw new Error(`Anthropic API ${res.status}: ${(await res.text()).slice(0, 200)}`);
+    const data = await res.json();
+    const text = (data.content || []).map(c => c.text || '').join('').trim();
+    if (!text) throw new Error('Empty response from the model.');
+    return text;
+  }
+
+  function cacheGet(k) { try { return (JSON.parse(ls().getItem(CACHE_LS)) || {})[k]; } catch (e) { return undefined; } }
+  function cachePut(k, v) { try { const c = JSON.parse(ls().getItem(CACHE_LS)) || {}; c[k] = v; const keys = Object.keys(c); if (keys.length > CACHE_CAP) delete c[keys[0]]; ls().setItem(CACHE_LS, JSON.stringify(c)); } catch (e) {} }
+
+  async function askForThisRun(state, out) {
+    const esc = T.esc;
+    if (!state.lastRun) { out.innerHTML = '<p class="muted">Run first.</p>'; return; }
+    const key = getKey();
+    if (!key) {
+      out.innerHTML = '<p class="muted">To ask Claude, add an Anthropic API key. This page has no server, so your key is stored only in this browser and sent straight to Anthropic. <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">Get a key →</a></p>' +
+        '<div class="key-form"><input id="key-input" type="password" placeholder="Paste your API key" autocomplete="off"><span class="btn" id="key-save">Save &amp; continue</span></div>';
+      const go = () => { const v = out.querySelector('#key-input').value; if (v.trim()) { setKey(v); askForThisRun(state, out); } };
+      out.querySelector('#key-save').onclick = go;
+      out.querySelector('#key-input').addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
+      out.querySelector('#key-input').focus();
+      return;
+    }
+    const x = T.explain(state.scenario, state.lastRun, state.values, [...state.found]);
+    const prompt = buildPrompt(state.scenario, state.lastRun, state.values, x);
+    const ck = state.scenario.id + ':' + JSON.stringify(state.values);
+    const cached = cacheGet(ck);
+    if (cached) { out.innerHTML = cached.split(/\n{2,}/).map(p => `<p>${esc(p)}</p>`).join(''); return; }
+    out.innerHTML = '<p class="muted">Asking Claude…</p>';
+    try {
+      const text = await askClaude(key, prompt);
+      cachePut(ck, text);
+      out.innerHTML = text.split(/\n{2,}/).map(p => `<p>${esc(p)}</p>`).join('');
+    } catch (e) {
+      out.innerHTML = `<p class="err">${esc(e.message)}</p><div class="key-form"><span class="btn outline" id="ask-retry">Retry</span><span class="btn outline" id="ask-chkey">Change API key</span></div>`;
+      out.querySelector('#ask-retry').onclick = () => askForThisRun(state, out);
+      out.querySelector('#ask-chkey').onclick = () => { clearKey(); askForThisRun(state, out); };
+    }
+  }
+
+  const api = { MODEL, KEY_LS, buildPrompt, askClaude, askForThisRun, getKey, setKey, clearKey };
+  root.TxPlay = Object.assign(root.TxPlay || {}, api);
+  if (typeof module !== 'undefined') module.exports = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+// ---- src/scenarios/01-edit-calls-out.js ----
+(function (root) {
+  const scenario = {
+    id: 'edit-calls-out',
+    short: 'Edit that calls out',
+    entryLabel: 'PUT /claims/{id}',
+    title: 'An edit that asks an external system before it commits',
+    intro: 'A user edits a claim. Before the edit is committed, the application asks an external fraud check for a verdict and stores it with the edit. If the check refuses or cannot answer, nothing must be saved.',
+    files: [
+      { name: 'ClaimService.java', role: 'frame 1: the entry point the save reaches', code:
+`@Service
+{{classTx1}}
+public class ClaimService {
+
+    private final ClaimRepository claims;
+    private final FraudCheckService fraudCheck;
+
+    {{methodTx1}}
+    public Claim updateClaim(int id, ClaimEdit edit) {
+        Claim claim = claims.findById(id);          // first database touch: a connection is taken here
+        claim.apply(edit);
+        claims.save(claim);                          // written, not committed
+        {{invoke2}}.runFraudCheck(claim);
+        return claim;                                // the transaction commits when this method returns
+    }
+}` },
+      { name: 'FraudCheckService.java', role: 'frames 2 and 3: the bean that owns the external call', code:
+`@Service
+{{classTx2}}
+public class FraudCheckService {
+
+    private final FraudGateway gateway;              // HTTP client to the insurer
+    private final VerdictWriter verdicts;
+
+    {{bulkhead}}
+    public Verdict runFraudCheck(Claim claim) {
+        Payload payload = prepare(claim);
+        Verdict verdict = {{invoke3}}.call(payload);
+        verdicts.apply(claim, verdict);
+        return verdict;
+    }
+
+    {{methodTx3}}
+    {{visibility3}} Verdict call(Payload payload) {
+        return gateway.check(payload);               // {{remote}}
+    }
+}` },
+      { name: 'application.yml', role: 'the numbers the timeline is computed from', code:
+`datasource:
+  hikari:
+    maximum-pool-size: {{poolSize}}
+    connection-timeout: {{connectionTimeout}}        # how long a thread waits for a free connection
+spring:
+  jpa:
+    open-in-view: {{osiv}}
+  cloud.openfeign.client.config.fraud-gateway:
+    connect-timeout: {{connectTimeout}}
+    read-timeout: {{readTimeout}}                    # the insurer may take up to this long
+load:                                                # the simulation's inputs, not real configuration
+  concurrent-users-saving: {{users}}
+  show-user: {{showUser}}` },
+    ],
+    slots: {
+      classTx1: { kind: 'annotation', target: 'class', default: '@Transactional', choices: [null, '@Transactional'] },
+      methodTx1: { kind: 'annotation', target: 'method', default: null, choices: [null, 'REQUIRED', 'REQUIRES_NEW'] },
+      invoke2: { kind: 'invocation', default: 'injected', choices: ['injected'], labels: { injected: 'fraudCheck' } },
+      classTx2: { kind: 'annotation', target: 'class', default: '@Transactional', choices: [null, '@Transactional'] },
+      bulkhead: { kind: 'bulkhead', default: { name: 'fraud-check', permits: 4, wait: '0' } },
+      invoke3: { kind: 'invocation', default: 'this', choices: ['this', 'self'], labels: { this: 'this', self: 'self' },
+        help: 'this: a plain self-invocation. self: a self-injected proxy of this bean.' },
+      methodTx3: { kind: 'annotation', target: 'method', default: null, choices: [null, 'NOT_SUPPORTED', 'SUPPORTS', 'REQUIRES_NEW'] },
+      visibility3: { kind: 'visibility', default: 'private', choices: ['private', 'package', 'public'] },
+      remote: { kind: 'external', default: { takes: '45s', answers: 'late' }, label: 'POST /fraud/check' },
+      poolSize: { kind: 'number', default: 10 },
+      connectionTimeout: { kind: 'number', default: '30s' },
+      osiv: { kind: 'flag', default: false, choices: [false, true] },
+      connectTimeout: { kind: 'number', default: '10s' },
+      readTimeout: { kind: 'number', default: '60s' },
+      users: { kind: 'number', default: 12 },
+      showUser: { kind: 'number', default: 5 },
+    },
+    presets: {
+      'as designed': {},
+      'no ceiling': { bulkhead: null },
+      'self-injected': { invoke3: 'self', visibility3: 'public', methodTx3: 'NOT_SUPPORTED' },
+      'the insurer refuses': { remote: { takes: '2s', answers: '4xx', reason: 'no active policy' }, showUser: 1 },
+    },
+    config: { poolSize: { slot: 'poolSize' }, connectionTimeout: { slot: 'connectionTimeout' },
+      connectTimeout: { slot: 'connectTimeout' }, readTimeout: { slot: 'readTimeout' }, osiv: { slot: 'osiv' } },
+    entries: [{ root: 'f1', users: { slot: 'users' }, startAt: 0 }],
+    frames: [
+      { id: 'f1', actor: 'ClaimService', method: 'updateClaim', classTx: { slot: 'classTx1' }, methodTx: { slot: 'methodTx1' },
+        visibility: 'public', invoke: 'injected', dbTouch: true, calls: ['f2'], phase: 'the save arrives' },
+      { id: 'f2', actor: 'FraudCheckService', method: 'runFraudCheck', classTx: { slot: 'classTx2' }, methodTx: null,
+        visibility: 'public', invoke: { slot: 'invoke2' }, bulkhead: { slot: 'bulkhead' }, calls: ['f3'], phase: 'the check is reached' },
+      { id: 'f3', actor: 'FraudCheckService', method: 'call', classTx: { slot: 'classTx2' }, methodTx: { slot: 'methodTx3' },
+        visibility: { slot: 'visibility3' }, invoke: { slot: 'invoke3' },
+        remote: { takes: { slot: 'remote', field: 'takes' }, answers: { slot: 'remote', field: 'answers' }, reason: { slot: 'remote', field: 'reason' },
+          label: 'POST /fraud/check', onFailure: 'FraudCheckUnavailableException', onRefusal: 'FraudCheckRefusedException' } },
+    ],
+    actors: [
+      { id: 'user', label: 'User\n(browser)', tone: 'edge' },
+      { id: 'ClaimService', label: 'ClaimService\n(proxy)', tone: 'plain' },
+      { id: 'FraudCheckService', label: 'FraudCheck\nService (proxy)', tone: 'internal' },
+      { id: 'bulkhead', label: 'Bulkhead\nfraud-check', tone: 'internal' },
+      { id: 'remote', label: 'FraudGateway\n→ insurer', tone: 'service' },
+      { id: 'pool', label: 'Hikari pool', tone: 'hot' },
+    ],
+    discoveries: ['tx-owns-connection', 'self-invocation', 'refuse-not-queue', 'rollback-on-exception',
+      'suspension-not-release', 'pool-starvation', 'two-connections', 'checked-no-rollback', 'timeout-order'],
+  };
+
+  root.TxPlay = root.TxPlay || {};
+  (root.TxPlay.scenarios = root.TxPlay.scenarios || []).push(scenario);
+  if (typeof module !== 'undefined') module.exports = scenario;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+// ---- src/ui.js ----
+(function (root) {
+  if (typeof document === 'undefined') { if (typeof module !== 'undefined') module.exports = {}; return; }
+  const P = root.TxPlay;
+  const $ = id => document.getElementById(id);
+  const esc = P.esc;
+  const state = { scenario: null, values: {}, changed: new Set(), lastRun: null, found: new Set() };
+
+  function load(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch (e) { return fallback; } }
+  function save(key, v) { try { localStorage.setItem(key, JSON.stringify(v)); } catch (e) {} }
+
+  function select(scenario) {
+    state.scenario = scenario;
+    state.values = load('txplay-values-' + scenario.id, {});
+    state.changed = new Set(); state.lastRun = null;
+    renderTabs(); renderHeader(); renderPresets(); renderLeft(); run();
+  }
+
+  function renderTabs() {
+    $('tabs').innerHTML = P.scenarios.map((s, i) => `<span class="tab${s === state.scenario ? ' on' : ''}" data-i="${i}">${i + 1} · ${esc(s.short || s.title)}</span>`).join('');
+    $('tabs').querySelectorAll('.tab').forEach(t => t.onclick = () => select(P.scenarios[+t.dataset.i]));
+  }
+  function renderHeader() { $('title').textContent = state.scenario.title; $('intro').textContent = state.scenario.intro; }
+  function renderPresets() {
+    const s = state.scenario;
+    $('presets').innerHTML = Object.keys(s.presets).map(p => `<span class="pill" data-p="${esc(p)}">${esc(p)}</span>`).join('') + '<span class="pill" data-p="__reset">Reset</span>';
+    $('presets').querySelectorAll('.pill').forEach(el => el.onclick = () => {
+      const p = el.dataset.p;
+      const next = p === '__reset' ? {} : Object.assign({}, s.presets[p]);
+      for (const k of new Set([...Object.keys(state.values), ...Object.keys(next)])) if (JSON.stringify(state.values[k]) !== JSON.stringify(next[k])) state.changed.add(k);
+      state.values = next; save('txplay-values-' + s.id, state.values); renderLeft();
+    });
+  }
+
+  function renderLeft() {
+    const s = state.scenario;
+    const askOut = $('ask-out') ? $('ask-out').innerHTML : '';
+    $('left').innerHTML = s.files.map(f => `<div class="card"><div class="card-head"><span class="file">${esc(f.name)}</span><span>${esc(f.role || '')}</span></div><pre class="code">${P.renderCode(f, s, state.values, state.changed)}</pre></div>`).join('') +
+      `<div class="card"><div class="actions"><span class="btn" id="run">Run</span><span class="btn outline" id="ask">Ask Claude to explain this run</span>` +
+      (state.changed.size ? `<span class="diffchip">${state.changed.size} change${state.changed.size > 1 ? 's' : ''} since last run</span>` : '') + `</div><div id="ask-out">${askOut}</div></div>`;
+    $('left').querySelectorAll('.tg').forEach(el => { el.onclick = () => edit(el); el.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); edit(el); } }; });
+    $('run').onclick = run;
+    $('ask').onclick = () => P.askForThisRun(state, $('ask-out'));
+  }
+
+  function edit(el) {
+    const name = el.dataset.slot, slot = state.scenario.slots[name];
+    const cur = Object.prototype.hasOwnProperty.call(state.values, name) ? state.values[name] : slot.default;
+    let next;
+    switch (slot.kind) {
+      case 'annotation': case 'invocation': case 'visibility': case 'flag': {
+        const choices = slot.choices || [cur];
+        const labels = choices.map(c => P.displayValue(slot, c));
+        const pick = prompt(`${name}\n` + labels.map((l, i) => `${i + 1}. ${l}`).join('\n'), String(choices.findIndex(c => JSON.stringify(c) === JSON.stringify(cur)) + 1));
+        if (pick == null) return; next = choices[Number(pick) - 1]; if (next === undefined) return; break;
+      }
+      case 'number': { const v = prompt(name, String(cur)); if (v == null) return; next = /^\d+$/.test(v) ? Number(v) : v; break; }
+      case 'bulkhead': {
+        if (cur) { const v = prompt('permits,wait (empty to remove the bulkhead)', `${cur.permits},${cur.wait}`); if (v == null) return;
+          next = v.trim() ? { name: cur.name, permits: Number(v.split(',')[0]), wait: (v.split(',')[1] || '0').trim() } : null; }
+        else next = { name: 'fraud-check', permits: 4, wait: '0' };
+        break;
+      }
+      case 'external': { const v = prompt('takes,answers (ok|late|4xx|5xx|unreachable)', `${cur.takes},${cur.answers}`); if (v == null) return;
+        const [takes, answers] = v.split(',').map(x => x.trim()); next = { takes, answers, reason: answers === '4xx' ? 'no active policy' : undefined }; break; }
+      case 'exception': { const v = prompt('name,runtime|checked (empty for none)', cur ? `${cur.name},${cur.kind}` : ''); if (v == null) return;
+        next = v.trim() ? { name: v.split(',')[0].trim(), kind: (v.split(',')[1] || 'runtime').trim() } : null; break; }
+      default: return;
+    }
+    state.values[name] = next; state.changed.add(name);
+    save('txplay-values-' + state.scenario.id, state.values);
+    renderLeft();
+  }
+
+  function run() {
+    const s = state.scenario;
+    let run;
+    try { run = P.simulate(s, state.values); }
+    catch (e) { $('explain').innerHTML = `<p class="err">${esc(e.message)}</p>`; return; }
+    state.lastRun = run; state.changed = new Set();
+    const spec = P.toDiagramSpec(s, run, state.values);
+    $('diagram').innerHTML = P.renderSequence(spec);
+    $('timeline-sub').textContent = `user ${P.slotValue(s, state.values, 'showUser')} of ${run.users}, computed from the code on the left`;
+    const found = P.detect(run); found.forEach(id => state.found.add(id)); save('txplay-found', [...state.found]);
+    const x = P.explain(s, run, state.values, [...state.found]);
+    $('explain').innerHTML = x.paragraphs.map(p => `<p>${esc(p)}</p>`).join('') +
+      `<div class="chips">${x.chips.map(c => `<span class="chip ${c.tone}">${esc(c.text)}</span>`).join('')}</div>` +
+      (x.tryNext ? `<p style="margin-top:10px"><strong>${esc(x.tryNext)}</strong></p>` : '');
+    renderDiscoveries(found);
+    renderLeft();
+    if ($('ask-out')) $('ask-out').innerHTML = '';
+  }
+
+  function renderDiscoveries(justNow) {
+    const all = P.DISCOVERIES, ids = state.scenario.discoveries || all.map(d => d.id);
+    $('disc-count').textContent = `${[...state.found].filter(id => ids.includes(id)).length} of ${ids.length}`;
+    $('discoveries').innerHTML = all.filter(d => ids.includes(d.id)).map(d => {
+      const f = state.found.has(d.id);
+      return `<div class="disc ${f ? 'found' : 'locked'}"><span class="badge">${f ? (justNow.includes(d.id) ? 'FOUND NOW' : 'FOUND') : 'LOCKED'}</span><div class="t">${esc(d.title)}</div><div class="h">${esc(d.hint)}</div></div>`;
+    }).join('');
+  }
+
+  function boot() {
+    state.found = new Set(load('txplay-found', []));
+    select(P.scenarios[0]);
+  }
+  document.addEventListener('DOMContentLoaded', boot);
+  root.TxPlay = Object.assign(root.TxPlay || {}, { uiState: state });
 })(typeof window !== 'undefined' ? window : globalThis);
 
 </script>
