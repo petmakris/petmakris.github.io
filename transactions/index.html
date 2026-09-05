@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="build" content="610a86418f40">
+<title>Transaction playground</title>
+</head>
+<body>
+<main id="app"></main>
+<script>
+// ---- src/seqrender.js ----
+(function (root) {
+  const api = {};
+  root.TxPlay = Object.assign(root.TxPlay || {}, api);
+  if (typeof module !== 'undefined') module.exports = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+</body>
+</html>
