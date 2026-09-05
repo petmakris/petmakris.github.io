@@ -88,11 +88,19 @@ window.DIET = {
     },
     {
       date: "2026-09-04",
-      eaten: 1500,
+      eaten: 2700,
       active: null,
       weight: null,
       exercise: [],
-      note: "Day 9: morning — 4 cookies 200, yogurt 350, 4 small pieces of chocolate 150; lunch 800, no items given. All figures given directly by him. Day still open."
+      note: "Day 9: morning — 4 cookies 200, yogurt 350, 4 small pieces of chocolate 150; lunch 800; evening 1200, no items given. All figures given directly by him."
+    },
+    {
+      date: "2026-09-05",
+      eaten: 500,
+      active: null,
+      weight: null,
+      exercise: [],
+      note: "Day 10: morning given as 250 + 250, no items. Day still open."
     }
   ]
 };
