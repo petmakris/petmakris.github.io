@@ -96,11 +96,11 @@ window.DIET = {
     },
     {
       date: "2026-09-05",
-      eaten: 500,
+      eaten: 3150,
       active: null,
       weight: null,
       exercise: [],
-      note: "Day 10: morning given as 250 + 250, no items. Day still open."
+      note: "Day 10: morning 500 (250 + 250), then 300, salad with cheese 350, then 2000 in sweets. All figures given directly by him except the salad, which he gave as \"around 350\". He planned a 10K run in the evening — not confirmed, so not recorded as exercise. He was hard on himself about the sweets."
     }
   ]
 };
