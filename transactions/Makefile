@@ -6,7 +6,7 @@ build:   ## bake src/ + index.template.html -> index.html
 	python3 build.py
 
 test:    ## run the engine, renderer and scenario tests
-	node --test tests/
+	node --test tests/*.test.js
 
 serve:   ## serve this folder locally on :8090
 	python3 -m http.server 8090
