@@ -101,6 +101,14 @@ window.DIET = {
       weight: null,
       exercise: [],
       note: "Day 10: morning 500 (250 + 250), then 300, salad with cheese 350, then 2000 in sweets, then 900 more in the evening with no items given. All figures given directly by him except the salad, which he gave as \"around 350\". He planned a 10K run in the evening — not confirmed, so not recorded as exercise. He was hard on himself about the sweets and said he would be better tomorrow."
+    },
+    {
+      date: "2026-09-06",
+      eaten: 600,
+      active: null,
+      weight: null,
+      exercise: [],
+      note: "Day 11: yogurt 350, salad 150, 4 corn rice cakes 100 — all figures given by him. Planned for the evening: a taco, about 800, not yet eaten and not yet counted. He said he is determined to manage today."
     }
   ]
 };
