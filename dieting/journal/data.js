@@ -113,10 +113,10 @@ window.DIET = {
     {
       date: "2026-09-07",
       eaten: 2425,
-      active: null,
+      active: 641,
       weight: 101.5,
       exercise: [],
-      note: "Day 12: planned — yogurt 350 in the morning, salad 150 at noon, rice cakes 150 + cottage cheese 150 in the evening, with most of the day's calories shifted towards the end. Morning actually was yogurt 350 plus one croissant, photographed on the plate: a large one, roughly 15 cm, next to a cut piece showing a pink ham filling. Estimated at 400 as a ham-and-cheese croissant; a plain butter one that size would be about 320. He confirmed the 400 estimate. Weighed in at 101.5 kg. Noon: salad 150. Evening: 5 rice cakes 125. Said he was going off sugar, then had 500 in candies after lunch and could not resist. Evening reported as 800-900, no items given, recorded at 900 on his instruction and taken as on top of the 5 rice cakes already logged. Day closed at 2425."
+      note: "Day 12: planned — yogurt 350 in the morning, salad 150 at noon, rice cakes 150 + cottage cheese 150 in the evening, with most of the day's calories shifted towards the end. Morning actually was yogurt 350 plus one croissant, photographed on the plate: a large one, roughly 15 cm, next to a cut piece showing a pink ham filling. Estimated at 400 as a ham-and-cheese croissant; a plain butter one that size would be about 320. He confirmed the 400 estimate. Weighed in at 101.5 kg. Noon: salad 150. Evening: 5 rice cakes 125. Said he was going off sugar, then had 500 in candies after lunch and could not resist. Evening reported as 800-900, no items given, recorded at 900 on his instruction and taken as on top of the 5 rice cakes already logged. Day closed at 2425. Garmin active 641."
     }
   ]
 };
