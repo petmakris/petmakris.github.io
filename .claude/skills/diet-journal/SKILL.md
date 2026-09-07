@@ -33,10 +33,12 @@ as the input method.
   page's math (`index.html`), not in `data.js` — keep recording `active` as
   `null` when he genuinely didn't give a figure; do not write 450 into
   `data.js` itself.
-- **`maintenanceRest` = 1930 kcal**, from Mifflin-St Jeor for male, 104 kg,
-  176 cm, age 43 (confirmed 2026-08-26). Recompute it as
-  `10×kg + 6.25×cm − 5×age + 5` if his weight changes materially — a 5 kg
-  loss is 50 kcal off the resting figure.
+- **`maintenanceRest` = 1890 kcal**, from Mifflin-St Jeor for male, 100 kg,
+  176 cm, age 43. The 104 kg / 1930 kcal figures first used on 2026-08-26 were
+  an estimate; he weighed in at **100.0 kg on day 1 (2026-08-27)** and that is
+  the real starting weight. Recompute it as `10×kg + 6.25×cm − 5×age + 5` if
+  his weight changes materially — a 5 kg loss is 50 kcal off the resting
+  figure.
 - 600 kcal/day ≈ 0.55 kg of fat per week, ≈ 7.0 kg over the 90 days.
 - **Changing `maintenanceRest` rewrites history.** Every past day's deficit is
   recomputed from it, so the curve and the grid move retroactively. Only change
@@ -176,7 +178,7 @@ that does not change from one day to the next is not earning its place.
 3. **Today's figures** — EATEN, ACTIVE, BURN, DEFICIT, and nothing else.
 
 **The goal weight is derived**, `startWeight − (deficitTarget × lengthDays ÷
-7700)` — 104 − 7.01 = 97.0 kg. Change `lengthDays` or `deficitTarget` and the
+7700)` — 100 − 7.01 = 93.0 kg. Change `lengthDays` or `deficitTarget` and the
 goal, the dashed line and the projection all follow. There is no goal-weight
 field to keep in sync.
 
