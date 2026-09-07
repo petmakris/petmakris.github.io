@@ -112,11 +112,11 @@ window.DIET = {
     },
     {
       date: "2026-09-07",
-      eaten: null,
+      eaten: 750,
       active: null,
       weight: null,
       exercise: [],
-      note: "Day 12: planned in advance — yogurt 350 in the morning, salad 150 at noon, rice cakes 150 + cottage cheese 150 in the evening (800 planned so far). He wants to shift most of the day's calories towards the end of the day. Nothing confirmed as eaten yet."
+      note: "Day 12: planned — yogurt 350 in the morning, salad 150 at noon, rice cakes 150 + cottage cheese 150 in the evening, with most of the day's calories shifted towards the end. Morning actually was yogurt 350 plus one croissant, photographed on the plate: a large one, roughly 15 cm, next to a cut piece showing a pink ham filling. Estimated at 400 as a ham-and-cheese croissant; a plain butter one that size would be about 320. Awaiting his correction."
     }
   ]
 };
