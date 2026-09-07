@@ -34,11 +34,11 @@ as the input method.
   `null` when he genuinely didn't give a figure; do not write 450 into
   `data.js` itself.
 - **`maintenanceRest` = 1890 kcal**, from Mifflin-St Jeor for male, 100 kg,
-  176 cm, age 43. The 104 kg / 1930 kcal figures first used on 2026-08-26 were
-  an estimate; he weighed in at **100.0 kg on day 1 (2026-08-27)** and that is
-  the real starting weight. Recompute it as `10×kg + 6.25×cm − 5×age + 5` if
-  his weight changes materially — a 5 kg loss is 50 kcal off the resting
-  figure.
+  176 cm, age 43. **His starting weight is 100.0 kg**, weighed on day 1
+  (2026-08-27) — that is the only starting figure, and no other one should be
+  quoted back to him. Recompute `maintenanceRest` as
+  `10×kg + 6.25×cm − 5×age + 5` if his weight changes materially — a 5 kg loss
+  is 50 kcal off the resting figure.
 - 600 kcal/day ≈ 0.55 kg of fat per week, ≈ 7.0 kg over the 90 days.
 - **Changing `maintenanceRest` rewrites history.** Every past day's deficit is
   recomputed from it, so the curve and the grid move retroactively. Only change
@@ -222,7 +222,7 @@ to be consistent from one day to the next.
 **The page is English.** He asked for this on 2026-08-26, reversing an earlier
 Greek-only instruction he gave the same day: "θέλω να είναι αγγλικά".
 `lang="en"`, and dates and numbers format with `en-GB`, so figures read 1,880
-and 104.0. Every rendered string — labels, empty states, tooltips — is
+and 101.5. Every rendered string — labels, empty states, tooltips — is
 English.
 
 This is also an exception to his standing Greek + French rule for the rest of
