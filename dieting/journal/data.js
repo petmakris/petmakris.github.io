@@ -104,11 +104,19 @@ window.DIET = {
     },
     {
       date: "2026-09-06",
-      eaten: 2050,
+      eaten: 2650,
       active: null,
       weight: null,
       exercise: [],
-      note: "Day 11: yogurt 350, salad 150, 4 corn rice cakes 100, 6 rice cakes 150, cottage cheese 150, tacos 1000, 6 rice cakes 150 — all figures given by him. The tacos came in at 1000 rather than the 800 he had planned. He said he is determined to manage today."
+      note: "Day 11: yogurt 350, salad 150, 4 corn rice cakes 100, 6 rice cakes 150, cottage cheese 150, tacos 1000, 6 rice cakes 150 — all figures given by him. The tacos came in at 1000 rather than the 800 he had planned. Reported the next morning that he ate around 600 more late at night, no items given, so the day closed at 2650."
+    },
+    {
+      date: "2026-09-07",
+      eaten: null,
+      active: null,
+      weight: null,
+      exercise: [],
+      note: "Day 12: planned in advance — yogurt 350 in the morning, salad 150 at noon, rice cakes 150 + cottage cheese 150 in the evening (800 planned so far). He wants to shift most of the day's calories towards the end of the day. Nothing confirmed as eaten yet."
     }
   ]
 };
