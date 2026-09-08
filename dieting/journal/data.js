@@ -120,11 +120,11 @@ window.DIET = {
     },
     {
       date: "2026-09-08",
-      eaten: 1050,
+      eaten: 2050,
       active: null,
       weight: null,
       exercise: [],
-      note: "Day 13: yogurt 350 in the morning, plus a crepe at the office at 700 — his figure. Complained that there is always food available at the company."
+      note: "Day 13: yogurt 350 in the morning, plus a crepe at the office at 700 — his figure. Complained that there is always food available at the company. Lunch 1000, no items given, his figure. Said he would try not to eat more today; day stands at 2050."
     }
   ]
 };
