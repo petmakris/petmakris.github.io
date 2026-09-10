@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Τυπώνει τις κάρτες: τρεις σελίδες A4 ανά σκηνή, ένα PDF ανά σκηνή.
+"""Τυπώνει τις κάρτες: δύο σελίδες A4 ανά σκηνή, ένα PDF ανά σκηνή.
 
-    σελίδα 1   το φύλλο του Πέτρου  — έντονες οι δικές του ατάκες
-    σελίδα 2   το φύλλο της Μυρτώς  — έντονες οι δικές της
-    σελίδα 3   «Τι σημαίνει»        — τα ελληνικά, μένει μπρούμυτα
+    σελίδα 1   ο διάλογος στα γαλλικά — έντονες μπλε οι ατάκες του μπαμπά,
+               πράσινες κανονικές της Μυρτώς· ένα φύλλο και για τους δύο
+    σελίδα 2   «Τι σημαίνει» — τα ελληνικά
+
+Οι δύο σελίδες είναι ΖΕΥΓΟΣ: στο τυπωμένο τεύχος η γαλλική πέφτει πάντα
+αριστερά και η ελληνική δεξιά (δες το build_pack.py για τη σελιδοποίηση).
 
 Το μέγεθος των γραμμάτων προσαρμόζεται ώστε η σκηνή να χωράει πάντα σε μία
 σελίδα: δοκιμάζει από 20 στιγμές και κατεβαίνει μέχρι να χωρέσει.
@@ -101,8 +104,13 @@ def mise_en_page(lignes, taille, largeur, cle="fr"):
     return blocs, total
 
 
-def page_dialogue(c, d, moi, num_page):
-    """moi = 'papa' ή 'myrto' — οι δικές του ατάκες βγαίνουν έντονες."""
+def page_dialogue(c, d, moi=None, num_page=1, total=2):
+    """Ένα φύλλο για τους δύο.
+
+    Οι ατάκες του μπαμπά βγαίνουν έντονες με μπλε πλαϊνή γραμμή, της Μυρτώς
+    πράσινες και κανονικού βάρους. Ο καθένας βρίσκει τις δικές του από το
+    χρώμα, χωρίς να χρειάζονται δύο αντίγραφα του ίδιου διαλόγου.
+    """
     roles = d["roles"]
     sous = "PAPA — %s   ·   MYRTO — %s" % (roles["papa"], roles["myrto"])
     y = entete(c, "SCÈNE %02d" % d["id"], d["titre_fr"], sous, None)
@@ -116,7 +124,7 @@ def page_dialogue(c, d, moi, num_page):
 
     inter = taille * 1.28
     for ln, (bouts, h) in zip(d["lignes"], blocs):
-        sien = ln["qui"] == moi
+        sien = ln["qui"] == "papa"
         coul, fond = (BLEU, BLEU_BG) if ln["qui"] == "papa" else (VERT, VERT_BG)
         if sien:
             c.setFillColorRGB(*fond)
@@ -137,13 +145,12 @@ def page_dialogue(c, d, moi, num_page):
         c.setLineWidth(0.5)
         c.line(M, y + 4, W - M, y + 4)
 
-    qui = "PAPA" if moi == "papa" else "MYRTO"
-    pied(c, "Écoutez la scène avant de jouer.",
-         "%s  ·  %d lignes  ·  page %d / 3" % (qui, len(d["lignes"]), num_page))
+    pied(c, "PAPA en bleu et gras  ·  MYRTO en vert",
+         "FRANÇAIS  ·  %d lignes  ·  %s" % (len(d["lignes"]), num_page))
     c.showPage()
 
 
-def page_sens(c, d):
+def page_sens(c, d, num_page="—"):
     y = entete(c, "ΣΚΗΝΗ %02d" % d["id"], d["titre_el"], "Τι σημαίνει", None)
     bas = M + 40
     largeur = W - 2 * M - 26
@@ -175,8 +182,8 @@ def page_sens(c, d):
         c.setLineWidth(0.5)
         c.line(M, y + 6, W - M, y + 6)
 
-    pied(c, "Μένει μπρούμυτα. Σηκώνεται μόνο όταν κάποιος κολλήσει.",
-         "ΤΙ ΣΗΜΑΙΝΕΙ  ·  page 3 / 3")
+    pied(c, "Η σελίδα δίπλα, στα γαλλικά.",
+         "ΕΛΛΗΝΙΚΑ  ·  %s" % num_page)
     c.showPage()
 
 
@@ -195,9 +202,8 @@ def main():
         sortie = os.path.join(dossier, base + ".pdf")
         c = canvas.Canvas(sortie, pagesize=A4)
         c.setTitle("%s — Cartes du Soir" % d["titre_fr"])
-        page_dialogue(c, d, "papa", 1)
-        page_dialogue(c, d, "myrto", 2)
-        page_sens(c, d)
+        page_dialogue(c, d, num_page="1 / 2")
+        page_sens(c, d, num_page="2 / 2")
         c.save()
         print("%s  ·  %d ατάκες" % (sortie, len(d["lignes"])))
         faits += 1
