@@ -1,0 +1,123 @@
+{
+  "id": 19,
+  "slug": "au-telephone",
+  "titre_fr": "Au téléphone",
+  "titre_el": "Στο τηλέφωνο",
+  "lieu": "au téléphone, cabinet médical, Lausanne",
+  "roles": {
+    "papa": "le patient qui appelle",
+    "myrto": "la secrétaire du cabinet"
+  },
+  "mots_du_lieu": [
+    "cabinet",
+    "médical",
+    "ventre"
+  ],
+  "a_verifier_avec_myrto": [
+    "Τι λέει η γραμματέας όταν σηκώνει το τηλέφωνο;",
+    "Λένε «lettre par lettre» ή «épeler»;",
+    "Ζητάνε natel ή σταθερό για επιβεβαίωση;"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Cabinet médical, bonjour !",
+      "el": "Ιατρείο, καλημέρα!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Bonjour, madame. Je voudrais un rendez-vous.",
+      "el": "Καλημέρα, κυρία. Θα ήθελα ένα ραντεβού."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Oui, bien sûr. C'est pour qui ?",
+      "el": "Ναι, βεβαίως. Για ποιον είναι;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Pour moi. Je m'appelle Petros.",
+      "el": "Για μένα. Με λένε Πέτρο."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Allô ? Je vous entends très mal.",
+      "el": "Εμπρός; Σας ακούω πολύ άσχημα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Comment ? Vous pouvez répéter ?",
+      "el": "Πώς είπατε; Μπορείτε να το πείτε ξανά;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Votre nom, s'il vous plaît. Lettre par lettre.",
+      "el": "Το όνομά σας, παρακαλώ. Γράμμα γράμμα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Ah, d'accord. P comme papa. E. T. R. O. S.",
+      "el": "Α, εντάξει. Π όπως πατέρας. Ε. Τ. Ρ. Ο. Σ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Petros. Merci ! Et c'est pour quoi ?",
+      "el": "Πέτρος. Ευχαριστώ! Και για ποιο πρόβλημα;"
+    },
+    {
+      "qui": "papa",
+      "fr": "J'ai mal au ventre depuis trois jours.",
+      "el": "Πονάει η κοιλιά μου εδώ και τρεις μέρες."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Je peux vous donner mardi, à dix heures.",
+      "el": "Μπορώ να σας δώσω Τρίτη, στις δέκα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Pardon ? Quel jour ?",
+      "el": "Συγγνώμη; Ποια μέρα;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Mardi. Mardi matin, à dix heures.",
+      "el": "Τρίτη. Τρίτη πρωί, στις δέκα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Mardi matin. Très bien.",
+      "el": "Τρίτη πρωί. Πολύ ωραία."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Il me faut votre numéro de natel.",
+      "el": "Χρειάζομαι το κινητό σας."
+    },
+    {
+      "qui": "papa",
+      "fr": "Zéro septante-neuf… Allô ? Allô ?",
+      "el": "Μηδέν εβδομήντα εννιά… Εμπρός; Εμπρός;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Oui, je suis là. J'entends mieux maintenant.",
+      "el": "Ναι, εδώ είμαι. Ακούω καλύτερα τώρα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Mon natel, c'est le zéro septante-neuf, trois, deux, un.",
+      "el": "Το κινητό μου είναι μηδέν εβδομήντα εννιά, τρία, δύο, ένα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Merci ! Alors, à mardi, monsieur.",
+      "el": "Ευχαριστώ! Λοιπόν, τα λέμε την Τρίτη, κύριε."
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci beaucoup, madame. Au revoir !",
+      "el": "Ευχαριστώ πολύ, κυρία. Αντίο!"
+    }
+  ]
+}

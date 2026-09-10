@@ -1,0 +1,125 @@
+{
+  "id": 20,
+  "slug": "le-marche-de-noel",
+  "titre_fr": "Le marché de Noël",
+  "titre_el": "Χριστουγεννιάτικη αγορά",
+  "lieu": "marché de Noël, place de la gare, Montreux",
+  "roles": {
+    "papa": "le client",
+    "myrto": "la vendeuse du stand"
+  },
+  "mots_du_lieu": [
+    "bonnet",
+    "bonnets",
+    "étoiles",
+    "chocolats",
+    "cartes",
+    "francs",
+    "froides",
+    "gentille",
+    "joyeux",
+    "paie"
+  ],
+  "a_verifier_avec_myrto": [
+    "Στην αγορά του Μοντρέ, πληρώνεις με κάρτα στους πάγκους;",
+    "Λέει «grand-maman» ή «mamie» για τη γιαγιά;",
+    "Τι πουλάνε στους πάγκους που της αρέσουν πιο πολύ;"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonsoir, monsieur ! Il fait froid ce soir !",
+      "el": "Καλησπέρα, κύριε! Κάνει κρύο απόψε!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Bonsoir ! Oui, très froid !",
+      "el": "Καλησπέρα! Ναι, πολύ κρύο!"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Vous cherchez un cadeau ?",
+      "el": "Ψάχνετε για δώρο;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Oui, pour ma fille. Elle a sept ans.",
+      "el": "Ναι, για την κόρη μου. Είναι επτά χρονών."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Alors regardez : des bonnets, des étoiles, des chocolats.",
+      "el": "Κοιτάξτε λοιπόν: σκουφάκια, αστεράκια, σοκολατάκια."
+    },
+    {
+      "qui": "papa",
+      "fr": "Oh, c'est joli ! Le bonnet rouge, combien ?",
+      "el": "Ω, τι ωραίο! Το κόκκινο σκουφάκι, πόσο κάνει;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Vingt-cinq francs. C'est ma grand-maman qui les fait.",
+      "el": "Είκοσι πέντε φράγκα. Τα φτιάχνει η γιαγιά μου."
+    },
+    {
+      "qui": "papa",
+      "fr": "Je le prends. Et là, qu'est-ce que c'est ?",
+      "el": "Το παίρνω. Κι εκεί, τι είναι αυτό;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Du vin chaud. Vous voulez un verre ?",
+      "el": "Ζεστό κρασί. Θέλετε ένα ποτήρι;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Oui, avec plaisir ! J'ai les mains froides.",
+      "el": "Ναι, ευχαρίστως! Έχω παγώσει τα χέρια μου."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Voilà. Alors, ça fait trente francs.",
+      "el": "Ορίστε. Λοιπόν, κάνει τριάντα φράγκα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Très bien. Je paie avec la carte.",
+      "el": "Πολύ ωραία. Πληρώνω με την κάρτα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ah non, désolée ! On ne prend pas les cartes.",
+      "el": "Α όχι, λυπάμαι! Δεν δεχόμαστε κάρτες."
+    },
+    {
+      "qui": "papa",
+      "fr": "Comment ? Je ne comprends pas.",
+      "el": "Πώς είπατε; Δεν καταλαβαίνω."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Pas de carte. De l'argent seulement, monsieur.",
+      "el": "Όχι κάρτα. Μόνο μετρητά, κύριε."
+    },
+    {
+      "qui": "papa",
+      "fr": "Ah… Attendez. J'ai seulement vingt francs.",
+      "el": "Α… Μισό λεπτό. Έχω μόνο είκοσι φράγκα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Pas grave ! Prenez le bonnet. Le vin, c'est cadeau.",
+      "el": "Δεν πειράζει! Πάρτε το σκουφάκι. Το κρασί κερασμένο."
+    },
+    {
+      "qui": "papa",
+      "fr": "Vous êtes très gentille. Joyeux Noël !",
+      "el": "Είστε πολύ ευγενική. Καλά Χριστούγεννα!"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Joyeux Noël, monsieur ! Et à votre fille !",
+      "el": "Καλά Χριστούγεννα, κύριε! Και στην κόρη σας!"
+    }
+  ]
+}

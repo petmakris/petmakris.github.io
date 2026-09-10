@@ -1,0 +1,123 @@
+{
+  "id": 18,
+  "slug": "a-la-commune",
+  "titre_fr": "À la commune",
+  "titre_el": "Στον δήμο",
+  "lieu": "guichet du contrôle des habitants, commune de Nyon",
+  "roles": {
+    "papa": "le nouvel habitant",
+    "myrto": "l'employée de la commune"
+  },
+  "mots_du_lieu": [
+    "passeport",
+    "contrat",
+    "habitez",
+    "lac",
+    "lentement",
+    "midi",
+    "papier",
+    "restaurant"
+  ],
+  "a_verifier_avec_myrto": [
+    "Πώς λέγεται το γκισέ όπου δηλώνεις διεύθυνση στον δήμο;",
+    "Ζητάνε «contrat de travail» ή κάτι άλλο;",
+    "Τι ώρες είναι ανοιχτά τα γκισέ του δήμου;"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonjour, monsieur. Je peux vous aider ?",
+      "el": "Καλημέρα, κύριε. Μπορώ να σας βοηθήσω;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Bonjour, madame. J'arrive de Grèce.",
+      "el": "Καλημέρα, κυρία. Μόλις ήρθα από την Ελλάδα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Bienvenue ! Vous habitez où maintenant ?",
+      "el": "Καλώς ήρθατε! Πού μένετε τώρα;"
+    },
+    {
+      "qui": "papa",
+      "fr": "À Nyon. Rue du Lac, numéro douze.",
+      "el": "Στη Νιόν. Οδός Λακ, αριθμός δώδεκα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Très bien. Vous avez votre passeport ?",
+      "el": "Πολύ ωραία. Έχετε το διαβατήριό σας;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Oui, voilà.",
+      "el": "Ναι, ορίστε."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Merci. Et votre contrat de travail ?",
+      "el": "Ευχαριστώ. Και το συμβόλαιο εργασίας σας;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Pardon ? Je ne comprends pas.",
+      "el": "Συγγνώμη; Δεν καταλαβαίνω."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Le papier de votre travail. Vous travaillez où ?",
+      "el": "Το χαρτί της δουλειάς σας. Πού δουλεύετε;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Ah ! Dans un restaurant, à Genève.",
+      "el": "Α! Σε ένα εστιατόριο, στη Γενεύη."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Il me faut ce papier, monsieur.",
+      "el": "Χρειάζομαι αυτό το χαρτί, κύριε."
+    },
+    {
+      "qui": "papa",
+      "fr": "Je ne l'ai pas. Il est à la maison.",
+      "el": "Δεν το έχω. Είναι στο σπίτι."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Alors vous revenez demain, avec le passeport aussi.",
+      "el": "Τότε ξανάρχεστε αύριο, και με το διαβατήριο."
+    },
+    {
+      "qui": "papa",
+      "fr": "Plus lentement, s'il vous plaît.",
+      "el": "Πιο αργά, παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Vous. Revenez. Demain. Avec. Le. Papier.",
+      "el": "Ξα-νάρ-χε-στε. Αύ-ρι-ο. Με. Το. Χαρ-τί."
+    },
+    {
+      "qui": "papa",
+      "fr": "D'accord. Demain, c'est ouvert quand ?",
+      "el": "Εντάξει. Αύριο πότε είναι ανοιχτά;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "De huit heures à midi. Après, c'est fermé.",
+      "el": "Από τις οκτώ ως τις δώδεκα. Μετά κλείνει."
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci beaucoup, madame. À demain !",
+      "el": "Ευχαριστώ πολύ, κυρία. Τα λέμε αύριο!"
+    },
+    {
+      "qui": "myrto",
+      "fr": "À demain, monsieur. Bonne journée !",
+      "el": "Αύριο, κύριε. Καλή σας μέρα!"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "id": 9,
+  "slug": "au-restaurant",
+  "titre_fr": "Au restaurant",
+  "titre_el": "Στο εστιατόριο",
+  "lieu": "petit restaurant, Lausanne",
+  "roles": {
+    "papa": "le client",
+    "myrto": "la serveuse"
+  },
+  "mots_du_lieu": [
+    "plat",
+    "poisson",
+    "viande",
+    "pommes",
+    "soupe",
+    "commande",
+    "lentement",
+    "appétit",
+    "français"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonsoir, monsieur. Une table pour une personne ?",
+      "el": "Καλησπέρα, κύριε. Τραπέζι για έναν;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Bonsoir. Oui, s'il vous plaît.",
+      "el": "Καλησπέρα. Ναι, παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Voilà la carte. Le plat du jour, c'est le poisson.",
+      "el": "Ορίστε ο κατάλογος. Το πιάτο ημέρας είναι ψάρι."
+    },
+    {
+      "qui": "papa",
+      "fr": "Pardon ? Plus lentement, s'il vous plaît.",
+      "el": "Συγγνώμη; Πιο αργά, σας παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Le plat du jour, c'est du poisson.",
+      "el": "Το πιάτο της ημέρας είναι ψάρι."
+    },
+    {
+      "qui": "papa",
+      "fr": "Ah, très bien. Je voudrais le plat du jour.",
+      "el": "Α, ωραία. Θα ήθελα το πιάτο ημέρας."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ah, désolée. Il n'y a plus de poisson.",
+      "el": "Α, λυπάμαι. Δεν έχει άλλο ψάρι."
+    },
+    {
+      "qui": "papa",
+      "fr": "Plus de poisson ? Qu'est-ce qu'il y a alors ?",
+      "el": "Τελείωσε το ψάρι; Και τι έχει τότε;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Il y a de la viande avec des pommes de terre.",
+      "el": "Έχει κρέας με πατάτες."
+    },
+    {
+      "qui": "papa",
+      "fr": "D'accord. De la viande, s'il vous plaît.",
+      "el": "Εντάξει. Κρέας, παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Et à boire ?",
+      "el": "Και για ποτό;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Un verre d'eau, s'il vous plaît.",
+      "el": "Ένα ποτήρι νερό, παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Voilà, monsieur ! Une soupe et un café.",
+      "el": "Ορίστε, κύριε! Μία σούπα κι έναν καφέ."
+    },
+    {
+      "qui": "papa",
+      "fr": "Comment ? Ce n'est pas ma commande.",
+      "el": "Ορίστε; Δεν είναι αυτή η παραγγελία μου."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Oh, pardon ! C'est pour la table trois.",
+      "el": "Ωχ, συγγνώμη! Είναι για το τραπέζι τρία."
+    },
+    {
+      "qui": "papa",
+      "fr": "Je ne comprends pas très bien le français.",
+      "el": "Δεν καταλαβαίνω και πολύ καλά γαλλικά."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ce n'est pas grave. Votre viande arrive tout de suite.",
+      "el": "Δεν πειράζει. Το κρέας σας έρχεται αμέσως."
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci beaucoup.",
+      "el": "Ευχαριστώ πολύ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Bon appétit, monsieur !",
+      "el": "Καλή όρεξη, κύριε!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci. Bonne soirée !",
+      "el": "Ευχαριστώ. Καλό σας βράδυ!"
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "id": 5,
+  "slug": "au-marche",
+  "titre_fr": "Au marché",
+  "titre_el": "Στη λαϊκή",
+  "lieu": "marché de la Riponne, Lausanne",
+  "roles": {
+    "papa": "le client",
+    "myrto": "la marchande"
+  },
+  "mots_du_lieu": [
+    "tomates",
+    "fraises",
+    "pommes",
+    "kilo",
+    "grammes",
+    "pèse",
+    "enlève",
+    "finies",
+    "belles",
+    "francs",
+    "centimes",
+    "lentement",
+    "répétez"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonjour, monsieur ! Regardez mes tomates !",
+      "el": "Καλημέρα, κύριε! Δείτε τις ντομάτες μου!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Bonjour, madame. Elles sont belles.",
+      "el": "Καλημέρα, κυρία. Είναι ωραίες."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Vous en voulez combien ?",
+      "el": "Πόσες θέλετε;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Un kilo, s'il vous plaît.",
+      "el": "Ένα κιλό, παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Je pèse. Ça fait un kilo trois cents.",
+      "el": "Ζυγίζω. Κάνει ένα κιλό και τριακόσια."
+    },
+    {
+      "qui": "papa",
+      "fr": "Pardon ? Plus lentement, s'il vous plaît.",
+      "el": "Συγγνώμη; Πιο αργά, παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Un kilo et trois cents grammes. C'est un peu plus.",
+      "el": "Ένα κιλό και τριακόσια γραμμάρια. Είναι λίγο παραπάνω."
+    },
+    {
+      "qui": "papa",
+      "fr": "Ah, c'est trop pour moi.",
+      "el": "Α, είναι πολύ για μένα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "J'enlève deux tomates. Voilà, un kilo !",
+      "el": "Βγάζω δύο ντομάτες. Ορίστε, ένα κιλό!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci. Et des fraises ?",
+      "el": "Ευχαριστώ. Και φράουλες;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Non, désolée. Les fraises sont finies.",
+      "el": "Όχι, λυπάμαι. Οι φράουλες τελείωσαν."
+    },
+    {
+      "qui": "papa",
+      "fr": "Déjà ? Il est neuf heures !",
+      "el": "Κιόλας; Εννιά η ώρα είναι!"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Le samedi, tout part très vite.",
+      "el": "Το Σάββατο φεύγουν όλα πολύ γρήγορα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Alors quatre pommes, s'il vous plaît.",
+      "el": "Τότε τέσσερα μήλα, παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Voilà. Ça fait sept francs septante.",
+      "el": "Ορίστε. Κάνει εφτά φράγκα και εβδομήντα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Comment ? Répétez, s'il vous plaît.",
+      "el": "Πώς είπατε; Επαναλάβετε, παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Sept francs septante, monsieur.",
+      "el": "Εφτά φράγκα και εβδομήντα, κύριε."
+    },
+    {
+      "qui": "papa",
+      "fr": "Voilà huit francs.",
+      "el": "Ορίστε οκτώ φράγκα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Merci ! Et trente centimes. Bonne journée !",
+      "el": "Ευχαριστώ! Και τριάντα λεπτά ρέστα. Καλή σας μέρα!"
+    }
+  ]
+}

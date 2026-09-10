@@ -1,0 +1,122 @@
+{
+  "id": 11,
+  "slug": "demander-le-chemin",
+  "titre_fr": "Demander le chemin",
+  "titre_el": "Ρωτάω τον δρόμο",
+  "lieu": "un trottoir du centre-ville, Lausanne",
+  "roles": {
+    "papa": "l'homme perdu",
+    "myrto": "la passante"
+  },
+  "mots_du_lieu": [
+    "gare",
+    "pont",
+    "travaux",
+    "fermée",
+    "marchez",
+    "lentement",
+    "mademoiselle"
+  ],
+  "lignes": [
+    {
+      "qui": "papa",
+      "fr": "Pardon, mademoiselle. Je cherche la gare.",
+      "el": "Συγγνώμη, δεσποινίς. Ψάχνω τον σταθμό."
+    },
+    {
+      "qui": "myrto",
+      "fr": "La gare ? Mais vous marchez dans l'autre sens !",
+      "el": "Τον σταθμό; Μα πάτε από την ανάποδη!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Comment ? Je ne comprends pas.",
+      "el": "Ορίστε; Δεν καταλαβαίνω."
+    },
+    {
+      "qui": "myrto",
+      "fr": "La gare est derrière vous, monsieur.",
+      "el": "Ο σταθμός είναι πίσω σας, κύριε."
+    },
+    {
+      "qui": "papa",
+      "fr": "Ah… je suis perdu.",
+      "el": "Α… έχω χαθεί."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Alors, vous retournez et vous allez tout droit.",
+      "el": "Λοιπόν, κάνετε μεταβολή και πάτε ευθεία."
+    },
+    {
+      "qui": "papa",
+      "fr": "Tout droit. D'accord.",
+      "el": "Ευθεία. Εντάξει."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Après la poste, vous prenez à gauche.",
+      "el": "Μετά το ταχυδρομείο, στρίβετε αριστερά."
+    },
+    {
+      "qui": "papa",
+      "fr": "À gauche après la poste.",
+      "el": "Αριστερά μετά το ταχυδρομείο."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Mais pas la rue du Pont ! Elle est fermée.",
+      "el": "Αλλά όχι στην οδό Πον! Είναι κλειστή."
+    },
+    {
+      "qui": "papa",
+      "fr": "Fermée ? Pourquoi ?",
+      "el": "Κλειστή; Γιατί;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Il y a des travaux. Depuis lundi.",
+      "el": "Έχει έργα. Από τη Δευτέρα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Plus lentement, s'il vous plaît.",
+      "el": "Πιο αργά, σας παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Il y a des travaux dans la rue du Pont.",
+      "el": "Έχει έργα στην οδό Πον."
+    },
+    {
+      "qui": "papa",
+      "fr": "Alors, quel chemin je prends ?",
+      "el": "Τότε από πού να πάω;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Vous passez par la place du marché. C'est plus joli.",
+      "el": "Περνάτε από την πλατεία της αγοράς. Είναι πιο ωραία."
+    },
+    {
+      "qui": "papa",
+      "fr": "C'est loin ?",
+      "el": "Είναι μακριά;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Non, dix minutes à pied.",
+      "el": "Όχι, δέκα λεπτά με τα πόδια."
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci beaucoup, mademoiselle !",
+      "el": "Ευχαριστώ πολύ, δεσποινίς!"
+    },
+    {
+      "qui": "myrto",
+      "fr": "De rien. Bonne route !",
+      "el": "Τίποτα. Καλό δρόμο!"
+    }
+  ]
+}

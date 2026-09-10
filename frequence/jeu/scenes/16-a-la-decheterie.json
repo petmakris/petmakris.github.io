@@ -1,0 +1,124 @@
+{
+  "id": 16,
+  "slug": "a-la-decheterie",
+  "titre_fr": "À la déchèterie",
+  "titre_el": "Στην ανακύκλωση",
+  "lieu": "déchèterie communale, canton de Vaud",
+  "roles": {
+    "papa": "le nouvel habitant",
+    "myrto": "la gardienne de la déchèterie"
+  },
+  "mots_du_lieu": [
+    "boîtes",
+    "cartons",
+    "commune",
+    "francs",
+    "jetez",
+    "lampe",
+    "lampes",
+    "taxé",
+    "trie"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonjour, monsieur ! Vous jetez quoi ?",
+      "el": "Καλημέρα, κύριε! Τι πετάτε;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Bonjour. Des cartons et une vieille lampe.",
+      "el": "Καλημέρα. Χαρτόκουτα και μια παλιά λάμπα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Très bien. Les cartons, c'est là-bas.",
+      "el": "Πολύ ωραία. Τα χαρτόκουτα είναι εκεί πέρα."
+    },
+    {
+      "qui": "papa",
+      "fr": "D'accord. Et la lampe, ici ?",
+      "el": "Εντάξει. Και η λάμπα, εδώ;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Non, pas là ! Ça, c'est le verre.",
+      "el": "Όχι, όχι εκεί! Αυτό είναι για τα γυαλικά."
+    },
+    {
+      "qui": "papa",
+      "fr": "Pardon ? Je ne comprends pas.",
+      "el": "Συγγνώμη; Δεν καταλαβαίνω."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Le verre ici. Les lampes là-bas.",
+      "el": "Το γυαλί εδώ. Οι λάμπες εκεί πέρα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Ah, désolé. Il y a beaucoup de boîtes.",
+      "el": "Α, συγγνώμη. Έχει πολλούς κάδους."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Oui, huit. Une pour chaque chose.",
+      "el": "Ναι, οκτώ. Ένας για το καθετί."
+    },
+    {
+      "qui": "papa",
+      "fr": "Chez moi, on met tout ensemble.",
+      "el": "Στην πατρίδα μου τα βάζουμε όλα μαζί."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ici, non ! Ici, on trie.",
+      "el": "Εδώ, όχι! Εδώ ξεχωρίζουμε τα σκουπίδια."
+    },
+    {
+      "qui": "papa",
+      "fr": "Et ce sac ? C'est la cuisine.",
+      "el": "Κι αυτή η σακούλα; Είναι από την κουζίνα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ce sac blanc ? Non, monsieur.",
+      "el": "Αυτή η άσπρη σακούλα; Όχι, κύριε."
+    },
+    {
+      "qui": "papa",
+      "fr": "Pourquoi non ?",
+      "el": "Γιατί όχι;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Il faut le sac taxé de la commune.",
+      "el": "Χρειάζεται η επίσημη σακούλα του δήμου."
+    },
+    {
+      "qui": "papa",
+      "fr": "Le sac taxé ? C'est combien ?",
+      "el": "Η επίσημη σακούλα; Πόσο κάνει;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Deux francs le sac. On les vend à la Coop.",
+      "el": "Δύο φράγκα η μία. Τις πουλάνε στην Coop."
+    },
+    {
+      "qui": "papa",
+      "fr": "Deux francs pour un sac ? C'est cher !",
+      "el": "Δύο φράγκα για μια σακούλα; Ακριβό!"
+    },
+    {
+      "qui": "myrto",
+      "fr": "C'est la Suisse, monsieur.",
+      "el": "Ελβετία είναι, κύριε."
+    },
+    {
+      "qui": "papa",
+      "fr": "Bon. Je vais à la Coop. Merci, madame !",
+      "el": "Καλά. Πάω στην Coop. Ευχαριστώ, κυρία!"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "id": 14,
+  "slug": "a-la-bibliotheque",
+  "titre_fr": "À la bibliothèque",
+  "titre_el": "Στη βιβλιοθήκη",
+  "lieu": "bibliothèque communale, Lausanne",
+  "roles": {
+    "papa": "le lecteur",
+    "myrto": "la bibliothécaire"
+  },
+  "mots_du_lieu": [
+    "bibliothèque",
+    "francs",
+    "images",
+    "lentement"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonjour, monsieur. Je peux vous aider ?",
+      "el": "Καλημέρα, κύριε. Μπορώ να σας βοηθήσω;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Bonjour. Je cherche un livre pour ma fille.",
+      "el": "Καλημέρα. Ψάχνω ένα βιβλίο για την κόρη μου."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Quel âge a votre fille ?",
+      "el": "Πόσο χρονών είναι η κόρη σας;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Sept ans. Elle aime les images.",
+      "el": "Εφτά. Της αρέσουν οι εικόνες."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Alors, par ici. Les livres d'enfants sont là.",
+      "el": "Ελάτε από δω, λοιπόν. Τα παιδικά είναι εκεί."
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci. Ah, ce livre est joli !",
+      "el": "Ευχαριστώ. Α, αυτό είναι ωραίο!"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Bon choix. Vous avez votre carte ?",
+      "el": "Καλή επιλογή. Έχετε την κάρτα σας;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Ma carte ? Quelle carte ?",
+      "el": "Την κάρτα μου; Ποια κάρτα;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "La carte de la bibliothèque. Sans carte, pas de livres.",
+      "el": "Την κάρτα της βιβλιοθήκης. Χωρίς κάρτα, δεν δανείζεσαι."
+    },
+    {
+      "qui": "papa",
+      "fr": "Pardon ? Plus lentement, s'il vous plaît.",
+      "el": "Συγγνώμη; Πιο αργά, παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Il faut une carte. C'est dix francs par an.",
+      "el": "Χρειάζεται κάρτα. Κοστίζει δέκα φράγκα τον χρόνο."
+    },
+    {
+      "qui": "papa",
+      "fr": "D'accord. Je voudrais une carte, alors.",
+      "el": "Εντάξει. Θα ήθελα μια κάρτα, τότε."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Votre nom et votre adresse, s'il vous plaît.",
+      "el": "Το όνομα και τη διεύθυνσή σας, παρακαλώ."
+    },
+    {
+      "qui": "papa",
+      "fr": "Petros. Mon adresse est à Lausanne.",
+      "el": "Πέτρος. Η διεύθυνσή μου είναι στη Λωζάνη."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Merci. Voilà votre carte.",
+      "el": "Ευχαριστώ. Ορίστε η κάρτα σας."
+    },
+    {
+      "qui": "papa",
+      "fr": "Super ! Alors je prends ce livre.",
+      "el": "Τέλεια! Παίρνω λοιπόν αυτό το βιβλίο."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ah, désolée. Ce livre n'est pas là.",
+      "el": "Α, λυπάμαι. Κάποιος το έχει ήδη πάρει."
+    },
+    {
+      "qui": "papa",
+      "fr": "Oh non. Il revient quand ?",
+      "el": "Ω, όχι. Πότε γυρίζει;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Dans deux semaines. Mais regardez ce livre-là !",
+      "el": "Σε δύο βδομάδες. Δείτε όμως εκείνο!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Il est joli aussi. Merci beaucoup, madame !",
+      "el": "Κι αυτό ωραίο είναι. Ευχαριστώ πολύ, κυρία!"
+    }
+  ]
+}

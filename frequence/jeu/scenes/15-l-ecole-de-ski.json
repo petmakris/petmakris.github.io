@@ -1,0 +1,123 @@
+{
+  "id": 15,
+  "slug": "l-ecole-de-ski",
+  "titre_fr": "L'école de ski",
+  "titre_el": "Σχολή σκι",
+  "lieu": "école de ski, Alpes vaudoises",
+  "roles": {
+    "papa": "le débutant",
+    "myrto": "la monitrice de ski"
+  },
+  "mots_du_lieu": [
+    "chaussures",
+    "descend",
+    "genoux",
+    "levez",
+    "petites",
+    "pliez",
+    "pointure",
+    "recommence"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonjour, monsieur ! Vous êtes prêt ?",
+      "el": "Καλημέρα, κύριε! Είστε έτοιμος;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Bonjour. Euh... non. Pas vraiment.",
+      "el": "Καλημέρα. Εεε... όχι. Όχι και πολύ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Mais si ! C'est facile. Regardez-moi.",
+      "el": "Μα ναι! Είναι εύκολο. Κοιτάξτε με."
+    },
+    {
+      "qui": "papa",
+      "fr": "Attendez ! Mes chaussures font mal.",
+      "el": "Σταθείτε! Οι μπότες με πονάνε."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Elles sont trop petites ?",
+      "el": "Είναι πολύ μικρές;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Oui. Beaucoup trop petites.",
+      "el": "Ναι. Πάρα πολύ μικρές."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Quelle pointure ?",
+      "el": "Τι νούμερο;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Comment ? Je ne comprends pas.",
+      "el": "Πώς; Δεν καταλαβαίνω."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Vous faites du quarante-trois ou du quarante-quatre ?",
+      "el": "Νούμερο σαράντα τρία ή σαράντα τέσσερα φοράτε;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Quarante-quatre. Et là, c'est quarante et un.",
+      "el": "Σαράντα τέσσερα. Κι αυτές είναι σαράντα ένα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ah ! Mais ce sont mes chaussures, monsieur.",
+      "el": "Α! Μα αυτές είναι οι δικές μου μπότες, κύριε."
+    },
+    {
+      "qui": "papa",
+      "fr": "Oh non. Excusez-moi !",
+      "el": "Ωχ όχι. Συγγνώμη!"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Voilà les bonnes. Maintenant, on descend.",
+      "el": "Ορίστε οι σωστές. Τώρα κατεβαίνουμε."
+    },
+    {
+      "qui": "papa",
+      "fr": "Doucement, s'il vous plaît ! J'ai peur.",
+      "el": "Σιγά, σας παρακαλώ! Φοβάμαι."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Pliez les genoux. Regardez devant vous.",
+      "el": "Λύγισε τα γόνατα. Κοίτα μπροστά σου."
+    },
+    {
+      "qui": "papa",
+      "fr": "Comme ça ? Aaah !",
+      "el": "Έτσι; Ααα!"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Vous êtes tombé. Ce n'est pas grave.",
+      "el": "Πέσατε. Δεν είναι τίποτα."
+    },
+    {
+      "qui": "papa",
+      "fr": "J'ai mal partout, madame.",
+      "el": "Πονάω παντού, κυρία."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Levez-vous. On recommence !",
+      "el": "Σηκωθείτε. Ξαναρχίζουμε!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Encore ? D'accord... mais doucement, madame !",
+      "el": "Πάλι; Εντάξει... αλλά σιγά, κυρία!"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "id": 8,
+  "slug": "un-colis-pour-vous",
+  "titre_fr": "Un colis pour vous",
+  "titre_el": "Ένα δέμα για σας",
+  "lieu": "devant la porte d'un immeuble, Lausanne",
+  "roles": {
+    "papa": "le destinataire",
+    "myrto": "la factrice"
+  },
+  "mots_du_lieu": [
+    "colis",
+    "voisin",
+    "écran",
+    "doigt",
+    "identité",
+    "habitez"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonjour, monsieur ! La Poste. J'ai un colis.",
+      "el": "Καλημέρα, κύριε! Τα ταχυδρομεία. Έχω ένα δέμα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Bonjour, madame. Un colis ? Pour moi ?",
+      "el": "Καλημέρα, κυρία. Δέμα; Για μένα;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Attendez… Non. C'est pour le voisin du troisième.",
+      "el": "Μια στιγμή… Όχι. Είναι για τον γείτονα του τρίτου."
+    },
+    {
+      "qui": "papa",
+      "fr": "Pardon ? Je ne comprends pas.",
+      "el": "Συγγνώμη; Δεν καταλαβαίνω."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Le colis n'est pas pour vous. Il est pour le voisin.",
+      "el": "Το δέμα δεν είναι για σας. Είναι για τον γείτονα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Ah ! Et il n'est pas là ?",
+      "el": "Α! Και δεν είναι εκεί;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Non. Vous pouvez le prendre pour lui ?",
+      "el": "Όχι. Μπορείτε να το πάρετε εσείς γι' αυτόν;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Oui, bien sûr. Je le garde.",
+      "el": "Ναι, βεβαίως. Το κρατάω."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Merci ! Alors il faut signer ici.",
+      "el": "Ευχαριστώ! Τότε πρέπει να υπογράψετε εδώ."
+    },
+    {
+      "qui": "papa",
+      "fr": "Signer ? Où ça ?",
+      "el": "Να υπογράψω; Πού;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Là, sur l'écran. Avec le doigt.",
+      "el": "Εκεί, στην οθόνη. Με το δάχτυλο."
+    },
+    {
+      "qui": "papa",
+      "fr": "Comme ça ?",
+      "el": "Έτσι;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Oui, parfait. Et votre pièce d'identité, s'il vous plaît.",
+      "el": "Ναι, τέλεια. Και την ταυτότητά σας, παρακαλώ."
+    },
+    {
+      "qui": "papa",
+      "fr": "Ma carte ? Une seconde… Voilà.",
+      "el": "Την κάρτα μου; Μια στιγμή… Ορίστε."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Merci. Vous habitez ici depuis longtemps ?",
+      "el": "Ευχαριστώ. Μένετε εδώ πολύ καιρό;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Depuis trois semaines. On arrive de Grèce.",
+      "el": "Τρεις εβδομάδες. Ήρθαμε από την Ελλάδα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Bienvenue ! Alors laissez un mot au voisin.",
+      "el": "Καλώς ήρθατε! Τότε αφήστε ένα σημείωμα στον γείτονα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Un mot ? Ah oui, sur la porte.",
+      "el": "Σημείωμα; Α ναι, στην πόρτα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Voilà. Bonne journée, monsieur !",
+      "el": "Ακριβώς. Καλή σας μέρα, κύριε!"
+    }
+  ]
+}

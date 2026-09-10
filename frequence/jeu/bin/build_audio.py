@@ -74,20 +74,25 @@ def gemini(txt, voix, cle_api):
         try:
             with urllib.request.urlopen(req, timeout=120) as r:
                 d = json.load(r)
-            part = d["candidates"][0]["content"]["parts"][0]
-            return wav(base64.b64decode(part["inlineData"]["data"]))
+            cand = (d.get("candidates") or [{}])[0]
+            # Το μοντέλο απαντάει μερικές φορές με υποψήφιο ΧΩΡΙΣ content, όταν
+            # έκοψε για δικούς του λόγους. Είναι παροδικό: ξαναδοκιμάζεται.
+            if "content" not in cand:
+                raise ValueError("χωρίς περιεχόμενο (finishReason=%s)"
+                                 % cand.get("finishReason", "?"))
+            return wav(base64.b64decode(cand["content"]["parts"][0]["inlineData"]["data"]))
         except urllib.error.HTTPError as e:
             detail = e.read().decode("utf-8", "replace")[:300]
             if e.code in (429, 500, 503) and essai < 3:
                 time.sleep(3 * (essai + 1))
                 continue
             raise SystemExit("Gemini %s: %s" % (e.code, detail))
-        except Exception:
+        except Exception as e:
             if essai < 3:
-                time.sleep(2 * (essai + 1))
+                time.sleep(3 * (essai + 1))
                 continue
-            raise
-    raise SystemExit("Gemini: δεν απάντησε")
+            raise RuntimeError("Gemini: %s" % e)
+    raise RuntimeError("Gemini: δεν απάντησε")
 
 
 def vers_m4a(brut, sortie):
@@ -137,16 +142,24 @@ def main():
     if essai:
         atakes = atakes[:1]
 
-    index, neufs = {}, 0
+    index, neufs, rates = {}, 0, []
     for txt, qui in atakes:
         voix = voix_de(qui)
         k = cle(voix, txt)
-        index[qui + "|" + txt] = k
         chemin = os.path.join(AUDIO, k + ".m4a")
         if refaire or not os.path.exists(chemin):
-            dit(txt, qui, chemin, kapi)
+            try:
+                dit(txt, qui, chemin, kapi)
+            except Exception as e:
+                # Συνεχίζουμε: 300 καλές ηχογραφήσεις δεν πετιούνται για μία κακή.
+                rates.append((txt, qui, str(e)))
+                print("  ✗ %-13s %-8s %s  (%s)" % (k, voix, txt[:44], e))
+                continue
             neufs += 1
             print("  ♪ %-13s %-8s %s" % (k, voix, txt[:52]))
+        # Στο ευρετήριο μπαίνει μόνο ό,τι υπάρχει πράγματι σε αρχείο.
+        if os.path.exists(chemin):
+            index[qui + "|" + txt] = k
 
     if not essai:
         with open(os.path.join(AUDIO, "index.json"), "w", encoding="utf-8") as fh:
@@ -154,11 +167,15 @@ def main():
 
     total = sum(os.path.getsize(os.path.join(AUDIO, f))
                 for f in os.listdir(AUDIO) if f.endswith(".m4a"))
+    if rates:
+        print("\n%d ατάκες ΑΠΕΤΥΧΑΝ — ξανατρέξε την ίδια εντολή:" % len(rates))
+        for txt, qui, e in rates:
+            print("  · %s [%s] %s" % (txt[:60], qui, e))
     print("%d ατάκες (%d καινούριες) · %s%s · %s / %s · %.1f MB"
           % (len(atakes), neufs, MOTEUR,
              " " + MODELE if MOTEUR == "gemini" else "",
              voix_de("myrto"), voix_de("papa"), total / 1e6))
-    return 0
+    return 1 if rates else 0
 
 
 if __name__ == "__main__":

@@ -1,0 +1,122 @@
+{
+  "id": 13,
+  "slug": "a-la-piscine",
+  "titre_fr": "À la piscine",
+  "titre_el": "Στην πισίνα",
+  "lieu": "piscine communale, canton de Vaud",
+  "roles": {
+    "papa": "le visiteur",
+    "myrto": "la caissière de la piscine"
+  },
+  "mots_du_lieu": [
+    "bonnet",
+    "bonnets",
+    "francs",
+    "nager",
+    "obligatoire",
+    "piscine",
+    "vendez"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonjour, monsieur. Vous venez nager ?",
+      "el": "Καλημέρα, κύριε. Ήρθατε για κολύμπι;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Bonjour. Oui. Une entrée, s'il vous plaît.",
+      "el": "Καλημέρα. Ναι. Ένα εισιτήριο, παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ça fait huit francs.",
+      "el": "Κάνει οκτώ φράγκα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Voilà dix francs.",
+      "el": "Ορίστε δέκα φράγκα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Merci. Et deux francs.",
+      "el": "Ευχαριστώ. Και δύο φράγκα ρέστα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci.",
+      "el": "Ευχαριστώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Attention : on ferme dans trente minutes.",
+      "el": "Προσοχή: κλείνουμε σε μισή ώρα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Pardon ? Vous pouvez répéter ?",
+      "el": "Συγγνώμη; Μπορείτε να το πείτε ξανά;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "La piscine ferme à sept heures.",
+      "el": "Η πισίνα κλείνει στις εφτά."
+    },
+    {
+      "qui": "papa",
+      "fr": "Ah. Alors je vais vite.",
+      "el": "Α. Τότε θα βιαστώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Un moment ! Vous avez un bonnet ?",
+      "el": "Μια στιγμή! Έχετε σκουφάκι;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Un bonnet ? Non. Pourquoi ?",
+      "el": "Σκουφάκι; Όχι. Γιατί;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ici, le bonnet est obligatoire.",
+      "el": "Εδώ το σκουφάκι είναι υποχρεωτικό."
+    },
+    {
+      "qui": "papa",
+      "fr": "Je ne comprends pas. Obligatoire ?",
+      "el": "Δεν καταλαβαίνω. Υποχρεωτικό;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Sans bonnet, on ne peut pas nager.",
+      "el": "Χωρίς σκουφάκι δεν μπαίνεις στο νερό."
+    },
+    {
+      "qui": "papa",
+      "fr": "Et vous vendez des bonnets ?",
+      "el": "Κι εσείς πουλάτε σκουφάκια;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Oui. Trois francs cinquante.",
+      "el": "Ναι. Τρία φράγκα και πενήντα."
+    },
+    {
+      "qui": "papa",
+      "fr": "D'accord. Un bonnet, s'il vous plaît.",
+      "el": "Εντάξει. Ένα σκουφάκι, παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Voilà. Vite ! Il ne reste pas beaucoup de temps.",
+      "el": "Ορίστε. Γρήγορα! Δεν μένει πολλή ώρα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci beaucoup. Bonne soirée !",
+      "el": "Ευχαριστώ πολύ. Καλό σας βράδυ!"
+    }
+  ]
+}

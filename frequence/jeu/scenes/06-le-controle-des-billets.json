@@ -1,0 +1,124 @@
+{
+  "id": 6,
+  "slug": "le-controle-des-billets",
+  "titre_fr": "Le contrôle des billets",
+  "titre_el": "Έλεγχος εισιτηρίων",
+  "lieu": "bus de la ligne 9, Lausanne",
+  "roles": {
+    "papa": "le passager",
+    "myrto": "la contrôleuse"
+  },
+  "mots_du_lieu": [
+    "billet",
+    "billets",
+    "timbré",
+    "machine",
+    "orange",
+    "amende",
+    "arrêts",
+    "gare",
+    "gentille",
+    "arrivez",
+    "date",
+    "descends",
+    "habite",
+    "pont"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonjour, monsieur. Contrôle des billets.",
+      "el": "Καλημέρα, κύριε. Έλεγχος εισιτηρίων."
+    },
+    {
+      "qui": "papa",
+      "fr": "Bonjour, madame. Voilà mon billet.",
+      "el": "Καλημέρα, κυρία. Ορίστε το εισιτήριό μου."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Merci. Hmm… Il n'est pas timbré.",
+      "el": "Ευχαριστώ. Χμ… Δεν είναι σφραγισμένο."
+    },
+    {
+      "qui": "papa",
+      "fr": "Pardon ? Je ne comprends pas.",
+      "el": "Συγγνώμη; Δεν καταλαβαίνω."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Regardez. Il n'y a pas la date sur le billet.",
+      "el": "Κοιτάξτε. Δεν έχει ημερομηνία πάνω στο εισιτήριο."
+    },
+    {
+      "qui": "papa",
+      "fr": "Ah… Je l'ai acheté hier soir.",
+      "el": "Α… Το αγόρασα χθες το βράδυ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Oui, mais il faut le mettre dans la machine.",
+      "el": "Ναι, αλλά πρέπει να το βάλετε στο μηχάνημα."
+    },
+    {
+      "qui": "papa",
+      "fr": "La machine ? Où ça ?",
+      "el": "Το μηχάνημα; Πού;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Là, à côté de la porte. La boîte orange.",
+      "el": "Εκεί, δίπλα στην πόρτα. Το πορτοκαλί κουτί."
+    },
+    {
+      "qui": "papa",
+      "fr": "Excusez-moi. C'est mon premier jour ici.",
+      "el": "Με συγχωρείτε. Είναι η πρώτη μου μέρα εδώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Vous arrivez d'où ?",
+      "el": "Από πού ήρθατε;"
+    },
+    {
+      "qui": "papa",
+      "fr": "De Grèce. On habite ici depuis samedi.",
+      "el": "Από την Ελλάδα. Μένουμε εδώ από το Σάββατο."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Alors pour cette fois, ça va. Pas d'amende !",
+      "el": "Τότε γι' αυτή τη φορά, εντάξει. Χωρίς πρόστιμο!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci beaucoup, madame.",
+      "el": "Ευχαριστώ πολύ, κυρία."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Mais la prochaine fois, dans la machine, d'accord ?",
+      "el": "Αλλά την επόμενη φορά, στο μηχάνημα, εντάξει;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Oui ! Et je descends où, pour la gare ?",
+      "el": "Ναι! Και πού κατεβαίνω για τον σταθμό;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Dans deux arrêts. Après le pont.",
+      "el": "Σε δύο στάσεις. Μετά τη γέφυρα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci. Vous êtes très gentille.",
+      "el": "Ευχαριστώ. Είστε πολύ ευγενική."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Bon voyage, monsieur !",
+      "el": "Καλό ταξίδι, κύριε!"
+    }
+  ]
+}

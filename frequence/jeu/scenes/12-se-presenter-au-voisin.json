@@ -1,0 +1,129 @@
+{
+  "id": 12,
+  "slug": "se-presenter-au-voisin",
+  "titre_fr": "Se présenter au voisin",
+  "titre_el": "Συστήνομαι στη γειτόνισσα",
+  "lieu": "entrée d'un immeuble, Lausanne",
+  "roles": {
+    "papa": "le nouveau voisin",
+    "myrto": "la voisine du deuxième"
+  },
+  "mots_du_lieu": [
+    "voisin",
+    "immeuble",
+    "étage",
+    "buanderie",
+    "laver",
+    "cave",
+    "poubelles",
+    "enchanté",
+    "habite",
+    "jouent",
+    "français",
+    "machine",
+    "midi",
+    "quelles"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonjour ! Vous êtes le nouveau voisin ?",
+      "el": "Καλημέρα! Εσείς είστε ο καινούριος γείτονας;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Oui, bonjour. Je m'appelle Petros.",
+      "el": "Ναι, καλημέρα. Με λένε Πέτρο."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Moi, c'est Myrto. J'habite au deuxième étage.",
+      "el": "Εγώ είμαι η Μυρτώ. Μένω στον δεύτερο όροφο."
+    },
+    {
+      "qui": "papa",
+      "fr": "Enchanté. Nous sommes arrivés hier.",
+      "el": "Χαίρω πολύ. Ήρθαμε χθες."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Vous venez d'où ?",
+      "el": "Από πού είστε;"
+    },
+    {
+      "qui": "papa",
+      "fr": "De Grèce. Mais je parle mal le français.",
+      "el": "Από την Ελλάδα. Αλλά μιλάω άσχημα γαλλικά."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ce n'est pas grave. Vous allez apprendre.",
+      "el": "Δεν πειράζει. Θα μάθετε."
+    },
+    {
+      "qui": "papa",
+      "fr": "J'espère !",
+      "el": "Ελπίζω!"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Vous connaissez les règles de l'immeuble ?",
+      "el": "Ξέρετε τους κανόνες της πολυκατοικίας;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Les règles ? Non. Quelles règles ?",
+      "el": "Τους κανόνες; Όχι. Ποιους κανόνες;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "La buanderie, c'est le mardi pour vous.",
+      "el": "Το πλυσταριό, για εσάς είναι η Τρίτη."
+    },
+    {
+      "qui": "papa",
+      "fr": "Pardon ? La buanderie ?",
+      "el": "Συγγνώμη; Το πλυσταριό;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "La machine à laver. En bas, à la cave.",
+      "el": "Το πλυντήριο. Κάτω, στο υπόγειο."
+    },
+    {
+      "qui": "papa",
+      "fr": "Ah ! Seulement le mardi ?",
+      "el": "Α! Μόνο την Τρίτη;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Oui. Et les poubelles, le jeudi soir.",
+      "el": "Ναι. Και τα σκουπίδια, Πέμπτη βράδυ."
+    },
+    {
+      "qui": "papa",
+      "fr": "D'accord. Le jeudi soir.",
+      "el": "Εντάξει. Πέμπτη βράδυ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Et pas de bruit entre midi et treize heures.",
+      "el": "Και ησυχία από τις δώδεκα ως τη μία."
+    },
+    {
+      "qui": "papa",
+      "fr": "Oh… mes enfants jouent à midi.",
+      "el": "Ωχ… τα παιδιά μου παίζουν το μεσημέρι."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Alors, ils vont jouer dehors ! Bienvenue, voisin !",
+      "el": "Τότε θα παίζουν έξω! Καλώς ήρθατε, γείτονα!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci beaucoup ! À bientôt.",
+      "el": "Ευχαριστώ πολύ! Τα λέμε."
+    }
+  ]
+}

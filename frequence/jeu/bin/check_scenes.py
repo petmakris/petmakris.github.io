@@ -10,8 +10,9 @@
 είναι πρωτοεμφανιζόμενες με τη σειρά της τράπουλας, και τυπώνεται η
 κατανομή· το κατώφλι μπαίνει αφού δούμε πραγματικά νούμερα.
 
-    python3 bin/check_scenes.py            έλεγχος όλων
-    python3 bin/check_scenes.py --suggere  τυπώνει τι λείπει από mots_du_lieu
+    python3 bin/check_scenes.py                     έλεγχος όλων
+    python3 bin/check_scenes.py scenes/05-*.json    μόνο αυτών
+    python3 bin/check_scenes.py --suggere           τι λείπει από mots_du_lieu
 """
 import glob, json, os, re, sys, unicodedata
 
@@ -54,10 +55,29 @@ def strip_accents(s):
                    if unicodedata.category(c) != "Mn")
 
 
-def tokens(txt):
-    """Σπάει σε λέξεις, χωρίζοντας στις αποστρόφους και στα ενωτικά."""
+def tokens(txt, connu=None):
+    """Σπάει σε λέξεις.
+
+    Η απόστροφος και το ενωτικό είναι διφορούμενα στα γαλλικά: στο «s'il»
+    χωρίζουν δύο λέξεις, στο «aujourd'hui» και στο «rendez-vous» όχι. Άρα
+    η ενωμένη μορφή κρατιέται μόνο όταν είναι η ΙΔΙΑ μέσα στον σκελετό, οπότε
+    το «aujourd'hui» μένει μία λέξη. Το «asseyez-vous» σπάει, γιατί είναι απλώς
+    «asseyez» συν «vous» και κρίνεται από τα μέρη του — αλλιώς μια σύνθεση που
+    τυχαίνει να μην είναι στις πρώτες 1.200 κοβόταν ενώ και τα δύο μέρη της
+    είναι απολύτως θεμιτά.
+    """
     txt = txt.replace("’", "'")
-    return [t for t in re.split(r"[^A-Za-zÀ-ÿ]+", txt.lower()) if t]
+    connu = connu or set()
+    out = []
+    for gros in re.split(r"[^A-Za-zÀ-ÿ'\-]+", txt.lower()):
+        gros = gros.strip("'-")
+        if not gros:
+            continue
+        if gros in connu:
+            out.append(gros)
+        else:
+            out.extend(t for t in re.split(r"[^A-Za-zÀ-ÿ]+", gros) if t)
+    return out
 
 
 def load_list(name):
@@ -77,6 +97,8 @@ def main():
     lex = json.load(open(os.path.join(JEU, "data", "lexique.json"), encoding="utf-8"))
     rangs, SKEL, LARGE = lex["rangs"], lex["squelette"], lex["large"]
     formes = set(lex.get("formes", []))
+    # Μόνο ό,τι στέκει ΜΟΝΟ ΤΟΥ στον σκελετό μένει ενωμένο στον τεμαχισμό.
+    entiers = {w for w, r in rangs.items() if r <= SKEL and ("'" in w or "-" in w)}
     vaud, propres = load_list("vaud.txt"), load_list("noms_propres.txt")
     nombres = load_list("nombres.txt")
     permis_hors = vaud | propres | nombres
@@ -88,7 +110,13 @@ def main():
             if p:
                 atteste.add(p[0])
 
-    fichiers = sorted(glob.glob(os.path.join(JEU, "scenes", "*.json")))
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    if args:
+        # Συγκεκριμένα αρχεία: ένας πράκτορας ελέγχει μόνο τις δικές του σκηνές
+        # χωρίς να τον μπερδεύουν οι μισογραμμένες των άλλων.
+        fichiers = sorted(os.path.abspath(a) for a in args)
+    else:
+        fichiers = sorted(glob.glob(os.path.join(JEU, "scenes", "*.json")))
     if not fichiers:
         print("καμία σκηνή στο scenes/"); return 1
 
@@ -121,9 +149,15 @@ def main():
             if ln.get("qui") not in ("papa", "myrto"):
                 E("ατάκα %d: άγνωστος ομιλητής %r" % (i, ln.get("qui")))
 
-            mots = tokens(fr)
+            mots = tokens(fr, entiers | lieu)
             if len(mots) > MAX_MOTS_PAR_LIGNE:
                 E("ατάκα %d: %d λέξεις (όριο %d) — %s" % (i, len(mots), MAX_MOTS_PAR_LIGNE, fr))
+
+            # Ατάκα από σκέτους αριθμούς: το Gemini TTS την αρνείται
+            # (finishReason=OTHER), και ούτως ή άλλως είναι φτωχός διάλογος.
+            # «Quarante-trois.» κόβεται· «Vous faites du quarante-trois ?» όχι.
+            if mots and all(m in nombres for m in mots):
+                E("ατάκα %d: μόνο αριθμοί — βάλε λέξεις γύρω τους: %s" % (i, fr))
 
             plat = strip_accents(fr.lower())
             for fx, bon in SUISSE.items():

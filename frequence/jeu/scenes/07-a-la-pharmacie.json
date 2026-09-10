@@ -1,0 +1,122 @@
+{
+  "id": 7,
+  "slug": "a-la-pharmacie",
+  "titre_fr": "À la pharmacie",
+  "titre_el": "Στο φαρμακείο",
+  "lieu": "pharmacie de quartier, Lausanne",
+  "roles": {
+    "papa": "le client enrhumé",
+    "myrto": "la pharmacienne"
+  },
+  "mots_du_lieu": [
+    "tousse",
+    "gorge",
+    "antibiotiques",
+    "ordonnance",
+    "pastilles",
+    "gouttes",
+    "thé",
+    "miel",
+    "rétablissement",
+    "buvez",
+    "francs",
+    "papier"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonjour, monsieur. Je peux vous aider ?",
+      "el": "Καλημέρα, κύριε. Μπορώ να σας βοηθήσω;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Bonjour, madame. Je suis malade.",
+      "el": "Καλημέρα, κυρία. Είμαι άρρωστος."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Qu'est-ce que vous avez ?",
+      "el": "Τι έχετε;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Je tousse. Et j'ai mal à la gorge.",
+      "el": "Βήχω. Και πονάει ο λαιμός μου."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ça fait longtemps ?",
+      "el": "Έχει καιρό;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Trois jours. Je voudrais des antibiotiques.",
+      "el": "Τρεις μέρες. Θα ήθελα αντιβιοτικά."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ah non, monsieur. Pour ça, il faut une ordonnance.",
+      "el": "Α όχι, κύριε. Γι' αυτό χρειάζεστε συνταγή."
+    },
+    {
+      "qui": "papa",
+      "fr": "Comment ? Vous pouvez répéter ?",
+      "el": "Πώς είπατε; Μπορείτε να το επαναλάβετε;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Une ordonnance. Un papier du médecin.",
+      "el": "Μια συνταγή. Ένα χαρτί από τον γιατρό."
+    },
+    {
+      "qui": "papa",
+      "fr": "Mais je n'ai pas de médecin ici !",
+      "el": "Μα δεν έχω γιατρό εδώ!"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ce n'est pas grave. Prenez ces pastilles pour la gorge.",
+      "el": "Δεν πειράζει. Πάρτε αυτές τις παστίλιες για τον λαιμό."
+    },
+    {
+      "qui": "papa",
+      "fr": "Ça marche bien ?",
+      "el": "Κάνουν καλή δουλειά;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Oui. Et buvez du thé chaud avec du miel.",
+      "el": "Ναι. Και πιείτε ζεστό τσάι με μέλι."
+    },
+    {
+      "qui": "papa",
+      "fr": "D'accord. Et pour le nez ?",
+      "el": "Εντάξει. Και για τη μύτη;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ces gouttes. Trois fois par jour.",
+      "el": "Αυτές τις σταγόνες. Τρεις φορές τη μέρα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci. Ça fait combien ?",
+      "el": "Ευχαριστώ. Πόσο κάνει;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Quatorze francs cinquante.",
+      "el": "Δεκατέσσερα φράγκα και πενήντα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Voilà. Merci beaucoup, madame.",
+      "el": "Ορίστε. Ευχαριστώ πολύ, κυρία."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Bon rétablissement ! Et si ça continue, allez chez le médecin.",
+      "el": "Περαστικά! Κι αν συνεχίσει, πηγαίνετε στον γιατρό."
+    }
+  ]
+}

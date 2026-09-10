@@ -1,0 +1,118 @@
+{
+  "id": 17,
+  "slug": "chez-le-coiffeur",
+  "titre_fr": "Chez le coiffeur",
+  "titre_el": "Στο κομμωτήριο",
+  "lieu": "salon de coiffure, Lausanne",
+  "roles": {
+    "papa": "le client",
+    "myrto": "la coiffeuse"
+  },
+  "mots_du_lieu": [
+    "court",
+    "miroir",
+    "asseyez"
+  ],
+  "a_verifier_avec_myrto": [
+    "Πώς λέει η κομμώτριά της «θα σου κόψω λίγο»;",
+    "Λένε «un peu» ή δείχνουν με τα δάχτυλα πόσο;",
+    "Δίνει καθρέφτη στο τέλος για να δεις πίσω;"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonjour, monsieur ! Asseyez-vous, s'il vous plaît.",
+      "el": "Καλημέρα, κύριε! Καθίστε, παρακαλώ."
+    },
+    {
+      "qui": "papa",
+      "fr": "Bonjour, madame.",
+      "el": "Καλημέρα, κυρία."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Qu'est-ce qu'on fait aujourd'hui ?",
+      "el": "Τι κάνουμε σήμερα;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Je voudrais couper mes cheveux, s'il vous plaît.",
+      "el": "Θα ήθελα να κόψω τα μαλλιά μου, παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "D'accord. Court ou très court ?",
+      "el": "Εντάξει. Κοντά ή πολύ κοντά;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Pardon ? Vous pouvez répéter ?",
+      "el": "Συγγνώμη; Μπορείτε να το πείτε ξανά;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Court ? Ou très court ?",
+      "el": "Κοντά; Ή πολύ κοντά;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Ah… un peu, madame. Juste un peu.",
+      "el": "Α… λίγο, κυρία. Μόνο λίγο."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Un peu, d'accord. On y va !",
+      "el": "Λίγο, εντάξει. Πάμε!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci. C'est ma première fois ici.",
+      "el": "Ευχαριστώ. Πρώτη φορά έρχομαι εδώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Et voilà ! C'est fini. Regardez le miroir !",
+      "el": "Ορίστε! Τελειώσαμε. Κοιτάξτε στον καθρέφτη!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Oh non ! Mes cheveux !",
+      "el": "Ωχ όχι! Τα μαλλιά μου!"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ça ne vous plaît pas ?",
+      "el": "Δεν σας αρέσει;"
+    },
+    {
+      "qui": "papa",
+      "fr": "C'est très court, madame ! Beaucoup trop court !",
+      "el": "Είναι πολύ κοντά, κυρία! Πάρα πολύ κοντά!"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Mais vous avez dit « un peu » !",
+      "el": "Μα είπατε «λίγο»!"
+    },
+    {
+      "qui": "papa",
+      "fr": "« Un peu » ! Pas tout !",
+      "el": "«Λίγο»! Όχι όλα!"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Je suis désolée. Ça pousse vite, vous savez.",
+      "el": "Λυπάμαι. Μεγαλώνουν γρήγορα, ξέρετε."
+    },
+    {
+      "qui": "papa",
+      "fr": "J'espère ! Ça fait combien ?",
+      "el": "Ελπίζω! Πόσο κάνει;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Rien du tout, monsieur. C'est pour moi.",
+      "el": "Τίποτα, κύριε. Κερασμένο."
+    }
+  ]
+}

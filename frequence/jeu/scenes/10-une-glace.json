@@ -1,0 +1,123 @@
+{
+  "id": 10,
+  "slug": "une-glace",
+  "titre_fr": "Une glace, s'il vous plaît",
+  "titre_el": "Ένα παγωτό, παρακαλώ",
+  "lieu": "kiosque à glaces, au bord du lac, Lausanne",
+  "roles": {
+    "papa": "le client",
+    "myrto": "la marchande de glaces"
+  },
+  "mots_du_lieu": [
+    "glace",
+    "boule",
+    "boules",
+    "chocolat",
+    "fraise",
+    "citron",
+    "vanille",
+    "francs"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonjour, monsieur ! Vous voulez une glace ?",
+      "el": "Καλημέρα, κύριε! Θέλετε ένα παγωτό;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Oui ! Une glace au chocolat, s'il vous plaît.",
+      "el": "Ναι! Ένα παγωτό σοκολάτα, παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ah non. Il n'y a plus de chocolat.",
+      "el": "Α, όχι. Δεν έχει άλλη σοκολάτα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Pardon ? Plus de chocolat ?",
+      "el": "Συγγνώμη; Τελείωσε η σοκολάτα;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Non. Mais il y a fraise, citron et vanille.",
+      "el": "Τελείωσε. Αλλά έχει φράουλα, λεμόνι και βανίλια."
+    },
+    {
+      "qui": "papa",
+      "fr": "Vous pouvez répéter, s'il vous plaît ?",
+      "el": "Μπορείτε να το πείτε ξανά, παρακαλώ;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Fraise. Citron. Vanille.",
+      "el": "Φράουλα. Λεμόνι. Βανίλια."
+    },
+    {
+      "qui": "papa",
+      "fr": "Alors, une boule de fraise.",
+      "el": "Τότε, μία μπάλα φράουλα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Une boule ou deux boules ?",
+      "el": "Μία μπάλα ή δύο;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Deux boules ! Il fait très chaud.",
+      "el": "Δύο μπάλες! Κάνει πολλή ζέστη."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Voilà. Ça fait quatre francs cinquante.",
+      "el": "Ορίστε. Κάνει τέσσερα φράγκα και πενήντα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Voilà cinq francs.",
+      "el": "Ορίστε πέντε φράγκα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Merci. Attention, monsieur !",
+      "el": "Ευχαριστώ. Προσοχή, κύριε!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Oh non ! Ma glace est par terre.",
+      "el": "Ωχ, όχι! Το παγωτό μου έπεσε κάτω."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Le chien de la dame est très content !",
+      "el": "Ο σκύλος της κυρίας χάρηκε πολύ!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Et moi, je suis triste.",
+      "el": "Κι εγώ στενοχωρήθηκα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ce n'est pas grave. Je vous donne une autre boule.",
+      "el": "Δεν πειράζει. Σας δίνω άλλη μία μπάλα."
+    },
+    {
+      "qui": "papa",
+      "fr": "C'est vrai ? Merci beaucoup !",
+      "el": "Αλήθεια; Ευχαριστώ πολύ!"
+    },
+    {
+      "qui": "myrto",
+      "fr": "C'est cadeau. Mais mangez vite !",
+      "el": "Κερασμένο. Αλλά φάτε το γρήγορα!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Oui ! Au revoir, et merci !",
+      "el": "Ναι! Αντίο, κι ευχαριστώ!"
+    }
+  ]
+}
