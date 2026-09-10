@@ -28,7 +28,7 @@ JEU  = os.path.dirname(HERE)
 W, H = A4
 M       = 42
 TOP     = H - M
-ENTETE  = 92          # σταθερό ύψος κεφαλίδας — αλλιώς οι σελίδες ξεχαρβαλώνουν
+ENTETE  = 64          # σταθερό ύψος κεφαλίδας — αλλιώς οι σελίδες ξεχαρβαλώνουν
 PIED    = 26
 
 # Το χαρτί μένει λευκό. Χρώμα υπάρχει ΜΟΝΟ στις δύο κουκκίδες των παικτών και
@@ -93,21 +93,6 @@ def entete(c, d, titre, sous_titre, langue):
     c.setFont(REG, 12)
     c.drawCentredString(W - M - 15, y - 26, "✓")
 
-    # ποιος παίζει τι: ο αριθμός είναι σταθερός, ο ρόλος όχι
-    yr = y - 66
-    x = M
-    for qui in ("papa", "myrto"):
-        coul = couleurs(qui)
-        c.setFillColorRGB(*coul)
-        c.circle(x + 6, yr + 4, 6, stroke=0, fill=1)
-        c.setFillColorRGB(*BLANC)
-        c.setFont(TITRE, 7)
-        c.drawCentredString(x + 6, yr + 1.6, numero(qui))
-        c.setFillColorRGB(*NOIR)
-        c.setFont(REG, 10.5)
-        etiquette = d["roles"][qui]
-        c.drawString(x + 17, yr + 1, etiquette)
-        x += 17 + pdfmetrics.stringWidth(etiquette, REG, 10.5) + 22
     return TOP - ENTETE
 
 

@@ -111,7 +111,7 @@ def couverture(c, scenes):
     c.setFillColorRGB(*K.GRIS)
     c.setFont(K.REG, 10)
     c.drawString(M, M + 12, "Τύπωσε διπλής όψης, δέσιμο στη μεγάλη πλευρά.")
-    c.drawRightString(W - M, M + 12, "%d σκηνές · %d σελίδες" % (len(scenes), 2 + 2 * len(scenes)))
+    c.drawRightString(W - M, M + 12, "%d σκηνές · %d σελίδες" % (len(scenes), 1 + 2 * len(scenes)))
     c.showPage()
 
 
@@ -179,11 +179,11 @@ def main():
         ordre.append("fr")
         K.page_sens(c, d, num_page=gauche + 1)
         ordre.append("el")
-    fin(c)
-    ordre.append("fin")
     c.save()
 
     # Ο κανόνας: ζυγή σελίδα γαλλικά, μονή ελληνικά. Σκάει αν χαλάσει.
+    # Το τεύχος τελειώνει στην ελληνική της τελευταίας σκηνής: 41 σελίδες,
+    # 21 φύλλα, με κενή την πίσω όψη του τελευταίου.
     for n, quoi in enumerate(ordre, start=1):
         if quoi == "fr" and n % 2 != 0:
             raise SystemExit("ΣΕΛΙΔΟΠΟΙΗΣΗ: γαλλικά σε μονή σελίδα %d" % n)
