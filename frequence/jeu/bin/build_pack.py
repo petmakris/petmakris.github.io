@@ -23,6 +23,7 @@
 import glob, importlib.util, json, os, sys
 
 from reportlab.lib.pagesizes import A4
+from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfgen import canvas
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -38,59 +39,77 @@ M = K.M
 
 
 def couverture(c, scenes):
+    # τίτλος
     c.setFillColorRGB(*K.NOIR)
-    c.setFont(K.GRAS, 44)
-    c.drawString(M, H - 150, "Cartes du Soir")
+    c.setFont(K.TITRE, 42)
+    c.drawString(M, H - 152, "Cartes du Soir")
     c.setFillColorRGB(*K.VERT)
-    c.setFont(K.REG, 21)
-    c.drawString(M, H - 182, "Οι κάρτες του βραδιού")
+    c.setFont(K.REG, 22)
+    c.drawString(M, H - 180, "Οι κάρτες του βραδιού")
+    c.setStrokeColorRGB(*K.AMBRE)
+    c.setLineWidth(2.4)
+    c.line(M, H - 198, W - M, H - 198)
 
-    c.setStrokeColorRGB(*K.NOIR)
-    c.setLineWidth(1.6)
-    c.line(M, H - 204, W - M, H - 204)
+    # πλαίσιο με τους ρόλους, στα χρώματα του παιχνιδιού
+    y = H - 226
+    c.setFillColorRGB(*K.AMBRE_BG)
+    c.roundRect(M, y - 92, W - 2 * M, 92, 12, stroke=0, fill=1)
+    c.setFillColorRGB(*K.NOIR)
+    c.setFont(K.REG, 13)
+    c.drawString(M + 20, y - 26, "Δέκα λεπτά γαλλικά πριν τον ύπνο, για δύο παίκτες.")
+    for i, (coul, fond, qui, texte) in enumerate([
+        (K.VERT, K.VERT_BG, "ΜΥΡΤΩ", "παίζει πάντα τη ντόπια — τη φούρναρη, τη δασκάλα, τη γιατρό."),
+        (K.BLEU, K.BLEU_BG, "ΜΠΑΜΠΑΣ", "παίζει πάντα τον νεοφερμένο που δεν ξέρει ακόμα γαλλικά."),
+    ]):
+        yy = y - 50 - i * 24
+        c.setFillColorRGB(*fond)
+        larg = pdfmetrics.stringWidth(qui, K.REG, 10.5) + 26
+        c.roundRect(M + 20, yy - 5, larg, 18, 9, stroke=0, fill=1)
+        c.setFillColorRGB(*coul)
+        c.circle(M + 31, yy + 4, 4, stroke=0, fill=1)
+        c.setFont(K.REG, 10.5)
+        c.drawString(M + 40, yy + 1, qui)
+        c.setFillColorRGB(*K.GRIS)
+        c.setFont(K.REG, 12)
+        c.drawString(M + 20 + larg + 10, yy + 1, texte)
 
+    y -= 116
     c.setFillColorRGB(*K.GRIS)
     c.setFont(K.REG, 12.5)
-    y = H - 234
     for ligne in [
-        "Δέκα λεπτά γαλλικά πριν τον ύπνο, για δύο παίκτες.",
-        "Η ΜΥΡΤΩ παίζει πάντα τη ντόπια — τη φούρναρη, τη δασκάλα, τη γιατρό.",
-        "Ο ΜΠΑΜΠΑΣ παίζει πάντα τον νεοφερμένο που δεν ξέρει ακόμα γαλλικά.",
-        "",
         "Σε κάθε άνοιγμα: αριστερά ο διάλογος στα γαλλικά, δεξιά τι σημαίνει.",
-        "Οι μπλε έντονες ατάκες είναι του μπαμπά, οι πράσινες της Μυρτώς.",
-        "",
+        "Οι δύο σελίδες έχουν ακριβώς την ίδια διάταξη — η τρίτη ατάκα είναι στο ίδιο ύψος.",
         "Η προφορά ακούγεται στο petmakris.github.io/cartes",
     ]:
         c.drawString(M, y, ligne)
         y -= 19
 
+    # περιεχόμενα, με σήμα σκηνής όπως μέσα
+    y -= 14
     c.setFillColorRGB(*K.NOIR)
-    c.setFont(K.GRAS, 13)
-    y -= 16
+    c.setFont(K.TITRE, 14)
     c.drawString(M, y, "Οι σκηνές")
-    y -= 8
-    c.setLineWidth(0.5)
-    c.setStrokeColorRGB(*K.GRIS_L)
-    c.line(M, y, W - M, y)
-    y -= 20
+    y -= 22
 
+    moitie = (len(scenes) + 1) // 2
     col_w = (W - 2 * M) / 2
     for i, d in enumerate(scenes):
-        x = M + (col_w if i >= (len(scenes) + 1) // 2 else 0)
-        yy = y - (i % ((len(scenes) + 1) // 2)) * 17
-        c.setFillColorRGB(*K.GRIS)
-        c.setFont(K.REG, 9.5)
-        c.drawString(x, yy, "%02d" % d["id"])
+        x = M + (col_w if i >= moitie else 0)
+        yy = y - (i % moitie) * 20
+        c.setFillColorRGB(*K.AMBRE_BG)
+        c.roundRect(x, yy - 4, 20, 16, 5, stroke=0, fill=1)
+        c.setFillColorRGB(*K.AMBRE)
+        c.setFont(K.TITRE, 8.5)
+        c.drawCentredString(x + 10, yy + 0.5, "%02d" % d["id"])
         c.setFillColorRGB(*K.NOIR)
-        c.setFont(K.REG, 11.5)
-        c.drawString(x + 20, yy, d["titre_fr"])
+        c.setFont(K.REG, 12)
+        c.drawString(x + 27, yy, d["titre_fr"])
         c.setFillColorRGB(*K.GRIS)
         c.setFont(K.REG, 9.5)
         c.drawRightString(x + col_w - 16, yy, "σελ. %d" % (2 + 2 * i))
 
     c.setFillColorRGB(*K.GRIS)
-    c.setFont(K.REG, 9.5)
+    c.setFont(K.REG, 10)
     c.drawString(M, M + 12, "Τύπωσε διπλής όψης, δέσιμο στη μεγάλη πλευρά.")
     c.drawRightString(W - M, M + 12, "%d σκηνές · %d σελίδες" % (len(scenes), 2 + 2 * len(scenes)))
     c.showPage()
@@ -98,35 +117,40 @@ def couverture(c, scenes):
 
 def fin(c):
     c.setFillColorRGB(*K.NOIR)
-    c.setFont(K.GRAS, 26)
-    c.drawString(M, H - 130, "Πώς παίζεται")
-    c.setStrokeColorRGB(*K.NOIR)
-    c.setLineWidth(1.6)
-    c.line(M, H - 148, W - M, H - 148)
+    c.setFont(K.TITRE, 28)
+    c.drawString(M, H - 132, "Πώς παίζεται")
+    c.setStrokeColorRGB(*K.AMBRE)
+    c.setLineWidth(2.4)
+    c.line(M, H - 152, W - M, H - 152)
 
-    y = H - 182
-    for titre, texte in [
-        ("1. Η Μυρτώ διαλέγει",
+    y = H - 190
+    for n, (titre, texte) in enumerate([
+        ("Η Μυρτώ διαλέγει",
          "Τραβάει μια σκηνή, διαβάζει τον τίτλο, και λέει στον μπαμπά ποιος είναι απόψε."),
-        ("2. Ακούστε πρώτα",
+        ("Ακούστε πρώτα",
          "Στο petmakris.github.io/cartes, πατήστε τις ατάκες που δεν σας βγαίνουν."),
-        ("3. Παίξτε τη σκηνή",
+        ("Παίξτε τη σκηνή",
          "Ο μπαμπάς λέει τις μπλε, η Μυρτώ τις πράσινες. Η δεξιά σελίδα εξηγεί."),
-        ("4. Εκείνη κρίνει",
+        ("Εκείνη κρίνει",
          "Μία απόφαση στο τέλος: πέρασε, ή ξανά αύριο. Είναι η αυθεντία και το ξέρει."),
-        ("5. Η σφραγίδα",
+        ("Η σφραγίδα",
          "Μια σκηνή που πέρασε σφραγίζεται. Τίποτα άλλο δεν μετριέται, κανείς δεν κερδίζει."),
-    ]:
-        c.setFillColorRGB(*K.VERT)
-        c.setFont(K.GRAS, 13)
-        c.drawString(M, y, titre)
+    ], start=1):
+        c.setFillColorRGB(*K.AMBRE_BG)
+        c.circle(M + 13, y + 4, 13, stroke=0, fill=1)
+        c.setFillColorRGB(*K.AMBRE)
+        c.setFont(K.TITRE, 12)
+        c.drawCentredString(M + 13, y, str(n))
+        c.setFillColorRGB(*K.NOIR)
+        c.setFont(K.TITRE, 13.5)
+        c.drawString(M + 36, y + 4, titre)
         c.setFillColorRGB(*K.GRIS)
-        c.setFont(K.REG, 11.5)
-        c.drawString(M + 14, y - 17, texte)
-        y -= 48
+        c.setFont(K.REG, 12)
+        c.drawString(M + 36, y - 13, texte)
+        y -= 54
 
     c.setFillColorRGB(*K.GRIS)
-    c.setFont(K.REG, 9.5)
+    c.setFont(K.REG, 10)
     c.drawString(M, M + 12, "Το λεξιλόγιο βγαίνει από τις 1.200 συχνότερες γαλλικές λέξεις.")
     c.drawRightString(W - M, M + 12, "Cartes du Soir · Vaud")
     c.showPage()

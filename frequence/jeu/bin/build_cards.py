@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """Τυπώνει τις κάρτες: δύο σελίδες A4 ανά σκηνή, ένα PDF ανά σκηνή.
 
-    σελίδα 1   ο διάλογος στα γαλλικά — έντονες μπλε οι ατάκες του μπαμπά,
-               πράσινες κανονικές της Μυρτώς· ένα φύλλο και για τους δύο
-    σελίδα 2   «Τι σημαίνει» — τα ελληνικά
+    σελίδα 1   ο διάλογος στα γαλλικά
+    σελίδα 2   ο ίδιος διάλογος στα ελληνικά
 
-Οι δύο σελίδες είναι ΖΕΥΓΟΣ: στο τυπωμένο τεύχος η γαλλική πέφτει πάντα
-αριστερά και η ελληνική δεξιά (δες το build_pack.py για τη σελιδοποίηση).
-
-Το μέγεθος των γραμμάτων προσαρμόζεται ώστε η σκηνή να χωράει πάντα σε μία
-σελίδα: δοκιμάζει από 20 στιγμές και κατεβαίνει μέχρι να χωρέσει.
+**Οι δύο σελίδες έχουν ταυτόσημη διάταξη.** Η τρίτη ατάκα είναι στο ίδιο ύψος
+αριστερά και δεξιά, στο ίδιο πλαίσιο, με το ίδιο χρώμα. Έτσι το μάτι πηγαίνει
+οριζόντια από τα γαλλικά στα ελληνικά χωρίς να ψάχνει. Αυτό επιβάλλει δύο
+πράγματα στον κώδικα: η κεφαλίδα έχει **σταθερό ύψος**, και το ύψος κάθε
+γραμμής υπολογίζεται **μία φορά για τις δύο γλώσσες μαζί** — όσο θέλει η πιο
+ψηλή από τις δύο.
 
     python3 bin/build_cards.py            όλες οι σκηνές -> out/cartes/
     python3 bin/build_cards.py 04         μόνο η σκηνή 04
@@ -26,165 +26,145 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 JEU  = os.path.dirname(HERE)
 
 W, H = A4
-M       = 44          # περιθώριο
+M       = 42
 TOP     = H - M
-BLEU    = (0.165, 0.333, 0.502)
-VERT    = (0.118, 0.478, 0.298)
-BLEU_BG = (0.906, 0.929, 0.957)
-VERT_BG = (0.910, 0.945, 0.918)
-NOIR    = (0.106, 0.141, 0.188)
-GRIS    = (0.42, 0.46, 0.51)
-GRIS_L  = (0.80, 0.78, 0.74)
+ENTETE  = 92          # σταθερό ύψος κεφαλίδας — αλλιώς οι σελίδες ξεχαρβαλώνουν
+PIED    = 40
 
-CANDIDATS = [
-    ("Georgia",  "/System/Library/Fonts/Supplemental/Georgia.ttf",
-                 "/System/Library/Fonts/Supplemental/Georgia Bold.ttf"),
-    ("Times",    "/System/Library/Fonts/Supplemental/Times New Roman.ttf",
-                 "/System/Library/Fonts/Supplemental/Times New Roman Bold.ttf"),
-    ("DejaVu",   "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf",
-                 "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf"),
-]
+BLEU     = (0.157, 0.333, 0.502)
+BLEU_BG  = (0.894, 0.929, 0.965)
+VERT     = (0.118, 0.478, 0.298)
+VERT_BG  = (0.894, 0.949, 0.910)
+AMBRE    = (0.784, 0.463, 0.118)
+AMBRE_BG = (0.996, 0.937, 0.847)
+NOIR     = (0.106, 0.141, 0.188)
+GRIS     = (0.42, 0.46, 0.51)
+GRIS_L   = (0.87, 0.85, 0.82)
+BLANC    = (1, 1, 1)
 
+for nom, fichier in [("Jeu", "AlegreyaSans-Regular.ttf"),
+                     ("Jeu-Bold", "AlegreyaSans-Bold.ttf"),
+                     ("Jeu-Black", "AlegreyaSans-ExtraBold.ttf"),
+                     ("Titre", "Comfortaa-Bold.ttf")]:
+    pdfmetrics.registerFont(TTFont(nom, os.path.join(JEU, "fonts", fichier)))
 
-def couvre_grec(path):
-    """Η σελίδα 3 είναι ελληνική· η γραμματοσειρά πρέπει να έχει άλφα."""
-    try:
-        from fontTools.ttLib import TTFont as FT
-        return any(0x03B1 in t.cmap for t in FT(path)["cmap"].tables)
-    except Exception:
-        return "Georgia" in path or "Times" in path or "DejaVu" in path
+REG, GRAS, NOIRE, TITRE = "Jeu", "Jeu-Bold", "Jeu-Black", "Titre"
 
 
-def enregistre():
-    for nom, reg, gras in CANDIDATS:
-        if os.path.exists(reg) and os.path.exists(gras) and couvre_grec(reg):
-            pdfmetrics.registerFont(TTFont(nom, reg))
-            pdfmetrics.registerFont(TTFont(nom + "-Bold", gras))
-            return nom, nom + "-Bold"
-    raise SystemExit("δεν βρέθηκε γραμματοσειρά με λατινικά και ελληνικά μαζί")
+def couleurs(qui):
+    return (BLEU, BLEU_BG) if qui == "papa" else (VERT, VERT_BG)
 
 
-REG, GRAS = enregistre()
+def entete(c, d, titre, sous_titre, langue):
+    """Σταθερού ύψους, ώστε η πρώτη ατάκα να ξεκινά στο ίδιο y και στις δύο."""
+    y = TOP
+    # σήμα σκηνής: στρογγυλό τετράγωνο σε ζεστό κεχριμπάρι
+    c.setFillColorRGB(*AMBRE_BG)
+    c.roundRect(M, y - 44, 46, 46, 11, stroke=0, fill=1)
+    c.setFillColorRGB(*AMBRE)
+    c.setFont(TITRE, 20)
+    c.drawCentredString(M + 23, y - 30, "%02d" % d["id"])
 
-
-def entete(c, scene, titre, sous, couleur_r):
-    c.setFillColorRGB(*GRIS)
-    c.setFont(REG, 10)
-    c.drawString(M, TOP - 10, scene)
     c.setFillColorRGB(*NOIR)
-    c.setFont(GRAS, 25)
-    c.drawString(M, TOP - 38, titre)
+    c.setFont(TITRE, 25)
+    c.drawString(M + 60, y - 24, titre)
+    c.setFillColorRGB(*GRIS)
+    c.setFont(REG, 12.5)
+    c.drawString(M + 60, y - 41, sous_titre)
+
     c.setFillColorRGB(*GRIS)
     c.setFont(REG, 10.5)
-    c.drawRightString(W - M, TOP - 10, sous)
-    c.setStrokeColorRGB(*NOIR)
-    c.setLineWidth(1.6)
-    c.line(M, TOP - 50, W - M, TOP - 50)
-    return TOP - 74
+    c.drawRightString(W - M, y - 12, langue)
+
+    # οι δύο ρόλοι, με τα χρώματά τους
+    yr = y - 66
+    x = M
+    for qui, cle in (("myrto", "myrto"), ("papa", "papa")):
+        coul, fond = couleurs(qui)
+        etiquette = "%s — %s" % ("ΜΥΡΤΩ" if qui == "myrto" else "ΜΠΑΜΠΑΣ", d["roles"][cle])
+        larg = pdfmetrics.stringWidth(etiquette, REG, 10.5) + 26
+        c.setFillColorRGB(*fond)
+        c.roundRect(x, yr - 5, larg, 19, 9.5, stroke=0, fill=1)
+        c.setFillColorRGB(*coul)
+        c.circle(x + 11, yr + 4.5, 4, stroke=0, fill=1)
+        c.setFont(REG, 10.5)
+        c.drawString(x + 20, yr + 1, etiquette)
+        x += larg + 10
+    return TOP - ENTETE
 
 
-def pied(c, gauche, droite):
-    c.setStrokeColorRGB(*NOIR)
-    c.setLineWidth(1.6)
+def mesure(lignes, taille, largeur):
+    """Ύψος ανά ατάκα, κοινό για τις δύο γλώσσες: όσο θέλει η πιο ψηλή."""
+    inter = taille * 1.28
+    blocs, total = [], 0.0
+    for ln in lignes:
+        fr = simpleSplit(ln["fr"], REG, taille, largeur)
+        el = simpleSplit(ln["el"], REG, taille, largeur)
+        h = max(len(fr), len(el)) * inter + taille * 0.86
+        blocs.append({"fr": fr, "el": el, "h": h})
+        total += h + 5
+    return blocs, total, inter
+
+
+def geometrie(d):
+    """Η ΜΙΑ διάταξη που μοιράζονται και οι δύο σελίδες."""
+    largeur = W - 2 * M - 46
+    dispo = (TOP - ENTETE) - (M + PIED)
+    for taille in (20, 19, 18, 17, 16, 15, 14, 13, 12, 11):
+        blocs, total, inter = mesure(d["lignes"], taille, largeur)
+        if total <= dispo:
+            return taille, inter, blocs
+    return 11, 11 * 1.28, mesure(d["lignes"], 11, largeur)[0]
+
+
+def page(c, d, langue, num_page):
+    """langue = 'fr' ή 'el'. Ίδια γεωμετρία, άλλο κείμενο."""
+    grec = langue == "el"
+    y = entete(c, d,
+               d["titre_el"] if grec else d["titre_fr"],
+               d["titre_fr"] if grec else d["titre_el"],
+               "ΕΛΛΗΝΙΚΑ" if grec else "FRANÇAIS")
+    taille, inter, blocs = geometrie(d)
+
+    for ln, b in zip(d["lignes"], blocs):
+        coul, fond = couleurs(ln["qui"])
+        h = b["h"]
+        c.setFillColorRGB(*fond)
+        c.roundRect(M, y - h, W - 2 * M, h, 8, stroke=0, fill=1)
+        c.setFillColorRGB(*coul)
+        c.circle(M + 17, y - taille * 0.72, 8.5, stroke=0, fill=1)
+        c.setFillColorRGB(*BLANC)
+        c.setFont(TITRE, 8)
+        c.drawCentredString(M + 17, y - taille * 0.72 - 3,
+                            "M" if ln["qui"] == "myrto" else "P")
+
+        c.setFillColorRGB(*NOIR)
+        c.setFont(GRAS if ln["qui"] == "papa" else REG, taille)
+        yy = y - taille * 0.28
+        for bout in b[langue]:
+            c.drawString(M + 34, yy - taille * 0.86, bout)
+            yy -= inter
+        y -= h + 5
+
+    c.setStrokeColorRGB(*GRIS_L)
+    c.setLineWidth(1)
     c.line(M, M + 26, W - M, M + 26)
     c.setFillColorRGB(*GRIS)
-    c.setFont(REG, 9.5)
-    c.drawString(M, M + 12, gauche)
-    c.drawRightString(W - M, M + 12, droite)
-
-
-def mise_en_page(lignes, taille, largeur, cle="fr"):
-    """Πόσο ύψος θέλει η σκηνή σε αυτό το μέγεθος."""
-    inter, total, blocs = taille * 1.28, 0.0, []
-    for ln in lignes:
-        bouts = simpleSplit(ln[cle], REG, taille, largeur)
-        h = len(bouts) * inter + taille * 0.85
-        blocs.append((bouts, h))
-        total += h
-    return blocs, total
-
-
-def page_dialogue(c, d, moi=None, num_page=1, total=2):
-    """Ένα φύλλο για τους δύο.
-
-    Οι ατάκες του μπαμπά βγαίνουν έντονες με μπλε πλαϊνή γραμμή, της Μυρτώς
-    πράσινες και κανονικού βάρους. Ο καθένας βρίσκει τις δικές του από το
-    χρώμα, χωρίς να χρειάζονται δύο αντίγραφα του ίδιου διαλόγου.
-    """
-    roles = d["roles"]
-    sous = "PAPA — %s   ·   MYRTO — %s" % (roles["papa"], roles["myrto"])
-    y = entete(c, "SCÈNE %02d" % d["id"], d["titre_fr"], sous, None)
-    bas = M + 40
-    largeur = W - 2 * M - 26
-
-    for taille in (20, 19, 18, 17, 16, 15, 14, 13, 12):
-        blocs, total = mise_en_page(d["lignes"], taille, largeur)
-        if total <= y - bas:
-            break
-
-    inter = taille * 1.28
-    for ln, (bouts, h) in zip(d["lignes"], blocs):
-        sien = ln["qui"] == "papa"
-        coul, fond = (BLEU, BLEU_BG) if ln["qui"] == "papa" else (VERT, VERT_BG)
-        if sien:
-            c.setFillColorRGB(*fond)
-            c.rect(M - 6, y - h + 6, W - 2 * M + 12, h, stroke=0, fill=1)
-            c.setFillColorRGB(*coul)
-            c.rect(M - 6, y - h + 6, 3, h, stroke=0, fill=1)
-        c.setFillColorRGB(*coul)
-        c.setFont(REG, 9.5)
-        c.drawString(M + 4, y - taille * 0.82, "P" if ln["qui"] == "papa" else "M")
-        c.setFillColorRGB(*(NOIR if sien else GRIS))
-        c.setFont(GRAS if sien else REG, taille)
-        yy = y
-        for b in bouts:
-            c.drawString(M + 26, yy - taille * 0.82, b)
-            yy -= inter
-        y -= h
-        c.setStrokeColorRGB(*GRIS_L)
-        c.setLineWidth(0.5)
-        c.line(M, y + 4, W - M, y + 4)
-
-    pied(c, "PAPA en bleu et gras  ·  MYRTO en vert",
-         "FRANÇAIS  ·  %d lignes  ·  %s" % (len(d["lignes"]), num_page))
+    c.setFont(REG, 10)
+    c.drawString(M, M + 11,
+                 "Πράσινο η Μυρτώ · μπλε και έντονα ο μπαμπάς"
+                 if grec else "MYRTO en vert · PAPA en bleu et gras")
+    c.drawRightString(W - M, M + 11, "%d ατάκες · %s" % (len(d["lignes"]), num_page)
+                      if grec else "%d lignes · %s" % (len(d["lignes"]), num_page))
     c.showPage()
 
 
-def page_sens(c, d, num_page="—"):
-    y = entete(c, "ΣΚΗΝΗ %02d" % d["id"], d["titre_el"], "Τι σημαίνει", None)
-    bas = M + 40
-    largeur = W - 2 * M - 26
+def page_dialogue(c, d, moi=None, num_page="1 / 2", total=2):
+    page(c, d, "fr", num_page)
 
-    # Κάθε ατάκα πιάνει τη γαλλική γραμμή (taille*0.98) συν το ελληνικό μπλοκ.
-    for taille in (15, 14, 13, 12, 11, 10, 9):
-        blocs, total = mise_en_page(d["lignes"], taille, largeur, cle="el")
-        if total + len(d["lignes"]) * (taille * 0.98) <= y - bas:
-            break
 
-    inter = taille * 1.28
-    for ln, (bouts, h) in zip(d["lignes"], blocs):
-        coul = BLEU if ln["qui"] == "papa" else VERT
-        c.setFillColorRGB(*coul)
-        c.setFont(REG, 9)
-        c.drawString(M + 4, y - taille * 0.82, "P" if ln["qui"] == "papa" else "M")
-        c.setFillColorRGB(*GRIS)
-        c.setFont(REG, taille * 0.72)
-        c.drawString(M + 26, y - taille * 0.78, ln["fr"])
-        y -= taille * 0.98
-        c.setFillColorRGB(*NOIR)
-        c.setFont(REG, taille)
-        yy = y
-        for b in bouts:
-            c.drawString(M + 26, yy - taille * 0.82, b)
-            yy -= inter
-        y -= h
-        c.setStrokeColorRGB(*GRIS_L)
-        c.setLineWidth(0.5)
-        c.line(M, y + 6, W - M, y + 6)
-
-    pied(c, "Η σελίδα δίπλα, στα γαλλικά.",
-         "ΕΛΛΗΝΙΚΑ  ·  %s" % num_page)
-    c.showPage()
+def page_sens(c, d, num_page="2 / 2"):
+    page(c, d, "el", num_page)
 
 
 def main():
@@ -192,9 +172,8 @@ def main():
     dossier = os.path.join(JEU, "out", "cartes")
     os.makedirs(dossier, exist_ok=True)
 
-    fichiers = sorted(glob.glob(os.path.join(JEU, "scenes", "*.json")))
     faits = 0
-    for f in fichiers:
+    for f in sorted(glob.glob(os.path.join(JEU, "scenes", "*.json"))):
         base = os.path.basename(f)[:-5]
         if filtre and not base.startswith(filtre):
             continue
@@ -202,8 +181,8 @@ def main():
         sortie = os.path.join(dossier, base + ".pdf")
         c = canvas.Canvas(sortie, pagesize=A4)
         c.setTitle("%s — Cartes du Soir" % d["titre_fr"])
-        page_dialogue(c, d, num_page="1 / 2")
-        page_sens(c, d, num_page="2 / 2")
+        page(c, d, "fr", "1 / 2")
+        page(c, d, "el", "2 / 2")
         c.save()
         print("%s  ·  %d ατάκες" % (sortie, len(d["lignes"])))
         faits += 1
