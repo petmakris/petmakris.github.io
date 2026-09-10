@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1b2430">
+<title>Cartes du Soir</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>&#127856;</text></svg>">
+<style>
+:root{
+  --paper:#fbf9f4; --card:#fff; --ink:#1b2430; --ink2:#55606f; --ink3:#8b93a0;
+  --rule:#e4ded1; --rule2:#d6cfbe;
+  --vaud:#1e7a4c; --vaud-bg:#e8f1ea; --vaud-line:#bfdccb;
+  --bleu:#2a5580; --bleu-bg:#e7edf4;
+  --serif:Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--paper:#12161d; --card:#1a1f28; --ink:#e9e5dc; --ink2:#a5aebb; --ink3:#6e7784;
+    --rule:#2b323e; --rule2:#39414f; --vaud:#5fc28c; --vaud-bg:#16281f; --vaud-line:#2c4a38;
+    --bleu:#89b4e0; --bleu-bg:#141f2c;}
+}
+:root[data-theme="dark"]{
+  --paper:#12161d; --card:#1a1f28; --ink:#e9e5dc; --ink2:#a5aebb; --ink3:#6e7784;
+  --rule:#2b323e; --rule2:#39414f; --vaud:#5fc28c; --vaud-bg:#16281f; --vaud-line:#2c4a38;
+  --bleu:#89b4e0; --bleu-bg:#141f2c;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.5; padding-bottom:env(safe-area-inset-bottom)}
+header{position:sticky; top:0; z-index:5; background:var(--paper);
+  border-bottom:1px solid var(--rule); padding:14px 18px 12px;
+  padding-top:calc(14px + env(safe-area-inset-top))}
+.sc{font-size:11px; letter-spacing:.12em; color:var(--ink3); font-family:var(--sans)}
+h1{font-family:var(--serif); font-size:24px; font-weight:700; margin:2px 0 0; line-height:1.15}
+h1 small{display:block; font-family:var(--sans); font-size:13px; font-weight:400;
+  color:var(--ink3); margin-top:3px; letter-spacing:0}
+.bar{display:flex; gap:7px; margin-top:11px; flex-wrap:wrap; align-items:center}
+.bar button{font:inherit; font-size:13px; padding:6px 13px; border-radius:15px;
+  border:1px solid var(--rule2); background:transparent; color:var(--ink3); cursor:pointer}
+.bar button[aria-pressed="true"]{background:var(--vaud-bg); border-color:var(--vaud); color:var(--vaud)}
+.bar .back{margin-inline-end:auto; border-color:transparent; color:var(--vaud); padding-inline:0}
+main{padding:0 0 40px}
+.scenes{padding:8px 18px}
+.item{display:block; width:100%; text-align:start; background:var(--card); color:inherit;
+  border:1px solid var(--rule); border-radius:9px; padding:15px 17px; margin:10px 0;
+  font:inherit; cursor:pointer}
+.item b{display:block; font-family:var(--serif); font-size:21px; font-weight:700; line-height:1.2}
+.item i{display:block; font-style:normal; font-size:14px; color:var(--ink3); margin-top:3px}
+.item u{display:block; text-decoration:none; font-size:12px; color:var(--vaud); margin-top:7px}
+.ln{display:flex; gap:13px; align-items:flex-start; width:100%; text-align:start;
+  background:transparent; border:0; border-bottom:1px solid var(--rule);
+  padding:14px 18px; font:inherit; color:inherit; cursor:pointer}
+.ln:last-child{border-bottom:0}
+.ln.papa{border-left:3px solid var(--bleu); background:var(--bleu-bg)}
+.ln.myrto{border-left:3px solid var(--vaud-line)}
+.ln .ic{flex:0 0 auto; width:29px; height:29px; border-radius:50%; margin-top:2px;
+  border:1px solid var(--vaud-line); background:var(--vaud-bg); color:var(--vaud);
+  display:grid; place-items:center; font-size:10px}
+.ln .who{position:absolute; opacity:0; pointer-events:none}
+.ln .t{font-family:var(--serif); font-size:19px; line-height:1.32; display:block}
+.ln.papa .t{font-weight:700; color:var(--ink)}
+.ln.myrto .t{font-weight:400; color:var(--ink2)}
+.ln .m{display:none; font-size:13.5px; color:var(--ink3); margin-top:3px; line-height:1.4}
+body.sens .ln .m{display:block}
+.ln.on{background:var(--vaud-bg); border-left-color:var(--vaud)}
+.ln.on .ic{background:var(--vaud); color:#fff; border-color:var(--vaud)}
+.roles{padding:12px 18px 4px; font-size:13px; color:var(--ink3)}
+.roles span{display:inline-flex; align-items:center; gap:6px; margin-inline-end:14px}
+.dot{width:9px; height:9px; border-radius:50%}
+.dot.p{background:var(--bleu)} .dot.m{background:var(--vaud)}
+footer{padding:26px 18px 40px; color:var(--ink3); font-size:12.5px; line-height:1.7;
+  border-top:1px solid var(--rule); margin-top:24px}
+footer a{color:var(--vaud)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <div class="sc">CARTES DU SOIR</div>
+  <h1 id="titre">Οι κάρτες του βραδιού<small id="soustitre">Πάτα μια σκηνή</small></h1>
+  <div class="bar" id="bar" hidden>
+    <button type="button" class="back" id="back">&#8592; Σκηνές</button>
+    <button type="button" id="lent" aria-pressed="false">Αργά</button>
+    <button type="button" id="sens" aria-pressed="false">Τι σημαίνει</button>
+  </div>
+</header>
+<main>
+  <div class="scenes" id="liste"></div>
+  <div id="scene" hidden></div>
+</main>
+<footer>
+  Ο ήχος είναι ηχογραφημένος από πριν, μία φορά ανά ατάκα, μία φωνή ανά ρόλο.<br>
+  <a href="cartes-du-soir.pdf">Τύπωσε τις κάρτες</a> — τρεις σελίδες ανά σκηνή.
+  Αυτή η σελίδα δεν αντικαθιστά το χαρτί· λέει μόνο την προφορά.
+</footer>
+<script>
+const SCENES = [{"id": 1, "slug": "a-la-boulangerie", "titre_fr": "À la boulangerie", "titre_el": "Στον φούρνο", "roles": {"papa": "le client", "myrto": "la boulangère"}, "lignes": [{"qui": "myrto", "fr": "Bonjour, monsieur !", "el": "Καλημέρα, κύριε!"}, {"qui": "papa", "fr": "Bonjour, madame.", "el": "Καλημέρα, κυρία."}, {"qui": "myrto", "fr": "Vous désirez ?", "el": "Τι θα θέλατε;"}, {"qui": "papa", "fr": "Je voudrais un croissant, s'il vous plaît.", "el": "Θα ήθελα ένα κρουασάν, παρακαλώ."}, {"qui": "myrto", "fr": "Un croissant. Et avec ça ?", "el": "Ένα κρουασάν. Τίποτε άλλο;"}, {"qui": "papa", "fr": "Deux baguettes, s'il vous plaît.", "el": "Δύο μπαγκέτες, παρακαλώ."}, {"qui": "myrto", "fr": "Ah, désolée. Il n'y a plus de baguettes.", "el": "Α, λυπάμαι. Δεν έχει άλλες μπαγκέτες."}, {"qui": "papa", "fr": "Et du pain ?", "el": "Και ψωμί;"}, {"qui": "myrto", "fr": "Oui, j'ai du pain complet.", "el": "Ναι, έχω ψωμί ολικής."}, {"qui": "papa", "fr": "D'accord. Un pain, s'il vous plaît.", "el": "Εντάξει. Ένα ψωμί, παρακαλώ."}, {"qui": "myrto", "fr": "Voilà. Ça fait sept francs nonante.", "el": "Ορίστε. Κάνει εφτά φράγκα και ενενήντα."}, {"qui": "papa", "fr": "Pardon ? Combien ?", "el": "Συγγνώμη; Πόσο κάνει;"}, {"qui": "myrto", "fr": "Sept francs nonante.", "el": "Εφτά φράγκα και ενενήντα."}, {"qui": "papa", "fr": "Voilà dix francs.", "el": "Ορίστε δέκα φράγκα."}, {"qui": "myrto", "fr": "Merci. Et deux francs dix.", "el": "Ευχαριστώ. Και δύο φράγκα και δέκα ρέστα."}, {"qui": "papa", "fr": "Merci beaucoup. Bonne journée !", "el": "Ευχαριστώ πολύ. Καλή σας μέρα!"}, {"qui": "myrto", "fr": "Merci à vous. Au revoir !", "el": "Εγώ ευχαριστώ. Αντίο!"}]}, {"id": 2, "slug": "chez-le-medecin", "titre_fr": "Chez le médecin", "titre_el": "Στη γιατρό", "roles": {"papa": "le patient", "myrto": "la doctoresse"}, "lignes": [{"qui": "myrto", "fr": "Bonjour, monsieur. Asseyez-vous.", "el": "Καλημέρα, κύριε. Καθίστε."}, {"qui": "papa", "fr": "Bonjour, docteur.", "el": "Καλημέρα, γιατρέ."}, {"qui": "myrto", "fr": "Qu'est-ce qui ne va pas ?", "el": "Τι δεν πάει καλά;"}, {"qui": "papa", "fr": "J'ai mal à la tête. Et j'ai froid.", "el": "Πονάει το κεφάλι μου. Και κρυώνω."}, {"qui": "myrto", "fr": "Depuis quand ?", "el": "Από πότε;"}, {"qui": "papa", "fr": "Depuis hier soir.", "el": "Από χθες το βράδυ."}, {"qui": "myrto", "fr": "Ouvrez la bouche, s'il vous plaît.", "el": "Ανοίξτε το στόμα, παρακαλώ."}, {"qui": "papa", "fr": "Aaah.", "el": "Ααα."}, {"qui": "myrto", "fr": "Bon. Vous avez de la fièvre ?", "el": "Ωραία. Έχετε πυρετό;"}, {"qui": "papa", "fr": "Je ne sais pas. Je n'ai pas de thermomètre.", "el": "Δεν ξέρω. Δεν έχω θερμόμετρο."}, {"qui": "myrto", "fr": "Alors on regarde. Trente-huit deux.", "el": "Ας δούμε τότε. Τριάντα οκτώ και δύο."}, {"qui": "papa", "fr": "C'est grave, docteur ?", "el": "Είναι σοβαρό, γιατρέ;"}, {"qui": "myrto", "fr": "Non. C'est une petite grippe.", "el": "Όχι. Είναι μια μικρή γρίπη."}, {"qui": "papa", "fr": "Qu'est-ce que je dois faire ?", "el": "Τι πρέπει να κάνω;"}, {"qui": "myrto", "fr": "Vous restez à la maison deux jours.", "el": "Μένετε σπίτι δύο μέρες."}, {"qui": "papa", "fr": "D'accord.", "el": "Εντάξει."}, {"qui": "myrto", "fr": "Vous buvez beaucoup d'eau. Et vous dormez !", "el": "Πίνετε πολύ νερό. Και κοιμάστε!"}, {"qui": "papa", "fr": "Merci, docteur. Au revoir !", "el": "Ευχαριστώ, γιατρέ. Αντίο!"}]}, {"id": 3, "slug": "chez-le-veterinaire", "titre_fr": "Chez le vétérinaire", "titre_el": "Στην κτηνίατρο", "roles": {"papa": "le maître du chien", "myrto": "la vétérinaire"}, "lignes": [{"qui": "myrto", "fr": "Bonjour, monsieur. Il s'appelle comment ?", "el": "Καλημέρα, κύριε. Πώς τον λένε;"}, {"qui": "papa", "fr": "Il s'appelle Bobby.", "el": "Τον λένε Μπόμπι."}, {"qui": "myrto", "fr": "Et qu'est-ce qu'il a ?", "el": "Και τι έχει;"}, {"qui": "papa", "fr": "Il ne mange pas. Depuis trois jours.", "el": "Δεν τρώει. Εδώ και τρεις μέρες."}, {"qui": "myrto", "fr": "Il boit ?", "el": "Πίνει;"}, {"qui": "papa", "fr": "Oui, il boit beaucoup.", "el": "Ναι, πίνει πολύ."}, {"qui": "myrto", "fr": "Quel âge il a ?", "el": "Πόσων χρονών είναι;"}, {"qui": "papa", "fr": "Il a huit ans.", "el": "Είναι οκτώ χρονών."}, {"qui": "myrto", "fr": "Bobby, viens ici !", "el": "Μπόμπι, έλα εδώ!"}, {"qui": "papa", "fr": "Il est très gentil.", "el": "Είναι πολύ καλό σκυλί."}, {"qui": "myrto", "fr": "Est-ce qu'il mange des choses dans la rue ?", "el": "Τρώει πράγματα από τον δρόμο;"}, {"qui": "papa", "fr": "Ah… oui. Il mange tout.", "el": "Α… ναι. Τρώει τα πάντα."}, {"qui": "myrto", "fr": "Voilà le problème.", "el": "Ορίστε το πρόβλημα."}, {"qui": "papa", "fr": "C'est grave ?", "el": "Είναι σοβαρό;"}, {"qui": "myrto", "fr": "Non. Mais pas de chocolat, jamais !", "el": "Όχι. Αλλά ποτέ σοκολάτα!"}, {"qui": "papa", "fr": "D'accord, docteur.", "el": "Εντάξει, γιατρέ."}, {"qui": "myrto", "fr": "Et vous revenez dans une semaine.", "el": "Και ξανάρχεστε σε μία βδομάδα."}, {"qui": "papa", "fr": "Merci beaucoup. Au revoir !", "el": "Ευχαριστώ πολύ. Αντίο!"}]}, {"id": 4, "slug": "le-premier-jour-a-l-ecole", "titre_fr": "Le premier jour à l'école", "titre_el": "Η πρώτη μέρα στο σχολείο", "roles": {"papa": "le nouvel élève", "myrto": "la maîtresse"}, "lignes": [{"qui": "myrto", "fr": "Bonjour ! Comment tu t'appelles ?", "el": "Καλημέρα! Πώς σε λένε;"}, {"qui": "papa", "fr": "Bonjour, madame. Je m'appelle Petros.", "el": "Καλημέρα, κυρία. Με λένε Πέτρο."}, {"qui": "myrto", "fr": "Tu as quel âge ?", "el": "Πόσων χρονών είσαι;"}, {"qui": "papa", "fr": "J'ai sept ans.", "el": "Είμαι επτά χρονών."}, {"qui": "myrto", "fr": "Et tu viens d'où ?", "el": "Κι από πού είσαι;"}, {"qui": "papa", "fr": "Je viens de Grèce.", "el": "Είμαι από την Ελλάδα."}, {"qui": "myrto", "fr": "Bienvenue ! Voilà ta place, à côté de la fenêtre.", "el": "Καλώς ήρθες! Ορίστε η θέση σου, δίπλα στο παράθυρο."}, {"qui": "papa", "fr": "Merci, madame.", "el": "Ευχαριστώ, κυρία."}, {"qui": "myrto", "fr": "Tu as un crayon et une gomme ?", "el": "Έχεις μολύβι και γόμα;"}, {"qui": "papa", "fr": "J'ai un crayon, mais je n'ai pas de gomme.", "el": "Έχω μολύβι, αλλά δεν έχω γόμα."}, {"qui": "myrto", "fr": "Ce n'est pas grave. Tiens.", "el": "Δεν πειράζει. Ορίστε."}, {"qui": "papa", "fr": "Merci beaucoup.", "el": "Ευχαριστώ πολύ."}, {"qui": "myrto", "fr": "Maintenant, on écrit la date. On est quel jour ?", "el": "Τώρα γράφουμε την ημερομηνία. Τι μέρα είναι;"}, {"qui": "papa", "fr": "Pardon, vous pouvez répéter ?", "el": "Συγγνώμη, μπορείτε να το επαναλάβετε;"}, {"qui": "myrto", "fr": "On est mardi. Mardi neuf septembre.", "el": "Είναι Τρίτη. Τρίτη εννιά Σεπτεμβρίου."}, {"qui": "papa", "fr": "Merci. Madame, c'est quand la récré ?", "el": "Ευχαριστώ. Κυρία, πότε είναι το διάλειμμα;"}, {"qui": "myrto", "fr": "Dans une heure. Et à midi ?", "el": "Σε μία ώρα. Και το μεσημέρι;"}, {"qui": "papa", "fr": "Comment ?", "el": "Πώς είπατε;"}, {"qui": "myrto", "fr": "Tu manges à la cantine ou tu rentres à la maison ?", "el": "Τρως στην καντίνα ή γυρίζεις σπίτι;"}, {"qui": "papa", "fr": "Je ne sais pas encore !", "el": "Δεν ξέρω ακόμα!"}]}];
+const AUDIO  = {"myrto|Bonjour, monsieur !": "4d132010f2c1", "papa|Bonjour, madame.": "21b1c5e78bb4", "myrto|Vous désirez ?": "3d029f546067", "papa|Je voudrais un croissant, s'il vous plaît.": "33f706cc7609", "myrto|Un croissant. Et avec ça ?": "9887522c43dc", "papa|Deux baguettes, s'il vous plaît.": "2f1cb5d8dabe", "myrto|Ah, désolée. Il n'y a plus de baguettes.": "3f3e9e03f5d3", "papa|Et du pain ?": "413779452957", "myrto|Oui, j'ai du pain complet.": "a297ab70e7f9", "papa|D'accord. Un pain, s'il vous plaît.": "0b2e17fcff98", "myrto|Voilà. Ça fait sept francs nonante.": "3b89a83cfebf", "papa|Pardon ? Combien ?": "b29771d0fe0b", "myrto|Sept francs nonante.": "58aa70ea4327", "papa|Voilà dix francs.": "5a29023c8e90", "myrto|Merci. Et deux francs dix.": "f464efb39e13", "papa|Merci beaucoup. Bonne journée !": "9d01b2352ba2", "myrto|Merci à vous. Au revoir !": "430a64e1cdd1", "myrto|Bonjour, monsieur. Asseyez-vous.": "315139f60cca", "papa|Bonjour, docteur.": "7ab80b23ce97", "myrto|Qu'est-ce qui ne va pas ?": "748aaa04bece", "papa|J'ai mal à la tête. Et j'ai froid.": "892563e8a933", "myrto|Depuis quand ?": "70a07daf00fc", "papa|Depuis hier soir.": "30f6f9afe372", "myrto|Ouvrez la bouche, s'il vous plaît.": "d1a0c161a92d", "papa|Aaah.": "ac14a6632067", "myrto|Bon. Vous avez de la fièvre ?": "327db76d28a9", "papa|Je ne sais pas. Je n'ai pas de thermomètre.": "7157754c2aed", "myrto|Alors on regarde. Trente-huit deux.": "9ca9ddd60da7", "papa|C'est grave, docteur ?": "33af8d2a710d", "myrto|Non. C'est une petite grippe.": "d7be872b8e40", "papa|Qu'est-ce que je dois faire ?": "ebe11cb5a422", "myrto|Vous restez à la maison deux jours.": "f473c7f6b23f", "papa|D'accord.": "f41902e7ef50", "myrto|Vous buvez beaucoup d'eau. Et vous dormez !": "67de8e1285d5", "papa|Merci, docteur. Au revoir !": "f80ef432d7b0", "myrto|Bonjour, monsieur. Il s'appelle comment ?": "76efcfad23f5", "papa|Il s'appelle Bobby.": "4b27573eb436", "myrto|Et qu'est-ce qu'il a ?": "344da351d6ca", "papa|Il ne mange pas. Depuis trois jours.": "acd6a5c302fd", "myrto|Il boit ?": "daad421726b0", "papa|Oui, il boit beaucoup.": "30b207c295c5", "myrto|Quel âge il a ?": "fbc3579e4adb", "papa|Il a huit ans.": "6d2f90ecd07c", "myrto|Bobby, viens ici !": "fa8af1127922", "papa|Il est très gentil.": "735624869b22", "myrto|Est-ce qu'il mange des choses dans la rue ?": "64fddb835668", "papa|Ah… oui. Il mange tout.": "b6f4543a1fd5", "myrto|Voilà le problème.": "53ba610a8b42", "papa|C'est grave ?": "05918a410adc", "myrto|Non. Mais pas de chocolat, jamais !": "f9037f0203d4", "papa|D'accord, docteur.": "5d12dbd6e070", "myrto|Et vous revenez dans une semaine.": "aae68a248e04", "papa|Merci beaucoup. Au revoir !": "d61210b9e4a7", "myrto|Bonjour ! Comment tu t'appelles ?": "a822317408bb", "papa|Bonjour, madame. Je m'appelle Petros.": "edfa3eec1e91", "myrto|Tu as quel âge ?": "86afcd97fa12", "papa|J'ai sept ans.": "102567b13852", "myrto|Et tu viens d'où ?": "ba5c7a708a39", "papa|Je viens de Grèce.": "e10620d21cb7", "myrto|Bienvenue ! Voilà ta place, à côté de la fenêtre.": "a6f02efe2fde", "papa|Merci, madame.": "58dc018b79a8", "myrto|Tu as un crayon et une gomme ?": "44ed41edaadb", "papa|J'ai un crayon, mais je n'ai pas de gomme.": "690d78615c6c", "myrto|Ce n'est pas grave. Tiens.": "efefcc68e5ee", "papa|Merci beaucoup.": "75d5ca6fbc08", "myrto|Maintenant, on écrit la date. On est quel jour ?": "96c00caf5876", "papa|Pardon, vous pouvez répéter ?": "643a4b1dd8d7", "myrto|On est mardi. Mardi neuf septembre.": "6502f66ddbcd", "papa|Merci. Madame, c'est quand la récré ?": "018bc692aa68", "myrto|Dans une heure. Et à midi ?": "f6525f92c7de", "papa|Comment ?": "4383118a6c0f", "myrto|Tu manges à la cantine ou tu rentres à la maison ?": "d3ad6ea97bc7", "papa|Je ne sais pas encore !": "da122cf768c5"};
+const SONS   = {};   // κενό όταν ο ήχος είναι δίπλα σε αρχεία
+const SRC = c => SONS[c] ? 'data:audio/mp4;base64,' + SONS[c] : 'audio/' + c + '.m4a';
+
+const liste = document.getElementById('liste');
+const vue   = document.getElementById('scene');
+const bar   = document.getElementById('bar');
+const titre = document.getElementById('titre');
+const sous  = document.getElementById('soustitre');
+let lent = false, encours = null, courant = null;
+
+function esc(s){ return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+SCENES.forEach((s, i) => {
+  const b = document.createElement('button');
+  b.className = 'item'; b.type = 'button';
+  b.innerHTML = '<b>' + esc(s.titre_fr) + '</b><i>' + esc(s.titre_el) + '</i>' +
+                '<u>' + s.lignes.length + ' ατάκες · ' + esc(s.roles.myrto) + ' / ' + esc(s.roles.papa) + '</u>';
+  b.addEventListener('click', () => ouvre(i));
+  liste.appendChild(b);
+});
+
+function ouvre(i){
+  const s = SCENES[i];
+  courant = i;
+  titre.firstChild.textContent = s.titre_fr;
+  sous.textContent = s.titre_el;
+  vue.innerHTML = '<div class="roles">' +
+    '<span><i class="dot m"></i>ΜΥΡΤΩ — ' + esc(s.roles.myrto) + '</span>' +
+    '<span><i class="dot p"></i>ΜΠΑΜΠΑΣ — ' + esc(s.roles.papa) + '</span></div>' +
+    s.lignes.map(l =>
+      '<button class="ln ' + l.qui + '" type="button" data-qui="' + l.qui +
+      '" data-fr="' + esc(l.fr) + '">' +
+        '<span class="ic">&#9654;</span>' +
+        '<span><span class="t">' + esc(l.fr) + '</span>' +
+        '<span class="m">' + esc(l.el) + '</span></span></button>').join('');
+  liste.hidden = true; vue.hidden = false; bar.hidden = false;
+  window.scrollTo(0, 0);
+}
+
+document.getElementById('back').addEventListener('click', () => {
+  stop();
+  titre.firstChild.textContent = 'Οι κάρτες του βραδιού';
+  sous.textContent = 'Πάτα μια σκηνή';
+  vue.hidden = true; bar.hidden = true; liste.hidden = false;
+});
+
+function bascule(id, fn){
+  const b = document.getElementById(id);
+  b.addEventListener('click', () => {
+    const on = b.getAttribute('aria-pressed') !== 'true';
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    fn(on);
+  });
+}
+bascule('lent', on => { lent = on; if (encours) encours.playbackRate = on ? 0.72 : 1; });
+bascule('sens', on => document.body.classList.toggle('sens', on));
+
+function stop(){
+  if (encours){ encours.pause(); encours = null; }
+  document.querySelectorAll('.ln.on').forEach(e => e.classList.remove('on'));
+}
+
+vue.addEventListener('click', e => {
+  const btn = e.target.closest('.ln');
+  if (!btn) return;
+  const etait = btn.classList.contains('on');
+  stop();
+  if (etait) return;
+  const cle = AUDIO[btn.dataset.qui + '|' + btn.dataset.fr];
+  if (!cle) return;
+  const a = new Audio(SRC(cle));
+  a.playbackRate = lent ? 0.72 : 1;
+  btn.classList.add('on');
+  a.addEventListener('ended', () => { btn.classList.remove('on'); encours = null; });
+  a.addEventListener('error', () => { btn.classList.remove('on'); encours = null; });
+  encours = a;
+  a.play().catch(() => { btn.classList.remove('on'); encours = null; });
+});
+</script>
+</body>
+</html>

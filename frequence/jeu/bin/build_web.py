@@ -4,10 +4,14 @@
 Ένα αρχείο, όλα τα δεδομένα μέσα του, ο ήχος δίπλα στο web/audio/.
 Ανοίγει στο κινητό δίπλα στις κάρτες: κάθε ατάκα πατιέται και ακούγεται.
 """
-import glob, json, os, sys
+import base64, glob, json, os, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 JEU  = os.path.dirname(HERE)
+BLOG = os.path.dirname(os.path.dirname(JEU))
+# Η ενότητα του blog είναι ο ΜΟΝΟΣ τόπος του παραγόμενου: ό,τι χτίζεται
+# σερβίρεται κατευθείαν από το GitHub Pages, χωρίς δεύτερο αντίγραφο του ήχου.
+SECTION = os.path.join(BLOG, "cartes")
 
 GABARIT = """<!doctype html>
 <html lang="el">
@@ -27,9 +31,14 @@ GABARIT = """<!doctype html>
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
 @media (prefers-color-scheme:dark){
-  :root{--paper:#12161d; --card:#1a1f28; --ink:#e9e5dc; --ink2:#a5aebb; --ink3:#6e7784;
+  :root:not([data-theme="light"]){--paper:#12161d; --card:#1a1f28; --ink:#e9e5dc; --ink2:#a5aebb; --ink3:#6e7784;
     --rule:#2b323e; --rule2:#39414f; --vaud:#5fc28c; --vaud-bg:#16281f; --vaud-line:#2c4a38;
     --bleu:#89b4e0; --bleu-bg:#141f2c;}
+}
+:root[data-theme="dark"]{
+  --paper:#12161d; --card:#1a1f28; --ink:#e9e5dc; --ink2:#a5aebb; --ink3:#6e7784;
+  --rule:#2b323e; --rule2:#39414f; --vaud:#5fc28c; --vaud-bg:#16281f; --vaud-line:#2c4a38;
+  --bleu:#89b4e0; --bleu-bg:#141f2c;
 }
 *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
 body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans);
@@ -77,6 +86,7 @@ body.sens .ln .m{display:block}
 .dot.p{background:var(--bleu)} .dot.m{background:var(--vaud)}
 footer{padding:26px 18px 40px; color:var(--ink3); font-size:12.5px; line-height:1.7;
   border-top:1px solid var(--rule); margin-top:24px}
+footer a{color:var(--vaud)}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -95,12 +105,15 @@ footer{padding:26px 18px 40px; color:var(--ink3); font-size:12.5px; line-height:
   <div id="scene" hidden></div>
 </main>
 <footer>
-  Ο ήχος είναι ηχογραφημένος από πριν, μία φορά ανά ατάκα.<br>
-  Οι κάρτες τυπώνονται από το <code>out/cartes/</code>. Αυτή η σελίδα δεν αντικαθιστά το χαρτί.
+  Ο ήχος είναι ηχογραφημένος από πριν, μία φορά ανά ατάκα, μία φωνή ανά ρόλο.<br>
+  <a href="cartes-du-soir.pdf">Τύπωσε τις κάρτες</a> — τρεις σελίδες ανά σκηνή.
+  Αυτή η σελίδα δεν αντικαθιστά το χαρτί· λέει μόνο την προφορά.
 </footer>
 <script>
 const SCENES = __DONNEES__;
 const AUDIO  = __INDEX__;
+const SONS   = __SONS__;   // κενό όταν ο ήχος είναι δίπλα σε αρχεία
+const SRC = c => SONS[c] ? 'data:audio/mp4;base64,' + SONS[c] : 'audio/' + c + '.m4a';
 
 const liste = document.getElementById('liste');
 const vue   = document.getElementById('scene');
@@ -129,7 +142,8 @@ function ouvre(i){
     '<span><i class="dot m"></i>ΜΥΡΤΩ — ' + esc(s.roles.myrto) + '</span>' +
     '<span><i class="dot p"></i>ΜΠΑΜΠΑΣ — ' + esc(s.roles.papa) + '</span></div>' +
     s.lignes.map(l =>
-      '<button class="ln ' + l.qui + '" type="button" data-fr="' + esc(l.fr) + '">' +
+      '<button class="ln ' + l.qui + '" type="button" data-qui="' + l.qui +
+      '" data-fr="' + esc(l.fr) + '">' +
         '<span class="ic">&#9654;</span>' +
         '<span><span class="t">' + esc(l.fr) + '</span>' +
         '<span class="m">' + esc(l.el) + '</span></span></button>').join('');
@@ -166,9 +180,9 @@ vue.addEventListener('click', e => {
   const etait = btn.classList.contains('on');
   stop();
   if (etait) return;
-  const cle = AUDIO[btn.dataset.fr];
+  const cle = AUDIO[btn.dataset.qui + '|' + btn.dataset.fr];
   if (!cle) return;
-  const a = new Audio('audio/' + cle + '.m4a');
+  const a = new Audio(SRC(cle));
   a.playbackRate = lent ? 0.72 : 1;
   btn.classList.add('on');
   a.addEventListener('ended', () => { btn.classList.remove('on'); encours = null; });
@@ -189,22 +203,39 @@ def main():
         scenes.append({k: d[k] for k in
                        ("id", "slug", "titre_fr", "titre_el", "roles", "lignes")})
 
-    idx_path = os.path.join(JEU, "web", "audio", "index.json")
+    idx_path = os.path.join(SECTION, "audio", "index.json")
     index = json.load(open(idx_path, encoding="utf-8")) if os.path.exists(idx_path) else {}
+
+    # --embarque: ο ήχος μπαίνει μέσα στο HTML ως data URI, ώστε η σελίδα να
+    # είναι ΕΝΑ αρχείο που ανοίγει από παντού — για δοκιμή με σκέτο link.
+    sons = {}
+    if "--embarque" in sys.argv:
+        for c in set(index.values()):
+            p = os.path.join(SECTION, "audio", c + ".m4a")
+            if os.path.exists(p):
+                sons[c] = base64.b64encode(open(p, "rb").read()).decode("ascii")
 
     html = (GABARIT
             .replace("__DONNEES__", json.dumps(scenes, ensure_ascii=False))
-            .replace("__INDEX__", json.dumps(index, ensure_ascii=False)))
+            .replace("__INDEX__", json.dumps(index, ensure_ascii=False))
+            .replace("__SONS__", json.dumps(sons)))
 
-    out = os.path.join(JEU, "web", "index.html")
+    if "--embarque" in sys.argv:
+        os.makedirs(os.path.join(JEU, "out"), exist_ok=True)
+        out = os.path.join(JEU, "out", "autonome.html")
+    else:
+        os.makedirs(SECTION, exist_ok=True)
+        out = os.path.join(SECTION, "index.html")
     with open(out, "w", encoding="utf-8") as fh:
         fh.write(html)
 
-    manquants = [l["fr"] for s in scenes for l in s["lignes"] if l["fr"] not in index]
+    manquants = [l["fr"] for s in scenes for l in s["lignes"]
+                 if (l["qui"] + "|" + l["fr"]) not in index]
     if manquants:
         print("προσοχή: %d ατάκες χωρίς ήχο (τρέξε build_audio.py)" % len(manquants))
-    print("%s · %d σκηνές, %d ατάκες, %.0f KB"
-          % (out, len(scenes), sum(len(s["lignes"]) for s in scenes), len(html) / 1024))
+    print("%s · %d σκηνές, %d ατάκες, %d ήχοι μέσα, %.1f MB"
+          % (out, len(scenes), sum(len(s["lignes"]) for s in scenes),
+             len(sons), len(html) / 1e6))
     return 0
 
 
