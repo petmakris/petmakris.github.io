@@ -81,9 +81,10 @@ main{padding:0 var(--pad) 40px; max-width:1760px; margin:0 auto}
 
 .roles{display:flex; gap:20px; flex-wrap:wrap; padding:14px 0 6px;
   font-size:var(--m); color:var(--ink3)}
-.roles span{display:inline-flex; align-items:center; gap:8px}
-.dot{width:10px; height:10px; border-radius:50%}
-.dot.p{background:var(--bleu)} .dot.m{background:var(--vaud)}
+.roles span{display:inline-flex; align-items:center; gap:9px}
+.pion{width:19px; height:19px; border-radius:50%; color:#fff; font-size:11px;
+  font-weight:700; display:grid; place-items:center; flex:0 0 auto}
+.pion.p{background:var(--bleu)} .pion.m{background:var(--vaud)}
 
 /* η σκηνή: μία στήλη στο κινητό, δύο στην τηλεόραση */
 .lignes{column-gap:26px}
@@ -95,6 +96,8 @@ main{padding:0 var(--pad) 40px; max-width:1760px; margin:0 auto}
   transition:background .13s}
 .ln.papa{border-left-color:var(--bleu); background:var(--bleu-bg)}
 .ln.myrto{border-left-color:var(--vaud-line)}
+.ln .no{flex:0 0 auto; width:2.1em; text-align:end; color:var(--ink3);
+  font-size:calc(var(--m) * .92); font-variant-numeric:tabular-nums; margin-top:.28em}
 .ln .ic{flex:0 0 auto; width:var(--ic); height:var(--ic); border-radius:50%; margin-top:1px;
   border:1px solid var(--vaud-line); background:var(--vaud-bg); color:var(--vaud);
   display:grid; place-items:center; font-size:calc(var(--ic) * .3)}
@@ -133,7 +136,7 @@ footer a{color:var(--vaud)}
 </main>
 <footer>
   Ο ήχος είναι ηχογραφημένος από πριν, μία φορά ανά ατάκα, μία φωνή ανά ρόλο.<br>
-  <a href="cartes-du-soir.pdf">Τύπωσε τις κάρτες</a> — τρεις σελίδες ανά σκηνή.
+  <a href="cartes-du-soir.pdf">Τύπωσε τις κάρτες</a> — δύο σελίδες ανά σκηνή, γαλλικά και ελληνικά αντικριστά.
   Αυτή η σελίδα δεν αντικαθιστά το χαρτί· λέει μόνο την προφορά.
 </footer>
 <script>
@@ -161,16 +164,18 @@ SCENES.forEach((s, i) => {
   liste.appendChild(b);
 });
 
-function ouvre(i){
+function ouvre(i, silencieux){
   const s = SCENES[i];
+  if (!silencieux) history.replaceState(null, '', '#' + String(s.id).padStart(2, '0'));
   titre.firstChild.textContent = s.titre_fr;
   sous.textContent = s.titre_el;
   vue.innerHTML = '<div class="roles">' +
-    '<span><i class="dot m"></i>ΜΥΡΤΩ — ' + esc(s.roles.myrto) + '</span>' +
-    '<span><i class="dot p"></i>ΜΠΑΜΠΑΣ — ' + esc(s.roles.papa) + '</span></div>' +
-    '<div class="lignes">' + s.lignes.map(l =>
+    '<span><i class="pion p">1</i>' + esc(s.roles.papa) + '</span>' +
+    '<span><i class="pion m">2</i>' + esc(s.roles.myrto) + '</span></div>' +
+    '<div class="lignes">' + s.lignes.map((l, n) =>
       '<button class="ln ' + l.qui + '" type="button" data-qui="' + l.qui +
       '" data-fr="' + esc(l.fr) + '">' +
+        '<span class="no">' + (n + 1) + '</span>' +
         '<span class="ic">&#9654;</span>' +
         '<span><span class="t">' + esc(l.fr) + '</span>' +
         '<span class="m">' + esc(l.el) + '</span></span></button>').join('') + '</div>';
@@ -181,6 +186,7 @@ function ouvre(i){
 
 document.getElementById('back').addEventListener('click', () => {
   stop();
+  history.replaceState(null, '', location.pathname);
   titre.firstChild.textContent = 'Οι κάρτες του βραδιού';
   sous.textContent = 'Διάλεξε μια σκηνή';
   vue.hidden = true; liste.hidden = false;
@@ -197,6 +203,16 @@ function bascule(id, fn){
 }
 bascule('lent', on => { lent = on; if (encours) encours.playbackRate = on ? 0.72 : 1; });
 bascule('sens', on => document.body.classList.toggle('sens', on));
+
+// Το QR κάθε τυπωμένης κάρτας δείχνει εδώ: petmakris.github.io/cartes/#07
+function depuisAdresse(){
+  const n = parseInt((location.hash || '').replace('#', ''), 10);
+  if (!n) return;
+  const i = SCENES.findIndex(s => s.id === n);
+  if (i >= 0) ouvre(i, true);
+}
+depuisAdresse();
+window.addEventListener('hashchange', depuisAdresse);
 
 const plein = document.getElementById('plein');
 plein.addEventListener('click', () => {

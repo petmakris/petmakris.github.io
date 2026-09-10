@@ -16,6 +16,9 @@
 """
 import glob, json, os, sys
 
+from reportlab.graphics import renderPDF
+from reportlab.graphics.barcode import qr
+from reportlab.graphics.shapes import Drawing
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.utils import simpleSplit
 from reportlab.pdfbase import pdfmetrics
@@ -27,20 +30,24 @@ JEU  = os.path.dirname(HERE)
 
 W, H = A4
 M       = 42
+URL     = "https://petmakris.github.io/cartes/"
 TOP     = H - M
 ENTETE  = 92          # σταθερό ύψος κεφαλίδας — αλλιώς οι σελίδες ξεχαρβαλώνουν
 PIED    = 40
 
-BLEU     = (0.157, 0.333, 0.502)
-BLEU_BG  = (0.894, 0.929, 0.965)
-VERT     = (0.118, 0.478, 0.298)
-VERT_BG  = (0.894, 0.949, 0.910)
-AMBRE    = (0.784, 0.463, 0.118)
-AMBRE_BG = (0.996, 0.937, 0.847)
+# Το χαρτί μένει λευκό. Χρώμα υπάρχει ΜΟΝΟ στις δύο κουκκίδες των παικτών και
+# σε δυο λεπτές γραμμές — ένα τεύχος 42 σελίδων τυπώνεται σε εταιρικό εκτυπωτή.
+UN       = (0.157, 0.333, 0.502)   # παίκτης ①
+DEUX     = (0.118, 0.478, 0.298)   # παίκτης ②
 NOIR     = (0.106, 0.141, 0.188)
 GRIS     = (0.42, 0.46, 0.51)
-GRIS_L   = (0.87, 0.85, 0.82)
+GRIS_L   = (0.84, 0.82, 0.79)
 BLANC    = (1, 1, 1)
+
+# Συμβατότητα με το build_pack.py
+BLEU, VERT = UN, DEUX
+BLEU_BG = VERT_BG = AMBRE_BG = (1, 1, 1)
+AMBRE = GRIS
 
 for nom, fichier in [("Jeu", "AlegreyaSans-Regular.ttf"),
                      ("Jeu-Bold", "AlegreyaSans-Bold.ttf"),
@@ -52,16 +59,22 @@ REG, GRAS, NOIRE, TITRE = "Jeu", "Jeu-Bold", "Jeu-Black", "Titre"
 
 
 def couleurs(qui):
-    return (BLEU, BLEU_BG) if qui == "papa" else (VERT, VERT_BG)
+    """Ο πρώτος ομιλητής της σκηνής είναι ο ① — ο ρόλος δεν είναι δεμένος με πρόσωπο."""
+    return UN if qui == "papa" else DEUX
+
+
+def numero(qui):
+    return "1" if qui == "papa" else "2"
 
 
 def entete(c, d, titre, sous_titre, langue):
     """Σταθερού ύψους, ώστε η πρώτη ατάκα να ξεκινά στο ίδιο y και στις δύο."""
     y = TOP
-    # σήμα σκηνής: στρογγυλό τετράγωνο σε ζεστό κεχριμπάρι
-    c.setFillColorRGB(*AMBRE_BG)
-    c.roundRect(M, y - 44, 46, 46, 11, stroke=0, fill=1)
-    c.setFillColorRGB(*AMBRE)
+    # σήμα σκηνής: μόνο περίγραμμα
+    c.setStrokeColorRGB(*GRIS_L)
+    c.setLineWidth(1)
+    c.roundRect(M, y - 44, 46, 46, 11, stroke=1, fill=0)
+    c.setFillColorRGB(*NOIR)
     c.setFont(TITRE, 20)
     c.drawCentredString(M + 23, y - 30, "%02d" % d["id"])
 
@@ -73,23 +86,32 @@ def entete(c, d, titre, sous_titre, langue):
     c.drawString(M + 60, y - 41, sous_titre)
 
     c.setFillColorRGB(*GRIS)
-    c.setFont(REG, 10.5)
-    c.drawRightString(W - M, y - 12, langue)
+    c.setFont(REG, 10)
+    c.drawRightString(W - M - 46, y - 12, langue)
 
-    # οι δύο ρόλοι, με τα χρώματά τους
+    # κυκλάκι για τη σφραγίδα, μόνο περίγραμμα
+    c.setStrokeColorRGB(*GRIS_L)
+    c.setLineWidth(1)
+    c.circle(W - M - 15, y - 22, 15, stroke=1, fill=0)
+    c.setFillColorRGB(*GRIS_L)
+    c.setFont(REG, 12)
+    c.drawCentredString(W - M - 15, y - 26, "✓")
+
+    # ποιος παίζει τι: ο αριθμός είναι σταθερός, ο ρόλος όχι
     yr = y - 66
     x = M
-    for qui, cle in (("myrto", "myrto"), ("papa", "papa")):
-        coul, fond = couleurs(qui)
-        etiquette = "%s — %s" % ("ΜΥΡΤΩ" if qui == "myrto" else "ΜΠΑΜΠΑΣ", d["roles"][cle])
-        larg = pdfmetrics.stringWidth(etiquette, REG, 10.5) + 26
-        c.setFillColorRGB(*fond)
-        c.roundRect(x, yr - 5, larg, 19, 9.5, stroke=0, fill=1)
+    for qui in ("papa", "myrto"):
+        coul = couleurs(qui)
         c.setFillColorRGB(*coul)
-        c.circle(x + 11, yr + 4.5, 4, stroke=0, fill=1)
+        c.circle(x + 6, yr + 4, 6, stroke=0, fill=1)
+        c.setFillColorRGB(*BLANC)
+        c.setFont(TITRE, 7)
+        c.drawCentredString(x + 6, yr + 1.6, numero(qui))
+        c.setFillColorRGB(*NOIR)
         c.setFont(REG, 10.5)
-        c.drawString(x + 20, yr + 1, etiquette)
-        x += larg + 10
+        etiquette = d["roles"][qui]
+        c.drawString(x + 17, yr + 1, etiquette)
+        x += 17 + pdfmetrics.stringWidth(etiquette, REG, 10.5) + 22
     return TOP - ENTETE
 
 
@@ -108,7 +130,7 @@ def mesure(lignes, taille, largeur):
 
 def geometrie(d):
     """Η ΜΙΑ διάταξη που μοιράζονται και οι δύο σελίδες."""
-    largeur = W - 2 * M - 46
+    largeur = W - 2 * M - 50
     dispo = (TOP - ENTETE) - (M + PIED)
     for taille in (20, 19, 18, 17, 16, 15, 14, 13, 12, 11):
         blocs, total, inter = mesure(d["lignes"], taille, largeur)
@@ -126,36 +148,60 @@ def page(c, d, langue, num_page):
                "ΕΛΛΗΝΙΚΑ" if grec else "FRANÇAIS")
     taille, inter, blocs = geometrie(d)
 
-    for ln, b in zip(d["lignes"], blocs):
-        coul, fond = couleurs(ln["qui"])
+    for n, (ln, b) in enumerate(zip(d["lignes"], blocs), start=1):
+        coul = couleurs(ln["qui"])
         h = b["h"]
-        c.setFillColorRGB(*fond)
-        c.roundRect(M, y - h, W - 2 * M, h, 8, stroke=0, fill=1)
+        yc = y - taille * 0.72
+
+        # αριθμός ατάκας: ο ίδιος αριστερά και δεξιά, ώστε να λες «γραμμή 12»
+        c.setFillColorRGB(*GRIS)
+        c.setFont(REG, taille * 0.6)
+        c.drawRightString(M + 15, yc - taille * 0.18, str(n))
+
+        # η μόνη κουκκίδα χρώματος της γραμμής
         c.setFillColorRGB(*coul)
-        c.circle(M + 17, y - taille * 0.72, 8.5, stroke=0, fill=1)
+        c.circle(M + 31, yc, 6.5, stroke=0, fill=1)
         c.setFillColorRGB(*BLANC)
-        c.setFont(TITRE, 8)
-        c.drawCentredString(M + 17, y - taille * 0.72 - 3,
-                            "M" if ln["qui"] == "myrto" else "P")
+        c.setFont(TITRE, 7)
+        c.drawCentredString(M + 31, yc - 2.4, numero(ln["qui"]))
 
         c.setFillColorRGB(*NOIR)
         c.setFont(GRAS if ln["qui"] == "papa" else REG, taille)
         yy = y - taille * 0.28
         for bout in b[langue]:
-            c.drawString(M + 34, yy - taille * 0.86, bout)
+            c.drawString(M + 46, yy - taille * 0.86, bout)
             yy -= inter
         y -= h + 5
+        c.setStrokeColorRGB(*GRIS_L)
+        c.setLineWidth(0.4)
+        c.line(M + 46, y + 3, W - M, y + 3)
+
+    # QR μόνο στη γαλλική: ανοίγει αυτή τη σκηνή στο κινητό, χωρίς ψάξιμο
+    if not grec:
+        code = qr.QrCodeWidget(URL + "#%02d" % d["id"], barLevel="M")
+        b = code.getBounds()
+        cote = 46
+        dessin = Drawing(cote, cote,
+                         transform=[cote / (b[2] - b[0]), 0, 0, cote / (b[3] - b[1]),
+                                    -b[0] * cote / (b[2] - b[0]), -b[1] * cote / (b[3] - b[1])])
+        dessin.add(code)
+        renderPDF.draw(dessin, c, W - M - cote, M + 22)
+        c.setFillColorRGB(*GRIS)
+        c.setFont(REG, 7.5)
+        c.drawCentredString(W - M - cote / 2, M + 13, "écoutez la scène")
 
     c.setStrokeColorRGB(*GRIS_L)
-    c.setLineWidth(1)
-    c.line(M, M + 26, W - M, M + 26)
+    c.setLineWidth(0.8)
+    c.line(M, M + 78, W - M, M + 78)
     c.setFillColorRGB(*GRIS)
     c.setFont(REG, 10)
-    c.drawString(M, M + 11,
-                 "Πράσινο η Μυρτώ · μπλε και έντονα ο μπαμπάς"
-                 if grec else "MYRTO en vert · PAPA en bleu et gras")
-    c.drawRightString(W - M, M + 11, "%d ατάκες · %s" % (len(d["lignes"]), num_page)
-                      if grec else "%d lignes · %s" % (len(d["lignes"]), num_page))
+    c.drawString(M, M + 63,
+                 "Ξαναπαίξτε τη σκηνή αλλάζοντας ρόλους: ο 1 γίνεται 2."
+                 if grec else "Rejouez la scène en échangeant les rôles.")
+    c.setFont(REG, 9)
+    c.drawString(M, M + 48,
+                 ("%d ατάκες · %s" if grec else "%d lignes · %s")
+                 % (len(d["lignes"]), num_page))
     c.showPage()
 
 

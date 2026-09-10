@@ -58,28 +58,28 @@ def couverture(c, scenes):
     c.setFont(K.REG, 13)
     c.drawString(M + 20, y - 26, "Δέκα λεπτά γαλλικά πριν τον ύπνο, για δύο παίκτες.")
     for i, (coul, fond, qui, texte) in enumerate([
-        (K.VERT, K.VERT_BG, "ΜΥΡΤΩ", "παίζει πάντα τη ντόπια — τη φούρναρη, τη δασκάλα, τη γιατρό."),
-        (K.BLEU, K.BLEU_BG, "ΜΠΑΜΠΑΣ", "παίζει πάντα τον νεοφερμένο που δεν ξέρει ακόμα γαλλικά."),
+        (K.UN, K.BLEU_BG, "1", "ο νεοφερμένος: ο πελάτης, ο ασθενής, ο καινούριος γείτονας."),
+        (K.DEUX, K.VERT_BG, "2", "ο ντόπιος: η φούρναρη, η δασκάλα, η γιατρός."),
     ]):
         yy = y - 50 - i * 24
-        c.setFillColorRGB(*fond)
-        larg = pdfmetrics.stringWidth(qui, K.REG, 10.5) + 26
-        c.roundRect(M + 20, yy - 5, larg, 18, 9, stroke=0, fill=1)
         c.setFillColorRGB(*coul)
-        c.circle(M + 31, yy + 4, 4, stroke=0, fill=1)
-        c.setFont(K.REG, 10.5)
-        c.drawString(M + 40, yy + 1, qui)
+        c.circle(M + 26, yy + 4, 6.5, stroke=0, fill=1)
+        c.setFillColorRGB(1, 1, 1)
+        c.setFont(K.TITRE, 7)
+        c.drawCentredString(M + 26, yy + 1.6, qui)
         c.setFillColorRGB(*K.GRIS)
         c.setFont(K.REG, 12)
-        c.drawString(M + 20 + larg + 10, yy + 1, texte)
+        c.drawString(M + 40, yy + 1, texte)
 
     y -= 116
     c.setFillColorRGB(*K.GRIS)
     c.setFont(K.REG, 12.5)
     for ligne in [
         "Σε κάθε άνοιγμα: αριστερά ο διάλογος στα γαλλικά, δεξιά τι σημαίνει.",
-        "Οι δύο σελίδες έχουν ακριβώς την ίδια διάταξη — η τρίτη ατάκα είναι στο ίδιο ύψος.",
-        "Η προφορά ακούγεται στο petmakris.github.io/cartes",
+        "Οι δύο σελίδες έχουν την ίδια διάταξη και την ίδια αρίθμηση — «γραμμή 12» δείχνει το ίδιο.",
+        "Οι ρόλοι δεν είναι δεμένοι με πρόσωπα: όποιος πάρει το 1 λέει τις ατάκες του 1.",
+        "Σκανάρετε το QR κάθε σκηνής για να ακούσετε τις ατάκες της.",
+        "Το κυκλάκι πάνω δεξιά είναι για τη σφραγίδα, όταν η σκηνή περάσει.",
     ]:
         c.drawString(M, y, ligne)
         y -= 19
@@ -173,7 +173,7 @@ def main():
     ordre.append("couverture")
     for i, d in enumerate(scenes):
         gauche = 2 + 2 * i
-        K.page_dialogue(c, d, num_page="σελ. %d" % gauche)
+        K.page_dialogue(c, d, num_page="page %d" % gauche)
         ordre.append("fr")
         K.page_sens(c, d, num_page="σελ. %d" % (gauche + 1))
         ordre.append("el")
