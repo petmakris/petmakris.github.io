@@ -127,6 +127,12 @@ body.sens .ln .m{display:block}
 footer{padding:26px var(--pad) 40px; color:var(--ink3); font-size:13px; line-height:1.7;
   border-top:1px solid var(--rule); margin-top:24px}
 footer a{color:var(--vaud)}
+/* Όσο παίζει μια σκηνή το υποσέλιδο φεύγει: χωρίς αυτό, οι σκηνές των 20
+   ατάκων ξεπερνούσαν κατά 13 πίξελ το ύψος μιας οθόνης 1080 και εμφανιζόταν
+   κύλιση ακριβώς την ώρα του παιχνιδιού. */
+body.enjeu footer{display:none}
+/* Ορατή εστίαση, για χειρισμό με βελάκια από απόσταση */
+.ln:focus-visible, .item:focus-visible{outline:3px solid var(--vaud); outline-offset:2px}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -195,8 +201,11 @@ function ouvre(i, silencieux){
         '<span><span class="t">' + esc(l.fr) + '</span>' +
         '<span class="m">' + esc(l.el) + '</span></span></button>').join('') + '</div>';
   liste.hidden = true; vue.hidden = false;
+  document.body.classList.add('enjeu');
   enJeu.forEach(b => b.hidden = false);
   window.scrollTo(0, 0);
+  const p = vue.querySelector('.ln');
+  if (p) p.focus({ preventScroll: true });
 }
 
 document.getElementById('back').addEventListener('click', () => {
@@ -205,7 +214,10 @@ document.getElementById('back').addEventListener('click', () => {
   titre.firstChild.textContent = 'Οι κάρτες του βραδιού';
   sous.textContent = 'Διάλεξε μια σκηνή';
   vue.hidden = true; liste.hidden = false;
+  document.body.classList.remove('enjeu');
   enJeu.forEach(b => b.hidden = true);
+  const p = liste.querySelector('.item');
+  if (p) p.focus({ preventScroll: true });
 });
 
 function bascule(id, fn){
@@ -236,6 +248,29 @@ plein.addEventListener('click', () => {
 });
 document.addEventListener('fullscreenchange', () => {
   plein.textContent = document.fullscreenElement ? 'Έξοδος' : 'Πλήρης οθόνη';
+});
+
+// Πλοήγηση με βελάκια: δουλεύει με πληκτρολόγιο, με τηλεχειριστήριο Bluetooth,
+// και με ό,τι στέλνει κανονικά πλήκτρα βελών. Enter ή διάστημα παίζει την ατάκα.
+document.addEventListener('keydown', e => {
+  const enJeuTora = !vue.hidden;
+  const cibles = [...(enJeuTora ? vue.querySelectorAll('.ln') : liste.querySelectorAll('.item'))];
+  if (!cibles.length) return;
+  const i = cibles.indexOf(document.activeElement);
+  const bouge = d => {
+    e.preventDefault();
+    cibles[Math.max(0, Math.min(cibles.length - 1, (i < 0 ? 0 : i + d)))]
+      .focus({ preventScroll: false });
+  };
+  switch (e.key) {
+    case 'ArrowDown': case 'ArrowRight': bouge(+1); break;
+    case 'ArrowUp':   case 'ArrowLeft':  bouge(-1); break;
+    case 'Home': e.preventDefault(); cibles[0].focus(); break;
+    case 'End':  e.preventDefault(); cibles[cibles.length - 1].focus(); break;
+    case 'Escape': case 'Backspace':
+      if (enJeuTora) { e.preventDefault(); document.getElementById('back').click(); }
+      break;
+  }
 });
 
 function stop(){
