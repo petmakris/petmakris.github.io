@@ -89,9 +89,6 @@ def entete(c, d, titre, sous_titre, langue):
     c.setStrokeColorRGB(*GRIS_L)
     c.setLineWidth(1)
     c.circle(W - M - 15, y - 22, 15, stroke=1, fill=0)
-    c.setFillColorRGB(*GRIS_L)
-    c.setFont(REG, 12)
-    c.drawCentredString(W - M - 15, y - 26, "✓")
 
     return TOP - ENTETE
 
