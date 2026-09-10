@@ -1,0 +1,114 @@
+{
+  "id": 2,
+  "slug": "chez-le-medecin",
+  "titre_fr": "Chez le médecin",
+  "titre_el": "Στη γιατρό",
+  "lieu": "cabinet médical, Lausanne",
+  "roles": {
+    "papa": "le patient",
+    "myrto": "la doctoresse"
+  },
+  "mots_du_lieu": [
+    "docteur",
+    "asseyez",
+    "tête",
+    "bouche",
+    "fièvre",
+    "thermomètre",
+    "grippe",
+    "buvez",
+    "dormez"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonjour, monsieur. Asseyez-vous.",
+      "el": "Καλημέρα, κύριε. Καθίστε."
+    },
+    {
+      "qui": "papa",
+      "fr": "Bonjour, docteur.",
+      "el": "Καλημέρα, γιατρέ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Qu'est-ce qui ne va pas ?",
+      "el": "Τι δεν πάει καλά;"
+    },
+    {
+      "qui": "papa",
+      "fr": "J'ai mal à la tête. Et j'ai froid.",
+      "el": "Πονάει το κεφάλι μου. Και κρυώνω."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Depuis quand ?",
+      "el": "Από πότε;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Depuis hier soir.",
+      "el": "Από χθες το βράδυ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ouvrez la bouche, s'il vous plaît.",
+      "el": "Ανοίξτε το στόμα, παρακαλώ."
+    },
+    {
+      "qui": "papa",
+      "fr": "Aaah.",
+      "el": "Ααα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Bon. Vous avez de la fièvre ?",
+      "el": "Ωραία. Έχετε πυρετό;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Je ne sais pas. Je n'ai pas de thermomètre.",
+      "el": "Δεν ξέρω. Δεν έχω θερμόμετρο."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Alors on regarde. Trente-huit deux.",
+      "el": "Ας δούμε τότε. Τριάντα οκτώ και δύο."
+    },
+    {
+      "qui": "papa",
+      "fr": "C'est grave, docteur ?",
+      "el": "Είναι σοβαρό, γιατρέ;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Non. C'est une petite grippe.",
+      "el": "Όχι. Είναι μια μικρή γρίπη."
+    },
+    {
+      "qui": "papa",
+      "fr": "Qu'est-ce que je dois faire ?",
+      "el": "Τι πρέπει να κάνω;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Vous restez à la maison deux jours.",
+      "el": "Μένετε σπίτι δύο μέρες."
+    },
+    {
+      "qui": "papa",
+      "fr": "D'accord.",
+      "el": "Εντάξει."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Vous buvez beaucoup d'eau. Et vous dormez !",
+      "el": "Πίνετε πολύ νερό. Και κοιμάστε!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci, docteur. Au revoir !",
+      "el": "Ευχαριστώ, γιατρέ. Αντίο!"
+    }
+  ]
+}

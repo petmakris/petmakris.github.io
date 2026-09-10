@@ -1,0 +1,110 @@
+{
+  "id": 1,
+  "slug": "a-la-boulangerie",
+  "titre_fr": "À la boulangerie",
+  "titre_el": "Στον φούρνο",
+  "lieu": "boulangerie de quartier, Lausanne",
+  "roles": {
+    "papa": "le client",
+    "myrto": "la boulangère"
+  },
+  "mots_du_lieu": [
+    "croissant",
+    "baguette",
+    "baguettes",
+    "pain",
+    "complet",
+    "franc",
+    "francs",
+    "nonante",
+    "désirez",
+    "désolée"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonjour, monsieur !",
+      "el": "Καλημέρα, κύριε!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Bonjour, madame.",
+      "el": "Καλημέρα, κυρία."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Vous désirez ?",
+      "el": "Τι θα θέλατε;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Je voudrais un croissant, s'il vous plaît.",
+      "el": "Θα ήθελα ένα κρουασάν, παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Un croissant. Et avec ça ?",
+      "el": "Ένα κρουασάν. Τίποτε άλλο;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Deux baguettes, s'il vous plaît.",
+      "el": "Δύο μπαγκέτες, παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ah, désolée. Il n'y a plus de baguettes.",
+      "el": "Α, λυπάμαι. Δεν έχει άλλες μπαγκέτες."
+    },
+    {
+      "qui": "papa",
+      "fr": "Et du pain ?",
+      "el": "Και ψωμί;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Oui, j'ai du pain complet.",
+      "el": "Ναι, έχω ψωμί ολικής."
+    },
+    {
+      "qui": "papa",
+      "fr": "D'accord. Un pain, s'il vous plaît.",
+      "el": "Εντάξει. Ένα ψωμί, παρακαλώ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Voilà. Ça fait sept francs nonante.",
+      "el": "Ορίστε. Κάνει εφτά φράγκα και ενενήντα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Pardon ? Combien ?",
+      "el": "Συγγνώμη; Πόσο κάνει;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Sept francs nonante.",
+      "el": "Εφτά φράγκα και ενενήντα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Voilà dix francs.",
+      "el": "Ορίστε δέκα φράγκα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Merci. Et deux francs dix.",
+      "el": "Ευχαριστώ. Και δύο φράγκα και δέκα ρέστα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci beaucoup. Bonne journée !",
+      "el": "Ευχαριστώ πολύ. Καλή σας μέρα!"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Merci à vous. Au revoir !",
+      "el": "Εγώ ευχαριστώ. Αντίο!"
+    }
+  ]
+}

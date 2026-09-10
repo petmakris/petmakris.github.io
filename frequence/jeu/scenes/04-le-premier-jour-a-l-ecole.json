@@ -1,0 +1,134 @@
+{
+  "id": 4,
+  "slug": "le-premier-jour-a-l-ecole",
+  "titre_fr": "Le premier jour à l'école",
+  "titre_el": "Η πρώτη μέρα στο σχολείο",
+  "lieu": "salle de classe, 4P, canton de Vaud",
+  "roles": {
+    "papa": "le nouvel élève",
+    "myrto": "la maîtresse"
+  },
+  "mots_du_lieu": [
+    "maîtresse",
+    "élève",
+    "crayon",
+    "gomme",
+    "fenêtre",
+    "récré",
+    "cantine",
+    "Grèce",
+    "septembre",
+    "mardi",
+    "place",
+    "date",
+    "midi"
+  ],
+  "a_verifier_avec_myrto": [
+    "Πώς φωνάζει τη δασκάλα της — «maîtresse» σκέτο ή «Madame» + επώνυμο;",
+    "Λένε «la récré» ή κάτι άλλο στην τάξη της;",
+    "Τρώει στην «cantine», στο UAPE, ή γυρίζει σπίτι;",
+    "Τι λέει η δασκάλα το πρωί όταν μπαίνουν;"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonjour ! Comment tu t'appelles ?",
+      "el": "Καλημέρα! Πώς σε λένε;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Bonjour, madame. Je m'appelle Petros.",
+      "el": "Καλημέρα, κυρία. Με λένε Πέτρο."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Tu as quel âge ?",
+      "el": "Πόσων χρονών είσαι;"
+    },
+    {
+      "qui": "papa",
+      "fr": "J'ai sept ans.",
+      "el": "Είμαι επτά χρονών."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Et tu viens d'où ?",
+      "el": "Κι από πού είσαι;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Je viens de Grèce.",
+      "el": "Είμαι από την Ελλάδα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Bienvenue ! Voilà ta place, à côté de la fenêtre.",
+      "el": "Καλώς ήρθες! Ορίστε η θέση σου, δίπλα στο παράθυρο."
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci, madame.",
+      "el": "Ευχαριστώ, κυρία."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Tu as un crayon et une gomme ?",
+      "el": "Έχεις μολύβι και γόμα;"
+    },
+    {
+      "qui": "papa",
+      "fr": "J'ai un crayon, mais je n'ai pas de gomme.",
+      "el": "Έχω μολύβι, αλλά δεν έχω γόμα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Ce n'est pas grave. Tiens.",
+      "el": "Δεν πειράζει. Ορίστε."
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci beaucoup.",
+      "el": "Ευχαριστώ πολύ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Maintenant, on écrit la date. On est quel jour ?",
+      "el": "Τώρα γράφουμε την ημερομηνία. Τι μέρα είναι;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Pardon, vous pouvez répéter ?",
+      "el": "Συγγνώμη, μπορείτε να το επαναλάβετε;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "On est mardi. Mardi neuf septembre.",
+      "el": "Είναι Τρίτη. Τρίτη εννιά Σεπτεμβρίου."
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci. Madame, c'est quand la récré ?",
+      "el": "Ευχαριστώ. Κυρία, πότε είναι το διάλειμμα;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Dans une heure. Et à midi ?",
+      "el": "Σε μία ώρα. Και το μεσημέρι;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Comment ?",
+      "el": "Πώς είπατε;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Tu manges à la cantine ou tu rentres à la maison ?",
+      "el": "Τρως στην καντίνα ή γυρίζεις σπίτι;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Je ne sais pas encore !",
+      "el": "Δεν ξέρω ακόμα!"
+    }
+  ]
+}

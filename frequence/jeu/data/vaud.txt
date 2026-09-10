@@ -1,0 +1,14 @@
+# Λέξεις που δεν υπάρχουν στο σώμα υποτίτλων επειδή είναι ελβετικές,
+# αλλά είναι ακριβώς αυτές που ακούγονται στο καντόνι του Βω.
+septante
+huitante
+nonante
+natel
+déchèterie
+déchetterie
+UAPE
+Coop
+Migros
+CFF
+poya
+service

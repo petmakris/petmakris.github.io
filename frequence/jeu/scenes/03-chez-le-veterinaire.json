@@ -1,0 +1,111 @@
+{
+  "id": 3,
+  "slug": "chez-le-veterinaire",
+  "titre_fr": "Chez le vétérinaire",
+  "titre_el": "Στην κτηνίατρο",
+  "lieu": "cabinet vétérinaire, Lausanne",
+  "roles": {
+    "papa": "le maître du chien",
+    "myrto": "la vétérinaire"
+  },
+  "mots_du_lieu": [
+    "chien",
+    "chocolat",
+    "gentil",
+    "semaine",
+    "rue",
+    "docteur"
+  ],
+  "lignes": [
+    {
+      "qui": "myrto",
+      "fr": "Bonjour, monsieur. Il s'appelle comment ?",
+      "el": "Καλημέρα, κύριε. Πώς τον λένε;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Il s'appelle Bobby.",
+      "el": "Τον λένε Μπόμπι."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Et qu'est-ce qu'il a ?",
+      "el": "Και τι έχει;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Il ne mange pas. Depuis trois jours.",
+      "el": "Δεν τρώει. Εδώ και τρεις μέρες."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Il boit ?",
+      "el": "Πίνει;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Oui, il boit beaucoup.",
+      "el": "Ναι, πίνει πολύ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Quel âge il a ?",
+      "el": "Πόσων χρονών είναι;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Il a huit ans.",
+      "el": "Είναι οκτώ χρονών."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Bobby, viens ici !",
+      "el": "Μπόμπι, έλα εδώ!"
+    },
+    {
+      "qui": "papa",
+      "fr": "Il est très gentil.",
+      "el": "Είναι πολύ καλό σκυλί."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Est-ce qu'il mange des choses dans la rue ?",
+      "el": "Τρώει πράγματα από τον δρόμο;"
+    },
+    {
+      "qui": "papa",
+      "fr": "Ah… oui. Il mange tout.",
+      "el": "Α… ναι. Τρώει τα πάντα."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Voilà le problème.",
+      "el": "Ορίστε το πρόβλημα."
+    },
+    {
+      "qui": "papa",
+      "fr": "C'est grave ?",
+      "el": "Είναι σοβαρό;"
+    },
+    {
+      "qui": "myrto",
+      "fr": "Non. Mais pas de chocolat, jamais !",
+      "el": "Όχι. Αλλά ποτέ σοκολάτα!"
+    },
+    {
+      "qui": "papa",
+      "fr": "D'accord, docteur.",
+      "el": "Εντάξει, γιατρέ."
+    },
+    {
+      "qui": "myrto",
+      "fr": "Et vous revenez dans une semaine.",
+      "el": "Και ξανάρχεστε σε μία βδομάδα."
+    },
+    {
+      "qui": "papa",
+      "fr": "Merci beaucoup. Au revoir !",
+      "el": "Ευχαριστώ πολύ. Αντίο!"
+    }
+  ]
+}
