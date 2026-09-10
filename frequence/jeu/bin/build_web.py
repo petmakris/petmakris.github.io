@@ -103,11 +103,16 @@ main{padding:0 var(--pad) 40px; max-width:1760px; margin:0 auto}
 
 /* η σκηνή: μία στήλη στο κινητό, δύο στην τηλεόραση */
 .lignes{column-gap:26px}
-@media (min-width:1200px){ .lignes{columns:2} }
-.ln{display:flex; gap:14px; align-items:flex-start; width:100%; text-align:start;
+.lignes.deux{columns:2}
+/* Τα περιθώρια είναι αναλογικά του μεγέθους: αλλιώς, όταν η προσαρμογή
+   μικραίνει τα γράμματα, οι γραμμές μένουν το ίδιο ψηλές και η σκηνή
+   εξακολουθεί να μη χωράει. */
+.ln{display:flex; gap:calc(var(--t) * .5); align-items:flex-start; width:100%; text-align:start;
   background:transparent; border:0; border-left:3px solid transparent;
-  padding:11px 14px; font:inherit; font-family:var(--sans); color:inherit; cursor:pointer;
-  border-radius:8px; margin-bottom:5px; break-inside:avoid;
+  padding:calc(var(--t) * .42) calc(var(--t) * .6); font:inherit; font-family:var(--sans);
+  color:inherit; cursor:pointer;
+  border-radius:8px; margin-bottom:calc(var(--t) * .18); break-inside:avoid;
+  min-height:44px;              /* ολόκληρη η ατάκα είναι κουμπί, και χωράει δάχτυλο */
   transition:background .13s}
 .ln.papa{border-left-color:var(--bleu); background:var(--bleu-bg)}
 .ln.myrto{border-left-color:var(--vaud-line)}
@@ -121,6 +126,7 @@ main{padding:0 var(--pad) 40px; max-width:1760px; margin:0 auto}
 .ln.myrto .t{font-weight:400; color:var(--ink2)}
 .ln .m{display:none; font-size:var(--m); color:var(--ink3); margin-top:4px; line-height:1.4}
 body.sens .ln .m{display:block}
+.ln:active{transform:scale(.995)}
 .ln.on{background:var(--vaud-bg); border-left-color:var(--vaud)}
 .ln.on .ic{background:var(--vaud); color:#fff; border-color:var(--vaud)}
 
@@ -131,6 +137,7 @@ footer a{color:var(--vaud)}
    ατάκων ξεπερνούσαν κατά 13 πίξελ το ύψος μιας οθόνης 1080 και εμφανιζόταν
    κύλιση ακριβώς την ώρα του παιχνιδιού. */
 body.enjeu footer{display:none}
+body.enjeu main{padding-bottom:10px}
 /* Ορατή εστίαση, για χειρισμό με βελάκια από απόσταση */
 .ln:focus-visible, .item:focus-visible{outline:3px solid var(--vaud); outline-offset:2px}
 [hidden]{display:none!important}
@@ -204,6 +211,7 @@ function ouvre(i, silencieux){
   document.body.classList.add('enjeu');
   enJeu.forEach(b => b.hidden = false);
   window.scrollTo(0, 0);
+  ajuste();
   const p = vue.querySelector('.ln');
   if (p) p.focus({ preventScroll: true });
 }
@@ -229,7 +237,7 @@ function bascule(id, fn){
   });
 }
 bascule('lent', on => { lent = on; if (encours) encours.playbackRate = on ? 0.72 : 1; });
-bascule('sens', on => document.body.classList.toggle('sens', on));
+bascule('sens', on => { document.body.classList.toggle('sens', on); ajuste(); });
 
 // Το QR κάθε τυπωμένης κάρτας δείχνει εδώ: petmakris.github.io/cartes/#07
 function depuisAdresse(){
@@ -272,6 +280,30 @@ document.addEventListener('keydown', e => {
       break;
   }
 });
+
+// Μία σκηνή, μία οθόνη — σε κάθε tablet και σε κάθε προσανατολισμό.
+// Δοκιμάζει από μεγάλο προς μικρό, ακριβώς όπως κάνει και το PDF, και
+// προτιμά δύο στήλες όταν η οθόνη είναι φαρδιά.
+function ajuste(){
+  if (vue.hidden) return;
+  const bloc = vue.querySelector('.lignes');
+  if (!bloc) return;
+  const deuxColonnes = window.innerWidth >= 900 && window.innerWidth > window.innerHeight * 1.1;
+  bloc.classList.toggle('deux', deuxColonnes);
+  // Μετριέται ΟΛΟ το έγγραφο, όχι μόνο το μπλοκ: αλλιώς ξεφεύγουν τα
+  // περιθώρια και η σκηνή βγαίνει δέκα πίξελ έξω από την οθόνη.
+  // Κατώφλι αναγνωσιμότητας: σε κινητό μια σκηνή 20 ατάκων δεν χωράει με
+  // τίποτα, και δεν αξίζει να πέσει στα 12px για να χωρέσει — προτιμούμε
+  // κύλιση. Σε tablet και τηλεόραση δεν φτάνει ποτέ ως εδώ.
+  for (let t = 30; t >= 17; t -= 1) {
+    bloc.style.setProperty('--t', t + 'px');
+    bloc.style.setProperty('--m', Math.round(t * 0.68) + 'px');
+    bloc.style.setProperty('--ic', Math.round(t * 1.5) + 'px');
+    if (document.documentElement.scrollHeight <= window.innerHeight) return;
+  }
+}
+addEventListener('resize', ajuste);
+addEventListener('orientationchange', () => setTimeout(ajuste, 120));
 
 function stop(){
   if (encours){ encours.pause(); encours = null; }
