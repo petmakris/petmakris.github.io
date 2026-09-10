@@ -134,7 +134,9 @@ def fin(c):
         ("Εκείνη κρίνει",
          "Μία απόφαση στο τέλος: πέρασε, ή ξανά αύριο. Είναι η αυθεντία και το ξέρει."),
         ("Η σφραγίδα",
-         "Μια σκηνή που πέρασε σφραγίζεται. Τίποτα άλλο δεν μετριέται, κανείς δεν κερδίζει."),
+         "Μια σκηνή που πέρασε σφραγίζεται στο κυκλάκι πάνω δεξιά. Τίποτα άλλο δεν μετριέται."),
+        ("Και ξανά, ανάποδα",
+         "Την επόμενη φορά ο 1 γίνεται 2. Η ίδια σκηνή, οι άλλες ατάκες."),
     ], start=1):
         c.setFillColorRGB(*K.AMBRE_BG)
         c.circle(M + 13, y + 4, 13, stroke=0, fill=1)
@@ -173,9 +175,9 @@ def main():
     ordre.append("couverture")
     for i, d in enumerate(scenes):
         gauche = 2 + 2 * i
-        K.page_dialogue(c, d, num_page="page %d" % gauche)
+        K.page_dialogue(c, d, num_page=gauche)
         ordre.append("fr")
-        K.page_sens(c, d, num_page="σελ. %d" % (gauche + 1))
+        K.page_sens(c, d, num_page=gauche + 1)
         ordre.append("el")
     fin(c)
     ordre.append("fin")

@@ -16,9 +16,6 @@
 """
 import glob, json, os, sys
 
-from reportlab.graphics import renderPDF
-from reportlab.graphics.barcode import qr
-from reportlab.graphics.shapes import Drawing
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.utils import simpleSplit
 from reportlab.pdfbase import pdfmetrics
@@ -30,10 +27,9 @@ JEU  = os.path.dirname(HERE)
 
 W, H = A4
 M       = 42
-URL     = "https://petmakris.github.io/cartes/"
 TOP     = H - M
 ENTETE  = 92          # σταθερό ύψος κεφαλίδας — αλλιώς οι σελίδες ξεχαρβαλώνουν
-PIED    = 40
+PIED    = 26
 
 # Το χαρτί μένει λευκό. Χρώμα υπάρχει ΜΟΝΟ στις δύο κουκκίδες των παικτών και
 # σε δυο λεπτές γραμμές — ένα τεύχος 42 σελίδων τυπώνεται σε εταιρικό εκτυπωτή.
@@ -176,32 +172,10 @@ def page(c, d, langue, num_page):
         c.setLineWidth(0.4)
         c.line(M + 46, y + 3, W - M, y + 3)
 
-    # QR μόνο στη γαλλική: ανοίγει αυτή τη σκηνή στο κινητό, χωρίς ψάξιμο
-    if not grec:
-        code = qr.QrCodeWidget(URL + "#%02d" % d["id"], barLevel="M")
-        b = code.getBounds()
-        cote = 46
-        dessin = Drawing(cote, cote,
-                         transform=[cote / (b[2] - b[0]), 0, 0, cote / (b[3] - b[1]),
-                                    -b[0] * cote / (b[2] - b[0]), -b[1] * cote / (b[3] - b[1])])
-        dessin.add(code)
-        renderPDF.draw(dessin, c, W - M - cote, M + 22)
-        c.setFillColorRGB(*GRIS)
-        c.setFont(REG, 7.5)
-        c.drawCentredString(W - M - cote / 2, M + 13, "écoutez la scène")
-
-    c.setStrokeColorRGB(*GRIS_L)
-    c.setLineWidth(0.8)
-    c.line(M, M + 78, W - M, M + 78)
+    # μόνο ο αριθμός σελίδας, στην έξω γωνία — τον χρειάζονται τα περιεχόμενα
     c.setFillColorRGB(*GRIS)
-    c.setFont(REG, 10)
-    c.drawString(M, M + 63,
-                 "Ξαναπαίξτε τη σκηνή αλλάζοντας ρόλους: ο 1 γίνεται 2."
-                 if grec else "Rejouez la scène en échangeant les rôles.")
     c.setFont(REG, 9)
-    c.drawString(M, M + 48,
-                 ("%d ατάκες · %s" if grec else "%d lignes · %s")
-                 % (len(d["lignes"]), num_page))
+    c.drawRightString(W - M, M + 4, str(num_page))
     c.showPage()
 
 
