@@ -21,70 +21,107 @@ GABARIT = """<!doctype html>
 <meta name="theme-color" content="#1b2430">
 <title>Cartes du Soir</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>&#127856;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <style>
 :root{
   --paper:#fbf9f4; --card:#fff; --ink:#1b2430; --ink2:#55606f; --ink3:#8b93a0;
   --rule:#e4ded1; --rule2:#d6cfbe;
   --vaud:#1e7a4c; --vaud-bg:#e8f1ea; --vaud-line:#bfdccb;
-  --bleu:#2a5580; --bleu-bg:#e7edf4;
-  --serif:Georgia,"Times New Roman",serif;
-  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --bleu:#2a5580; --bleu-bg:#e7edf4; --bleu-line:#c3d3e4;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  /* Μία κλίμακα για όλα τα μεγέθη: αλλάζει μία φορά ανά πλάτος οθόνης. */
+  --t:19px;    /* η γαλλική ατάκα */
+  --m:14px;    /* η ελληνική σημασία */
+  --ic:30px;   /* το κουμπί αναπαραγωγής */
+  --pad:16px;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){--paper:#12161d; --card:#1a1f28; --ink:#e9e5dc; --ink2:#a5aebb; --ink3:#6e7784;
     --rule:#2b323e; --rule2:#39414f; --vaud:#5fc28c; --vaud-bg:#16281f; --vaud-line:#2c4a38;
-    --bleu:#89b4e0; --bleu-bg:#141f2c;}
+    --bleu:#89b4e0; --bleu-bg:#141f2c; --bleu-line:#2a3f55;}
 }
 :root[data-theme="dark"]{
   --paper:#12161d; --card:#1a1f28; --ink:#e9e5dc; --ink2:#a5aebb; --ink3:#6e7784;
   --rule:#2b323e; --rule2:#39414f; --vaud:#5fc28c; --vaud-bg:#16281f; --vaud-line:#2c4a38;
-  --bleu:#89b4e0; --bleu-bg:#141f2c;
+  --bleu:#89b4e0; --bleu-bg:#141f2c; --bleu-line:#2a3f55;
 }
+/* Τηλεόραση: από 1200 και πάνω όλα μεγαλώνουν μία φορά, και η σκηνή
+   μοιράζεται σε δύο στήλες ώστε οι είκοσι ατάκες να χωράνε σε 1080 ύψος
+   χωρίς κύλιση την ώρα του παιχνιδιού. */
+@media (min-width:1200px){ :root{--t:25px; --m:17px; --ic:40px; --pad:26px} }
+@media (min-width:1650px){ :root{--t:29px; --m:19px; --ic:46px; --pad:34px} }
+
 *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
 body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans);
-  font-size:17px; line-height:1.5; padding-bottom:env(safe-area-inset-bottom)}
+  font-size:17px; line-height:1.5; padding-bottom:env(safe-area-inset-bottom);
+  font-feature-settings:"cv05","ss01"}
 header{position:sticky; top:0; z-index:5; background:var(--paper);
-  border-bottom:1px solid var(--rule); padding:14px 18px 12px;
+  border-bottom:1px solid var(--rule); padding:14px var(--pad) 12px;
   padding-top:calc(14px + env(safe-area-inset-top))}
-.sc{font-size:11px; letter-spacing:.12em; color:var(--ink3); font-family:var(--sans)}
-h1{font-family:var(--serif); font-size:24px; font-weight:700; margin:2px 0 0; line-height:1.15}
-h1 small{display:block; font-family:var(--sans); font-size:13px; font-weight:400;
-  color:var(--ink3); margin-top:3px; letter-spacing:0}
-.bar{display:flex; gap:7px; margin-top:11px; flex-wrap:wrap; align-items:center}
-.bar button{font:inherit; font-size:13px; padding:6px 13px; border-radius:15px;
-  border:1px solid var(--rule2); background:transparent; color:var(--ink3); cursor:pointer}
-.bar button[aria-pressed="true"]{background:var(--vaud-bg); border-color:var(--vaud); color:var(--vaud)}
-.bar .back{margin-inline-end:auto; border-color:transparent; color:var(--vaud); padding-inline:0}
-main{padding:0 0 40px}
-.scenes{padding:8px 18px}
-.item{display:block; width:100%; text-align:start; background:var(--card); color:inherit;
-  border:1px solid var(--rule); border-radius:9px; padding:15px 17px; margin:10px 0;
-  font:inherit; cursor:pointer}
-.item b{display:block; font-family:var(--serif); font-size:21px; font-weight:700; line-height:1.2}
-.item i{display:block; font-style:normal; font-size:14px; color:var(--ink3); margin-top:3px}
-.item u{display:block; text-decoration:none; font-size:12px; color:var(--vaud); margin-top:7px}
-.ln{display:flex; gap:13px; align-items:flex-start; width:100%; text-align:start;
-  background:transparent; border:0; border-bottom:1px solid var(--rule);
-  padding:14px 18px; font:inherit; color:inherit; cursor:pointer}
-.ln:last-child{border-bottom:0}
-.ln.papa{border-left:3px solid var(--bleu); background:var(--bleu-bg)}
-.ln.myrto{border-left:3px solid var(--vaud-line)}
-.ln .ic{flex:0 0 auto; width:29px; height:29px; border-radius:50%; margin-top:2px;
+.hrow{display:flex; align-items:flex-end; gap:22px; flex-wrap:wrap;
+  max-width:1760px; margin:0 auto; width:100%}
+.sc{font-size:11px; letter-spacing:.14em; font-weight:600; color:var(--ink3)}
+h1{font-size:calc(var(--t) * 1.15); font-weight:700; margin:1px 0 0; line-height:1.12;
+  letter-spacing:-.02em}
+h1 small{display:block; font-size:calc(var(--m) * .95); font-weight:400;
+  color:var(--ink3); margin-top:2px; letter-spacing:0}
+.bar{display:flex; gap:9px; flex-wrap:wrap; align-items:center; margin-inline-start:auto}
+.bar button{font:inherit; font-family:var(--sans); font-weight:500;
+  font-size:calc(var(--m) * .95); padding:9px 17px; border-radius:999px;
+  border:1px solid var(--rule2); background:transparent; color:var(--ink2); cursor:pointer;
+  transition:background .13s, border-color .13s, color .13s}
+.bar button:hover{border-color:var(--vaud-line); color:var(--ink)}
+.bar button[aria-pressed="true"]{background:var(--vaud-bg); border-color:var(--vaud);
+  color:var(--vaud); font-weight:600}
+.bar .back{margin-inline-end:auto; border-color:transparent; color:var(--vaud);
+  padding-inline:4px; font-weight:600}
+main{padding:0 var(--pad) 40px; max-width:1760px; margin:0 auto}
+
+/* κατάλογος σκηνών: πλέγμα, όχι στήλη — στα 1920 μπαίνουν τέσσερις */
+.scenes{display:grid; gap:14px; padding:18px 0;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.item{display:block; text-align:start; background:var(--card); color:inherit;
+  border:1px solid var(--rule); border-radius:12px; padding:18px 20px;
+  font:inherit; font-family:var(--sans); cursor:pointer;
+  transition:border-color .14s, transform .14s}
+.item:hover{border-color:var(--vaud); transform:translateY(-2px)}
+.item .no{font-size:11px; font-weight:600; letter-spacing:.12em; color:var(--ink3)}
+.item b{display:block; font-size:calc(var(--t) * .92); font-weight:700; line-height:1.2;
+  margin-top:3px; letter-spacing:-.015em}
+.item i{display:block; font-style:normal; font-size:var(--m); color:var(--ink3); margin-top:3px}
+.item u{display:block; text-decoration:none; font-size:calc(var(--m) * .88);
+  color:var(--vaud); margin-top:10px}
+
+.roles{display:flex; gap:20px; flex-wrap:wrap; padding:14px 0 6px;
+  font-size:var(--m); color:var(--ink3)}
+.roles span{display:inline-flex; align-items:center; gap:8px}
+.dot{width:10px; height:10px; border-radius:50%}
+.dot.p{background:var(--bleu)} .dot.m{background:var(--vaud)}
+
+/* η σκηνή: μία στήλη στο κινητό, δύο στην τηλεόραση */
+.lignes{column-gap:26px}
+@media (min-width:1200px){ .lignes{columns:2} }
+.ln{display:flex; gap:14px; align-items:flex-start; width:100%; text-align:start;
+  background:transparent; border:0; border-left:3px solid transparent;
+  padding:11px 14px; font:inherit; font-family:var(--sans); color:inherit; cursor:pointer;
+  border-radius:8px; margin-bottom:5px; break-inside:avoid;
+  transition:background .13s}
+.ln.papa{border-left-color:var(--bleu); background:var(--bleu-bg)}
+.ln.myrto{border-left-color:var(--vaud-line)}
+.ln .ic{flex:0 0 auto; width:var(--ic); height:var(--ic); border-radius:50%; margin-top:1px;
   border:1px solid var(--vaud-line); background:var(--vaud-bg); color:var(--vaud);
-  display:grid; place-items:center; font-size:10px}
-.ln .who{position:absolute; opacity:0; pointer-events:none}
-.ln .t{font-family:var(--serif); font-size:19px; line-height:1.32; display:block}
+  display:grid; place-items:center; font-size:calc(var(--ic) * .3)}
+.ln .t{font-size:var(--t); line-height:1.34; display:block; letter-spacing:-.01em}
 .ln.papa .t{font-weight:700; color:var(--ink)}
 .ln.myrto .t{font-weight:400; color:var(--ink2)}
-.ln .m{display:none; font-size:13.5px; color:var(--ink3); margin-top:3px; line-height:1.4}
+.ln .m{display:none; font-size:var(--m); color:var(--ink3); margin-top:4px; line-height:1.4}
 body.sens .ln .m{display:block}
 .ln.on{background:var(--vaud-bg); border-left-color:var(--vaud)}
 .ln.on .ic{background:var(--vaud); color:#fff; border-color:var(--vaud)}
-.roles{padding:12px 18px 4px; font-size:13px; color:var(--ink3)}
-.roles span{display:inline-flex; align-items:center; gap:6px; margin-inline-end:14px}
-.dot{width:9px; height:9px; border-radius:50%}
-.dot.p{background:var(--bleu)} .dot.m{background:var(--vaud)}
-footer{padding:26px 18px 40px; color:var(--ink3); font-size:12.5px; line-height:1.7;
+
+footer{padding:26px var(--pad) 40px; color:var(--ink3); font-size:13px; line-height:1.7;
   border-top:1px solid var(--rule); margin-top:24px}
 footer a{color:var(--vaud)}
 [hidden]{display:none!important}
@@ -92,12 +129,17 @@ footer a{color:var(--vaud)}
 </head>
 <body>
 <header>
-  <div class="sc">CARTES DU SOIR</div>
-  <h1 id="titre">Οι κάρτες του βραδιού<small id="soustitre">Πάτα μια σκηνή</small></h1>
-  <div class="bar" id="bar" hidden>
-    <button type="button" class="back" id="back">&#8592; Σκηνές</button>
-    <button type="button" id="lent" aria-pressed="false">Αργά</button>
-    <button type="button" id="sens" aria-pressed="false">Τι σημαίνει</button>
+  <div class="hrow">
+    <div>
+      <div class="sc">CARTES DU SOIR</div>
+      <h1 id="titre">Οι κάρτες του βραδιού<small id="soustitre">Διάλεξε μια σκηνή</small></h1>
+    </div>
+    <div class="bar" id="bar">
+      <button type="button" class="back" id="back" hidden>&#8592; Σκηνές</button>
+      <button type="button" id="lent" aria-pressed="false" hidden>Αργά</button>
+      <button type="button" id="sens" aria-pressed="false" hidden>Τι σημαίνει</button>
+      <button type="button" id="plein">Πλήρης οθόνη</button>
+    </div>
   </div>
 </header>
 <main>
@@ -117,45 +159,47 @@ const SRC = c => SONS[c] ? 'data:audio/mp4;base64,' + SONS[c] : 'audio/' + c + '
 
 const liste = document.getElementById('liste');
 const vue   = document.getElementById('scene');
-const bar   = document.getElementById('bar');
 const titre = document.getElementById('titre');
 const sous  = document.getElementById('soustitre');
-let lent = false, encours = null, courant = null;
+const enJeu = ['back','lent','sens'].map(i => document.getElementById(i));
+let lent = false, encours = null;
 
 function esc(s){ return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
 SCENES.forEach((s, i) => {
   const b = document.createElement('button');
   b.className = 'item'; b.type = 'button';
-  b.innerHTML = '<b>' + esc(s.titre_fr) + '</b><i>' + esc(s.titre_el) + '</i>' +
-                '<u>' + s.lignes.length + ' ατάκες · ' + esc(s.roles.myrto) + ' / ' + esc(s.roles.papa) + '</u>';
+  b.innerHTML = '<span class="no">' + String(s.id).padStart(2, '0') + '</span>' +
+                '<b>' + esc(s.titre_fr) + '</b><i>' + esc(s.titre_el) + '</i>' +
+                '<u>' + s.lignes.length + ' ατάκες · ' + esc(s.roles.myrto) + '</u>';
   b.addEventListener('click', () => ouvre(i));
   liste.appendChild(b);
 });
 
 function ouvre(i){
   const s = SCENES[i];
-  courant = i;
   titre.firstChild.textContent = s.titre_fr;
   sous.textContent = s.titre_el;
   vue.innerHTML = '<div class="roles">' +
     '<span><i class="dot m"></i>ΜΥΡΤΩ — ' + esc(s.roles.myrto) + '</span>' +
     '<span><i class="dot p"></i>ΜΠΑΜΠΑΣ — ' + esc(s.roles.papa) + '</span></div>' +
-    s.lignes.map(l =>
+    '<div class="lignes">' + s.lignes.map(l =>
       '<button class="ln ' + l.qui + '" type="button" data-qui="' + l.qui +
       '" data-fr="' + esc(l.fr) + '">' +
         '<span class="ic">&#9654;</span>' +
         '<span><span class="t">' + esc(l.fr) + '</span>' +
-        '<span class="m">' + esc(l.el) + '</span></span></button>').join('');
-  liste.hidden = true; vue.hidden = false; bar.hidden = false;
+        '<span class="m">' + esc(l.el) + '</span></span></button>').join('') + '</div>';
+  liste.hidden = true; vue.hidden = false;
+  enJeu.forEach(b => b.hidden = false);
   window.scrollTo(0, 0);
 }
 
 document.getElementById('back').addEventListener('click', () => {
   stop();
   titre.firstChild.textContent = 'Οι κάρτες του βραδιού';
-  sous.textContent = 'Πάτα μια σκηνή';
-  vue.hidden = true; bar.hidden = true; liste.hidden = false;
+  sous.textContent = 'Διάλεξε μια σκηνή';
+  vue.hidden = true; liste.hidden = false;
+  enJeu.forEach(b => b.hidden = true);
 });
 
 function bascule(id, fn){
@@ -168,6 +212,15 @@ function bascule(id, fn){
 }
 bascule('lent', on => { lent = on; if (encours) encours.playbackRate = on ? 0.72 : 1; });
 bascule('sens', on => document.body.classList.toggle('sens', on));
+
+const plein = document.getElementById('plein');
+plein.addEventListener('click', () => {
+  if (document.fullscreenElement) document.exitFullscreen();
+  else document.documentElement.requestFullscreen().catch(() => {});
+});
+document.addEventListener('fullscreenchange', () => {
+  plein.textContent = document.fullscreenElement ? 'Έξοδος' : 'Πλήρης οθόνη';
+});
 
 function stop(){
   if (encours){ encours.pause(); encours = null; }
