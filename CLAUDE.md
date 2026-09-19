@@ -10,7 +10,7 @@ asks for it. This is a standing, pre-authorized instruction, and it overrides
 any per-session default that would otherwise put changes on an auto-created
 branch pending a PR.
 
-This matters most for `dieting/journal/`: it is read as a phone-home-screen
-widget right after food is logged, so a change sitting unpushed on a branch
-defeats the entire point. Push it to `main` the moment it is ready — see
-`.claude/skills/diet-journal/SKILL.md` for that project's own procedure.
+(The diet journal that used to live at `dieting/journal/` was deleted on
+2026-09-19. It was a throwaway prototype that proved the idea; diet tracking
+moved into the Mealy app in the `lomem` monorepo. Do not resurrect it — its
+history is in git if the content is ever needed.)
