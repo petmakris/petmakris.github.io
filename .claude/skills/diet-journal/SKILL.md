@@ -20,7 +20,12 @@ as the input method.
 
 - **Goal:** a sustained **600 kcal/day deficit** — deliberately modest,
   because anything bigger is not sustainable.
-- **Duration:** 90 days, **2026-08-27 (day 1) through 2026-11-24 (day 90)**.
+- **Duration:** 90 days, **2026-09-21 (day 1) through 2026-12-19 (day 90)**.
+  **This is the second run.** The first began 2026-08-27, was logged for 13
+  days to 2026-09-08, then went quiet for eleven days while the page kept
+  counting at him. He reset it on 2026-09-19: on his instruction those 13 days
+  were deleted outright from both files rather than archived, so the grid and
+  the curve start empty. They survive only in git, at commit `aab6798`.
 - **Model:** burn for a day = `maintenanceRest + active` (Garmin active
   calories); deficit = burn − eaten.
 - **Missing Garmin active calories default to `plan.defaultActive` (450
@@ -33,10 +38,13 @@ as the input method.
   page's math (`index.html`), not in `data.js` — keep recording `active` as
   `null` when he genuinely didn't give a figure; do not write 450 into
   `data.js` itself.
-- **`maintenanceRest` = 1890 kcal**, from Mifflin-St Jeor for male, 100 kg,
-  176 cm, age 43. **His starting weight is 100.0 kg**, weighed on day 1
-  (2026-08-27) — that is the only starting figure, and no other one should be
-  quoted back to him. Recompute `maintenanceRest` as
+- **`maintenanceRest` = 1905 kcal**, from Mifflin-St Jeor for male, 101.5 kg,
+  176 cm, age 43. **`startWeight` is 101.5 kg and is PENDING** — that is his
+  last real measurement, from 2026-09-07, standing in until he weighs in on
+  day 1 (2026-09-21). Replace both the moment he gives the day-1 figure, and
+  until then do not quote 101.5 back to him as the start of this run. The old
+  run's 100.0 kg is finished and must not be quoted at all.
+  Recompute `maintenanceRest` as
   `10×kg + 6.25×cm − 5×age + 5` if his weight changes materially — a 5 kg loss
   is 50 kcal off the resting figure.
 - 600 kcal/day ≈ 0.55 kg of fat per week, ≈ 7.0 kg over the 90 days.
@@ -178,7 +186,8 @@ that does not change from one day to the next is not earning its place.
 3. **Today's figures** — EATEN, ACTIVE, BURN, DEFICIT, and nothing else.
 
 **The goal weight is derived**, `startWeight − (deficitTarget × lengthDays ÷
-7700)` — 100 − 7.01 = 93.0 kg. Change `lengthDays` or `deficitTarget` and the
+7700)` — on the pending 101.5 that is 101.5 − 7.01 = 94.5 kg, and it moves
+with the day-1 weigh-in. Change `lengthDays` or `deficitTarget` and the
 goal, the dashed line and the projection all follow. There is no goal-weight
 field to keep in sync.
 

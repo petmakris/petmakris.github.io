@@ -14,117 +14,13 @@
  */
 window.DIET = {
   plan: {
-    start: "2026-08-27",        // day 1
-    lengthDays: 90,             // three months → ends 2026-11-24
+    start: "2026-09-21",        // day 1 — Monday
+    lengthDays: 90,             // three months → ends 2026-12-19
     deficitTarget: 600,         // kcal/day — the only sustainable number
-    maintenanceRest: 1890,      // Mifflin-St Jeor: male, 100 kg, 176 cm, age 43
-    startWeight: 100.0,         // kg on day 1 — weighed in 2026-08-27
+    maintenanceRest: 1905,      // Mifflin-St Jeor: male, 101.5 kg, 176 cm, age 43
+    startWeight: 101.5,         // PENDING: last real weigh-in (2026-09-07), standing in until he weighs in on day 1
     defaultActive: 450          // used when a day has no Garmin active figure — his Garmin stays consistent day to day, so this stands in rather than the day counting as a gap
   },
   days: [
-    {
-      date: "2026-08-27",
-      eaten: 1930,
-      active: 528,
-      weight: 100.0,
-      exercise: [],
-      note: "Day 1 weigh-in 100.0 kg. Evening: apple, bread, salad, +100 unknown — he says that's it for today."
-    },
-    {
-      date: "2026-08-28",
-      eaten: 2460,
-      active: null,
-      weight: null,
-      exercise: [],
-      note: "Woke 5h00 (cat), ate a double portion of overnight oats + milk. Plans extra gym time to compensate."
-    },
-    {
-      date: "2026-08-29",
-      eaten: 4000,
-      active: 400,
-      weight: null,
-      exercise: ["walking"],
-      note: "Cat woke him early morning again (2nd morning in a row) and it triggered early-morning eating: yogurt with a lot of honey ~500 + ~500 other, ~1000 kcal before the day even started. Pattern: cat wake-up → early-morning eating. Lunch: yogurt + honey and biscoff cream, 550 kcal. Evening: 450 kcal, no items given. Extra +700 later, no items given — high-calorie day, he flagged it himself. Dinner +700, no items given. Late night ~23:50 (still before midnight, counted into this day): +600, no items given — high-calorie day overall, he flagged it himself and chose to keep tracking rather than skip logging it. Garmin active 400 kcal, mostly from walking."
-    },
-    {
-      date: "2026-08-30",
-      eaten: 1900,
-      active: null,
-      weight: null,
-      exercise: [],
-      note: "Day 4: eaten 1900, no items given."
-    },
-    {
-      date: "2026-08-31",
-      eaten: 3290,
-      active: null,
-      weight: null,
-      exercise: [],
-      note: "Day 5: banana 120, morning yogurt 500g+biscoff+honey 470, lunch IKEA 20 meatballs+cream sauce+legumes+potato puree ~1180, plus 4x70g chocolate bars 380 kcal each = 1520. He flagged the chocolate himself as unfortunate. High-calorie day, over target."
-    },
-    {
-      date: "2026-09-01",
-      eaten: 3010,
-      active: 917,
-      weight: null,
-      exercise: ["leg day"],
-      note: "Day 6: morning carbs 360, lunch chicken+couscous 600, chocolate 400, yogurt 350+honey 200+biscoff cream 400, evening +700 (no items given). He flagged it himself as a lot, feels bad about it. Leg day planned. He identified the cause: no salad available — plans more yogurt and salads from tomorrow."
-    },
-    {
-      date: "2026-09-02",
-      eaten: 3270,
-      active: null,
-      weight: null,
-      exercise: [],
-      note: "Day 7: planned in advance — yogurt 350, honey 120, salad 150, chicken+couscous 450. Planned chocolate 200 skipped. Lunch ran over with extra yogurt+honey 500. Evening +1100 (no items given). Late night +600 more, no items given. Heavy work day, limited capacity to diet strictly."
-    },
-    {
-      date: "2026-09-03",
-      eaten: 3500,
-      active: 748,
-      weight: null,
-      exercise: [],
-      note: "Day 8: breakfast+lunch 1300, evening 600, plus another 800 — no items given for any of them. He said he would skip dinner, then reported ~800 for dinner the next morning, so the day closed at 3500. Garmin active confirmed 748 (was ~447 mid-evening), consistent with the 45 min uphill walk he had planned, though he did not confirm the walk itself."
-    },
-    {
-      date: "2026-09-04",
-      eaten: 2700,
-      active: null,
-      weight: null,
-      exercise: [],
-      note: "Day 9: morning — 4 cookies 200, yogurt 350, 4 small pieces of chocolate 150; lunch 800; evening 1200, no items given. All figures given directly by him."
-    },
-    {
-      date: "2026-09-05",
-      eaten: 4050,
-      active: null,
-      weight: null,
-      exercise: [],
-      note: "Day 10: morning 500 (250 + 250), then 300, salad with cheese 350, then 2000 in sweets, then 900 more in the evening with no items given. All figures given directly by him except the salad, which he gave as \"around 350\". He planned a 10K run in the evening — not confirmed, so not recorded as exercise. He was hard on himself about the sweets and said he would be better tomorrow."
-    },
-    {
-      date: "2026-09-06",
-      eaten: 2650,
-      active: null,
-      weight: null,
-      exercise: [],
-      note: "Day 11: yogurt 350, salad 150, 4 corn rice cakes 100, 6 rice cakes 150, cottage cheese 150, tacos 1000, 6 rice cakes 150 — all figures given by him. The tacos came in at 1000 rather than the 800 he had planned. Reported the next morning that he ate around 600 more late at night, no items given, so the day closed at 2650."
-    },
-    {
-      date: "2026-09-07",
-      eaten: 2425,
-      active: 641,
-      weight: 101.5,
-      exercise: [],
-      note: "Day 12: planned — yogurt 350 in the morning, salad 150 at noon, rice cakes 150 + cottage cheese 150 in the evening, with most of the day's calories shifted towards the end. Morning actually was yogurt 350 plus one croissant, photographed on the plate: a large one, roughly 15 cm, next to a cut piece showing a pink ham filling. Estimated at 400 as a ham-and-cheese croissant; a plain butter one that size would be about 320. He confirmed the 400 estimate. Weighed in at 101.5 kg. Noon: salad 150. Evening: 5 rice cakes 125. Said he was going off sugar, then had 500 in candies after lunch and could not resist. Evening reported as 800-900, no items given, recorded at 900 on his instruction and taken as on top of the 5 rice cakes already logged. Day closed at 2425. Garmin active 641."
-    },
-    {
-      date: "2026-09-08",
-      eaten: 2050,
-      active: null,
-      weight: null,
-      exercise: [],
-      note: "Day 13: yogurt 350 in the morning, plus a crepe at the office at 700 — his figure. Complained that there is always food available at the company. Lunch 1000, no items given, his figure. Said he would try not to eat more today; day stands at 2050."
-    }
   ]
 };
