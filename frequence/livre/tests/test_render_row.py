@@ -23,7 +23,15 @@ def test_multiword_noun_keeps_its_tail():
 def test_row_colours_the_article_not_the_noun():
     html = render.row_html({"fr": "la main", "el": "το χέρι", "key": "hand"}, ACCENT)
     assert 'class="art la"' in html
-    assert "<b>main</b>" in html or ">main<" in html
+    # The noun must be a bare <b> with no class of its own, and not wrapped
+    # in any extra span carrying a gender class — this exact substring fails
+    # if either happens.
+    assert "<b>main</b>" in html
+
+def test_row_elided_article_gets_its_own_class():
+    html = render.row_html({"fr": "l'œil", "el": "το μάτι", "key": "eye"}, ACCENT)
+    assert 'class="art elid"' in html
+    assert 'class="art el"' not in html
 
 def test_row_with_emoji_omits_greek():
     html = render.row_html({"fr": "le chien", "el": "ο σκύλος", "key": "dog"}, ACCENT)

@@ -17,7 +17,7 @@ def split_article(fr):
 
 
 def _article_class(art):
-    return {"le": "le", "la": "la", "l'": "el", "les": "les"}.get(art, "")
+    return {"le": "le", "la": "la", "l'": "elid", "les": "les"}.get(art, "")
 
 
 def row_html(item, accent):
