@@ -440,7 +440,7 @@ Vous prenez le sans contact ?	Do you take contactless?	questions
 Je peux payer en plusieurs fois ?	Can I pay in instalments?	questions
 Vous acceptez les espèces ?	Do you accept cash?	questions
 Je n'ai que des billets, ça vous gêne ?	I only have notes, is that a problem?	questions
-Vous avez la monnaie sur cinquante euros ?	Do you have change for fifty euros?	questions
+Vous avez la monnaie sur cinquante francs ?	Do you have change for fifty francs?	questions
 Vous avez de la monnaie ?	Do you have change?	questions
 Vous pouvez retaper votre code ?	Can you re-enter your PIN?	questions
 Je peux avoir un ticket de caisse ?	Can I get a receipt?	questions
@@ -630,7 +630,7 @@ Je crois que je me suis perdu.	I think I'm lost.	quotidien
 Je ne suis pas d'ici.	I'm not from around here.	quotidien
 C'est à environ dix minutes en voiture.	It's about ten minutes by car.	quotidien
 On y va plus vite en métro.	It's faster by metro.	quotidien
-Prenez le RER jusqu'à Châtelet.	Take the RER to Châtelet.	quotidien
+Prenez le m2 jusqu'à Ouchy.	Take the m2 to Ouchy.	quotidien
 Descendez à la station suivante et changez.	Get off at the next stop and change.	quotidien
 Revenez sur vos pas, vous êtes allé trop loin.	Go back, you've gone too far.	quotidien
 C'est juste après le rond-point.	It's just after the roundabout.	quotidien
@@ -638,7 +638,7 @@ Garez-vous un peu plus loin, s'il vous plaît.	Park a bit further along, please.
 Je voudrais réserver une table pour deux.	I'd like to book a table for two.	quotidien
 On a réservé au nom de Martin.	We have a reservation under the name Martin.	quotidien
 On est quatre personnes.	There are four of us.	quotidien
-On va prendre le menu à vingt euros.	We'll take the twenty-euro set menu.	quotidien
+On va prendre le menu à vingt francs.	We'll take the twenty-franc set menu.	quotidien
 Je prends une entrée et un plat.	I'll have a starter and a main.	quotidien
 Pour moi, ce sera le poulet rôti.	For me, it'll be the roast chicken.	quotidien
 Je vais prendre le poisson.	I'll have the fish.	quotidien
@@ -823,7 +823,7 @@ Je tousse beaucoup.	I'm coughing a lot.	quotidien
 J'ai un rhume.	I have a cold.	quotidien
 J'ai la grippe.	I have the flu.	quotidien
 Appelez les urgences !	Call emergency services!	quotidien
-Appelez le quinze !	Call 15! (ambulance)	quotidien
+Appelez le 144 !	Call 144! (ambulance — Switzerland)	quotidien
 Appelez la police !	Call the police!	quotidien
 Il y a eu un accident.	There's been an accident.	quotidien
 Quelqu'un est blessé.	Someone is hurt.	quotidien
