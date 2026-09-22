@@ -2,15 +2,20 @@
 """Resolve a vocabulary item to an inline SVG.
 
 Order of precedence:
-  1. an explicit hand-picked `icon` (an OpenMoji hex codepoint)
+  1. an explicit hand-picked `icon` (an OpenMoji hex codepoint) — always wins,
+     even for a NO_ICON word: a human pick is not the automatic matcher.
   2. a house glyph, if `key` names one
-  3. an OpenMoji whose annotation keyword matches `key`
+  3. an OpenMoji whose annotation keyword matches `key` — but NOT for a
+     NO_ICON word: this step is the automatic matcher NO_ICON exists to stop.
   4. nothing — a dashed placeholder
 
-Rule 4 is deliberate and is why NO_ICON exists. The automatic keyword matcher
-picks plausible-but-wrong glyphs (the knee got the leg emoji, the ankle got the
-foot), and a wrong picture teaches a wrong word. An empty gutter is honest, and
-a later module gives those rows their Greek gloss instead.
+NO_ICON exists to stop the AUTOMATIC keyword matcher (step 3) from picking
+plausible-but-wrong glyphs (the knee got the leg emoji, the ankle got the
+foot) — it says nothing about a hand-picked `icon`, which by definition is
+not automatic. A wrong automatic picture teaches a wrong word, which is worse
+than none; a human's own pick is not that failure mode. An empty gutter for a
+NO_ICON word with no override is honest, and a later module gives that row
+its Greek gloss instead.
 
 The keyword index (assets/openmoji-index.json) maps a lowercase OpenMoji
 annotation to a hex codepoint, but ONLY for codepoints that actually have an
@@ -60,9 +65,6 @@ def _read(hexcode):
 
 def resolve(item, accent):
     """Return (svg, kind) for one item. kind is emoji | glyph | none."""
-    if item["fr"] in NO_ICON:
-        return _PLACEHOLDER, "none"
-
     explicit = item.get("icon")
     if explicit:
         if os.path.exists(os.path.join(OPENMOJI, f"{explicit}.svg")):
@@ -73,8 +75,9 @@ def resolve(item, accent):
     if svg:
         return svg, "glyph"
 
-    hexcode = _index().get(key.lower())
-    if hexcode:
-        return _read(hexcode), "emoji"
+    if item["fr"] not in NO_ICON:
+        hexcode = _index().get(key.lower())
+        if hexcode:
+            return _read(hexcode), "emoji"
 
     return _PLACEHOLDER, "none"

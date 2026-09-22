@@ -40,3 +40,18 @@ def test_unknown_key_gets_placeholder_not_crash():
     svg, kind = icons.resolve({"fr": "zzz", "key": "no_such_thing"}, ACCENT)
     assert kind == "none"
     assert "<svg" in svg
+
+
+def test_explicit_icon_overrides_blacklist():
+    """A human pick is not the automatic matcher NO_ICON exists to stop."""
+    svg, kind = icons.resolve(
+        {"fr": "le genou", "key": "knee", "icon": "1F9B5"}, ACCENT)
+    assert kind == "emoji"
+    assert "<svg" in svg
+
+
+def test_blacklisted_word_without_override_still_gets_no_icon():
+    """Same word, no hand-picked icon: still the placeholder, not a guess."""
+    svg, kind = icons.resolve({"fr": "le genou", "key": "knee"}, ACCENT)
+    assert kind == "none"
+    assert "dashed" in svg or "stroke-dasharray" in svg
