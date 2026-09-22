@@ -17,6 +17,14 @@ any size; keep it that way.
 Coordinates are on a 24x24 grid. SVG's y-axis points down, so `_y` flips
 every y a glyph passes in, letting the glyph bodies below read as normal
 Cartesian coordinates (bigger y = higher up).
+
+CONTRACT: the functions stored in GLYPHS return the INNER BODY only (the
+markup that goes inside <svg>...</svg>) — not a complete, standalone SVG
+document. `render()` is what calls `_svg()` to wrap that body into a real
+<svg viewBox="0 0 24 24" ...> element. When appending new glyphs here
+(Task 9's clock dials), write the drawing function to return body markup
+the same way every glyph below does, and let `render()` do the wrapping —
+do not call `_svg()` inside a glyph function.
 """
 import math
 
@@ -293,10 +301,12 @@ def _(a): return _dot(20, 12, 1.6, GREY) + _arrow(20, 12, 4, 12, a)
 def _(a): return _dot(4, 12, 1.6, GREY) + _arrow(4, 12, 20, 12, a)
 
 
-@_g("dir_straight")  # tout droit — arrow held between two grey lane lines
-def _(a): return (_line(9, 3, 9, 21, GREY, 1.0, "1.6 1.6") +
-                   _line(15, 3, 15, 21, GREY, 1.0, "1.6 1.6") +
-                   _arrow(12, 4, 12, 20, a, 1.9))
+@_g("dir_straight")  # tout droit — a road narrowing to a vanishing point, arrow running along it
+def _(a): return (
+    f'<path d="M {3},{_y(2)} L {21},{_y(2)} L {15},{_y(21)} L {9},{_y(21)} Z" '
+    f'fill="none" stroke="{GREY}" stroke-width="1.6" stroke-linejoin="round"/>'
+    + _arrow(12, 3, 12, 19, a, 2.0, 4.2)
+)
 
 
 @_g("dir_back")      # en arriere — path hooking back from a grey origin

@@ -31,3 +31,13 @@ def test_frequency_track_is_monotonic():
 
 def test_unknown_key_returns_none():
     assert glyphs.render("no_such_glyph", ACCENT) is None
+
+def test_dir_straight_is_not_dir_up():
+    """dir_straight must read as forward-along-a-path, not as an up arrow —
+    check more than string inequality: dir_straight draws a receding road
+    (a <path> element) that dir_up has no reason to contain."""
+    straight = glyphs.render("dir_straight", ACCENT)
+    up = glyphs.render("dir_up", ACCENT)
+    assert straight != up
+    assert "<path" in straight
+    assert "<path" not in up
