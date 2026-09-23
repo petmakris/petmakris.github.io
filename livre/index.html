@@ -30,23 +30,23 @@ body {
 .card {
   break-inside: avoid;
   page-break-inside: avoid;
-  display: grid;
-  grid-template-columns: 18% 1fr;
+  display: block;
   border-top: 2.5px solid var(--accent);
   margin-bottom: 6mm;
 }
 
-.rail { padding: 1mm 3mm 1mm 0;
-        background: linear-gradient(180deg,
-          color-mix(in srgb, var(--accent) 6%, #fff), #fff); }
-.rail h2 { font-size: 13pt; margin: 0 0 0.5mm; color: var(--accent);
-           hyphens: manual; word-break: keep-all; }
-.rail .el-sub { font-size: 8.5pt; color: var(--grey); display: block; }
-.rail .count { display: inline-block; margin-top: 1mm; padding: 0 5px;
+.rail {
+  display: flex; align-items: baseline; gap: 6px;
+  padding: 1.2mm 0 1.4mm;
+  break-inside: avoid; break-after: avoid;
+}
+.rail h2 { font-size: 12.5pt; margin: 0; color: var(--accent); }
+.rail .el-sub { font-size: 9pt; color: var(--grey); }
+.rail .count { margin-left: auto; padding: 0 5px;
                border: 1px solid var(--faint); border-radius: 7px;
                font-size: 7pt; color: var(--grey); }
 
-.body { border-left: 1px solid var(--faint); padding-left: 4mm; }
+.body { }
 
 .grid { display: grid; gap: 0.2mm 4mm; }
 .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
@@ -77,20 +77,9 @@ body {
    as a broken icon card, and the space is better spent on the text. */
 .grid.nogut .wd { min-height: 6.4mm; }
 
-/* Phrase cards are lists, not groups — they may break across pages. Keeping
-   them unbreakable cost roughly a third of every phrase page in white space.
-   A two-column grid cannot break mid-row, so a flowing card abandons the left
-   rail and puts its heading in a full-width bar above the content instead. */
-.card.flows { display: block; break-inside: auto; page-break-inside: auto; }
-.card.flows .rail {
-  display: flex; align-items: baseline; gap: 6px;
-  background: none; padding: 1mm 0 1.2mm;
-  break-inside: avoid; break-after: avoid;
-}
-.card.flows .rail h2 { font-size: 11.5pt; margin: 0; }
-.card.flows .rail .el-sub { font-size: 8.5pt; }
-.card.flows .rail .count { margin-top: 0; margin-left: auto; }
-.card.flows .body { border-left: none; padding-left: 0; }
+/* Phrase cards are lists, not groups, so they may break across pages. A word
+   card is a semantic group and must be seen whole — that is why cards exist. */
+.card.flows { break-inside: auto; page-break-inside: auto; }
 </style></head><body><header class="doc-head"><h1>Vocabulaire illustré</h1><span class="sub">εικονογραφημένο λεξιλόγιο</span></header><section class="card" style="--accent:#B84066"><div class="rail"><h2>Le corps</h2><span class="el-sub">το σώμα</span><span class="count">26</span></div><div class="body"><div class="grid cols-3 nogut"><div class="wd"><span class="art la">la</span><b>tête</b><span class="el">το κεφάλι</span></div><div class="wd"><span class="art le">le</span><b>cou</b><span class="el">ο λαιμός, απ&#x27; έξω· ο λαιμός από μέσα είναι la gorge</span></div><div class="wd"><span class="art elid">l&#x27;</span><b>épaule</b><span class="el">ο ώμος</span></div><div class="wd"><span class="art le">le</span><b>bras</b><span class="el">το μπράτσο, από τον ώμο ως τον καρπό</span></div><div class="wd"><span class="art le">le</span><b>coude</b><span class="el">ο αγκώνας</span></div><div class="wd"><span class="art le">le</span><b>poignet</b><span class="el">ο καρπός</span></div><div class="wd"><span class="art la">la</span><b>main</b></div><div class="wd"><span class="art le">le</span><b>doigt</b><span class="el">το δάχτυλο του χεριού</span></div><div class="wd"><span class="art le">le</span><b>pouce</b><span class="el">ο αντίχειρας</span></div><div class="wd"><span class="art elid">l&#x27;</span><b>ongle</b><span class="el">το νύχι</span></div><div class="wd"><span class="art la">la</span><b>poitrine</b><span class="el">το στήθος</span></div><div class="wd"><span class="art le">le</span><b>dos</b><span class="el">η πλάτη</span></div><div class="wd"><span class="art le">le</span><b>ventre</b><span class="el">η κοιλιά</span></div><div class="wd"><span class="art la">la</span><b>hanche</b><span class="el">ο γοφός</span></div><div class="wd"><span class="art la">la</span><b>jambe</b></div><div class="wd"><span class="art la">la</span><b>cuisse</b><span class="el">ο μηρός, το μπούτι</span></div><div class="wd"><span class="art le">le</span><b>genou</b><span class="el">το γόνατο</span></div><div class="wd"><span class="art la">la</span><b>cheville</b><span class="el">ο αστράγαλος</span></div><div class="wd"><span class="art le">le</span><b>pied</b></div><div class="wd"><span class="art elid">l&#x27;</span><b>orteil</b><span class="el">το δάχτυλο του ποδιού</span></div><div class="wd"><span class="art la">la</span><b>peau</b><span class="el">το δέρμα</span></div><div class="wd"><span class="art elid">l&#x27;</span><b>os</b></div><div class="wd"><span class="art le">le</span><b>cœur</b></div><div class="wd"><span class="art le">le</span><b>sang</b><span class="el">το αίμα</span></div><div class="wd"><span class="art le">le</span><b>muscle</b></div><div class="wd"><span class="art la">la</span><b>taille</b><span class="el">η μέση· η ίδια λέξη σημαίνει και «μέγεθος»</span></div></div><div class="ex"><strong>La tête</strong> et <strong>le dos</strong> vont bien, mais <strong>la jambe</strong>, <strong>le genou</strong> et <strong>le pied</strong> me font mal.</div></div></section><section class="card" style="--accent:#B84066"><div class="rail"><h2>Le visage</h2><span class="el-sub">το πρόσωπο</span><span class="count">18</span></div><div class="body"><div class="grid cols-3"><div class="wd"><span class="ic"></span><span class="art la">la</span><b>tête</b><span class="el">το κεφάλι</span></div><div class="wd"><span class="ic"><svg id="emoji" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
   <g id="color">
     <path fill="#FCEA2B" d="M36,13c-12.6823,0-23,10.3177-23,23c0,12.6822,10.3177,23,23,23c12.6822,0,23-10.3178,23-23 C59,23.3177,48.6822,13,36,13z"/>

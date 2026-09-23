@@ -30,23 +30,23 @@ body {
 .card {
   break-inside: avoid;
   page-break-inside: avoid;
-  display: grid;
-  grid-template-columns: 18% 1fr;
+  display: block;
   border-top: 2.5px solid var(--accent);
   margin-bottom: 6mm;
 }
 
-.rail { padding: 1mm 3mm 1mm 0;
-        background: linear-gradient(180deg,
-          color-mix(in srgb, var(--accent) 6%, #fff), #fff); }
-.rail h2 { font-size: 13pt; margin: 0 0 0.5mm; color: var(--accent);
-           hyphens: manual; word-break: keep-all; }
-.rail .el-sub { font-size: 8.5pt; color: var(--grey); display: block; }
-.rail .count { display: inline-block; margin-top: 1mm; padding: 0 5px;
+.rail {
+  display: flex; align-items: baseline; gap: 6px;
+  padding: 1.2mm 0 1.4mm;
+  break-inside: avoid; break-after: avoid;
+}
+.rail h2 { font-size: 12.5pt; margin: 0; color: var(--accent); }
+.rail .el-sub { font-size: 9pt; color: var(--grey); }
+.rail .count { margin-left: auto; padding: 0 5px;
                border: 1px solid var(--faint); border-radius: 7px;
                font-size: 7pt; color: var(--grey); }
 
-.body { border-left: 1px solid var(--faint); padding-left: 4mm; }
+.body { }
 
 .grid { display: grid; gap: 0.2mm 4mm; }
 .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
@@ -77,17 +77,6 @@ body {
    as a broken icon card, and the space is better spent on the text. */
 .grid.nogut .wd { min-height: 6.4mm; }
 
-/* Phrase cards are lists, not groups — they may break across pages. Keeping
-   them unbreakable cost roughly a third of every phrase page in white space.
-   A two-column grid cannot break mid-row, so a flowing card abandons the left
-   rail and puts its heading in a full-width bar above the content instead. */
-.card.flows { display: block; break-inside: auto; page-break-inside: auto; }
-.card.flows .rail {
-  display: flex; align-items: baseline; gap: 6px;
-  background: none; padding: 1mm 0 1.2mm;
-  break-inside: avoid; break-after: avoid;
-}
-.card.flows .rail h2 { font-size: 11.5pt; margin: 0; }
-.card.flows .rail .el-sub { font-size: 8.5pt; }
-.card.flows .rail .count { margin-top: 0; margin-left: auto; }
-.card.flows .body { border-left: none; padding-left: 0; }
+/* Phrase cards are lists, not groups, so they may break across pages. A word
+   card is a semantic group and must be seen whole — that is why cards exist. */
+.card.flows { break-inside: auto; page-break-inside: auto; }

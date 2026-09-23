@@ -77,8 +77,13 @@ def test_stylesheet_colours_elid_not_the_greek_gloss_size():
 def _css():
     return open(render.__file__.replace("render.py", "style.css"), encoding="utf-8").read()
 
-def test_rail_is_eighteen_percent():
-    assert "18% 1fr" in _css()
+def test_card_heading_is_full_width_not_a_side_rail():
+    """The heading sits in a bar above the content. An earlier design put it in
+    an 18% left rail, which spent a fifth of every page on two words; the owner
+    asked for it gone. Guard against it coming back."""
+    css = _css()
+    assert "18% 1fr" not in css
+    assert "grid-template-columns: 18%" not in css
 
 def test_icons_are_26px():
     css = _css()

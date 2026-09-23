@@ -69,8 +69,11 @@ def test_a_card_is_never_split_across_pages():
     the earlier page instead), the avoid build needs strictly MORE pages
     than the split-allowed build for identical content. That is exactly
     what this fixture is sized to trigger: 25 cards of 20 items land on
-    7 pages with splitting disallowed and 6 pages with it allowed, and
-    this holds stably across repeated renders (checked manually, not
+    9 pages with splitting disallowed and 8 pages with it allowed, and
+    (Retuned when the left rail was removed: wider cards changed the
+    packing, and 25x20 stopped straddling a boundary. 25 cards of 26
+    items now gives 9 pages against 8.) This holds stably across
+    repeated renders (checked manually, not
     just once here, since headless Chromium layout is deterministic for
     fixed content). A regression that let cards split again would
     collapse the avoid build down to 6 pages too, which this test would
@@ -79,7 +82,7 @@ def test_a_card_is_never_split_across_pages():
     """
     with tempfile.TemporaryDirectory() as d:
         cd = os.path.join(d, "cards"); os.makedirs(cd)
-        n_cards, n_items = 25, 20
+        n_cards, n_items = 25, 26
         _write_cards(cd, [n_items] * n_cards)
         html_path, pdf_path = build.build(cd, os.path.join(d, "out"))
         pages_avoid = topdf.page_count(pdf_path)
