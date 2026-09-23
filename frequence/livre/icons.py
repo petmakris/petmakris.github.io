@@ -40,6 +40,20 @@ NO_ICON = frozenset({
     "la nuque", "le mollet", "la cuisse",
 })
 
+# Known-weak automatic picks, kept here as the work list for the next icon
+# pass. Each depicts an object or a state where the row names an action:
+# travailler -> briefcase, payer -> money bag, acheter -> trolley, manger ->
+# plate, attendre -> hourglass, lire -> book, écouter -> headphones, jouer ->
+# game controller, ouvrir/fermer -> two padlocks, il gèle -> ice cube,
+# épeler -> writing hand. They are not wrong enough to remove — a briefcase
+# beside `travailler` is a reasonable hint — and every one of these rows
+# prints its Greek, so nothing is lost while they stand. Replacing them needs
+# hand-drawn action glyphs, not another keyword.
+WEAK_ICONS = frozenset({
+    "travailler", "payer", "acheter", "manger", "attendre", "lire",
+    "écouter", "jouer", "ouvrir", "fermer", "il gèle", "épeler",
+})
+
 _PLACEHOLDER = (
     '<svg viewBox="0 0 24 24" width="24" height="24">'
     '<circle cx="12" cy="12" r="8" fill="none" stroke="#C9C7C2" '

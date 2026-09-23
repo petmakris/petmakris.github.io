@@ -6,7 +6,6 @@ import html as _html
 import os
 import re
 
-import greek
 import icons
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -53,7 +52,15 @@ def row_html(item, accent, gutter=True):
                      f'{_html.escape(art)}</span>')
     parts.append(f'<b>{_html.escape(noun)}</b>')
 
-    if item.get("el") and greek.keeps_greek(item["fr"], kind, item["el"]):
+    # EVERY row that has a Greek gloss prints it. There used to be a "cover
+    # test" here — cover the Greek, and if the icon alone recovers the word,
+    # drop it — which silently hid 147 glosses. It optimised the wrong thing:
+    # a reader does not experience a page as N independent rows, they
+    # experience a column, and a column where some rows are translated and
+    # some are not reads as an unfinished book, not an economical one. The
+    # fix for a gloss that adds nothing is to write a better gloss, not to
+    # hide it. See tests/test_render.py::test_every_gloss_prints.
+    if (item.get("el") or "").strip():
         parts.append(f'<span class="el">{_html.escape(item["el"])}</span>')
 
     return f'<div class="wd">{"".join(parts)}</div>'

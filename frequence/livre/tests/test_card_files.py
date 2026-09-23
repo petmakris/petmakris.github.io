@@ -36,25 +36,14 @@ def test_space_card_keeps_greek_on_every_row():
     for item in c["items"]:
         assert item["el"] in h, item["fr"]
 
-def test_verbs_card_drops_greek_on_unambiguous_action_icons():
-    """These four show the action itself (a walking, sleeping, swimming,
-    dancing figure) — the picture genuinely carries the word."""
+def test_verbs_card_prints_greek_on_every_row():
+    """Even where the picture is perfect — a walking, sleeping, swimming or
+    dancing figure — the gloss prints. This card was the strongest case for
+    suppressing it, and suppressing it here is what made the book look
+    half-translated everywhere else."""
     c = cards.load_card(os.path.join(CARDS, "05-verbes.json"))
     h = render.card_html(c)
-    for fr in ("marcher", "dormir", "nager", "danser"):
-        item = next(i for i in c["items"] if i["fr"] == fr)
-        assert item["el"] not in h, fr
+    for item in c["items"]:
+        assert item["el"] in h, item["fr"]
 
-def test_verbs_card_keeps_greek_on_noun_standing_for_verb_icons():
-    """These icons depict an object or a state, not the action (briefcase
-    for travailler, money bag for payer, a trolley for acheter, a plate
-    for manger, an hourglass for attendre, a book for lire, headphones for
-    écouter, a game controller for jouer, two padlocks for ouvrir/fermer).
-    Until a dedicated icon pass replaces them, the word must print — see
-    greek.SCHEMATIC."""
-    c = cards.load_card(os.path.join(CARDS, "05-verbes.json"))
-    h = render.card_html(c)
-    for fr in ("travailler", "payer", "acheter", "manger", "attendre",
-               "lire", "écouter", "jouer", "ouvrir", "fermer"):
-        item = next(i for i in c["items"] if i["fr"] == fr)
-        assert item["el"] in h, fr
+
