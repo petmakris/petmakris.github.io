@@ -330,36 +330,85 @@ for _i in range(1, 13):
 
 
 # ---- clock dials --------------------------------------------------------
-def _dial(hour, minute, accent):
+def _dial(hour, minute, accent, mark=None):
     """A clock face at a given time. The dial IS the meaning — this is the one
-    glyph in the book that is unambiguous in every language at every age."""
-    def hand(angle_deg, length, width):
+    glyph in the book that is unambiguous in every language at every age.
+
+    A bare 12-hour analogue face cannot encode AM/PM by hand position alone —
+    that is why `midi` and `minuit` used to draw the same picture. `mark`
+    adds a structural, non-linework indicator for the handful of times the
+    WORD itself disambiguates:
+      - "day"   — midi, quatorze heures: a bold accent ring around the face.
+      - "night" — minuit: the face fills solid dark, like a night sky.
+      - "sharp" — pile: the tick the hour hand lands on turns accent-coloured,
+        showing the hands landing exactly on the mark. Without this, `pile`
+        (an arbitrary example dial) is byte-identical to whatever plain hour
+        the card also shows at the same o'clock.
+      - None    — everything else, including deux heures. `deux heures`
+        genuinely is ambiguous between 2h and 14h in French, so it stays a
+        plain unmarked face on purpose; the bare "2" next to the marked "14"
+        is what teaches why the 24h form exists.
+    Every marker survives 26px because it is a solid shape, not fine linework.
+    """
+    night = mark == "night"
+    tick_col = "#fff" if night else GREY
+    face_fill = INK if night else "none"
+
+    def hand(angle_deg, length, width, dot=False):
         a = math.radians(angle_deg - 90)
         x = 12 + length * math.cos(a)
         y = 12 + length * math.sin(a)
-        return (f'<line x1="12" y1="12" x2="{x:.2f}" y2="{y:.2f}" '
+        out = ""
+        if night:
+            # a white keyline under the hand so it reads on any accent hue
+            # against the dark face, whatever colour this card uses.
+            out += (f'<line x1="12" y1="12" x2="{x:.2f}" y2="{y:.2f}" '
+                    f'stroke="#fff" stroke-width="{width + 1.3}" '
+                    f'stroke-linecap="round"/>')
+        out += (f'<line x1="12" y1="12" x2="{x:.2f}" y2="{y:.2f}" '
                 f'stroke="{accent}" stroke-width="{width}" '
                 f'stroke-linecap="round"/>')
+        if dot:
+            out += f'<circle cx="{x:.2f}" cy="{y:.2f}" r="1.0" fill="{accent}"/>'
+        return out
 
-    face = (f'<circle cx="12" cy="12" r="9.5" fill="none" '
+    halo = ""
+    if mark == "day":
+        halo = (f'<circle cx="12" cy="12" r="10.6" fill="none" '
+                f'stroke="{accent}" stroke-width="1.6"/>')
+
+    face = (f'<circle cx="12" cy="12" r="9.5" fill="{face_fill}" '
             f'stroke="{GREY}" stroke-width="1.4"/>')
-    ticks = "".join(
-        f'<circle cx="{12 + 8 * math.cos(math.radians(t * 30 - 90)):.2f}" '
-        f'cy="{12 + 8 * math.sin(math.radians(t * 30 - 90)):.2f}" '
-        f'r="1.1" fill="{GREY}"/>' for t in range(12))
+    sharp_t = hour % 12 if mark == "sharp" else None
+
+    def _tick(t):
+        x = 12 + 8 * math.cos(math.radians(t * 30 - 90))
+        y = 12 + 8 * math.sin(math.radians(t * 30 - 90))
+        if t == sharp_t:
+            return f'<circle cx="{x:.2f}" cy="{y:.2f}" r="1.7" fill="{accent}"/>'
+        return f'<circle cx="{x:.2f}" cy="{y:.2f}" r="1.1" fill="{tick_col}"/>'
+
+    ticks = "".join(_tick(t) for t in range(12))
     h_ang = (hour % 12) * 30 + minute * 0.5
-    return face + ticks + hand(h_ang, 4.6, 2.2) + hand(minute * 6, 7.0, 1.7)
+    # Hour and minute hands are told apart by LENGTH and END TREATMENT, not
+    # just width — a short thick blunt hand vs. a longer, thinner hand with
+    # a ball tip — because at :15/:45 the two angles sit close together and
+    # width alone tightens into the same blur rather than separating.
+    return (halo + face + ticks
+            + hand(h_ang, 4.6, 2.0)
+            + hand(minute * 6, 7.6, 1.4, dot=True))
 
 
 for _h in range(1, 13):
     GLYPHS[f"clock_{_h}"] = (lambda h: lambda a: _dial(h, 0, a))(_h)
-GLYPHS["clock_00"] = lambda a: _dial(12, 0, a)
+GLYPHS["clock_12"] = lambda a: _dial(12, 0, a, mark="day")     # midi
+GLYPHS["clock_00"] = lambda a: _dial(12, 0, a, mark="night")   # minuit
 GLYPHS["clock_q15"] = lambda a: _dial(3, 15, a)
 GLYPHS["clock_q30"] = lambda a: _dial(3, 30, a)
 GLYPHS["clock_q45"] = lambda a: _dial(3, 45, a)
 GLYPHS["clock_m10"] = lambda a: _dial(3, 50, a)
-GLYPHS["clock_sharp"] = lambda a: _dial(3, 0, a)
-GLYPHS["clock_24"] = lambda a: _dial(2, 0, a)
+GLYPHS["clock_sharp"] = lambda a: _dial(3, 0, a, mark="sharp")  # pile
+GLYPHS["clock_24"] = lambda a: _dial(2, 0, a, mark="day")      # quatorze heures
 
 
 def render(key, accent):

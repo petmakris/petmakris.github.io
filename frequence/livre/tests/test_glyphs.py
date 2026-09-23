@@ -41,3 +41,29 @@ def test_dir_straight_is_not_dir_up():
     assert straight != up
     assert "<path" in straight
     assert "<path" not in up
+
+def test_clock_glyphs_are_all_distinct():
+    """midi/minuit and deux heures/quatorze heures were once byte-identical
+    — a bare analogue face can't encode AM/PM, so those pairs need a
+    day/night marker on the dial itself. Guard every clock_* key at once."""
+    clock_keys = [k for k in glyphs.GLYPHS if k.startswith("clock_")]
+    rendered = {k: glyphs.render(k, ACCENT) for k in clock_keys}
+    seen = {}
+    for key, svg in rendered.items():
+        assert svg not in seen.values(), f"{key} renders identically to {[k for k, v in seen.items() if v == svg]}"
+        seen[key] = svg
+
+def test_no_two_glyphs_render_identically():
+    """Generalises the clock check to the whole library: two different
+    vocabulary keys must never produce the same picture, or a learner has
+    no way to tell them apart. A failure here names a real collision to
+    fix, not a test to delete."""
+    rendered = {}
+    collisions = []
+    for key in glyphs.GLYPHS:
+        svg = glyphs.render(key, ACCENT)
+        for other_key, other_svg in rendered.items():
+            if svg == other_svg:
+                collisions.append((key, other_key))
+        rendered[key] = svg
+    assert not collisions, f"identical glyphs: {collisions}"
