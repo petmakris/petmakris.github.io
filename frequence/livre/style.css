@@ -1,6 +1,6 @@
 /* Vocabulaire illustré — the C2 layout.
    Rail 18%, three-column grid, cards never split. Density target >=50/A4. */
-@page { size: A4; margin: 9mm 10mm 7mm; }
+@page { size: A4; margin: 12mm 12mm 10mm; }
 
 :root {
   --ink:   #1A1A18;
@@ -33,7 +33,7 @@ body {
   display: grid;
   grid-template-columns: 18% 1fr;
   border-top: 2.5px solid var(--accent);
-  margin-bottom: 3mm;
+  margin-bottom: 6mm;
 }
 
 .rail { padding: 1mm 3mm 1mm 0;
