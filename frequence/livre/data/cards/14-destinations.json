@@ -4,20 +4,20 @@
   "accent": "#1E7A5A",
   "example": "Pardon, où est **la gare** ? — Devant **la poste**, à côté de **la banque**.",
   "items": [
-    {"fr": "la gare",            "el": "ο σταθμός του τρένου",                                                        "key": "station"},
-    {"fr": "la poste",           "el": "το ταχυδρομείο· προσοχή: la poste = ταχυδρομείο, le poste = αστυνομικό τμήμα ή θέση εργασίας", "key": "post office"},
-    {"fr": "la banque",          "el": "η τράπεζα",                                                                    "key": "bank"},
-    {"fr": "la pharmacie",       "el": "το φαρμακείο",                                                                 "key": "pharmacy"},
-    {"fr": "l'hôpital",          "el": "το νοσοκομείο",                                                                "key": "hospital"},
+    {"fr": "la gare",            "el": "ο σταθμός του τρένου",                                                        "key": "station", "icon": "1F689"},
+    {"fr": "la poste",           "el": "το ταχυδρομείο· προσοχή: la poste = ταχυδρομείο, le poste = αστυνομικό τμήμα ή θέση εργασίας", "key": "post office", "icon": "1F3E4"},
+    {"fr": "la banque",          "el": "η τράπεζα",                                                                    "key": "bank", "icon": "1F3E6"},
+    {"fr": "la pharmacie",       "el": "το φαρμακείο",                                                                 "key": "pharmacy", "icon": "1F48A"},
+    {"fr": "l'hôpital",          "el": "το νοσοκομείο",                                                                "key": "hospital", "icon": "1F3E5"},
     {"fr": "l'école",            "el": "το σχολείο",                                                                   "key": "school"},
-    {"fr": "l'église",           "el": "η εκκλησία",                                                                   "key": "church"},
-    {"fr": "le marché",          "el": "η λαϊκή αγορά, η υπαίθρια αγορά",                                              "key": "market"},
-    {"fr": "l'arrêt de bus",     "el": "η στάση του λεωφορείου",                                                       "key": "bus stop"},
+    {"fr": "l'église",           "el": "η εκκλησία",                                                                   "key": "church", "icon": "26EA"},
+    {"fr": "le marché",          "el": "η λαϊκή αγορά, η υπαίθρια αγορά",                                              "key": "market", "icon": "1F6D2"},
+    {"fr": "l'arrêt de bus",     "el": "η στάση του λεωφορείου",                                                       "key": "bus stop", "icon": "1F68F"},
     {"fr": "les toilettes",      "el": "οι τουαλέτες· στα γαλλικά πάντα στον πληθυντικό",                              "key": "toilet"},
-    {"fr": "le distributeur",    "el": "το ΑΤΜ, το μηχάνημα ανάληψης χρημάτων",                                        "key": "atm"},
-    {"fr": "la commune",         "el": "ο δήμος· και το δημαρχείο, το κτίριο όπου κάνεις τα χαρτιά σου",               "key": "town hall"},
-    {"fr": "la déchèterie",      "el": "ο χώρος ανακύκλωσης, το πράσινο σημείο",                                       "key": "recycling"},
-    {"fr": "le supermarché",     "el": "το σουπερμάρκετ",                                                              "key": "supermarket"},
-    {"fr": "le poste de police", "el": "το αστυνομικό τμήμα· εδώ le poste είναι αρσενικό",                             "key": "police station"}
+    {"fr": "le distributeur",    "el": "το ΑΤΜ, το μηχάνημα ανάληψης χρημάτων",                                        "key": "atm", "icon": "1F3E7"},
+    {"fr": "la commune",         "el": "ο δήμος· και το δημαρχείο, το κτίριο όπου κάνεις τα χαρτιά σου",               "key": "town hall", "icon": "1F3DB"},
+    {"fr": "la déchèterie",      "el": "ο χώρος ανακύκλωσης, το πράσινο σημείο",                                       "key": "recycling", "icon": "267B"},
+    {"fr": "le supermarché",     "el": "το σουπερμάρκετ",                                                              "key": "supermarket", "icon": "1F3EA"},
+    {"fr": "le poste de police", "el": "το αστυνομικό τμήμα· εδώ le poste είναι αρσενικό",                             "key": "police station", "icon": "1F46E"}
   ]
 }

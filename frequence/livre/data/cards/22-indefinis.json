@@ -7,7 +7,7 @@
     {"fr": "quelqu'un",        "el": "κάποιος, κάποια",        "key": "person standing"},
     {"fr": "quelque chose",    "el": "κάτι",                   "key": "something"},
     {"fr": "quelque part",     "el": "κάπου",                  "key": "somewhere"},
-    {"fr": "quelquefois",      "el": "κάποτε, μερικές φορές",  "key": "sometimes"},
+    {"fr": "quelquefois",      "el": "κάποτε, μερικές φορές",  "key": "freq_sometimes"},
 
     {"fr": "ne… personne",     "el": "κανένας: δεν … κανέναν", "key": "nobody"},
     {"fr": "ne… rien",         "el": "τίποτα: δεν … τίποτα",   "key": "nothing"},

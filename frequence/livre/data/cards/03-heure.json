@@ -26,13 +26,13 @@
     {"fr": "moins dix",               "el": "παρά δέκα",           "key": "clock_m10"},
     {"fr": "pile",                    "el": "ακριβώς",             "key": "clock_sharp"},
     {"fr": "quatorze heures",         "el": "δύο το μεσημέρι (24ωρο)", "key": "clock_24"},
-    {"fr": "il est tôt",              "el": "είναι νωρίς",         "key": "early"},
-    {"fr": "il est tard",             "el": "είναι αργά",          "key": "late"},
-    {"fr": "en retard",               "el": "καθυστερημένος",      "key": "late_person"},
-    {"fr": "à l'heure",               "el": "στην ώρα",            "key": "on_time"},
-    {"fr": "une demi-heure",          "el": "μισή ώρα",            "key": "half_hour"},
-    {"fr": "un quart d'heure",        "el": "ένα τέταρτο",         "key": "quarter_hour"},
-    {"fr": "une minute",              "el": "ένα λεπτό",           "key": "minute"},
-    {"fr": "une seconde",             "el": "ένα δευτερόλεπτο",    "key": "second"}
+    {"fr": "il est tôt",              "el": "είναι νωρίς",         "key": "early", "icon": "1F305"},
+    {"fr": "il est tard",             "el": "είναι αργά",          "key": "late", "icon": "1F319"},
+    {"fr": "en retard",               "el": "καθυστερημένος",      "key": "late_person", "icon": "1F3C3"},
+    {"fr": "à l'heure",               "el": "στην ώρα",            "key": "on_time", "icon": "2705"},
+    {"fr": "une demi-heure",          "el": "μισή ώρα",            "key": "dur_30"},
+    {"fr": "un quart d'heure",        "el": "ένα τέταρτο",         "key": "dur_15"},
+    {"fr": "une minute",              "el": "ένα λεπτό",           "key": "qty_min"},
+    {"fr": "une seconde",             "el": "ένα δευτερόλεπτο",    "key": "qty_sec"}
   ]
 }

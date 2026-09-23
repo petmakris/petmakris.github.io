@@ -4,23 +4,23 @@
   "accent": "#B84066",
   "example": "Le **nez** est entre les **yeux**, et la **langue** est dans la **bouche**.",
   "items": [
-    {"fr": "la tête",      "el": "το κεφάλι",                                              "key": "head"},
+    {"fr": "la tête",      "el": "το κεφάλι",                                              "key": "face_head"},
     {"fr": "le visage",    "el": "το πρόσωπο",                                             "key": "face",     "icon": "1F610"},
-    {"fr": "les cheveux",  "el": "τα μαλλιά (πάντα στον πληθυντικό, όπως στα γαλλικά)",     "key": "hair"},
-    {"fr": "le front",     "el": "το μέτωπο",                                              "key": "forehead"},
+    {"fr": "les cheveux",  "el": "τα μαλλιά (πάντα στον πληθυντικό, όπως στα γαλλικά)",     "key": "face_hair"},
+    {"fr": "le front",     "el": "το μέτωπο",                                              "key": "face_forehead"},
     {"fr": "l'œil",        "el": "το μάτι (ένα)",                                          "key": "eye"},
     {"fr": "les yeux",     "el": "τα μάτια (ανώμαλος πληθυντικός του œil)",                 "key": "eyes"},
-    {"fr": "le sourcil",   "el": "το φρύδι",                                               "key": "eyebrow"},
-    {"fr": "le cil",       "el": "η βλεφαρίδα",                                            "key": "eyelash"},
+    {"fr": "le sourcil",   "el": "το φρύδι",                                               "key": "face_eyebrow"},
+    {"fr": "le cil",       "el": "η βλεφαρίδα",                                            "key": "face_eyelash"},
     {"fr": "le nez",       "el": "η μύτη",                                                 "key": "nose"},
-    {"fr": "la joue",      "el": "το μάγουλο",                                             "key": "cheek"},
+    {"fr": "la joue",      "el": "το μάγουλο",                                             "key": "face_cheek"},
     {"fr": "l'oreille",    "el": "το αυτί",                                                "key": "ear"},
     {"fr": "la bouche",    "el": "το στόμα",                                               "key": "mouth"},
-    {"fr": "la lèvre",     "el": "το χείλι· les lèvres = τα χείλη",                         "key": "lips"},
+    {"fr": "la lèvre",     "el": "το χείλι· les lèvres = τα χείλη",                         "key": "face_lips"},
     {"fr": "la dent",      "el": "το δόντι",                                               "key": "tooth"},
     {"fr": "la langue",    "el": "η γλώσσα — και το όργανο και η ομιλούμενη γλώσσα",        "key": "tongue"},
-    {"fr": "le menton",    "el": "το πιγούνι",                                             "key": "chin"},
-    {"fr": "la mâchoire",  "el": "το σαγόνι",                                              "key": "jaw"},
-    {"fr": "la gorge",     "el": "ο λαιμός από μέσα, ο λάρυγγας· το έξω μέρος είναι le cou", "key": "throat"}
+    {"fr": "le menton",    "el": "το πιγούνι",                                             "key": "face_chin"},
+    {"fr": "la mâchoire",  "el": "το σαγόνι",                                              "key": "face_jaw"},
+    {"fr": "la gorge",     "el": "ο λαιμός από μέσα, ο λάρυγγας· το έξω μέρος είναι le cou", "key": "face_throat"}
   ]
 }

@@ -430,6 +430,304 @@ GLYPHS["clock_sharp"] = lambda a: _dial(3, 0, a, mark="sharp")  # pile
 GLYPHS["clock_24"] = lambda a: _dial(2, 0, a, mark="day")      # quatorze heures
 
 
+
+# ---- numerals and unit tiles -------------------------------------------
+# The single case where showing the SYMBOL beats any drawing: a numeral is
+# already a picture, understood before either language is. `vingt` next to a
+# tile reading 20 needs no Greek and no translation — which is exactly what a
+# number card was missing when every one of its 38 rows had an empty gutter.
+#
+# The tile is the same object as the day and month tiles above, so the book
+# has one typographic tile, not three. Only the type size changes, and it
+# changes by measurement rather than by taste: Alegreya Sans Bold runs about
+# 0.56 em per digit, the tile's usable width is 18 units, so a string of n
+# characters gets 18/(0.56n) — capped at 12.5 so a single digit does not
+# outgrow the tile it sits in.
+def _fit(s):
+    return min(12.5, 18.0 / (0.56 * max(len(s), 1)))
+
+
+def _numtile(a, s):
+    size = _fit(s)
+    # `_text` takes a y-up baseline; 0.35 em below the tile's centre line is
+    # where a cap-height string sits optically centred.
+    return (_rrect(2, 4.5, 20, 15, 3.4, a)
+            + _text(12, 12 - 0.35 * size, s, "#fff", size))
+
+
+def _nt(s):
+    return lambda a: _numtile(a, s)
+
+
+for _n in list(range(0, 21)) + [30, 40, 50, 60, 70, 80, 90, 100, 1000]:
+    GLYPHS[f"num_{_n}"] = _nt(str(_n))
+
+for _name, _s in (("num_half", "½"), ("num_quarter", "¼"),
+                  ("num_third", "⅓"),
+                  ("qty_kg", "1kg"), ("qty_halfkg", "½kg"),
+                  ("qty_100g", "100g"), ("qty_litre", "1L"),
+                  ("qty_min", "1min"), ("qty_sec", "1s"),
+                  ("money_franc", "CHF"), ("money_centime", "ct."),
+                  ("deg_minus5", "−5°")):
+    GLYPHS[_name] = _nt(_s)
+
+
+# ---- typographic marks -------------------------------------------------
+# A spelling card names the marks themselves, so the mark IS the icon. Drawn
+# on the same tile as the numerals for the same reason: type survives 26px
+# where linework does not.
+for _name, _s in (("typ_acute", "é"), ("typ_grave", "è"),
+                  ("typ_circ", "ê"), ("typ_trema", "ë"),
+                  ("typ_cedilla", "ç"), ("typ_apos", "’"),
+                  ("typ_at", "@"), ("typ_dot", "."), ("typ_slash", "/"),
+                  ("typ_upper", "A"), ("typ_lower", "a"),
+                  ("typ_double", "LL"), ("typ_space", "␣")):
+    GLYPHS[_name] = _nt(_s)
+
+
+# ---- colour swatches ---------------------------------------------------
+# The ONE glyph family that ignores the card accent: on a colour card the
+# colour is the meaning, so painting `rouge` in the card's blue would be a
+# lie. Every swatch keeps a grey keyline, which is what lets `blanc`, `beige`
+# and `argenté` exist at all on white paper.
+_SWATCH = {
+    "col_rouge": "#D5352B", "col_bleu": "#2166B0", "col_vert": "#3E8E41",
+    "col_jaune": "#F2C230", "col_noir": "#23262B", "col_blanc": "#FFFFFF",
+    "col_gris": "#9A9A96", "col_orange": "#E8802B", "col_rose": "#E68AAE",
+    "col_violet": "#7D4C9E", "col_marron": "#8A5A34", "col_beige": "#E6D8BE",
+    "col_dore": "#C9A227", "col_argente": "#BFC3C7",
+}
+
+
+def _sw(col):
+    return lambda a: (_rrect(3, 5.5, 18, 13, 3.0, col)
+                      + f'<rect x="3" y="{_y(5.5, 13)}" width="18" height="13" '
+                        f'rx="3.0" fill="none" stroke="{GREY}" stroke-width="1.2"/>')
+
+
+for _name, _col in _SWATCH.items():
+    GLYPHS[_name] = _sw(_col)
+
+
+# ---- the body figure ---------------------------------------------------
+# Joints have no emoji in any set — OpenMoji, Twemoji, Apple, Fluent and MDI
+# all stop at hand and foot — which left the body card 20 empty gutters. The
+# house grammar already answers it: a grey REFERENCE (the whole figure) and a
+# coloured SUBJECT (where on it). The figure is deliberately the same drawing
+# on every row, so the eye compares dot positions rather than re-reading a
+# new picture each time.
+_FIG_PARTS = {          # y-up landmark for the accent dot
+    "head": (12, 20.0), "neck": (12, 17.3), "shoulder": (16.1, 16.2),
+    "arm": (17.3, 14.3), "elbow": (18.6, 12.4), "wrist": (19.1, 9.0),
+    "hand": (19.3, 7.6), "chest": (12, 14.6), "back": (12, 14.6),
+    "belly": (12, 11.6), "hip": (14.7, 9.5), "thigh": (15.0, 7.4),
+    "knee": (15.1, 5.4), "leg": (15.0, 4.0), "ankle": (15.3, 2.2),
+    "foot": (16.4, 1.3), "toe": (17.6, 1.2),
+}
+
+
+def _figure(skin=None):
+    """The grey standing figure every body row shares."""
+    col = skin or GREY
+    j = 'stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" fill="none"'
+
+    def path(d):
+        return f'<path d="{d}" stroke="{col}" {j}/>'
+
+    return (
+        f'<circle cx="12" cy="{_y(20)}" r="2.7" '
+        f'fill="{col if skin else "none"}" stroke="{col}" stroke-width="1.7"/>'
+        + path(f'M12,{_y(17.3)} L12,{_y(9.5)}')
+        + path(f'M7.9,{_y(16.2)} L16.1,{_y(16.2)}')
+        + path(f'M7.9,{_y(16.2)} L5.4,{_y(12.4)} L4.9,{_y(9.0)}')
+        + path(f'M16.1,{_y(16.2)} L18.6,{_y(12.4)} L19.1,{_y(9.0)}')
+        + path(f'M9.3,{_y(9.5)} L14.7,{_y(9.5)}')
+        + path(f'M9.3,{_y(9.5)} L8.9,{_y(5.4)} L8.7,{_y(1.9)} L7.3,{_y(1.9)}')
+        + path(f'M14.7,{_y(9.5)} L15.1,{_y(5.4)} L15.3,{_y(1.9)} L16.7,{_y(1.9)}')
+    )
+
+
+def _bodyglyph(part):
+    def f(a):
+        if part == "skin":
+            return _figure(skin=a)
+        if part == "waist":
+            return _figure() + _line(9.0, 10.6, 15.0, 10.6, a, 2.4)
+        if part == "back":
+            return _figure() + _line(12, 16.0, 12, 10.2, a, 2.6)
+        x, y = _FIG_PARTS[part]
+        return _figure() + _dot(x, y, 2.5, "#fff") + _dot(x, y, 1.9, a)
+    return f
+
+
+for _p in list(_FIG_PARTS) + ["skin", "waist"]:
+    GLYPHS[f"body_{_p}"] = _bodyglyph(_p)
+
+
+# ---- the hand -----------------------------------------------------------
+# doigt, pouce and ongle all live inside one 3-unit square of the figure
+# above, where three dots would be indistinguishable. They get their own
+# reference object at their own scale.
+def _handbase():
+    palm = (f'<path d="M8.2,{_y(3.5)} L15.8,{_y(3.5)} L15.8,{_y(11)} '
+            f'L8.2,{_y(11)} Z" fill="none" stroke="{GREY}" stroke-width="1.6" '
+            f'stroke-linejoin="round"/>')
+    fingers = "".join(
+        _line(x, 11, x, top, GREY, 1.7)
+        for x, top in ((9.4, 17.0), (11.4, 18.6), (13.4, 17.6), (15.2, 15.6)))
+    thumb = _line(8.2, 7.0, 4.4, 10.4, GREY, 1.7)
+    return palm + fingers + thumb
+
+
+def _hg(fn):
+    return lambda a: _handbase() + fn(a)
+
+
+GLYPHS["hand_finger"] = _hg(lambda a: _line(11.4, 11, 11.4, 18.6, a, 2.2))
+GLYPHS["hand_thumb"] = _hg(lambda a: _line(8.2, 7.0, 4.4, 10.4, a, 2.2))
+GLYPHS["hand_nail"] = _hg(lambda a: _rrect(10.4, 16.4, 2.0, 2.4, 0.8, a))
+GLYPHS["hand_palm"] = _hg(lambda a: _rrect(8.8, 4.2, 6.4, 6.0, 1.4, a))
+
+
+# ---- the face -----------------------------------------------------------
+def _facebase():
+    oval = (f'<ellipse cx="12" cy="{_y(12)}" rx="6.7" ry="8.3" fill="none" '
+            f'stroke="{GREY}" stroke-width="1.6"/>')
+    eyes = _dot(9.4, 13.6, 1.0, GREY) + _dot(14.6, 13.6, 1.0, GREY)
+    nose = _line(12, 12.6, 12, 10.4, GREY, 1.3)
+    mouth = _line(9.8, 8.2, 14.2, 8.2, GREY, 1.5)
+    return oval + eyes + nose + mouth
+
+
+def _fg(fn):
+    return lambda a: _facebase() + fn(a)
+
+
+GLYPHS["face_head"] = _fg(lambda a: _ring(12, 12, 8.6, a, 1.8))
+GLYPHS["face_hair"] = _fg(lambda a: (
+    f'<path d="M5.6,{_y(16.4)} Q12,{_y(23.4)} 18.4,{_y(16.4)}" fill="none" '
+    f'stroke="{a}" stroke-width="2.6" stroke-linecap="round"/>'))
+GLYPHS["face_forehead"] = _fg(lambda a: _line(8.4, 16.8, 15.6, 16.8, a, 2.2))
+GLYPHS["face_eyebrow"] = _fg(lambda a: _line(7.9, 15.6, 11.1, 15.6, a, 1.9)
+                             + _line(12.9, 15.6, 16.1, 15.6, a, 1.9))
+GLYPHS["face_eyelash"] = _fg(lambda a: "".join(
+    _line(x, 14.5, x, 15.6, a, 1.2) for x in (8.6, 9.4, 10.2, 13.8, 14.6, 15.4)))
+GLYPHS["face_cheek"] = _fg(lambda a: _dot(8.0, 10.8, 2.0, a) + _dot(16.0, 10.8, 2.0, a))
+GLYPHS["face_lips"] = _fg(lambda a: _line(9.4, 8.2, 14.6, 8.2, a, 2.4))
+GLYPHS["face_chin"] = _fg(lambda a: _dot(12, 4.6, 2.0, a))
+GLYPHS["face_jaw"] = _fg(lambda a: (
+    f'<path d="M6.1,{_y(9.4)} Q12,{_y(2.8)} 17.9,{_y(9.4)}" fill="none" '
+    f'stroke="{a}" stroke-width="2.2" stroke-linecap="round"/>'))
+GLYPHS["face_throat"] = _fg(lambda a: _rrect(10.2, 0.6, 3.6, 3.6, 1.2, a))
+GLYPHS["face_nose"] = _fg(lambda a: _line(12, 12.8, 12, 10.2, a, 2.2))
+GLYPHS["face_eye"] = _fg(lambda a: _dot(9.4, 13.6, 1.7, a) + _dot(14.6, 13.6, 1.7, a))
+
+
+# ---- the calendar strip -------------------------------------------------
+# Day deixis is a closed five-term set — avant-hier, hier, aujourd'hui,
+# demain, après-demain — and it is a POSITION, not a thing. Five cells with
+# one filled says that in a way no picture of a calendar page can.
+def _strip(n, marks, accent, y=6.0, h=10.0, grow=3.2):
+    """n cells in a row, the marked ones in the accent.
+
+    Position alone does not survive 26px: `hier` and `avant-hier` differ by
+    one cell of about four printed pixels. So the marked cell also stands
+    TALLER than its neighbours — a silhouette difference the eye catches
+    before it has counted anything. Unmarked cells are a solid mid-grey
+    rather than a hairline outline, which at this size fills in to a smudge.
+    """
+    gap = 0.9
+    w = (22.0 - gap * (n - 1)) / n
+    out = ""
+    for i in range(n):
+        x = 1.0 + i * (w + gap)
+        if i in marks:
+            out += _rect(x, y, w, h + grow, accent)
+        else:
+            out += _rect(x, y, w, h, "#D3D7DC")
+    return out
+
+
+for _i, _name in enumerate(("cal_m2", "cal_m1", "cal_0", "cal_p1", "cal_p2")):
+    GLYPHS[_name] = (lambda k: lambda a: _strip(5, {k}, a))(_i)
+
+GLYPHS["cal_week"] = lambda a: _strip(7, set(range(7)), a, grow=0.0)
+GLYPHS["cal_weekend"] = lambda a: _strip(7, {5, 6}, a)
+
+
+def _grid(cols, rows, accent):
+    """A calendar page: an accent header bar over a grey block of cells. The
+    header is what says "calendar" at 26px, so it is drawn thick enough to
+    read on its own; the cell count is the only thing that separates a month
+    from a year, and it is a second-glance cue, not the first."""
+    head = _rect(1.4, 24 - 6.4, 21.2, 4.4, accent)
+    cw = (21.2 - (cols - 1) * 0.7) / cols
+    ch = (24 - 7.4 - 2.0 - (rows - 1) * 0.7) / rows
+    cells = "".join(
+        _rect(1.4 + c * (cw + 0.7), 2.0 + r * (ch + 0.7), cw, ch, "#CBCFD5")
+        for r in range(rows) for c in range(cols))
+    return cells + head
+
+
+GLYPHS["cal_month"] = lambda a: _grid(7, 4, a)
+GLYPHS["cal_year"] = lambda a: _grid(4, 3, a)
+
+
+# ---- sequence, and the rest of the closed comparisons --------------------
+for _i, _name in enumerate(("seq_1", "seq_2", "seq_3", "seq_4")):
+    GLYPHS[_name] = (lambda k: lambda a: _strip(4, {k}, a))(_i)
+
+GLYPHS["freq_sometimes"] = lambda a: _track(a, 2)
+GLYPHS["q_full"] = lambda a: _glass(a, 1.0)
+GLYPHS["q_empty"] = lambda a: _glass(a, 0.0)
+GLYPHS["q_almost"] = lambda a: (_glass(a, 0.88)
+                                + _line(3.5, 20, 20.5, 20, INK, 1.1, "1.5 1.5"))
+
+
+# meilleur / pire are a step up and a step down from the grey reference. The
+# first drawing put a 2-unit arrow above the blocks; at 26px it printed as a
+# speck of dirt. Three bottom-aligned bars carry the direction on their own.
+def _steps(a, hs):
+    return "".join(
+        (_rect if i else _box)(2 + i * 7.0, 3.5, 6.0, h, a) if i
+        else _box(2, 3.5, 6.0, h, GREY, "none", 1.5)
+        for i, h in enumerate(hs))
+
+
+@_g("cmp_better")    # meilleur — each step taller than the grey reference
+def _(a): return _steps(a, (7.5, 12.0, 17.0))
+
+
+@_g("cmp_worse")     # pire — each step shorter than the grey reference
+def _(a): return _steps(a, (17.0, 11.0, 5.5))
+
+
+@_g("len_long")      # long — a bar running the full width of its grey rule
+def _(a): return _line(2, 16.5, 22, 16.5, GREY, 1.1) + _rect(2, 8, 20, 5, a)
+
+
+@_g("len_short")     # court — the same rule, a bar covering a quarter of it
+def _(a): return _line(2, 16.5, 22, 16.5, GREY, 1.1) + _rect(2, 8, 5.5, 5, a)
+
+
+# ---- duration, as a swept sector ----------------------------------------
+# An hour card needs `une demi-heure` and `un quart d'heure`, which are spans,
+# not instants — the dials above read as times of day and cannot say them. A
+# swept sector on the same face keeps the family and states the span.
+def _sector(minutes, accent):
+    ang = math.radians(minutes * 6 - 90)
+    x, y = 12 + 9.5 * math.cos(ang), 12 + 9.5 * math.sin(ang)
+    large = 1 if minutes > 30 else 0
+    wedge = (f'<path d="M12,12 L12,2.5 A9.5,9.5 0 {large},1 {x:.2f},{y:.2f} Z" '
+             f'fill="{accent}"/>') if minutes else ""
+    face = (f'<circle cx="12" cy="12" r="9.5" fill="none" stroke="{GREY}" '
+            f'stroke-width="1.4"/>')
+    return wedge + face + f'<circle cx="12" cy="12" r="1.5" fill="{GREY}"/>'
+
+
+for _name, _m in (("dur_30", 30), ("dur_15", 15)):
+    GLYPHS[_name] = (lambda m: lambda a: _sector(m, a))(_m)
+
 def render(key, accent):
     fn = GLYPHS.get(key)
     return _svg(fn(accent)) if fn else None

@@ -53,7 +53,7 @@ def row_html(item, accent, gutter=True):
                      f'{_html.escape(art)}</span>')
     parts.append(f'<b>{_html.escape(noun)}</b>')
 
-    if item.get("el") and greek.keeps_greek(item["fr"], kind):
+    if item.get("el") and greek.keeps_greek(item["fr"], kind, item["el"]):
         parts.append(f'<span class="el">{_html.escape(item["el"])}</span>')
 
     return f'<div class="wd">{"".join(parts)}</div>'

@@ -50,3 +50,27 @@ def test_overall_rate_rises_with_the_fix():
     kept = sum(1 for fr, k in sample if greek.keeps_greek(fr, k))
     assert kept == 30
     assert 20 <= kept <= 45
+
+
+def test_a_bare_translation_is_dropped_next_to_an_emoji():
+    """`με το λεωφορείο` beside a bus emoji is the noise the cover test
+    exists to remove."""
+    assert not greek.keeps_greek("en bus", "emoji", "με το λεωφορείο")
+
+
+def test_an_explanatory_gloss_survives_its_emoji():
+    """A picture returns the word and nothing else. Anything the gloss adds
+    on top — a gender, a Swiss/France contrast, what the thing is for — is
+    unrecoverable, so it prints however good the icon is. These three were
+    all being authored and then thrown away."""
+    for fr, el in (
+        ("l'abonnement",
+         "η κάρτα απεριορίστων διαδρομών, η συνδρομή (αρσενικό: un abonnement)"),
+        ("les CFF", "οι ελβετικοί σιδηρόδρομοι, στη Γαλλία λέγονται SNCF"),
+        ("en France", "στη Γαλλία· la France, θηλυκή"),
+    ):
+        assert greek.keeps_greek(fr, "emoji", el), fr
+
+
+def test_a_glyph_keeps_its_greek_whatever_the_gloss():
+    assert greek.keeps_greek("vingt", "glyph", "είκοσι")

@@ -4,22 +4,22 @@
   "accent": "#2166B0",
   "example": "**Il fait froid** et **il y a du vent** : c'est **la bise**.",
   "items": [
-    {"fr": "le temps",            "el": "ο καιρός· η ίδια λέξη στα γαλλικά σημαίνει και «ο χρόνος»", "key": "weather"},
-    {"fr": "il fait beau",        "el": "έχει ωραίο καιρό",                                          "key": "sunshine"},
-    {"fr": "il fait mauvais",     "el": "έχει άσχημο καιρό",                                         "key": "bad weather"},
+    {"fr": "le temps",            "el": "ο καιρός· η ίδια λέξη στα γαλλικά σημαίνει και «ο χρόνος»", "key": "weather", "icon": "26C5"},
+    {"fr": "il fait beau",        "el": "έχει ωραίο καιρό",                                          "key": "sunshine", "icon": "2600"},
+    {"fr": "il fait mauvais",     "el": "έχει άσχημο καιρό",                                         "key": "bad weather", "icon": "26C8"},
     {"fr": "il fait chaud",       "el": "κάνει ζέστη",                                               "key": "heat",        "icon": "1F975"},
     {"fr": "il fait froid",       "el": "κάνει κρύο",                                                "key": "cold face"},
-    {"fr": "il fait gris",        "el": "ο ουρανός είναι γκρίζος, έχει συννεφιά",                     "key": "grey sky"},
-    {"fr": "il fait doux",        "el": "έχει ήπιο, γλυκό καιρό: ούτε κρύο ούτε ζέστη",               "key": "mild"},
+    {"fr": "il fait gris",        "el": "ο ουρανός είναι γκρίζος, έχει συννεφιά",                     "key": "grey sky", "icon": "2601"},
+    {"fr": "il fait doux",        "el": "έχει ήπιο, γλυκό καιρό: ούτε κρύο ούτε ζέστη",               "key": "mild", "icon": "1F324"},
     {"fr": "il pleut",            "el": "βρέχει",                                                    "key": "rain",        "icon": "1F4A6"},
-    {"fr": "il neige",            "el": "χιονίζει",                                                  "key": "snow"},
+    {"fr": "il neige",            "el": "χιονίζει",                                                  "key": "snow", "icon": "1F328"},
     {"fr": "il gèle",             "el": "παγώνει, έχει παγωνιά",                                     "key": "ice"},
     {"fr": "il y a du soleil",    "el": "έχει ήλιο",                                                 "key": "sun"},
     {"fr": "il y a du vent",      "el": "έχει αέρα",                                                 "key": "wind",        "icon": "1F4A8"},
     {"fr": "il y a du brouillard", "el": "έχει ομίχλη",                                              "key": "fog"},
     {"fr": "il y a des nuages",   "el": "έχει σύννεφα",                                              "key": "cloud"},
     {"fr": "l'orage",             "el": "η καταιγίδα, με αστραπές και βροντές (αρσενικό: un orage)",  "key": "storm",       "icon": "26C8"},
-    {"fr": "la bise",             "el": "ο κρύος βόρειος άνεμος που κατεβαίνει στη λίμνη· εδώ τον λένε με το όνομά του σε κάθε δελτίο καιρού", "key": "breeze"},
-    {"fr": "moins cinq degrés",   "el": "μείον πέντε βαθμοί, −5 °C",                                 "key": "temperature"}
+    {"fr": "la bise",             "el": "ο κρύος βόρειος άνεμος που κατεβαίνει στη λίμνη· εδώ τον λένε με το όνομά του σε κάθε δελτίο καιρού", "key": "breeze", "icon": "1F32C"},
+    {"fr": "moins cinq degrés",   "el": "μείον πέντε βαθμοί, −5 °C",                                 "key": "deg_minus5"}
   ]
 }

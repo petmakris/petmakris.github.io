@@ -4,19 +4,19 @@
   "accent": "#8A4FA0",
   "example": "Le chat est **noir**, la maison est **blanche**, et le ciel est **bleu**.",
   "items": [
-    {"fr": "rouge",    "el": "κόκκινο",                        "key": "red"},
-    {"fr": "bleu",     "el": "μπλε",                           "key": "light blue heart"},
-    {"fr": "vert",     "el": "πράσινο",                        "key": "green"},
-    {"fr": "jaune",    "el": "κίτρινο",                        "key": "yellow heart"},
-    {"fr": "noir",     "el": "μαύρο",                          "key": "black heart"},
-    {"fr": "blanc",    "el": "άσπρο, λευκό (θηλ. blanche)",    "key": "white"},
-    {"fr": "gris",     "el": "γκρι",                           "key": "grey heart"},
-    {"fr": "orange",   "el": "πορτοκαλί· «une orange» = το φρούτο", "key": "orange heart"},
-    {"fr": "rose",     "el": "ροζ· «une rose» = το τριαντάφυλλο",   "key": "pink heart"},
-    {"fr": "marron",   "el": "καφέ· «un marron» = το κάστανο",  "key": "brown heart"},
-    {"fr": "violet",   "el": "μωβ (θηλ. violette)",            "key": "purple"},
-    {"fr": "beige",    "el": "μπεζ",                           "key": "beige"},
-    {"fr": "doré",     "el": "χρυσαφί, χρυσός",                "key": "gold"},
-    {"fr": "argenté",  "el": "ασημί",                          "key": "silver"}
+    {"fr": "rouge",    "el": "κόκκινο",                        "key": "col_rouge"},
+    {"fr": "bleu",     "el": "μπλε",                           "key": "col_bleu"},
+    {"fr": "vert",     "el": "πράσινο",                        "key": "col_vert"},
+    {"fr": "jaune",    "el": "κίτρινο",                        "key": "col_jaune"},
+    {"fr": "noir",     "el": "μαύρο",                          "key": "col_noir"},
+    {"fr": "blanc",    "el": "άσπρο, λευκό (θηλ. blanche)",    "key": "col_blanc"},
+    {"fr": "gris",     "el": "γκρι",                           "key": "col_gris"},
+    {"fr": "orange",   "el": "πορτοκαλί· «une orange» = το φρούτο", "key": "col_orange"},
+    {"fr": "rose",     "el": "ροζ· «une rose» = το τριαντάφυλλο",   "key": "col_rose"},
+    {"fr": "marron",   "el": "καφέ· «un marron» = το κάστανο",  "key": "col_marron"},
+    {"fr": "violet",   "el": "μωβ (θηλ. violette)",            "key": "col_violet"},
+    {"fr": "beige",    "el": "μπεζ",                           "key": "col_beige"},
+    {"fr": "doré",     "el": "χρυσαφί, χρυσός",                "key": "col_dore"},
+    {"fr": "argenté",  "el": "ασημί",                          "key": "col_argente"}
   ]
 }

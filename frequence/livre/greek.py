@@ -4,6 +4,13 @@
   Cover the Greek. If the icon alone recovers the word, drop the Greek.
   If it does not, keep it.
 
+The test is about the WORD, and a picture can only ever return the word. A
+gloss that also explains — a gender warning, a Swiss/France contrast, what
+the thing is used for, a homonym trap — is never recoverable from any icon,
+however good, so it prints whatever the icon does. Those glosses announce
+themselves: they carry a clause marker, or they simply run longer than the
+one or two words plus an article that a bare translation needs.
+
 A house glyph is never enough on its own: it is a diagram (a grey reference
 plus a coloured subject), not a depiction, so every glyph-kind row keeps its
 Greek unconditionally — there is no word list to fall out of sync with the
@@ -64,7 +71,21 @@ SCHEMATIC = frozenset({
 })
 
 
-def keeps_greek(fr, kind):
+# A bare Greek translation of one French word runs to about 26 characters —
+# an article and one or two words, sometimes a second synonym after a comma.
+# Past that, or once one of these marks appears, the gloss has started saying
+# something the picture cannot: a parenthetical, a clause after a colon or an
+# ano teleia, a dash, a quoted French form.
+BARE_GLOSS_MAX = 26
+EXPLAINS = "(\u00b7\u2014:;\u00ab"
+
+
+def explains(el):
+    """True if this gloss carries more than the word itself."""
+    return len(el) > BARE_GLOSS_MAX or any(c in el for c in EXPLAINS)
+
+
+def keeps_greek(fr, kind, el=""):
     """True if this row prints its Greek gloss."""
     if kind == "none":
         return True
@@ -72,4 +93,4 @@ def keeps_greek(fr, kind):
         return True
     if fr in SCHEMATIC:
         return True
-    return False
+    return explains(el)

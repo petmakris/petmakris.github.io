@@ -4,7 +4,7 @@ import glyphs
 ACCENT = "#B5531F"
 
 def test_has_the_full_set():
-    assert len(glyphs.GLYPHS) >= 57
+    assert len(glyphs.GLYPHS) >= 200
 
 def test_every_glyph_returns_wellformed_svg():
     for key in glyphs.GLYPHS:
@@ -14,8 +14,27 @@ def test_every_glyph_returns_wellformed_svg():
         assert 'viewBox="0 0 24 24"' in svg, key
 
 def test_every_glyph_uses_the_accent():
+    """Every glyph is tinted by its card — except the colour swatches, which
+    are the one family whose subject IS a colour. Painting `rouge` in the
+    card's accent would make the picture contradict the word, so col_* is
+    exempt by design, and the exemption is spelled out here rather than
+    silently skipped."""
     for key in glyphs.GLYPHS:
+        if key.startswith("col_"):
+            continue
         assert ACCENT in glyphs.render(key, ACCENT), key
+
+
+def test_colour_swatches_paint_their_own_colour():
+    """The flip side of the exemption above: a swatch must show the colour it
+    names, whatever card it lands on, and must keep the grey keyline that is
+    the only reason col_blanc is visible on white paper."""
+    for key, col in (("col_rouge", "#D5352B"), ("col_blanc", "#FFFFFF"),
+                     ("col_vert", "#3E8E41")):
+        svg = glyphs.render(key, ACCENT)
+        assert col in svg, key
+        assert glyphs.GREY in svg, key
+        assert ACCENT not in svg, key
 
 def test_core_prepositions_are_present():
     for key in ("on_box", "under_box", "in_box", "out_box",

@@ -33,15 +33,15 @@
     {"fr": "en automne",       "el": "το φθινόπωρο",    "key": "maple leaf"},
     {"fr": "en hiver",         "el": "τον χειμώνα",     "key": "skier"},
 
-    {"fr": "avant-hier",       "el": "προχθές",         "key": "day before yesterday"},
-    {"fr": "hier",             "el": "χθες",            "key": "yesterday"},
-    {"fr": "aujourd'hui",      "el": "σήμερα",          "key": "today"},
-    {"fr": "demain",           "el": "αύριο",           "key": "tomorrow"},
-    {"fr": "après-demain",     "el": "μεθαύριο",        "key": "day after tomorrow"},
+    {"fr": "avant-hier",       "el": "προχθές",         "key": "cal_m2"},
+    {"fr": "hier",             "el": "χθες",            "key": "cal_m1"},
+    {"fr": "aujourd'hui",      "el": "σήμερα",          "key": "cal_0"},
+    {"fr": "demain",           "el": "αύριο",           "key": "cal_p1"},
+    {"fr": "après-demain",     "el": "μεθαύριο",        "key": "cal_p2"},
 
-    {"fr": "la semaine",       "el": "η εβδομάδα",      "key": "week"},
-    {"fr": "le week-end",      "el": "το σαββατοκύριακο", "key": "weekend"},
-    {"fr": "le mois",          "el": "ο μήνας",         "key": "calendar month"},
-    {"fr": "l'année",          "el": "η χρονιά (και: ο χρόνος — ίδιο πράγμα)", "key": "year"}
+    {"fr": "la semaine",       "el": "η εβδομάδα",      "key": "cal_week"},
+    {"fr": "le week-end",      "el": "το σαββατοκύριακο", "key": "cal_weekend"},
+    {"fr": "le mois",          "el": "ο μήνας",         "key": "cal_month"},
+    {"fr": "l'année",          "el": "η χρονιά (και: ο χρόνος — ίδιο πράγμα)", "key": "cal_year"}
   ]
 }
