@@ -4,7 +4,7 @@
   "accent": "#B5531F",
   "example": "Dans la **cuisine**, l'**assiette** et le **verre** sont sur la **table** ; dans la **chambre**, le **lit** est près de la **fenêtre**.",
   "items": [
-    {"fr": "l'assiette",      "el": "το πιάτο",                                              "key": "plate",   "icon": "1F37D"},
+    {"fr": "l'assiette",      "el": "το πιάτο",                                              "key": "plate",   "icon": "1F37D", "g": "f"},
     {"fr": "le verre",        "el": "το ποτήρι",                                             "key": "glass",   "icon": "1F95B"},
     {"fr": "le couteau",      "el": "το μαχαίρι",                                            "key": "knife",   "icon": "1F52A"},
     {"fr": "la fourchette",   "el": "το πιρούνι",                                            "key": "fork", "icon": "1F374"},
@@ -22,8 +22,8 @@
     {"fr": "le salon",        "el": "το σαλόνι, το καθιστικό",                               "key": "sofa", "icon": "1F6CB"},
     {"fr": "la chambre",      "el": "η κρεβατοκάμαρα, το υπνοδωμάτιο",                       "key": "bedroom", "icon": "1F6CF"},
     {"fr": "la salle de bains","el": "το μπάνιο (ο χώρος με την μπανιέρα)",                   "key": "bathroom","icon": "1F6C1"},
-    {"fr": "les toilettes",   "el": "η τουαλέτα — στα γαλλικά πάντα στον πληθυντικό",        "key": "toilet"},
-    {"fr": "l'entrée",        "el": "η είσοδος, το χολ",                                     "key": "entrance", "icon": "1F6AA"},
+    {"fr": "les toilettes",   "el": "η τουαλέτα — στα γαλλικά πάντα στον πληθυντικό",        "key": "toilet", "g": "f"},
+    {"fr": "l'entrée",        "el": "η είσοδος, το χολ",                                     "key": "entrance", "icon": "1F6AA", "g": "f"},
     {"fr": "le balcon",       "el": "το μπαλκόνι",                                           "key": "balcony"},
     {"fr": "le jardin",       "el": "ο κήπος",                                               "key": "garden",  "icon": "1F331"}
   ]

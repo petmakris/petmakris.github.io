@@ -14,17 +14,17 @@
     {"fr": "la poule",      "el": "η κότα (το ζωντανό)· το κρέας: κοτόπουλο",           "key": "chicken"},
     {"fr": "le coq",        "el": "ο κόκορας",                                         "key": "rooster"},
     {"fr": "le canard",     "el": "η πάπια",                                           "key": "duck"},
-    {"fr": "l'oiseau",      "el": "το πουλί (αρσενικό στα γαλλικά)",                    "key": "bird"},
+    {"fr": "l'oiseau",      "el": "το πουλί (αρσενικό στα γαλλικά)",                    "key": "bird", "g": "m"},
     {"fr": "le poisson",    "el": "το ψάρι",                                           "key": "fish"},
     {"fr": "le lapin",      "el": "το κουνέλι",                                        "key": "rabbit"},
     {"fr": "la souris",     "el": "το ποντίκι (και του υπολογιστή)",                    "key": "mouse"},
-    {"fr": "l'ours",        "el": "η αρκούδα (αρσενικό στα γαλλικά)",                   "key": "bear"},
+    {"fr": "l'ours",        "el": "η αρκούδα (αρσενικό στα γαλλικά)",                   "key": "bear", "g": "m"},
     {"fr": "le loup",       "el": "ο λύκος",                                           "key": "wolf"},
     {"fr": "le renard",     "el": "η αλεπού",                                          "key": "fox"},
     {"fr": "le serpent",    "el": "το φίδι",                                           "key": "snake"},
     {"fr": "la grenouille", "el": "ο βάτραχος",                                        "key": "frog"},
-    {"fr": "l'abeille",     "el": "η μέλισσα (θηλυκό)",                                 "key": "honeybee"},
+    {"fr": "l'abeille",     "el": "η μέλισσα (θηλυκό)",                                 "key": "honeybee", "g": "f"},
     {"fr": "le papillon",   "el": "η πεταλούδα",                                       "key": "butterfly"},
-    {"fr": "l'araignée",    "el": "η αράχνη (θηλυκό)",                                  "key": "spider"}
+    {"fr": "l'araignée",    "el": "η αράχνη (θηλυκό)",                                  "key": "spider", "g": "f"}
   ]
 }

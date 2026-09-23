@@ -63,3 +63,51 @@ def test_row_with_no_icon_has_empty_gutter_not_dashed_placeholder():
     html = render.row_html({"fr": "le coude", "el": "ο αγκώνας", "key": "elbow"}, ACCENT)
     assert '<span class="ic"></span>' in html
     assert "dasharray" not in html
+
+
+def test_gender_comes_from_the_article_when_the_article_shows_it():
+    assert render.gender({"fr": "le billet"}) == "m"
+    assert render.gender({"fr": "la gare"}) == "f"
+
+
+def test_articles_that_hide_the_gender_give_no_pill_on_their_own():
+    """`l'` elides it, `les` pluralises it away, and `un kilo` is never split
+    off at all — none of the three can be guessed from the string."""
+    for fr in ("l'épaule", "les CFF", "un kilo"):
+        assert render.gender({"fr": fr}) == ""
+
+
+def test_explicit_gender_wins_and_an_empty_one_opts_out():
+    assert render.gender({"fr": "l'épaule", "g": "f"}) == "f"
+    assert render.gender({"fr": "l'ongle", "g": "m"}) == "m"
+    # «un Grec, une Grecque» teaches both genders at once, so it wears no
+    # pill — and says so in the data rather than in a renderer special case.
+    assert render.gender({"fr": "un Grec, une Grecque", "g": ""}) == ""
+    # A stray value is not a pill class we have a colour for.
+    assert render.gender({"fr": "le truc", "g": "n"}) == ""
+
+
+def test_the_french_term_is_one_pilled_span():
+    html = render.row_html({"fr": "la gare", "el": "ο σταθμός", "key": "station"},
+                           ACCENT)
+    assert '<span class="fr f">' in html
+    assert '<span class="art la">la</span> <b>gare</b></span>' in html
+
+
+def test_a_row_with_no_gender_still_gets_the_span_without_a_pill_class():
+    """The span is unconditional so every French term sits on the same
+    optical left edge, pill or no pill."""
+    html = render.row_html({"fr": "marcher", "el": "περπατώ", "key": "walk"},
+                           ACCENT)
+    assert '<span class="fr">' in html
+
+
+def test_elision_leaves_no_space_but_a_full_article_keeps_one():
+    """French elides «l'» precisely so there is no gap. The flex gap that
+    correctly separated «le» from «billet» was printing «l' épaule»."""
+    elided = render.row_html({"fr": "l'épaule", "el": "ο ώμος", "g": "f",
+                              "key": "body_shoulder"}, ACCENT)
+    assert ">l&#x27;</span><b>épaule</b>" in elided
+    full = render.row_html({"fr": "le billet", "el": "το εισιτήριο",
+                            "key": "ticket"}, ACCENT)
+    assert ">le</span> <b>billet</b>" in full

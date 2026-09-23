@@ -26,6 +26,22 @@ def _article_class(art):
     return {"le": "le", "la": "la", "l'": "elid", "les": "les"}.get(art, "")
 
 
+def gender(item):
+    """'m', 'f', or '' — which gender pill this row wears.
+
+    `le` and `la` say it themselves. The three articles that do NOT are
+    exactly the ones a learner trips on: `l'` elides the gender away in front
+    of a vowel, a plural hides it, and an indefinite `un kilo` is never split
+    at all. Those rows carry an explicit `g` in the card JSON, and an explicit
+    `g` always wins — which is also how a row naming BOTH genders
+    («un Grec, une Grecque») opts out, by carrying an empty one.
+    """
+    g = item.get("g")
+    if g is not None:
+        return g if g in ("m", "f") else ""
+    return {"le": "m", "la": "f"}.get(split_article(item["fr"])[0], "")
+
+
 def row_html(item, accent, gutter=True):
     """One row: icon gutter, coloured article, French, Greek only if needed.
 
@@ -47,10 +63,20 @@ def row_html(item, accent, gutter=True):
     if gutter:
         icon_html = "" if kind == "none" else svg
         parts.append(f'<span class="ic">{icon_html}</span>')
+
+    # Article and noun travel inside ONE span, which is what the gender pill
+    # is painted on. It also fixes the space that used to sit between them:
+    # the flex gap that correctly separates «le» from «billet» was also
+    # separating «l'» from «épaule», and French elides precisely so that
+    # there is no gap there.
+    term = ""
     if art:
-        parts.append(f'<span class="art {_article_class(art)}">'
-                     f'{_html.escape(art)}</span>')
-    parts.append(f'<b>{_html.escape(noun)}</b>')
+        sep = "" if art == "l'" else " "
+        term += (f'<span class="art {_article_class(art)}">'
+                 f'{_html.escape(art)}</span>{sep}')
+    term += f'<b>{_html.escape(noun)}</b>'
+    g = gender(item)
+    parts.append(f'<span class="fr{" " + g if g else ""}">{term}</span>')
 
     # EVERY row that has a Greek gloss prints it. There used to be a "cover
     # test" here — cover the Greek, and if the icon alone recovers the word,

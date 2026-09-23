@@ -6,18 +6,18 @@
   "items": [
     {"fr": "le père",        "el": "ο πατέρας, ο μπαμπάς",                        "key": "man"},
     {"fr": "la mère",        "el": "η μητέρα, η μαμά",                            "key": "woman"},
-    {"fr": "les parents",    "el": "οι γονείς",                                   "key": "family"},
+    {"fr": "les parents",    "el": "οι γονείς",                                   "key": "family", "g": "m"},
     {"fr": "le fils",        "el": "ο γιος",                                      "key": "boy"},
     {"fr": "la fille",       "el": "η κόρη (του γονιού) / το κορίτσι (νεαρή)",    "key": "girl"},
     {"fr": "le frère",       "el": "ο αδελφός",                                   "key": "brother", "icon": "1F466"},
     {"fr": "la sœur",        "el": "η αδελφή",                                    "key": "sister", "icon": "1F467"},
-    {"fr": "l'enfant",       "el": "το παιδί",                                    "key": "child"},
+    {"fr": "l'enfant",       "el": "το παιδί",                                    "key": "child", "g": "m"},
     {"fr": "le bébé",        "el": "το μωρό",                                     "key": "baby"},
     {"fr": "le mari",        "el": "ο σύζυγος, ο άντρας της",                     "key": "husband", "icon": "1F935"},
     {"fr": "la femme",       "el": "η γυναίκα (γενικά) / η σύζυγος (παντρεμένη)", "key": "wife", "icon": "1F470"},
     {"fr": "le grand-père",  "el": "ο παππούς",                                   "key": "old man"},
     {"fr": "la grand-mère",  "el": "η γιαγιά",                                    "key": "old woman"},
-    {"fr": "l'oncle",        "el": "ο θείος",                                     "key": "uncle"},
+    {"fr": "l'oncle",        "el": "ο θείος",                                     "key": "uncle", "g": "m"},
     {"fr": "la tante",       "el": "η θεία",                                      "key": "aunt"},
     {"fr": "le cousin",      "el": "ο ξάδελφος",                                  "key": "cousin"}
   ]

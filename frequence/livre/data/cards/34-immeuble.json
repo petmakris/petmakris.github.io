@@ -4,7 +4,7 @@
   "accent": "#B5531F",
   "example": "La **régie** demande la **caution** et l'**état des lieux** ; le **concierge** ouvre la **buanderie**.",
   "items": [
-    {"fr": "l'immeuble",                 "el": "η πολυκατοικία",                                                                    "key": "houses"},
+    {"fr": "l'immeuble",                 "el": "η πολυκατοικία",                                                                    "key": "houses", "g": "m"},
     {"fr": "la buanderie",               "el": "το κοινόχρηστο πλυντήριο — ο χώρος με τα πλυντήρια, στο υπόγειο",                   "key": "washing machine"},
     {"fr": "le planning de la buanderie","el": "το πρόγραμμα του πλυντηρίου — ο πίνακας όπου κλείνεις τη μέρα και την ώρα σου",     "key": "notebook with decorative cover"},
     {"fr": "la cave",                    "el": "η αποθήκη στο υπόγειο (όχι «σπηλιά»· κάθε διαμέρισμα έχει τη δική του)",            "key": "dir_down"},
@@ -13,13 +13,13 @@
     {"fr": "la gérance",                 "el": "η διαχείριση του κτηρίου — η υπηρεσία που πληρώνεις και στην οποία γράφεις",        "key": "telephone"},
     {"fr": "la régie",                   "el": "το γραφείο ακινήτων — η εταιρεία που νοικιάζει το διαμέρισμα και κρατά το συμβόλαιο", "key": "briefcase"},
     {"fr": "le concierge",               "el": "ο θυρωρός — ο άνθρωπος στο κτήριο, καθαρίζει και έχει τα κλειδιά",                  "key": "broom"},
-    {"fr": "les charges",                "el": "τα κοινόχρηστα — θέρμανση, νερό, καθαριότητα, χωριστά από το ενοίκιο",              "key": "abacus"},
+    {"fr": "les charges",                "el": "τα κοινόχρηστα — θέρμανση, νερό, καθαριότητα, χωριστά από το ενοίκιο",              "key": "abacus", "g": "f"},
     {"fr": "le bail",                    "el": "το μισθωτήριο συμβόλαιο",                                                           "key": "page with curl"},
     {"fr": "la caution",                 "el": "η εγγύηση — τα χρήματα που μπλοκάρονται σε λογαριασμό μέχρι να φύγεις",             "key": "money bag"},
-    {"fr": "l'état des lieux",           "el": "το πρωτόκολλο παράδοσης-παραλαβής — ο έλεγχος του διαμερίσματος με υπογραφή",       "key": "magnifying glass tilted left"},
+    {"fr": "l'état des lieux",           "el": "το πρωτόκολλο παράδοσης-παραλαβής — ο έλεγχος του διαμερίσματος με υπογραφή",       "key": "magnifying glass tilted left", "g": "m"},
     {"fr": "le rez-de-chaussée",         "el": "το ισόγειο",                                                                        "key": "door"},
-    {"fr": "l'étage",                    "el": "ο όροφος",                                                                          "key": "dir_up"},
-    {"fr": "l'ascenseur",                "el": "το ασανσέρ, ο ανελκυστήρας",                                                        "key": "up-down arrow"},
+    {"fr": "l'étage",                    "el": "ο όροφος",                                                                          "key": "dir_up", "g": "m"},
+    {"fr": "l'ascenseur",                "el": "το ασανσέρ, ο ανελκυστήρας",                                                        "key": "up-down arrow", "g": "m"},
     {"fr": "le silence dès 22h",         "el": "η ησυχία από τις 22:00 — κανόνας σε κάθε πολυκατοικία",                             "key": "ten o’clock"}
   ]
 }

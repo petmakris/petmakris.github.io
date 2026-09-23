@@ -30,9 +30,9 @@
     {"fr": "il est tard",             "el": "είναι αργά",          "key": "late", "icon": "1F319"},
     {"fr": "en retard",               "el": "καθυστερημένος",      "key": "late_person", "icon": "1F3C3"},
     {"fr": "à l'heure",               "el": "στην ώρα",            "key": "on_time", "icon": "2705"},
-    {"fr": "une demi-heure",          "el": "μισή ώρα",            "key": "dur_30"},
-    {"fr": "un quart d'heure",        "el": "ένα τέταρτο",         "key": "dur_15"},
-    {"fr": "une minute",              "el": "ένα λεπτό",           "key": "qty_min"},
-    {"fr": "une seconde",             "el": "ένα δευτερόλεπτο",    "key": "qty_sec"}
+    {"fr": "une demi-heure",          "el": "μισή ώρα",            "key": "dur_30", "g": "f"},
+    {"fr": "un quart d'heure",        "el": "ένα τέταρτο",         "key": "dur_15", "g": "m"},
+    {"fr": "une minute",              "el": "ένα λεπτό",           "key": "qty_min", "g": "f"},
+    {"fr": "une seconde",             "el": "ένα δευτερόλεπτο",    "key": "qty_sec", "g": "f"}
   ]
 }

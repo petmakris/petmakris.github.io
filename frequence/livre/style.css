@@ -68,6 +68,30 @@ body {
 .wd .art.le  { color: var(--le); }
 .wd .art.la  { color: var(--la); }
 .wd .art.elid, .wd .art.les { color: var(--neut); }
+
+/* The gender pill. The coloured article says the same thing, but only on the
+   rows that HAVE a coloured article, and only to a reader already looking at
+   it — the pill is the shape you see before you read anything. It is a tint
+   of the very article colour it replaces, so the two cues agree instead of
+   competing, and it is kept faint on purpose: at this density, 60 saturated
+   blocks per page would be the only thing on the page.
+
+   `inline`, not `inline-flex`, so a long term wraps inside its own column;
+   box-decoration-break re-draws the padding and the radius on every
+   fragment, without which a wrapped term loses its right-hand end. */
+/* The negative margin makes the pill bleed OUTWARD into the 4mm column gap
+   instead of eating 3mm of every line's text width. Without it the padding
+   costs three pages, most of them on the phrase cards, which wear no pill at
+   all and would have paid for it anyway. */
+.wd .fr { display: inline; padding: 0.15mm 1.5mm; margin: 0 -1.5mm;
+          border-radius: 2.6mm;
+          -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.wd .fr.m { background: color-mix(in srgb, var(--le) 14%, #fff); }
+.wd .fr.f { background: color-mix(in srgb, var(--la) 13%, #fff); }
+/* Give back on the right only what the pill's outward bleed took, and only
+   on rows that actually wear one, so the gloss keeps its breathing room
+   without every unpilled row paying for it. */
+.wd .fr.m + .el, .wd .fr.f + .el { margin-left: 1mm; }
 .wd .el { font-size: 11pt; color: var(--el); }
 
 /* One example sentence per card. It supplies the only thing a grid cannot:

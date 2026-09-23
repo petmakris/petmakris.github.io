@@ -43,7 +43,7 @@
     {"fr": "demi",       "el": "μισός (επίθετο: un demi-litre = μισό λίτρο)", "key": "num_half"},
     {"fr": "le quart",   "el": "το τέταρτο",                          "key": "num_quarter"},
     {"fr": "la moitié",  "el": "το μισό (ουσιαστικό: η μισή ποσότητα)", "key": "num_half"},
-    {"fr": "l'argent",   "el": "τα χρήματα, το χρήμα",                "key": "money", "icon": "1F4B0"},
+    {"fr": "l'argent",   "el": "τα χρήματα, το χρήμα",                "key": "money", "icon": "1F4B0", "g": "m"},
     {"fr": "le franc",   "el": "το φράγκο (ελβετικό νόμισμα, CHF)",   "key": "money_franc"},
     {"fr": "le centime", "el": "το λεπτό (το 1/100 του φράγκου)",     "key": "money_centime"},
     {"fr": "le prix",    "el": "η τιμή",                              "key": "price", "icon": "1F3F7"},

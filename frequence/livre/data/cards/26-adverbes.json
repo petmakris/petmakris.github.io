@@ -11,7 +11,7 @@
     {"fr": "jamais",       "el": "ποτέ — με άρνηση: ne… jamais = δεν … ποτέ",            "key": "freq_never"},
 
     {"fr": "rien",         "el": "τίποτα — με άρνηση: ne… rien = δεν … τίποτα",          "key": "nothing"},
-    {"fr": "un peu",       "el": "λίγο (δύο λέξεις στα γαλλικά)",                       "key": "q_little"},
+    {"fr": "un peu",       "el": "λίγο (δύο λέξεις στα γαλλικά)",                       "key": "q_little", "g": ""},
     {"fr": "assez",        "el": "αρκετά· και «φτάνει»",                                "key": "q_enough"},
     {"fr": "beaucoup",     "el": "πολύ",                                               "key": "q_lots"},
     {"fr": "trop",         "el": "πάρα πολύ, υπερβολικά",                               "key": "q_too_much"},

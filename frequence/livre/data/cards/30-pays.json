@@ -22,8 +22,8 @@
     {"fr": "le grec",                 "el": "τα ελληνικά, η γλώσσα· στα γαλλικά γράφεται με μικρό γράμμα",               "key": "greek", "icon": "1F5E3"},
     {"fr": "le français",             "el": "τα γαλλικά, η γλώσσα· επίσης με μικρό γράμμα",                              "key": "french", "icon": "1F5E3"},
     {"fr": "grec, grecque",           "el": "ελληνικός, ελληνική — το επίθετο· μικρό γράμμα στα γαλλικά: un livre grec", "key": "greek"},
-    {"fr": "un Grec, une Grecque",    "el": "ο Έλληνας, η Ελληνίδα — ο άνθρωπος· εδώ τα γαλλικά θέλουν κεφαλαίο",        "key": "person standing"},
-    {"fr": "un Français, une Française", "el": "ο Γάλλος, η Γαλλίδα· κεφαλαίο, όπως και το Grec",                        "key": "person standing"},
+    {"fr": "un Grec, une Grecque",    "el": "ο Έλληνας, η Ελληνίδα — ο άνθρωπος· εδώ τα γαλλικά θέλουν κεφαλαίο",        "key": "person standing", "g": ""},
+    {"fr": "un Français, une Française", "el": "ο Γάλλος, η Γαλλίδα· κεφαλαίο, όπως και το Grec",                        "key": "person standing", "g": ""},
     {"fr": "parler",                  "el": "μιλώ",                                                                      "key": "speak"},
     {"fr": "venir de",                "el": "κατάγομαι από, έρχομαι από",                                                "key": "come", "icon": "1F6EC"},
     {"fr": "habiter",                 "el": "μένω, κατοικώ κάπου",                                                       "key": "house"}

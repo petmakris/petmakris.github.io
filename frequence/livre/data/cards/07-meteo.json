@@ -18,7 +18,7 @@
     {"fr": "il y a du vent",      "el": "έχει αέρα",                                                 "key": "wind",        "icon": "1F4A8"},
     {"fr": "il y a du brouillard", "el": "έχει ομίχλη",                                              "key": "fog"},
     {"fr": "il y a des nuages",   "el": "έχει σύννεφα",                                              "key": "cloud"},
-    {"fr": "l'orage",             "el": "η καταιγίδα, με αστραπές και βροντές (αρσενικό: un orage)",  "key": "storm",       "icon": "26C8"},
+    {"fr": "l'orage",             "el": "η καταιγίδα, με αστραπές και βροντές (αρσενικό: un orage)",  "key": "storm",       "icon": "26C8", "g": "m"},
     {"fr": "la bise",             "el": "ο κρύος βόρειος άνεμος που κατεβαίνει στη λίμνη· εδώ τον λένε με το όνομά του σε κάθε δελτίο καιρού", "key": "breeze", "icon": "1F32C"},
     {"fr": "moins cinq degrés",   "el": "μείον πέντε βαθμοί, −5 °C",                                 "key": "deg_minus5"}
   ]

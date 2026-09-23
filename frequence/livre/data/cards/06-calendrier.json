@@ -42,6 +42,6 @@
     {"fr": "la semaine",       "el": "η εβδομάδα",      "key": "cal_week"},
     {"fr": "le week-end",      "el": "το σαββατοκύριακο", "key": "cal_weekend"},
     {"fr": "le mois",          "el": "ο μήνας",         "key": "cal_month"},
-    {"fr": "l'année",          "el": "η χρονιά (και: ο χρόνος — ίδιο πράγμα)", "key": "cal_year"}
+    {"fr": "l'année",          "el": "η χρονιά (και: ο χρόνος — ίδιο πράγμα)", "key": "cal_year", "g": "f"}
   ]
 }

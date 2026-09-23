@@ -20,12 +20,12 @@
     {"fr": "à trottinette",     "el": "με το πατίνι",                                                         "key": "scooter", "icon": "1F6F4"},
     {"fr": "à moto",            "el": "με τη μηχανή",                                                         "key": "motorcycle", "icon": "1F3CD"},
     {"fr": "le billet",         "el": "το εισιτήριο, για μία διαδρομή",                                       "key": "ticket", "icon": "1F3AB"},
-    {"fr": "l'abonnement",      "el": "η κάρτα απεριορίστων διαδρομών, η συνδρομή (αρσενικό: un abonnement)", "key": "pass", "icon": "1F4B3"},
-    {"fr": "l'arrêt",           "el": "η στάση, του λεωφορείου ή του τραμ (αρσενικό: un arrêt)",              "key": "stop", "icon": "1F68F"},
+    {"fr": "l'abonnement",      "el": "η κάρτα απεριορίστων διαδρομών, η συνδρομή (αρσενικό: un abonnement)", "key": "pass", "icon": "1F4B3", "g": "m"},
+    {"fr": "l'arrêt",           "el": "η στάση, του λεωφορείου ή του τραμ (αρσενικό: un arrêt)",              "key": "stop", "icon": "1F68F", "g": "m"},
     {"fr": "la gare",           "el": "ο σταθμός του τρένου",                                                 "key": "station", "icon": "1F689"},
     {"fr": "le quai",           "el": "η αποβάθρα, μέσα στον σταθμό",                                         "key": "platform", "icon": "1F6E4"},
     {"fr": "la correspondance", "el": "η ανταπόκριση: αλλάζεις όχημα και συνεχίζεις",                         "key": "transfer", "icon": "1F504"},
     {"fr": "le m2",             "el": "η γραμμή m2 του μετρό στη Λωζάνη, υπάρχει και η m1",                   "key": "subway", "icon": "1F687"},
-    {"fr": "les CFF",           "el": "οι ελβετικοί σιδηρόδρομοι, στη Γαλλία λέγονται SNCF",                  "key": "railway", "icon": "1F686"}
+    {"fr": "les CFF",           "el": "οι ελβετικοί σιδηρόδρομοι, στη Γαλλία λέγονται SNCF",                  "key": "railway", "icon": "1F686", "g": "m"}
   ]
 }
