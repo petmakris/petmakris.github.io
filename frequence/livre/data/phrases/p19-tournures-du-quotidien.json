@@ -1,0 +1,146 @@
+{
+  "id": "tournures-du-quotidien",
+  "tier": 4,
+  "order": 1284,
+  "title_fr": "Tournures du quotidien",
+  "title_el": "Φράσεις της καθημερινότητας",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "boire un coup",
+      "el": "πίνω ένα ποτάκι",
+      "key": ""
+    },
+    {
+      "fr": "casser les pieds",
+      "el": "σπάω τα νεύρα κάποιου",
+      "key": ""
+    },
+    {
+      "fr": "ça tombe bien",
+      "el": "πάνω στην ώρα",
+      "key": ""
+    },
+    {
+      "fr": "ça tombe mal",
+      "el": "σε κακή στιγμή",
+      "key": ""
+    },
+    {
+      "fr": "faire gaffe",
+      "el": "πρόσεχε",
+      "key": ""
+    },
+    {
+      "fr": "laisse tomber",
+      "el": "άσ' το, ξέχνα το",
+      "key": ""
+    },
+    {
+      "fr": "ça vaut le détour",
+      "el": "αξίζει τον κόπο",
+      "key": ""
+    },
+    {
+      "fr": "mine de rien",
+      "el": "σαν να μην τρέχει τίποτα",
+      "key": ""
+    },
+    {
+      "fr": "être dans la lune",
+      "el": "είμαι στον κόσμο μου",
+      "key": ""
+    },
+    {
+      "fr": "avoir d'autres chats à fouetter",
+      "el": "έχω κι άλλες δουλειές να κάνω",
+      "key": ""
+    },
+    {
+      "fr": "appeler un chat un chat",
+      "el": "λέω τα σύκα σύκα και τη σκάφη σκάφη",
+      "key": ""
+    },
+    {
+      "fr": "en faire tout un fromage",
+      "el": "κάνω την τρίχα τριχιά",
+      "key": ""
+    },
+    {
+      "fr": "avoir le bras long",
+      "el": "έχω μέσον",
+      "key": ""
+    },
+    {
+      "fr": "chercher midi à quatorze heures",
+      "el": "ψάχνω τον κόμπο στο βούρλο",
+      "key": ""
+    },
+    {
+      "fr": "donner sa langue au chat",
+      "el": "τα παρατάω, πες μου τη λύση",
+      "key": ""
+    },
+    {
+      "fr": "être au taquet",
+      "el": "είμαι στο φουλ",
+      "key": ""
+    },
+    {
+      "fr": "prendre ses jambes à son cou",
+      "el": "το βάζω στα πόδια",
+      "key": ""
+    },
+    {
+      "fr": "se mettre sur son trente et un",
+      "el": "ντύνομαι στην τρίχα",
+      "key": ""
+    },
+    {
+      "fr": "avoir un poil dans la main",
+      "el": "βαριέμαι και ν' ανασάνω",
+      "key": ""
+    },
+    {
+      "fr": "tenir le coup",
+      "el": "αντέχω",
+      "key": ""
+    },
+    {
+      "fr": "en pleine forme",
+      "el": "σε άριστη φόρμα",
+      "key": ""
+    },
+    {
+      "fr": "ça suffit",
+      "el": "φτάνει!",
+      "key": ""
+    },
+    {
+      "fr": "à vrai dire",
+      "el": "για να πω την αλήθεια",
+      "key": ""
+    },
+    {
+      "fr": "de toute façon",
+      "el": "έτσι κι αλλιώς",
+      "key": ""
+    },
+    {
+      "fr": "sans déconner",
+      "el": "σοβαρά τώρα;",
+      "key": ""
+    },
+    {
+      "fr": "c'est nickel",
+      "el": "είναι τέλειο",
+      "key": ""
+    },
+    {
+      "fr": "ça le fait",
+      "el": "μια χαρά είναι",
+      "key": ""
+    }
+  ]
+}

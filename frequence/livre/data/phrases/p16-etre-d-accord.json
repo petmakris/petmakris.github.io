@@ -1,0 +1,111 @@
+{
+  "id": "etre-d-accord",
+  "tier": 4,
+  "order": 1051,
+  "title_fr": "Être d'accord ou pas",
+  "title_el": "Συμφωνώ ή διαφωνώ",
+  "accent": "#B5531F",
+  "example": null,
+  "items": [
+    {
+      "fr": "Bien sûr que oui",
+      "el": "Φυσικά και ναι",
+      "key": ""
+    },
+    {
+      "fr": "Bien sûr que non",
+      "el": "Φυσικά και όχι",
+      "key": ""
+    },
+    {
+      "fr": "Évidemment",
+      "el": "Προφανώς",
+      "key": ""
+    },
+    {
+      "fr": "C'est clair",
+      "el": "Σαφώς",
+      "key": ""
+    },
+    {
+      "fr": "Carrément",
+      "el": "Εννοείται",
+      "key": ""
+    },
+    {
+      "fr": "Ça me va",
+      "el": "Μου κάνει",
+      "key": ""
+    },
+    {
+      "fr": "Ça m'est égal",
+      "el": "Το ίδιο μου κάνει",
+      "key": ""
+    },
+    {
+      "fr": "Peu importe",
+      "el": "Δεν έχει σημασία",
+      "key": ""
+    },
+    {
+      "fr": "Je m'en fiche",
+      "el": "Δεν με νοιάζει",
+      "key": ""
+    },
+    {
+      "fr": "Franchement, je ne sais pas",
+      "el": "Ειλικρινά, δεν ξέρω",
+      "key": ""
+    },
+    {
+      "fr": "Je n'en sais rien",
+      "el": "Δεν έχω ιδέα",
+      "key": ""
+    },
+    {
+      "fr": "J'avoue",
+      "el": "Ναι, το παραδέχομαι",
+      "key": ""
+    },
+    {
+      "fr": "C'est possible",
+      "el": "Μπορεί",
+      "key": ""
+    },
+    {
+      "fr": "Peut-être bien",
+      "el": "Μπορεί και ναι",
+      "key": ""
+    },
+    {
+      "fr": "Je dirais que oui",
+      "el": "Θα έλεγα ναι",
+      "key": ""
+    },
+    {
+      "fr": "Je ne dirais pas ça",
+      "el": "Δεν θα το έλεγα αυτό",
+      "key": ""
+    },
+    {
+      "fr": "Ce n'est pas mon avis",
+      "el": "Δεν είναι αυτή η γνώμη μου",
+      "key": ""
+    },
+    {
+      "fr": "Je vois les choses autrement",
+      "el": "Εγώ το βλέπω αλλιώς",
+      "key": ""
+    },
+    {
+      "fr": "Je suis du même avis",
+      "el": "Έχω την ίδια γνώμη",
+      "key": ""
+    },
+    {
+      "fr": "On est d'accord",
+      "el": "Συμφωνούμε",
+      "key": ""
+    }
+  ]
+}

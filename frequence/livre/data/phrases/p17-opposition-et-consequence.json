@@ -1,0 +1,106 @@
+{
+  "id": "opposition-et-consequence",
+  "tier": 4,
+  "order": 1121,
+  "title_fr": "Opposition, exemple et conséquence",
+  "title_el": "Αντίθεση, παράδειγμα και συνέπεια",
+  "accent": "#B5531F",
+  "example": null,
+  "items": [
+    {
+      "fr": "en revanche",
+      "el": "από την άλλη",
+      "key": ""
+    },
+    {
+      "fr": "au contraire",
+      "el": "αντιθέτως",
+      "key": ""
+    },
+    {
+      "fr": "malgré tout",
+      "el": "παρ' όλα αυτά",
+      "key": ""
+    },
+    {
+      "fr": "quand même",
+      "el": "πάντως",
+      "key": ""
+    },
+    {
+      "fr": "tout de même",
+      "el": "κι όμως",
+      "key": ""
+    },
+    {
+      "fr": "bien que",
+      "el": "αν και",
+      "key": ""
+    },
+    {
+      "fr": "même si",
+      "el": "ακόμα κι αν",
+      "key": ""
+    },
+    {
+      "fr": "alors que",
+      "el": "ενώ",
+      "key": ""
+    },
+    {
+      "fr": "tandis que",
+      "el": "τη στιγμή που",
+      "key": ""
+    },
+    {
+      "fr": "par exemple",
+      "el": "για παράδειγμα",
+      "key": ""
+    },
+    {
+      "fr": "notamment",
+      "el": "ιδίως",
+      "key": ""
+    },
+    {
+      "fr": "en particulier",
+      "el": "ειδικότερα",
+      "key": ""
+    },
+    {
+      "fr": "c'est pourquoi",
+      "el": "γι' αυτό",
+      "key": ""
+    },
+    {
+      "fr": "par conséquent",
+      "el": "συνεπώς",
+      "key": ""
+    },
+    {
+      "fr": "ainsi",
+      "el": "έτσι",
+      "key": ""
+    },
+    {
+      "fr": "de ce fait",
+      "el": "ως εκ τούτου",
+      "key": ""
+    },
+    {
+      "fr": "voilà pourquoi",
+      "el": "να γιατί",
+      "key": ""
+    },
+    {
+      "fr": "c'est la raison pour laquelle",
+      "el": "αυτός είναι ο λόγος για τον οποίο",
+      "key": ""
+    },
+    {
+      "fr": "résultat",
+      "el": "αποτέλεσμα:",
+      "key": ""
+    }
+  ]
+}

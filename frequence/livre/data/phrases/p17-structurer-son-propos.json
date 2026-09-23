@@ -1,0 +1,141 @@
+{
+  "id": "structurer-son-propos",
+  "tier": 4,
+  "order": 1161,
+  "title_fr": "Structurer son propos",
+  "title_el": "Δόμηση του λόγου",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "d'une part",
+      "el": "αφενός",
+      "key": ""
+    },
+    {
+      "fr": "d'autre part",
+      "el": "αφετέρου",
+      "key": ""
+    },
+    {
+      "fr": "d'un côté",
+      "el": "από τη μία",
+      "key": ""
+    },
+    {
+      "fr": "de l'autre côté",
+      "el": "από την άλλη πλευρά",
+      "key": ""
+    },
+    {
+      "fr": "à propos",
+      "el": "με την ευκαιρία",
+      "key": ""
+    },
+    {
+      "fr": "au fait",
+      "el": "αλήθεια",
+      "key": ""
+    },
+    {
+      "fr": "soit dit en passant",
+      "el": "παρεμπιπτόντως",
+      "key": ""
+    },
+    {
+      "fr": "en ce qui concerne",
+      "el": "όσον αφορά",
+      "key": ""
+    },
+    {
+      "fr": "quant à",
+      "el": "όσο για",
+      "key": ""
+    },
+    {
+      "fr": "à ce sujet",
+      "el": "σχετικά μ' αυτό",
+      "key": ""
+    },
+    {
+      "fr": "au sujet de",
+      "el": "σχετικά με",
+      "key": ""
+    },
+    {
+      "fr": "justement",
+      "el": "ακριβώς",
+      "key": ""
+    },
+    {
+      "fr": "d'autant plus que",
+      "el": "πολύ περισσότερο που",
+      "key": ""
+    },
+    {
+      "fr": "puisque",
+      "el": "αφού",
+      "key": ""
+    },
+    {
+      "fr": "étant donné que",
+      "el": "δεδομένου ότι",
+      "key": ""
+    },
+    {
+      "fr": "vu que",
+      "el": "μια και",
+      "key": ""
+    },
+    {
+      "fr": "afin de",
+      "el": "προκειμένου να",
+      "key": ""
+    },
+    {
+      "fr": "pour que",
+      "el": "για να",
+      "key": ""
+    },
+    {
+      "fr": "de sorte que",
+      "el": "έτσι ώστε",
+      "key": ""
+    },
+    {
+      "fr": "au cas où",
+      "el": "σε περίπτωση που",
+      "key": ""
+    },
+    {
+      "fr": "à condition que",
+      "el": "αρκεί να",
+      "key": ""
+    },
+    {
+      "fr": "sauf que",
+      "el": "μόνο που",
+      "key": ""
+    },
+    {
+      "fr": "en attendant",
+      "el": "στο μεταξύ",
+      "key": ""
+    },
+    {
+      "fr": "au lieu de",
+      "el": "αντί να",
+      "key": ""
+    },
+    {
+      "fr": "à part ça",
+      "el": "κατά τα άλλα",
+      "key": ""
+    },
+    {
+      "fr": "en fin de compte",
+      "el": "εν τέλει",
+      "key": ""
+    }
+  ]
+}

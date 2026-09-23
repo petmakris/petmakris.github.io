@@ -1,0 +1,66 @@
+{
+  "id": "demander-son-chemin-p05",
+  "tier": 4,
+  "order": 318,
+  "title_fr": "Demander son chemin",
+  "title_el": "να ρωτάς τον δρόμο",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "Excusez-moi, où est la gare ?",
+      "el": "Συγγνώμη, πού είναι ο σταθμός;",
+      "key": ""
+    },
+    {
+      "fr": "Pouvez-vous m'indiquer le chemin ?",
+      "el": "Μπορείτε να μου δείξετε τον δρόμο;",
+      "key": ""
+    },
+    {
+      "fr": "Comment est-ce que je vais à la gare ?",
+      "el": "Πώς πάω στον σταθμό;",
+      "key": ""
+    },
+    {
+      "fr": "Comment on va au centre-ville ?",
+      "el": "Πώς πάμε στο κέντρο;",
+      "key": ""
+    },
+    {
+      "fr": "Quelle direction pour le musée ?",
+      "el": "Προς τα πού είναι το μουσείο;",
+      "key": ""
+    },
+    {
+      "fr": "C'est par où, l'office de tourisme ?",
+      "el": "Από πού πάω για το γραφείο τουρισμού;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que c'est loin d'ici ?",
+      "el": "Είναι μακριά από εδώ;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que c'est près d'ici ?",
+      "el": "Είναι κοντά εδώ;",
+      "key": ""
+    },
+    {
+      "fr": "On peut y aller à pied ?",
+      "el": "Μπορούμε να πάμε με τα πόδια;",
+      "key": ""
+    },
+    {
+      "fr": "C'est à quelle distance ?",
+      "el": "Πόσο μακριά είναι;",
+      "key": ""
+    },
+    {
+      "fr": "Ça prend combien de temps à pied ?",
+      "el": "Πόση ώρα θέλει με τα πόδια;",
+      "key": ""
+    }
+  ]
+}

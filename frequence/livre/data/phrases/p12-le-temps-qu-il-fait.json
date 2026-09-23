@@ -1,0 +1,121 @@
+{
+  "id": "le-temps-qu-il-fait",
+  "tier": 4,
+  "order": 776,
+  "title_fr": "Le temps qu'il fait",
+  "title_el": "Ο καιρός",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "Il fait beau aujourd'hui.",
+      "el": "Έχει ωραίο καιρό σήμερα.",
+      "key": ""
+    },
+    {
+      "fr": "Il fait du soleil.",
+      "el": "Έχει ήλιο.",
+      "key": ""
+    },
+    {
+      "fr": "Il fait gris.",
+      "el": "Ο καιρός είναι μουντός.",
+      "key": ""
+    },
+    {
+      "fr": "Il pleut.",
+      "el": "Βρέχει.",
+      "key": ""
+    },
+    {
+      "fr": "Il pleut des cordes.",
+      "el": "Βρέχει καρεκλοπόδαρα.",
+      "key": ""
+    },
+    {
+      "fr": "Il neige.",
+      "el": "Χιονίζει.",
+      "key": ""
+    },
+    {
+      "fr": "Il y a du vent.",
+      "el": "Έχει αέρα.",
+      "key": ""
+    },
+    {
+      "fr": "Il y a du brouillard.",
+      "el": "Έχει ομίχλη.",
+      "key": ""
+    },
+    {
+      "fr": "Il fait froid.",
+      "el": "Κάνει κρύο.",
+      "key": ""
+    },
+    {
+      "fr": "Il fait chaud.",
+      "el": "Κάνει ζέστη.",
+      "key": ""
+    },
+    {
+      "fr": "Il fait un froid de canard.",
+      "el": "Κάνει ένα τσουχτερό κρύο.",
+      "key": ""
+    },
+    {
+      "fr": "On crève de chaud.",
+      "el": "Σκάμε από τη ζέστη.",
+      "key": ""
+    },
+    {
+      "fr": "Il fait doux aujourd'hui.",
+      "el": "Ο καιρός είναι ήπιος σήμερα.",
+      "key": ""
+    },
+    {
+      "fr": "Le ciel est couvert.",
+      "el": "Ο ουρανός είναι συννεφιασμένος.",
+      "key": ""
+    },
+    {
+      "fr": "On annonce de la pluie pour demain.",
+      "el": "Λένε ότι θα βρέξει αύριο.",
+      "key": ""
+    },
+    {
+      "fr": "Prends un parapluie, il va pleuvoir.",
+      "el": "Πάρε ομπρέλα, θα βρέξει.",
+      "key": ""
+    },
+    {
+      "fr": "Couvre-toi, il fait froid dehors.",
+      "el": "Ντύσου καλά, κάνει κρύο έξω.",
+      "key": ""
+    },
+    {
+      "fr": "J'espère qu'il fera beau ce week-end.",
+      "el": "Ελπίζω να έχει καλό καιρό το σαββατοκύριακο.",
+      "key": ""
+    },
+    {
+      "fr": "Le temps change tout le temps.",
+      "el": "Ο καιρός αλλάζει συνέχεια.",
+      "key": ""
+    },
+    {
+      "fr": "On dirait qu'il va pleuvoir.",
+      "el": "Φαίνεται πως θα βρέξει.",
+      "key": ""
+    },
+    {
+      "fr": "Il commence à faire nuit.",
+      "el": "Αρχίζει να νυχτώνει.",
+      "key": ""
+    },
+    {
+      "fr": "Les journées rallongent.",
+      "el": "Οι μέρες μεγαλώνουν.",
+      "key": ""
+    }
+  ]
+}

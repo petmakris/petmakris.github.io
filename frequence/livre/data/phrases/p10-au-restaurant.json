@@ -1,0 +1,176 @@
+{
+  "id": "au-restaurant",
+  "tier": 4,
+  "order": 638,
+  "title_fr": "Au restaurant",
+  "title_el": "στο εστιατόριο",
+  "accent": "#B5531F",
+  "example": null,
+  "items": [
+    {
+      "fr": "Je voudrais réserver une table pour deux.",
+      "el": "Θα ήθελα να κλείσω ένα τραπέζι για δύο.",
+      "key": ""
+    },
+    {
+      "fr": "On a réservé au nom de Martin.",
+      "el": "Έχουμε κράτηση στο όνομα Μαρτέν.",
+      "key": ""
+    },
+    {
+      "fr": "On est quatre personnes.",
+      "el": "Είμαστε τέσσερα άτομα.",
+      "key": ""
+    },
+    {
+      "fr": "On va prendre le menu à vingt francs.",
+      "el": "Θα πάρουμε το μενού των είκοσι φράγκων.",
+      "key": ""
+    },
+    {
+      "fr": "Je prends une entrée et un plat.",
+      "el": "Εγώ θα πάρω ένα ορεκτικό και ένα κυρίως.",
+      "key": ""
+    },
+    {
+      "fr": "Pour moi, ce sera le poulet rôti.",
+      "el": "Για μένα, το ψητό κοτόπουλο.",
+      "key": ""
+    },
+    {
+      "fr": "Je vais prendre le poisson.",
+      "el": "Εγώ θα πάρω το ψάρι.",
+      "key": ""
+    },
+    {
+      "fr": "La même chose pour moi.",
+      "el": "Το ίδιο και για μένα.",
+      "key": ""
+    },
+    {
+      "fr": "On va commencer par les boissons.",
+      "el": "Θα ξεκινήσουμε με τα ποτά.",
+      "key": ""
+    },
+    {
+      "fr": "On a besoin d'encore quelques minutes.",
+      "el": "Χρειαζόμαστε λίγα λεπτά ακόμα.",
+      "key": ""
+    },
+    {
+      "fr": "À point, s'il vous plaît.",
+      "el": "Μέτρια ψημένο, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "Un café, s'il vous plaît.",
+      "el": "Έναν καφέ, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "Un café crème, s'il vous plaît.",
+      "el": "Έναν καφέ με γάλα, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "Un déca pour moi.",
+      "el": "Εγώ έναν ντεκαφεϊνέ.",
+      "key": ""
+    },
+    {
+      "fr": "Un verre de vin rouge, s'il vous plaît.",
+      "el": "Ένα ποτήρι κόκκινο κρασί, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "On va prendre une bouteille de blanc.",
+      "el": "Θα πάρουμε ένα μπουκάλι λευκό.",
+      "key": ""
+    },
+    {
+      "fr": "Une carafe d'eau, s'il vous plaît.",
+      "el": "Μια καράφα νερό, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "Encore un verre d'eau, s'il vous plaît.",
+      "el": "Άλλο ένα ποτήρι νερό, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "Une pression, s'il vous plaît.",
+      "el": "Μια βαρελίσια μπίρα, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "Un jus d'orange, s'il vous plaît.",
+      "el": "Έναν χυμό πορτοκάλι, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "Ce n'est pas ce que j'avais commandé.",
+      "el": "Δεν είναι αυτό που παρήγγειλα.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis allergique aux fruits de mer.",
+      "el": "Έχω αλλεργία στα θαλασσινά.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis allergique aux arachides.",
+      "el": "Έχω αλλεργία στις αραχίδες.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis intolérant au gluten.",
+      "el": "Έχω δυσανεξία στη γλουτένη.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis végétarien.",
+      "el": "Είμαι χορτοφάγος.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis végétarienne.",
+      "el": "Είμαι χορτοφάγος· στα ελληνικά δεν αλλάζει η λέξη.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis végétalien.",
+      "el": "Είμαι βίγκαν.",
+      "key": ""
+    },
+    {
+      "fr": "Je ne mange pas de porc.",
+      "el": "Δεν τρώω χοιρινό.",
+      "key": ""
+    },
+    {
+      "fr": "Il manque une fourchette.",
+      "el": "Λείπει ένα πιρούνι.",
+      "key": ""
+    },
+    {
+      "fr": "Un peu plus de pain, s'il vous plaît.",
+      "el": "Λίγο ψωμί ακόμα, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "Je vais prendre un café gourmand.",
+      "el": "Θα πάρω καφέ με μικρά γλυκάκια.",
+      "key": ""
+    },
+    {
+      "fr": "Rien pour moi, merci.",
+      "el": "Για μένα τίποτα, ευχαριστώ.",
+      "key": ""
+    },
+    {
+      "fr": "Gardez la monnaie.",
+      "el": "Κρατήστε τα ρέστα.",
+      "key": ""
+    }
+  ]
+}

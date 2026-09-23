@@ -1,0 +1,91 @@
+{
+  "id": "essayage-et-prix",
+  "tier": 4,
+  "order": 421,
+  "title_fr": "Essayage et prix",
+  "title_el": "Δοκιμή και τιμές",
+  "accent": "#8A4FA0",
+  "example": null,
+  "items": [
+    {
+      "fr": "Est-ce que je peux l'essayer ?",
+      "el": "Μπορώ να το δοκιμάσω;",
+      "key": ""
+    },
+    {
+      "fr": "Je peux essayer ces deux modèles ?",
+      "el": "Μπορώ να δοκιμάσω αυτά τα δύο;",
+      "key": ""
+    },
+    {
+      "fr": "Où sont les cabines d'essayage ?",
+      "el": "Πού είναι τα δοκιμαστήρια;",
+      "key": ""
+    },
+    {
+      "fr": "La cabine est libre ?",
+      "el": "Είναι ελεύθερο το δοκιμαστήριο;",
+      "key": ""
+    },
+    {
+      "fr": "Vous prenez combien d'articles ?",
+      "el": "Πόσα κομμάτια θα πάρετε μέσα;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez ce modèle en stock ?",
+      "el": "Έχετε αυτό το μοντέλο διαθέσιμο;",
+      "key": ""
+    },
+    {
+      "fr": "Vous l'avez en réserve ?",
+      "el": "Το έχετε στην αποθήκη;",
+      "key": ""
+    },
+    {
+      "fr": "Il vous en reste ?",
+      "el": "Σας έχουν μείνει καθόλου;",
+      "key": ""
+    },
+    {
+      "fr": "Vous pouvez me le commander ?",
+      "el": "Μπορείτε να μου το παραγγείλετε;",
+      "key": ""
+    },
+    {
+      "fr": "C'est combien, celui-ci ?",
+      "el": "Πόσο κάνει αυτό εδώ;",
+      "key": ""
+    },
+    {
+      "fr": "Ça fait combien en tout ?",
+      "el": "Πόσο κάνουν όλα μαζί;",
+      "key": ""
+    },
+    {
+      "fr": "Quel est le prix de cet article ?",
+      "el": "Ποια είναι η τιμή αυτού του προϊόντος;",
+      "key": ""
+    },
+    {
+      "fr": "Il y a une promotion sur ce produit ?",
+      "el": "Έχει προσφορά αυτό το προϊόν;",
+      "key": ""
+    },
+    {
+      "fr": "C'est en solde ?",
+      "el": "Είναι σε έκπτωση;",
+      "key": ""
+    },
+    {
+      "fr": "Vous n'avez pas moins cher ?",
+      "el": "Δεν έχετε κάτι πιο φθηνό;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que vous faites un prix ?",
+      "el": "Μου κάνετε καλύτερη τιμή;",
+      "key": ""
+    }
+  ]
+}

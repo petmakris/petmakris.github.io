@@ -35,9 +35,20 @@ def _check_strict(selected):
         raise SystemExit("strict mode: " + "; ".join(problems))
 
 
-def build(cards_dir, out_dir, tiers=(1, 2, 3), title=TITLE, strict=False):
+# The book has two halves and they live in two directories: the illustrated
+# word cards (tiers 1-3) and the phrase cards migrated from the old deck
+# (tier 4). Sorting by tier puts the phrases after the words automatically.
+PHRASES = os.path.join(HERE, "data", "phrases")
+
+
+def build(cards_dir, out_dir, tiers=(1, 2, 3, 4), title=TITLE, strict=False,
+          phrases_dir=None):
     os.makedirs(out_dir, exist_ok=True)
-    selected = [c for c in cards.load_all(cards_dir) if c["tier"] in tiers]
+    loaded = cards.load_all(cards_dir)
+    if phrases_dir and os.path.isdir(phrases_dir):
+        loaded += cards.load_all(phrases_dir)
+    loaded.sort(key=lambda c: (c["tier"], c["order"]))
+    selected = [c for c in loaded if c["tier"] in tiers]
     if not selected:
         raise SystemExit(f"no cards in {cards_dir} for tiers {tiers}")
 
@@ -70,9 +81,10 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--cards", default=os.path.join(HERE, "data", "cards"))
     ap.add_argument("--out", default=os.path.join(HERE, "out"))
-    ap.add_argument("--tiers", default="1,2,3")
+    ap.add_argument("--tiers", default="1,2,3,4")
+    ap.add_argument("--phrases", default=PHRASES)
     ap.add_argument("--strict", action="store_true",
                      help="fail the build if a hand-picked icon is missing")
     a = ap.parse_args()
     build(a.cards, a.out, tuple(int(t) for t in a.tiers.split(",")),
-          strict=a.strict)
+          strict=a.strict, phrases_dir=a.phrases)

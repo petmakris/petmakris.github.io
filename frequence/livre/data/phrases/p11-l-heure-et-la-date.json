@@ -1,0 +1,191 @@
+{
+  "id": "l-heure-et-la-date",
+  "tier": 4,
+  "order": 735,
+  "title_fr": "L'heure, la date et le temps qui passe",
+  "title_el": "Ώρα, ημερομηνία και χρόνος που περνά",
+  "accent": "#B84066",
+  "example": null,
+  "items": [
+    {
+      "fr": "On est mardi.",
+      "el": "Είναι Τρίτη σήμερα.",
+      "key": ""
+    },
+    {
+      "fr": "Aujourd'hui, c'est lundi.",
+      "el": "Σήμερα είναι Δευτέρα.",
+      "key": ""
+    },
+    {
+      "fr": "On est le 21 juin.",
+      "el": "Σήμερα είναι 21 Ιουνίου.",
+      "key": ""
+    },
+    {
+      "fr": "Il est midi.",
+      "el": "Είναι δώδεκα το μεσημέρι.",
+      "key": ""
+    },
+    {
+      "fr": "Il est minuit.",
+      "el": "Είναι μεσάνυχτα.",
+      "key": ""
+    },
+    {
+      "fr": "Il est presque midi.",
+      "el": "Κοντεύει μεσημέρι.",
+      "key": ""
+    },
+    {
+      "fr": "Il est deux heures et demie.",
+      "el": "Είναι δυόμισι.",
+      "key": ""
+    },
+    {
+      "fr": "Il est huit heures du matin.",
+      "el": "Είναι οχτώ το πρωί.",
+      "key": ""
+    },
+    {
+      "fr": "Il est six heures du soir.",
+      "el": "Είναι έξι το απόγευμα.",
+      "key": ""
+    },
+    {
+      "fr": "Il est tard.",
+      "el": "Είναι αργά.",
+      "key": ""
+    },
+    {
+      "fr": "Il se fait tard.",
+      "el": "Πάει αργά η ώρα.",
+      "key": ""
+    },
+    {
+      "fr": "Il est encore tôt.",
+      "el": "Είναι ακόμα νωρίς.",
+      "key": ""
+    },
+    {
+      "fr": "On a le temps.",
+      "el": "Προλαβαίνουμε.",
+      "key": ""
+    },
+    {
+      "fr": "On n'a pas beaucoup de temps.",
+      "el": "Δεν έχουμε πολύ χρόνο.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis en retard.",
+      "el": "Άργησα.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis en avance.",
+      "el": "Ήρθα νωρίς.",
+      "key": ""
+    },
+    {
+      "fr": "On est pile à l'heure.",
+      "el": "Είμαστε ακριβώς στην ώρα μας.",
+      "key": ""
+    },
+    {
+      "fr": "Dépêchons-nous, on va être en retard.",
+      "el": "Ας βιαστούμε, θα αργήσουμε.",
+      "key": ""
+    },
+    {
+      "fr": "Je te dis ça demain.",
+      "el": "Θα σου πω αύριο.",
+      "key": ""
+    },
+    {
+      "fr": "Dans cinq minutes.",
+      "el": "Σε πέντε λεπτά.",
+      "key": ""
+    },
+    {
+      "fr": "Je reviens dans deux minutes.",
+      "el": "Γυρίζω σε δύο λεπτά.",
+      "key": ""
+    },
+    {
+      "fr": "J'arrive dans un quart d'heure.",
+      "el": "Έρχομαι σε ένα τέταρτο.",
+      "key": ""
+    },
+    {
+      "fr": "On part dans une heure.",
+      "el": "Φεύγουμε σε μία ώρα.",
+      "key": ""
+    },
+    {
+      "fr": "Ça fait une heure que j'attends.",
+      "el": "Μια ώρα περιμένω.",
+      "key": ""
+    },
+    {
+      "fr": "La semaine prochaine, je suis en vacances.",
+      "el": "Την επόμενη εβδομάδα είμαι σε διακοπές.",
+      "key": ""
+    },
+    {
+      "fr": "Le mois prochain, je déménage.",
+      "el": "Τον επόμενο μήνα μετακομίζω.",
+      "key": ""
+    },
+    {
+      "fr": "L'année prochaine, je change de travail.",
+      "el": "Του χρόνου αλλάζω δουλειά.",
+      "key": ""
+    },
+    {
+      "fr": "La semaine dernière, j'étais malade.",
+      "el": "Την περασμένη εβδομάδα ήμουν άρρωστος.",
+      "key": ""
+    },
+    {
+      "fr": "Le week-end dernier, on est sortis.",
+      "el": "Το περασμένο σαββατοκύριακο βγήκαμε έξω.",
+      "key": ""
+    },
+    {
+      "fr": "Avant-hier, il faisait beau.",
+      "el": "Προχθές είχε ωραίο καιρό.",
+      "key": ""
+    },
+    {
+      "fr": "Après-demain, je suis libre.",
+      "el": "Μεθαύριο είμαι ελεύθερος.",
+      "key": ""
+    },
+    {
+      "fr": "Demain matin, j'ai un rendez-vous.",
+      "el": "Αύριο το πρωί έχω ένα ραντεβού.",
+      "key": ""
+    },
+    {
+      "fr": "Ce matin, je me suis levé tôt.",
+      "el": "Σήμερα το πρωί σηκώθηκα νωρίς.",
+      "key": ""
+    },
+    {
+      "fr": "Cet après-midi, je travaille.",
+      "el": "Σήμερα το απόγευμα δουλεύω.",
+      "key": ""
+    },
+    {
+      "fr": "En ce moment, je suis très occupé.",
+      "el": "Αυτόν τον καιρό είμαι πολύ απασχολημένος.",
+      "key": ""
+    },
+    {
+      "fr": "Tous les jours, je prends le bus.",
+      "el": "Κάθε μέρα παίρνω το λεωφορείο.",
+      "key": ""
+    }
+  ]
+}

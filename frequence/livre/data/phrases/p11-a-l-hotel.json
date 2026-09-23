@@ -1,0 +1,91 @@
+{
+  "id": "a-l-hotel-p11",
+  "tier": 4,
+  "order": 706,
+  "title_fr": "À l'hôtel",
+  "title_el": "Στο ξενοδοχείο",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "Je voudrais réserver une chambre pour deux personnes.",
+      "el": "Θα ήθελα να κλείσω ένα δωμάτιο για δύο άτομα.",
+      "key": ""
+    },
+    {
+      "fr": "C'est pour trois nuits.",
+      "el": "Είναι για τρεις νύχτες.",
+      "key": ""
+    },
+    {
+      "fr": "Le petit-déjeuner est servi jusqu'à dix heures.",
+      "el": "Το πρωινό σερβίρεται μέχρι τις δέκα.",
+      "key": ""
+    },
+    {
+      "fr": "La clé, s'il vous plaît.",
+      "el": "Το κλειδί, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "Voici votre clé.",
+      "el": "Ορίστε το κλειδί σας.",
+      "key": ""
+    },
+    {
+      "fr": "Le départ se fait avant midi.",
+      "el": "Η αναχώρηση γίνεται πριν το μεσημέρι.",
+      "key": ""
+    },
+    {
+      "fr": "Je préférerais une chambre au calme.",
+      "el": "Θα προτιμούσα ένα ήσυχο δωμάτιο.",
+      "key": ""
+    },
+    {
+      "fr": "Le wifi est gratuit dans tout l'hôtel.",
+      "el": "Το wifi είναι δωρεάν σε όλο το ξενοδοχείο.",
+      "key": ""
+    },
+    {
+      "fr": "La climatisation ne fonctionne pas.",
+      "el": "Το κλιματιστικό δεν λειτουργεί.",
+      "key": ""
+    },
+    {
+      "fr": "Je voudrais prolonger mon séjour d'une nuit.",
+      "el": "Θα ήθελα να παρατείνω τη διαμονή μου κατά μία νύχτα.",
+      "key": ""
+    },
+    {
+      "fr": "Je crois qu'il y a une erreur sur la facture.",
+      "el": "Νομίζω ότι υπάρχει ένα λάθος στον λογαριασμό.",
+      "key": ""
+    },
+    {
+      "fr": "La chambre n'a pas été nettoyée.",
+      "el": "Το δωμάτιο δεν έχει καθαριστεί.",
+      "key": ""
+    },
+    {
+      "fr": "Il n'y a plus de papier toilette.",
+      "el": "Δεν έχει άλλο χαρτί υγείας.",
+      "key": ""
+    },
+    {
+      "fr": "Je voudrais réserver pour deux adultes et un enfant.",
+      "el": "Θα ήθελα να κάνω κράτηση για δύο ενήλικες και ένα παιδί.",
+      "key": ""
+    },
+    {
+      "fr": "Je voudrais le service en chambre, s'il vous plaît.",
+      "el": "Θα ήθελα υπηρεσία δωματίου, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "La douche est en panne.",
+      "el": "Το ντους είναι χαλασμένο.",
+      "key": ""
+    }
+  ]
+}

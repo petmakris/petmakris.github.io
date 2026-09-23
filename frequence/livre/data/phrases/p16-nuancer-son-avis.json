@@ -1,0 +1,106 @@
+{
+  "id": "nuancer-son-avis",
+  "tier": 4,
+  "order": 1071,
+  "title_fr": "Nuancer son avis",
+  "title_el": "Με επιφύλαξη",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "Là tu marques un point",
+      "el": "Σ' αυτό έχεις δίκιο",
+      "key": ""
+    },
+    {
+      "fr": "C'est un bon point",
+      "el": "Καλό επιχείρημα",
+      "key": ""
+    },
+    {
+      "fr": "Ça dépend du contexte",
+      "el": "Εξαρτάται από την περίσταση",
+      "key": ""
+    },
+    {
+      "fr": "Ça dépend de toi",
+      "el": "Εξαρτάται από σένα",
+      "key": ""
+    },
+    {
+      "fr": "C'est toi qui vois",
+      "el": "Εσύ αποφασίζεις",
+      "key": ""
+    },
+    {
+      "fr": "Comme bon te semble",
+      "el": "Όπως νομίζεις",
+      "key": ""
+    },
+    {
+      "fr": "Je n'ai pas d'avis là-dessus",
+      "el": "Δεν έχω γνώμη γι' αυτό",
+      "key": ""
+    },
+    {
+      "fr": "Tout dépend",
+      "el": "Όλα εξαρτώνται",
+      "key": ""
+    },
+    {
+      "fr": "Je ne suis pas contre",
+      "el": "Δεν είμαι αντίθετος",
+      "key": ""
+    },
+    {
+      "fr": "Pourquoi pas, après tout",
+      "el": "Γιατί όχι, στο κάτω κάτω",
+      "key": ""
+    },
+    {
+      "fr": "Je reste sceptique",
+      "el": "Παραμένω επιφυλακτικός",
+      "key": ""
+    },
+    {
+      "fr": "Permets-moi d'en douter",
+      "el": "Επίτρεψέ μου να αμφιβάλλω",
+      "key": ""
+    },
+    {
+      "fr": "Je ne dis pas le contraire",
+      "el": "Δεν λέω το αντίθετο",
+      "key": ""
+    },
+    {
+      "fr": "C'est plus ou moins ça",
+      "el": "Κάπως έτσι είναι",
+      "key": ""
+    },
+    {
+      "fr": "Disons que oui",
+      "el": "Ας πούμε ναι",
+      "key": ""
+    },
+    {
+      "fr": "Tu n'as pas tort",
+      "el": "Δεν έχεις άδικο",
+      "key": ""
+    },
+    {
+      "fr": "Vous n'avez pas tort",
+      "el": "Δεν έχετε άδικο",
+      "key": ""
+    },
+    {
+      "fr": "C'est exactement ce que je pense",
+      "el": "Αυτό ακριβώς σκέφτομαι κι εγώ",
+      "key": ""
+    },
+    {
+      "fr": "On verra",
+      "el": "Θα δούμε",
+      "key": ""
+    }
+  ]
+}

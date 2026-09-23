@@ -94,8 +94,14 @@ def card_html(card):
     if card.get("example"):
         ex = f'<div class="ex">{_example_html(card["example"])}</div>'
 
+    # A word card is a semantic group and must be seen whole — that is why
+    # cards exist at all. A phrase card (tier 4) is just a list of sentences:
+    # there is nothing to see whole, and forbidding the break left roughly a
+    # third of every phrase page empty.
+    flow = "" if card["tier"] < 4 else " flows"
+
     return (
-        f'<section class="card" style="--accent:{accent}">'
+        f'<section class="card{flow}" style="--accent:{accent}">'
         f'<div class="rail">'
         f'<h2>{_html.escape(card["title_fr"])}</h2>'
         f'<span class="el-sub">{_html.escape(card["title_el"])}</span>'

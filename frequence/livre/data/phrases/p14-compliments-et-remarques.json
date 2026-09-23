@@ -1,0 +1,51 @@
+{
+  "id": "compliments-et-remarques",
+  "tier": 4,
+  "order": 929,
+  "title_fr": "Compliments et remarques",
+  "title_el": "Κομπλιμέντα και παρατηρήσεις",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "C'est délicieux !",
+      "el": "Είναι πεντανόστιμο!",
+      "key": ""
+    },
+    {
+      "fr": "C'était vraiment très bon.",
+      "el": "Ήταν πραγματικά πολύ νόστιμο.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai adoré, merci.",
+      "el": "Μου άρεσε πάρα πολύ, ευχαριστώ.",
+      "key": ""
+    },
+    {
+      "fr": "C'est un peu trop salé pour moi.",
+      "el": "Είναι κάπως πολύ αλμυρό για μένα.",
+      "key": ""
+    },
+    {
+      "fr": "C'est froid, malheureusement.",
+      "el": "Δυστυχώς είναι κρύο.",
+      "key": ""
+    },
+    {
+      "fr": "Merci, c'était parfait.",
+      "el": "Ευχαριστώ, ήταν τέλειο.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai passé un excellent séjour.",
+      "el": "Η διαμονή μου ήταν υπέροχη.",
+      "key": ""
+    },
+    {
+      "fr": "Tout était parfait, merci.",
+      "el": "Όλα ήταν τέλεια, ευχαριστώ.",
+      "key": ""
+    }
+  ]
+}

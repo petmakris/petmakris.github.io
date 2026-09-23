@@ -1,0 +1,61 @@
+{
+  "id": "dans-les-magasins",
+  "tier": 4,
+  "order": 411,
+  "title_fr": "Dans les magasins",
+  "title_el": "Στα μαγαζιά",
+  "accent": "#B84066",
+  "example": null,
+  "items": [
+    {
+      "fr": "Bonjour, vous cherchez quelque chose de particulier ?",
+      "el": "Καλημέρα, ψάχνετε κάτι συγκεκριμένο;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que vous avez besoin d'aide ?",
+      "el": "Χρειάζεστε βοήθεια;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez ça dans une autre couleur ?",
+      "el": "Το έχετε σε άλλο χρώμα;",
+      "key": ""
+    },
+    {
+      "fr": "Vous l'avez en bleu ?",
+      "el": "Το έχετε σε μπλε;",
+      "key": ""
+    },
+    {
+      "fr": "Vous l'auriez en noir ?",
+      "el": "Μήπως το έχετε σε μαύρο;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez ça en plus grand ?",
+      "el": "Το έχετε σε μεγαλύτερο μέγεθος;",
+      "key": ""
+    },
+    {
+      "fr": "Vous l'avez en plus petit ?",
+      "el": "Το έχετε σε μικρότερο;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez la taille au-dessus ?",
+      "el": "Έχετε ένα νούμερο μεγαλύτερο;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez la taille en dessous ?",
+      "el": "Έχετε ένα νούμερο μικρότερο;",
+      "key": ""
+    },
+    {
+      "fr": "Quelle taille faites-vous ?",
+      "el": "Τι νούμερο φοράτε;",
+      "key": ""
+    }
+  ]
+}

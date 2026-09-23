@@ -1,0 +1,36 @@
+{
+  "id": "emploi-du-temps",
+  "tier": 4,
+  "order": 771,
+  "title_fr": "L'emploi du temps",
+  "title_el": "Το πρόγραμμα",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "Une fois par semaine, je fais du sport.",
+      "el": "Μία φορά την εβδομάδα γυμνάζομαι.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis libre vendredi après-midi.",
+      "el": "Είμαι ελεύθερος την Παρασκευή το απόγευμα.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis disponible toute la journée.",
+      "el": "Είμαι διαθέσιμος όλη μέρα.",
+      "key": ""
+    },
+    {
+      "fr": "Désolé, je ne suis pas libre ce jour-là.",
+      "el": "Συγγνώμη, εκείνη τη μέρα δεν είμαι ελεύθερος.",
+      "key": ""
+    },
+    {
+      "fr": "Ça tombe mal, j'ai déjà quelque chose.",
+      "el": "Δεν μου βολεύει, έχω ήδη κανονίσει κάτι.",
+      "key": ""
+    }
+  ]
+}

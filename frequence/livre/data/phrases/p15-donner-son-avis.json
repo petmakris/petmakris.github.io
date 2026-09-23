@@ -1,0 +1,206 @@
+{
+  "id": "donner-son-avis",
+  "tier": 4,
+  "order": 1012,
+  "title_fr": "Donner son avis",
+  "title_el": "να πεις τη γνώμη σου",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "À mon avis",
+      "el": "Κατά τη γνώμη μου",
+      "key": ""
+    },
+    {
+      "fr": "Je trouve que c'est une bonne idée",
+      "el": "Μου φαίνεται καλή ιδέα",
+      "key": ""
+    },
+    {
+      "fr": "Tu as raison",
+      "el": "Έχεις δίκιο",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez raison",
+      "el": "Έχετε δίκιο",
+      "key": ""
+    },
+    {
+      "fr": "Tu as tout à fait raison",
+      "el": "Έχεις απόλυτο δίκιο",
+      "key": ""
+    },
+    {
+      "fr": "C'est vrai",
+      "el": "Είναι αλήθεια",
+      "key": ""
+    },
+    {
+      "fr": "C'est tout à fait vrai",
+      "el": "Είναι απολύτως αλήθεια",
+      "key": ""
+    },
+    {
+      "fr": "Je suis pas sûr",
+      "el": "Δεν είμαι σίγουρος",
+      "key": ""
+    },
+    {
+      "fr": "Je ne suis pas sûr",
+      "el": "Δεν είμαι βέβαιος",
+      "key": ""
+    },
+    {
+      "fr": "Je n'en suis pas certain",
+      "el": "Δεν είμαι βέβαιος γι' αυτό",
+      "key": ""
+    },
+    {
+      "fr": "Ça dépend",
+      "el": "Εξαρτάται",
+      "key": ""
+    },
+    {
+      "fr": "Ça dépend des fois",
+      "el": "Εξαρτάται από την περίπτωση",
+      "key": ""
+    },
+    {
+      "fr": "C'est comme tu veux",
+      "el": "Όπως θέλεις",
+      "key": ""
+    },
+    {
+      "fr": "C'est comme vous voulez",
+      "el": "Όπως θέλετε",
+      "key": ""
+    },
+    {
+      "fr": "Comme tu veux",
+      "el": "Όπως θες",
+      "key": ""
+    },
+    {
+      "fr": "Exactement",
+      "el": "Ακριβώς",
+      "key": ""
+    },
+    {
+      "fr": "Tout à fait",
+      "el": "Απολύτως",
+      "key": ""
+    },
+    {
+      "fr": "Absolument pas",
+      "el": "Σε καμία περίπτωση",
+      "key": ""
+    },
+    {
+      "fr": "Pas du tout",
+      "el": "Καθόλου",
+      "key": ""
+    },
+    {
+      "fr": "Je ne pense pas",
+      "el": "Δεν νομίζω",
+      "key": ""
+    },
+    {
+      "fr": "Je ne crois pas",
+      "el": "Δεν μου φαίνεται",
+      "key": ""
+    },
+    {
+      "fr": "Je pense que oui",
+      "el": "Νομίζω πως ναι",
+      "key": ""
+    },
+    {
+      "fr": "Je crois que oui",
+      "el": "Πιστεύω πως ναι",
+      "key": ""
+    },
+    {
+      "fr": "Personnellement",
+      "el": "Προσωπικά",
+      "key": ""
+    },
+    {
+      "fr": "Selon moi",
+      "el": "Κατά την άποψή μου",
+      "key": ""
+    },
+    {
+      "fr": "D'après moi",
+      "el": "Για μένα",
+      "key": ""
+    },
+    {
+      "fr": "Pour ma part",
+      "el": "Όσο για μένα",
+      "key": ""
+    },
+    {
+      "fr": "Je suis plutôt d'accord",
+      "el": "Μάλλον συμφωνώ",
+      "key": ""
+    },
+    {
+      "fr": "Je suis entièrement d'accord",
+      "el": "Συμφωνώ απόλυτα",
+      "key": ""
+    },
+    {
+      "fr": "Je suis tout à fait d'accord",
+      "el": "Συμφωνώ πλήρως",
+      "key": ""
+    },
+    {
+      "fr": "Je ne suis pas du tout d'accord",
+      "el": "Δεν συμφωνώ καθόλου",
+      "key": ""
+    },
+    {
+      "fr": "Là je ne suis pas d'accord",
+      "el": "Εδώ διαφωνώ",
+      "key": ""
+    },
+    {
+      "fr": "C'est faux",
+      "el": "Είναι λάθος",
+      "key": ""
+    },
+    {
+      "fr": "Ce n'est pas vrai",
+      "el": "Δεν είναι αλήθεια",
+      "key": ""
+    },
+    {
+      "fr": "Je ne suis pas convaincu",
+      "el": "Δεν πείστηκα",
+      "key": ""
+    },
+    {
+      "fr": "Ça se discute",
+      "el": "Συζητιέται",
+      "key": ""
+    },
+    {
+      "fr": "On peut en discuter",
+      "el": "Μπορούμε να το συζητήσουμε",
+      "key": ""
+    },
+    {
+      "fr": "Effectivement",
+      "el": "Πράγματι",
+      "key": ""
+    },
+    {
+      "fr": "En effet",
+      "el": "Όντως",
+      "key": ""
+    }
+  ]
+}

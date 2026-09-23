@@ -47,4 +47,14 @@ def load_card(path):
 def load_all(dirpath):
     """Every card in a directory, sorted by tier then order."""
     out = [load_card(p) for p in sorted(glob.glob(os.path.join(dirpath, "*.json")))]
+    _assert_unique_ids(out, dirpath)
     return sorted(out, key=lambda c: (c["tier"], c["order"]))
+
+
+def _assert_unique_ids(loaded, where):
+    """Two cards sharing an id make a load error untraceable to its file."""
+    seen = {}
+    for card in loaded:
+        if card["id"] in seen:
+            raise CardError(f"{where}: duplicate card id {card['id']!r}")
+        seen[card["id"]] = True

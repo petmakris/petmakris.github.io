@@ -1,0 +1,96 @@
+{
+  "id": "reactions-spontanees",
+  "tier": 4,
+  "order": 1232,
+  "title_fr": "Réactions spontanées",
+  "title_el": "Αυθόρμητες αντιδράσεις",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "Volontiers !",
+      "el": "Ευχαρίστως!",
+      "key": ""
+    },
+    {
+      "fr": "C'est noté.",
+      "el": "Το σημείωσα.",
+      "key": ""
+    },
+    {
+      "fr": "Repose-toi bien.",
+      "el": "Ξεκουράσου καλά.",
+      "key": ""
+    },
+    {
+      "fr": "Bon rétablissement !",
+      "el": "Περαστικά!",
+      "key": ""
+    },
+    {
+      "fr": "N'hésite pas.",
+      "el": "Μη διστάσεις.",
+      "key": ""
+    },
+    {
+      "fr": "Quand tu veux.",
+      "el": "Όποτε θέλεις.",
+      "key": ""
+    },
+    {
+      "fr": "C'est gentil.",
+      "el": "Πολύ ευγενικό εκ μέρους σου.",
+      "key": ""
+    },
+    {
+      "fr": "Génial !",
+      "el": "Τέλειο!",
+      "key": ""
+    },
+    {
+      "fr": "Super !",
+      "el": "Σούπερ!",
+      "key": ""
+    },
+    {
+      "fr": "Cool !",
+      "el": "Κουλ!",
+      "key": ""
+    },
+    {
+      "fr": "Oh là là !",
+      "el": "Πωπώ!",
+      "key": ""
+    },
+    {
+      "fr": "Ça alors !",
+      "el": "Για φαντάσου!",
+      "key": ""
+    },
+    {
+      "fr": "Je n'en reviens pas.",
+      "el": "Δεν μπορώ να το πιστέψω.",
+      "key": ""
+    },
+    {
+      "fr": "Tu m'étonnes !",
+      "el": "Ε, και τι περίμενες!",
+      "key": ""
+    },
+    {
+      "fr": "Mince !",
+      "el": "Να πάρει!",
+      "key": ""
+    },
+    {
+      "fr": "Zut alors !",
+      "el": "Να πάρει η ευχή!",
+      "key": ""
+    },
+    {
+      "fr": "Tant qu'à faire.",
+      "el": "Μια και είμαστε εδώ, ας το κάνουμε.",
+      "key": ""
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "id": "les-transports",
+  "tier": 4,
+  "order": 329,
+  "title_fr": "Les transports",
+  "title_el": "τα μέσα μεταφοράς",
+  "accent": "#B84066",
+  "example": null,
+  "items": [
+    {
+      "fr": "Est-ce que ce bus va au centre-ville ?",
+      "el": "Αυτό το λεωφορείο πάει στο κέντρο;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que ce train va à Lyon ?",
+      "el": "Αυτό το τρένο πάει στη Λυών;",
+      "key": ""
+    },
+    {
+      "fr": "C'est bien le bus pour la gare ?",
+      "el": "Αυτό είναι το σωστό λεωφορείο για τον σταθμό;",
+      "key": ""
+    },
+    {
+      "fr": "Quel bus va à l'aéroport ?",
+      "el": "Ποιο λεωφορείο πάει στο αεροδρόμιο;",
+      "key": ""
+    },
+    {
+      "fr": "Quelle ligne de métro je dois prendre ?",
+      "el": "Ποια γραμμή του μετρό πρέπει να πάρω;",
+      "key": ""
+    },
+    {
+      "fr": "Je dois changer de ligne ?",
+      "el": "Πρέπει να αλλάξω γραμμή;",
+      "key": ""
+    },
+    {
+      "fr": "Où est-ce que je dois descendre ?",
+      "el": "Πού πρέπει να κατέβω;",
+      "key": ""
+    },
+    {
+      "fr": "C'est quel arrêt pour le Louvre ?",
+      "el": "Σε ποια στάση κατεβαίνω για το Λούβρο;",
+      "key": ""
+    },
+    {
+      "fr": "Le prochain arrêt, c'est lequel ?",
+      "el": "Ποια είναι η επόμενη στάση;",
+      "key": ""
+    },
+    {
+      "fr": "Vous pouvez me dire quand descendre ?",
+      "el": "Μπορείτε να μου πείτε πότε να κατέβω;",
+      "key": ""
+    },
+    {
+      "fr": "C'est combien le billet ?",
+      "el": "Πόσο κάνει το εισιτήριο;",
+      "key": ""
+    },
+    {
+      "fr": "Où est-ce que je peux acheter un ticket ?",
+      "el": "Πού μπορώ να βγάλω εισιτήριο;",
+      "key": ""
+    },
+    {
+      "fr": "Il y a un distributeur de billets ?",
+      "el": "Υπάρχει αυτόματο μηχάνημα εισιτηρίων;",
+      "key": ""
+    },
+    {
+      "fr": "À quelle heure part le prochain train ?",
+      "el": "Τι ώρα φεύγει το επόμενο τρένο;",
+      "key": ""
+    },
+    {
+      "fr": "Le train part de quel quai ?",
+      "el": "Από ποια αποβάθρα φεύγει το τρένο;",
+      "key": ""
+    },
+    {
+      "fr": "C'est sur quel quai ?",
+      "el": "Σε ποια αποβάθρα είναι;",
+      "key": ""
+    },
+    {
+      "fr": "Le train a du retard ?",
+      "el": "Έχει καθυστέρηση το τρένο;",
+      "key": ""
+    },
+    {
+      "fr": "À quelle heure arrive le train à Nice ?",
+      "el": "Τι ώρα φτάνει το τρένο στη Νίκαια;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que le train est direct ?",
+      "el": "Είναι απευθείας το τρένο;",
+      "key": ""
+    },
+    {
+      "fr": "Je dois composter mon billet ?",
+      "el": "Πρέπει να ακυρώσω το εισιτήριό μου;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que cette place est libre ?",
+      "el": "Είναι ελεύθερη αυτή η θέση;",
+      "key": ""
+    },
+    {
+      "fr": "Pouvez-vous appeler un taxi ?",
+      "el": "Μπορείτε να καλέσετε ένα ταξί;",
+      "key": ""
+    }
+  ]
+}

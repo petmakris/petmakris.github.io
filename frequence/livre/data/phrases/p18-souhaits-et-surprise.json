@@ -1,0 +1,116 @@
+{
+  "id": "souhaits-et-surprise",
+  "tier": 4,
+  "order": 1211,
+  "title_fr": "Souhaits et surprise",
+  "title_el": "Ευχές και έκπληξη",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "Amuse-toi bien !",
+      "el": "Καλά να περάσεις!",
+      "key": ""
+    },
+    {
+      "fr": "Amusez-vous bien !",
+      "el": "Καλά να περάσετε!",
+      "key": ""
+    },
+    {
+      "fr": "Profite bien !",
+      "el": "Απόλαυσέ το!",
+      "key": ""
+    },
+    {
+      "fr": "Prends soin de toi.",
+      "el": "Να προσέχεις τον εαυτό σου.",
+      "key": ""
+    },
+    {
+      "fr": "Fais attention à toi.",
+      "el": "Να προσέχεις.",
+      "key": ""
+    },
+    {
+      "fr": "T'inquiète.",
+      "el": "Μη σκας.",
+      "key": ""
+    },
+    {
+      "fr": "Ne t'inquiète pas.",
+      "el": "Μην ανησυχείς.",
+      "key": ""
+    },
+    {
+      "fr": "T'inquiète pas pour ça.",
+      "el": "Μη σκας γι' αυτό.",
+      "key": ""
+    },
+    {
+      "fr": "Y'a pas de souci.",
+      "el": "Κανένα πρόβλημα.",
+      "key": ""
+    },
+    {
+      "fr": "Mais oui, bien entendu.",
+      "el": "Μα ναι, εννοείται.",
+      "key": ""
+    },
+    {
+      "fr": "Ah bon ?",
+      "el": "Α, ναι;",
+      "key": ""
+    },
+    {
+      "fr": "Vraiment ?",
+      "el": "Αλήθεια;",
+      "key": ""
+    },
+    {
+      "fr": "Sérieux ?",
+      "el": "Σοβαρά;",
+      "key": ""
+    },
+    {
+      "fr": "Tu es sérieux ?",
+      "el": "Σοβαρά μιλάς;",
+      "key": ""
+    },
+    {
+      "fr": "Tu plaisantes ?",
+      "el": "Πλάκα κάνεις;",
+      "key": ""
+    },
+    {
+      "fr": "Tu rigoles ?",
+      "el": "Αστειεύεσαι;",
+      "key": ""
+    },
+    {
+      "fr": "C'est pas vrai !",
+      "el": "Δεν το πιστεύω!",
+      "key": ""
+    },
+    {
+      "fr": "Sans blague ?",
+      "el": "Χωρίς πλάκα;",
+      "key": ""
+    },
+    {
+      "fr": "Quoi de beau ?",
+      "el": "Τι καλό γίνεται;",
+      "key": ""
+    },
+    {
+      "fr": "Alors, raconte !",
+      "el": "Λοιπόν, λέγε!",
+      "key": ""
+    },
+    {
+      "fr": "Tu deviens quoi ?",
+      "el": "Τι γίνεσαι;",
+      "key": ""
+    }
+  ]
+}

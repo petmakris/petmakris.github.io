@@ -1,0 +1,91 @@
+{
+  "id": "faire-connaissance-p09",
+  "tier": 4,
+  "order": 561,
+  "title_fr": "Faire connaissance",
+  "title_el": "Γνωριμία",
+  "accent": "#B5531F",
+  "example": null,
+  "items": [
+    {
+      "fr": "On déjeune ensemble ?",
+      "el": "Τρώμε μαζί το μεσημέρι;",
+      "key": ""
+    },
+    {
+      "fr": "Tu peux passer me prendre demain ?",
+      "el": "Μπορείς να περάσεις να με πάρεις αύριο;",
+      "key": ""
+    },
+    {
+      "fr": "Je viens de Lyon.",
+      "el": "Είμαι από τη Λυών.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis français.",
+      "el": "Είμαι Γάλλος.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis française.",
+      "el": "Είμαι Γαλλίδα.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis originaire du sud de la France.",
+      "el": "Κατάγομαι από τον νότο της Γαλλίας.",
+      "key": ""
+    },
+    {
+      "fr": "J'habite à Paris depuis cinq ans.",
+      "el": "Μένω στο Παρίσι εδώ και πέντε χρόνια.",
+      "key": ""
+    },
+    {
+      "fr": "Je vis dans la banlieue de Marseille.",
+      "el": "Ζω στα προάστια της Μασσαλίας.",
+      "key": ""
+    },
+    {
+      "fr": "Je travaille dans l'informatique.",
+      "el": "Δουλεύω στην πληροφορική.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis professeur de mathématiques.",
+      "el": "Είμαι καθηγητής μαθηματικών.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis ingénieur.",
+      "el": "Είμαι μηχανικός.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis infirmière.",
+      "el": "Είμαι νοσηλεύτρια.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis à la recherche d'un emploi.",
+      "el": "Ψάχνω για δουλειά.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis étudiant en droit.",
+      "el": "Είμαι φοιτητής νομικής.",
+      "key": ""
+    },
+    {
+      "fr": "J'étudie la médecine à l'université.",
+      "el": "Σπουδάζω ιατρική στο πανεπιστήμιο.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis en deuxième année.",
+      "el": "Είμαι στο δεύτερο έτος.",
+      "key": ""
+    }
+  ]
+}

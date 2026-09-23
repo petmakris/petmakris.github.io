@@ -1,0 +1,76 @@
+{
+  "id": "se-deplacer-en-ville",
+  "tier": 4,
+  "order": 351,
+  "title_fr": "Se déplacer en ville",
+  "title_el": "Μετακινήσεις στην πόλη",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "Combien ça coûte pour aller au centre ?",
+      "el": "Πόσο κοστίζει για το κέντρο;",
+      "key": ""
+    },
+    {
+      "fr": "Vous prenez la carte ?",
+      "el": "Δέχεστε κάρτα;",
+      "key": ""
+    },
+    {
+      "fr": "Vous pouvez me déposer ici ?",
+      "el": "Μπορείτε να με αφήσετε εδώ;",
+      "key": ""
+    },
+    {
+      "fr": "Où est l'arrêt de bus le plus proche ?",
+      "el": "Πού είναι η πιο κοντινή στάση λεωφορείου;",
+      "key": ""
+    },
+    {
+      "fr": "Où est la station de taxis ?",
+      "el": "Πού είναι η πιάτσα των ταξί;",
+      "key": ""
+    },
+    {
+      "fr": "Il y a une station de métro près d'ici ?",
+      "el": "Υπάρχει σταθμός μετρό εδώ κοντά;",
+      "key": ""
+    },
+    {
+      "fr": "Le bus passe tous les combien ?",
+      "el": "Κάθε πόσο περνάει το λεωφορείο;",
+      "key": ""
+    },
+    {
+      "fr": "Vous pouvez me montrer sur la carte ?",
+      "el": "Μπορείτε να μου το δείξετε στον χάρτη;",
+      "key": ""
+    },
+    {
+      "fr": "On est où, là, sur le plan ?",
+      "el": "Πού είμαστε τώρα πάνω στον χάρτη;",
+      "key": ""
+    },
+    {
+      "fr": "C'est dans quelle direction ?",
+      "el": "Προς τα πού είναι;",
+      "key": ""
+    },
+    {
+      "fr": "Faut prendre quelle sortie de métro ?",
+      "el": "Από ποια έξοδο του μετρό να βγω;",
+      "key": ""
+    },
+    {
+      "fr": "Vous connaissez le chemin pour l'hôtel ?",
+      "el": "Ξέρετε τον δρόμο για το ξενοδοχείο;",
+      "key": ""
+    },
+    {
+      "fr": "Y a-t-il un parking dans le coin ?",
+      "el": "Υπάρχει κάποιο πάρκινγκ εδώ γύρω;",
+      "key": ""
+    }
+  ]
+}

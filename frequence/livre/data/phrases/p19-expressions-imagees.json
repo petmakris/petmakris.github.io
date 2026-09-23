@@ -1,0 +1,111 @@
+{
+  "id": "expressions-imagees-p19",
+  "tier": 4,
+  "order": 1311,
+  "title_fr": "Expressions imagées",
+  "title_el": "Ιδιωματικές εκφράσεις",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "prendre son courage à deux mains",
+      "el": "παίρνω θάρρος και το κάνω",
+      "key": ""
+    },
+    {
+      "fr": "avoir la gueule de bois",
+      "el": "έχω χανγκόβερ",
+      "key": ""
+    },
+    {
+      "fr": "être sur la même longueur d'onde",
+      "el": "είμαστε στο ίδιο μήκος κύματος",
+      "key": ""
+    },
+    {
+      "fr": "y voir clair",
+      "el": "βλέπω καθαρά",
+      "key": ""
+    },
+    {
+      "fr": "ne pas être dans son assiette",
+      "el": "δεν είμαι στα φυσικά μου",
+      "key": ""
+    },
+    {
+      "fr": "faire d'une pierre deux coups",
+      "el": "με ένα σμπάρο δυο τρυγόνια",
+      "key": ""
+    },
+    {
+      "fr": "couper la poire en deux",
+      "el": "τα βρίσκουμε στη μέση",
+      "key": ""
+    },
+    {
+      "fr": "mettre de l'eau dans son vin",
+      "el": "ρίχνω νερό στο κρασί μου",
+      "key": ""
+    },
+    {
+      "fr": "tourner autour du pot",
+      "el": "μασάω τα λόγια μου",
+      "key": ""
+    },
+    {
+      "fr": "avoir un chat dans la gorge",
+      "el": "έχω βραχνιάσει",
+      "key": ""
+    },
+    {
+      "fr": "prendre la mouche",
+      "el": "θίγομαι με το παραμικρό",
+      "key": ""
+    },
+    {
+      "fr": "se serrer la ceinture",
+      "el": "σφίγγω το ζωνάρι",
+      "key": ""
+    },
+    {
+      "fr": "jeter l'éponge",
+      "el": "ρίχνω την πετσέτα",
+      "key": ""
+    },
+    {
+      "fr": "en mettre sa main au feu",
+      "el": "βάζω το χέρι μου στη φωτιά",
+      "key": ""
+    },
+    {
+      "fr": "avoir le mot sur le bout de la langue",
+      "el": "το 'χω στην άκρη της γλώσσας μου",
+      "key": ""
+    },
+    {
+      "fr": "ça vaut mieux",
+      "el": "έτσι είναι καλύτερα",
+      "key": ""
+    },
+    {
+      "fr": "faire la tête",
+      "el": "κάνω μούτρα",
+      "key": ""
+    },
+    {
+      "fr": "avoir un grain",
+      "el": "μου λείπει μια βίδα",
+      "key": ""
+    },
+    {
+      "fr": "être réglé comme du papier à musique",
+      "el": "δουλεύει ρολόι",
+      "key": ""
+    },
+    {
+      "fr": "ne pas y aller par quatre chemins",
+      "el": "μπαίνω κατευθείαν στο ψητό",
+      "key": ""
+    }
+  ]
+}

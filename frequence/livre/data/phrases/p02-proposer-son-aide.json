@@ -2,8 +2,8 @@
   "id": "proposer-son-aide",
   "tier": 4,
   "order": 121,
-  "title_fr": "Proposer son aide et féliciter",
-  "title_el": "Προσφορά βοήθειας και συγχαρητήρια",
+  "title_fr": "Aider, accueillir et féliciter",
+  "title_el": "Βοήθεια, φιλοξενία και συγχαρητήρια",
   "accent": "#1E7A5A",
   "example": null,
   "items": [
@@ -29,7 +29,7 @@
     },
     {
       "fr": "N'hésitez pas à me demander",
-      "el": "Μη διστάσετε να μου ζητήσετε",
+      "el": "Μη διστάσετε να με ρωτήσετε",
       "key": ""
     },
     {
@@ -49,7 +49,7 @@
     },
     {
       "fr": "Allez-y",
-      "el": "Περάστε",
+      "el": "Προχωρήστε",
       "key": ""
     },
     {

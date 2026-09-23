@@ -1,0 +1,126 @@
+{
+  "id": "en-voyage-p08",
+  "tier": 4,
+  "order": 491,
+  "title_fr": "En voyage : aéroport et hôtel",
+  "title_el": "Στο ταξίδι: αεροδρόμιο και ξενοδοχείο",
+  "accent": "#B5531F",
+  "example": null,
+  "items": [
+    {
+      "fr": "Où se trouve l'arrêt de bus le plus proche ?",
+      "el": "Πού είναι η πιο κοντινή στάση λεωφορείου;",
+      "key": ""
+    },
+    {
+      "fr": "Où se trouve l'enregistrement ?",
+      "el": "Πού γίνεται το check-in;",
+      "key": ""
+    },
+    {
+      "fr": "À quelle porte part mon vol ?",
+      "el": "Από ποια πύλη φεύγει η πτήση μου;",
+      "key": ""
+    },
+    {
+      "fr": "Où est la livraison des bagages ?",
+      "el": "Πού είναι η παραλαβή αποσκευών;",
+      "key": ""
+    },
+    {
+      "fr": "Pourriez-vous m'aider, s'il vous plaît ?",
+      "el": "Θα μπορούσατε να με βοηθήσετε, παρακαλώ;",
+      "key": ""
+    },
+    {
+      "fr": "Où dois-je passer la douane ?",
+      "el": "Πού πρέπει να περάσω από το τελωνείο;",
+      "key": ""
+    },
+    {
+      "fr": "Où puis-je récupérer ma carte d'embarquement ?",
+      "el": "Πού μπορώ να παραλάβω την κάρτα επιβίβασης;",
+      "key": ""
+    },
+    {
+      "fr": "Mon vol part à quelle heure ?",
+      "el": "Τι ώρα φεύγει η πτήση μου;",
+      "key": ""
+    },
+    {
+      "fr": "À quel terminal dois-je aller ?",
+      "el": "Σε ποιο τερμινάλ πρέπει να πάω;",
+      "key": ""
+    },
+    {
+      "fr": "Où est le contrôle de sécurité ?",
+      "el": "Πού είναι ο έλεγχος ασφαλείας;",
+      "key": ""
+    },
+    {
+      "fr": "Combien de bagages puis-je emporter ?",
+      "el": "Πόσες αποσκευές μπορώ να πάρω μαζί μου;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que les animaux sont acceptés ?",
+      "el": "Επιτρέπονται τα κατοικίδια;",
+      "key": ""
+    },
+    {
+      "fr": "Pouvez-vous m'indiquer le chemin de la gare ?",
+      "el": "Μπορείτε να μου δείξετε τον δρόμο για τον σταθμό;",
+      "key": ""
+    },
+    {
+      "fr": "Y a-t-il une consigne pour les bagages ?",
+      "el": "Υπάρχει χώρος φύλαξης αποσκευών;",
+      "key": ""
+    },
+    {
+      "fr": "Puis-je modifier ma réservation ?",
+      "el": "Μπορώ να αλλάξω την κράτησή μου;",
+      "key": ""
+    },
+    {
+      "fr": "Avez-vous reçu ma réservation en ligne ?",
+      "el": "Λάβατε την ηλεκτρονική μου κράτηση;",
+      "key": ""
+    },
+    {
+      "fr": "La chambre est-elle prête ?",
+      "el": "Είναι έτοιμο το δωμάτιο;",
+      "key": ""
+    },
+    {
+      "fr": "Puis-je faire un check-in anticipé ?",
+      "el": "Μπορώ να κάνω check-in νωρίτερα;",
+      "key": ""
+    },
+    {
+      "fr": "Y a-t-il un supplément pour le lit bébé ?",
+      "el": "Υπάρχει επιπλέον χρέωση για την κούνια;",
+      "key": ""
+    },
+    {
+      "fr": "Pourriez-vous appeler un médecin ?",
+      "el": "Θα μπορούσατε να καλέσετε γιατρό;",
+      "key": ""
+    },
+    {
+      "fr": "L'hôtel a-t-il une piscine ?",
+      "el": "Έχει πισίνα το ξενοδοχείο;",
+      "key": ""
+    },
+    {
+      "fr": "Où puis-je changer de l'argent ?",
+      "el": "Πού μπορώ να αλλάξω χρήματα;",
+      "key": ""
+    },
+    {
+      "fr": "Y a-t-il un distributeur de billets près d'ici ?",
+      "el": "Υπάρχει ΑΤΜ εδώ κοντά;",
+      "key": ""
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "id": "a-l-hotel-p07",
+  "tier": 4,
+  "order": 462,
+  "title_fr": "À l'hôtel",
+  "title_el": "Στο ξενοδοχείο",
+  "accent": "#B5531F",
+  "example": null,
+  "items": [
+    {
+      "fr": "Avez-vous une chambre de libre ce soir ?",
+      "el": "Έχετε ελεύθερο δωμάτιο για απόψε;",
+      "key": ""
+    },
+    {
+      "fr": "Pour combien de nuits ?",
+      "el": "Για πόσες νύχτες;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que le petit-déjeuner est inclus ?",
+      "el": "Το πρωινό περιλαμβάνεται;",
+      "key": ""
+    },
+    {
+      "fr": "À quelle heure est le petit-déjeuner ?",
+      "el": "Τι ώρα είναι το πρωινό;",
+      "key": ""
+    },
+    {
+      "fr": "À quelle heure est le check-in ?",
+      "el": "Τι ώρα γίνεται το check-in;",
+      "key": ""
+    },
+    {
+      "fr": "À quelle heure dois-je libérer la chambre ?",
+      "el": "Τι ώρα πρέπει να αδειάσω το δωμάτιο;",
+      "key": ""
+    },
+    {
+      "fr": "Puis-je laisser mes bagages à la réception ?",
+      "el": "Μπορώ να αφήσω τις αποσκευές μου στη ρεσεψιόν;",
+      "key": ""
+    },
+    {
+      "fr": "Y a-t-il un ascenseur ?",
+      "el": "Υπάρχει ασανσέρ;",
+      "key": ""
+    },
+    {
+      "fr": "Avez-vous une chambre avec vue sur la mer ?",
+      "el": "Έχετε δωμάτιο με θέα στη θάλασσα;",
+      "key": ""
+    },
+    {
+      "fr": "La chambre est à quel étage ?",
+      "el": "Σε ποιον όροφο είναι το δωμάτιο;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce qu'il y a le wifi ?",
+      "el": "Υπάρχει wifi;",
+      "key": ""
+    },
+    {
+      "fr": "Quel est le mot de passe du wifi ?",
+      "el": "Ποιος είναι ο κωδικός του wifi;",
+      "key": ""
+    },
+    {
+      "fr": "Pourriez-vous m'appeler un taxi ?",
+      "el": "Θα μπορούσατε να μου καλέσετε ένα ταξί;",
+      "key": ""
+    },
+    {
+      "fr": "À quelle heure ouvre la réception ?",
+      "el": "Τι ώρα ανοίγει η ρεσεψιόν;",
+      "key": ""
+    },
+    {
+      "fr": "Combien coûte la chambre par nuit ?",
+      "el": "Πόσο κοστίζει το δωμάτιο τη βραδιά;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que les taxes sont comprises ?",
+      "el": "Οι φόροι περιλαμβάνονται;",
+      "key": ""
+    },
+    {
+      "fr": "Acceptez-vous les cartes de crédit ?",
+      "el": "Δέχεστε πιστωτικές κάρτες;",
+      "key": ""
+    },
+    {
+      "fr": "Puis-je avoir la facture, s'il vous plaît ?",
+      "el": "Μπορώ να έχω τον λογαριασμό, παρακαλώ;",
+      "key": ""
+    },
+    {
+      "fr": "Pourriez-vous changer les serviettes ?",
+      "el": "Θα μπορούσατε να αλλάξετε τις πετσέτες;",
+      "key": ""
+    },
+    {
+      "fr": "Le chauffage est-il inclus ?",
+      "el": "Η θέρμανση περιλαμβάνεται;",
+      "key": ""
+    },
+    {
+      "fr": "Y a-t-il un parking à l'hôtel ?",
+      "el": "Υπάρχει πάρκινγκ στο ξενοδοχείο;",
+      "key": ""
+    },
+    {
+      "fr": "Le parking est-il payant ?",
+      "el": "Το πάρκινγκ χρεώνεται;",
+      "key": ""
+    },
+    {
+      "fr": "Avez-vous un coffre-fort dans la chambre ?",
+      "el": "Έχετε χρηματοκιβώτιο στο δωμάτιο;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que l'hôtel est loin du centre-ville ?",
+      "el": "Είναι μακριά το ξενοδοχείο από το κέντρο;",
+      "key": ""
+    },
+    {
+      "fr": "Comment puis-je aller à l'aéroport ?",
+      "el": "Πώς μπορώ να πάω στο αεροδρόμιο;",
+      "key": ""
+    },
+    {
+      "fr": "Y a-t-il une navette pour l'aéroport ?",
+      "el": "Υπάρχει λεωφορείο του ξενοδοχείου για το αεροδρόμιο;",
+      "key": ""
+    },
+    {
+      "fr": "À quelle heure part la navette ?",
+      "el": "Τι ώρα φεύγει το λεωφορείο;",
+      "key": ""
+    },
+    {
+      "fr": "Pouvez-vous me réveiller à sept heures ?",
+      "el": "Μπορείτε να με ξυπνήσετε στις εφτά;",
+      "key": ""
+    },
+    {
+      "fr": "Pourriez-vous me recommander un bon restaurant ?",
+      "el": "Θα μπορούσατε να μου προτείνετε ένα καλό εστιατόριο;",
+      "key": ""
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "id": "maux-et-douleurs",
+  "tier": 4,
+  "order": 841,
+  "title_fr": "Maux et douleurs",
+  "title_el": "Ενοχλήσεις και πόνοι",
+  "accent": "#B84066",
+  "example": null,
+  "items": [
+    {
+      "fr": "Je prends des médicaments.",
+      "el": "Παίρνω φάρμακα.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai oublié mes médicaments.",
+      "el": "Ξέχασα τα φάρμακά μου.",
+      "key": ""
+    },
+    {
+      "fr": "Il me faut une ordonnance.",
+      "el": "Χρειάζομαι συνταγή.",
+      "key": ""
+    },
+    {
+      "fr": "Je me sens mieux.",
+      "el": "Νιώθω καλύτερα.",
+      "key": ""
+    },
+    {
+      "fr": "Je ne vais pas bien du tout.",
+      "el": "Δεν είμαι καθόλου καλά.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai très mal.",
+      "el": "Πονάω πολύ.",
+      "key": ""
+    },
+    {
+      "fr": "La douleur est ici.",
+      "el": "Ο πόνος είναι εδώ.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai une coupure.",
+      "el": "Κόπηκα.",
+      "key": ""
+    },
+    {
+      "fr": "Je me suis brûlé.",
+      "el": "Κάηκα.",
+      "key": ""
+    },
+    {
+      "fr": "Je me suis cassé le bras.",
+      "el": "Έσπασα το χέρι μου.",
+      "key": ""
+    },
+    {
+      "fr": "Je me suis tordu la cheville.",
+      "el": "Στραμπούλιξα τον αστράγαλό μου.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai mal à la jambe.",
+      "el": "Πονάει το πόδι μου.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai mal au cœur.",
+      "el": "Ανακατεύομαι.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai mal aux yeux.",
+      "el": "Πονάνε τα μάτια μου.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai mal à l'oreille.",
+      "el": "Πονάει το αυτί μου.",
+      "key": ""
+    },
+    {
+      "fr": "Je n'arrive pas à dormir.",
+      "el": "Δεν μπορώ να κοιμηθώ.",
+      "key": ""
+    },
+    {
+      "fr": "Je crois que c'est cassé.",
+      "el": "Νομίζω ότι έσπασε.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai perdu connaissance.",
+      "el": "Λιποθύμησα.",
+      "key": ""
+    },
+    {
+      "fr": "Je dois aller à l'hôpital.",
+      "el": "Πρέπει να πάω στο νοσοκομείο.",
+      "key": ""
+    }
+  ]
+}

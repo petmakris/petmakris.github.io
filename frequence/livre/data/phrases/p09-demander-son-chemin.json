@@ -1,0 +1,121 @@
+{
+  "id": "demander-son-chemin-p09",
+  "tier": 4,
+  "order": 598,
+  "title_fr": "Demander son chemin",
+  "title_el": "Ρωτώντας για τον δρόμο",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "Pardon, je cherche la station de métro.",
+      "el": "Συγγνώμη, ψάχνω τον σταθμό του μετρό.",
+      "key": ""
+    },
+    {
+      "fr": "Je voudrais aller à l'aéroport.",
+      "el": "Θα ήθελα να πάω στο αεροδρόμιο.",
+      "key": ""
+    },
+    {
+      "fr": "Je cherche cette adresse.",
+      "el": "Ψάχνω αυτή τη διεύθυνση.",
+      "key": ""
+    },
+    {
+      "fr": "C'est à cinq minutes à pied.",
+      "el": "Είναι πέντε λεπτά με τα πόδια.",
+      "key": ""
+    },
+    {
+      "fr": "C'est tout près, vous pouvez y aller à pied.",
+      "el": "Είναι πολύ κοντά, μπορείτε να πάτε με τα πόδια.",
+      "key": ""
+    },
+    {
+      "fr": "C'est trop loin pour y aller à pied.",
+      "el": "Είναι πολύ μακριά για να πάτε με τα πόδια.",
+      "key": ""
+    },
+    {
+      "fr": "Tournez à droite.",
+      "el": "Στρίψτε δεξιά.",
+      "key": ""
+    },
+    {
+      "fr": "Tournez à gauche.",
+      "el": "Στρίψτε αριστερά.",
+      "key": ""
+    },
+    {
+      "fr": "Continuez tout droit.",
+      "el": "Συνεχίστε ευθεία.",
+      "key": ""
+    },
+    {
+      "fr": "Allez tout droit jusqu'au feu.",
+      "el": "Πηγαίνετε ευθεία μέχρι το φανάρι.",
+      "key": ""
+    },
+    {
+      "fr": "Prenez la première rue à droite.",
+      "el": "Πάρτε τον πρώτο δρόμο δεξιά.",
+      "key": ""
+    },
+    {
+      "fr": "Prenez la deuxième à gauche.",
+      "el": "Πάρτε τον δεύτερο αριστερά.",
+      "key": ""
+    },
+    {
+      "fr": "C'est juste au coin de la rue.",
+      "el": "Είναι ακριβώς στη γωνία.",
+      "key": ""
+    },
+    {
+      "fr": "C'est en face de la pharmacie.",
+      "el": "Είναι απέναντι από το φαρμακείο.",
+      "key": ""
+    },
+    {
+      "fr": "C'est à côté de la banque.",
+      "el": "Είναι δίπλα στην τράπεζα.",
+      "key": ""
+    },
+    {
+      "fr": "C'est derrière l'église.",
+      "el": "Είναι πίσω από την εκκλησία.",
+      "key": ""
+    },
+    {
+      "fr": "C'est au bout de la rue.",
+      "el": "Είναι στο τέλος του δρόμου.",
+      "key": ""
+    },
+    {
+      "fr": "Traversez la place.",
+      "el": "Διασχίστε την πλατεία.",
+      "key": ""
+    },
+    {
+      "fr": "Traversez au passage piéton.",
+      "el": "Περάστε από τη διάβαση πεζών.",
+      "key": ""
+    },
+    {
+      "fr": "Vous verrez l'entrée sur votre gauche.",
+      "el": "Θα δείτε την είσοδο στα αριστερά σας.",
+      "key": ""
+    },
+    {
+      "fr": "Suivez les panneaux.",
+      "el": "Ακολουθήστε τις πινακίδες.",
+      "key": ""
+    },
+    {
+      "fr": "Vous descendez à la prochaine station.",
+      "el": "Κατεβαίνετε στην επόμενη στάση.",
+      "key": ""
+    }
+  ]
+}

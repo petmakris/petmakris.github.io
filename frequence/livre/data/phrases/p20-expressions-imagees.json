@@ -1,0 +1,21 @@
+{
+  "id": "expressions-imagees-p20",
+  "tier": 4,
+  "order": 1331,
+  "title_fr": "Expressions imagées",
+  "title_el": "Ιδιωματικές εκφράσεις",
+  "accent": "#8A4FA0",
+  "example": null,
+  "items": [
+    {
+      "fr": "casser du sucre sur le dos de quelqu'un",
+      "el": "κακολογώ κάποιον πίσω από την πλάτη του",
+      "key": ""
+    },
+    {
+      "fr": "être au bout du rouleau",
+      "el": "έχω φτάσει στα όριά μου",
+      "key": ""
+    }
+  ]
+}

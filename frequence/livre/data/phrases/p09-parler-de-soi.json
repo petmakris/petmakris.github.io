@@ -1,0 +1,116 @@
+{
+  "id": "parler-de-soi",
+  "tier": 4,
+  "order": 577,
+  "title_fr": "Parler de soi",
+  "title_el": "Μιλώντας για τον εαυτό μου",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "J'ai trente-deux ans.",
+      "el": "Είμαι τριάντα δύο χρονών.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis marié et j'ai deux enfants.",
+      "el": "Είμαι παντρεμένος και έχω δύο παιδιά.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis célibataire.",
+      "el": "Είμαι ελεύθερος.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai un grand frère et une petite sœur.",
+      "el": "Έχω έναν μεγάλο αδερφό και μια μικρή αδερφή.",
+      "key": ""
+    },
+    {
+      "fr": "Je vis avec ma famille.",
+      "el": "Μένω με την οικογένειά μου.",
+      "key": ""
+    },
+    {
+      "fr": "Ma famille habite à la campagne.",
+      "el": "Η οικογένειά μου μένει στην εξοχή.",
+      "key": ""
+    },
+    {
+      "fr": "Je parle français, anglais et un peu d'espagnol.",
+      "el": "Μιλάω γαλλικά, αγγλικά και λίγα ισπανικά.",
+      "key": ""
+    },
+    {
+      "fr": "Ma langue maternelle est le français.",
+      "el": "Η μητρική μου γλώσσα είναι τα γαλλικά.",
+      "key": ""
+    },
+    {
+      "fr": "J'apprends le français depuis deux ans.",
+      "el": "Μαθαίνω γαλλικά εδώ και δύο χρόνια.",
+      "key": ""
+    },
+    {
+      "fr": "Je ne parle pas très bien anglais.",
+      "el": "Δεν μιλάω πολύ καλά αγγλικά.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis ici pour le travail.",
+      "el": "Είμαι εδώ για δουλειά.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis en vacances.",
+      "el": "Είμαι σε διακοπές.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis venu rendre visite à un ami.",
+      "el": "Ήρθα να επισκεφτώ έναν φίλο.",
+      "key": ""
+    },
+    {
+      "fr": "On travaille ensemble.",
+      "el": "Δουλεύουμε μαζί.",
+      "key": ""
+    },
+    {
+      "fr": "C'est un ami d'enfance.",
+      "el": "Είναι παιδικός μου φίλος.",
+      "key": ""
+    },
+    {
+      "fr": "On se connaît depuis le lycée.",
+      "el": "Γνωριζόμαστε από το λύκειο.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis nouveau dans le quartier.",
+      "el": "Είμαι καινούριος στη γειτονιά.",
+      "key": ""
+    },
+    {
+      "fr": "Je viens d'emménager ici.",
+      "el": "Μόλις μετακόμισα εδώ.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis né à Bordeaux.",
+      "el": "Γεννήθηκα στο Μπορντό.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai grandi à l'étranger.",
+      "el": "Μεγάλωσα στο εξωτερικό.",
+      "key": ""
+    },
+    {
+      "fr": "Je partage un appartement avec un colocataire.",
+      "el": "Μοιράζομαι διαμέρισμα με έναν συγκάτοικο.",
+      "key": ""
+    }
+  ]
+}

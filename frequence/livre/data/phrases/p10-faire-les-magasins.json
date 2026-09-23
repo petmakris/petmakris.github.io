@@ -1,0 +1,161 @@
+{
+  "id": "faire-les-magasins",
+  "tier": 4,
+  "order": 671,
+  "title_fr": "Faire les magasins",
+  "title_el": "για ψώνια",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "Je regarde, merci.",
+      "el": "Απλώς κοιτάω, ευχαριστώ.",
+      "key": ""
+    },
+    {
+      "fr": "Je jette juste un coup d'œil.",
+      "el": "Μια ματιά ρίχνω μόνο.",
+      "key": ""
+    },
+    {
+      "fr": "Je cherche un cadeau pour ma mère.",
+      "el": "Ψάχνω ένα δώρο για τη μητέρα μου.",
+      "key": ""
+    },
+    {
+      "fr": "Je cherche une veste pour l'hiver.",
+      "el": "Ψάχνω ένα μπουφάν για τον χειμώνα.",
+      "key": ""
+    },
+    {
+      "fr": "Je fais du 40.",
+      "el": "Φοράω 40.",
+      "key": ""
+    },
+    {
+      "fr": "Je chausse du 42.",
+      "el": "Φοράω 42 νούμερο παπούτσι.",
+      "key": ""
+    },
+    {
+      "fr": "C'est un peu trop grand pour moi.",
+      "el": "Μου είναι λίγο μεγάλο.",
+      "key": ""
+    },
+    {
+      "fr": "C'est un peu trop serré.",
+      "el": "Μου είναι λίγο στενό.",
+      "key": ""
+    },
+    {
+      "fr": "C'est trop court.",
+      "el": "Είναι πολύ κοντό.",
+      "key": ""
+    },
+    {
+      "fr": "Ça me va bien, je trouve.",
+      "el": "Νομίζω ότι μου πάει.",
+      "key": ""
+    },
+    {
+      "fr": "Les cabines sont au fond du magasin.",
+      "el": "Τα δοκιμαστήρια είναι στο βάθος του μαγαζιού.",
+      "key": ""
+    },
+    {
+      "fr": "Je vais réfléchir, merci.",
+      "el": "Θα το σκεφτώ, ευχαριστώ.",
+      "key": ""
+    },
+    {
+      "fr": "Je vais le prendre.",
+      "el": "Θα το πάρω.",
+      "key": ""
+    },
+    {
+      "fr": "Je vais prendre celui-là.",
+      "el": "Θα πάρω εκείνο εκεί.",
+      "key": ""
+    },
+    {
+      "fr": "Je vais prendre les deux.",
+      "el": "Θα τα πάρω και τα δύο.",
+      "key": ""
+    },
+    {
+      "fr": "Désolé, on n'en a plus.",
+      "el": "Λυπάμαι, δεν έχουμε άλλο.",
+      "key": ""
+    },
+    {
+      "fr": "On va bientôt être réapprovisionnés.",
+      "el": "Περιμένουμε παραλαβή σύντομα.",
+      "key": ""
+    },
+    {
+      "fr": "C'est à moitié prix.",
+      "el": "Είναι στη μισή τιμή.",
+      "key": ""
+    },
+    {
+      "fr": "Il y a une réduction sur la deuxième pièce.",
+      "el": "Στο δεύτερο κομμάτι έχει έκπτωση.",
+      "key": ""
+    },
+    {
+      "fr": "Ça revient un peu cher pour moi.",
+      "el": "Μου βγαίνει λίγο ακριβό.",
+      "key": ""
+    },
+    {
+      "fr": "C'est au-dessus de mon budget.",
+      "el": "Είναι πάνω από τον προϋπολογισμό μου.",
+      "key": ""
+    },
+    {
+      "fr": "Je cherche quelque chose dans la même gamme de prix.",
+      "el": "Ψάχνω κάτι στην ίδια περίπου τιμή.",
+      "key": ""
+    },
+    {
+      "fr": "Je vais payer, s'il vous plaît.",
+      "el": "Θα ήθελα να πληρώσω, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "Je vais payer en liquide.",
+      "el": "Θα πληρώσω μετρητά.",
+      "key": ""
+    },
+    {
+      "fr": "Je n'ai pas de monnaie, désolé.",
+      "el": "Δεν έχω ψιλά, συγγνώμη.",
+      "key": ""
+    },
+    {
+      "fr": "Votre carte est refusée.",
+      "el": "Δεν περνάει η κάρτα σας.",
+      "key": ""
+    },
+    {
+      "fr": "Tapez votre code, s'il vous plaît.",
+      "el": "Βάλτε τον κωδικό σας, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "Je voudrais me faire rembourser.",
+      "el": "Θα ήθελα να μου επιστρέψετε τα χρήματα.",
+      "key": ""
+    },
+    {
+      "fr": "Il faut garder le ticket pour l'échange.",
+      "el": "Πρέπει να κρατήσετε την απόδειξη για την αλλαγή.",
+      "key": ""
+    },
+    {
+      "fr": "On peut rapporter sous trente jours.",
+      "el": "Μπορείτε να το επιστρέψετε μέσα σε τριάντα μέρες.",
+      "key": ""
+    }
+  ]
+}

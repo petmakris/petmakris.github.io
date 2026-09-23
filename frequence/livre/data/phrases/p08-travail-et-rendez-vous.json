@@ -1,0 +1,106 @@
+{
+  "id": "travail-et-rendez-vous",
+  "tier": 4,
+  "order": 542,
+  "title_fr": "Travail, rendez-vous et vie quotidienne",
+  "title_el": "Δουλειά, ραντεβού και καθημερινά",
+  "accent": "#B84066",
+  "example": null,
+  "items": [
+    {
+      "fr": "Vous travaillez où ?",
+      "el": "Πού δουλεύετε;",
+      "key": ""
+    },
+    {
+      "fr": "À quelle heure est la réunion ?",
+      "el": "Τι ώρα είναι η σύσκεψη;",
+      "key": ""
+    },
+    {
+      "fr": "À quelle heure tu commences ?",
+      "el": "Τι ώρα ξεκινάς;",
+      "key": ""
+    },
+    {
+      "fr": "À quelle heure vous commencez le travail ?",
+      "el": "Τι ώρα ξεκινάτε δουλειά;",
+      "key": ""
+    },
+    {
+      "fr": "Tu es libre cet après-midi ?",
+      "el": "Είσαι ελεύθερος σήμερα το απόγευμα;",
+      "key": ""
+    },
+    {
+      "fr": "Vous êtes disponible demain ?",
+      "el": "Είστε διαθέσιμος αύριο;",
+      "key": ""
+    },
+    {
+      "fr": "On peut reporter ?",
+      "el": "Μπορούμε να το αναβάλουμε;",
+      "key": ""
+    },
+    {
+      "fr": "On peut déplacer le rendez-vous ?",
+      "el": "Μπορούμε να αλλάξουμε το ραντεβού;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce qu'on peut remettre ça à demain ?",
+      "el": "Μπορούμε να το αφήσουμε για αύριο;",
+      "key": ""
+    },
+    {
+      "fr": "On s'appelle ?",
+      "el": "Να τα πούμε στο τηλέφωνο;",
+      "key": ""
+    },
+    {
+      "fr": "On fait des projets ?",
+      "el": "Κανονίζουμε κάτι;",
+      "key": ""
+    },
+    {
+      "fr": "On se fait un truc ce week-end ?",
+      "el": "Κάνουμε κάτι το Σαββατοκύριακο;",
+      "key": ""
+    },
+    {
+      "fr": "On se voit quand ?",
+      "el": "Πότε θα βρεθούμε;",
+      "key": ""
+    },
+    {
+      "fr": "On peut se voir cette semaine ?",
+      "el": "Μπορούμε να βρεθούμε αυτή την εβδομάδα;",
+      "key": ""
+    },
+    {
+      "fr": "Tu as reçu mon mail ?",
+      "el": "Σου ήρθε το μέιλ μου;",
+      "key": ""
+    },
+    {
+      "fr": "Tu peux me rappeler ?",
+      "el": "Μπορείς να με ξαναπάρεις τηλέφωνο;",
+      "key": ""
+    },
+    {
+      "fr": "Tu peux me donner un coup de main ?",
+      "el": "Μπορείς να μου δώσεις ένα χεράκι;",
+      "key": ""
+    },
+    {
+      "fr": "Comment s'est passée ta journée ?",
+      "el": "Πώς πήγε η μέρα σου;",
+      "key": ""
+    },
+    {
+      "fr": "Ça a été au travail ?",
+      "el": "Πήγε καλά στη δουλειά;",
+      "key": ""
+    }
+  ]
+}

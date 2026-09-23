@@ -1,0 +1,181 @@
+{
+  "id": "travail-et-obligations",
+  "tier": 4,
+  "order": 877,
+  "title_fr": "Le travail et les obligations",
+  "title_el": "Δουλειά και υποχρεώσεις",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "Je travaille dans un bureau.",
+      "el": "Δουλεύω σε γραφείο.",
+      "key": ""
+    },
+    {
+      "fr": "Je travaille à la maison aujourd'hui.",
+      "el": "Σήμερα δουλεύω από το σπίτι.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis en télétravail deux jours par semaine.",
+      "el": "Κάνω τηλεργασία δύο μέρες την εβδομάδα.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai une réunion à dix heures.",
+      "el": "Έχω σύσκεψη στις δέκα.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai une réunion importante cet après-midi.",
+      "el": "Έχω μια σημαντική σύσκεψη το απόγευμα.",
+      "key": ""
+    },
+    {
+      "fr": "On a une réunion là, je vous rappelle.",
+      "el": "Είμαστε σε σύσκεψη τώρα, θα σας ξαναπάρω.",
+      "key": ""
+    },
+    {
+      "fr": "Désolé, je suis un peu en retard.",
+      "el": "Συγγνώμη, άργησα λίγο.",
+      "key": ""
+    },
+    {
+      "fr": "Je vais arriver en retard.",
+      "el": "Θα αργήσω.",
+      "key": ""
+    },
+    {
+      "fr": "Excusez-moi pour le retard.",
+      "el": "Συγγνώμη για την καθυστέρηση.",
+      "key": ""
+    },
+    {
+      "fr": "Je commence à neuf heures.",
+      "el": "Ξεκινάω στις εννιά.",
+      "key": ""
+    },
+    {
+      "fr": "Je finis à dix-sept heures.",
+      "el": "Σχολάω στις πέντε.",
+      "key": ""
+    },
+    {
+      "fr": "Je termine tard ce soir.",
+      "el": "Θα σχολάσω αργά απόψε.",
+      "key": ""
+    },
+    {
+      "fr": "Je dois y aller.",
+      "el": "Πρέπει να φύγω.",
+      "key": ""
+    },
+    {
+      "fr": "Il faut que j'y aille.",
+      "el": "Πρέπει να πηγαίνω.",
+      "key": ""
+    },
+    {
+      "fr": "Je vais devoir vous laisser.",
+      "el": "Θα πρέπει να σας αφήσω.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis occupé en ce moment.",
+      "el": "Είμαι απασχολημένος αυτή τη στιγμή.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis débordé cette semaine.",
+      "el": "Είμαι πνιγμένος αυτή την εβδομάδα.",
+      "key": ""
+    },
+    {
+      "fr": "Je n'ai pas le temps là.",
+      "el": "Δεν έχω χρόνο τώρα.",
+      "key": ""
+    },
+    {
+      "fr": "Ça ne m'arrange pas aujourd'hui.",
+      "el": "Δεν με βολεύει σήμερα.",
+      "key": ""
+    },
+    {
+      "fr": "Je te rappelle.",
+      "el": "Θα σε ξαναπάρω.",
+      "key": ""
+    },
+    {
+      "fr": "Je vous rappelle plus tard.",
+      "el": "Θα σας ξαναπάρω αργότερα.",
+      "key": ""
+    },
+    {
+      "fr": "Je te rappelle dans cinq minutes.",
+      "el": "Θα σε ξαναπάρω σε πέντε λεπτά.",
+      "key": ""
+    },
+    {
+      "fr": "Je t'envoie un message.",
+      "el": "Θα σου στείλω μήνυμα.",
+      "key": ""
+    },
+    {
+      "fr": "Je vous envoie un mail.",
+      "el": "Θα σας στείλω ένα μέιλ.",
+      "key": ""
+    },
+    {
+      "fr": "Je te passe un coup de fil ce soir.",
+      "el": "Θα σου δώσω ένα τηλέφωνο απόψε.",
+      "key": ""
+    },
+    {
+      "fr": "Je n'ai pas eu le temps de répondre.",
+      "el": "Δεν πρόλαβα να απαντήσω.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai un rendez-vous chez le médecin.",
+      "el": "Έχω ραντεβού στον γιατρό.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai pris rendez-vous pour lundi.",
+      "el": "Έκλεισα ραντεβού για τη Δευτέρα.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai rendez-vous à quatorze heures.",
+      "el": "Έχω ραντεβού στις δύο.",
+      "key": ""
+    },
+    {
+      "fr": "Il faut que je prenne rendez-vous.",
+      "el": "Πρέπει να κλείσω ραντεβού.",
+      "key": ""
+    },
+    {
+      "fr": "Je dois faire les courses.",
+      "el": "Πρέπει να κάνω τα ψώνια.",
+      "key": ""
+    },
+    {
+      "fr": "Je dois faire le ménage.",
+      "el": "Πρέπει να καθαρίσω το σπίτι.",
+      "key": ""
+    },
+    {
+      "fr": "Il faut que je fasse la vaisselle.",
+      "el": "Πρέπει να πλύνω τα πιάτα.",
+      "key": ""
+    },
+    {
+      "fr": "Je dois faire la lessive.",
+      "el": "Πρέπει να βάλω πλυντήριο.",
+      "key": ""
+    }
+  ]
+}

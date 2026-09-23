@@ -1,0 +1,36 @@
+{
+  "id": "a-la-caisse-p11",
+  "tier": 4,
+  "order": 701,
+  "title_fr": "À la caisse",
+  "title_el": "Στο ταμείο",
+  "accent": "#B5531F",
+  "example": null,
+  "items": [
+    {
+      "fr": "Ça doit être avec l'étiquette.",
+      "el": "Πρέπει να έχει πάνω του την ετικέτα.",
+      "key": ""
+    },
+    {
+      "fr": "La caisse est tout droit, au fond.",
+      "el": "Το ταμείο είναι ευθεία, στο βάθος.",
+      "key": ""
+    },
+    {
+      "fr": "Il y a la queue à la caisse.",
+      "el": "Έχει ουρά στο ταμείο.",
+      "key": ""
+    },
+    {
+      "fr": "On ouvre à dix heures.",
+      "el": "Ανοίγουμε στις δέκα.",
+      "key": ""
+    },
+    {
+      "fr": "Ce sera tout, merci.",
+      "el": "Αυτά, ευχαριστώ.",
+      "key": ""
+    }
+  ]
+}

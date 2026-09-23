@@ -49,7 +49,7 @@ def test_item_missing_fr_raises():
             cards.load_card(_write(d, obj))
 
 def test_bad_tier_raises():
-    obj = dict(GOOD); obj["tier"] = 4
+    obj = dict(GOOD); obj["tier"] = 5
     with tempfile.TemporaryDirectory() as d:
         with pytest.raises(cards.CardError, match="tier"):
             cards.load_card(_write(d, obj))

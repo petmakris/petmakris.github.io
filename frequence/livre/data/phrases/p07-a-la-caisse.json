@@ -1,0 +1,136 @@
+{
+  "id": "a-la-caisse-p07",
+  "tier": 4,
+  "order": 437,
+  "title_fr": "À la caisse",
+  "title_el": "Στο ταμείο",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "Je peux payer par carte ?",
+      "el": "Μπορώ να πληρώσω με κάρτα;",
+      "key": ""
+    },
+    {
+      "fr": "Vous acceptez la carte ?",
+      "el": "Δέχεστε κάρτα;",
+      "key": ""
+    },
+    {
+      "fr": "Vous prenez le sans contact ?",
+      "el": "Δέχεστε ανέπαφη πληρωμή;",
+      "key": ""
+    },
+    {
+      "fr": "Je peux payer en plusieurs fois ?",
+      "el": "Μπορώ να πληρώσω με δόσεις;",
+      "key": ""
+    },
+    {
+      "fr": "Vous acceptez les espèces ?",
+      "el": "Δέχεστε μετρητά;",
+      "key": ""
+    },
+    {
+      "fr": "Je n'ai que des billets, ça vous gêne ?",
+      "el": "Έχω μόνο χαρτονομίσματα, σας πειράζει;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez la monnaie sur cinquante francs ?",
+      "el": "Έχετε ρέστα για πενήντα φράγκα;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez de la monnaie ?",
+      "el": "Έχετε ψιλά;",
+      "key": ""
+    },
+    {
+      "fr": "Vous pouvez retaper votre code ?",
+      "el": "Μπορείτε να ξαναβάλετε τον κωδικό σας;",
+      "key": ""
+    },
+    {
+      "fr": "Je peux avoir un ticket de caisse ?",
+      "el": "Μπορώ να έχω απόδειξη;",
+      "key": ""
+    },
+    {
+      "fr": "Vous voulez le ticket ?",
+      "el": "Θέλετε την απόδειξη;",
+      "key": ""
+    },
+    {
+      "fr": "Vous voulez une facture ?",
+      "el": "Θέλετε τιμολόγιο;",
+      "key": ""
+    },
+    {
+      "fr": "Vous pouvez me faire un cadeau ?",
+      "el": "Μπορείτε να μου το τυλίξετε για δώρο;",
+      "key": ""
+    },
+    {
+      "fr": "Vous voulez un sac ?",
+      "el": "Θέλετε σακούλα;",
+      "key": ""
+    },
+    {
+      "fr": "Le sac est payant, ça vous va ?",
+      "el": "Η σακούλα χρεώνεται, είναι εντάξει;",
+      "key": ""
+    },
+    {
+      "fr": "Je vous mets ça dans un sac ?",
+      "el": "Να σας το βάλω σε μια σακούλα;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez une carte de fidélité ?",
+      "el": "Έχετε κάρτα μέλους;",
+      "key": ""
+    },
+    {
+      "fr": "Je peux cumuler des points ?",
+      "el": "Μπορώ να μαζεύω πόντους;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que je peux échanger cet article ?",
+      "el": "Μπορώ να αλλάξω αυτό το κομμάτι;",
+      "key": ""
+    },
+    {
+      "fr": "Vous reprenez les articles soldés ?",
+      "el": "Δέχεστε επιστροφές σε είδη με έκπτωση;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez combien de temps pour rapporter un article ?",
+      "el": "Πόσο καιρό έχει κανείς για να επιστρέψει ένα προϊόν;",
+      "key": ""
+    },
+    {
+      "fr": "Excusez-moi, où est le rayon des chaussures ?",
+      "el": "Συγγνώμη, πού είναι το τμήμα με τα παπούτσια;",
+      "key": ""
+    },
+    {
+      "fr": "Vous pourriez m'indiquer la caisse ?",
+      "el": "Θα μπορούσατε να μου πείτε πού είναι το ταμείο;",
+      "key": ""
+    },
+    {
+      "fr": "Vous fermez à quelle heure ?",
+      "el": "Τι ώρα κλείνετε;",
+      "key": ""
+    },
+    {
+      "fr": "C'est tout pour vous ?",
+      "el": "Τίποτε άλλο;",
+      "key": ""
+    }
+  ]
+}

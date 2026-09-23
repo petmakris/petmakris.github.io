@@ -1,0 +1,126 @@
+{
+  "id": "expressions-familieres",
+  "tier": 4,
+  "order": 1261,
+  "title_fr": "Expressions familières",
+  "title_el": "Καθημερινές εκφράσεις",
+  "accent": "#B5531F",
+  "example": null,
+  "items": [
+    {
+      "fr": "c'est pas grave",
+      "el": "δεν πειράζει",
+      "key": ""
+    },
+    {
+      "fr": "mettre les pieds dans le plat",
+      "el": "κάνω γκάφα",
+      "key": ""
+    },
+    {
+      "fr": "ça craint",
+      "el": "είναι χάλια",
+      "key": ""
+    },
+    {
+      "fr": "c'est du gâteau",
+      "el": "παιχνιδάκι είναι",
+      "key": ""
+    },
+    {
+      "fr": "poser un lapin",
+      "el": "στήνω κάποιον",
+      "key": ""
+    },
+    {
+      "fr": "avoir la flemme",
+      "el": "βαριέμαι",
+      "key": ""
+    },
+    {
+      "fr": "en avoir marre",
+      "el": "τα έχω βαρεθεί",
+      "key": ""
+    },
+    {
+      "fr": "ras-le-bol",
+      "el": "δεν πάει άλλο",
+      "key": ""
+    },
+    {
+      "fr": "c'est la galère",
+      "el": "τι μπελάς!",
+      "key": ""
+    },
+    {
+      "fr": "faire la grasse matinée",
+      "el": "κοιμάμαι μέχρι αργά",
+      "key": ""
+    },
+    {
+      "fr": "être à l'ouest",
+      "el": "είμαι αλλού",
+      "key": ""
+    },
+    {
+      "fr": "avoir un coup de foudre",
+      "el": "παθαίνω κεραυνοβόλο έρωτα",
+      "key": ""
+    },
+    {
+      "fr": "tomber dans les pommes",
+      "el": "λιποθυμώ",
+      "key": ""
+    },
+    {
+      "fr": "se prendre la tête",
+      "el": "σπάω το κεφάλι μου",
+      "key": ""
+    },
+    {
+      "fr": "avoir la pêche",
+      "el": "είμαι γεμάτος ενέργεια",
+      "key": ""
+    },
+    {
+      "fr": "avoir le coup de barre",
+      "el": "με έπιασε ξαφνική κούραση",
+      "key": ""
+    },
+    {
+      "fr": "être crevé",
+      "el": "είμαι πτώμα",
+      "key": ""
+    },
+    {
+      "fr": "ça me saoule",
+      "el": "μου τη δίνει",
+      "key": ""
+    },
+    {
+      "fr": "n'importe où",
+      "el": "οπουδήποτε",
+      "key": ""
+    },
+    {
+      "fr": "n'importe comment",
+      "el": "όπως να 'ναι",
+      "key": ""
+    },
+    {
+      "fr": "en un clin d'œil",
+      "el": "στο άψε σβήσε",
+      "key": ""
+    },
+    {
+      "fr": "au pif",
+      "el": "στην τύχη",
+      "key": ""
+    },
+    {
+      "fr": "à la bonne franquette",
+      "el": "απλά, χωρίς φασαρία",
+      "key": ""
+    }
+  ]
+}

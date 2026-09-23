@@ -1,0 +1,81 @@
+{
+  "id": "date-et-heure",
+  "tier": 4,
+  "order": 514,
+  "title_fr": "Date, heure, rendez-vous et météo",
+  "title_el": "Ημερομηνία, ώρα, ραντεβού και καιρός",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "Quel jour sommes-nous ?",
+      "el": "Τι μέρα έχουμε σήμερα;",
+      "key": ""
+    },
+    {
+      "fr": "On est le combien aujourd'hui ?",
+      "el": "Πόσο έχει ο μήνας σήμερα;",
+      "key": ""
+    },
+    {
+      "fr": "Quelle est la date du jour ?",
+      "el": "Ποια είναι η σημερινή ημερομηνία;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez l'heure, s'il vous plaît ?",
+      "el": "Μήπως ξέρετε τι ώρα είναι, παρακαλώ;",
+      "key": ""
+    },
+    {
+      "fr": "On se voit à quelle heure ?",
+      "el": "Τι ώρα θα βρεθούμε;",
+      "key": ""
+    },
+    {
+      "fr": "Vous êtes libre demain ?",
+      "el": "Είστε ελεύθερος αύριο;",
+      "key": ""
+    },
+    {
+      "fr": "Tu es libre ce week-end ?",
+      "el": "Είσαι ελεύθερος αυτό το Σαββατοκύριακο;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez un moment ?",
+      "el": "Έχετε ένα λεπτό;",
+      "key": ""
+    },
+    {
+      "fr": "Ça vous va, mardi prochain ?",
+      "el": "Σας βολεύει την επόμενη Τρίτη;",
+      "key": ""
+    },
+    {
+      "fr": "On peut se voir jeudi ?",
+      "el": "Μπορούμε να βρεθούμε την Πέμπτη;",
+      "key": ""
+    },
+    {
+      "fr": "On remet ça à plus tard ?",
+      "el": "Το αφήνουμε για αργότερα;",
+      "key": ""
+    },
+    {
+      "fr": "Il fait quel temps chez vous ?",
+      "el": "Τι καιρό κάνει εκεί που είστε;",
+      "key": ""
+    },
+    {
+      "fr": "Quel temps fait-il aujourd'hui ?",
+      "el": "Τι καιρό κάνει σήμερα;",
+      "key": ""
+    },
+    {
+      "fr": "Il va faire beau demain ?",
+      "el": "Θα έχει καλό καιρό αύριο;",
+      "key": ""
+    }
+  ]
+}

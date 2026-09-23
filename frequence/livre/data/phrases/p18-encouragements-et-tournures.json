@@ -1,0 +1,71 @@
+{
+  "id": "encouragements-et-tournures",
+  "tier": 4,
+  "order": 1249,
+  "title_fr": "Encouragements et tournures",
+  "title_el": "Ενθάρρυνση και εκφράσεις",
+  "accent": "#B84066",
+  "example": null,
+  "items": [
+    {
+      "fr": "Bonne chance pour ton entretien.",
+      "el": "Καλή επιτυχία στη συνέντευξή σου.",
+      "key": ""
+    },
+    {
+      "fr": "Continue comme ça !",
+      "el": "Έτσι συνέχισε!",
+      "key": ""
+    },
+    {
+      "fr": "Tu vas y arriver.",
+      "el": "Θα τα καταφέρεις.",
+      "key": ""
+    },
+    {
+      "fr": "Lâche pas !",
+      "el": "Μην τα παρατάς!",
+      "key": ""
+    },
+    {
+      "fr": "On garde le contact.",
+      "el": "Κρατάμε επαφή.",
+      "key": ""
+    },
+    {
+      "fr": "Tiens-moi au courant.",
+      "el": "Κράτα με ενήμερο.",
+      "key": ""
+    },
+    {
+      "fr": "On se tient au courant.",
+      "el": "Θα ενημερωνόμαστε.",
+      "key": ""
+    },
+    {
+      "fr": "petit à petit",
+      "el": "σιγά σιγά",
+      "key": ""
+    },
+    {
+      "fr": "avoir le cafard",
+      "el": "έχω τη μαύρη μου",
+      "key": ""
+    },
+    {
+      "fr": "coûter les yeux de la tête",
+      "el": "κοστίζει μια περιουσία",
+      "key": ""
+    },
+    {
+      "fr": "revenons à nos moutons",
+      "el": "ας επανέλθουμε στο θέμα μας",
+      "key": ""
+    },
+    {
+      "fr": "ça ne vaut pas la peine",
+      "el": "δεν αξίζει τον κόπο",
+      "key": ""
+    }
+  ]
+}

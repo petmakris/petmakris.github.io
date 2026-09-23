@@ -1,0 +1,111 @@
+{
+  "id": "rassurer-et-reagir",
+  "tier": 4,
+  "order": 1191,
+  "title_fr": "Rassurer et réagir",
+  "title_el": "Καθησυχάζω και αντιδρώ",
+  "accent": "#B5531F",
+  "example": null,
+  "items": [
+    {
+      "fr": "Aidez-moi, s'il vous plaît !",
+      "el": "Βοηθήστε με, σας παρακαλώ!",
+      "key": ""
+    },
+    {
+      "fr": "Attention, danger !",
+      "el": "Προσοχή, κίνδυνος!",
+      "key": ""
+    },
+    {
+      "fr": "N'ayez pas peur.",
+      "el": "Μη φοβάστε.",
+      "key": ""
+    },
+    {
+      "fr": "Calmez-vous.",
+      "el": "Ηρεμήστε.",
+      "key": ""
+    },
+    {
+      "fr": "Tout va bien se passer.",
+      "el": "Όλα θα πάνε καλά.",
+      "key": ""
+    },
+    {
+      "fr": "Allez-vous-en !",
+      "el": "Φύγετε από δω!",
+      "key": ""
+    },
+    {
+      "fr": "Arrêtez !",
+      "el": "Σταματήστε!",
+      "key": ""
+    },
+    {
+      "fr": "Ça va aller.",
+      "el": "Θα πάει καλά.",
+      "key": ""
+    },
+    {
+      "fr": "Ouf, quel soulagement",
+      "el": "Ουφ, ανακουφίστηκα",
+      "key": ""
+    },
+    {
+      "fr": "Quoi de neuf ?",
+      "el": "Τι νέα;",
+      "key": ""
+    },
+    {
+      "fr": "Ça fait un bail !",
+      "el": "Χρόνια και ζαμάνια!",
+      "key": ""
+    },
+    {
+      "fr": "Ça fait longtemps !",
+      "el": "Πάει καιρός!",
+      "key": ""
+    },
+    {
+      "fr": "Ça fait une éternité !",
+      "el": "Έχει περάσει μια αιωνιότητα!",
+      "key": ""
+    },
+    {
+      "fr": "Tant mieux !",
+      "el": "Τόσο το καλύτερο!",
+      "key": ""
+    },
+    {
+      "fr": "Tant pis.",
+      "el": "Δεν πειράζει.",
+      "key": ""
+    },
+    {
+      "fr": "Dommage.",
+      "el": "Κρίμα.",
+      "key": ""
+    },
+    {
+      "fr": "C'est dommage.",
+      "el": "Είναι κρίμα.",
+      "key": ""
+    },
+    {
+      "fr": "Quel dommage !",
+      "el": "Τι κρίμα!",
+      "key": ""
+    },
+    {
+      "fr": "Pas mal.",
+      "el": "Όχι κι άσχημα.",
+      "key": ""
+    },
+    {
+      "fr": "Pas mal du tout !",
+      "el": "Καθόλου άσχημα!",
+      "key": ""
+    }
+  ]
+}

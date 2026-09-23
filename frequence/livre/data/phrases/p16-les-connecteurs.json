@@ -1,0 +1,116 @@
+{
+  "id": "les-connecteurs",
+  "tier": 4,
+  "order": 1100,
+  "title_fr": "Les connecteurs",
+  "title_el": "Συνδετικές λέξεις",
+  "accent": "#B84066",
+  "example": null,
+  "items": [
+    {
+      "fr": "Bref.",
+      "el": "Τέλος πάντων.",
+      "key": ""
+    },
+    {
+      "fr": "Enfin bon.",
+      "el": "Τι να κάνουμε.",
+      "key": ""
+    },
+    {
+      "fr": "Du coup ?",
+      "el": "Οπότε;",
+      "key": ""
+    },
+    {
+      "fr": "d'abord",
+      "el": "πρώτα",
+      "key": ""
+    },
+    {
+      "fr": "tout d'abord",
+      "el": "πρώτα απ' όλα",
+      "key": ""
+    },
+    {
+      "fr": "ensuite",
+      "el": "έπειτα",
+      "key": ""
+    },
+    {
+      "fr": "puis",
+      "el": "μετά",
+      "key": ""
+    },
+    {
+      "fr": "enfin",
+      "el": "τέλος",
+      "key": ""
+    },
+    {
+      "fr": "finalement",
+      "el": "τελικά",
+      "key": ""
+    },
+    {
+      "fr": "après",
+      "el": "ύστερα",
+      "key": ""
+    },
+    {
+      "fr": "avant tout",
+      "el": "πάνω απ' όλα",
+      "key": ""
+    },
+    {
+      "fr": "pour commencer",
+      "el": "για αρχή",
+      "key": ""
+    },
+    {
+      "fr": "pour finir",
+      "el": "για να τελειώσω",
+      "key": ""
+    },
+    {
+      "fr": "en premier lieu",
+      "el": "κατά πρώτον",
+      "key": ""
+    },
+    {
+      "fr": "en second lieu",
+      "el": "κατά δεύτερον",
+      "key": ""
+    },
+    {
+      "fr": "premièrement",
+      "el": "πρώτον",
+      "key": ""
+    },
+    {
+      "fr": "deuxièmement",
+      "el": "δεύτερον",
+      "key": ""
+    },
+    {
+      "fr": "cependant",
+      "el": "ωστόσο",
+      "key": ""
+    },
+    {
+      "fr": "pourtant",
+      "el": "κι όμως",
+      "key": ""
+    },
+    {
+      "fr": "néanmoins",
+      "el": "εντούτοις",
+      "key": ""
+    },
+    {
+      "fr": "toutefois",
+      "el": "παρ' όλα αυτά",
+      "key": ""
+    }
+  ]
+}

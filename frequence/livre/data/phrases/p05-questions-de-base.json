@@ -1,0 +1,96 @@
+{
+  "id": "questions-de-base",
+  "tier": 4,
+  "order": 281,
+  "title_fr": "Les questions de base",
+  "title_el": "βασικές ερωτήσεις",
+  "accent": "#B5531F",
+  "example": null,
+  "items": [
+    {
+      "fr": "À qui je dois m'adresser ?",
+      "el": "Σε ποιον πρέπει να απευθυνθώ;",
+      "key": ""
+    },
+    {
+      "fr": "C'est à qui le tour ?",
+      "el": "Ποιανού είναι η σειρά;",
+      "key": ""
+    },
+    {
+      "fr": "Pour qui c'est ?",
+      "el": "Για ποιον είναι;",
+      "key": ""
+    },
+    {
+      "fr": "De quoi vous parlez ?",
+      "el": "Για τι πράγμα μιλάτε;",
+      "key": ""
+    },
+    {
+      "fr": "De quoi il s'agit ?",
+      "el": "Για τι πρόκειται;",
+      "key": ""
+    },
+    {
+      "fr": "Quel est le problème ?",
+      "el": "Ποιο είναι το πρόβλημα;",
+      "key": ""
+    },
+    {
+      "fr": "Quelle est la différence ?",
+      "el": "Ποια είναι η διαφορά;",
+      "key": ""
+    },
+    {
+      "fr": "Quel jour on est ?",
+      "el": "Τι μέρα έχουμε;",
+      "key": ""
+    },
+    {
+      "fr": "On est quel jour aujourd'hui ?",
+      "el": "Πόσο του μηνός είμαστε σήμερα;",
+      "key": ""
+    },
+    {
+      "fr": "Vous en voulez combien ?",
+      "el": "Πόσα θέλετε;",
+      "key": ""
+    },
+    {
+      "fr": "Il en reste combien ?",
+      "el": "Πόσα έχουν μείνει;",
+      "key": ""
+    },
+    {
+      "fr": "Ça coûte combien en tout ?",
+      "el": "Πόσο κάνει όλο μαζί;",
+      "key": ""
+    },
+    {
+      "fr": "Je vous dois combien ?",
+      "el": "Πόσα σας χρωστάω;",
+      "key": ""
+    },
+    {
+      "fr": "Pourquoi pas ?",
+      "el": "Γιατί όχι;",
+      "key": ""
+    },
+    {
+      "fr": "Pourquoi vous dites ça ?",
+      "el": "Γιατί το λέτε αυτό;",
+      "key": ""
+    },
+    {
+      "fr": "Et alors ?",
+      "el": "Και λοιπόν;",
+      "key": ""
+    },
+    {
+      "fr": "Et après ?",
+      "el": "Και μετά;",
+      "key": ""
+    }
+  ]
+}

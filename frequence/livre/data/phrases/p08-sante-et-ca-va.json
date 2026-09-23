@@ -1,0 +1,81 @@
+{
+  "id": "sante-et-ca-va",
+  "tier": 4,
+  "order": 528,
+  "title_fr": "Santé et « comment ça va »",
+  "title_el": "Υγεία και «πώς πάει;»",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "Où est la pharmacie ?",
+      "el": "Πού είναι το φαρμακείο;",
+      "key": ""
+    },
+    {
+      "fr": "Où est l'hôpital ?",
+      "el": "Πού είναι το νοσοκομείο;",
+      "key": ""
+    },
+    {
+      "fr": "Avez-vous quelque chose contre la douleur ?",
+      "el": "Έχετε κάτι για τον πόνο;",
+      "key": ""
+    },
+    {
+      "fr": "Avez-vous quelque chose contre la toux ?",
+      "el": "Έχετε κάτι για τον βήχα;",
+      "key": ""
+    },
+    {
+      "fr": "Où avez-vous mal ?",
+      "el": "Πού πονάτε;",
+      "key": ""
+    },
+    {
+      "fr": "Comment vous sentez-vous ?",
+      "el": "Πώς αισθάνεστε;",
+      "key": ""
+    },
+    {
+      "fr": "Pouvez-vous appeler ma famille ?",
+      "el": "Μπορείτε να πάρετε τηλέφωνο την οικογένειά μου;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que c'est ouvert la nuit ?",
+      "el": "Είναι ανοιχτά τη νύχτα;",
+      "key": ""
+    },
+    {
+      "fr": "Y a-t-il un médecin ici ?",
+      "el": "Υπάρχει γιατρός εδώ;",
+      "key": ""
+    },
+    {
+      "fr": "Ça se passe bien ?",
+      "el": "Πάει καλά;",
+      "key": ""
+    },
+    {
+      "fr": "Tout se passe bien ?",
+      "el": "Πάνε όλα καλά;",
+      "key": ""
+    },
+    {
+      "fr": "Tout va bien ?",
+      "el": "Όλα καλά;",
+      "key": ""
+    },
+    {
+      "fr": "Comment ça s'est passé ?",
+      "el": "Πώς πήγε;",
+      "key": ""
+    },
+    {
+      "fr": "Ça te dit ?",
+      "el": "Είσαι μέσα;",
+      "key": ""
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "id": "ajouter-et-resumer",
+  "tier": 4,
+  "order": 1140,
+  "title_fr": "Ajouter et résumer",
+  "title_el": "Προσθήκη και σύνοψη",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "de plus",
+      "el": "επιπλέον",
+      "key": ""
+    },
+    {
+      "fr": "en plus",
+      "el": "κι από πάνω",
+      "key": ""
+    },
+    {
+      "fr": "par ailleurs",
+      "el": "εξάλλου",
+      "key": ""
+    },
+    {
+      "fr": "d'ailleurs",
+      "el": "άλλωστε",
+      "key": ""
+    },
+    {
+      "fr": "en outre",
+      "el": "επιπροσθέτως",
+      "key": ""
+    },
+    {
+      "fr": "qui plus est",
+      "el": "και μάλιστα",
+      "key": ""
+    },
+    {
+      "fr": "également",
+      "el": "επίσης",
+      "key": ""
+    },
+    {
+      "fr": "de même",
+      "el": "ομοίως",
+      "key": ""
+    },
+    {
+      "fr": "ainsi que",
+      "el": "καθώς και",
+      "key": ""
+    },
+    {
+      "fr": "autrement dit",
+      "el": "με άλλα λόγια",
+      "key": ""
+    },
+    {
+      "fr": "en d'autres termes",
+      "el": "με άλλους όρους",
+      "key": ""
+    },
+    {
+      "fr": "ce qui veut dire",
+      "el": "πράγμα που σημαίνει",
+      "key": ""
+    },
+    {
+      "fr": "disons",
+      "el": "ας πούμε",
+      "key": ""
+    },
+    {
+      "fr": "en gros",
+      "el": "χοντρικά",
+      "key": ""
+    },
+    {
+      "fr": "grosso modo",
+      "el": "πάνω κάτω",
+      "key": ""
+    },
+    {
+      "fr": "en somme",
+      "el": "εν ολίγοις",
+      "key": ""
+    },
+    {
+      "fr": "en résumé",
+      "el": "συνοψίζοντας",
+      "key": ""
+    },
+    {
+      "fr": "pour résumer",
+      "el": "για να συνοψίσω",
+      "key": ""
+    },
+    {
+      "fr": "en conclusion",
+      "el": "συμπερασματικά",
+      "key": ""
+    },
+    {
+      "fr": "pour conclure",
+      "el": "για να κλείσω",
+      "key": ""
+    },
+    {
+      "fr": "au final",
+      "el": "τελικά",
+      "key": ""
+    }
+  ]
+}

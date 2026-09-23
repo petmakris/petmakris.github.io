@@ -1,0 +1,101 @@
+{
+  "id": "le-quotidien-et-le-travail",
+  "tier": 4,
+  "order": 911,
+  "title_fr": "Le quotidien et le travail",
+  "title_el": "Η καθημερινότητα και η δουλειά",
+  "accent": "#B5531F",
+  "example": null,
+  "items": [
+    {
+      "fr": "J'ai plein de choses à faire aujourd'hui.",
+      "el": "Έχω ένα σωρό πράγματα να κάνω σήμερα.",
+      "key": ""
+    },
+    {
+      "fr": "Je n'ai pas arrêté de la journée.",
+      "el": "Δεν σταμάτησα στιγμή όλη μέρα.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis crevé après le travail.",
+      "el": "Είμαι πτώμα μετά τη δουλειά.",
+      "key": ""
+    },
+    {
+      "fr": "Je me lève tôt demain.",
+      "el": "Αύριο ξυπνάω νωρίς.",
+      "key": ""
+    },
+    {
+      "fr": "Je dois préparer le dîner.",
+      "el": "Πρέπει να ετοιμάσω το βραδινό.",
+      "key": ""
+    },
+    {
+      "fr": "C'est à ton tour de sortir la poubelle.",
+      "el": "Σειρά σου είναι να βγάλεις τα σκουπίδια.",
+      "key": ""
+    },
+    {
+      "fr": "Je m'en occupe.",
+      "el": "Το αναλαμβάνω εγώ.",
+      "key": ""
+    },
+    {
+      "fr": "Je vais voir ce que je peux faire.",
+      "el": "Θα δω τι μπορώ να κάνω.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai eu une grosse journée.",
+      "el": "Είχα μια κουραστική μέρα.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis débordé de boulot.",
+      "el": "Είμαι πνιγμένος στη δουλειά.",
+      "key": ""
+    },
+    {
+      "fr": "Mon patron veut me voir.",
+      "el": "Με θέλει το αφεντικό μου.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai un dossier à rendre pour vendredi.",
+      "el": "Έχω μια εργασία να παραδώσω μέχρι την Παρασκευή.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis en réunion toute la matinée.",
+      "el": "Έχω συσκέψεις όλο το πρωί.",
+      "key": ""
+    },
+    {
+      "fr": "Je prends ma pause déjeuner.",
+      "el": "Κάνω το διάλειμμα για φαγητό.",
+      "key": ""
+    },
+    {
+      "fr": "Je vais chercher un café.",
+      "el": "Πάω να πάρω έναν καφέ.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis en congé la semaine prochaine.",
+      "el": "Την άλλη βδομάδα έχω άδεια.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai posé un jour de congé.",
+      "el": "Πήρα μια μέρα άδεια.",
+      "key": ""
+    },
+    {
+      "fr": "Je travaille de nuit cette semaine.",
+      "el": "Αυτή τη βδομάδα δουλεύω νύχτα.",
+      "key": ""
+    }
+  ]
+}

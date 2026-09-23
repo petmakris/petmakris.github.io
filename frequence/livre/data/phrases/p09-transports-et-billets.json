@@ -1,0 +1,66 @@
+{
+  "id": "transports-et-billets",
+  "tier": 4,
+  "order": 620,
+  "title_fr": "Les transports et les billets",
+  "title_el": "Μετακινήσεις και εισιτήρια",
+  "accent": "#B84066",
+  "example": null,
+  "items": [
+    {
+      "fr": "Je voudrais un billet pour Marseille.",
+      "el": "Θα ήθελα ένα εισιτήριο για τη Μασσαλία.",
+      "key": ""
+    },
+    {
+      "fr": "Un aller simple, s'il vous plaît.",
+      "el": "Ένα απλό εισιτήριο, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "Un aller-retour pour Bordeaux, s'il vous plaît.",
+      "el": "Ένα εισιτήριο με επιστροφή για το Μπορντό, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "Deux tickets de métro, s'il vous plaît.",
+      "el": "Δύο εισιτήρια για το μετρό, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "Je voudrais aller à cette adresse, s'il vous plaît.",
+      "el": "Θα ήθελα να πάω σε αυτή τη διεύθυνση, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "À l'aéroport, s'il vous plaît.",
+      "el": "Στο αεροδρόμιο, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "Arrêtez-vous ici, s'il vous plaît.",
+      "el": "Σταματήστε εδώ, παρακαλώ.",
+      "key": ""
+    },
+    {
+      "fr": "Le prochain bus arrive dans dix minutes.",
+      "el": "Το επόμενο λεωφορείο έρχεται σε δέκα λεπτά.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai raté mon bus.",
+      "el": "Έχασα το λεωφορείο.",
+      "key": ""
+    },
+    {
+      "fr": "Je crois que je me suis perdu.",
+      "el": "Νομίζω ότι χάθηκα.",
+      "key": ""
+    },
+    {
+      "fr": "Je ne suis pas d'ici.",
+      "el": "Δεν είμαι από εδώ.",
+      "key": ""
+    }
+  ]
+}

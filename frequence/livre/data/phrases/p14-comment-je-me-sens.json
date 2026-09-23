@@ -1,0 +1,116 @@
+{
+  "id": "comment-je-me-sens",
+  "tier": 4,
+  "order": 937,
+  "title_fr": "Comment je me sens",
+  "title_el": "Πώς νιώθω",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "Je suis content",
+      "el": "Είμαι χαρούμενος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis contente",
+      "el": "Είμαι χαρούμενη",
+      "key": ""
+    },
+    {
+      "fr": "Je suis vraiment heureux",
+      "el": "Είμαι πραγματικά ευτυχισμένος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis super content",
+      "el": "Είμαι πάρα πολύ χαρούμενος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis triste",
+      "el": "Είμαι λυπημένος",
+      "key": ""
+    },
+    {
+      "fr": "Je me sens un peu triste",
+      "el": "Νιώθω λίγο λυπημένος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis crevé",
+      "el": "Είμαι πτώμα",
+      "key": ""
+    },
+    {
+      "fr": "Je suis épuisé",
+      "el": "Είμαι εξαντλημένος",
+      "key": ""
+    },
+    {
+      "fr": "Je tombe de sommeil",
+      "el": "Πέφτω από τη νύστα",
+      "key": ""
+    },
+    {
+      "fr": "J'ai sommeil",
+      "el": "Νυστάζω",
+      "key": ""
+    },
+    {
+      "fr": "Je suis mort de fatigue",
+      "el": "Είμαι ψόφιος στην κούραση",
+      "key": ""
+    },
+    {
+      "fr": "J'ai peur",
+      "el": "Φοβάμαι",
+      "key": ""
+    },
+    {
+      "fr": "J'ai un peu peur",
+      "el": "Φοβάμαι λίγο",
+      "key": ""
+    },
+    {
+      "fr": "Ça me fait peur",
+      "el": "Αυτό με φοβίζει",
+      "key": ""
+    },
+    {
+      "fr": "Je suis terrifié",
+      "el": "Είμαι τρομοκρατημένος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis pressé",
+      "el": "Βιάζομαι",
+      "key": ""
+    },
+    {
+      "fr": "Je suis pressée",
+      "el": "Βιάζομαι",
+      "key": ""
+    },
+    {
+      "fr": "On est pressés",
+      "el": "Βιαζόμαστε",
+      "key": ""
+    },
+    {
+      "fr": "Je m'ennuie",
+      "el": "Βαριέμαι",
+      "key": ""
+    },
+    {
+      "fr": "Je m'ennuie à mourir",
+      "el": "Βαριέμαι μέχρι θανάτου",
+      "key": ""
+    },
+    {
+      "fr": "C'est ennuyeux",
+      "el": "Είναι βαρετό",
+      "key": ""
+    }
+  ]
+}

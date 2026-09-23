@@ -1,0 +1,91 @@
+{
+  "id": "urgences",
+  "tier": 4,
+  "order": 825,
+  "title_fr": "Urgences",
+  "title_el": "Έκτακτη ανάγκη",
+  "accent": "#B5531F",
+  "example": null,
+  "items": [
+    {
+      "fr": "Appelez les urgences !",
+      "el": "Καλέστε την άμεση βοήθεια!",
+      "key": ""
+    },
+    {
+      "fr": "Appelez le 144 !",
+      "el": "Καλέστε το 144!",
+      "key": ""
+    },
+    {
+      "fr": "Appelez la police !",
+      "el": "Καλέστε την αστυνομία!",
+      "key": ""
+    },
+    {
+      "fr": "Il y a eu un accident.",
+      "el": "Έγινε ένα ατύχημα.",
+      "key": ""
+    },
+    {
+      "fr": "Quelqu'un est blessé.",
+      "el": "Κάποιος τραυματίστηκε.",
+      "key": ""
+    },
+    {
+      "fr": "Vite, c'est grave !",
+      "el": "Γρήγορα, είναι σοβαρό!",
+      "key": ""
+    },
+    {
+      "fr": "Il me faut une ambulance.",
+      "el": "Χρειάζομαι ασθενοφόρο.",
+      "key": ""
+    },
+    {
+      "fr": "Je dois voir un médecin.",
+      "el": "Πρέπει να δω γιατρό.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai besoin d'aide.",
+      "el": "Χρειάζομαι βοήθεια.",
+      "key": ""
+    },
+    {
+      "fr": "Restez avec moi.",
+      "el": "Μείνετε μαζί μου.",
+      "key": ""
+    },
+    {
+      "fr": "Ne bougez pas.",
+      "el": "Μην κουνιέστε.",
+      "key": ""
+    },
+    {
+      "fr": "Respirez lentement.",
+      "el": "Αναπνέετε αργά.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis allergique aux antibiotiques.",
+      "el": "Είμαι αλλεργικός στα αντιβιοτικά.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis allergique à la pénicilline.",
+      "el": "Είμαι αλλεργικός στην πενικιλίνη.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis diabétique.",
+      "el": "Έχω διαβήτη.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis enceinte.",
+      "el": "Είμαι έγκυος.",
+      "key": ""
+    }
+  ]
+}

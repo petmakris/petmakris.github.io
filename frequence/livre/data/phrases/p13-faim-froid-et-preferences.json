@@ -1,0 +1,96 @@
+{
+  "id": "faim-froid-et-preferences",
+  "tier": 4,
+  "order": 860,
+  "title_fr": "Faim, froid et préférences",
+  "title_el": "Πείνα, κρύο και προτιμήσεις",
+  "accent": "#C8901A",
+  "example": null,
+  "items": [
+    {
+      "fr": "J'ai très froid",
+      "el": "Κρυώνω πολύ",
+      "key": ""
+    },
+    {
+      "fr": "J'ai un peu froid",
+      "el": "Κρυώνω λίγο",
+      "key": ""
+    },
+    {
+      "fr": "J'ai trop chaud",
+      "el": "Ζεσταίνομαι πάρα πολύ",
+      "key": ""
+    },
+    {
+      "fr": "On a chaud ici",
+      "el": "Έχει ζέστη εδώ μέσα",
+      "key": ""
+    },
+    {
+      "fr": "J'ai un petit creux",
+      "el": "Πεινάω λιγάκι",
+      "key": ""
+    },
+    {
+      "fr": "Je meurs de faim",
+      "el": "Πεθαίνω της πείνας",
+      "key": ""
+    },
+    {
+      "fr": "Je suis affamé",
+      "el": "Πεινάω τρομερά",
+      "key": ""
+    },
+    {
+      "fr": "J'ai la dalle",
+      "el": "Ψοφάω της πείνας",
+      "key": ""
+    },
+    {
+      "fr": "J'ai vraiment soif",
+      "el": "Διψάω πάρα πολύ",
+      "key": ""
+    },
+    {
+      "fr": "Je meurs de soif",
+      "el": "Πεθαίνω της δίψας",
+      "key": ""
+    },
+    {
+      "fr": "Je préfère le thé",
+      "el": "Προτιμώ τσάι",
+      "key": ""
+    },
+    {
+      "fr": "Je préférerais rester ici",
+      "el": "Θα προτιμούσα να μείνω εδώ",
+      "key": ""
+    },
+    {
+      "fr": "Je préférerais ne pas",
+      "el": "Θα προτιμούσα να μην το κάνω",
+      "key": ""
+    },
+    {
+      "fr": "Je préfère de loin celui-ci",
+      "el": "Προτιμώ κατά πολύ αυτό εδώ",
+      "key": ""
+    },
+    {
+      "fr": "J'aimerais mieux y aller demain",
+      "el": "Θα προτιμούσα να πάω αύριο",
+      "key": ""
+    },
+    {
+      "fr": "Si j'avais le choix",
+      "el": "Αν είχα την επιλογή",
+      "key": ""
+    },
+    {
+      "fr": "À choisir, je prends le rouge",
+      "el": "Αν είναι να διαλέξω, παίρνω το κόκκινο",
+      "key": ""
+    }
+  ]
+}

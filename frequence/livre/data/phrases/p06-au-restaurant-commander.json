@@ -1,0 +1,166 @@
+{
+  "id": "au-restaurant-commander",
+  "tier": 4,
+  "order": 364,
+  "title_fr": "Au restaurant : commander",
+  "title_el": "Στο εστιατόριο: η παραγγελία",
+  "accent": "#B5531F",
+  "example": null,
+  "items": [
+    {
+      "fr": "Avez-vous une table pour ce soir ?",
+      "el": "Έχετε τραπέζι για απόψε;",
+      "key": ""
+    },
+    {
+      "fr": "À quelle heure ouvrez-vous ?",
+      "el": "Τι ώρα ανοίγετε;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que vous servez encore à manger ?",
+      "el": "Σερβίρετε ακόμα φαγητό;",
+      "key": ""
+    },
+    {
+      "fr": "Une table en terrasse, c'est possible ?",
+      "el": "Γίνεται ένα τραπέζι έξω;",
+      "key": ""
+    },
+    {
+      "fr": "On peut s'asseoir où on veut ?",
+      "el": "Μπορούμε να καθίσουμε όπου θέλουμε;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce qu'il y a de l'attente ?",
+      "el": "Έχει αναμονή;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez la carte, s'il vous plaît ?",
+      "el": "Μας φέρνετε τον κατάλογο, παρακαλώ;",
+      "key": ""
+    },
+    {
+      "fr": "Je peux voir la carte des vins ?",
+      "el": "Μπορώ να δω τη λίστα κρασιών;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce que vous nous conseillez ?",
+      "el": "Τι μας προτείνετε;",
+      "key": ""
+    },
+    {
+      "fr": "C'est quoi le plat du jour ?",
+      "el": "Ποιο είναι το πιάτο ημέρας;",
+      "key": ""
+    },
+    {
+      "fr": "Quelle est la spécialité de la maison ?",
+      "el": "Ποια είναι η σπεσιαλιτέ του μαγαζιού;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce qu'il y a dans ce plat ?",
+      "el": "Τι έχει μέσα αυτό το πιάτο;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez un menu enfant ?",
+      "el": "Έχετε παιδικό μενού;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez choisi ?",
+      "el": "Διαλέξατε;",
+      "key": ""
+    },
+    {
+      "fr": "Je peux avoir la carte des desserts ?",
+      "el": "Μπορώ να έχω τον κατάλογο με τα γλυκά;",
+      "key": ""
+    },
+    {
+      "fr": "Comment vous voulez votre viande ?",
+      "el": "Πώς θέλετε το κρέας σας;",
+      "key": ""
+    },
+    {
+      "fr": "Saignant, à point ou bien cuit ?",
+      "el": "Σενιάν, μέτριο ή καλοψημένο;",
+      "key": ""
+    },
+    {
+      "fr": "Sans oignons, c'est possible ?",
+      "el": "Γίνεται χωρίς κρεμμύδι;",
+      "key": ""
+    },
+    {
+      "fr": "Je peux avoir la sauce à part ?",
+      "el": "Μπορώ να έχω τη σάλτσα χωριστά;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez du thé vert ?",
+      "el": "Έχετε πράσινο τσάι;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez du vin au verre ?",
+      "el": "Έχετε κρασί σε ποτήρι;",
+      "key": ""
+    },
+    {
+      "fr": "Vous me conseillez quel vin avec ça ?",
+      "el": "Τι κρασί μου προτείνετε μ' αυτό;",
+      "key": ""
+    },
+    {
+      "fr": "De l'eau plate ou gazeuse ?",
+      "el": "Νερό απλό ή ανθρακούχο;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez des bières locales ?",
+      "el": "Έχετε ντόπιες μπίρες;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce qu'il y a des noix dedans ?",
+      "el": "Έχει μέσα ξηρούς καρπούς;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez des plats sans gluten ?",
+      "el": "Έχετε πιάτα χωρίς γλουτένη;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez des plats végétariens ?",
+      "el": "Έχετε χορτοφαγικά πιάτα;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce qu'il y a de la viande dedans ?",
+      "el": "Έχει μέσα κρέας;",
+      "key": ""
+    },
+    {
+      "fr": "Ce plat contient-il du porc ?",
+      "el": "Αυτό το πιάτο περιέχει χοιρινό;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que c'est épicé ?",
+      "el": "Είναι πικάντικο;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que c'est fait maison ?",
+      "el": "Είναι σπιτικό;",
+      "key": ""
+    }
+  ]
+}

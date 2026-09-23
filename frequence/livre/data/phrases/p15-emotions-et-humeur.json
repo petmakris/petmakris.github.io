@@ -1,0 +1,166 @@
+{
+  "id": "emotions-et-humeur",
+  "tier": 4,
+  "order": 981,
+  "title_fr": "Émotions et humeur",
+  "title_el": "συναισθήματα και διάθεση",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "Je suis soulagé",
+      "el": "Ανακουφίστηκα",
+      "key": ""
+    },
+    {
+      "fr": "Je suis tellement soulagé",
+      "el": "Ανακουφίστηκα τόσο πολύ",
+      "key": ""
+    },
+    {
+      "fr": "Je suis stressé",
+      "el": "Είμαι αγχωμένος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis hyper stressé",
+      "el": "Έχω τρελό άγχος",
+      "key": ""
+    },
+    {
+      "fr": "Ça me stresse",
+      "el": "Με αγχώνει αυτό",
+      "key": ""
+    },
+    {
+      "fr": "Je suis nerveux",
+      "el": "Είμαι νευρικός",
+      "key": ""
+    },
+    {
+      "fr": "Je suis déçu",
+      "el": "Είμαι απογοητευμένος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis un peu déçu",
+      "el": "Είμαι λίγο απογοητευμένος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis surpris",
+      "el": "Είμαι έκπληκτος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis étonné",
+      "el": "Είμαι κατάπληκτος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis gêné",
+      "el": "Νιώθω άβολα",
+      "key": ""
+    },
+    {
+      "fr": "J'ai honte",
+      "el": "Ντρέπομαι",
+      "key": ""
+    },
+    {
+      "fr": "Je suis jaloux",
+      "el": "Ζηλεύω",
+      "key": ""
+    },
+    {
+      "fr": "Je suis ému",
+      "el": "Συγκινήθηκα",
+      "key": ""
+    },
+    {
+      "fr": "Ça me touche",
+      "el": "Με συγκινεί",
+      "key": ""
+    },
+    {
+      "fr": "Je suis perplexe",
+      "el": "Είμαι μπερδεμένος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis calme",
+      "el": "Είμαι ήρεμος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis détendu",
+      "el": "Είμαι χαλαρός",
+      "key": ""
+    },
+    {
+      "fr": "Je suis de bonne humeur",
+      "el": "Έχω κέφια",
+      "key": ""
+    },
+    {
+      "fr": "Je suis de mauvaise humeur",
+      "el": "Είμαι στις κακές μου",
+      "key": ""
+    },
+    {
+      "fr": "Je suis à plat",
+      "el": "Είμαι πτώμα",
+      "key": ""
+    },
+    {
+      "fr": "Je n'ai pas le moral",
+      "el": "Είμαι πεσμένος",
+      "key": ""
+    },
+    {
+      "fr": "J'ai le cafard",
+      "el": "Με έχει πιάσει μελαγχολία",
+      "key": ""
+    },
+    {
+      "fr": "Je suis dégoûté",
+      "el": "Αηδίασα",
+      "key": ""
+    },
+    {
+      "fr": "Ça me dégoûte",
+      "el": "Με αηδιάζει",
+      "key": ""
+    },
+    {
+      "fr": "Je suis excité",
+      "el": "Είμαι ενθουσιασμένος",
+      "key": ""
+    },
+    {
+      "fr": "J'ai hâte",
+      "el": "Ανυπομονώ",
+      "key": ""
+    },
+    {
+      "fr": "Je suis impatient",
+      "el": "Είμαι ανυπόμονος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis rassuré",
+      "el": "Ησύχασα",
+      "key": ""
+    },
+    {
+      "fr": "Je me sens seul",
+      "el": "Νιώθω μόνος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis bien dans ma peau",
+      "el": "Νιώθω άνετα με τον εαυτό μου",
+      "key": ""
+    }
+  ]
+}

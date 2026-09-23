@@ -2,8 +2,8 @@
   "id": "opinions",
   "tier": 4,
   "order": 53,
-  "title_fr": "Avis et liaisons",
-  "title_el": "γνώμη και συνδετικά",
+  "title_fr": "Avis, liaisons et réactions",
+  "title_el": "γνώμη, συνδετικά και αντιδράσεις",
   "accent": "#B84066",
   "example": null,
   "items": [

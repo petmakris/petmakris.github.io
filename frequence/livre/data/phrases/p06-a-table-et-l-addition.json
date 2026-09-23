@@ -1,0 +1,91 @@
+{
+  "id": "a-table-et-l-addition",
+  "tier": 4,
+  "order": 395,
+  "title_fr": "À table et l'addition",
+  "title_el": "Στο τραπέζι και ο λογαριασμός",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "C'est pour quelle taille de portion ?",
+      "el": "Πόσο μεγάλη είναι η μερίδα;",
+      "key": ""
+    },
+    {
+      "fr": "On peut partager une entrée ?",
+      "el": "Μπορούμε να μοιραστούμε ένα ορεκτικό;",
+      "key": ""
+    },
+    {
+      "fr": "Vous pouvez réchauffer ce plat ?",
+      "el": "Μπορείτε να μου ζεστάνετε αυτό το πιάτο;",
+      "key": ""
+    },
+    {
+      "fr": "Vous pouvez débarrasser, s'il vous plaît ?",
+      "el": "Μπορείτε να μαζέψετε το τραπέζι, παρακαλώ;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez du sel ?",
+      "el": "Έχετε αλάτι;",
+      "key": ""
+    },
+    {
+      "fr": "Tout va bien pour vous ?",
+      "el": "Όλα καλά;",
+      "key": ""
+    },
+    {
+      "fr": "On peut commander le dessert ?",
+      "el": "Μπορούμε να παραγγείλουμε γλυκό;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce que vous avez comme dessert ?",
+      "el": "Τι γλυκά έχετε;",
+      "key": ""
+    },
+    {
+      "fr": "On peut avoir la note ?",
+      "el": "Μας φέρνετε τον λογαριασμό;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que le service est compris ?",
+      "el": "Το σέρβις συμπεριλαμβάνεται;",
+      "key": ""
+    },
+    {
+      "fr": "On peut payer séparément ?",
+      "el": "Μπορούμε να πληρώσουμε χωριστά;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que je peux payer par carte ?",
+      "el": "Μπορώ να πληρώσω με κάρτα;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez le wifi ?",
+      "el": "Έχετε wifi;",
+      "key": ""
+    },
+    {
+      "fr": "C'est où, les toilettes ?",
+      "el": "Πού είναι η τουαλέτα;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que vous faites des plats à emporter ?",
+      "el": "Κάνετε φαγητό σε πακέτο;",
+      "key": ""
+    },
+    {
+      "fr": "Je peux emporter le reste ?",
+      "el": "Μπορώ να πάρω τα υπόλοιπα σε πακέτο;",
+      "key": ""
+    }
+  ]
+}

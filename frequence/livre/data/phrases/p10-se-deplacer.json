@@ -1,0 +1,46 @@
+{
+  "id": "se-deplacer",
+  "tier": 4,
+  "order": 631,
+  "title_fr": "Se déplacer en ville",
+  "title_el": "μετακινήσεις στην πόλη",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "C'est à environ dix minutes en voiture.",
+      "el": "Είναι περίπου δέκα λεπτά με το αυτοκίνητο.",
+      "key": ""
+    },
+    {
+      "fr": "On y va plus vite en métro.",
+      "el": "Φτάνεις πιο γρήγορα με το μετρό.",
+      "key": ""
+    },
+    {
+      "fr": "Prenez le m2 jusqu'à Ouchy.",
+      "el": "Πάρτε το m2 μέχρι το Ouchy.",
+      "key": ""
+    },
+    {
+      "fr": "Descendez à la station suivante et changez.",
+      "el": "Κατεβείτε στην επόμενη στάση και αλλάξτε γραμμή.",
+      "key": ""
+    },
+    {
+      "fr": "Revenez sur vos pas, vous êtes allé trop loin.",
+      "el": "Γυρίστε πίσω, πήγατε πολύ μακριά.",
+      "key": ""
+    },
+    {
+      "fr": "C'est juste après le rond-point.",
+      "el": "Είναι αμέσως μετά τον κυκλικό κόμβο.",
+      "key": ""
+    },
+    {
+      "fr": "Garez-vous un peu plus loin, s'il vous plaît.",
+      "el": "Παρκάρετε λίγο πιο πέρα, παρακαλώ.",
+      "key": ""
+    }
+  ]
+}

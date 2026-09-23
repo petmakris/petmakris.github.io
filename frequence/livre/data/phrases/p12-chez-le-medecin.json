@@ -1,0 +1,146 @@
+{
+  "id": "chez-le-medecin",
+  "tier": 4,
+  "order": 798,
+  "title_fr": "Chez le médecin",
+  "title_el": "Στον γιατρό",
+  "accent": "#B84066",
+  "example": null,
+  "items": [
+    {
+      "fr": "J'ai mal à la tête.",
+      "el": "Πονάει το κεφάλι μου.",
+      "key": ""
+    },
+    {
+      "fr": "Je ne me sens pas bien.",
+      "el": "Δεν αισθάνομαι καλά.",
+      "key": ""
+    },
+    {
+      "fr": "Appelez un médecin !",
+      "el": "Καλέστε γιατρό!",
+      "key": ""
+    },
+    {
+      "fr": "Appelez une ambulance !",
+      "el": "Καλέστε ασθενοφόρο!",
+      "key": ""
+    },
+    {
+      "fr": "J'ai besoin d'un médecin.",
+      "el": "Χρειάζομαι γιατρό.",
+      "key": ""
+    },
+    {
+      "fr": "Ça fait mal ici.",
+      "el": "Πονάει εδώ.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis malade.",
+      "el": "Είμαι άρρωστος.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai de la fièvre.",
+      "el": "Έχω πυρετό.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai mal au ventre.",
+      "el": "Πονάει η κοιλιά μου.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai mal à la gorge.",
+      "el": "Πονάει ο λαιμός μου.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai mal au dos.",
+      "el": "Πονάει η πλάτη μου.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai mal aux dents.",
+      "el": "Πονάνε τα δόντια μου.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai mal partout.",
+      "el": "Πονάω παντού.",
+      "key": ""
+    },
+    {
+      "fr": "Je me suis blessé.",
+      "el": "Τραυματίστηκα.",
+      "key": ""
+    },
+    {
+      "fr": "Je me suis fait mal.",
+      "el": "Χτύπησα.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis tombé.",
+      "el": "Έπεσα.",
+      "key": ""
+    },
+    {
+      "fr": "Je saigne.",
+      "el": "Αιμορραγώ.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai du mal à respirer.",
+      "el": "Δυσκολεύομαι να αναπνεύσω.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai la nausée.",
+      "el": "Έχω ναυτία.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai envie de vomir.",
+      "el": "Θέλω να κάνω εμετό.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai des vertiges.",
+      "el": "Ζαλίζομαι.",
+      "key": ""
+    },
+    {
+      "fr": "Je me sens faible.",
+      "el": "Νιώθω αδυναμία.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai froid.",
+      "el": "Κρυώνω.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai chaud.",
+      "el": "Ζεσταίνομαι.",
+      "key": ""
+    },
+    {
+      "fr": "Je tousse beaucoup.",
+      "el": "Βήχω πολύ.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai un rhume.",
+      "el": "Είμαι κρυωμένος.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai la grippe.",
+      "el": "Έχω γρίπη.",
+      "key": ""
+    }
+  ]
+}

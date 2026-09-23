@@ -1,0 +1,111 @@
+{
+  "id": "verifier-et-permission",
+  "tier": 4,
+  "order": 298,
+  "title_fr": "Questions polies",
+  "title_el": "ευγενικές ερωτήσεις",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "Ça vous dérange si j'ouvre la fenêtre ?",
+      "el": "Σας πειράζει να ανοίξω το παράθυρο;",
+      "key": ""
+    },
+    {
+      "fr": "Ça vous dérange si je me joins à vous ?",
+      "el": "Σας πειράζει να καθίσω μαζί σας;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que ça vous va ?",
+      "el": "Σας βολεύει;",
+      "key": ""
+    },
+    {
+      "fr": "Ça vous convient ?",
+      "el": "Σας κάνει;",
+      "key": ""
+    },
+    {
+      "fr": "Vous êtes sûr ?",
+      "el": "Είστε σίγουρος;",
+      "key": ""
+    },
+    {
+      "fr": "Vous en êtes certain ?",
+      "el": "Είστε απολύτως βέβαιος;",
+      "key": ""
+    },
+    {
+      "fr": "Vous pouvez vérifier ?",
+      "el": "Μπορείτε να το ελέγξετε;",
+      "key": ""
+    },
+    {
+      "fr": "Vous auriez l'heure ?",
+      "el": "Μήπως ξέρετε τι ώρα είναι;",
+      "key": ""
+    },
+    {
+      "fr": "Vous auriez une minute ?",
+      "el": "Έχετε ένα λεπτό;",
+      "key": ""
+    },
+    {
+      "fr": "Vous comprenez ?",
+      "el": "Καταλαβαίνετε;",
+      "key": ""
+    },
+    {
+      "fr": "Vous me suivez ?",
+      "el": "Με παρακολουθείτε;",
+      "key": ""
+    },
+    {
+      "fr": "C'est quoi le souci ?",
+      "el": "Τι τρέχει;",
+      "key": ""
+    },
+    {
+      "fr": "C'est urgent ?",
+      "el": "Είναι επείγον;",
+      "key": ""
+    },
+    {
+      "fr": "On peut se tutoyer ?",
+      "el": "Μπορούμε να μιλάμε στον ενικό;",
+      "key": ""
+    },
+    {
+      "fr": "Vous voulez que je vous aide ?",
+      "el": "Θέλετε να σας βοηθήσω;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce que je peux faire pour vous ?",
+      "el": "Τι μπορώ να κάνω για εσάς;",
+      "key": ""
+    },
+    {
+      "fr": "Comment ça se fait ?",
+      "el": "Πώς κι έτσι;",
+      "key": ""
+    },
+    {
+      "fr": "Vous pouvez me rappeler votre nom ?",
+      "el": "Μου θυμίζετε το όνομά σας;",
+      "key": ""
+    },
+    {
+      "fr": "Vous habitez où exactement ?",
+      "el": "Πού ακριβώς μένετε;",
+      "key": ""
+    },
+    {
+      "fr": "À quoi ça sert ?",
+      "el": "Σε τι χρησιμεύει;",
+      "key": ""
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "approuver-et-reagir",
+  "tier": 4,
+  "order": 1090,
+  "title_fr": "Approuver et réagir",
+  "title_el": "Επιδοκιμασία και αντιδράσεις",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "Bonne idée !",
+      "el": "Καλή ιδέα!",
+      "key": ""
+    },
+    {
+      "fr": "Excellente idée !",
+      "el": "Εξαιρετική ιδέα!",
+      "key": ""
+    },
+    {
+      "fr": "Bonne remarque.",
+      "el": "Καλή παρατήρηση.",
+      "key": ""
+    },
+    {
+      "fr": "C'est juste.",
+      "el": "Σωστό.",
+      "key": ""
+    },
+    {
+      "fr": "T'as pas tort.",
+      "el": "Δεν έχεις κι άδικο.",
+      "key": ""
+    },
+    {
+      "fr": "C'est vrai, ça.",
+      "el": "Αλήθεια είναι.",
+      "key": ""
+    },
+    {
+      "fr": "Bien vu !",
+      "el": "Καλά το πρόσεξες!",
+      "key": ""
+    },
+    {
+      "fr": "Ça marche pour moi.",
+      "el": "Εντάξει από μένα.",
+      "key": ""
+    },
+    {
+      "fr": "C'est sympa.",
+      "el": "Ωραίο είναι.",
+      "key": ""
+    },
+    {
+      "fr": "Trop bien !",
+      "el": "Τέλειο!",
+      "key": ""
+    }
+  ]
+}

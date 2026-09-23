@@ -1,0 +1,76 @@
+{
+  "id": "en-voyage-p11",
+  "tier": 4,
+  "order": 722,
+  "title_fr": "En voyage",
+  "title_el": "Στο ταξίδι",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "Je dois enregistrer mes bagages.",
+      "el": "Πρέπει να παραδώσω τις αποσκευές μου.",
+      "key": ""
+    },
+    {
+      "fr": "Mon vol a du retard.",
+      "el": "Η πτήση μου έχει καθυστέρηση.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai perdu mon passeport.",
+      "el": "Έχασα το διαβατήριό μου.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai perdu ma valise.",
+      "el": "Έχασα τη βαλίτσα μου.",
+      "key": ""
+    },
+    {
+      "fr": "Ma valise n'est pas arrivée.",
+      "el": "Η βαλίτσα μου δεν έφτασε.",
+      "key": ""
+    },
+    {
+      "fr": "Je n'ai rien à déclarer.",
+      "el": "Δεν έχω τίποτα να δηλώσω.",
+      "key": ""
+    },
+    {
+      "fr": "Voici mon passeport et mon billet.",
+      "el": "Ορίστε το διαβατήριο και το εισιτήριό μου.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis ici en vacances.",
+      "el": "Είμαι εδώ για διακοπές.",
+      "key": ""
+    },
+    {
+      "fr": "Je reste une semaine.",
+      "el": "Θα μείνω μία εβδομάδα.",
+      "key": ""
+    },
+    {
+      "fr": "J'ai raté ma correspondance.",
+      "el": "Έχασα την ανταπόκρισή μου.",
+      "key": ""
+    },
+    {
+      "fr": "Mon bagage dépasse le poids autorisé.",
+      "el": "Η αποσκευή μου ξεπερνάει το επιτρεπόμενο βάρος.",
+      "key": ""
+    },
+    {
+      "fr": "Je voudrais une chambre non-fumeur.",
+      "el": "Θα ήθελα δωμάτιο για μη καπνίζοντες.",
+      "key": ""
+    },
+    {
+      "fr": "Je voudrais annuler ma réservation.",
+      "el": "Θα ήθελα να ακυρώσω την κράτησή μου.",
+      "key": ""
+    }
+  ]
+}

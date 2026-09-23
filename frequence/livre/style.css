@@ -76,3 +76,18 @@ body {
    as a word list. Reserving 26px of empty column on a pronoun paradigm reads
    as a broken icon card, and the space is better spent on the text. */
 .grid.nogut .wd { min-height: 6.4mm; }
+
+/* Phrase cards are lists, not groups — they may break across pages. Keeping
+   them unbreakable cost roughly a third of every phrase page in white space.
+   A two-column grid cannot break mid-row, so a flowing card abandons the left
+   rail and puts its heading in a full-width bar above the content instead. */
+.card.flows { display: block; break-inside: auto; page-break-inside: auto; }
+.card.flows .rail {
+  display: flex; align-items: baseline; gap: 6px;
+  background: none; padding: 1mm 0 1.2mm;
+  break-inside: avoid; break-after: avoid;
+}
+.card.flows .rail h2 { font-size: 11.5pt; margin: 0; }
+.card.flows .rail .el-sub { font-size: 8.5pt; }
+.card.flows .rail .count { margin-top: 0; margin-left: auto; }
+.card.flows .body { border-left: none; padding-left: 0; }

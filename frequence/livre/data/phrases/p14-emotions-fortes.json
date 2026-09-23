@@ -1,0 +1,126 @@
+{
+  "id": "emotions-fortes",
+  "tier": 4,
+  "order": 958,
+  "title_fr": "Émotions fortes",
+  "title_el": "Έντονα συναισθήματα",
+  "accent": "#C8901A",
+  "example": null,
+  "items": [
+    {
+      "fr": "Je suis inquiet",
+      "el": "Είμαι ανήσυχος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis inquiète",
+      "el": "Είμαι ανήσυχη",
+      "key": ""
+    },
+    {
+      "fr": "Je me fais du souci",
+      "el": "Ανησυχώ",
+      "key": ""
+    },
+    {
+      "fr": "Ça m'inquiète",
+      "el": "Αυτό με ανησυχεί",
+      "key": ""
+    },
+    {
+      "fr": "Je suis en colère",
+      "el": "Είμαι θυμωμένος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis énervé",
+      "el": "Είμαι εκνευρισμένος",
+      "key": ""
+    },
+    {
+      "fr": "Ça m'énerve",
+      "el": "Αυτό με εκνευρίζει",
+      "key": ""
+    },
+    {
+      "fr": "Ça m'agace",
+      "el": "Αυτό με ενοχλεί",
+      "key": ""
+    },
+    {
+      "fr": "Je suis furieux",
+      "el": "Είμαι έξαλλος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis fier de toi",
+      "el": "Είμαι περήφανος για σένα",
+      "key": ""
+    },
+    {
+      "fr": "Je suis fière de toi",
+      "el": "Είμαι περήφανη για σένα",
+      "key": ""
+    },
+    {
+      "fr": "Je suis fier de moi",
+      "el": "Είμαι περήφανος για τον εαυτό μου",
+      "key": ""
+    },
+    {
+      "fr": "Je suis vraiment fier",
+      "el": "Είμαι πραγματικά περήφανος",
+      "key": ""
+    },
+    {
+      "fr": "Ça me rend heureux",
+      "el": "Αυτό με κάνει ευτυχισμένο",
+      "key": ""
+    },
+    {
+      "fr": "Ça me fait plaisir",
+      "el": "Μου δίνει χαρά",
+      "key": ""
+    },
+    {
+      "fr": "Ça me fait du bien",
+      "el": "Μου κάνει καλό",
+      "key": ""
+    },
+    {
+      "fr": "Je me sens bien",
+      "el": "Νιώθω ωραία",
+      "key": ""
+    },
+    {
+      "fr": "Je me sens super bien",
+      "el": "Νιώθω τέλεια",
+      "key": ""
+    },
+    {
+      "fr": "Je me sens mal",
+      "el": "Νιώθω άσχημα",
+      "key": ""
+    },
+    {
+      "fr": "Je n'en peux plus",
+      "el": "Δεν αντέχω άλλο",
+      "key": ""
+    },
+    {
+      "fr": "J'en ai marre",
+      "el": "Βαρέθηκα",
+      "key": ""
+    },
+    {
+      "fr": "J'en ai ras-le-bol",
+      "el": "Έχω μπουχτίσει",
+      "key": ""
+    },
+    {
+      "fr": "Je suis à bout",
+      "el": "Είμαι στα όριά μου",
+      "key": ""
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": "appeler-a-l-aide",
+  "tier": 4,
+  "order": 1187,
+  "title_fr": "Appeler à l'aide",
+  "title_el": "Ζητώντας βοήθεια",
+  "accent": "#B84066",
+  "example": null,
+  "items": [
+    {
+      "fr": "Au secours !",
+      "el": "Βοήθεια!",
+      "key": ""
+    },
+    {
+      "fr": "À l'aide !",
+      "el": "Βοηθήστε με!",
+      "key": ""
+    },
+    {
+      "fr": "Faites attention !",
+      "el": "Προσέξτε!",
+      "key": ""
+    },
+    {
+      "fr": "Laissez-moi tranquille !",
+      "el": "Αφήστε με ήσυχο!",
+      "key": ""
+    }
+  ]
+}
