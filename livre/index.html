@@ -5,6 +5,11 @@
 :root {
   --ink:   #1A1A18;
   --grey:  #57544F;
+  --el:    #93A087;   /* the Greek gloss: sage, 2.8:1 on white against the
+                          French's 17.4:1, so it reads as the second layer.
+                          One constant colour book-wide — the reader learns
+                          this colour means Greek, so it never varies by card
+                          and must not collide with any of the six accents. */
   --faint: #C9C7C2;
   --le:    #2166B0;
   --la:    #B84066;
@@ -63,7 +68,7 @@ body {
 .wd .art.le  { color: var(--le); }
 .wd .art.la  { color: var(--la); }
 .wd .art.elid, .wd .art.les { color: var(--neut); }
-.wd .el { font-size: 11pt; color: var(--grey); }
+.wd .el { font-size: 11pt; color: var(--el); }
 
 /* One example sentence per card. It supplies the only thing a grid cannot:
    the words governed by something. Costs one line, costs no pages. */
