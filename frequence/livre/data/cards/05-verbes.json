@@ -1,0 +1,30 @@
+{
+  "id": "verbes", "tier": 1, "order": 5,
+  "title_fr": "Les verbes de tous les jours", "title_el": "καθημερινά ρήματα",
+  "accent": "#1E7A5A",
+  "example": "Le matin je **cours**, le soir je **lis** ; il **mange**, il **boit**, puis il **dort**.",
+  "items": [
+    {"fr": "marcher",   "el": "περπατώ",  "key": "walk"},
+    {"fr": "courir",    "el": "τρέχω",    "key": "run",   "icon": "1F3C3"},
+    {"fr": "dormir",    "el": "κοιμάμαι", "key": "sleep"},
+    {"fr": "manger",    "el": "τρώω",     "key": "eat",   "icon": "1F37D"},
+    {"fr": "boire",     "el": "πίνω",     "key": "drink"},
+    {"fr": "pleurer",   "el": "κλαίω",    "key": "cry"},
+    {"fr": "rire",      "el": "γελώ",     "key": "laugh", "icon": "1F602"},
+    {"fr": "parler",    "el": "μιλώ",     "key": "speak"},
+    {"fr": "écouter",   "el": "ακούω",    "key": "listen"},
+    {"fr": "regarder",  "el": "κοιτάζω",  "key": "look"},
+    {"fr": "lire",      "el": "διαβάζω",  "key": "read"},
+    {"fr": "écrire",    "el": "γράφω",    "key": "write"},
+    {"fr": "travailler","el": "δουλεύω",  "key": "work"},
+    {"fr": "nager",     "el": "κολυμπώ",  "key": "swim"},
+    {"fr": "danser",    "el": "χορεύω",   "key": "dance"},
+    {"fr": "chanter",   "el": "τραγουδώ", "key": "sing"},
+    {"fr": "jouer",     "el": "παίζω",    "key": "play"},
+    {"fr": "acheter",   "el": "αγοράζω",  "key": "buy"},
+    {"fr": "payer",     "el": "πληρώνω",  "key": "pay"},
+    {"fr": "ouvrir",    "el": "ανοίγω",   "key": "open"},
+    {"fr": "fermer",    "el": "κλείνω",   "key": "close"},
+    {"fr": "attendre",  "el": "περιμένω", "key": "wait"}
+  ]
+}

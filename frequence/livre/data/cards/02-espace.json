@@ -1,0 +1,22 @@
+{
+  "id": "espace", "tier": 1, "order": 2,
+  "title_fr": "Où ? — les prépositions", "title_el": "θέσεις στον χώρο",
+  "accent": "#B5531F",
+  "example": "Le livre est **sur** la table, le chat dort **sous** la chaise, et la clé est **dans** le sac.",
+  "items": [
+    {"fr": "sur",         "el": "πάνω σε",              "key": "on_box"},
+    {"fr": "sous",        "el": "κάτω από",             "key": "under_box"},
+    {"fr": "dans",        "el": "μέσα σε",              "key": "in_box"},
+    {"fr": "hors de",     "el": "έξω από",              "key": "out_box"},
+    {"fr": "devant",      "el": "μπροστά από",          "key": "front_box"},
+    {"fr": "derrière",    "el": "πίσω από",             "key": "behind_box"},
+    {"fr": "entre",       "el": "ανάμεσα σε δύο",       "key": "between_box"},
+    {"fr": "à côté de",   "el": "δίπλα σε",             "key": "beside_box"},
+    {"fr": "autour de",   "el": "γύρω από",             "key": "around_box"},
+    {"fr": "contre",      "el": "ακουμπά σε",           "key": "against_box"},
+    {"fr": "au-dessus",   "el": "ψηλότερα, χωρίς επαφή", "key": "above_gap"},
+    {"fr": "au-dessous",  "el": "χαμηλότερα, χωρίς επαφή", "key": "below_gap"},
+    {"fr": "à travers",   "el": "μέσα από",             "key": "through_box"},
+    {"fr": "vers",        "el": "προς",                 "key": "toward_box"}
+  ]
+}

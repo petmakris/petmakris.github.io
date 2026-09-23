@@ -28,3 +28,17 @@ def test_clock_card_exists_and_covers_the_quarters():
 def test_clock_card_has_an_example():
     c = cards.load_card(os.path.join(CARDS, "03-heure.json"))
     assert c["example"]
+
+def test_space_card_keeps_greek_on_every_row():
+    """All house glyphs — schematic, so every row needs its word."""
+    c = cards.load_card(os.path.join(CARDS, "02-espace.json"))
+    h = render.card_html(c)
+    for item in c["items"]:
+        assert item["el"] in h, item["fr"]
+
+def test_verbs_card_drops_greek_on_every_row():
+    """All emoji — the picture carries it, so no Greek at all."""
+    c = cards.load_card(os.path.join(CARDS, "05-verbes.json"))
+    h = render.card_html(c)
+    for item in c["items"]:
+        assert item["el"] not in h, item["fr"]
