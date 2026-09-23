@@ -32,7 +32,7 @@
     {"fr": "à l'heure",               "el": "στην ώρα",            "key": "on_time"},
     {"fr": "une demi-heure",          "el": "μισή ώρα",            "key": "half_hour"},
     {"fr": "un quart d'heure",        "el": "ένα τέταρτο",         "key": "quarter_hour"},
-    {"fr": "une minute",              "el": null,                  "key": "minute"},
-    {"fr": "une seconde",             "el": null,                  "key": "second"}
+    {"fr": "une minute",              "el": "ένα λεπτό",           "key": "minute"},
+    {"fr": "une seconde",             "el": "ένα δευτερόλεπτο",    "key": "second"}
   ]
 }

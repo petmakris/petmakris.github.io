@@ -32,7 +32,14 @@ def row_html(item, accent):
     svg, kind = icons.resolve(item, accent)
     art, noun = split_article(item["fr"])
 
-    parts = [f'<span class="ic">{svg}</span>']
+    # A row with no icon at all gets an empty gutter, not the dashed
+    # placeholder: icons.resolve() still returns that placeholder SVG (kept
+    # for callers, like icons' own tests, that check "did this resolve to
+    # nothing"), but drawing it on the page reads as a rendering failure
+    # rather than the deliberate gap it is. The 26px gutter stays reserved
+    # so columns still line up against rows that do have an icon.
+    icon_html = "" if kind == "none" else svg
+    parts = [f'<span class="ic">{icon_html}</span>']
     if art:
         parts.append(f'<span class="art {_article_class(art)}">'
                      f'{_html.escape(art)}</span>')

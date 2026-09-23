@@ -44,3 +44,11 @@ def test_row_with_no_icon_prints_greek():
 def test_schematic_row_prints_greek():
     html = render.row_html({"fr": "sur", "el": "πάνω σε", "key": "on_box"}, ACCENT)
     assert "πάνω σε" in html
+
+def test_row_with_no_icon_has_empty_gutter_not_dashed_placeholder():
+    """A row with no icon at all gets an empty gutter — the 26px column
+    stays reserved for alignment, but nothing is drawn in it. The dashed
+    placeholder circle reads as a rendering failure, not a deliberate gap."""
+    html = render.row_html({"fr": "le coude", "el": "ο αγκώνας", "key": "elbow"}, ACCENT)
+    assert '<span class="ic"></span>' in html
+    assert "dasharray" not in html
