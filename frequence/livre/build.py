@@ -8,6 +8,7 @@ import argparse
 import os
 
 import cards
+import icons
 import render
 import topdf
 
@@ -15,11 +16,33 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 TITLE = "Vocabulaire illustré"
 
 
-def build(cards_dir, out_dir, tiers=(1, 2, 3), title=TITLE):
+def _check_strict(selected):
+    """Fail loudly on a hand-picked `icon` that doesn't resolve.
+
+    A legitimate placeholder (NO_ICON, or a keyword with no automatic match)
+    must NOT fail this — only an explicit `icon` that was asked for by name
+    and isn't a shipped SVG, which is otherwise a silent typo that quietly
+    falls back to a different icon or to nothing.
+    """
+    problems = []
+    for c in selected:
+        for item in c["items"]:
+            if icons.explicit_icon_missing(item):
+                problems.append(
+                    f"card {c['id']!r}, row {item['fr']!r}: "
+                    f"icon {item['icon']!r} has no shipped SVG")
+    if problems:
+        raise SystemExit("strict mode: " + "; ".join(problems))
+
+
+def build(cards_dir, out_dir, tiers=(1, 2, 3), title=TITLE, strict=False):
     os.makedirs(out_dir, exist_ok=True)
     selected = [c for c in cards.load_all(cards_dir) if c["tier"] in tiers]
     if not selected:
         raise SystemExit(f"no cards in {cards_dir} for tiers {tiers}")
+
+    if strict:
+        _check_strict(selected)
 
     html_path = os.path.join(out_dir, "livre.html")
     pdf_path = os.path.join(out_dir, "livre.pdf")
@@ -29,8 +52,17 @@ def build(cards_dir, out_dir, tiers=(1, 2, 3), title=TITLE):
 
     items = sum(len(c["items"]) for c in selected)
     pages = topdf.page_count(pdf_path)
-    print(f"{len(selected)} cards, {items} items, {pages} pages "
-          f"({items/pages:.0f}/page)  ->  {pdf_path}")
+    if pages:
+        print(f"{len(selected)} cards, {items} items, {pages} pages "
+              f"({items/pages:.0f}/page)  ->  {pdf_path}")
+    else:
+        # topdf.page_count counts /Type /Page objects by regex; a renderer
+        # change that compresses the page tree (an object stream) makes that
+        # regex find nothing. 0 pages is never real, so say so plainly
+        # instead of dividing by it.
+        print(f"{len(selected)} cards, {items} items, page count unreadable "
+              f"(topdf.page_count found 0 — check for a renderer change)  "
+              f"->  {pdf_path}")
     return html_path, pdf_path
 
 
@@ -39,5 +71,8 @@ if __name__ == "__main__":
     ap.add_argument("--cards", default=os.path.join(HERE, "data", "cards"))
     ap.add_argument("--out", default=os.path.join(HERE, "out"))
     ap.add_argument("--tiers", default="1,2,3")
+    ap.add_argument("--strict", action="store_true",
+                     help="fail the build if a hand-picked icon is missing")
     a = ap.parse_args()
-    build(a.cards, a.out, tuple(int(t) for t in a.tiers.split(",")))
+    build(a.cards, a.out, tuple(int(t) for t in a.tiers.split(",")),
+          strict=a.strict)

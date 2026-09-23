@@ -146,6 +146,27 @@ def test_scanner_rejects_absolute_external_url():
         except AssertionError as e:
             assert "external URL" in str(e)
 
+def test_strict_fails_on_bad_explicit_icon():
+    with tempfile.TemporaryDirectory() as d:
+        cd = os.path.join(d, "cards"); os.makedirs(cd)
+        _fixture(cd, items=[{"fr": "manger", "el": "τρώω", "key": "eat",
+                              "icon": "FFFFFF"}])
+        try:
+            build.build(cd, os.path.join(d, "out"), strict=True)
+            assert False, "strict mode should have refused the bad icon"
+        except SystemExit as e:
+            assert "manger" in str(e)
+            assert "FFFFFF" in str(e)
+
+def test_strict_passes_on_legitimate_placeholder():
+    """A word with no icon (no `icon` key, no keyword match) is a real gap,
+    not a typo — strict mode must not flag it."""
+    with tempfile.TemporaryDirectory() as d:
+        cd = os.path.join(d, "cards"); os.makedirs(cd)
+        _fixture(cd, items=[{"fr": "le coude", "el": "ο αγκώνας", "key": "elbow"}])
+        h, p = build.build(cd, os.path.join(d, "out"), strict=True)
+        assert os.path.exists(h) and os.path.exists(p)
+
 def test_scanner_rejects_protocol_relative_url():
     with tempfile.TemporaryDirectory() as d:
         cd = os.path.join(d, "cards"); os.makedirs(cd)

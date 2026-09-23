@@ -63,6 +63,19 @@ def _read(hexcode):
     return open(path, encoding="utf-8").read()
 
 
+def explicit_icon_missing(item):
+    """True if item has a hand-picked `icon` whose SVG is not shipped.
+
+    None if the item has no explicit `icon` at all — that's not a failure,
+    it's the normal automatic-matching or placeholder path, and callers
+    (build's --strict) must not treat it as one.
+    """
+    explicit = item.get("icon")
+    if not explicit:
+        return None
+    return not os.path.exists(os.path.join(OPENMOJI, f"{explicit}.svg"))
+
+
 def resolve(item, accent):
     """Return (svg, kind) for one item. kind is emoji | glyph | none."""
     explicit = item.get("icon")

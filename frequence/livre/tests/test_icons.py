@@ -1,3 +1,7 @@
+import json
+import os
+
+import glyphs
 import icons
 
 ACCENT = "#B5531F"
@@ -55,3 +59,33 @@ def test_blacklisted_word_without_override_still_gets_no_icon():
     svg, kind = icons.resolve({"fr": "le genou", "key": "knee"}, ACCENT)
     assert kind == "none"
     assert "dashed" in svg or "stroke-dasharray" in svg
+
+
+def test_explicit_icon_missing_flags_a_bad_hand_pick():
+    """A typo'd codepoint on an explicit `icon` must be catchable, not just
+    silently fall through to the automatic matcher or a placeholder."""
+    assert icons.explicit_icon_missing(
+        {"fr": "manger", "key": "eat", "icon": "FFFFFF"}) is True
+
+
+def test_explicit_icon_missing_passes_a_real_icon():
+    assert icons.explicit_icon_missing(
+        {"fr": "manger", "key": "eat", "icon": "1F37D"}) is False
+
+
+def test_explicit_icon_missing_is_none_with_no_explicit_icon():
+    """A legitimate placeholder (no `icon` key at all) is not a strict-mode
+    failure — only an explicit `icon` that was asked for and not found is."""
+    assert icons.explicit_icon_missing({"fr": "le coude", "key": "elbow"}) is None
+    assert icons.explicit_icon_missing({"fr": "zzz", "key": "no_such_thing"}) is None
+
+
+def test_glyph_and_openmoji_keys_are_disjoint():
+    """glyphs.GLYPHS and the OpenMoji index share one namespace (icons.resolve
+    tries the house glyph first), so a house glyph named e.g. `book` or
+    `star` would silently steal every card row that uses that keyword for
+    an OpenMoji emoji. Guard the two key sets stay disjoint."""
+    with open(icons.INDEX_PATH, encoding="utf-8") as f:
+        openmoji_keys = set(json.load(f))
+    collisions = set(glyphs.GLYPHS) & openmoji_keys
+    assert not collisions, collisions
