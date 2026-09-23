@@ -1,0 +1,28 @@
+{
+  "id": "questions", "tier": 2, "order": 23,
+  "title_fr": "Les questions et la négation", "title_el": "ερωτήσεις και άρνηση",
+  "accent": "#C8901A",
+  "example": "**Pourquoi** tu **ne** manges **rien** ? — Je **n'**ai **pas** faim.",
+  "items": [
+    {"fr": "qui",            "el": "ποιος; — μόνο για πρόσωπα",                                        "key": "who"},
+    {"fr": "que / quoi",     "el": "τι; — que στην αρχή (que fais-tu ?), quoi μετά από πρόθεση ή μόνο του (à quoi ? quoi ?)", "key": "what"},
+    {"fr": "où",             "el": "πού;",                                                              "key": "where"},
+    {"fr": "quand",          "el": "πότε;",                                                             "key": "when"},
+    {"fr": "pourquoi",       "el": "γιατί; — η απάντηση αρχίζει με parce que",                          "key": "why"},
+    {"fr": "comment",        "el": "πώς;",                                                              "key": "how"},
+    {"fr": "combien",        "el": "πόσο; (ποσότητα, τιμή), πόσα; (αριθμός)",                           "key": "how many"},
+    {"fr": "quel / quelle",  "el": "ποιος; ποια; — πάντα μαζί με ουσιαστικό: quel train ? = ποιο τρένο;", "key": "which"},
+    {"fr": "est-ce que",     "el": "μόριο που ανοίγει την ερώτηση· δεν μεταφράζεται (est-ce que tu viens ? = έρχεσαι;)", "key": "question"},
+    {"fr": "n'est-ce pas ?", "el": "έτσι δεν είναι; — ζητάμε επιβεβαίωση στο τέλος της φράσης",          "key": "confirmation"},
+    {"fr": "ne … pas",       "el": "δεν — μία λέξη στα ελληνικά, δύο μισά γύρω από το ρήμα στα γαλλικά: je ne mange pas", "key": "no"},
+    {"fr": "ne … plus",      "el": "δεν … πια — κάτι που γινόταν και σταμάτησε",                        "key": "no more"},
+    {"fr": "ne … jamais",    "el": "ποτέ (δεν … ποτέ)",                                                 "key": "freq_never"},
+    {"fr": "ne … rien",      "el": "τίποτα (δεν … τίποτα)",                                             "key": "nothing"},
+    {"fr": "ne … personne",  "el": "κανένας, κανείς — μόνο για πρόσωπα",                                "key": "nobody"},
+    {"fr": "ne … aucun",     "el": "κανένας, καμία — πάντα μαζί με ουσιαστικό: aucun train = κανένα τρένο", "key": "none"},
+    {"fr": "ne … que",       "el": "μόνο — άρνηση στη μορφή, περιορισμός στο νόημα: je n'ai que dix euros = έχω μόνο δέκα ευρώ", "key": "only"},
+    {"fr": "pas encore",     "el": "όχι ακόμα",                                                         "key": "not yet"},
+    {"fr": "je sais pas",    "el": "δεν ξέρω — στον προφορικό λόγο το ne χάνεται· γράφουμε je ne sais pas, λέμε je sais pas", "key": "spoken"},
+    {"fr": "si",             "el": "ναι — αλλά μόνο ως απάντηση σε αρνητική ερώτηση: «Tu ne viens pas ?» «Si !» (όχι oui)", "key": "yes"}
+  ]
+}

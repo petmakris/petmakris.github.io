@@ -1,0 +1,28 @@
+{
+  "id": "epeler", "tier": 3, "order": 31,
+  "title_fr": "Épeler et dicter", "title_el": "συλλαβισμός",
+  "accent": "#57544F",
+  "example": "Je vous **épelle** mon nom : **M comme Marcel**, et le e a un **accent aigu**.",
+  "items": [
+    {"fr": "épeler",                "el": "συλλαβίζω· λέω τη λέξη γράμμα-γράμμα",                          "key": "write"},
+    {"fr": "l'accent aigu",         "el": "η οξεία — é (η γραμμή ανεβαίνει προς τα δεξιά)",                 "key": "accent"},
+    {"fr": "l'accent grave",        "el": "η βαρεία — è (η γραμμή κατεβαίνει προς τα δεξιά)",               "key": "accent"},
+    {"fr": "l'accent circonflexe",  "el": "η περισπωμένη — ê (καπελάκι)",                                   "key": "accent"},
+    {"fr": "le tréma",              "el": "τα διαλυτικά — ë, ï (οι δύο τελείες)",                           "key": "accent"},
+    {"fr": "la cédille",            "el": "η ουρίτσα κάτω από το c — ç· το κάνει να ακούγεται «σ»",         "key": "accent"},
+    {"fr": "le trait d'union",      "el": "το ενωτικό, η παύλα — «-»",                                      "key": "minus"},
+    {"fr": "l'apostrophe",          "el": "η απόστροφος — «'»",                                             "key": "apostrophe"},
+    {"fr": "en majuscules",         "el": "με κεφαλαία",                                                    "key": "uppercase"},
+    {"fr": "en minuscules",         "el": "με μικρά (πεζά)",                                                "key": "lowercase"},
+    {"fr": "deux L",                "el": "δύο L, διπλό λάμδα· έτσι λες ότι το γράμμα γράφεται δύο φορές",  "key": "double"},
+    {"fr": "l'espace",              "el": "το κενό ανάμεσα σε δύο λέξεις· λες «un espace»",                 "key": "space"},
+    {"fr": "l'arobase",             "el": "το παπάκι — «@», στο e-mail",                                    "key": "email"},
+    {"fr": "le point",              "el": "η τελεία — «.»",                                                 "key": "dot"},
+    {"fr": "la barre oblique",      "el": "η πλάγια γραμμή — «/» (αγγλικά: slash)",                         "key": "slash"},
+    {"fr": "M comme Marcel",        "el": "«Μ όπως Μαρσέλ»· έτσι ξεχωρίζεις ένα γράμμα στο τηλέφωνο",       "key": "speak"},
+    {"fr": "le numéro de téléphone","el": "ο αριθμός τηλεφώνου",                                            "key": "telephone"},
+    {"fr": "deux par deux",         "el": "δύο-δύο· στην Ελβετία τα ψηφία λέγονται σε ζευγάρια: zéro septante-neuf, vingt-trois…", "key": "abacus"},
+    {"fr": "le NPA",                "el": "ο ταχυδρομικός κώδικας (numéro postal d'acheminement) — 1003",   "key": "input numbers"},
+    {"fr": "la localité",           "el": "η πόλη ή το χωριό· λέγεται ΜΕΤΑ τον NPA — «1003 Lausanne»",      "key": "houses"}
+  ]
+}

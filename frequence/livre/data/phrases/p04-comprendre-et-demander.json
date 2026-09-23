@@ -1,0 +1,166 @@
+{
+  "id": "comprendre-et-demander",
+  "tier": 4,
+  "order": 231,
+  "title_fr": "Comprendre et demander",
+  "title_el": "Να καταλάβω και να ζητήσω",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "Qu'est-ce qui se passe ?",
+      "el": "Τι συμβαίνει;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce qui se passe ici ?",
+      "el": "Τι γίνεται εδώ;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce que vous voulez dire ?",
+      "el": "Τι εννοείτε;",
+      "key": ""
+    },
+    {
+      "fr": "Comment ça ?",
+      "el": "Πώς δηλαδή;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce que tu entends par là ?",
+      "el": "Τι εννοείς μ' αυτό;",
+      "key": ""
+    },
+    {
+      "fr": "Pouvez-vous m'expliquer ?",
+      "el": "Μπορείτε να μου εξηγήσετε;",
+      "key": ""
+    },
+    {
+      "fr": "Vous pouvez m'expliquer comment ça marche ?",
+      "el": "Μπορείτε να μου εξηγήσετε πώς λειτουργεί;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que c'est loin ?",
+      "el": "Είναι μακριά;",
+      "key": ""
+    },
+    {
+      "fr": "C'est encore loin ?",
+      "el": "Είναι ακόμα μακριά;",
+      "key": ""
+    },
+    {
+      "fr": "On est bientôt arrivés ?",
+      "el": "Κοντεύουμε να φτάσουμε;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce que ça veut dire ?",
+      "el": "Τι σημαίνει αυτό;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce que ce mot veut dire ?",
+      "el": "Τι σημαίνει αυτή η λέξη;",
+      "key": ""
+    },
+    {
+      "fr": "Ça veut dire quoi exactement ?",
+      "el": "Τι ακριβώς σημαίνει;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que je peux entrer ?",
+      "el": "Μπορώ να περάσω;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que je peux vous poser une question ?",
+      "el": "Μπορώ να σας κάνω μια ερώτηση;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que je peux m'asseoir ici ?",
+      "el": "Μπορώ να καθίσω εδώ;",
+      "key": ""
+    },
+    {
+      "fr": "Je peux y aller ?",
+      "el": "Μπορώ να πηγαίνω;",
+      "key": ""
+    },
+    {
+      "fr": "Pourriez-vous parler plus lentement ?",
+      "el": "Θα μπορούσατε να μιλάτε πιο αργά;",
+      "key": ""
+    },
+    {
+      "fr": "Pourriez-vous répéter, s'il vous plaît ?",
+      "el": "Θα μπορούσατε να το επαναλάβετε, παρακαλώ;",
+      "key": ""
+    },
+    {
+      "fr": "Pourriez-vous me montrer ?",
+      "el": "Θα μπορούσατε να μου δείξετε;",
+      "key": ""
+    },
+    {
+      "fr": "Pourriez-vous me donner un exemple ?",
+      "el": "Θα μπορούσατε να μου δώσετε ένα παράδειγμα;",
+      "key": ""
+    },
+    {
+      "fr": "Savez-vous si c'est ouvert ?",
+      "el": "Ξέρετε αν είναι ανοιχτά;",
+      "key": ""
+    },
+    {
+      "fr": "Savez-vous si le train est à l'heure ?",
+      "el": "Ξέρετε αν το τρένο είναι στην ώρα του;",
+      "key": ""
+    },
+    {
+      "fr": "Vous savez s'il y a une pharmacie près d'ici ?",
+      "el": "Ξέρετε αν υπάρχει φαρμακείο εδώ κοντά;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce que vous en pensez ?",
+      "el": "Τι γνώμη έχετε;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce que vous me conseillez ?",
+      "el": "Τι μου προτείνετε;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce qu'on fait maintenant ?",
+      "el": "Τι κάνουμε τώρα;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce qu'il y a ?",
+      "el": "Τι τρέχει;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce qui ne va pas ?",
+      "el": "Τι δεν πάει καλά;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce que vous avez dit ?",
+      "el": "Τι είπατε;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez dit quoi ?",
+      "el": "Πώς είπατε;",
+      "key": ""
+    }
+  ]
+}

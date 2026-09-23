@@ -1,0 +1,101 @@
+{
+  "id": "opinions",
+  "tier": 4,
+  "order": 53,
+  "title_fr": "Avis et liaisons",
+  "title_el": "γνώμη και συνδετικά",
+  "accent": "#B84066",
+  "example": null,
+  "items": [
+    {
+      "fr": "J'aime…",
+      "el": "Μου αρέσει…",
+      "key": ""
+    },
+    {
+      "fr": "Je n'aime pas…",
+      "el": "Δεν μου αρέσει…",
+      "key": ""
+    },
+    {
+      "fr": "J'adore ça",
+      "el": "Το λατρεύω",
+      "key": ""
+    },
+    {
+      "fr": "Je pense que…",
+      "el": "Νομίζω ότι…",
+      "key": ""
+    },
+    {
+      "fr": "Je crois que…",
+      "el": "Πιστεύω ότι…",
+      "key": ""
+    },
+    {
+      "fr": "Je suis d'accord",
+      "el": "Συμφωνώ",
+      "key": ""
+    },
+    {
+      "fr": "Je ne suis pas d'accord",
+      "el": "Διαφωνώ",
+      "key": ""
+    },
+    {
+      "fr": "Je suis désolé",
+      "el": "Λυπάμαι",
+      "key": ""
+    },
+    {
+      "fr": "C'est bon",
+      "el": "Είναι καλό· και «εντάξει, φτάνει»",
+      "key": ""
+    },
+    {
+      "fr": "C'est très bien",
+      "el": "Πολύ ωραία",
+      "key": ""
+    },
+    {
+      "fr": "Parce que",
+      "el": "γιατί, επειδή",
+      "key": ""
+    },
+    {
+      "fr": "En fait",
+      "el": "βασικά, στην πραγματικότητα",
+      "key": ""
+    },
+    {
+      "fr": "C'est-à-dire",
+      "el": "δηλαδή",
+      "key": ""
+    },
+    {
+      "fr": "Par contre",
+      "el": "από την άλλη, αντίθετα",
+      "key": ""
+    },
+    {
+      "fr": "Donc",
+      "el": "άρα, λοιπόν",
+      "key": ""
+    },
+    {
+      "fr": "Ça marche",
+      "el": "εντάξει, παίζει",
+      "key": ""
+    },
+    {
+      "fr": "Bien sûr",
+      "el": "φυσικά, βεβαίως",
+      "key": ""
+    },
+    {
+      "fr": "Pas de problème",
+      "el": "κανένα πρόβλημα",
+      "key": ""
+    }
+  ]
+}

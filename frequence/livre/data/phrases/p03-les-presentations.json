@@ -1,0 +1,111 @@
+{
+  "id": "les-presentations",
+  "tier": 4,
+  "order": 165,
+  "title_fr": "Les présentations",
+  "title_el": "Οι συστάσεις",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "Je m'appelle Marie.",
+      "el": "Με λένε Μαρί.",
+      "key": ""
+    },
+    {
+      "fr": "Je me présente.",
+      "el": "Να συστηθώ.",
+      "key": ""
+    },
+    {
+      "fr": "Moi, c'est Thomas.",
+      "el": "Εγώ είμαι ο Τομά.",
+      "key": ""
+    },
+    {
+      "fr": "Ravi de vous rencontrer.",
+      "el": "Χαίρω πολύ.",
+      "key": ""
+    },
+    {
+      "fr": "Ravie de faire votre connaissance.",
+      "el": "Χάρηκα για τη γνωριμία.",
+      "key": ""
+    },
+    {
+      "fr": "Enchanté de vous connaître.",
+      "el": "Χαίρω πολύ που σας γνωρίζω.",
+      "key": ""
+    },
+    {
+      "fr": "Je suis content de vous rencontrer.",
+      "el": "Χαίρομαι που σας γνωρίζω.",
+      "key": ""
+    },
+    {
+      "fr": "C'est un plaisir de vous rencontrer.",
+      "el": "Είναι χαρά μου που σας γνωρίζω.",
+      "key": ""
+    },
+    {
+      "fr": "Permettez-moi de me présenter.",
+      "el": "Επιτρέψτε μου να συστηθώ.",
+      "key": ""
+    },
+    {
+      "fr": "Je vous présente mon ami Paul.",
+      "el": "Να σας συστήσω τον φίλο μου τον Πολ.",
+      "key": ""
+    },
+    {
+      "fr": "Je vous présente ma collègue.",
+      "el": "Να σας συστήσω τη συνάδελφό μου.",
+      "key": ""
+    },
+    {
+      "fr": "Voici mon mari.",
+      "el": "Από εδώ ο άντρας μου.",
+      "key": ""
+    },
+    {
+      "fr": "Voici ma femme.",
+      "el": "Από εδώ η γυναίκα μου.",
+      "key": ""
+    },
+    {
+      "fr": "Je te présente ma sœur.",
+      "el": "Να σου συστήσω την αδερφή μου.",
+      "key": ""
+    },
+    {
+      "fr": "On se connaît déjà, je crois.",
+      "el": "Νομίζω ότι γνωριζόμαστε ήδη.",
+      "key": ""
+    },
+    {
+      "fr": "On s'est déjà rencontrés quelque part ?",
+      "el": "Μήπως έχουμε ξανασυναντηθεί κάπου;",
+      "key": ""
+    },
+    {
+      "fr": "Bienvenue parmi nous.",
+      "el": "Καλώς ήρθατε ανάμεσά μας.",
+      "key": ""
+    },
+    {
+      "fr": "Heureux de vous accueillir.",
+      "el": "Χαρά μας που σας υποδεχόμαστε.",
+      "key": ""
+    },
+    {
+      "fr": "Vous pouvez m'appeler Alex.",
+      "el": "Μπορείτε να με λέτε Άλεξ.",
+      "key": ""
+    },
+    {
+      "fr": "Tout le monde m'appelle Jo.",
+      "el": "Όλοι με φωνάζουν Τζο.",
+      "key": ""
+    }
+  ]
+}

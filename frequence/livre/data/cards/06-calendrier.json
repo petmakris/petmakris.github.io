@@ -1,0 +1,47 @@
+{
+  "id": "calendrier",
+  "tier": 1,
+  "order": 6,
+  "title_fr": "Le calendrier",
+  "title_el": "το ημερολόγιο",
+  "accent": "#B5531F",
+  "example": "**Aujourd'hui** c'est **lundi** et **demain** c'est **mardi** ; **en hiver**, **janvier** est froid.",
+  "items": [
+    {"fr": "lundi",            "el": "η Δευτέρα",       "key": "day_1"},
+    {"fr": "mardi",            "el": "η Τρίτη",         "key": "day_2"},
+    {"fr": "mercredi",         "el": "η Τετάρτη",       "key": "day_3"},
+    {"fr": "jeudi",            "el": "η Πέμπτη",        "key": "day_4"},
+    {"fr": "vendredi",         "el": "η Παρασκευή",     "key": "day_5"},
+    {"fr": "samedi",           "el": "το Σάββατο",      "key": "day_6"},
+    {"fr": "dimanche",         "el": "η Κυριακή",       "key": "day_7"},
+
+    {"fr": "janvier",          "el": "ο Ιανουάριος",    "key": "month_1"},
+    {"fr": "février",          "el": "ο Φεβρουάριος",   "key": "month_2"},
+    {"fr": "mars",             "el": "ο Μάρτιος",       "key": "month_3"},
+    {"fr": "avril",            "el": "ο Απρίλιος",      "key": "month_4"},
+    {"fr": "mai",              "el": "ο Μάιος",         "key": "month_5"},
+    {"fr": "juin",             "el": "ο Ιούνιος",       "key": "month_6"},
+    {"fr": "juillet",          "el": "ο Ιούλιος",       "key": "month_7"},
+    {"fr": "août",             "el": "ο Αύγουστος",     "key": "month_8"},
+    {"fr": "septembre",        "el": "ο Σεπτέμβριος",   "key": "month_9"},
+    {"fr": "octobre",          "el": "ο Οκτώβριος",     "key": "month_10"},
+    {"fr": "novembre",         "el": "ο Νοέμβριος",     "key": "month_11"},
+    {"fr": "décembre",         "el": "ο Δεκέμβριος",    "key": "month_12"},
+
+    {"fr": "au printemps",     "el": "την άνοιξη (au, όχι en)", "key": "seedling"},
+    {"fr": "en été",           "el": "το καλοκαίρι",    "key": "sun"},
+    {"fr": "en automne",       "el": "το φθινόπωρο",    "key": "maple leaf"},
+    {"fr": "en hiver",         "el": "τον χειμώνα",     "key": "skier"},
+
+    {"fr": "avant-hier",       "el": "προχθές",         "key": "day before yesterday"},
+    {"fr": "hier",             "el": "χθες",            "key": "yesterday"},
+    {"fr": "aujourd'hui",      "el": "σήμερα",          "key": "today"},
+    {"fr": "demain",           "el": "αύριο",           "key": "tomorrow"},
+    {"fr": "après-demain",     "el": "μεθαύριο",        "key": "day after tomorrow"},
+
+    {"fr": "la semaine",       "el": "η εβδομάδα",      "key": "week"},
+    {"fr": "le week-end",      "el": "το σαββατοκύριακο", "key": "weekend"},
+    {"fr": "le mois",          "el": "ο μήνας",         "key": "calendar month"},
+    {"fr": "l'année",          "el": "η χρονιά (και: ο χρόνος — ίδιο πράγμα)", "key": "year"}
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "id": "souhaits-et-voeux",
+  "tier": 4,
+  "order": 141,
+  "title_fr": "Souhaits et vœux",
+  "title_el": "Ευχές",
+  "accent": "#B5531F",
+  "example": null,
+  "items": [
+    {
+      "fr": "Bonne chance !",
+      "el": "Καλή τύχη!",
+      "key": ""
+    },
+    {
+      "fr": "Je vous souhaite bonne chance",
+      "el": "Σας εύχομαι καλή τύχη",
+      "key": ""
+    },
+    {
+      "fr": "Bon courage",
+      "el": "Καλή δύναμη",
+      "key": ""
+    },
+    {
+      "fr": "Bon courage pour la suite",
+      "el": "Καλή δύναμη και για τη συνέχεια",
+      "key": ""
+    },
+    {
+      "fr": "Bonne continuation",
+      "el": "Καλή συνέχεια",
+      "key": ""
+    },
+    {
+      "fr": "Bon appétit",
+      "el": "Καλή όρεξη",
+      "key": ""
+    },
+    {
+      "fr": "Bon appétit à tous",
+      "el": "Καλή όρεξη σε όλους",
+      "key": ""
+    },
+    {
+      "fr": "À la vôtre !",
+      "el": "Στην υγειά σας!",
+      "key": ""
+    },
+    {
+      "fr": "Santé !",
+      "el": "Γεια μας!",
+      "key": ""
+    },
+    {
+      "fr": "Bonne soirée",
+      "el": "Καλό βράδυ",
+      "key": ""
+    },
+    {
+      "fr": "Bon week-end",
+      "el": "Καλό Σαββατοκύριακο",
+      "key": ""
+    },
+    {
+      "fr": "Bonnes vacances",
+      "el": "Καλές διακοπές",
+      "key": ""
+    },
+    {
+      "fr": "Bon voyage",
+      "el": "Καλό ταξίδι",
+      "key": ""
+    },
+    {
+      "fr": "Bonne route",
+      "el": "Καλό δρόμο",
+      "key": ""
+    },
+    {
+      "fr": "Prenez soin de vous",
+      "el": "Να προσέχετε",
+      "key": ""
+    },
+    {
+      "fr": "Reposez-vous bien",
+      "el": "Ξεκουραστείτε καλά",
+      "key": ""
+    },
+    {
+      "fr": "Remettez-vous vite",
+      "el": "Περαστικά σας",
+      "key": ""
+    },
+    {
+      "fr": "Meilleurs vœux",
+      "el": "Θερμές ευχές",
+      "key": ""
+    },
+    {
+      "fr": "Je vous souhaite le meilleur",
+      "el": "Σας εύχομαι ό,τι καλύτερο",
+      "key": ""
+    },
+    {
+      "fr": "Toutes mes condoléances",
+      "el": "Τα συλλυπητήριά μου",
+      "key": ""
+    },
+    {
+      "fr": "Je pense bien à vous",
+      "el": "Σας σκέφτομαι",
+      "key": ""
+    },
+    {
+      "fr": "Portez-vous bien",
+      "el": "Να είστε καλά",
+      "key": ""
+    },
+    {
+      "fr": "Ravi de vous avoir rencontré",
+      "el": "Χάρηκα πολύ για τη γνωριμία",
+      "key": ""
+    },
+    {
+      "fr": "C'est très aimable à vous d'être venu",
+      "el": "Πολύ ευγενικό εκ μέρους σας που ήρθατε",
+      "key": ""
+    }
+  ]
+}

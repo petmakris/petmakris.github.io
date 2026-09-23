@@ -1,0 +1,31 @@
+{
+  "id": "formulaires", "tier": 3, "order": 32,
+  "title_fr": "Les formulaires", "title_el": "τα έντυπα",
+  "accent": "#57544F",
+  "example": "Sur le **formulaire**, j'écris mon **nom**, mon **prénom** et ma **date de naissance** ; en bas, je mets ma **signature**.",
+  "items": [
+    {"fr": "le formulaire",        "el": "το έντυπο, η φόρμα που συμπληρώνεις",                                                                          "key": "page with curl"},
+    {"fr": "le nom",               "el": "ΤΟ ΕΠΩΝΥΜΟ. Προσοχή: το γαλλικό nom δεν είναι το «όνομα», είναι το επώνυμο — σε κάθε έντυπο",                   "key": "surname"},
+    {"fr": "le prénom",            "el": "το όνομα, το μικρό όνομα — αυτό που στα ελληνικά λες «όνομα» το γράφεις εδώ, στο prénom, όχι στο nom",          "key": "first name"},
+    {"fr": "le nom de naissance",  "el": "το πατρικό επώνυμο, το επώνυμο πριν από τον γάμο",                                                             "key": "maiden name"},
+    {"fr": "la date de naissance", "el": "η ημερομηνία γέννησης — ημέρα, μήνας, έτος",                                                                   "key": "birth date"},
+    {"fr": "le lieu de naissance", "el": "ο τόπος γέννησης, η πόλη όπου γεννήθηκες",                                                                     "key": "birthplace"},
+    {"fr": "l'état civil",         "el": "η οικογενειακή κατάσταση",                                                                                     "key": "marital status"},
+    {"fr": "célibataire",          "el": "άγαμος, άγαμη· ανύπαντρος, ανύπαντρη — ίδια λέξη για τα δύο γένη",                                             "key": "single"},
+    {"fr": "marié",                "el": "παντρεμένος· marié για άνδρα, mariée για γυναίκα",                                                             "key": "wedding"},
+    {"fr": "divorcé",              "el": "διαζευγμένος· divorcé για άνδρα, divorcée για γυναίκα",                                                        "key": "divorced"},
+    {"fr": "veuf",                 "el": "χήρος· veuf για άνδρα, veuve (χήρα) για γυναίκα",                                                              "key": "widower"},
+    {"fr": "la nationalité",       "el": "η υπηκοότητα, η ιθαγένεια — π.χ. grecque, ελληνική",                                                           "key": "nationality"},
+    {"fr": "l'adresse",            "el": "η διεύθυνση — οδός και αριθμός",                                                                               "key": "address"},
+    {"fr": "le NPA",               "el": "ο ταχυδρομικός κώδικας· NPA = numéro postal d'acheminement, τέσσερα ψηφία στην Ελβετία (Lausanne 1003)",        "key": "input numbers"},
+    {"fr": "la localité",          "el": "η πόλη ή το χωριό όπου μένεις — μπαίνει δίπλα στον ταχυδρομικό κώδικα",                                        "key": "houses"},
+    {"fr": "le canton",            "el": "το καντόνι, η ελβετική περιφέρεια — εδώ Vaud (VD)",                                                            "key": "canton"},
+    {"fr": "la commune d'origine", "el": "ο δήμος καταγωγής — ελβετική ιδιαιτερότητα: ΔΕΝ είναι εκεί που μένεις ούτε εκεί που γεννήθηκες, είναι ο δήμος της οικογένειας· οι ξένοι γράφουν τη χώρα καταγωγής", "key": "origin"},
+    {"fr": "le numéro AVS",        "el": "ο αριθμός κοινωνικής ασφάλισης — 13 ψηφία, αρχίζει πάντα με 756",                                              "key": "social security number"},
+    {"fr": "le permis B",          "el": "η άδεια διαμονής B — προσωρινή, ανανεώνεται κάθε χρόνο",                                                       "key": "residence permit"},
+    {"fr": "le permis C",          "el": "η άδεια εγκατάστασης C — μόνιμη, μετά από πολλά χρόνια διαμονής",                                              "key": "settlement permit"},
+    {"fr": "la case",              "el": "το τετραγωνάκι που σημειώνεις με Χ",                                                                           "key": "check mark button"},
+    {"fr": "la signature",         "el": "η υπογραφή",                                                                                                   "key": "writing hand"},
+    {"fr": "à remplir en majuscules", "el": "να συμπληρωθεί με ΚΕΦΑΛΑΙΑ γράμματα",                                                                       "key": "capital letters"}
+  ]
+}

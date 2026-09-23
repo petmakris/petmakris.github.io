@@ -1,0 +1,22 @@
+{
+  "id": "ouinon", "tier": 2, "order": 20,
+  "title_fr": "Oui, non, si", "title_el": "ναι, όχι, si",
+  "accent": "#57544F",
+  "example": "— Tu ne viens pas ? — **Si**, **bien sûr** ! — **Ah bon** ? **D'accord**, alors **ça joue**.",
+  "items": [
+    {"fr": "oui",         "el": "ναι",                                                              "key": "check mark button"},
+    {"fr": "non",         "el": "όχι",                                                              "key": "nowhere"},
+    {"fr": "si",          "el": "«ναι» που αναιρεί άρνηση: «Δεν έρχεσαι;» — «Si !» = «Κι όμως, έρχομαι». Δεν υπάρχει τέτοια λέξη στα ελληνικά", "key": "contradiction"},
+    {"fr": "peut-être",   "el": "ίσως, μπορεί",                                                     "key": "thinking face"},
+    {"fr": "d'accord",    "el": "σύμφωνοι, εντάξει",                                                "key": "handshake"},
+    {"fr": "bien sûr",    "el": "φυσικά, εννοείται",                                                "key": "certainty"},
+    {"fr": "pas du tout", "el": "καθόλου, με τίποτα",                                               "key": "freq_never"},
+    {"fr": "évidemment",  "el": "προφανώς, ολοφάνερα",                                              "key": "obvious"},
+    {"fr": "sans doute",  "el": "μάλλον, πιθανότατα — προσοχή: δεν σημαίνει «χωρίς αμφιβολία»",     "key": "probably"},
+    {"fr": "bof",         "el": "μπα, έτσι κι έτσι — δηλώνει αδιαφορία",                            "key": "neutral face"},
+    {"fr": "ah bon ?",    "el": "α, αλήθεια; — έκπληξη ή ενδιαφέρον",                               "key": "face with raised eyebrow"},
+    {"fr": "ça marche",   "el": "εντάξει, παίζει — κατά λέξη «λειτουργεί»",                         "key": "deal"},
+    {"fr": "ça joue",     "el": "το ίδιο με το «ça marche», στα γαλλικά της Ελβετίας",              "key": "okay"},
+    {"fr": "voilà",       "el": "ορίστε, να το",                                                    "key": "backhand index pointing left"}
+  ]
+}

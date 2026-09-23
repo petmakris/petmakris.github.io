@@ -27,8 +27,8 @@ def load_card(path):
         if field not in card:
             raise CardError(f"{path}: missing required field {field!r}")
 
-    if card["tier"] not in (1, 2, 3):
-        raise CardError(f"{path}: tier must be 1, 2 or 3, got {card['tier']!r}")
+    if card["tier"] not in (1, 2, 3, 4):
+        raise CardError(f"{path}: tier must be 1, 2, 3 or 4, got {card['tier']!r}")
 
     if not isinstance(card["items"], list) or not card["items"]:
         raise CardError(f"{path}: items must be a non-empty list")

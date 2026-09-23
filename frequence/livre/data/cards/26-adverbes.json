@@ -1,0 +1,44 @@
+{
+  "id": "adverbes", "tier": 2, "order": 26,
+  "title_fr": "Combien, comment, quand", "title_el": "πόσο, πώς, πότε",
+  "accent": "#C8901A",
+  "example": "**D'abord** je parle **lentement**, **puis** **vite** ; je travaille **beaucoup**, mais **jamais** **seul**.",
+  "items": [
+    {"fr": "toujours",     "el": "πάντα",                                              "key": "freq_always"},
+    {"fr": "souvent",      "el": "συχνά",                                              "key": "freq_often"},
+    {"fr": "parfois",      "el": "μερικές φορές, καμιά φορά",                             "key": "sometimes"},
+    {"fr": "rarement",     "el": "σπάνια",                                             "key": "freq_rarely"},
+    {"fr": "jamais",       "el": "ποτέ — με άρνηση: ne… jamais = δεν … ποτέ",            "key": "freq_never"},
+
+    {"fr": "rien",         "el": "τίποτα — με άρνηση: ne… rien = δεν … τίποτα",          "key": "nothing"},
+    {"fr": "un peu",       "el": "λίγο (δύο λέξεις στα γαλλικά)",                       "key": "q_little"},
+    {"fr": "assez",        "el": "αρκετά· και «φτάνει»",                                "key": "q_enough"},
+    {"fr": "beaucoup",     "el": "πολύ",                                               "key": "q_lots"},
+    {"fr": "trop",         "el": "πάρα πολύ, υπερβολικά",                               "key": "q_too_much"},
+    {"fr": "presque",      "el": "σχεδόν",                                             "key": "almost"},
+    {"fr": "tout",         "el": "όλα, τα πάντα",                                      "key": "everything"},
+
+    {"fr": "plus… que",    "el": "περισσότερο από, πιο… από",                           "key": "cmp_big"},
+    {"fr": "moins… que",   "el": "λιγότερο από",                                       "key": "cmp_small"},
+    {"fr": "aussi… que",   "el": "τόσο… όσο, εξίσου με",                                "key": "heavy equals sign"},
+    {"fr": "le plus",      "el": "ο/η/το πιο — το περισσότερο",                         "key": "cmp_high"},
+    {"fr": "le moins",     "el": "το λιγότερο",                                        "key": "cmp_low"},
+    {"fr": "meilleur",     "el": "καλύτερος (επίθετο)· mieux = καλύτερα (επίρρημα)",     "key": "better"},
+    {"fr": "pire",         "el": "χειρότερος (επίθετο)· plus mal = χειρότερα (επίρρημα)", "key": "worse"},
+
+    {"fr": "d'abord",      "el": "πρώτα, στην αρχή",                                   "key": "first"},
+    {"fr": "ensuite",      "el": "έπειτα, μετά",                                       "key": "next"},
+    {"fr": "puis",         "el": "και μετά, ύστερα",                                   "key": "then"},
+    {"fr": "après",        "el": "μετά· après le café = μετά τον καφέ",                 "key": "after"},
+    {"fr": "avant",        "el": "πριν· avant midi = πριν το μεσημέρι",                 "key": "before"},
+    {"fr": "enfin",        "el": "τέλος, στο τέλος· και «επιτέλους»",                   "key": "finally"},
+    {"fr": "pendant",      "el": "όσο, κατά τη διάρκεια· pendant une heure = για μία ώρα", "key": "during"},
+
+    {"fr": "vite",         "el": "γρήγορα",                                            "key": "dashing away"},
+    {"fr": "lentement",    "el": "αργά",                                               "key": "snail"},
+    {"fr": "bien",         "el": "καλά (επίρρημα)· bon = καλός (επίθετο)",               "key": "well"},
+    {"fr": "mal",          "el": "άσχημα, κακά· j'ai mal = πονάω",                      "key": "thumbs down"},
+    {"fr": "ensemble",     "el": "μαζί",                                               "key": "people holding hands"},
+    {"fr": "seul",         "el": "μόνος, μόνη (seul / seule)",                          "key": "person standing"}
+  ]
+}

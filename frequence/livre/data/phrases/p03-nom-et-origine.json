@@ -1,0 +1,56 @@
+{
+  "id": "nom-et-origine",
+  "tier": 4,
+  "order": 202,
+  "title_fr": "Nom et origine",
+  "title_el": "Όνομα και καταγωγή",
+  "accent": "#8A4FA0",
+  "example": null,
+  "items": [
+    {
+      "fr": "Comment vous appelez-vous, déjà ?",
+      "el": "Πώς είπαμε ότι σας λένε;",
+      "key": ""
+    },
+    {
+      "fr": "Quel est votre nom de famille ?",
+      "el": "Ποιο είναι το επώνυμό σας;",
+      "key": ""
+    },
+    {
+      "fr": "Vous vous appelez comment ?",
+      "el": "Πώς σας λένε;",
+      "key": ""
+    },
+    {
+      "fr": "D'où venez-vous ?",
+      "el": "Από πού είστε;",
+      "key": ""
+    },
+    {
+      "fr": "Vous êtes d'où, exactement ?",
+      "el": "Από πού είστε ακριβώς;",
+      "key": ""
+    },
+    {
+      "fr": "De quelle ville venez-vous ?",
+      "el": "Από ποια πόλη είστε;",
+      "key": ""
+    },
+    {
+      "fr": "Vous êtes de quelle nationalité ?",
+      "el": "Τι εθνικότητα είστε;",
+      "key": ""
+    },
+    {
+      "fr": "Où est-ce que vous habitez ?",
+      "el": "Πού μένετε;",
+      "key": ""
+    },
+    {
+      "fr": "Vous habitez dans le coin ?",
+      "el": "Μένετε εδώ κοντά;",
+      "key": ""
+    }
+  ]
+}

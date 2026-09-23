@@ -1,0 +1,31 @@
+{
+  "id": "transports",
+  "tier": 1,
+  "order": 13,
+  "title_fr": "Les transports : à ou en ?",
+  "title_el": "τα μέσα μεταφοράς",
+  "accent": "#2166B0",
+  "example": "Je vais à Lausanne **en train**, puis je continue **à pied**.",
+  "items": [
+    {"fr": "en voiture",        "el": "με το αυτοκίνητο",                                                     "key": "racing car"},
+    {"fr": "en bus",            "el": "με το λεωφορείο",                                                      "key": "bus"},
+    {"fr": "en train",          "el": "με το τρένο",                                                          "key": "train"},
+    {"fr": "en tram",           "el": "με το τραμ",                                                           "key": "tram"},
+    {"fr": "en métro",          "el": "με το μετρό",                                                          "key": "metro"},
+    {"fr": "en bateau",         "el": "με το πλοίο, και με τη βάρκα: το bateau είναι και τα δύο",             "key": "boat"},
+    {"fr": "en avion",          "el": "με το αεροπλάνο",                                                      "key": "airplane arrival"},
+    {"fr": "en taxi",           "el": "με ταξί",                                                              "key": "taxi"},
+    {"fr": "à pied",            "el": "με τα πόδια",                                                          "key": "walk"},
+    {"fr": "à vélo",            "el": "με το ποδήλατο",                                                       "key": "bicycle"},
+    {"fr": "à trottinette",     "el": "με το πατίνι",                                                         "key": "scooter"},
+    {"fr": "à moto",            "el": "με τη μηχανή",                                                         "key": "motorcycle"},
+    {"fr": "le billet",         "el": "το εισιτήριο, για μία διαδρομή",                                       "key": "ticket"},
+    {"fr": "l'abonnement",      "el": "η κάρτα απεριορίστων διαδρομών, η συνδρομή (αρσενικό: un abonnement)", "key": "pass"},
+    {"fr": "l'arrêt",           "el": "η στάση, του λεωφορείου ή του τραμ (αρσενικό: un arrêt)",              "key": "stop"},
+    {"fr": "la gare",           "el": "ο σταθμός του τρένου",                                                 "key": "station"},
+    {"fr": "le quai",           "el": "η αποβάθρα, μέσα στον σταθμό",                                         "key": "platform"},
+    {"fr": "la correspondance", "el": "η ανταπόκριση: αλλάζεις όχημα και συνεχίζεις",                         "key": "transfer"},
+    {"fr": "le m2",             "el": "η γραμμή m2 του μετρό στη Λωζάνη, υπάρχει και η m1",                   "key": "subway"},
+    {"fr": "les CFF",           "el": "οι ελβετικοί σιδηρόδρομοι, στη Γαλλία λέγονται SNCF",                  "key": "railway"}
+  ]
+}

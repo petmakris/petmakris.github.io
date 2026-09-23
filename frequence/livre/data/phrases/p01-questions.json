@@ -1,0 +1,86 @@
+{
+  "id": "questions",
+  "tier": 4,
+  "order": 21,
+  "title_fr": "Les questions",
+  "title_el": "οι ερωτήσεις",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "Où est… ?",
+      "el": "Πού είναι…;",
+      "key": ""
+    },
+    {
+      "fr": "Où sont les toilettes ?",
+      "el": "Πού είναι η τουαλέτα;",
+      "key": ""
+    },
+    {
+      "fr": "Combien ça coûte ?",
+      "el": "Πόσο κοστίζει;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce que c'est ?",
+      "el": "Τι είναι αυτό;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce que vous faites ?",
+      "el": "Τι κάνετε; — με την έννοια «με τι ασχολείστε»",
+      "key": ""
+    },
+    {
+      "fr": "Comment ça s'appelle ?",
+      "el": "Πώς λέγεται αυτό;",
+      "key": ""
+    },
+    {
+      "fr": "Comment vous appelez-vous ?",
+      "el": "Πώς σας λένε;",
+      "key": ""
+    },
+    {
+      "fr": "Quelle heure est-il ?",
+      "el": "Τι ώρα είναι;",
+      "key": ""
+    },
+    {
+      "fr": "Quand ?",
+      "el": "Πότε;",
+      "key": ""
+    },
+    {
+      "fr": "Pourquoi ?",
+      "el": "Γιατί;",
+      "key": ""
+    },
+    {
+      "fr": "Qui est-ce ?",
+      "el": "Ποιος είναι;",
+      "key": ""
+    },
+    {
+      "fr": "C'est combien ?",
+      "el": "Πόσο κάνει;",
+      "key": ""
+    },
+    {
+      "fr": "Pouvez-vous m'aider ?",
+      "el": "Μπορείτε να με βοηθήσετε;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que vous avez… ?",
+      "el": "Έχετε…;",
+      "key": ""
+    },
+    {
+      "fr": "Y a-t-il… ?",
+      "el": "Υπάρχει…;",
+      "key": ""
+    }
+  ]
+}

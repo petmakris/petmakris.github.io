@@ -1,0 +1,22 @@
+{
+  "id": "emotions", "tier": 1, "order": 11,
+  "title_fr": "Être ou avoir ?", "title_el": "είμαι ή έχω;",
+  "accent": "#B84066",
+  "example": "J'ai **faim** et **soif** ; je suis **fatigué**, mais **content**.",
+  "items": [
+    {"fr": "être content",  "el": "είμαι χαρούμενος/η",                "key": "happy",       "icon": "1F600"},
+    {"fr": "être triste",   "el": "είμαι λυπημένος/η",                 "key": "sad",         "icon": "1F622"},
+    {"fr": "être fâché",    "el": "είμαι θυμωμένος/η",                 "key": "angry",       "icon": "1F621"},
+    {"fr": "être fatigué",  "el": "είμαι κουρασμένος/η",               "key": "tired",       "icon": "1F62A"},
+    {"fr": "être surpris",  "el": "είμαι έκπληκτος/η",                 "key": "surprised",   "icon": "1FAE2"},
+    {"fr": "être inquiet",  "el": "είμαι ανήσυχος/η",                  "key": "worried",     "icon": "1F614"},
+    {"fr": "être fier",     "el": "είμαι περήφανος/η",                 "key": "proud",       "icon": "1F947"},
+    {"fr": "être gêné",     "el": "είμαι αμήχανος/η",                  "key": "embarrassed", "icon": "1F605"},
+    {"fr": "avoir peur",    "el": "φοβάμαι (γαλλικά: «έχω φόβο»)",     "key": "fear",        "icon": "1FAE3"},
+    {"fr": "avoir honte",   "el": "ντρέπομαι (γαλλικά: «έχω ντροπή»)", "key": "shame"},
+    {"fr": "avoir faim",    "el": "πεινάω (γαλλικά: «έχω πείνα»)",     "key": "hungry",      "icon": "1F374"},
+    {"fr": "avoir soif",    "el": "διψάω (γαλλικά: «έχω δίψα»)",       "key": "thirsty",     "icon": "1F964"},
+    {"fr": "avoir froid",   "el": "κρυώνω (γαλλικά: «έχω κρύο»)",      "key": "cold",        "icon": "1F976"},
+    {"fr": "avoir chaud",   "el": "ζεσταίνομαι (γαλλικά: «έχω ζέστη»)","key": "hot",         "icon": "1F975"}
+  ]
+}

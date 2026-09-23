@@ -1,0 +1,30 @@
+{
+  "id": "animaux", "tier": 1, "order": 10,
+  "title_fr": "Les animaux", "title_el": "τα ζώα",
+  "accent": "#1E7A5A",
+  "example": "À la ferme il y a une **vache**, un **cheval** et un **mouton** ; à la maison, un **chien** et un **chat**.",
+  "items": [
+    {"fr": "le chien",      "el": "ο σκύλος",                                          "key": "dog"},
+    {"fr": "le chat",       "el": "η γάτα",                                            "key": "cat"},
+    {"fr": "le cheval",     "el": "το άλογο",                                          "key": "horse"},
+    {"fr": "la vache",      "el": "η αγελάδα",                                         "key": "cow"},
+    {"fr": "le mouton",     "el": "το πρόβατο (το ζώο)· το κρέας του: αρνί",            "key": "ram"},
+    {"fr": "la chèvre",     "el": "η κατσίκα",                                         "key": "goat"},
+    {"fr": "le cochon",     "el": "το γουρούνι",                                       "key": "pig"},
+    {"fr": "la poule",      "el": "η κότα (το ζωντανό)· το κρέας: κοτόπουλο",           "key": "chicken"},
+    {"fr": "le coq",        "el": "ο κόκορας",                                         "key": "rooster"},
+    {"fr": "le canard",     "el": "η πάπια",                                           "key": "duck"},
+    {"fr": "l'oiseau",      "el": "το πουλί (αρσενικό στα γαλλικά)",                    "key": "bird"},
+    {"fr": "le poisson",    "el": "το ψάρι",                                           "key": "fish"},
+    {"fr": "le lapin",      "el": "το κουνέλι",                                        "key": "rabbit"},
+    {"fr": "la souris",     "el": "το ποντίκι (και του υπολογιστή)",                    "key": "mouse"},
+    {"fr": "l'ours",        "el": "η αρκούδα (αρσενικό στα γαλλικά)",                   "key": "bear"},
+    {"fr": "le loup",       "el": "ο λύκος",                                           "key": "wolf"},
+    {"fr": "le renard",     "el": "η αλεπού",                                          "key": "fox"},
+    {"fr": "le serpent",    "el": "το φίδι",                                           "key": "snake"},
+    {"fr": "la grenouille", "el": "ο βάτραχος",                                        "key": "frog"},
+    {"fr": "l'abeille",     "el": "η μέλισσα (θηλυκό)",                                 "key": "honeybee"},
+    {"fr": "le papillon",   "el": "η πεταλούδα",                                       "key": "butterfly"},
+    {"fr": "l'araignée",    "el": "η αράχνη (θηλυκό)",                                  "key": "spider"}
+  ]
+}

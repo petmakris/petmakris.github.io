@@ -1,0 +1,96 @@
+{
+  "id": "quotidien",
+  "tier": 4,
+  "order": 36,
+  "title_fr": "Au quotidien",
+  "title_el": "στην καθημερινότητα",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "Je voudrais…",
+      "el": "Θα ήθελα…",
+      "key": ""
+    },
+    {
+      "fr": "Je veux…",
+      "el": "Θέλω…",
+      "key": ""
+    },
+    {
+      "fr": "J'ai besoin de…",
+      "el": "Χρειάζομαι…",
+      "key": ""
+    },
+    {
+      "fr": "Je ne comprends pas",
+      "el": "Δεν καταλαβαίνω",
+      "key": ""
+    },
+    {
+      "fr": "Je ne sais pas",
+      "el": "Δεν ξέρω",
+      "key": ""
+    },
+    {
+      "fr": "Parlez-vous anglais ?",
+      "el": "Μιλάτε αγγλικά;",
+      "key": ""
+    },
+    {
+      "fr": "Je ne parle pas français",
+      "el": "Δεν μιλάω γαλλικά",
+      "key": ""
+    },
+    {
+      "fr": "Pouvez-vous répéter ?",
+      "el": "Μπορείτε να το επαναλάβετε;",
+      "key": ""
+    },
+    {
+      "fr": "Parlez plus lentement, s'il vous plaît",
+      "el": "Μιλάτε πιο αργά, σας παρακαλώ",
+      "key": ""
+    },
+    {
+      "fr": "L'addition, s'il vous plaît",
+      "el": "Τον λογαριασμό, παρακαλώ",
+      "key": ""
+    },
+    {
+      "fr": "Je cherche…",
+      "el": "Ψάχνω…",
+      "key": ""
+    },
+    {
+      "fr": "J'ai faim",
+      "el": "Πεινάω",
+      "key": ""
+    },
+    {
+      "fr": "J'ai soif",
+      "el": "Διψάω",
+      "key": ""
+    },
+    {
+      "fr": "Je suis fatigué",
+      "el": "Είμαι κουρασμένος",
+      "key": ""
+    },
+    {
+      "fr": "Je suis perdu",
+      "el": "Έχω χαθεί",
+      "key": ""
+    },
+    {
+      "fr": "Attendez, s'il vous plaît",
+      "el": "Περιμένετε, σας παρακαλώ",
+      "key": ""
+    },
+    {
+      "fr": "Un instant",
+      "el": "Μια στιγμή",
+      "key": ""
+    }
+  ]
+}

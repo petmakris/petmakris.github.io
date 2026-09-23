@@ -1,0 +1,111 @@
+{
+  "id": "faire-connaissance",
+  "tier": 4,
+  "order": 211,
+  "title_fr": "Faire connaissance",
+  "title_el": "Να γνωριστούμε",
+  "accent": "#B5531F",
+  "example": null,
+  "items": [
+    {
+      "fr": "Depuis combien de temps vivez-vous ici ?",
+      "el": "Πόσο καιρό ζείτε εδώ;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce que vous faites dans la vie ?",
+      "el": "Τι δουλειά κάνετε;",
+      "key": ""
+    },
+    {
+      "fr": "Vous travaillez dans quel domaine ?",
+      "el": "Σε ποιον τομέα δουλεύετε;",
+      "key": ""
+    },
+    {
+      "fr": "Quel est votre métier ?",
+      "el": "Ποιο είναι το επάγγελμά σας;",
+      "key": ""
+    },
+    {
+      "fr": "Vous êtes étudiant ?",
+      "el": "Είστε φοιτητής;",
+      "key": ""
+    },
+    {
+      "fr": "Qu'est-ce que vous étudiez ?",
+      "el": "Τι σπουδάζετε;",
+      "key": ""
+    },
+    {
+      "fr": "Vous faites quoi comme études ?",
+      "el": "Τι σπουδές κάνετε;",
+      "key": ""
+    },
+    {
+      "fr": "Quel âge avez-vous ?",
+      "el": "Πόσων χρονών είστε;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez quel âge ?",
+      "el": "Τι ηλικία έχετε;",
+      "key": ""
+    },
+    {
+      "fr": "Vous êtes marié ?",
+      "el": "Είστε παντρεμένος;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez des enfants ?",
+      "el": "Έχετε παιδιά;",
+      "key": ""
+    },
+    {
+      "fr": "Vous avez des frères et sœurs ?",
+      "el": "Έχετε αδέρφια;",
+      "key": ""
+    },
+    {
+      "fr": "Quelles langues parlez-vous ?",
+      "el": "Τι γλώσσες μιλάτε;",
+      "key": ""
+    },
+    {
+      "fr": "Vous parlez anglais ?",
+      "el": "Μιλάτε αγγλικά;",
+      "key": ""
+    },
+    {
+      "fr": "Comment connaissez-vous Paul ?",
+      "el": "Από πού ξέρετε τον Πωλ;",
+      "key": ""
+    },
+    {
+      "fr": "Vous êtes là pour le travail ?",
+      "el": "Είστε εδώ για δουλειά;",
+      "key": ""
+    },
+    {
+      "fr": "Et vous, qu'est-ce que vous faites ?",
+      "el": "Κι εσείς, με τι ασχολείστε;",
+      "key": ""
+    },
+    {
+      "fr": "Vous venez souvent ici ?",
+      "el": "Έρχεστε συχνά εδώ;",
+      "key": ""
+    },
+    {
+      "fr": "C'est la première fois que vous venez ?",
+      "el": "Πρώτη φορά έρχεστε;",
+      "key": ""
+    },
+    {
+      "fr": "Vous restez longtemps ?",
+      "el": "Θα μείνετε πολύ;",
+      "key": ""
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "id": "proposer-son-aide",
+  "tier": 4,
+  "order": 121,
+  "title_fr": "Proposer son aide et féliciter",
+  "title_el": "Προσφορά βοήθειας και συγχαρητήρια",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "Puis-je vous aider ?",
+      "el": "Μπορώ να σας βοηθήσω;",
+      "key": ""
+    },
+    {
+      "fr": "Est-ce que je peux vous aider ?",
+      "el": "Μπορώ να σας εξυπηρετήσω;",
+      "key": ""
+    },
+    {
+      "fr": "Avez-vous besoin d'aide ?",
+      "el": "Χρειάζεστε βοήθεια;",
+      "key": ""
+    },
+    {
+      "fr": "Si vous avez besoin de quoi que ce soit",
+      "el": "Αν χρειαστείτε οτιδήποτε",
+      "key": ""
+    },
+    {
+      "fr": "N'hésitez pas à me demander",
+      "el": "Μη διστάσετε να μου ζητήσετε",
+      "key": ""
+    },
+    {
+      "fr": "N'hésitez pas",
+      "el": "Μη διστάσετε",
+      "key": ""
+    },
+    {
+      "fr": "Je suis là si besoin",
+      "el": "Είμαι εδώ αν χρειαστείτε κάτι",
+      "key": ""
+    },
+    {
+      "fr": "Je vous en prie, faites donc",
+      "el": "Παρακαλώ, ελεύθερα",
+      "key": ""
+    },
+    {
+      "fr": "Allez-y",
+      "el": "Περάστε",
+      "key": ""
+    },
+    {
+      "fr": "Après vous",
+      "el": "Μετά από εσάς",
+      "key": ""
+    },
+    {
+      "fr": "Je vous laisse passer",
+      "el": "Σας αφήνω να περάσετε",
+      "key": ""
+    },
+    {
+      "fr": "Faites comme chez vous",
+      "el": "Σαν στο σπίτι σας",
+      "key": ""
+    },
+    {
+      "fr": "Mettez-vous à l'aise",
+      "el": "Βολευτείτε",
+      "key": ""
+    },
+    {
+      "fr": "Asseyez-vous, je vous en prie",
+      "el": "Καθίστε, σας παρακαλώ",
+      "key": ""
+    },
+    {
+      "fr": "Félicitations !",
+      "el": "Συγχαρητήρια!",
+      "key": ""
+    },
+    {
+      "fr": "Toutes mes félicitations",
+      "el": "Θερμά συγχαρητήρια",
+      "key": ""
+    },
+    {
+      "fr": "Je vous félicite",
+      "el": "Σας συγχαίρω",
+      "key": ""
+    },
+    {
+      "fr": "Chapeau !",
+      "el": "Σας βγάζω το καπέλο!",
+      "key": ""
+    },
+    {
+      "fr": "Bravo !",
+      "el": "Μπράβο!",
+      "key": ""
+    },
+    {
+      "fr": "Bien joué",
+      "el": "Ωραία δουλειά",
+      "key": ""
+    }
+  ]
+}

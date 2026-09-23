@@ -1,0 +1,30 @@
+{
+  "id": "table", "tier": 1, "order": 12,
+  "title_fr": "La table et la maison", "title_el": "το τραπέζι και το σπίτι",
+  "accent": "#B5531F",
+  "example": "Dans la **cuisine**, l'**assiette** et le **verre** sont sur la **table** ; dans la **chambre**, le **lit** est près de la **fenêtre**.",
+  "items": [
+    {"fr": "l'assiette",      "el": "το πιάτο",                                              "key": "plate",   "icon": "1F37D"},
+    {"fr": "le verre",        "el": "το ποτήρι",                                             "key": "glass",   "icon": "1F95B"},
+    {"fr": "le couteau",      "el": "το μαχαίρι",                                            "key": "knife",   "icon": "1F52A"},
+    {"fr": "la fourchette",   "el": "το πιρούνι",                                            "key": "fork"},
+    {"fr": "la cuillère",     "el": "το κουτάλι",                                            "key": "spoon"},
+    {"fr": "la tasse",        "el": "το φλιτζάνι",                                           "key": "cup",     "icon": "2615"},
+    {"fr": "le bol",          "el": "το μπολ, το βαθύ πιάτο",                                "key": "bowl"},
+    {"fr": "la serviette",    "el": "η πετσέτα — του τραπεζιού, αλλά και του μπάνιου",       "key": "napkin"},
+    {"fr": "la table",        "el": "το τραπέζι",                                            "key": "table"},
+    {"fr": "la chaise",       "el": "η καρέκλα",                                             "key": "chair"},
+    {"fr": "le lit",          "el": "το κρεβάτι",                                            "key": "bed"},
+    {"fr": "la porte",        "el": "η πόρτα",                                               "key": "door"},
+    {"fr": "la fenêtre",      "el": "το παράθυρο",                                           "key": "window"},
+    {"fr": "la maison",       "el": "το σπίτι",                                              "key": "house"},
+    {"fr": "la cuisine",      "el": "η κουζίνα — ο χώρος· και η μαγειρική, η κουζίνα ως τέχνη", "key": "kitchen", "icon": "1F373"},
+    {"fr": "le salon",        "el": "το σαλόνι, το καθιστικό",                               "key": "sofa"},
+    {"fr": "la chambre",      "el": "η κρεβατοκάμαρα, το υπνοδωμάτιο",                       "key": "bedroom"},
+    {"fr": "la salle de bains","el": "το μπάνιο (ο χώρος με την μπανιέρα)",                   "key": "bathroom","icon": "1F6C1"},
+    {"fr": "les toilettes",   "el": "η τουαλέτα — στα γαλλικά πάντα στον πληθυντικό",        "key": "toilet"},
+    {"fr": "l'entrée",        "el": "η είσοδος, το χολ",                                     "key": "entrance"},
+    {"fr": "le balcon",       "el": "το μπαλκόνι",                                           "key": "balcony"},
+    {"fr": "le jardin",       "el": "ο κήπος",                                               "key": "garden",  "icon": "1F331"}
+  ]
+}

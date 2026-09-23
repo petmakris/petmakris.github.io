@@ -1,0 +1,141 @@
+{
+  "id": "excuses",
+  "tier": 4,
+  "order": 95,
+  "title_fr": "Rassurer et s'excuser",
+  "title_el": "Καθησύχαση και συγγνώμη",
+  "accent": "#2166B0",
+  "example": null,
+  "items": [
+    {
+      "fr": "Ne vous inquiétez pas",
+      "el": "Μην ανησυχείτε",
+      "key": ""
+    },
+    {
+      "fr": "Ne vous en faites pas",
+      "el": "Μη σας απασχολεί",
+      "key": ""
+    },
+    {
+      "fr": "Pas de souci",
+      "el": "Κανένα πρόβλημα",
+      "key": ""
+    },
+    {
+      "fr": "Aucun souci",
+      "el": "Κανένα απολύτως πρόβλημα",
+      "key": ""
+    },
+    {
+      "fr": "Ce n'est pas grave",
+      "el": "Δεν πειράζει",
+      "key": ""
+    },
+    {
+      "fr": "Il n'y a pas de mal",
+      "el": "Δεν έγινε τίποτα",
+      "key": ""
+    },
+    {
+      "fr": "Ne vous dérangez pas",
+      "el": "Μην μπαίνετε στον κόπο",
+      "key": ""
+    },
+    {
+      "fr": "Ne vous donnez pas cette peine",
+      "el": "Μην κάνετε τέτοιο κόπο",
+      "key": ""
+    },
+    {
+      "fr": "Surtout ne vous dérangez pas",
+      "el": "Σας παρακαλώ, μην μπαίνετε καθόλου στον κόπο",
+      "key": ""
+    },
+    {
+      "fr": "Laissez, je vais le faire",
+      "el": "Αφήστε, θα το κάνω εγώ",
+      "key": ""
+    },
+    {
+      "fr": "Ce n'est pas la peine",
+      "el": "Δεν χρειάζεται",
+      "key": ""
+    },
+    {
+      "fr": "Inutile de vous déranger",
+      "el": "Δεν χρειάζεται να μπείτε στον κόπο",
+      "key": ""
+    },
+    {
+      "fr": "Je suis vraiment désolé",
+      "el": "Λυπάμαι πραγματικά",
+      "key": ""
+    },
+    {
+      "fr": "Je suis désolé de vous déranger",
+      "el": "Συγγνώμη που σας ενοχλώ",
+      "key": ""
+    },
+    {
+      "fr": "Excusez-moi de vous déranger",
+      "el": "Με συγχωρείτε που σας ενοχλώ",
+      "key": ""
+    },
+    {
+      "fr": "Désolé de vous importuner",
+      "el": "Συγγνώμη για την ενόχληση",
+      "key": ""
+    },
+    {
+      "fr": "Je m'excuse pour le retard",
+      "el": "Ζητώ συγγνώμη για την καθυστέρηση",
+      "key": ""
+    },
+    {
+      "fr": "Veuillez m'excuser",
+      "el": "Παρακαλώ να με συγχωρέσετε",
+      "key": ""
+    },
+    {
+      "fr": "Je vous prie de m'excuser",
+      "el": "Σας παρακαλώ να με συγχωρήσετε",
+      "key": ""
+    },
+    {
+      "fr": "Toutes mes excuses",
+      "el": "Χίλια συγγνώμη",
+      "key": ""
+    },
+    {
+      "fr": "Je vous présente mes excuses",
+      "el": "Σας ζητώ ειλικρινά συγγνώμη",
+      "key": ""
+    },
+    {
+      "fr": "Je suis confus",
+      "el": "Ντρέπομαι πολύ",
+      "key": ""
+    },
+    {
+      "fr": "Je suis navré",
+      "el": "Λυπάμαι πολύ",
+      "key": ""
+    },
+    {
+      "fr": "Ce n'était pas mon intention",
+      "el": "Δεν το ήθελα",
+      "key": ""
+    },
+    {
+      "fr": "Je ne voulais pas vous offenser",
+      "el": "Δεν ήθελα να σας προσβάλω",
+      "key": ""
+    },
+    {
+      "fr": "Je vous demande pardon",
+      "el": "Σας ζητώ συγγνώμη",
+      "key": ""
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "id": "bonjour-au-revoir",
+  "tier": 4,
+  "order": 185,
+  "title_fr": "Bonjour et au revoir",
+  "title_el": "Χαιρετισμοί και αποχαιρετισμοί",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "Bonjour, je peux vous renseigner ?",
+      "el": "Καλημέρα, μπορώ να σας εξυπηρετήσω;",
+      "key": ""
+    },
+    {
+      "fr": "Bonne journée, au revoir !",
+      "el": "Καλή σας μέρα, αντίο!",
+      "key": ""
+    },
+    {
+      "fr": "Bonjour, j'ai une réservation au nom de Martin.",
+      "el": "Καλημέρα, έχω κράτηση στο όνομα Μαρτέν.",
+      "key": ""
+    },
+    {
+      "fr": "Merci beaucoup pour votre aide.",
+      "el": "Ευχαριστώ πολύ για τη βοήθειά σας.",
+      "key": ""
+    },
+    {
+      "fr": "On se voit la semaine prochaine.",
+      "el": "Τα λέμε την άλλη βδομάδα.",
+      "key": ""
+    },
+    {
+      "fr": "On se voit lundi.",
+      "el": "Τα λέμε τη Δευτέρα.",
+      "key": ""
+    },
+    {
+      "fr": "À la semaine prochaine.",
+      "el": "Τα λέμε την επόμενη εβδομάδα.",
+      "key": ""
+    },
+    {
+      "fr": "À lundi.",
+      "el": "Τα λέμε Δευτέρα.",
+      "key": ""
+    },
+    {
+      "fr": "À ce soir.",
+      "el": "Τα λέμε το βράδυ.",
+      "key": ""
+    },
+    {
+      "fr": "À tout de suite.",
+      "el": "Τα λέμε σε λίγο.",
+      "key": ""
+    },
+    {
+      "fr": "On se rappelle plus tard.",
+      "el": "Τα ξαναλέμε αργότερα.",
+      "key": ""
+    },
+    {
+      "fr": "Comment ça va ?",
+      "el": "Πώς πάει;",
+      "key": ""
+    },
+    {
+      "fr": "Ça roule ?",
+      "el": "Όλα καλά;",
+      "key": ""
+    },
+    {
+      "fr": "Comment tu vas ?",
+      "el": "Πώς είσαι;",
+      "key": ""
+    },
+    {
+      "fr": "Et toi, ça va ?",
+      "el": "Εσύ, καλά;",
+      "key": ""
+    },
+    {
+      "fr": "Ça va et toi ?",
+      "el": "Καλά, εσύ;",
+      "key": ""
+    },
+    {
+      "fr": "Bonne journée au travail !",
+      "el": "Καλή δουλειά!",
+      "key": ""
+    }
+  ]
+}

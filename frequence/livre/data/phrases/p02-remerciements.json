@@ -1,0 +1,131 @@
+{
+  "id": "remerciements",
+  "tier": 4,
+  "order": 71,
+  "title_fr": "Remercier et répondre",
+  "title_el": "Ευχαριστίες και απαντήσεις",
+  "accent": "#B5531F",
+  "example": null,
+  "items": [
+    {
+      "fr": "Je vous remercie",
+      "el": "Σας ευχαριστώ",
+      "key": ""
+    },
+    {
+      "fr": "Je vous remercie infiniment",
+      "el": "Σας ευχαριστώ πάρα πολύ",
+      "key": ""
+    },
+    {
+      "fr": "Je vous remercie de tout cœur",
+      "el": "Σας ευχαριστώ μέσα από την καρδιά μου",
+      "key": ""
+    },
+    {
+      "fr": "Mille mercis",
+      "el": "Χίλια ευχαριστώ",
+      "key": ""
+    },
+    {
+      "fr": "Un grand merci",
+      "el": "Ένα μεγάλο ευχαριστώ",
+      "key": ""
+    },
+    {
+      "fr": "C'est très gentil à vous",
+      "el": "Είναι πολύ ευγενικό εκ μέρους σας",
+      "key": ""
+    },
+    {
+      "fr": "C'est gentil de votre part",
+      "el": "Πολύ ευγενικό εκ μέρους σας",
+      "key": ""
+    },
+    {
+      "fr": "Vous êtes trop aimable",
+      "el": "Είστε υπερβολικά ευγενικός",
+      "key": ""
+    },
+    {
+      "fr": "Je ne sais comment vous remercier",
+      "el": "Δεν ξέρω πώς να σας ευχαριστήσω",
+      "key": ""
+    },
+    {
+      "fr": "Merci pour tout",
+      "el": "Ευχαριστώ για όλα",
+      "key": ""
+    },
+    {
+      "fr": "Merci d'avance",
+      "el": "Ευχαριστώ εκ των προτέρων",
+      "key": ""
+    },
+    {
+      "fr": "Merci infiniment pour votre aide",
+      "el": "Ευχαριστώ πάρα πολύ για τη βοήθειά σας",
+      "key": ""
+    },
+    {
+      "fr": "C'est moi qui vous remercie",
+      "el": "Εγώ σας ευχαριστώ",
+      "key": ""
+    },
+    {
+      "fr": "Il n'y a pas de quoi",
+      "el": "Δεν κάνει τίποτα",
+      "key": ""
+    },
+    {
+      "fr": "Pas de quoi",
+      "el": "Τίποτα",
+      "key": ""
+    },
+    {
+      "fr": "Avec plaisir",
+      "el": "Ευχαρίστως",
+      "key": ""
+    },
+    {
+      "fr": "C'est tout naturel",
+      "el": "Είναι αυτονόητο",
+      "key": ""
+    },
+    {
+      "fr": "C'est normal",
+      "el": "Φυσικό είναι",
+      "key": ""
+    },
+    {
+      "fr": "Ce n'est rien",
+      "el": "Δεν είναι τίποτα",
+      "key": ""
+    },
+    {
+      "fr": "Je vous en prie, c'est tout naturel",
+      "el": "Παρακαλώ, είναι αυτονόητο",
+      "key": ""
+    },
+    {
+      "fr": "Tout le plaisir est pour moi",
+      "el": "Η χαρά είναι όλη δική μου",
+      "key": ""
+    },
+    {
+      "fr": "À votre service",
+      "el": "Στη διάθεσή σας",
+      "key": ""
+    },
+    {
+      "fr": "Quand vous voulez",
+      "el": "Όποτε θέλετε",
+      "key": ""
+    },
+    {
+      "fr": "N'importe quand",
+      "el": "Οποιαδήποτε στιγμή",
+      "key": ""
+    }
+  ]
+}

@@ -71,3 +71,8 @@ body {
       border-top: 1px dotted var(--faint);
       font-size: 10.5pt; color: var(--accent); }
 .ex strong { font-weight: 700; }
+
+/* A card whose rows mostly have no icon drops the gutter entirely and renders
+   as a word list. Reserving 26px of empty column on a pronoun paradigm reads
+   as a broken icon card, and the space is better spent on the text. */
+.grid.nogut .wd { min-height: 6.4mm; }

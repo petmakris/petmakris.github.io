@@ -1,0 +1,24 @@
+{
+  "id": "marche", "tier": 3, "order": 33,
+  "title_fr": "Au marché : combien ?", "title_el": "στην αγορά",
+  "accent": "#1E7A5A",
+  "example": "Je voudrais **un kilo** de pommes et **une bouteille** de lait ; **un peu de** fromage, mais **pas de** pain.",
+  "items": [
+    {"fr": "un kilo",      "el": "ένα κιλό — τα γαλλικά θέλουν πάντα de: un kilo de pommes = ένα κιλό μήλα (τα ελληνικά δεν βάζουν τίποτα ανάμεσα)", "key": "kilogram"},
+    {"fr": "un demi-kilo", "el": "μισό κιλό, το μισόκιλο (500 γραμμάρια): un demi-kilo de tomates", "key": "half"},
+    {"fr": "cent grammes", "el": "εκατό γραμμάρια: cent grammes de jambon = εκατό γραμμάρια ζαμπόν", "key": "gram"},
+    {"fr": "un litre",     "el": "ένα λίτρο: un litre de lait = ένα λίτρο γάλα", "key": "litre"},
+    {"fr": "une tranche",  "el": "μία φέτα (ψωμί, ζαμπόν, τυρί): une tranche de pain", "key": "slice"},
+    {"fr": "un morceau",   "el": "ένα κομμάτι: un morceau de fromage = ένα κομμάτι τυρί", "key": "piece"},
+    {"fr": "un paquet",    "el": "ένα πακέτο: un paquet de pâtes = ένα πακέτο ζυμαρικά", "key": "packet"},
+    {"fr": "une boîte",    "el": "ένα κουτί· και η κονσέρβα: une boîte de tomates", "key": "box"},
+    {"fr": "une bouteille","el": "ένα μπουκάλι: une bouteille d'eau — πριν από φωνήεν το de γίνεται d'", "key": "bottle"},
+    {"fr": "un cornet",    "el": "η σακούλα (πλαστική, του μαγαζιού) — έτσι λέγεται στο Βω και στη γαλλόφωνη Ελβετία· στη Γαλλία λένε un sac", "key": "bag"},
+    {"fr": "une plaque",   "el": "μία πλάκα: une plaque de chocolat = μία πλάκα σοκολάτα", "key": "chocolate"},
+    {"fr": "une douzaine", "el": "μία δωδεκάδα, δώδεκα: une douzaine d'œufs = δώδεκα αυγά", "key": "dozen"},
+    {"fr": "un peu de",    "el": "λίγο, λίγα: un peu de sel = λίγο αλάτι", "key": "q_little"},
+    {"fr": "beaucoup de",  "el": "πολύ, πολλά: beaucoup de monde = πολύς κόσμος", "key": "q_lots"},
+    {"fr": "pas de",       "el": "καθόλου: je n'ai pas de monnaie = δεν έχω καθόλου ψιλά", "key": "zero"},
+    {"fr": "combien de",   "el": "πόσο, πόσα: combien de pommes ? = πόσα μήλα;", "key": "how many"}
+  ]
+}

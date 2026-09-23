@@ -27,8 +27,14 @@ def _article_class(art):
     return {"le": "le", "la": "la", "l'": "elid", "les": "les"}.get(art, "")
 
 
-def row_html(item, accent):
-    """One row: icon gutter, coloured article, French, Greek only if needed."""
+def row_html(item, accent, gutter=True):
+    """One row: icon gutter, coloured article, French, Greek only if needed.
+
+    gutter=False drops the icon column entirely. card_html turns it off for a
+    card where most rows have no icon anyway (grammar sets, phrase cards) —
+    there a reserved-but-empty gutter reads as a broken icon card rather than
+    the word list it actually is, and it costs horizontal space the text wants.
+    """
     svg, kind = icons.resolve(item, accent)
     art, noun = split_article(item["fr"])
 
@@ -38,8 +44,10 @@ def row_html(item, accent):
     # nothing"), but drawing it on the page reads as a rendering failure
     # rather than the deliberate gap it is. The 26px gutter stays reserved
     # so columns still line up against rows that do have an icon.
-    icon_html = "" if kind == "none" else svg
-    parts = [f'<span class="ic">{icon_html}</span>']
+    parts = []
+    if gutter:
+        icon_html = "" if kind == "none" else svg
+        parts.append(f'<span class="ic">{icon_html}</span>')
     if art:
         parts.append(f'<span class="art {_article_class(art)}">'
                      f'{_html.escape(art)}</span>')
@@ -60,9 +68,26 @@ def _example_html(text):
     return re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", _html.escape(text))
 
 
+# Above this share of iconless rows, a card drops its icon gutter and renders
+# as a plain word list. Measured over the real book, 54% of all rows resolve to
+# no icon, and two grammar cards are 100% iconless — an icon was never plausible
+# for a pronoun paradigm. 0.6 keeps the gutter wherever it is still earning it.
+NO_GUTTER_ABOVE = 0.6
+
+
+def _wants_gutter(card):
+    items = card["items"]
+    if not items:
+        return True
+    blank = sum(1 for i in items
+                if icons.resolve(i, card["accent"])[1] == "none")
+    return (blank / len(items)) <= NO_GUTTER_ABOVE
+
+
 def card_html(card):
     accent = card["accent"]
-    rows = "".join(row_html(i, accent) for i in card["items"])
+    gutter = _wants_gutter(card)
+    rows = "".join(row_html(i, accent, gutter) for i in card["items"])
     cols = _columns(len(card["items"]))
 
     ex = ""
@@ -76,7 +101,8 @@ def card_html(card):
         f'<span class="el-sub">{_html.escape(card["title_el"])}</span>'
         f'<span class="count">{len(card["items"])}</span>'
         f'</div>'
-        f'<div class="body"><div class="grid cols-{cols}">{rows}</div>{ex}</div>'
+        f'<div class="body"><div class="grid cols-{cols}'
+        f'{"" if gutter else " nogut"}">{rows}</div>{ex}</div>'
         f'</section>'
     )
 

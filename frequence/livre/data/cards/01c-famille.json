@@ -1,0 +1,24 @@
+{
+  "id": "famille", "tier": 1, "order": 3,
+  "title_fr": "La famille", "title_el": "η οικογένεια",
+  "accent": "#B84066",
+  "example": "**Le père** et **la mère** ont deux **enfants** ; **le grand-père** joue avec **le bébé**.",
+  "items": [
+    {"fr": "le père",        "el": "ο πατέρας, ο μπαμπάς",                        "key": "man"},
+    {"fr": "la mère",        "el": "η μητέρα, η μαμά",                            "key": "woman"},
+    {"fr": "les parents",    "el": "οι γονείς",                                   "key": "family"},
+    {"fr": "le fils",        "el": "ο γιος",                                      "key": "boy"},
+    {"fr": "la fille",       "el": "η κόρη (του γονιού) / το κορίτσι (νεαρή)",    "key": "girl"},
+    {"fr": "le frère",       "el": "ο αδελφός",                                   "key": "brother"},
+    {"fr": "la sœur",        "el": "η αδελφή",                                    "key": "sister"},
+    {"fr": "l'enfant",       "el": "το παιδί",                                    "key": "child"},
+    {"fr": "le bébé",        "el": "το μωρό",                                     "key": "baby"},
+    {"fr": "le mari",        "el": "ο σύζυγος, ο άντρας της",                     "key": "husband"},
+    {"fr": "la femme",       "el": "η γυναίκα (γενικά) / η σύζυγος (παντρεμένη)", "key": "wife"},
+    {"fr": "le grand-père",  "el": "ο παππούς",                                   "key": "old man"},
+    {"fr": "la grand-mère",  "el": "η γιαγιά",                                    "key": "old woman"},
+    {"fr": "l'oncle",        "el": "ο θείος",                                     "key": "uncle"},
+    {"fr": "la tante",       "el": "η θεία",                                      "key": "aunt"},
+    {"fr": "le cousin",      "el": "ο ξάδελφος",                                  "key": "cousin"}
+  ]
+}

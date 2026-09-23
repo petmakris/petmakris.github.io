@@ -1,0 +1,25 @@
+{
+  "id": "conjonctions", "tier": 2, "order": 24,
+  "title_fr": "La colle : joindre deux phrases", "title_el": "οι σύνδεσμοι",
+  "accent": "#57544F",
+  "example": "Je ne sors pas **parce qu'**il pleut, **mais** **si** tu viens, on mange **et** on joue.",
+  "items": [
+    {"fr": "et",              "el": "και",                                                                                  "key": "plus"},
+    {"fr": "ou",              "el": "ή (διάλεξε ένα από τα δύο)",                                                            "key": "or"},
+    {"fr": "mais",            "el": "αλλά, μα",                                                                             "key": "but"},
+    {"fr": "donc",            "el": "άρα, λοιπόν — το αποτέλεσμα έρχεται μετά",                                             "key": "therefore"},
+    {"fr": "car",             "el": "γιατί, διότι — γραπτό και επίσημο· ποτέ στην αρχή της πρότασης",                        "key": "for"},
+    {"fr": "ni",              "el": "ούτε — πάντα με το ne: je ne bois ni café ni thé",                                     "key": "nor"},
+    {"fr": "parce que",       "el": "επειδή, γιατί — η κανονική απάντηση στο pourquoi ;",                                    "key": "because"},
+    {"fr": "comme",           "el": "καθώς, επειδή — μόνο στην αρχή της πρότασης· σημαίνει και «όπως, σαν»",                 "key": "as"},
+    {"fr": "puisque",         "el": "αφού, μια και — ο λόγος τον ξέρουν και οι δύο ήδη",                                     "key": "since"},
+    {"fr": "si",              "el": "αν (υπόθεση)· το ίδιο «si» σημαίνει και «ναι» όταν απαντάς σε αρνητική ερώτηση",        "key": "if"},
+    {"fr": "quand",           "el": "όταν· και «πότε;» στην ερώτηση",                                                        "key": "when"},
+    {"fr": "pendant que",     "el": "ενώ, την ώρα που — τα δύο γίνονται μαζί",                                              "key": "while"},
+    {"fr": "avant de",        "el": "πριν + ρήμα: avant de partir = πριν φύγω (στα γαλλικά απαρέμφατο, στα ελληνικά «φύγω»)", "key": "before"},
+    {"fr": "pour",            "el": "για να — και μετά απαρέμφατο: pour manger = για να φάω· δηλώνει τον σκοπό",           "key": "purpose"},
+    {"fr": "à cause de",      "el": "εξαιτίας — ΜΟΝΟ για κακό: à cause de la pluie = εξαιτίας της βροχής",                   "key": "bad cause"},
+    {"fr": "grâce à",         "el": "χάρη σε — ΜΟΝΟ για καλό: grâce à toi = χάρη σε σένα",                                   "key": "good cause"},
+    {"fr": "que",             "el": "ότι, πως: je pense que… = νομίζω ότι… Προσοχή: στα ελληνικά δύο ρήματα δένουν με «να» (θέλω να πάω), στα γαλλικά με σκέτο απαρέμφατο: je veux aller, ποτέ «je veux que j'aille»", "key": "that"}
+  ]
+}

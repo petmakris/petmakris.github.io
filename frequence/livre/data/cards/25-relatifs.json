@@ -1,0 +1,18 @@
+{
+  "id": "relatifs", "tier": 2, "order": 25,
+  "title_fr": "Les relatifs", "title_el": "οι αναφορικές",
+  "accent": "#8A4FA0",
+  "example": "C'est l'ami **qui** m'aide, et voici le livre **que** je lis.",
+  "items": [
+    {"fr": "qui",       "el": "που — ως υποκείμενο: «l'homme qui parle», ο άνθρωπος που μιλάει· μετά το qui έρχεται αμέσως ρήμα", "key": "who"},
+    {"fr": "que",       "el": "που — ως αντικείμενο: «le livre que je lis», το βιβλίο που διαβάζω· μετά το que έρχεται υποκείμενο (je, tu, il), όχι ρήμα. Πριν από φωνήεν γίνεται qu'", "key": "whom"},
+    {"fr": "où",        "el": "όπου, που — για τόπο: «la ville où j'habite», η πόλη όπου μένω· και για χρόνο: «le jour où», τη μέρα που", "key": "where"},
+    {"fr": "dont",      "el": "του οποίου, της οποίας — τα ελληνικά λένε πάλι σκέτο «που». Μπαίνει όταν το ρήμα θέλει de: «le livre dont je parle», το βιβλίο για το οποίο μιλάω", "key": "whose"},
+    {"fr": "ce qui",    "el": "αυτό που — με το που ως υποκείμενο: «ce qui est important», αυτό που είναι σημαντικό", "key": "what"},
+    {"fr": "ce que",    "el": "αυτό που — με το που ως αντικείμενο: «ce que je veux», αυτό που θέλω", "key": "thing"},
+    {"fr": "ce dont",   "el": "αυτό που — όταν το ρήμα θέλει de: «ce dont j'ai besoin», αυτό που χρειάζομαι", "key": "need"},
+    {"fr": "celui qui", "el": "αυτός που, εκείνος που — για αρσενικό· θηλυκό celle qui, πληθυντικός ceux qui και celles qui", "key": "someone"},
+    {"fr": "lequel",    "el": "ο οποίος — μετά από πρόθεση, κυρίως για πράγματα: «la table sur laquelle», το τραπέζι πάνω στο οποίο· αλλάζει σε laquelle, lesquels, lesquelles", "key": "which"},
+    {"fr": "quoi",      "el": "τι — μετά από πρόθεση και για κάτι αόριστο: «de quoi tu parles ?», για τι πράγμα μιλάς;", "key": "question"}
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "id": "quand-ou-comment",
+  "tier": 4,
+  "order": 262,
+  "title_fr": "Quand, où, comment",
+  "title_el": "Πότε, πού, πώς",
+  "accent": "#1E7A5A",
+  "example": null,
+  "items": [
+    {
+      "fr": "À quelle heure ça commence ?",
+      "el": "Τι ώρα αρχίζει;",
+      "key": ""
+    },
+    {
+      "fr": "À quelle heure on se retrouve ?",
+      "el": "Τι ώρα θα συναντηθούμε;",
+      "key": ""
+    },
+    {
+      "fr": "Jusqu'à quelle heure c'est ouvert ?",
+      "el": "Μέχρι τι ώρα είναι ανοιχτά;",
+      "key": ""
+    },
+    {
+      "fr": "Depuis quand vous êtes là ?",
+      "el": "Από πότε είστε εδώ;",
+      "key": ""
+    },
+    {
+      "fr": "Depuis combien de temps vous attendez ?",
+      "el": "Πόση ώρα περιμένετε;",
+      "key": ""
+    },
+    {
+      "fr": "Ça fait combien de temps ?",
+      "el": "Πόσος καιρός έχει περάσει;",
+      "key": ""
+    },
+    {
+      "fr": "Ça dure combien de temps ?",
+      "el": "Πόση ώρα διαρκεί;",
+      "key": ""
+    },
+    {
+      "fr": "Combien de temps il faut pour y aller ?",
+      "el": "Πόση ώρα θέλει για να πάμε;",
+      "key": ""
+    },
+    {
+      "fr": "Où est-ce qu'on peut manger par ici ?",
+      "el": "Πού μπορούμε να φάμε εδώ γύρω;",
+      "key": ""
+    },
+    {
+      "fr": "Où est-ce que je peux acheter un billet ?",
+      "el": "Πού μπορώ να αγοράσω εισιτήριο;",
+      "key": ""
+    },
+    {
+      "fr": "Par où on passe ?",
+      "el": "Από πού περνάμε;",
+      "key": ""
+    },
+    {
+      "fr": "C'est par où ?",
+      "el": "Προς τα πού είναι;",
+      "key": ""
+    },
+    {
+      "fr": "Comment on fait pour aller au centre-ville ?",
+      "el": "Πώς πάμε στο κέντρο;",
+      "key": ""
+    },
+    {
+      "fr": "Comment ça s'écrit ?",
+      "el": "Πώς γράφεται;",
+      "key": ""
+    },
+    {
+      "fr": "Comment on dit ça en français ?",
+      "el": "Πώς το λένε αυτό στα γαλλικά;",
+      "key": ""
+    },
+    {
+      "fr": "Comment vous vous appelez ?",
+      "el": "Πώς σας λένε;",
+      "key": ""
+    },
+    {
+      "fr": "Comment je peux vous joindre ?",
+      "el": "Πώς μπορώ να επικοινωνήσω μαζί σας;",
+      "key": ""
+    },
+    {
+      "fr": "Qui est au courant ?",
+      "el": "Ποιος το ξέρει;",
+      "key": ""
+    },
+    {
+      "fr": "Qui s'occupe de ça ?",
+      "el": "Ποιος το χειρίζεται αυτό;",
+      "key": ""
+    }
+  ]
+}
