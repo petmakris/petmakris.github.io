@@ -1,0 +1,73 @@
+/* Vocabulaire illustré — the C2 layout.
+   Rail 18%, three-column grid, cards never split. Density target >=50/A4. */
+@page { size: A4; margin: 12mm 12mm 10mm; }
+
+:root {
+  --ink:   #1A1A18;
+  --grey:  #57544F;
+  --faint: #C9C7C2;
+  --le:    #2166B0;
+  --la:    #B84066;
+  --neut:  #6B6B6B;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Alegreya Sans", system-ui, sans-serif;
+  color: var(--ink);
+  background: #fff;
+}
+
+.doc-head { display: flex; align-items: baseline; gap: 8px;
+            border-bottom: 1px solid var(--faint);
+            padding-bottom: 3mm; margin-bottom: 5mm; }
+.doc-head h1 { font-size: 19pt; margin: 0; }
+.doc-head .sub { font-size: 12pt; color: var(--grey); }
+
+/* A card is a group. It is never split across a page. */
+.card {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  display: grid;
+  grid-template-columns: 18% 1fr;
+  border-top: 2.5px solid var(--accent);
+  margin-bottom: 6mm;
+}
+
+.rail { padding: 2mm 3mm 2mm 0;
+        background: linear-gradient(180deg,
+          color-mix(in srgb, var(--accent) 6%, #fff), #fff); }
+.rail h2 { font-size: 13pt; margin: 0 0 1mm; color: var(--accent);
+           hyphens: manual; word-break: keep-all; }
+.rail .el-sub { font-size: 8.5pt; color: var(--grey); display: block; }
+.rail .count { display: inline-block; margin-top: 2mm; padding: 0 5px;
+               border: 1px solid var(--faint); border-radius: 7px;
+               font-size: 7pt; color: var(--grey); }
+
+.body { border-left: 1px solid var(--faint); padding-left: 4mm; }
+
+.grid { display: grid; gap: 0.6mm 4mm; }
+.grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+
+/* One row. flex-wrap is what lets a long Greek gloss drop under its French
+   on that row alone, instead of forcing the whole card down to two columns. */
+.wd { display: flex; flex-wrap: wrap; align-items: center;
+      gap: 0 4px; min-height: 7.3mm; padding: 0.7mm 0; }
+.wd .ic { width: 26px; height: 26px; flex: 0 0 26px; }
+.wd .ic svg { width: 26px; height: 26px; display: block; }
+.wd b  { font-size: 14pt; font-weight: 700; }
+.wd .art { font-size: 14pt; font-weight: 700; }
+.wd .art.le  { color: var(--le); }
+.wd .art.la  { color: var(--la); }
+.wd .art.elid, .wd .art.les { color: var(--neut); }
+.wd .el { font-size: 11pt; color: var(--grey); }
+
+/* One example sentence per card. It supplies the only thing a grid cannot:
+   the words governed by something. Costs one line, costs no pages. */
+.ex { margin-top: 2mm; padding-top: 1.5mm;
+      border-top: 1px dotted var(--faint);
+      font-size: 10.5pt; color: var(--accent); }
+.ex strong { font-weight: 700; }
