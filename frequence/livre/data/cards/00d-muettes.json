@@ -1,0 +1,16 @@
+{
+  "id": "muettes", "tier": 0, "order": 4,
+  "title_fr": "Les lettres muettes", "title_el": "τα γράμματα που δεν ακούγονται",
+  "accent": "#57544F",
+  "example": "**Les petits enfants sont grands** — λε πτι ζα̃φα̃ σõ γκρα̃ : οκτώ γράμματα σιωπούν.",
+  "items": [
+    {"fr": "-e",               "el": "petite = πετίτ· δεν ακούγεται, αλλά κρατάει ζωντανό το σύμφωνο πριν από αυτό", "key": "mute_e"},
+    {"fr": "-s (pluriel)", "el": "les amis = λε ζαμί· ο πληθυντικός δεν ακούγεται ποτέ — το άρθρο είναι αυτό που τον δείχνει", "key": "mute_s"},
+    {"fr": "-t, -d",           "el": "petit = πετί, grand = γκρα̃, chaud = σο",                          "key": "mute_t"},
+    {"fr": "-x, -z",           "el": "deux = ντö, nez = νε, chez = σε",                                  "key": "mute_x"},
+    {"fr": "-er (verbe)",     "el": "το r σιωπά και το e γίνεται é — parler = παρλέ, manger = μα̃ζέ",   "key": "mute_er"},
+    {"fr": "-ent (verbe)",  "el": "ils parlent = ιλ παρλ· ακούγεται ακριβώς όπως το il parle",        "key": "mute_ent"},
+    {"fr": "h- (initial)",   "el": "l'heure = λερ, l'hôtel = λοτέλ· γι' αυτό το άρθρο γίνεται l'",     "key": "mute_h"},
+    {"fr": "sac, hiver, neuf, il", "el": "ΟΜΩΣ: c, r, f, l συνήθως ΑΚΟΥΓΟΝΤΑΙ στο τέλος — sac = σακ, hiver = ιβέρ, neuf = νöφ, il = ιλ", "key": "phon_crfl"}
+  ]
+}

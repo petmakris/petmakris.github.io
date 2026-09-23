@@ -1,0 +1,15 @@
+{
+  "id": "nasales", "tier": 0, "order": 2,
+  "title_fr": "Les voyelles nasales", "title_el": "τα ένρινα φωνήεντα",
+  "accent": "#8A4FA0",
+  "example": "**Un bon vin blanc** — ε̃ μπο̃ βε̃ μπλα̃ : τέσσερα ένρινα στη σειρά.",
+  "items": [
+    {"fr": "an, am, en, em",   "el": "α̃ — ο αέρας βγαίνει από τη μύτη και το ν/μ ΔΕΝ ακούγεται: dans = ντα̃, temps = τα̃", "key": "nasal_a"},
+    {"fr": "on, om",           "el": "õ — bon = μπõ, nom = νõ, combien = κõμπιε̃",                      "key": "nasal_o"},
+    {"fr": "in, im, ain, ein", "el": "ε̃ — vin = βε̃, pain = πε̃, plein = πλε̃",                          "key": "nasal_e"},
+    {"fr": "un, um",           "el": "ε̃ — ίδιο με το in στη σημερινή γλώσσα: un = ε̃, brun = μπρε̃",     "key": "nasal_e"},
+    {"fr": "ien",              "el": "ιε̃ — bien = μπιε̃, rien = ριε̃, combien = κõμπιε̃",                "key": "nasal_ie"},
+    {"fr": "une, bonne, année", "el": "ΔΕΝ είναι ένρινο: όταν ακολουθεί φωνήεν ή διπλό ν/μ, το ν ακούγεται κανονικά — une = ün, bonne = μπον, année = ανέ", "key": "phon_an_split"},
+    {"fr": "-ent (verbe)",      "el": "στο τρίτο πληθυντικό δεν ακούγεται τίποτα — ils parlent = ιλ παρλ, ίδιο με il parle", "key": "mute_ent"}
+  ]
+}

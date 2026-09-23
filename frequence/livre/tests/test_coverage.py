@@ -25,6 +25,9 @@ OPENMOJI = os.path.join(HERE, "assets", "openmoji")
 FULLY_ILLUSTRATED = {
     "corps", "visage", "nombres", "calendrier", "couleurs", "transports",
     "destinations", "epeler", "meteo",
+    # The pronunciation front matter answers a spelling with a SOUND, and the
+    # sound is the icon — a row there without one has lost its answer.
+    "voyelles", "nasales", "consonnes", "muettes", "liaison", "accents",
 }
 
 # Cards that are grammar: pronoun paradigms, conjunctions, relatives, question

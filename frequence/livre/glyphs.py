@@ -728,6 +728,68 @@ def _sector(minutes, accent):
 for _name, _m in (("dur_30", 30), ("dur_15", 15)):
     GLYPHS[_name] = (lambda m: lambda a: _sector(m, a))(_m)
 
+
+# ---- pronunciation: the sound as a tile --------------------------------
+# The pronunciation pages name a SPELLING and answer with a SOUND, and the
+# answer is written in the reader's own alphabet. So the icon is the Greek
+# phoneme itself, on the same tile the numerals use: the row reads
+# «ou → ου» before a word of either language has been processed.
+#
+# Alegreya Sans carries the combining tilde over Greek vowels, so a nasal is
+# written the way a French course writes it — α̃, õ, ε̃ — and not described in
+# a parenthesis. That was checked by rendering before any of this was built.
+_PHONEMES = {
+    "phon_a": "α", "phon_i": "ι", "phon_o": "ο",
+    "phon_ou": "ου", "phon_u": "\u00fc", "phon_eu": "\u00f6",
+    "phon_oi": "ουά", "phon_ui": "\u00fcι", "phon_schwa": "\u0259",
+    "phon_k": "κ", "phon_s": "σ", "phon_g": "γκ", "phon_z": "ζ",
+    "phon_ni": "νι", "phon_gi": "γι", "phon_f": "φ", "phon_t": "τ",
+    "phon_r": "ρ", "phon_v": "β", "phon_n": "ν",
+    # The four consonants that DO sound at the end of a word. English courses
+    # teach them as "CaReFuL"; the tile keeps the mnemonic on the page.
+    "phon_crfl": "CRFL",
+    # an/en before a vowel or a doubled n is NOT nasal: une, bonne, année.
+    "phon_an_split": "αν",
+    "nasal_a": "α\u0303", "nasal_o": "ο\u0303", "nasal_e": "ε\u0303",
+    "nasal_ie": "ιε\u0303",
+}
+for _name, _s in _PHONEMES.items():
+    GLYPHS[_name] = _nt(_s)
+
+
+# ---- pronunciation: the letter you do NOT say ---------------------------
+# The letter is on the page but not in the mouth: a pale tile struck through
+# in the accent colour.
+def _mutetile(a, s):
+    """A pale tile, dark letter, accent strike.
+
+    The first version painted the letter white like every other tile, on a
+    mid-grey ground — and white on light grey with a stroke through it left
+    nothing legible at 26px. The letter has to be READ for the strike to mean
+    anything, so here the tile goes pale and the letter goes dark."""
+    size = _fit(s)
+    return (_rrect(2, 4.5, 20, 15, 3.4, "#E0E3E8")
+            + _text(12, 12 - 0.35 * size, s, "#5E636A", size)
+            + _line(3.2, 5.6, 20.8, 18.4, a, 2.3))
+
+
+for _name, _s in (("mute_e", "e"), ("mute_s", "s"), ("mute_t", "t"),
+                  ("mute_x", "x"), ("mute_er", "er"), ("mute_ent", "ent"),
+                  ("mute_h", "h")):
+    GLYPHS[_name] = (lambda s: lambda a: _mutetile(a, s))(_s)
+
+
+# ---- liaison -------------------------------------------------------------
+# The tie printed under the two words in every French course. Two grey
+# blocks are the words; the accent arc joining them underneath IS the rule.
+@_g("liaison")
+def _(a): return (
+    _rrect(2.2, 10.0, 8.4, 9.0, 2.0, GREY)
+    + _rrect(13.4, 10.0, 8.4, 9.0, 2.0, GREY)
+    + f'<path d="M6.4,{_y(9.4)} Q12,{_y(2.2)} 17.6,{_y(9.4)}" fill="none" '
+      f'stroke="{a}" stroke-width="2.1" stroke-linecap="round"/>'
+)
+
 def render(key, accent):
     fn = GLYPHS.get(key)
     return _svg(fn(accent)) if fn else None

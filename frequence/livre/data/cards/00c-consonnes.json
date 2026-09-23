@@ -1,0 +1,24 @@
+{
+  "id": "consonnes", "tier": 0, "order": 3,
+  "title_fr": "Les consonnes qui surprennent", "title_el": "τα σύμφωνα που ξαφνιάζουν",
+  "accent": "#1E7A5A",
+  "example": "Le **gar**çon **ch**er**ch**e son **j**ournal — λε γκαρσõ σερσ σõ ζουρνάλ.",
+  "items": [
+    {"fr": "c + a, o, u",      "el": "κ — café = καφέ, cou = κου",                                      "key": "phon_k"},
+    {"fr": "c + e, i, y",      "el": "σ — ce = σε, merci = μερσί, cinq = σε̃κ",                          "key": "phon_s"},
+    {"fr": "ç",                "el": "σ πάντα· η ουρίτσα υπάρχει ακριβώς γι' αυτό — ça = σα, français = φρα̃σέ", "key": "typ_cedilla"},
+    {"fr": "g + a, o, u",      "el": "γκ — gare = γκαρ, gomme = γκομ",                                  "key": "phon_g"},
+    {"fr": "g + e, i, y",      "el": "ζ — âge = αζ, gilet = ζιλέ, manger = μα̃ζέ",                       "key": "phon_z"},
+    {"fr": "j",                "el": "ζ — je = ζε, jour = ζουρ, déjà = ντεζά",                          "key": "phon_z"},
+    {"fr": "ch",               "el": "σ, ποτέ τσ — chat = σα, chaud = σο, chercher = σερσέ",            "key": "phon_s"},
+    {"fr": "gn",               "el": "νι — gagner = γκανιέ, montagne = μõτάνι",                          "key": "phon_ni"},
+    {"fr": "ill",             "el": "ιγι, όπως το γι στο «γιατί» — famille = φαμίγι, fille = φιγι· ΟΜΩΣ ville = βιλ, mille = μιλ",      "key": "phon_gi"},
+    {"fr": "qu",               "el": "κ· το u δεν ακούγεται — qui = κι, quatre = κατρ",                 "key": "phon_k"},
+    {"fr": "ph",               "el": "φ — photo = φοτό, pharmacie = φαρμασί",                           "key": "phon_f"},
+    {"fr": "th",               "el": "τ, ποτέ θ — thé = τε, théâtre = τεάτρ",                           "key": "phon_t"},
+    {"fr": "s entre deux voyelles", "el": "ζ — maison = μεζõ, chose = σοζ, cuisine = κüιζίν",           "key": "phon_z"},
+    {"fr": "ss",               "el": "σ — poisson = πουασõ, aussi = οσί",                               "key": "phon_s"},
+    {"fr": "r",                "el": "το γαλλικό ρ: βγαίνει από τον λαιμό, σαν μαλακό χ — Paris = παχί, merci = μεχσί", "key": "phon_r"},
+    {"fr": "h",                "el": "ποτέ δεν ακούγεται, πουθενά — hôtel = οτέλ, heure = ερ",          "key": "mute_h"}
+  ]
+}

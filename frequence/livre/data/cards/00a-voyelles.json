@@ -1,0 +1,20 @@
+{
+  "id": "voyelles", "tier": 0, "order": 1,
+  "title_fr": "Comment ça se dit : les voyelles", "title_el": "πώς προφέρεται: τα φωνήεντα",
+  "accent": "#2166B0",
+  "example": "**Tu** as **vu** le **bateau** ? — τü α βü λε μπατό. Το **ü** και το **ö** δεν είναι ελληνικά γράμματα: είναι οι δύο ήχοι που δεν έχουμε.",
+  "items": [
+    {"fr": "a, à, â",          "el": "α — la = λα, âge = αζ· ο τόνος πάνω στο a δεν αλλάζει τον ήχο",   "key": "phon_a"},
+    {"fr": "é",                "el": "ε κλειστό, με τα χείλη τεντωμένα στο πλάι — été = ετέ",           "key": "typ_acute"},
+    {"fr": "è, ê, ai, ei",     "el": "ε ανοιχτό, το στόμα πιο ανοιχτό — père = περ, mais = με",         "key": "typ_grave"},
+    {"fr": "e (final)",    "el": "δεν ακούγεται· κρατάει όμως ζωντανό το σύμφωνο πριν — petit = πετί, petite = πετίτ", "key": "mute_e"},
+    {"fr": "e (interne)",     "el": "χαλαρό, σχεδόν χάνεται — venir = βνιρ, samedi = σαμντί",          "key": "phon_schwa"},
+    {"fr": "i, y",             "el": "ι — midi = μιντί, stylo = στιλό",                                 "key": "phon_i"},
+    {"fr": "o, ô, au, eau",    "el": "ο — bateau = μπατό, hôtel = οτέλ, aussi = οσί",                   "key": "phon_o"},
+    {"fr": "ou",               "el": "ου — vous = βου, nous = νου, jour = ζουρ",                        "key": "phon_ou"},
+    {"fr": "u",                "el": "δεν υπάρχει στα ελληνικά: πες ι και στρογγύλεψε τα χείλη σαν να λες ου — tu = τü, rue = ρü", "key": "phon_u"},
+    {"fr": "eu, œu",           "el": "ούτε αυτό υπάρχει: πες ε με στρογγυλά χείλη — deux = ντö, sœur = σör", "key": "phon_eu"},
+    {"fr": "oi",               "el": "ουά — moi = μουά, trois = τρουά, boire = μπουάρ",                 "key": "phon_oi"},
+    {"fr": "ui",               "el": "ü και ι, γρήγορα μαζί — lui = λüι, huit = üιτ",                   "key": "phon_ui"}
+  ]
+}

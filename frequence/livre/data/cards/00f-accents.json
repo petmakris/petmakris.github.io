@@ -1,0 +1,15 @@
+{
+  "id": "accents", "tier": 0, "order": 6,
+  "title_fr": "Les accents : à quoi ils servent", "title_el": "οι τόνοι: τι δουλειά κάνουν",
+  "accent": "#C8901A",
+  "example": "Il **a** été à la **forêt** — το a χωρίς τόνο είναι ρήμα, το à με τόνο είναι «στο».",
+  "items": [
+    {"fr": "é",                "el": "accent aigu — κλείνει το ε: été = ετέ, école = εκόλ",              "key": "typ_acute"},
+    {"fr": "è",                "el": "accent grave — ανοίγει το ε: père = περ, très = τρε",              "key": "typ_grave"},
+    {"fr": "ê",                "el": "accent circonflexe — ανοιχτό ε· συχνά δείχνει ένα s που χάθηκε: forêt, αγγλικά forest", "key": "typ_circ"},
+    {"fr": "ë, ï",             "el": "tréma — τα δύο φωνήεντα λέγονται χωριστά: Noël = Νοέλ, maïs = μαΐς", "key": "typ_trema"},
+    {"fr": "ç",                "el": "cédille — κάνει το c να ακούγεται σ μπροστά από a, o, u: ça = σα, garçon = γκαρσõ", "key": "typ_cedilla"},
+    {"fr": "à, où",            "el": "ο τόνος δεν αλλάζει ήχο· ξεχωρίζει λέξεις που γράφονται ίδια: a (έχει) / à (στο), ou (ή) / où (πού)", "key": "typ_grave"},
+    {"fr": "â, î, ô, û",       "el": "το καπελάκι στα άλλα φωνήεντα δεν αλλάζει σχεδόν τίποτα στον ήχο — dû = ντü, île = ιλ", "key": "typ_circ"}
+  ]
+}

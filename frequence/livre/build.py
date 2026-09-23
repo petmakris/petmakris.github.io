@@ -35,13 +35,15 @@ def _check_strict(selected):
         raise SystemExit("strict mode: " + "; ".join(problems))
 
 
-# The book has two halves and they live in two directories: the illustrated
-# word cards (tiers 1-3) and the phrase cards migrated from the old deck
-# (tier 4). Sorting by tier puts the phrases after the words automatically.
+# The book is sorted by tier, which is also its running order: tier 0 is the
+# pronunciation front matter (how the letters sound before any of them mean
+# anything), tiers 1-3 the illustrated word cards, tier 4 the phrase cards
+# migrated from the old deck. They live in two directories; the sort merges
+# them.
 PHRASES = os.path.join(HERE, "data", "phrases")
 
 
-def build(cards_dir, out_dir, tiers=(1, 2, 3, 4), title=TITLE, strict=False,
+def build(cards_dir, out_dir, tiers=(0, 1, 2, 3, 4), title=TITLE, strict=False,
           phrases_dir=None):
     os.makedirs(out_dir, exist_ok=True)
     loaded = cards.load_all(cards_dir)
@@ -81,7 +83,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--cards", default=os.path.join(HERE, "data", "cards"))
     ap.add_argument("--out", default=os.path.join(HERE, "out"))
-    ap.add_argument("--tiers", default="1,2,3,4")
+    ap.add_argument("--tiers", default="0,1,2,3,4")
     ap.add_argument("--phrases", default=PHRASES)
     ap.add_argument("--strict", action="store_true",
                      help="fail the build if a hand-picked icon is missing")

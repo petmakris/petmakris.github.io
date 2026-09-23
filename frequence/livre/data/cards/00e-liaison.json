@@ -1,0 +1,16 @@
+{
+  "id": "liaison", "tier": 0, "order": 5,
+  "title_fr": "La liaison et le rythme", "title_el": "η σύνδεση και ο ρυθμός",
+  "accent": "#B5531F",
+  "example": "**Vous avez deux enfants** — βου ζαβέ ντö ζα̃φα̃ : τρεις λέξεις, μία ανάσα.",
+  "items": [
+    {"fr": "la liaison",       "el": "το σιωπηλό σύμφωνο ξυπνάει όταν η επόμενη λέξη αρχίζει με φωνήεν — les amis = λε-ζαμί", "key": "liaison"},
+    {"fr": "s, x",         "el": "deux enfants = ντö-ζα̃φα̃, vous avez = βου-ζαβέ, les autres = λε-ζοτρ", "key": "phon_z"},
+    {"fr": "d, t",         "el": "quand il = κα̃-τιλ, un grand homme = ε̃ γκρα̃-τομ",                  "key": "phon_t"},
+    {"fr": "f",            "el": "μόνο με heures και ans — neuf heures = νö-βερ, neuf ans = νö-βα̃",  "key": "phon_v"},
+    {"fr": "n",    "el": "το ένρινο μένει και το ν περνάει μπροστά — un ami = ε̃-ναμί, mon école = μõ-νεκόλ", "key": "phon_n"},
+    {"fr": "h aspiré",         "el": "λίγες λέξεις δεν δέχονται σύνδεση — les héros = λε ερό, όχι λε-ζερό", "key": "mute_h"},
+    {"fr": "l'enchaînement", "g": "m",   "el": "σύμφωνο που ακούγεται κιόλας κολλάει στην επόμενη λέξη — il arrive = ι-λαρίβ", "key": "liaison"},
+    {"fr": "l'accent tonique", "g": "m", "el": "ο τόνος πέφτει ΠΑΝΤΑ στην τελευταία συλλαβή της ομάδας, όχι σε γραμμένη θέση όπως στα ελληνικά — Paris = παρί, restaurant = ρεστορα̃", "key": "seq_4"}
+  ]
+}
