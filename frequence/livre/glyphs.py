@@ -329,6 +329,39 @@ for _i in range(1, 13):
     GLYPHS[f"month_{_i}"] = _tf(str(_i))
 
 
+# ---- clock dials --------------------------------------------------------
+def _dial(hour, minute, accent):
+    """A clock face at a given time. The dial IS the meaning — this is the one
+    glyph in the book that is unambiguous in every language at every age."""
+    def hand(angle_deg, length, width):
+        a = math.radians(angle_deg - 90)
+        x = 12 + length * math.cos(a)
+        y = 12 + length * math.sin(a)
+        return (f'<line x1="12" y1="12" x2="{x:.2f}" y2="{y:.2f}" '
+                f'stroke="{accent}" stroke-width="{width}" '
+                f'stroke-linecap="round"/>')
+
+    face = (f'<circle cx="12" cy="12" r="9.5" fill="none" '
+            f'stroke="{GREY}" stroke-width="1.4"/>')
+    ticks = "".join(
+        f'<circle cx="{12 + 8 * math.cos(math.radians(t * 30 - 90)):.2f}" '
+        f'cy="{12 + 8 * math.sin(math.radians(t * 30 - 90)):.2f}" '
+        f'r="1.1" fill="{GREY}"/>' for t in range(12))
+    h_ang = (hour % 12) * 30 + minute * 0.5
+    return face + ticks + hand(h_ang, 4.6, 2.2) + hand(minute * 6, 7.0, 1.7)
+
+
+for _h in range(1, 13):
+    GLYPHS[f"clock_{_h}"] = (lambda h: lambda a: _dial(h, 0, a))(_h)
+GLYPHS["clock_00"] = lambda a: _dial(12, 0, a)
+GLYPHS["clock_q15"] = lambda a: _dial(3, 15, a)
+GLYPHS["clock_q30"] = lambda a: _dial(3, 30, a)
+GLYPHS["clock_q45"] = lambda a: _dial(3, 45, a)
+GLYPHS["clock_m10"] = lambda a: _dial(3, 50, a)
+GLYPHS["clock_sharp"] = lambda a: _dial(3, 0, a)
+GLYPHS["clock_24"] = lambda a: _dial(2, 0, a)
+
+
 def render(key, accent):
     fn = GLYPHS.get(key)
     return _svg(fn(accent)) if fn else None
