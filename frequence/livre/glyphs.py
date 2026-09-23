@@ -340,10 +340,13 @@ def _dial(hour, minute, accent, mark=None):
     WORD itself disambiguates:
       - "day"   — midi, quatorze heures: a bold accent ring around the face.
       - "night" — minuit: the face fills solid dark, like a night sky.
-      - "sharp" — pile: the tick the hour hand lands on turns accent-coloured,
-        showing the hands landing exactly on the mark. Without this, `pile`
-        (an arbitrary example dial) is byte-identical to whatever plain hour
-        the card also shows at the same o'clock.
+      - "sharp" — pile: a bold accent-filled hub at the centre pivot, showing
+        the hands landing exactly on the mark. Without this, `pile` (an
+        arbitrary example dial) is byte-identical to whatever plain hour the
+        card also shows at the same o'clock. A highlighted tick was tried
+        first and rejected: at 26px it fuses against the hand tip into one
+        indistinct patch, whereas a hub at the centre cannot be confused with
+        either hand.
       - None    — everything else, including deux heures. `deux heures`
         genuinely is ambiguous between 2h and 14h in French, so it stays a
         plain unmarked face on purpose; the bare "2" next to the marked "14"
@@ -379,34 +382,50 @@ def _dial(hour, minute, accent, mark=None):
 
     face = (f'<circle cx="12" cy="12" r="9.5" fill="{face_fill}" '
             f'stroke="{GREY}" stroke-width="1.4"/>')
-    sharp_t = hour % 12 if mark == "sharp" else None
-
-    def _tick(t):
-        x = 12 + 8 * math.cos(math.radians(t * 30 - 90))
-        y = 12 + 8 * math.sin(math.radians(t * 30 - 90))
-        if t == sharp_t:
-            return f'<circle cx="{x:.2f}" cy="{y:.2f}" r="1.7" fill="{accent}"/>'
-        return f'<circle cx="{x:.2f}" cy="{y:.2f}" r="1.1" fill="{tick_col}"/>'
-
-    ticks = "".join(_tick(t) for t in range(12))
+    ticks = "".join(
+        f'<circle cx="{12 + 8 * math.cos(math.radians(t * 30 - 90)):.2f}" '
+        f'cy="{12 + 8 * math.sin(math.radians(t * 30 - 90)):.2f}" '
+        f'r="1.1" fill="{tick_col}"/>' for t in range(12))
+    hub = f'<circle cx="12" cy="12" r="2.4" fill="{accent}"/>' if mark == "sharp" else ""
     h_ang = (hour % 12) * 30 + minute * 0.5
     # Hour and minute hands are told apart by LENGTH and END TREATMENT, not
     # just width — a short thick blunt hand vs. a longer, thinner hand with
-    # a ball tip — because at :15/:45 the two angles sit close together and
-    # width alone tightens into the same blur rather than separating.
+    # a ball tip. Width alone cannot fix a degenerate angle: see hand_sep().
     return (halo + face + ticks
             + hand(h_ang, 4.6, 2.0)
-            + hand(minute * 6, 7.6, 1.4, dot=True))
+            + hand(minute * 6, 7.6, 1.4, dot=True)
+            + hub)
+
+
+def hand_sep(hour, minute):
+    """Angle between hour and minute hands, 0-180. Below ~45 the hands read
+    as one blob (coincident); above ~135 they read as one straight bar
+    (opposite) — both are degenerate at 26px, however the hands are drawn."""
+    h_ang = (hour % 12) * 30 + minute * 0.5
+    m_ang = minute * 6
+    d = abs(h_ang - m_ang) % 360
+    return min(d, 360 - d)
 
 
 for _h in range(1, 13):
     GLYPHS[f"clock_{_h}"] = (lambda h: lambda a: _dial(h, 0, a))(_h)
 GLYPHS["clock_12"] = lambda a: _dial(12, 0, a, mark="day")     # midi
 GLYPHS["clock_00"] = lambda a: _dial(12, 0, a, mark="night")   # minuit
-GLYPHS["clock_q15"] = lambda a: _dial(3, 15, a)
-GLYPHS["clock_q30"] = lambda a: _dial(3, 30, a)
-GLYPHS["clock_q45"] = lambda a: _dial(3, 45, a)
-GLYPHS["clock_m10"] = lambda a: _dial(3, 50, a)
+
+# The hour shown for these four is arbitrary — they teach the MINUTE
+# expression, not the hour — so it is picked to keep the hands well apart
+# (target ~45-135 degrees; see hand_sep()). Do not "tidy" these back to a
+# uniform 3 o'clock: 3:15 and 3:45 were tried and both collapse the hands
+# into a single blob or bar. See test_minute_expression_dials_have_separated_hands.
+MINUTE_DIALS = {
+    "clock_q15": (6, 15),   # et quart        -> 97.5 deg apart
+    "clock_q30": (3, 30),   # et demie        -> 75.0 deg apart
+    "clock_q45": (6, 45),   # moins le quart  -> 67.5 deg apart
+    "clock_m10": (1, 50),   # moins dix       -> 115.0 deg apart
+}
+for _key, (_hh, _mm) in MINUTE_DIALS.items():
+    GLYPHS[_key] = (lambda h, m: lambda a: _dial(h, m, a))(_hh, _mm)
+
 GLYPHS["clock_sharp"] = lambda a: _dial(3, 0, a, mark="sharp")  # pile
 GLYPHS["clock_24"] = lambda a: _dial(2, 0, a, mark="day")      # quatorze heures
 

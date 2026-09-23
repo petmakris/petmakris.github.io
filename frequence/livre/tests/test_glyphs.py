@@ -67,3 +67,16 @@ def test_no_two_glyphs_render_identically():
                 collisions.append((key, other_key))
         rendered[key] = svg
     assert not collisions, f"identical glyphs: {collisions}"
+
+def test_minute_expression_dials_have_separated_hands():
+    """et quart / et demie / moins le quart / moins dix must show two
+    clearly separate hands, not a near-coincident or near-opposite blur.
+    Computed independently from hour/minute here, not from rendered pixels
+    — a future edit that quietly moves one of these times back toward a
+    uniform 3 o'clock must fail this before anyone looks at a rendering."""
+    for key, (hour, minute) in glyphs.MINUTE_DIALS.items():
+        h_ang = (hour % 12) * 30 + minute * 0.5
+        m_ang = minute * 6
+        sep = abs(h_ang - m_ang) % 360
+        sep = min(sep, 360 - sep)
+        assert 45 <= sep <= 135, f"{key}: hands only {sep}deg apart"
