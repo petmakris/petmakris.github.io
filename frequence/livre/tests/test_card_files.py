@@ -36,9 +36,25 @@ def test_space_card_keeps_greek_on_every_row():
     for item in c["items"]:
         assert item["el"] in h, item["fr"]
 
-def test_verbs_card_drops_greek_on_every_row():
-    """All emoji — the picture carries it, so no Greek at all."""
+def test_verbs_card_drops_greek_on_unambiguous_action_icons():
+    """These four show the action itself (a walking, sleeping, swimming,
+    dancing figure) — the picture genuinely carries the word."""
     c = cards.load_card(os.path.join(CARDS, "05-verbes.json"))
     h = render.card_html(c)
-    for item in c["items"]:
-        assert item["el"] not in h, item["fr"]
+    for fr in ("marcher", "dormir", "nager", "danser"):
+        item = next(i for i in c["items"] if i["fr"] == fr)
+        assert item["el"] not in h, fr
+
+def test_verbs_card_keeps_greek_on_noun_standing_for_verb_icons():
+    """These icons depict an object or a state, not the action (briefcase
+    for travailler, money bag for payer, a trolley for acheter, a plate
+    for manger, an hourglass for attendre, a book for lire, headphones for
+    écouter, a game controller for jouer, two padlocks for ouvrir/fermer).
+    Until a dedicated icon pass replaces them, the word must print — see
+    greek.SCHEMATIC."""
+    c = cards.load_card(os.path.join(CARDS, "05-verbes.json"))
+    h = render.card_html(c)
+    for fr in ("travailler", "payer", "acheter", "manger", "attendre",
+               "lire", "écouter", "jouer", "ouvrir", "fermer"):
+        item = next(i for i in c["items"] if i["fr"] == fr)
+        assert item["el"] in h, fr
