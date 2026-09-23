@@ -4,35 +4,26 @@
   Cover the Greek. If the icon alone recovers the word, drop the Greek.
   If it does not, keep it.
 
-Measured across the 437-item vocabulary this keeps Greek on 19% of rows — 84
-glosses instead of 437. The side effect is better than the saving: the Greek
-stops being noise on every row and becomes a signal that something is missing.
-On the body card it lands on exactly the seven joints no icon set has, and the
-eye goes straight to them.
+A house glyph is never enough on its own: it is a diagram (a grey reference
+plus a coloured subject), not a depiction, so every glyph-kind row keeps its
+Greek unconditionally — there is no word list to fall out of sync with the
+glyph set as it grows. SCHEMATIC now does one job only: it is a hand-picked
+override for words whose icon IS a depiction (an emoji, including a
+hand-picked `icon`) that still fails the cover test — a noun standing in for
+a verb, or a picture two entries can't be told apart by.
 """
 
-# Words whose icon is a house glyph: a diagram, not a depiction. A schematic
-# box-and-dot cannot carry a word on its own.
+# Emoji-side overrides: the icon resolved (kind == "emoji"), but it does not
+# actually carry the word, so the Greek must print anyway.
 SCHEMATIC = frozenset({
-    "sur", "sous", "dans", "hors de", "devant", "derrière", "entre",
-    "à côté de", "autour de", "contre", "parmi", "au milieu de",
-    "en face de", "le long de", "vers", "à travers",
-    "au-dessus", "au-dessous",
-    "ici", "là", "là-bas", "près", "loin", "tout près", "très loin",
-    "partout", "nulle part", "quelque part",
-    "assez", "trop", "peu", "beaucoup",
-    "toujours", "souvent", "rarement", "jamais",
-    "en haut", "en bas", "à gauche", "à droite", "tout droit", "en arrière",
-})
-
-# Pairs no picture separates, even when both have an icon. Each of these was
-# found to collapse visually at the 26px gutter size during prototyping.
-NEAR_SYNONYM = frozenset({
-    "devant", "derrière",          # box+dot, near-identical at 26px
-    "au-dessus", "au-dessous",     # differ only by a dashed gap line
-    "sur", "contre",               # both "resting on" without a gloss
-    "loin", "là-bas",              # same dot-and-dash glyph
-    "près", "peu",                 # both two dots
+    # 05-verbes.json: these depict an object, not the action (travailler ->
+    # briefcase, payer -> money bag, acheter -> trolley, manger -> plate,
+    # attendre -> hourglass, lire -> book, écouter -> headphones, jouer ->
+    # game controller), or a state rather than an action (ouvrir/fermer ->
+    # padlocks). Candidates for a dedicated icon pass; until then the word
+    # carries what the picture can't.
+    "travailler", "payer", "acheter", "manger", "attendre", "lire",
+    "écouter", "jouer", "ouvrir", "fermer",
 })
 
 
@@ -40,6 +31,8 @@ def keeps_greek(fr, kind):
     """True if this row prints its Greek gloss."""
     if kind == "none":
         return True
-    if fr in SCHEMATIC or fr in NEAR_SYNONYM:
+    if kind == "glyph":
+        return True
+    if fr in SCHEMATIC:
         return True
     return False

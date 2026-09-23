@@ -8,27 +8,45 @@ def test_concrete_noun_with_emoji_drops_greek():
     assert greek.keeps_greek("le chien", "emoji") is False
     assert greek.keeps_greek("la pluie", "emoji") is False
 
-def test_schematic_glyph_word_keeps_greek():
-    """A house glyph is a diagram, not a depiction — it needs a word."""
+def test_every_glyph_keeps_greek_unconditionally():
+    """A house glyph is a diagram, not a depiction — it needs its word,
+    regardless of whether anyone remembered to list it. This is the fix:
+    keying on `kind`, not on a word list that 40 of 82 glyphs were missing
+    from (the clock dials among them)."""
     assert greek.keeps_greek("sur", "glyph") is True
     assert greek.keeps_greek("au-dessus", "glyph") is True
+    # Real clock-card words that the old SCHEMATIC list never mentioned —
+    # they were silently dropping Greek before this fix.
+    assert greek.keeps_greek("pile", "glyph") is True
+    assert greek.keeps_greek("quatorze heures", "glyph") is True
+    assert greek.keeps_greek("midi", "glyph") is True
 
-def test_near_synonyms_keep_greek_even_with_an_icon():
-    """loin and là-bas cannot be separated by any picture."""
-    assert greek.keeps_greek("loin", "glyph") is True
-    assert greek.keeps_greek("là-bas", "glyph") is True
+def test_schematic_is_an_emoji_side_override_only():
+    """SCHEMATIC no longer gates glyphs (kind == "glyph" alone does that).
+    Its only remaining job is overriding emoji rows whose picture doesn't
+    carry the word — e.g. the noun-for-verb icons on 05-verbes.json."""
+    for w in ("travailler", "payer", "acheter", "manger", "attendre",
+              "lire", "écouter", "jouer", "ouvrir", "fermer"):
+        assert w in greek.SCHEMATIC, w
+        assert greek.keeps_greek(w, "emoji") is True
 
-def test_the_documented_collapsing_pairs_are_listed():
-    for w in ("devant", "derrière", "au-dessus", "au-dessous",
-              "sur", "contre", "loin", "là-bas", "près"):
-        assert w in greek.SCHEMATIC or w in greek.NEAR_SYNONYM, w
+def test_overall_rate_rises_with_the_fix():
+    """Mirrors the real mix: concrete emoji nouns that drop, an emoji-side
+    SCHEMATIC override, plain schematic glyphs, a glyph word that was never
+    in the old word list (quatorze heures — a real clock-card entry), and a
+    no-icon row.
 
-def test_overall_rate_is_about_a_fifth():
-    """The spec measured 19% across the 437-item vocabulary. Guard the order
-    of magnitude so a careless edit to SCHEMATIC cannot silently restore
-    Greek on every row."""
-    sample = ([("le chien", "emoji")] * 80
-              + [("sur", "glyph")] * 15
+    Under the OLD code (glyph gated through SCHEMATIC membership) this exact
+    sample kept 15/100: the 5 "none" rows plus the 10 "sur" rows, while the
+    10 "quatorze heures" rows and the 5 "travailler" rows were silently
+    dropped. Under the fix all of them keep, so the count rises to 30/100.
+    Keep the bound wide — this guards the fix raised the rate at all and
+    didn't overshoot to "keeps almost everything", not an exact figure."""
+    sample = ([("le chien", "emoji")] * 70
+              + [("travailler", "emoji")] * 5
+              + [("sur", "glyph")] * 10
+              + [("quatorze heures", "glyph")] * 10
               + [("le coude", "none")] * 5)
     kept = sum(1 for fr, k in sample if greek.keeps_greek(fr, k))
-    assert 10 <= kept <= 30
+    assert kept == 30
+    assert 20 <= kept <= 45
