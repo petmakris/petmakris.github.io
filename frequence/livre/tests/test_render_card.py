@@ -68,3 +68,28 @@ def test_stylesheet_colours_elid_not_the_greek_gloss_size():
     css = open(render.__file__.replace("render.py", "style.css"), encoding="utf-8").read()
     assert ".art.elid" in css
     assert ".art.el," not in css  # old, colliding selector must be gone
+
+# The six design values below were settled by the owner from printed output.
+# They must never drift silently; the spacing/padding/margin numbers around
+# them are deliberately NOT pinned here, since those stay free to tune for
+# density.
+
+def _css():
+    return open(render.__file__.replace("render.py", "style.css"), encoding="utf-8").read()
+
+def test_rail_is_eighteen_percent():
+    assert "18% 1fr" in _css()
+
+def test_icons_are_26px():
+    css = _css()
+    assert "width: 26px; height: 26px; flex: 0 0 26px;" in css
+
+def test_french_is_14pt_bold():
+    css = _css()
+    assert "font-size: 14pt; font-weight: 700;" in css
+
+def test_greek_is_11pt():
+    assert "font-size: 11pt;" in _css()
+
+def test_card_never_splits_across_a_page():
+    assert "break-inside: avoid;" in _css()
